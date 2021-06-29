@@ -48,7 +48,7 @@ export default function Post({ postData }) {
                 dangerouslySetInnerHTML={{ __html: postData.content }}
               />
             </article>
-          </>
+          </
         )}
         <p>
           <Link href="/blog">
