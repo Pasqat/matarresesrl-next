@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 
 import { getAllPosts } from '../../lib/api'
-import Navbar from '../../Navbars/Navbar'
+import Navbar from '../../components/Navbars/Navbar'
 
 export default function Blog({ allPosts: { edges } }) {
   return (
@@ -14,7 +14,7 @@ export default function Blog({ allPosts: { edges } }) {
 
       <Navbar />
       <main>
-        <h1 className="text-6xl font-normal leading-normal ml-12 mt-0 mb-2 text-yellow-500">
+        <h1 className="text-4xl font-normal leading-normal py-12 mt-0 mb-2 text-yellow-500 align-middle text-center">
           Ultimi Aggiornamenti
         </h1>
         <hr />

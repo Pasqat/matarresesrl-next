@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 
 import { getAllPostsWithSlug, getPost } from '../../lib/api'
+import Navbar from '../../components/Navbars/Navbar'
 
 export default function Post({ postData }) {
   const router = useRouter()
@@ -24,7 +25,7 @@ export default function Post({ postData }) {
       <Head>
         <title>{postData.title}</title>
       </Head>
-
+      <Navbar />
       <main>
         {router.isFallback ? (
           <h2>Loading...</h2>
