@@ -8,6 +8,7 @@ import { HeartIcon, ShoppingCartIcon } from '@heroicons/react/outline'
 import Navbar from '../components/Navbars/Navbar'
 
 import serviziCompleti from '../public/img/servizio-completo1-150x150.jpg'
+import { sendMail } from '../lib/api'
 
 export default function Home() {
   return (
@@ -619,6 +620,8 @@ export default function Home() {
                       <button
                         className="bg-gray-800 text-white active:bg-gray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                         type="button"
+                        // TODO: need to be tested with production wordpress
+                        onClick={sendMail()}
                       >
                         Send Message
                       </button>
@@ -631,15 +634,37 @@ export default function Home() {
         </section>
       </main>
 
-      <footer>
+      <footer className="py-5">
         {/* TODO: change with portfolio link          */}
-        <a
-          href="https://www.github.com/pasqat"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Build By <span className="font-bold">Pasquale Matarrese</span>
-        </a>
+        <div className="text-right mr-4 flex flex-wrap justify-end items-center">
+          <p>
+            Build By <span className="font-bold">Pasquale Matarrese</span>
+          </p>
+          <a
+            href="https://www.github.com/pasqat"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="pl-3"
+          >
+            <i className="fab fa-github text-xl" />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/pasquale-matarrese/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="pl-3"
+          >
+            <i className="fab fa-linkedin text-xl text-blue-900" />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/pasquale-matarrese/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="pl-3"
+          >
+            <i className="fas fa-house-user text-xl text-green-600" />
+          </a>
+        </div>
       </footer>
     </div>
   )
