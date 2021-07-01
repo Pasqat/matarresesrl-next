@@ -18,11 +18,14 @@ function classNames(...classes) {
 
 export default function Navbar(props) {
   return (
-    <Disclosure as="nav" className="bg-gray-800">
+    <Disclosure
+      as="nav"
+      className="bg-gray-900 top-0 z-50 sm:shadow-lg shadow-md sticky"
+    >
       {({ open }) => (
         <>
           <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-            <div className="relative flex items-center justify-between h-16">
+            <div className="relative flex items-center justify-between md:justify-between h-16">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
                 <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
@@ -39,7 +42,7 @@ export default function Navbar(props) {
                   <Link href="/">
                     <a>
                       <img
-                        className="block h-auto w-6/12 md:w-auto"
+                        className="h-auto w-6/12 md:w-8/12 m-auto"
                         src="https://www.matarrese.it/wp-content/uploads/2015/09/logo-matarrese-bianco-350.png"
                         alt="Workflow"
                       />
