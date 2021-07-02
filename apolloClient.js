@@ -6,8 +6,7 @@ const API_URL =
     : process.env.WP_API_URL_LOCAL
 
 const client = new ApolloClient({
-  // uri: API_URL,
-  uri: 'http://localhost/matarrese/graphql',
+  uri: API_URL,
   cache: new InMemoryCache(),
 })
 
