@@ -14,23 +14,23 @@ export default function Blog({ allPosts: { edges } }) {
 
       <Navbar />
       <main>
-        <h1 className="text-4xl font-normal leading-normal py-12 mt-0 mb-2 text-yellow-500 align-middle text-center">
+        <h1 className="py-12 mt-0 mb-2 text-4xl font-normal leading-normal text-center text-yellow-500 align-middle">
           Ultimi Aggiornamenti
         </h1>
         <hr />
 
         <section className="pb-20 ">
-          <div className="container mx-auto px-4">
+          <div className="container px-4 mx-auto">
             <div className="flex flex-wrap">
               {edges.map(({ node }) => {
                 return (
                   <div
                     key={node.title}
-                    className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center"
+                    className="w-full px-4 pt-6 text-center lg:pt-12 md:w-4/12"
                   >
-                    <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-                      <div className="px-4 py-8 flex-auto">
-                        <div className="text-white text-center inline-flex items-center justify-center mb-5 shadow-lg">
+                    <div className="relative flex flex-col w-full min-w-0 mb-8 break-words bg-white rounded-lg shadow-lg">
+                      <div className="flex-auto px-4 py-8">
+                        <div className="inline-flex items-center justify-center mb-5 text-center text-white shadow-lg">
                           <figure>
                             <img
                               src={
@@ -38,11 +38,11 @@ export default function Blog({ allPosts: { edges } }) {
                                   .sourceUrl
                               }
                               alt={node.title}
-                              className="rounded max-w-full h-auto align-middle border-none"
+                              className="h-auto max-w-full align-middle border-none rounded"
                             />
                           </figure>
                         </div>
-                        <h3 className="text-xl font-semibold mb-5">
+                        <h3 className="mb-5 text-xl font-semibold">
                           {node.title}
                         </h3>
                         <div>

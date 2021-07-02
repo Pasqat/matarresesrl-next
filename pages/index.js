@@ -29,23 +29,23 @@ export default function Home() {
           >
             <span
               id="blackOverlay"
-              className="w-full h-full absolute opacity-80 bg-black"
+              className="absolute w-full h-full bg-black opacity-80"
             ></span>
           </div>
           <div className="container relative mx-auto">
-            <div className="items-center flex flex-wrap">
-              <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
+            <div className="flex flex-wrap items-center">
+              <div className="w-full px-4 ml-auto mr-auto text-center lg:w-6/12">
                 <div className="pr-12">
-                  <h1 className="text-white font-semibold text-5xl">
+                  <h1 className="text-5xl font-semibold text-white">
                     Specialisti della Ristorazione
                   </h1>
-                  <p className="mt-4 text-lg text-gray-300 font-bold">
+                  <p className="mt-4 text-lg font-bold text-gray-300">
                     Dal Design dell'arredo alla formazione del personale per
                     realizzare i tuoi progetti
                   </p>
                   {/* <Link href="#contatti">
                     <a
-                      className="bg-yellow-600 text-white active:bg-yellow-700 font-bold uppercase text-base px-8 py-3 mt-5 rounded shadow-md hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                      className="px-8 py-3 mt-5 mb-1 mr-1 text-base font-bold text-white uppercase transition-all duration-150 ease-linear bg-yellow-600 rounded shadow-md outline-none active:bg-yellow-700 hover:shadow-lg focus:outline-none"
                       type="button"
                     >
                       <i className="fas fa-message" /> Contattaci
@@ -56,7 +56,7 @@ export default function Home() {
             </div>
           </div>
           <div
-            className="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden h-16"
+            className="absolute bottom-0 left-0 right-0 top-auto w-full h-16 overflow-hidden pointer-events-none"
             style={{ transform: 'translateZ(0)' }}
           >
             <svg
@@ -76,14 +76,14 @@ export default function Home() {
           </div>
         </div>
 
-        <section className="pb-20 bg-gray-200 -mt-24">
-          <div className="container mx-auto px-4">
+        <section className="pb-20 -mt-24 bg-gray-200">
+          <div className="container px-4 mx-auto">
             <div className="flex flex-wrap">
-              <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
-                <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg hover:shadow-xl ">
-                  <div className="px-4 py-5 flex-auto">
+              <div className="w-full px-4 pt-6 text-center lg:pt-12 md:w-4/12">
+                <div className="relative flex flex-col w-full min-w-0 mb-8 break-words bg-white rounded-lg shadow-lg hover:shadow-xl ">
+                  <div className="flex-auto px-4 py-5">
                     {/* TODO: use higher resolution image. Find them in ../uploads/2015/03 */}
-                    <div className="text-white text-center inline-flex items-center justify-center mb-5 shadow-lg rounded-lg bg-yellow-500">
+                    <div className="inline-flex items-center justify-center mb-5 text-center text-white bg-yellow-500 rounded-lg shadow-lg">
                       <img
                         src="/img/servizio-completo1-150x150.jpg"
                         className="w-full align-middle rounded-lg"
@@ -102,13 +102,13 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="w-full md:w-4/12 px-4 text-center">
-                <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-                  <div className="px-4 py-5 flex-auto">
-                    <div className="text-white text-center inline-flex items-center justify-center mb-5 shadow-lg rounded-lg bg-yellow-500">
+              <div className="w-full px-4 text-center md:w-4/12">
+                <div className="relative flex flex-col w-full min-w-0 mb-8 break-words bg-white rounded-lg shadow-lg">
+                  <div className="flex-auto px-4 py-5">
+                    <div className="inline-flex items-center justify-center mb-5 text-center text-white bg-yellow-500 rounded-lg shadow-lg">
                       <img
                         src="/img/prodotti-qualita-150x150.jpg"
-                        className="w-full object-fill  align-middle rounded-lg shadow-md"
+                        className="object-fill w-full align-middle rounded-lg shadow-md"
                       />
                     </div>
                     <h6 className="text-xl font-semibold">
@@ -124,13 +124,13 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="pt-6 w-full md:w-4/12 px-4 text-center">
-                <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-                  <div className="px-4 py-5 flex-auto">
-                    <div className="text-white text-center inline-flex items-center justify-center mb-5 shadow-lg rounded-lg bg-yellow-500">
+              <div className="w-full px-4 pt-6 text-center md:w-4/12">
+                <div className="relative flex flex-col w-full min-w-0 mb-8 break-words bg-white rounded-lg shadow-lg">
+                  <div className="flex-auto px-4 py-5">
+                    <div className="inline-flex items-center justify-center mb-5 text-center text-white bg-yellow-500 rounded-lg shadow-lg">
                       <img
                         src="/img/info-e-supporto-150x150.jpg"
-                        className="w-full object-scale-down  align-middle rounded-lg shadow-md"
+                        className="object-scale-down w-full align-middle rounded-lg shadow-md"
                       />
                     </div>
                     <h6 className="text-xl font-semibold">
@@ -150,34 +150,34 @@ export default function Home() {
             </div>
 
             <div className="flex flex-wrap items-center mt-32">
-              <div className="w-full md:w-5/12 px-4 mr-auto ml-auto">
-                <div className="text-gray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white">
+              <div className="w-full px-4 ml-auto mr-auto md:w-5/12">
+                <div className="inline-flex items-center justify-center w-16 h-16 p-3 mb-6 text-center text-gray-500 bg-white rounded-full shadow-lg">
                   <HeartIcon className="text-xl text-yellow-500" />
                 </div>
-                <h3 className="text-3xl mb-2 font-semibold leading-normal">
+                <h3 className="mb-2 text-3xl font-semibold leading-normal">
                   Da oltre 30 anni partner degli operatori del settore
                 </h3>
-                <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-600">
+                <p className="mt-4 mb-4 text-lg font-light leading-relaxed text-gray-600">
                   Offriamo prodotti di alta qualità e servizi professionali:
                   interior design, consulenza per trasformare l’idea in un reale
                   progetto, realizzazione arredo e complementi d’arredo su
                   misura.
                 </p>
-                <p className="text-lg font-light leading-relaxed mt-0 mb-4 text-gray-600">
+                <p className="mt-0 mb-4 text-lg font-light leading-relaxed text-gray-600">
                   Forniture di attrezzature, tra cui attrezzature per
                   ristorazione e cucine professionali, impianti, assistenza
                   tecnica post vendita, manutenzione e riparazione, consulenza
                   professionale continua.
                 </p>
                 <Link href="#contatti">
-                  <a className="font-bold text-gray-700 mt-8 underline hover:drop-shadow-lg">
+                  <a className="mt-8 font-bold text-gray-700 underline hover:drop-shadow-lg">
                     Realizza il tuo sogno!
                   </a>
                 </Link>
               </div>
 
-              <div className="w-full md:w-4/12 px-4 mr-auto ml-auto">
-                <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-yellow-600">
+              <div className="w-full px-4 ml-auto mr-auto md:w-4/12">
+                <div className="relative flex flex-col w-full min-w-0 mb-6 break-words bg-yellow-600 rounded-lg shadow-lg">
                   <img
                     alt="vicini al cliente"
                     src="/img/vicini-al-cliente.jpg"
@@ -198,7 +198,7 @@ export default function Home() {
                     <h4 className="text-xl font-bold text-white">
                       Vicini al Cliente
                     </h4>
-                    <p className="text-md font-light mt-2 text-white">
+                    <p className="mt-2 font-light text-white text-md">
                       Dalla progettazione alla realizzazione, i nostri esperti
                       seguono il cliente per trasformare le idee in realtà
                     </p>
@@ -211,7 +211,7 @@ export default function Home() {
 
         <section className="relative py-20">
           <div
-            className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20"
+            className="absolute top-0 left-0 right-0 bottom-auto w-full h-20 -mt-20 overflow-hidden pointer-events-none"
             style={{ transform: 'translateZ(0)' }}
           >
             <svg
@@ -230,18 +230,18 @@ export default function Home() {
             </svg>
           </div>
 
-          <div className="container mx-auto px-4">
-            <div className="items-center flex flex-wrap">
-              <div className="w-full md:w-4/12 ml-auto mr-auto px-4">
+          <div className="container px-4 mx-auto">
+            <div className="flex flex-wrap items-center">
+              <div className="w-full px-4 ml-auto mr-auto md:w-4/12">
                 <img
                   alt="..."
                   className="max-w-full rounded-lg shadow-lg"
                   src="/img/attrezzature-esposizione.jpg"
                 />
               </div>
-              <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
+              <div className="w-full px-4 ml-auto mr-auto md:w-5/12">
                 <div className="md:pr-12">
-                  <div className="text-gray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-gray-200">
+                  <div className="inline-flex items-center justify-center w-16 h-16 p-3 mb-6 text-center text-gray-500 bg-gray-200 rounded-full shadow-lg">
                     <ShoppingCartIcon className="text-xl text-yellow-600" />
                   </div>
                   <h3 className="text-3xl font-semibold">
@@ -253,11 +253,11 @@ export default function Home() {
                     l’officina e magazzino ricambi, il laboratorio di formazione
                     e un ampio showroom in cui potrai trovare:
                   </p>
-                  <ul className="list-none mt-6">
+                  <ul className="mt-6 list-none">
                     <li className="py-2">
                       <div className="flex items-center">
                         <div>
-                          <span className="text-xs font-semibold inline-block w-2 h-2 uppercase rounded-full text-gray-500 bg-gray-100 mr-3"></span>
+                          <span className="inline-block w-2 h-2 mr-3 text-xs font-semibold text-gray-500 uppercase bg-gray-100 rounded-full"></span>
                         </div>
                         <div>
                           <h4 className="text-gray-500">
@@ -269,7 +269,7 @@ export default function Home() {
                     <li className="py-2">
                       <div className="flex items-center">
                         <div>
-                          <span className="text-xs font-semibold inline-block w-2 h-2 uppercase rounded-full text-gray-500 bg-gray-100 mr-3"></span>
+                          <span className="inline-block w-2 h-2 mr-3 text-xs font-semibold text-gray-500 uppercase bg-gray-100 rounded-full"></span>
                         </div>
                         <div>
                           <h4 className="text-gray-500">Arredamenti</h4>
@@ -279,7 +279,7 @@ export default function Home() {
                     <li className="py-2">
                       <div className="flex items-center">
                         <div>
-                          <span className="text-xs font-semibold inline-block w-2 h-2 uppercase rounded-full text-gray-500 bg-gray-100 mr-3"></span>
+                          <span className="inline-block w-2 h-2 mr-3 text-xs font-semibold text-gray-500 uppercase bg-gray-100 rounded-full"></span>
                         </div>
                         <div>
                           <h4 className="text-gray-500">Utensili da cucina</h4>
@@ -289,7 +289,7 @@ export default function Home() {
                     <li className="py-2">
                       <div className="flex items-center">
                         <div>
-                          <span className="text-xs font-semibold inline-block w-2 h-2 uppercase rounded-full text-gray-500 bg-gray-100 mr-3"></span>
+                          <span className="inline-block w-2 h-2 mr-3 text-xs font-semibold text-gray-500 uppercase bg-gray-100 rounded-full"></span>
                         </div>
                         <div>
                           <h4 className="text-gray-500">
@@ -301,7 +301,7 @@ export default function Home() {
                     <li className="py-2">
                       <div className="flex items-center">
                         <div>
-                          <span className="text-xs font-semibold inline-block  w-2 h-2 uppercase rounded-full text-gray-500 bg-gray-100 mr-3"></span>
+                          <span className="inline-block w-2 h-2 mr-3 text-xs font-semibold text-gray-500 uppercase bg-gray-100 rounded-full"></span>
                         </div>
                         <div>
                           <h4 className="text-gray-500">Hotellerie</h4>
@@ -311,7 +311,7 @@ export default function Home() {
                     <li className="py-2">
                       <div className="flex items-center">
                         <div>
-                          <span className="text-xs font-semibold inline-block w-2 h-2 uppercase rounded-full text-gray-500 bg-gray-100 mr-3"></span>
+                          <span className="inline-block w-2 h-2 mr-3 text-xs font-semibold text-gray-500 uppercase bg-gray-100 rounded-full"></span>
                         </div>
                         <div>
                           <h4 className="text-gray-500">...e tanto altro</h4>
@@ -326,11 +326,11 @@ export default function Home() {
         </section>
 
         <section className="pt-20 pb-48">
-          <div className="container mx-auto px-4">
-            <div className="flex flex-wrap justify-center text-center mb-24">
-              <div className="w-full lg:w-6/12 px-4">
+          <div className="container px-4 mx-auto">
+            <div className="flex flex-wrap justify-center mb-24 text-center">
+              <div className="w-full px-4 lg:w-6/12">
                 <h2 className="text-4xl font-semibold">Here are our heroes</h2>
-                <p className="text-lg leading-relaxed m-4 text-gray-500">
+                <p className="m-4 text-lg leading-relaxed text-gray-500">
                   According to the National Oceanic and Atmospheric
                   Administration, Ted, Scambos, NSIDClead scentist, puts the
                   potentially record maximum.
@@ -338,33 +338,33 @@ export default function Home() {
               </div>
             </div>
             <div className="flex flex-wrap">
-              <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
+              <div className="w-full px-4 mb-12 md:w-6/12 lg:w-3/12 lg:mb-0">
                 <div className="px-6">
                   <img
                     alt="..."
                     src="/img/team-1-800x800.jpg"
-                    className="shadow-lg rounded-full mx-auto max-w-120-px"
+                    className="mx-auto rounded-full shadow-lg max-w-120-px"
                   />
                   <div className="pt-6 text-center">
                     <h5 className="text-xl font-bold">Ryan Tompson</h5>
-                    <p className="mt-1 text-sm text-gray-400 uppercase font-semibold">
+                    <p className="mt-1 text-sm font-semibold text-gray-400 uppercase">
                       Web Developer
                     </p>
                     <div className="mt-6">
                       <button
-                        className="bg-lightBlue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                        className="w-8 h-8 mb-1 mr-1 text-white rounded-full outline-none bg-lightBlue-400 focus:outline-none"
                         type="button"
                       >
                         <i className="fab fa-twitter"></i>
                       </button>
                       <button
-                        className="bg-lightBlue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                        className="w-8 h-8 mb-1 mr-1 text-white rounded-full outline-none bg-lightBlue-600 focus:outline-none"
                         type="button"
                       >
                         <i className="fab fa-facebook-f"></i>
                       </button>
                       <button
-                        className="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                        className="w-8 h-8 mb-1 mr-1 text-white bg-pink-500 rounded-full outline-none focus:outline-none"
                         type="button"
                       >
                         <i className="fab fa-dribbble"></i>
@@ -373,27 +373,27 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
+              <div className="w-full px-4 mb-12 md:w-6/12 lg:w-3/12 lg:mb-0">
                 <div className="px-6">
                   <img
                     alt="..."
                     src="/img/team-2-800x800.jpg"
-                    className="shadow-lg rounded-full mx-auto max-w-120-px"
+                    className="mx-auto rounded-full shadow-lg max-w-120-px"
                   />
                   <div className="pt-6 text-center">
                     <h5 className="text-xl font-bold">Romina Hadid</h5>
-                    <p className="mt-1 text-sm text-gray-400 uppercase font-semibold">
+                    <p className="mt-1 text-sm font-semibold text-gray-400 uppercase">
                       Marketing Specialist
                     </p>
                     <div className="mt-6">
                       <button
-                        className="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                        className="w-8 h-8 mb-1 mr-1 text-white bg-red-600 rounded-full outline-none focus:outline-none"
                         type="button"
                       >
                         <i className="fab fa-google"></i>
                       </button>
                       <button
-                        className="bg-lightBlue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                        className="w-8 h-8 mb-1 mr-1 text-white rounded-full outline-none bg-lightBlue-600 focus:outline-none"
                         type="button"
                       >
                         <i className="fab fa-facebook-f"></i>
@@ -402,33 +402,33 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
+              <div className="w-full px-4 mb-12 md:w-6/12 lg:w-3/12 lg:mb-0">
                 <div className="px-6">
                   <img
                     alt="..."
                     src="/img/team-3-800x800.jpg"
-                    className="shadow-lg rounded-full mx-auto max-w-120-px"
+                    className="mx-auto rounded-full shadow-lg max-w-120-px"
                   />
                   <div className="pt-6 text-center">
                     <h5 className="text-xl font-bold">Alexa Smith</h5>
-                    <p className="mt-1 text-sm text-gray-400 uppercase font-semibold">
+                    <p className="mt-1 text-sm font-semibold text-gray-400 uppercase">
                       UI/UX Designer
                     </p>
                     <div className="mt-6">
                       <button
-                        className="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                        className="w-8 h-8 mb-1 mr-1 text-white bg-red-600 rounded-full outline-none focus:outline-none"
                         type="button"
                       >
                         <i className="fab fa-google"></i>
                       </button>
                       <button
-                        className="bg-lightBlue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                        className="w-8 h-8 mb-1 mr-1 text-white rounded-full outline-none bg-lightBlue-400 focus:outline-none"
                         type="button"
                       >
                         <i className="fab fa-twitter"></i>
                       </button>
                       <button
-                        className="bg-gray-700 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                        className="w-8 h-8 mb-1 mr-1 text-white bg-gray-700 rounded-full outline-none focus:outline-none"
                         type="button"
                       >
                         <i className="fab fa-instagram"></i>
@@ -437,39 +437,39 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
+              <div className="w-full px-4 mb-12 md:w-6/12 lg:w-3/12 lg:mb-0">
                 <div className="px-6">
                   <img
                     alt="..."
                     src="/img/team-4-470x470.png"
-                    className="shadow-lg rounded-full mx-auto max-w-120-px"
+                    className="mx-auto rounded-full shadow-lg max-w-120-px"
                   />
                   <div className="pt-6 text-center">
                     <h5 className="text-xl font-bold">Jenna Kardi</h5>
-                    <p className="mt-1 text-sm text-gray-400 uppercase font-semibold">
+                    <p className="mt-1 text-sm font-semibold text-gray-400 uppercase">
                       Founder and CEO
                     </p>
                     <div className="mt-6">
                       <button
-                        className="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                        className="w-8 h-8 mb-1 mr-1 text-white bg-pink-500 rounded-full outline-none focus:outline-none"
                         type="button"
                       >
                         <i className="fab fa-dribbble"></i>
                       </button>
                       <button
-                        className="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                        className="w-8 h-8 mb-1 mr-1 text-white bg-red-600 rounded-full outline-none focus:outline-none"
                         type="button"
                       >
                         <i className="fab fa-google"></i>
                       </button>
                       <button
-                        className="bg-lightBlue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                        className="w-8 h-8 mb-1 mr-1 text-white rounded-full outline-none bg-lightBlue-400 focus:outline-none"
                         type="button"
                       >
                         <i className="fab fa-twitter"></i>
                       </button>
                       <button
-                        className="bg-gray-700 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
+                        className="w-8 h-8 mb-1 mr-1 text-white bg-gray-700 rounded-full outline-none focus:outline-none"
                         type="button"
                       >
                         <i className="fab fa-instagram"></i>
@@ -482,9 +482,9 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="pb-20 relative block bg-gray-800">
+        <section className="relative block pb-20 bg-gray-800">
           <div
-            className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20"
+            className="absolute top-0 left-0 right-0 bottom-auto w-full h-20 -mt-20 overflow-hidden pointer-events-none"
             style={{ transform: 'translateZ(0)' }}
           >
             <svg
@@ -503,25 +503,25 @@ export default function Home() {
             </svg>
           </div>
 
-          <div className="container mx-auto px-4 lg:pt-24 lg:pb-64">
-            <div className="flex flex-wrap text-center justify-center">
-              <div className="w-full lg:w-6/12 px-4">
+          <div className="container px-4 mx-auto lg:pt-24 lg:pb-64">
+            <div className="flex flex-wrap justify-center text-center">
+              <div className="w-full px-4 lg:w-6/12">
                 <h2 className="text-4xl font-semibold text-white">
                   Build something
                 </h2>
-                <p className="text-lg leading-relaxed mt-4 mb-4 text-gray-400">
+                <p className="mt-4 mb-4 text-lg leading-relaxed text-gray-400">
                   Put the potentially record low maximum sea ice extent tihs
                   year down to low ice. According to the National Oceanic and
                   Atmospheric Administration, Ted, Scambos.
                 </p>
               </div>
             </div>
-            <div className="flex flex-wrap mt-12 justify-center">
-              <div className="w-full lg:w-3/12 px-4 text-center">
-                <div className="text-gray-800 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
-                  <i className="fas fa-medal text-xl"></i>
+            <div className="flex flex-wrap justify-center mt-12">
+              <div className="w-full px-4 text-center lg:w-3/12">
+                <div className="inline-flex items-center justify-center w-12 h-12 p-3 text-gray-800 bg-white rounded-full shadow-lg">
+                  <i className="text-xl fas fa-medal"></i>
                 </div>
-                <h6 className="text-xl mt-5 font-semibold text-white">
+                <h6 className="mt-5 text-xl font-semibold text-white">
                   Excelent Services
                 </h6>
                 <p className="mt-2 mb-4 text-gray-400">
@@ -529,11 +529,11 @@ export default function Home() {
                   the bulk of the card's content.
                 </p>
               </div>
-              <div className="w-full lg:w-3/12 px-4 text-center">
-                <div className="text-gray-800 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
-                  <i className="fas fa-poll text-xl"></i>
+              <div className="w-full px-4 text-center lg:w-3/12">
+                <div className="inline-flex items-center justify-center w-12 h-12 p-3 text-gray-800 bg-white rounded-full shadow-lg">
+                  <i className="text-xl fas fa-poll"></i>
                 </div>
-                <h5 className="text-xl mt-5 font-semibold text-white">
+                <h5 className="mt-5 text-xl font-semibold text-white">
                   Grow your market
                 </h5>
                 <p className="mt-2 mb-4 text-gray-400">
@@ -541,11 +541,11 @@ export default function Home() {
                   the bulk of the card's content.
                 </p>
               </div>
-              <div className="w-full lg:w-3/12 px-4 text-center">
-                <div className="text-gray-800 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
-                  <i className="fas fa-lightbulb text-xl"></i>
+              <div className="w-full px-4 text-center lg:w-3/12">
+                <div className="inline-flex items-center justify-center w-12 h-12 p-3 text-gray-800 bg-white rounded-full shadow-lg">
+                  <i className="text-xl fas fa-lightbulb"></i>
                 </div>
-                <h5 className="text-xl mt-5 font-semibold text-white">
+                <h5 className="mt-5 text-xl font-semibold text-white">
                   Launch time
                 </h5>
                 <p className="mt-2 mb-4 text-gray-400">
@@ -557,52 +557,52 @@ export default function Home() {
           </div>
         </section>
         <section
-          className="relative block py-24 lg:pt-0 bg-gray-800"
+          className="relative block py-24 bg-gray-800 lg:pt-0"
           id="#contatti"
         >
-          <div className="container mx-auto px-4">
-            <div className="flex flex-wrap justify-center lg:-mt-64 -mt-48">
-              <div className="w-full lg:w-6/12 px-4">
-                <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-200">
+          <div className="container px-4 mx-auto">
+            <div className="flex flex-wrap justify-center -mt-48 lg:-mt-64">
+              <div className="w-full px-4 lg:w-6/12">
+                <div className="relative flex flex-col w-full min-w-0 mb-6 break-words bg-gray-200 rounded-lg shadow-lg">
                   <div className="flex-auto p-5 lg:p-10">
                     <h4 className="text-2xl font-semibold">
                       Want to work with us?
                     </h4>
-                    <p className="leading-relaxed mt-1 mb-4 text-gray-500">
+                    <p className="mt-1 mb-4 leading-relaxed text-gray-500">
                       Complete this form and we will get back to you in 24
                       hours.
                     </p>
-                    <div className="relative w-full mb-3 mt-8">
+                    <div className="relative w-full mt-8 mb-3">
                       <label
-                        className="block uppercase text-gray-600 text-xs font-bold mb-2"
+                        className="block mb-2 text-xs font-bold text-gray-600 uppercase"
                         htmlFor="full-name"
                       >
                         Full Name
                       </label>
                       <input
                         type="text"
-                        className="border-0 px-3 py-3 placeholder-gray-300 text-gray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        className="w-full px-3 py-3 text-sm text-gray-600 placeholder-gray-300 transition-all duration-150 ease-linear bg-white border-0 rounded shadow focus:outline-none focus:ring"
                         placeholder="Full Name"
                       />
                     </div>
 
                     <div className="relative w-full mb-3">
                       <label
-                        className="block uppercase text-gray-600 text-xs font-bold mb-2"
+                        className="block mb-2 text-xs font-bold text-gray-600 uppercase"
                         htmlFor="email"
                       >
                         Email
                       </label>
                       <input
                         type="email"
-                        className="border-0 px-3 py-3 placeholder-gray-300 text-gray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        className="w-full px-3 py-3 text-sm text-gray-600 placeholder-gray-300 transition-all duration-150 ease-linear bg-white border-0 rounded shadow focus:outline-none focus:ring"
                         placeholder="Email"
                       />
                     </div>
 
                     <div className="relative w-full mb-3">
                       <label
-                        className="block uppercase text-gray-600 text-xs font-bold mb-2"
+                        className="block mb-2 text-xs font-bold text-gray-600 uppercase"
                         htmlFor="message"
                       >
                         Message
@@ -610,13 +610,13 @@ export default function Home() {
                       <textarea
                         rows="4"
                         cols="80"
-                        className="border-0 px-3 py-3 placeholder-gray-300 text-gray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                        className="w-full px-3 py-3 text-sm text-gray-600 placeholder-gray-300 bg-white border-0 rounded shadow focus:outline-none focus:ring"
                         placeholder="Type a message..."
                       />
                     </div>
-                    <div className="text-center mt-6">
+                    <div className="mt-6 text-center">
                       <button
-                        className="bg-gray-800 text-white active:bg-gray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                        className="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase transition-all duration-150 ease-linear bg-gray-800 rounded shadow outline-none active:bg-gray-600 hover:shadow-lg focus:outline-none"
                         type="button"
                         // TODO: need to be tested with production wordpress
                         onClick={sendMail}
@@ -634,7 +634,7 @@ export default function Home() {
 
       <footer className="py-5">
         {/* TODO: change with portfolio link          */}
-        <div className="text-right mr-4 flex flex-wrap justify-end items-center">
+        <div className="flex flex-wrap items-center justify-end mr-4 text-right">
           <p>
             Build By <span className="font-bold">Pasquale Matarrese</span>
           </p>
@@ -644,7 +644,7 @@ export default function Home() {
             rel="noopener noreferrer"
             className="pl-3"
           >
-            <i className="fab fa-github text-xl" />
+            <i className="text-xl fab fa-github" />
           </a>
           <a
             href="https://www.linkedin.com/in/pasquale-matarrese/"
@@ -652,7 +652,7 @@ export default function Home() {
             rel="noopener noreferrer"
             className="pl-3"
           >
-            <i className="fab fa-linkedin text-xl text-blue-900" />
+            <i className="text-xl text-blue-900 fab fa-linkedin" />
           </a>
           <a
             href="https://www.linkedin.com/in/pasquale-matarrese/"
@@ -660,7 +660,7 @@ export default function Home() {
             rel="noopener noreferrer"
             className="pl-3"
           >
-            <i className="fas fa-house-user text-xl text-green-600" />
+            <i className="text-xl text-green-600 fas fa-house-user" />
           </a>
         </div>
       </footer>

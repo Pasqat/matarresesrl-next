@@ -21,7 +21,7 @@ export default function Post({ postData }) {
   }
 
   return (
-    <div>
+    <div className="container">
       <Head>
         {router.isFallback ? (
           // NOTE: check isFallback is extremly important!!!
@@ -48,7 +48,7 @@ export default function Post({ postData }) {
                 <p>pubblicato il {formatDate(postData.date)}</p>
               </div>
               <div
-                className="prose prose-sm sm:prose lg:prose-lg xl:prose-xl prose-yellow"
+                className="prose-sm prose sm:prose lg:prose-lg xl:prose-xl prose-yellow"
                 dangerouslySetInnerHTML={{ __html: postData.content }}
               />
             </article>
