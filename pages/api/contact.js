@@ -1,7 +1,12 @@
 import nodemailer from 'nodemailer'
 
+console.log('host', process.env.EMAIL_HOST)
+console.log('adderess', process.env.EMAIL_ADDRESS)
+console.log('password', process.env.EMAIL_PASSWORD)
+
 const transporter = nodemailer.createTransport({
-  host: process.env.EMAIL_HOST,
+  //   host: process.env.EMAIL_HOST,
+  host: 'mail.matarrese.it',
   port: 465,
   secure: true, // use TLS
   auth: {
