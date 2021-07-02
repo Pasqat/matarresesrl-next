@@ -5,8 +5,6 @@ import { getAllPosts } from '../../lib/api'
 import Navbar from '../../components/Navbars/Navbar'
 
 export default function Blog({ allPosts: { edges } }) {
-  console.log(edges)
-
   return (
     <div>
       <Head>
