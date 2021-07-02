@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import Head from 'next/head'
 import Link from 'next/link'
@@ -9,25 +9,28 @@ import Navbar from '../components/Navbars/Navbar'
 import { sendContactMail } from '../actions/networking/mailApi'
 
 export default function Home() {
+  const [name, setName] = useState('')
+  const [mail, setMail] = useState('')
+  const [formContent, setFormContent] = useState('')
+  const [formButtonDisabled, setFormButtonDisabled] = useState(false)
+  const [formButtonText, setFormButtonText] = useState('Invia')
+
   async function submitContactForm(event) {
     event.preventDefault()
 
     const recipientMail = 'pasquale.matarrese@gmail.com'
-    const name = 'Pasquale Matarrese'
-    const mail = 'pasquale.matarrese@gmail.com'
-    const formContent = 'È solo un test \n per capire se funziona'
 
     const res = await sendContactMail(recipientMail, name, mail, formContent)
     if (res.status < 300) {
       // NOTE: here you will reset the state like:
-      // setFormButtonDisabled(true)
-      // setFormButtonText("Thanks for your message")
-      // setName("")
-      // setMail("")
-      // setFormContent("")
+      setFormButtonDisabled(true)
+      setFormButtonText('Grazie, ti ricontatteremo al più presto')
+      setName('')
+      setMail('')
+      setFormContent('')
       console.log('success')
     } else {
-      // setFormButtonText("Please fill out all fields.")
+      setFormButtonText('Per favore compila tutti i campi')
       console.log('something went wrong')
     }
   }
@@ -589,23 +592,25 @@ export default function Home() {
                 <div className="relative flex flex-col w-full min-w-0 mb-6 break-words bg-gray-200 rounded-lg shadow-lg">
                   <div className="flex-auto p-5 lg:p-10">
                     <h4 className="text-2xl font-semibold">
-                      Want to work with us?
+                      Hai una idea che vorresti realizzare, o hai bisogno di
+                      informazioni?
                     </h4>
                     <p className="mt-1 mb-4 leading-relaxed text-gray-500">
-                      Complete this form and we will get back to you in 24
-                      hours.
+                      Completa questo form, ti risponderemo entro 24 ore
+                      (escluso festivi)
                     </p>
                     <div className="relative w-full mt-8 mb-3">
                       <label
                         className="block mb-2 text-xs font-bold text-gray-600 uppercase"
                         htmlFor="full-name"
                       >
-                        Full Name
+                        Nome Completo
                       </label>
                       <input
                         type="text"
                         className="w-full px-3 py-3 text-sm text-gray-600 placeholder-gray-300 transition-all duration-150 ease-linear bg-white border-0 rounded shadow focus:outline-none focus:ring"
-                        placeholder="Full Name"
+                        placeholder="Nome Completo"
+                        value={name}
                       />
                     </div>
 
@@ -620,13 +625,14 @@ export default function Home() {
                         type="email"
                         className="w-full px-3 py-3 text-sm text-gray-600 placeholder-gray-300 transition-all duration-150 ease-linear bg-white border-0 rounded shadow focus:outline-none focus:ring"
                         placeholder="Email"
+                        value={mail}
                       />
                     </div>
 
                     <div className="relative w-full mb-3">
                       <label
                         className="block mb-2 text-xs font-bold text-gray-600 uppercase"
-                        htmlFor="message"
+                        htmlFor="messaggio"
                       >
                         Message
                       </label>
@@ -634,7 +640,8 @@ export default function Home() {
                         rows="4"
                         cols="80"
                         className="w-full px-3 py-3 text-sm text-gray-600 placeholder-gray-300 bg-white border-0 rounded shadow focus:outline-none focus:ring"
-                        placeholder="Type a message..."
+                        placeholder="Scrivi la tua richiesta..."
+                        value={formContent}
                       />
                     </div>
                     <div className="mt-6 text-center">
@@ -642,9 +649,9 @@ export default function Home() {
                         className="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase transition-all duration-150 ease-linear bg-gray-800 rounded shadow outline-none active:bg-gray-600 hover:shadow-lg focus:outline-none"
                         type="button"
                         onClick={submitContactForm}
-                        // disabled={formButtonDisabled}
+                        disabled={formButtonDisabled}
                       >
-                        Send Message
+                        {formButtonText}
                       </button>
                     </div>
                   </div>
