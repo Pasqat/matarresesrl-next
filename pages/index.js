@@ -9,29 +9,37 @@ import Navbar from '../components/Navbars/Navbar'
 import { sendContactMail } from '../actions/networking/mailApi'
 
 export default function Home() {
-  const [name, setName] = useState('')
-  const [mail, setMail] = useState('')
-  const [formContent, setFormContent] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [form, setForm] = useState({ name: '', mail: '', formContent: '' })
+  const { name, mail, formContent } = form
+
   const [formButtonDisabled, setFormButtonDisabled] = useState(false)
   const [formButtonText, setFormButtonText] = useState('Invia')
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setForm({
+      ...form,
+      [name]: value,
+    })
+  }
 
   async function submitContactForm(event) {
     event.preventDefault()
 
     const recipientMail = 'pasquale.matarrese@gmail.com'
 
+    setLoading(true)
     const res = await sendContactMail(recipientMail, name, mail, formContent)
     if (res.status < 300) {
       // NOTE: here you will reset the state like:
       setFormButtonDisabled(true)
       setFormButtonText('Grazie, ti ricontatteremo al più presto')
-      setName('')
-      setMail('')
-      setFormContent('')
-      console.log('success')
+      setLoading(false)
+      setForm({ ...form, name: '', mail: '', formContent: '' })
     } else {
+      setLoading(false)
       setFormButtonText('Per favore compila tutti i campi')
-      console.log('something went wrong')
     }
   }
 
@@ -590,7 +598,10 @@ export default function Home() {
             <div className="flex flex-wrap justify-center -mt-48 lg:-mt-64">
               <div className="w-full px-4 lg:w-6/12">
                 <div className="relative flex flex-col w-full min-w-0 mb-6 break-words bg-gray-200 rounded-lg shadow-lg">
-                  <div className="flex-auto p-5 lg:p-10">
+                  <form
+                    className="flex-auto p-5 lg:p-10"
+                    onSubmit={submitContactForm}
+                  >
                     <h4 className="text-2xl font-semibold">
                       Hai una idea che vorresti realizzare, o hai bisogno di
                       informazioni?
@@ -610,7 +621,9 @@ export default function Home() {
                         type="text"
                         className="w-full px-3 py-3 text-sm text-gray-600 placeholder-gray-300 transition-all duration-150 ease-linear bg-white border-0 rounded shadow focus:outline-none focus:ring"
                         placeholder="Nome Completo"
+                        name="name"
                         value={name}
+                        onChange={handleChange}
                       />
                     </div>
 
@@ -625,7 +638,9 @@ export default function Home() {
                         type="email"
                         className="w-full px-3 py-3 text-sm text-gray-600 placeholder-gray-300 transition-all duration-150 ease-linear bg-white border-0 rounded shadow focus:outline-none focus:ring"
                         placeholder="Email"
+                        name="mail"
                         value={mail}
+                        onChange={handleChange}
                       />
                     </div>
 
@@ -641,20 +656,21 @@ export default function Home() {
                         cols="80"
                         className="w-full px-3 py-3 text-sm text-gray-600 placeholder-gray-300 bg-white border-0 rounded shadow focus:outline-none focus:ring"
                         placeholder="Scrivi la tua richiesta..."
+                        name="formContent"
                         value={formContent}
+                        onChange={handleChange}
                       />
                     </div>
                     <div className="mt-6 text-center">
                       <button
-                        className="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase transition-all duration-150 ease-linear bg-gray-800 rounded shadow outline-none active:bg-gray-600 hover:shadow-lg focus:outline-none"
-                        type="button"
-                        onClick={submitContactForm}
+                        className="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase transition-all duration-150 ease-linear bg-gray-800 rounded shadow outline-none disabled:bg-green-600 disabled:opacity-50 disabled:pointer-events-none active:bg-gray-600 hover:shadow-lg focus:outline-none"
+                        type="submit"
                         disabled={formButtonDisabled}
                       >
                         {formButtonText}
                       </button>
                     </div>
-                  </div>
+                  </form>
                 </div>
               </div>
             </div>

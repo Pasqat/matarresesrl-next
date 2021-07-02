@@ -1,4 +1,4 @@
-const plugin = require('tailwindcss/plugin');
+const plugin = require('tailwindcss/plugin')
 
 module.exports = {
   mode: 'jit',
@@ -10,5 +10,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/typography')],
-};
+  plugins: [require('@tailwindcss/typography'), require('autoprefixer')],
+}

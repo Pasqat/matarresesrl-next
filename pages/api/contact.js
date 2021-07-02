@@ -52,15 +52,15 @@ export default async (req, res) => {
 }
 
 const mailer = ({ senderMail, name, text, recipientMail }) => {
-  //   const from =
-  //     name && senderMail ? `${name} <${senderMail}>` : `${name || senderMail}`
+  const fromReal =
+    name && senderMail ? `${name} <${senderMail}>` : `${name || senderMail}`
   const from = process.env.SENDGRID_ADDRESS
   const message = {
     from,
     to: `${recipientMail}`,
-    subject: `Nuovo messaggio da ${from}`,
+    subject: `Nuovo messaggio da ${fromReal}`,
     text,
-    replyTo: from,
+    replyTo: fromReal,
   }
 
   return new Promise((resolve, reject) => {
