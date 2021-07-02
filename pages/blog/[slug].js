@@ -24,7 +24,13 @@ export default function Post({ postData }) {
   return (
     <div>
       <Head>
-        <title>{postData.title}</title>
+        {router.isFallback ? (
+          // NOTE: check isFallback is extremly important!!!
+          // https://michaelfulton.co/posts/export-encountered-errors
+          <title>Matarrese srl</title>
+        ) : (
+          <title>{postData.title}</title>
+        )}
       </Head>
       <Navbar />
       <main>
@@ -61,7 +67,6 @@ export default function Post({ postData }) {
 
 export async function getStaticProps({ params }) {
   const data = await getPost(params.slug)
-
   return {
     props: {
       postData: data?.post,
@@ -73,8 +78,9 @@ export async function getStaticPaths() {
   const allPosts = await getAllPostsWithSlug()
 
   return {
-    paths: allPosts?.edges.map(({ node }) => ({params: {slug: node.slug}})) || [],
+    paths:
+      allPosts?.edges.map(({ node }) => ({ params: { slug: node.slug } })) ||
+      [],
     fallback: true,
   }
 }
-

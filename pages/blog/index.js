@@ -1,10 +1,12 @@
-import Head from 'next/head';
-import Link from 'next/link';
+import Head from 'next/head'
+import Link from 'next/link'
 
-import { getAllPosts } from '../../lib/api';
-import Navbar from '../../components/Navbars/Navbar';
+import { getAllPosts } from '../../lib/api'
+import Navbar from '../../components/Navbars/Navbar'
 
 export default function Blog({ allPosts: { edges } }) {
+  console.log(edges)
+
   return (
     <div>
       <Head>
@@ -53,22 +55,22 @@ export default function Blog({ allPosts: { edges } }) {
                       </div>
                     </div>
                   </div>
-                );
+                )
               })}
             </div>
           </div>
         </section>
       </main>
     </div>
-  );
+  )
 }
 
 export async function getStaticProps() {
-  const allPosts = await getAllPosts();
+  const allPosts = await getAllPosts()
   return {
     props: {
       allPosts,
     },
     revalidate: 1,
-  };
+  }
 }
