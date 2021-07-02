@@ -9,6 +9,29 @@ import Navbar from '../components/Navbars/Navbar'
 import { sendMail } from '../lib/api'
 
 export default function Home() {
+  async function submitContactForm(event) {
+    event.preventDefault()
+
+    const recipientMail = 'pasquale@matarrese.it'
+    const name = 'Pasquale Matarrese'
+    const mail = 'pasquale.matarrese@gmail.com'
+    const formContent = 'È solo un test \n per capire se funziona'
+
+    const res = await sendContactMail(recipientMail, name, mail, formContent)
+    if (res.status < 300) {
+      // NOTE: here you will reset the state like:
+      // setFormButtonDisabled(true)
+      // setFormButtonText("Thanks for your message")
+      // setName("")
+      // setMail("")
+      // setFormContent("")
+      console.log('success')
+    } else {
+      // setFormButtonText("Please fill out all fields.")
+      console.log('something went wrong')
+    }
+  }
+
   return (
     <div>
       <Head>
@@ -618,8 +641,8 @@ export default function Home() {
                       <button
                         className="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase transition-all duration-150 ease-linear bg-gray-800 rounded shadow outline-none active:bg-gray-600 hover:shadow-lg focus:outline-none"
                         type="button"
-                        // TODO: need to be tested with production wordpress
-                        onClick={sendMail}
+                        onClick={submitContactForm}
+                        // disabled={formButtonDisabled}
                       >
                         Send Message
                       </button>
