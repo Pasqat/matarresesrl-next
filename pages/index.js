@@ -12,7 +12,7 @@ export default function Home() {
   async function submitContactForm(event) {
     event.preventDefault()
 
-    const recipientMail = 'pasquale@matarrese.it'
+    const recipientMail = 'pasquale.matarrese@gmail.com'
     const name = 'Pasquale Matarrese'
     const mail = 'pasquale.matarrese@gmail.com'
     const formContent = 'È solo un test \n per capire se funziona'

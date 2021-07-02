@@ -1,17 +1,17 @@
 import nodemailer from 'nodemailer'
 
-console.log('host', process.env.EMAIL_HOST)
-console.log('adderess', process.env.EMAIL_ADDRESS)
-console.log('password', process.env.EMAIL_PASSWORD)
+console.log('host', process.env.SENDGRID_HOST)
+console.log('adderess', process.env.SENDGRID_ADDRESS)
+console.log('password', process.env.SENDGRID_PASSWORD)
 
 const transporter = nodemailer.createTransport({
-  //   host: process.env.EMAIL_HOST,
-  host: 'mail.matarrese.it',
-  port: 465,
-  secure: true, // use TLS
+  service: 'SendGrid',
+  host: process.env.SENDGRID_HOST,
+  port: 587,
+  secure: false, // use TLS
   auth: {
-    user: process.env.EMAL_ADDRESS,
-    pass: process.env.EMAIL_PASSWORD,
+    user: process.env.SENDGRID_USERNAME,
+    pass: process.env.SENDGRID_PASSWORD,
   },
   tls: {
     // do not fail on invalid certs
@@ -20,13 +20,13 @@ const transporter = nodemailer.createTransport({
 })
 
 // verify connection configuration
-transporter.verify(function (error, success) {
-  if (error) {
-    console.log(error)
-  } else {
-    console.log('Server is ready to take our messages')
-  }
-})
+// transporter.verify(function (error, success) {
+//   if (error) {
+//     console.log(error)
+//   } else {
+//     console.log('Server is ready to take our messages')
+//   }
+// })
 
 export default async (req, res) => {
   const { senderMail, name, content, recipientMail } = req.body
@@ -52,8 +52,9 @@ export default async (req, res) => {
 }
 
 const mailer = ({ senderMail, name, text, recipientMail }) => {
-  const from =
-    name && senderMail ? `${name} <${senderMail}>` : `${name || senderMail}`
+  //   const from =
+  //     name && senderMail ? `${name} <${senderMail}>` : `${name || senderMail}`
+  const from = process.env.SENDGRID_ADDRESS
   const message = {
     from,
     to: `${recipientMail}`,
