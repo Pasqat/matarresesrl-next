@@ -1,14 +1,12 @@
-import React from 'react'
+import React from 'react';
 
-import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
-import { HeartIcon, ShoppingCartIcon } from '@heroicons/react/outline'
+import Head from 'next/head';
+import Link from 'next/link';
+import { HeartIcon, ShoppingCartIcon } from '@heroicons/react/outline';
 
-import Navbar from '../components/Navbars/Navbar'
+import Navbar from '../components/Navbars/Navbar';
 
-import serviziCompleti from '../public/img/servizio-completo1-150x150.jpg'
-import { sendMail } from '../lib/api'
+import { sendMail } from '../lib/api';
 
 export default function Home() {
   return (
@@ -667,5 +665,5 @@ export default function Home() {
         </div>
       </footer>
     </div>
-  )
+  );
 }
