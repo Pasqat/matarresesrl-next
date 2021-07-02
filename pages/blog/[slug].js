@@ -8,7 +8,6 @@ import Navbar from '../../components/Navbars/Navbar'
 export default function Post({ postData }) {
   const router = useRouter()
 
-  // FIXME: find why in build time postData is not passed
   if (!router.isFallback && !postData.slug) {
     return <p>hmm...sembra ci sia un errore</p>
   }
