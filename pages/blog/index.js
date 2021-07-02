@@ -1,8 +1,8 @@
-import Head from 'next/head'
-import Link from 'next/link'
+import Head from 'next/head';
+import Link from 'next/link';
 
-import { getAllPosts } from '../../lib/api'
-import Navbar from '../../components/Navbars/Navbar'
+import { getAllPosts } from '../../lib/api';
+import Navbar from '../../components/Navbars/Navbar';
 
 export default function Blog({ allPosts: { edges } }) {
   return (
@@ -24,7 +24,10 @@ export default function Blog({ allPosts: { edges } }) {
             <div className="flex flex-wrap">
               {edges.map(({ node }) => {
                 return (
-                  <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
+                  <div
+                    key={node.title}
+                    className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center"
+                  >
                     <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                       <div className="px-4 py-8 flex-auto">
                         <div className="text-white text-center inline-flex items-center justify-center mb-5 shadow-lg">
@@ -50,21 +53,22 @@ export default function Blog({ allPosts: { edges } }) {
                       </div>
                     </div>
                   </div>
-                )
+                );
               })}
             </div>
           </div>
         </section>
       </main>
     </div>
-  )
+  );
 }
 
 export async function getStaticProps() {
-  const allPosts = await getAllPosts()
+  const allPosts = await getAllPosts();
   return {
     props: {
       allPosts,
     },
-  }
+    revalidate: 1,
+  };
 }

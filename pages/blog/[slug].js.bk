@@ -8,6 +8,7 @@ import Navbar from '../../components/Navbars/Navbar'
 export default function Post({ postData }) {
   const router = useRouter()
 
+  // FIXME: find why in build time postData is not passed
   if (!router.isFallback && !postData.slug) {
     return <p>hmm...sembra ci sia un errore</p>
   }
@@ -58,21 +59,22 @@ export default function Post({ postData }) {
   )
 }
 
-export async function getStaticPaths() {
-  const allPosts = await getAllPostsWithSlug()
-
-  return {
-    paths: allPosts.edges.map(({ node }) => `/blog/${node.slug}`) || [],
-    fallback: true,
-  }
-}
-
 export async function getStaticProps({ params }) {
   const data = await getPost(params.slug)
 
   return {
     props: {
-      postData: data.post,
+      postData: data?.post,
     },
   }
 }
+
+export async function getStaticPaths() {
+  const allPosts = await getAllPostsWithSlug()
+
+  return {
+    paths: allPosts?.edges.map(({ node }) => ({params: {slug: node.slug}})) || [],
+    fallback: true,
+  }
+}
+

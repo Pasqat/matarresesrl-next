@@ -52,9 +52,8 @@ export default function Navbar(props) {
                 <div className="hidden md:block sm:ml-6">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <Link href={item.href}>
+                      <Link key={item.name} href={item.href}>
                         <a
-                          key={item.name}
                           className={classNames(
                             item.current
                               ? 'bg-gray-900 text-white'
