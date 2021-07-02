@@ -1,14 +1,26 @@
 import nodemailer from 'nodemailer'
 
-const emailPass = process.env.EMAIL_PASSWORD
-
 const transporter = nodemailer.createTransport({
-  host: 'smtp...',
-  port: 25,
+  host: process.env.EMAIL_HOST,
+  port: 465,
+  secure: true, // use TLS
   auth: {
     user: process.env.EMAL_ADDRESS,
-    pass: emailPass,
+    pass: process.env.EMAIL_PASSWORD,
   },
+  tls: {
+    // do not fail on invalid certs
+    rejectUnauthorized: false,
+  },
+})
+
+// verify connection configuration
+transporter.verify(function (error, success) {
+  if (error) {
+    console.log(error)
+  } else {
+    console.log('Server is ready to take our messages')
+  }
 })
 
 export default async (req, res) => {
@@ -18,7 +30,7 @@ export default async (req, res) => {
   if (
     senderMail === '' ||
     name === '' ||
-    contente === '' ||
+    content === '' ||
     recipientMail === ''
   ) {
     res.status(403).send('')

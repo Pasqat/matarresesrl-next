@@ -6,7 +6,7 @@ import { HeartIcon, ShoppingCartIcon } from '@heroicons/react/outline'
 
 import Navbar from '../components/Navbars/Navbar'
 
-import { sendMail } from '../lib/api'
+import { sendContactMail } from '../actions/networking/mailApi'
 
 export default function Home() {
   async function submitContactForm(event) {

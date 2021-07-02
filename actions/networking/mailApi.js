@@ -23,7 +23,8 @@ export const sendContactMail = async (
       data,
     })
     return res
-  } catch (errer) {
+  } catch (error) {
+    console.log(error)
     return error
   }
 }
