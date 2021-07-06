@@ -1,45 +1,45 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
-import Head from 'next/head'
-import Link from 'next/link'
-import { HeartIcon, ShoppingCartIcon } from '@heroicons/react/outline'
+import Head from "next/head";
+import Link from "next/link";
+import { HeartIcon, ShoppingCartIcon } from "@heroicons/react/outline";
 
-import Navbar from '../components/Navbars/Navbar'
+import Navbar from "../components/Navbars/Navbar";
 
-import { sendContactMail } from '../actions/networking/mailApi'
+import { sendContactMail } from "../actions/networking/mailApi";
 
 export default function Home() {
-  const [loading, setLoading] = useState(false)
-  const [form, setForm] = useState({ name: '', mail: '', formContent: '' })
-  const { name, mail, formContent } = form
+  const [loading, setLoading] = useState(false);
+  const [form, setForm] = useState({ name: "", mail: "", formContent: "" });
+  const { name, mail, formContent } = form;
 
-  const [formButtonDisabled, setFormButtonDisabled] = useState(false)
-  const [formButtonText, setFormButtonText] = useState('Invia')
+  const [formButtonDisabled, setFormButtonDisabled] = useState(false);
+  const [formButtonText, setFormButtonText] = useState("Invia");
 
   const handleChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setForm({
       ...form,
       [name]: value,
-    })
-  }
+    });
+  };
 
   async function submitContactForm(event) {
-    event.preventDefault()
+    event.preventDefault();
 
-    const recipientMail = 'pasquale.matarrese@gmail.com'
+    const recipientMail = "pasquale.matarrese@gmail.com";
 
-    setLoading(true)
-    const res = await sendContactMail(recipientMail, name, mail, formContent)
+    setLoading(true);
+    const res = await sendContactMail(recipientMail, name, mail, formContent);
     if (res.status < 300) {
       // NOTE: here you will reset the state like:
-      setFormButtonDisabled(true)
-      setFormButtonText('Grazie, ti ricontatteremo al più presto')
-      setLoading(false)
-      setForm({ ...form, name: '', mail: '', formContent: '' })
+      setFormButtonDisabled(true);
+      setFormButtonText("Grazie, ti ricontatteremo al più presto");
+      setLoading(false);
+      setForm({ ...form, name: "", mail: "", formContent: "" });
     } else {
-      setLoading(false)
-      setFormButtonText('Per favore compila tutti i campi')
+      setLoading(false);
+      setFormButtonText("Per favore compila tutti i campi");
     }
   }
 
@@ -58,7 +58,7 @@ export default function Home() {
           <div
             className="absolute top-0 w-full h-full bg-center bg-cover"
             style={{
-              backgroundImage: 'url(/img/homeBackground.jpg)',
+              backgroundImage: "url(/img/homeBackground.jpg)",
             }}
           >
             <span
@@ -91,7 +91,7 @@ export default function Home() {
           </div>
           <div
             className="absolute bottom-0 left-0 right-0 top-auto w-full h-16 overflow-hidden pointer-events-none"
-            style={{ transform: 'translateZ(0)' }}
+            style={{ transform: "translateZ(0)" }}
           >
             <svg
               className="absolute bottom-0 overflow-hidden"
@@ -173,9 +173,9 @@ export default function Home() {
                     <p className="mt-2 mb-4 text-gray-500">
                       Promuoviamo la cultura, la professionalità, la conoscenza
                       nel mondo dell'enogastronomia, aiutiamo le idee a
-                      diventare progetti reali, forniamo{' '}
+                      diventare progetti reali, forniamo{" "}
                       <strong>assistenza tecnica</strong>,
-                      <strong>riparazione</strong> e{' '}
+                      <strong>riparazione</strong> e{" "}
                       <strong>manutenzione.</strong>
                     </p>
                   </div>
@@ -246,7 +246,7 @@ export default function Home() {
         <section className="relative py-20">
           <div
             className="absolute top-0 left-0 right-0 bottom-auto w-full h-20 -mt-20 overflow-hidden pointer-events-none"
-            style={{ transform: 'translateZ(0)' }}
+            style={{ transform: "translateZ(0)" }}
           >
             <svg
               className="absolute bottom-0 overflow-hidden"
@@ -282,7 +282,7 @@ export default function Home() {
                     Tutto per il settore food
                   </h3>
                   <p className="mt-4 text-lg leading-relaxed text-gray-500">
-                    In una struttura aziendale di <strong>5000 mq</strong>{' '}
+                    In una struttura aziendale di <strong>5000 mq</strong>{" "}
                     uniamo il laboratorio di produzione di arredi su misura,
                     l’officina e magazzino ricambi, il laboratorio di formazione
                     e un ampio showroom in cui potrai trovare:
@@ -519,7 +519,7 @@ export default function Home() {
         <section className="relative block pb-20 bg-gray-800">
           <div
             className="absolute top-0 left-0 right-0 bottom-auto w-full h-20 -mt-20 overflow-hidden pointer-events-none"
-            style={{ transform: 'translateZ(0)' }}
+            style={{ transform: "translateZ(0)" }}
           >
             <svg
               className="absolute bottom-0 overflow-hidden"
@@ -711,5 +711,5 @@ export default function Home() {
         </div>
       </footer>
     </div>
-  )
+  );
 }

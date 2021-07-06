@@ -18,31 +18,28 @@ function classNames(...classes) {
 
 export default function Navbar(props) {
   return (
-    <Disclosure
-      as="nav"
-      className="bg-gray-900 top-0 z-50 sm:shadow-lg shadow-md sticky"
-    >
+    <Disclosure as="nav" className="sticky top-0 z-50 bg-gray-900 shadow-md">
       {({ open }) => (
         <>
-          <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-            <div className="relative flex items-center justify-between md:justify-between h-16">
+          <div className="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div className="relative flex items-center justify-between h-16 md:justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center md:hidden">
                 {/* Mobile menu button*/}
-                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                <Disclosure.Button className="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="sr-only">Open main menu</span>
                   {open ? (
-                    <XIcon className="block h-6 w-6" aria-hidden="true" />
+                    <XIcon className="block w-6 h-6" aria-hidden="true" />
                   ) : (
-                    <MenuIcon className="block h-6 w-6" aria-hidden="true" />
+                    <MenuIcon className="block w-6 h-6" aria-hidden="true" />
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="flex-1 flex items-center justify-center sm:items-stretch md:justify-between">
-                <div className="flex-shrink-0 flex items-center justify-center">
+              <div className="flex items-center justify-center flex-1 sm:items-stretch md:justify-between">
+                <div className="flex items-center justify-center flex-shrink-0">
                   <Link href="/">
                     <a>
                       <img
-                        className="h-auto w-6/12 md:w-8/12 m-auto"
+                        className="w-6/12 h-auto m-auto md:w-8/12"
                         src="https://www.matarrese.it/wp-content/uploads/2015/09/logo-matarrese-bianco-350.png"
                         alt="Workflow"
                       />
@@ -68,10 +65,10 @@ export default function Navbar(props) {
                     ))}
                     <Link href="#">
                       <a
-                        className="flex items-center text-white bg-yellow-600 hover:bg-opacity-70 hover:shadow-md hover:text-white px-3 py-2 rounded-md text-sm font-semibold uppercase"
+                        className="flex items-center px-3 py-2 text-sm font-semibold text-white uppercase bg-yellow-600 rounded-md hover:bg-opacity-70 hover:shadow-md hover:text-white"
                         aria-current={undefined}
                       >
-                        <ChatIcon className="inline-block h-5 w-5 mr-1" />
+                        <ChatIcon className="inline-block w-5 h-5 mr-1" />
                         Contattaci
                       </a>
                     </Link>
@@ -102,10 +99,10 @@ export default function Navbar(props) {
                 <div></div>
                 <Link href="#">
                   <a
-                    className="flex items-center text-gray-200 hover:bg-opacity-70 hover:shadow-md py-5 text-sm font-semibold uppercase"
+                    className="flex items-center py-5 text-sm font-semibold text-gray-200 uppercase hover:bg-opacity-70 hover:shadow-md"
                     aria-current={undefined}
                   >
-                    <ChatIcon className="inline-block h-5 w-5 mr-1" />
+                    <ChatIcon className="inline-block w-5 h-5 mr-1" />
                     Contattaci
                   </a>
                 </Link>

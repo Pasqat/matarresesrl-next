@@ -7,6 +7,8 @@ const API_URL =
 
 const client = new ApolloClient({
   uri: API_URL,
+  // uri: process.env.WP_API_URL,
+  // uri: process.env.WP_API_URL_LOCAL,
   cache: new InMemoryCache(),
 })
 
