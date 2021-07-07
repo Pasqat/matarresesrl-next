@@ -8,41 +8,43 @@ import Navbar from '../components/Navbars/Navbar'
 
 import { sendContactMail } from '../actions/networking/mailApi'
 import HeaderBig from '../components/Header/HeaderBig'
+import CardSquareImg from '../components/Card/CardSquareImg'
+import CardBigImg from '../components/Card/CardBigImg'
+import ContactForm from '../components/Form/ContactForm'
 
 export default function Home() {
-  const [loading, setLoading] = useState(false)
-  const [form, setForm] = useState({ name: '', mail: '', formContent: '' })
-  const { name, mail, formContent } = form
+  // const [form, setForm] = useState({ name: '', mail: '', formContent: '' })
+  // const { name, mail, formContent } = form
 
-  const [formButtonDisabled, setFormButtonDisabled] = useState(false)
-  const [formButtonText, setFormButtonText] = useState('Invia')
+  // const [formButtonDisabled, setFormButtonDisabled] = useState(false)
+  // const [formButtonText, setFormButtonText] = useState('Invia')
 
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setForm({
-      ...form,
-      [name]: value,
-    })
-  }
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target
+  //   setForm({
+  //     ...form,
+  //     [name]: value,
+  //   })
+  // }
 
-  async function submitContactForm(event) {
-    event.preventDefault()
+  // async function submitContactForm(event) {
+  //   event.preventDefault()
 
-    const recipientMail = 'pasquale.matarrese@gmail.com'
+  //   const recipientMail = 'pasquale.matarrese@gmail.com'
 
-    setLoading(true)
-    const res = await sendContactMail(recipientMail, name, mail, formContent)
-    if (res.status < 300) {
-      // NOTE: here you will reset the state like:
-      setFormButtonDisabled(true)
-      setFormButtonText('Grazie, ti ricontatteremo al più presto')
-      setLoading(false)
-      setForm({ ...form, name: '', mail: '', formContent: '' })
-    } else {
-      setLoading(false)
-      setFormButtonText('Per favore compila tutti i campi')
-    }
-  }
+  //   setLoading(true)
+  //   const res = await sendContactMail(recipientMail, name, mail, formContent)
+  //   if (res.status < 300) {
+  //     // NOTE: here you will reset the state like:
+  //     setFormButtonDisabled(true)
+  //     setFormButtonText('Grazie, ti ricontatteremo al più presto')
+  //     setLoading(false)
+  //     setForm({ ...form, name: '', mail: '', formContent: '' })
+  //   } else {
+  //     setLoading(false)
+  //     setFormButtonText('Per favore compila tutti i campi')
+  //   }
+  // }
 
   return (
     <div>
@@ -66,74 +68,34 @@ export default function Home() {
         <section className="pb-20 -mt-24 bg-gray-200">
           <div className="container px-4 mx-auto">
             <div className="flex flex-wrap">
-              <div className="w-full px-4 pt-6 text-center lg:pt-12 md:w-4/12">
-                <div className="relative flex flex-col w-full min-w-0 mb-8 break-words bg-white rounded-lg shadow-lg hover:shadow-xl ">
-                  <div className="flex-auto px-4 py-5">
-                    {/* TODO: use higher resolution image. Find them in ../uploads/2015/03 */}
-                    <div className="inline-flex items-center justify-center mb-5 text-center text-white bg-yellow-500 rounded-lg shadow-lg">
-                      <img
-                        src="/img/servizio-completo1-150x150.jpg"
-                        className="w-full align-middle rounded-lg"
-                      />
-                    </div>
-                    <h6 className="text-xl font-semibold">
-                      Dall'idea al progetto reale
-                    </h6>
-                    <p className="mt-2 mb-4 text-gray-500">
-                      Aprire un'attività, rinnovare un locale, avere una guida
-                      per migliorare il proprio lavoro: Matarrese srl è la
-                      soluzione adatta alle esigenze professionali del mondo
-                      della <strong>ristorazione.</strong>
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <CardSquareImg
+                imgSrc="/img/servizio-completo1-150x150.jpg"
+                title="Dall'idea al progetto reale"
+              >
+                Aprire un'attività, rinnovare un locale, avere una guida per
+                migliorare il proprio lavoro: Matarrese srl è la soluzione
+                adatta alle esigenze professionali del mondo della{' '}
+                <strong>ristorazione.</strong>
+              </CardSquareImg>
 
-              <div className="w-full px-4 text-center md:w-4/12">
-                <div className="relative flex flex-col w-full min-w-0 mb-8 break-words bg-white rounded-lg shadow-lg">
-                  <div className="flex-auto px-4 py-5">
-                    <div className="inline-flex items-center justify-center mb-5 text-center text-white bg-yellow-500 rounded-lg shadow-lg">
-                      <img
-                        src="/img/prodotti-qualita-150x150.jpg"
-                        className="object-fill w-full align-middle rounded-lg shadow-md"
-                      />
-                    </div>
-                    <h6 className="text-xl font-semibold">
-                      Marchi e attrezzature di qualità
-                    </h6>
-                    <p className="mt-2 mb-4 text-gray-500">
-                      Selezioniamo i migliori marchi del settore al fine di
-                      fornire sempre un vasto assortimento di attrezzature e
-                      prodotti di alta qualità, per soddisfare ogni esigenza dei
-                      nostri clienti.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <CardSquareImg
+                imgSrc="/img/prodotti-qualita-150x150.jpg"
+                title="Marchi e attrezzature di qualità"
+              >
+                Selezioniamo i migliori marchi del settore al fine di fornire
+                sempre un vasto assortimento di attrezzature e prodotti di alta
+                qualità, per soddisfare ogni esigenza dei nostri clienti.
+              </CardSquareImg>
 
-              <div className="w-full px-4 pt-6 text-center md:w-4/12">
-                <div className="relative flex flex-col w-full min-w-0 mb-8 break-words bg-white rounded-lg shadow-lg">
-                  <div className="flex-auto px-4 py-5">
-                    <div className="inline-flex items-center justify-center mb-5 text-center text-white bg-yellow-500 rounded-lg shadow-lg">
-                      <img
-                        src="/img/info-e-supporto-150x150.jpg"
-                        className="object-scale-down w-full align-middle rounded-lg shadow-md"
-                      />
-                    </div>
-                    <h6 className="text-xl font-semibold">
-                      Supporto pre e post intervento
-                    </h6>
-                    <p className="mt-2 mb-4 text-gray-500">
-                      Promuoviamo la cultura, la professionalità, la conoscenza
-                      nel mondo dell'enogastronomia, aiutiamo le idee a
-                      diventare progetti reali, forniamo{' '}
-                      <strong>assistenza tecnica</strong>,
-                      <strong>riparazione</strong> e{' '}
-                      <strong>manutenzione.</strong>
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <CardSquareImg
+                imgSrc="/img/info-e-supporto-150x150.jpg"
+                title="Supporto pre e post intervento"
+              >
+                Promuoviamo la cultura, la professionalità, la conoscenza nel
+                mondo dell'enogastronomia, aiutiamo le idee a diventare progetti
+                reali, forniamo <strong>assistenza tecnica</strong>,
+                <strong>riparazione</strong> e <strong>manutenzione.</strong>
+              </CardSquareImg>
             </div>
 
             <div className="flex flex-wrap items-center mt-32">
@@ -163,35 +125,12 @@ export default function Home() {
                 </Link>
               </div>
 
-              <div className="w-full px-4 ml-auto mr-auto md:w-4/12">
-                <div className="relative flex flex-col w-full min-w-0 mb-6 break-words bg-yellow-600 rounded-lg shadow-lg">
-                  <img
-                    alt="vicini al cliente"
-                    src="/img/vicini-al-cliente.jpg"
-                    className="w-full align-middle rounded-t-lg"
-                  />
-                  <blockquote className="relative p-8 mb-4">
-                    <svg
-                      preserveAspectRatio="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 583 95"
-                      className="absolute left-0 w-full block h-[95px] top-[-94px]"
-                    >
-                      <polygon
-                        points="-30,95 583,95 583,65"
-                        className="text-yellow-600 fill-current"
-                      ></polygon>
-                    </svg>
-                    <h4 className="text-xl font-bold text-white">
-                      Vicini al Cliente
-                    </h4>
-                    <p className="mt-2 font-light text-white text-md">
-                      Dalla progettazione alla realizzazione, i nostri esperti
-                      seguono il cliente per trasformare le idee in realtà
-                    </p>
-                  </blockquote>
-                </div>
-              </div>
+              <CardBigImg
+                title="Vicini al Cliente"
+                content="Dalla progettazione alla realizzazione,
+                  i nostri esperti seguono il cliente per trasformare le idee in realtà"
+                imgSrc="/img/vicini-al-cliente.jpg"
+              ></CardBigImg>
             </div>
           </div>
         </section>
@@ -551,79 +490,7 @@ export default function Home() {
             <div className="flex flex-wrap justify-center -mt-48 lg:-mt-64">
               <div className="w-full px-4 lg:w-6/12">
                 <div className="relative flex flex-col w-full min-w-0 mb-6 break-words bg-gray-200 rounded-lg shadow-lg">
-                  <form
-                    className="flex-auto p-5 lg:p-10"
-                    onSubmit={submitContactForm}
-                  >
-                    <h4 className="text-2xl font-semibold">
-                      Hai una idea che vorresti realizzare, o hai bisogno di
-                      informazioni?
-                    </h4>
-                    <p className="mt-1 mb-4 leading-relaxed text-gray-500">
-                      Completa questo form, ti risponderemo entro 24 ore
-                      (escluso festivi)
-                    </p>
-                    <div className="relative w-full mt-8 mb-3">
-                      <label
-                        className="block mb-2 text-xs font-bold text-gray-600 uppercase"
-                        htmlFor="full-name"
-                      >
-                        Nome Completo
-                      </label>
-                      <input
-                        type="text"
-                        className="w-full px-3 py-3 text-sm text-gray-600 placeholder-gray-300 transition-all duration-150 ease-linear bg-white border-0 rounded shadow focus:outline-none focus:ring"
-                        placeholder="Nome Completo"
-                        name="name"
-                        value={name}
-                        onChange={handleChange}
-                      />
-                    </div>
-
-                    <div className="relative w-full mb-3">
-                      <label
-                        className="block mb-2 text-xs font-bold text-gray-600 uppercase"
-                        htmlFor="email"
-                      >
-                        Email
-                      </label>
-                      <input
-                        type="email"
-                        className="w-full px-3 py-3 text-sm text-gray-600 placeholder-gray-300 transition-all duration-150 ease-linear bg-white border-0 rounded shadow focus:outline-none focus:ring"
-                        placeholder="Email"
-                        name="mail"
-                        value={mail}
-                        onChange={handleChange}
-                      />
-                    </div>
-
-                    <div className="relative w-full mb-3">
-                      <label
-                        className="block mb-2 text-xs font-bold text-gray-600 uppercase"
-                        htmlFor="messaggio"
-                      >
-                        Message
-                      </label>
-                      <textarea
-                        rows="4"
-                        cols="80"
-                        className="w-full px-3 py-3 text-sm text-gray-600 placeholder-gray-300 bg-white border-0 rounded shadow focus:outline-none focus:ring"
-                        placeholder="Scrivi la tua richiesta..."
-                        name="formContent"
-                        value={formContent}
-                        onChange={handleChange}
-                      />
-                    </div>
-                    <div className="mt-6 text-center">
-                      <button
-                        className="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase transition-all duration-150 ease-linear bg-gray-800 rounded shadow outline-none disabled:bg-green-600 disabled:opacity-50 disabled:pointer-events-none active:bg-gray-600 hover:shadow-lg focus:outline-none"
-                        type="submit"
-                        disabled={formButtonDisabled}
-                      >
-                        {formButtonText}
-                      </button>
-                    </div>
-                  </form>
+                  <ContactForm />
                 </div>
               </div>
             </div>
