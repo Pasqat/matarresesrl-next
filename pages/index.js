@@ -13,39 +13,6 @@ import CardBigImg from '../components/Card/CardBigImg'
 import ContactForm from '../components/Form/ContactForm'
 
 export default function Home() {
-  // const [form, setForm] = useState({ name: '', mail: '', formContent: '' })
-  // const { name, mail, formContent } = form
-
-  // const [formButtonDisabled, setFormButtonDisabled] = useState(false)
-  // const [formButtonText, setFormButtonText] = useState('Invia')
-
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target
-  //   setForm({
-  //     ...form,
-  //     [name]: value,
-  //   })
-  // }
-
-  // async function submitContactForm(event) {
-  //   event.preventDefault()
-
-  //   const recipientMail = 'pasquale.matarrese@gmail.com'
-
-  //   setLoading(true)
-  //   const res = await sendContactMail(recipientMail, name, mail, formContent)
-  //   if (res.status < 300) {
-  //     // NOTE: here you will reset the state like:
-  //     setFormButtonDisabled(true)
-  //     setFormButtonText('Grazie, ti ricontatteremo al più presto')
-  //     setLoading(false)
-  //     setForm({ ...form, name: '', mail: '', formContent: '' })
-  //   } else {
-  //     setLoading(false)
-  //     setFormButtonText('Per favore compila tutti i campi')
-  //   }
-  // }
-
   return (
     <div>
       <Head>

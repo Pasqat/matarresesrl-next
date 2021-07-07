@@ -10,5 +10,9 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/typography'), require('autoprefixer')],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('autoprefixer'),
+    require('@tailwindcss/custom-forms'),
+  ],
 }

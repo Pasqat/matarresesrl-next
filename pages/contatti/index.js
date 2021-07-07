@@ -90,9 +90,15 @@ export default function Contatti() {
         <div className="flex flex-col w-full mt-8 bg-white lg:w-1/3 md:w-1/2 md:ml-auto md:py-8 md:mt-0">
           <ContactForm />
           {/* TODO: aggingungere termini e condizioni */}
-          <p className="ml-auto text-xs text-left">
-            accetto i termini e le condizioni
-          </p>
+          <div className="ml-auto">
+            <label className="inline-flex items-center">
+              <input
+                type="checkbox"
+                className="text-yellow-600 border-2 border-gray-400 border-solid cursor-pointer form-checkbox"
+              />
+              <span className="ml-2">accetto i termini e le condizioni</span>
+            </label>
+          </div>
         </div>
       </div>
     </section>
