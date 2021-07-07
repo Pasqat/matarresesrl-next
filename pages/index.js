@@ -38,6 +38,7 @@ export default function Home() {
               <CardSquareImg
                 imgSrc="/img/servizio-completo1-150x150.jpg"
                 title="Dall'idea al progetto reale"
+                className="md:mt-5"
               >
                 Aprire un'attività, rinnovare un locale, avere una guida per
                 migliorare il proprio lavoro: Matarrese srl è la soluzione
@@ -48,6 +49,7 @@ export default function Home() {
               <CardSquareImg
                 imgSrc="/img/prodotti-qualita-150x150.jpg"
                 title="Marchi e attrezzature di qualità"
+                className="md:-mt-10"
               >
                 Selezioniamo i migliori marchi del settore al fine di fornire
                 sempre un vasto assortimento di attrezzature e prodotti di alta
