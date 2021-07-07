@@ -1,7 +1,5 @@
 import Link from 'next/link'
 
-import PropTypes from 'prop-types'
-
 /**
  * @param backgroundImgSrc - 'url(/img/homeBackground.jpg)'
  * @param overlay - 'bg-black opacity-80'
@@ -73,18 +71,6 @@ function HeaderBig({
       </div>
     </div>
   )
-}
-
-HeaderBig.PropTypes = {
-  backgroundImgSrc: PropTypes.string,
-  overlay: PropTypes.string,
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string,
-  button: PropTypes.shape({
-    text: PropTypes.string.isRequired,
-    link: PropTypes.string,
-  }),
-  noButton: PropTypes.bool,
 }
 
 export default HeaderBig
