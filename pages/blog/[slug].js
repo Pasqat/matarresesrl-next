@@ -2,7 +2,11 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Link from 'next/link'
 
-import { getAllPostsWithSlug, getPost } from '../../lib/api'
+import {
+  getAllPostsWithSlug,
+  getPost,
+  getPostAndMorePosts,
+} from '../../lib/api'
 import Navbar from '../../components/Navbars/Navbar'
 
 import { formatDate } from '../../actions/utils/formatDate'
@@ -61,11 +65,15 @@ export default function Post({ postData }) {
   )
 }
 
-export async function getStaticProps({ params }) {
-  const data = await getPost(params.slug)
+export async function getStaticProps({ params, preview = false }) {
+  const data = await getPostAndMorePosts(params.slug, preview)
+
+  console.log(data)
   return {
     props: {
+      preview,
       postData: data.post,
+      posts: data.posts,
     },
   }
 }
