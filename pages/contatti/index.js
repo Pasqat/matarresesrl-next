@@ -3,6 +3,7 @@ import clsx from 'clsx'
 
 import { sendContactMail } from '../../actions/networking/mailApi'
 import ContactForm from '../../components/Form/ContactForm'
+import ContactFormModal from '../../components/Form/ContactFormModal'
 
 export default function Contatti() {
   const [form, setForm] = useState({ name: '', mail: '', formContent: '' })
@@ -51,6 +52,7 @@ export default function Contatti() {
   }
   return (
     <section className="relative text-gray-600 body-font">
+      <ContactFormModal />
       <div className="container flex flex-wrap px-5 py-24 mx-auto sm:flex-nowrap">
         <div className="relative flex items-end justify-start p-10 overflow-hidden bg-gray-300 rounded-lg lg:w-2/3 md:w-1/2 sm:mr-10">
           <iframe
@@ -88,7 +90,7 @@ export default function Contatti() {
           </div>
         </div>
         <div className="flex flex-col w-full mt-8 bg-white lg:w-1/3 md:w-1/2 md:ml-auto md:py-8 md:mt-0">
-          <ContactForm />
+          <ContactForm hasAutoFocus />
           {/* TODO: aggingungere termini e condizioni */}
           <div className="ml-auto">
             <label className="inline-flex items-center">

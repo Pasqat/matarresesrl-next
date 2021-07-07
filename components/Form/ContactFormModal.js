@@ -194,7 +194,6 @@ export default function ContactFormModal() {
                     <div className="mt-4">
                       <button
                         className="inline-flex px-4 py-2 text-sm font-medium text-green-900 transition-all duration-150 ease-linear bg-green-100 border border-transparent rounded-sm hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 disabled:bg-green-600 disabled:opacity-50 disabled:pointer-events-none active:bg-gray-600 "
-                        // className="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase bg-gray-800 rounded shadow outline-none hover:shadow-lg focus:outline-none"
                         type="submit"
                         disabled={formButtonDisabled}
                       >

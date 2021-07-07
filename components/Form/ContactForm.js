@@ -1,11 +1,12 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useLayoutEffect, useRef, useState } from 'react'
 import clsx from 'clsx'
 
 import { sendContactMail } from '../../actions/networking/mailApi'
 
-export default function ContactForm() {
+export default function ContactForm({ hasAutoFocus }) {
   const [form, setForm] = useState({ name: '', mail: '', formContent: '' })
   const { name, mail, formContent } = form
+  const inputName = useRef(null)
 
   const [formButtonDisabled, setFormButtonDisabled] = useState(false)
   const [notification, setNotification] = useState({ text: '', isError: false })
@@ -17,6 +18,10 @@ export default function ContactForm() {
       [name]: value,
     })
   }
+
+  useLayoutEffect(() => {
+    hasAutoFocus && inputName.current.focus()
+  }, [])
 
   async function submitContactForm(event) {
     event.preventDefault()
@@ -63,6 +68,7 @@ export default function ContactForm() {
             name="name"
             value={name}
             onChange={handleChange}
+            ref={inputName}
           />
         </div>
 
