@@ -1,6 +1,4 @@
-import { Dialog, Transition } from '@headlessui/react'
-import { ChatIcon } from '@heroicons/react/outline'
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useState } from 'react'
 import clsx from 'clsx'
 
 import { sendContactMail } from '../../actions/networking/mailApi'
