@@ -63,7 +63,7 @@ export default function Navbar(props) {
                         </a>
                       </Link>
                     ))}
-                    <Link href="#">
+                    <Link href="/contatti">
                       <a
                         className="flex items-center px-3 py-2 text-sm font-semibold text-white uppercase bg-yellow-600 rounded-md hover:bg-opacity-70 hover:shadow-md hover:text-white"
                         aria-current={undefined}
@@ -97,7 +97,7 @@ export default function Navbar(props) {
               ))}
               <div className="divide-y divide-gray-700">
                 <div></div>
-                <Link href="#">
+                <Link href="/contatti">
                   <a
                     className="flex items-center py-5 text-sm font-semibold text-gray-200 uppercase hover:bg-opacity-70 hover:shadow-md"
                     aria-current={undefined}
