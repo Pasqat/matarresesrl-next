@@ -134,7 +134,7 @@ export default function ContactFormModal({
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900"
                 >
-                  Hai una idea che vorresti realizzare, o hai bisogno di
+                  Hai un' idea che vorresti realizzare, o hai bisogno di
                   informazioni?
                 </Dialog.Title>
                 <div className="mt-2">
