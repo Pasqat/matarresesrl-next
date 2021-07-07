@@ -1,22 +1,24 @@
-import { Fragment, useState } from 'react'
-import { Transition } from '@headlessui/react'
-import clsx from 'clsx'
+import { Fragment, useState } from "react";
+import { Transition } from "@headlessui/react";
+import clsx from "clsx";
 
-import { XIcon } from '@heroicons/react/outline'
+import { XIcon } from "@heroicons/react/outline";
 
-import { sendContactMail } from '../../actions/networking/mailApi'
-import ContactForm from '../../components/Form/ContactForm'
-import ContactFormModal from '../../components/Form/ContactFormModal'
+import { sendContactMail } from "../../actions/networking/mailApi";
+import ContactForm from "../../components/Form/ContactForm";
+import ContactFormModal from "../../components/Form/ContactFormModal";
 
 export default function Contatti() {
-  // TODO: to close and open the address for mobile
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(true);
 
-  const [form, setForm] = useState({ name: '', mail: '', formContent: '' })
-  const { name, mail, formContent } = form
+  const [form, setForm] = useState({ name: "", mail: "", formContent: "" });
+  const { name, mail, formContent } = form;
 
-  const [formButtonDisabled, setFormButtonDisabled] = useState(false)
-  const [notification, setNotification] = useState({ text: '', isError: false })
+  const [formButtonDisabled, setFormButtonDisabled] = useState(false);
+  const [notification, setNotification] = useState({
+    text: "",
+    isError: false,
+  });
 
   const defaultMapProps = {
     center: {
@@ -24,36 +26,36 @@ export default function Contatti() {
       lng: 77.01502627,
     },
     zoom: 11,
-  }
+  };
 
   const handleChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setForm({
       ...form,
       [name]: value,
-    })
-  }
+    });
+  };
 
   async function submitContactForm(event) {
-    event.preventDefault()
+    event.preventDefault();
 
-    const recipientMail = 'pasquale.matarrese@gmail.com'
+    const recipientMail = "pasquale.matarrese@gmail.com";
 
-    const res = await sendContactMail(recipientMail, name, mail, formContent)
+    const res = await sendContactMail(recipientMail, name, mail, formContent);
     if (res.status < 300) {
-      setFormButtonDisabled(true)
+      setFormButtonDisabled(true);
       setNotification({
         ...notification,
-        text: 'Grazie, ti ricontatteremo al più presto',
+        text: "Grazie, ti ricontatteremo al più presto",
         isError: false,
-      })
-      setForm({ ...form, name: '', mail: '', formContent: '' })
+      });
+      setForm({ ...form, name: "", mail: "", formContent: "" });
     } else {
       setNotification({
         ...notification,
-        text: 'Per favore compila tutti i campi',
+        text: "Per favore compila tutti i campi",
         isError: true,
-      })
+      });
     }
   }
   return (
@@ -83,8 +85,8 @@ export default function Contatti() {
           >
             <div
               className={clsx(
-                !isOpen && 'hidden',
-                'relative flex flex-wrap py-6 bg-white rounded shadow-md w-full'
+                !isOpen && "hidden",
+                "relative flex flex-wrap py-6 bg-white rounded shadow-md w-full"
               )}
             >
               <XIcon
@@ -96,7 +98,7 @@ export default function Contatti() {
                   INDIRIZZO
                 </h2>
                 <p className="mt-1">
-                  contrada popoleto,n.c. {'\n'} Alberobello (BA) 70011
+                  contrada popoleto,n.c. {"\n"} Alberobello (BA) 70011
                 </p>
               </div>
               <div className="px-6 mt-4 lg:w-1/2 lg:mt-0">
@@ -119,8 +121,8 @@ export default function Contatti() {
           <div
             onClick={() => setIsOpen(!isOpen)}
             className={clsx(
-              isOpen && 'hidden',
-              'ring-8 ring-black ring-opacity-50 text-2xl absolute bottom-6 left-20 rounded-full w-10 h-10 bg-yellow-400 text-white flex justify-center items-center cursor-pointer font-bold shadow-md hover:shadow-lg '
+              isOpen && "hidden",
+              "ring-8 ring-black ring-opacity-50 text-2xl absolute bottom-6 left-20 rounded-full w-10 h-10 bg-yellow-400 text-white flex justify-center items-center cursor-pointer font-bold shadow-md hover:shadow-lg "
             )}
           >
             +
@@ -141,5 +143,5 @@ export default function Contatti() {
         </div>
       </div>
     </section>
-  )
+  );
 }

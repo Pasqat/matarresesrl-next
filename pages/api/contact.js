@@ -1,11 +1,11 @@
-import nodemailer from 'nodemailer'
+import nodemailer from "nodemailer";
 
-console.log('host', process.env.SENDGRID_HOST)
-console.log('adderess', process.env.SENDGRID_ADDRESS)
-console.log('password', process.env.SENDGRID_PASSWORD)
+console.log("host", process.env.SENDGRID_HOST);
+console.log("adderess", process.env.SENDGRID_ADDRESS);
+console.log("password", process.env.SENDGRID_PASSWORD);
 
 const transporter = nodemailer.createTransport({
-  service: 'SendGrid',
+  service: "SendGrid",
   host: process.env.SENDGRID_HOST,
   port: 587,
   secure: false, // use TLS
@@ -17,7 +17,7 @@ const transporter = nodemailer.createTransport({
     // do not fail on invalid certs
     rejectUnauthorized: false,
   },
-})
+});
 
 // verify connection configuration
 // transporter.verify(function (error, success) {
@@ -29,17 +29,17 @@ const transporter = nodemailer.createTransport({
 // })
 
 export default async (req, res) => {
-  const { senderMail, name, content, recipientMail } = req.body
+  const { senderMail, name, content, recipientMail } = req.body;
 
   // Check if fields are all filled
   if (
-    senderMail === '' ||
-    name === '' ||
-    content === '' ||
-    recipientMail === ''
+    senderMail === "" ||
+    name === "" ||
+    content === "" ||
+    recipientMail === ""
   ) {
-    res.status(403).send('')
-    return
+    res.status(403).send("");
+    return;
   }
 
   const mailerRes = await mailer({
@@ -47,25 +47,25 @@ export default async (req, res) => {
     name,
     text: content,
     recipientMail,
-  })
-  res.send(mailerRes)
-}
+  });
+  res.send(mailerRes);
+};
 
 const mailer = ({ senderMail, name, text, recipientMail }) => {
   const fromReal =
-    name && senderMail ? `${name} <${senderMail}>` : `${name || senderMail}`
-  const from = process.env.SENDGRID_ADDRESS
+    name && senderMail ? `${name} <${senderMail}>` : `${name || senderMail}`;
+  const from = process.env.SENDGRID_ADDRESS;
   const message = {
     from,
     to: `${recipientMail}`,
     subject: `Nuovo messaggio da ${fromReal}`,
     text,
     replyTo: fromReal,
-  }
+  };
 
   return new Promise((resolve, reject) => {
     transporter.sendMail(message, (error, info) =>
       error ? reject(error) : resolve(info)
-    )
-  })
-}
+    );
+  });
+};

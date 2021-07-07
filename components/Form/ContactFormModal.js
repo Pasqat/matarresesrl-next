@@ -1,66 +1,68 @@
-import { Dialog, Transition } from '@headlessui/react'
-import { ChatIcon } from '@heroicons/react/outline'
-import { Fragment, useEffect, useState } from 'react'
-import clsx from 'clsx'
+import { Dialog, Transition } from "@headlessui/react";
+import { ChatIcon } from "@heroicons/react/outline";
+import { Fragment, useEffect, useState } from "react";
+import clsx from "clsx";
 
-import { sendContactMail } from '../../actions/networking/mailApi'
+import { sendContactMail } from "../../actions/networking/mailApi";
 
-import ContactForm from './ContactForm'
+import ContactForm from "./ContactForm";
 
 export default function ContactFormModal() {
-  let [isOpen, setIsOpen] = useState(false)
-  const [form, setForm] = useState({ name: '', mail: '', formContent: '' })
-  const { name, mail, formContent } = form
+  let [isOpen, setIsOpen] = useState(false);
+  const [form, setForm] = useState({ name: "", mail: "", formContent: "" });
+  const { name, mail, formContent } = form;
 
-  const [formButtonDisabled, setFormButtonDisabled] = useState(false)
-  const [notification, setNotification] = useState({ text: '', isError: false })
+  const [formButtonDisabled, setFormButtonDisabled] = useState(false);
+  const [notification, setNotification] = useState({
+    text: "",
+    isError: false,
+  });
 
   function closeModal() {
-    setIsOpen(false)
+    setIsOpen(false);
   }
 
   function openModal() {
-    setIsOpen(true)
+    setIsOpen(true);
   }
 
   const handleChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setForm({
       ...form,
       [name]: value,
-    })
-  }
+    });
+  };
 
   useEffect(() => {
-    setFormButtonDisabled(false)
-    setForm({ ...form, name: '', mail: '' })
-    setNotification({ text: '', isError: false })
-  }, [isOpen])
+    setFormButtonDisabled(false);
+    setForm({ ...form, name: "", mail: "" });
+    setNotification({ text: "", isError: false });
+  }, [isOpen]);
 
   async function submitContactForm(event) {
-    event.preventDefault()
+    event.preventDefault();
 
-    const recipientMail = 'pasquale.matarrese@gmail.com'
+    const recipientMail = "pasquale.matarrese@gmail.com";
 
-    const res = await sendContactMail(recipientMail, name, mail, formContent)
+    const res = await sendContactMail(recipientMail, name, mail, formContent);
     if (res.status < 300) {
-      // NOTE: here you will reset the state like:
-      setFormButtonDisabled(true)
+      setFormButtonDisabled(true);
       setNotification({
         ...notification,
-        text: 'Grazie, ti ricontatteremo al più presto',
+        text: "Grazie, ti ricontatteremo al più presto",
         isError: false,
-      })
-      setForm({ ...form, name: '', mail: '', formContent: '' })
+      });
+      setForm({ ...form, name: "", mail: "", formContent: "" });
       setTimeout(() => {
-        closeModal()
-      }, 2000)
+        closeModal();
+      }, 2000);
     } else {
       setNotification({
         ...notification,
-        text: 'Per favore compila tutti i campi',
+        text: "Per favore compila tutti i campi",
         isError: true,
-      })
+      });
     }
   }
   return (
@@ -204,8 +206,8 @@ export default function ContactFormModal() {
                 </form>
                 <div
                   className={clsx(
-                    'px-4 text-center',
-                    notification.isError ? 'text-red-700' : 'text-green-700'
+                    "px-4 text-center",
+                    notification.isError ? "text-red-700" : "text-green-700"
                   )}
                 >
                   {notification.text}
@@ -216,5 +218,5 @@ export default function ContactFormModal() {
         </Dialog>
       </Transition>
     </>
-  )
+  );
 }
