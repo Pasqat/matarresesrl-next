@@ -4,60 +4,11 @@ import clsx from "clsx";
 
 import { XIcon } from "@heroicons/react/outline";
 
-import { sendContactMail } from "../../actions/networking/mailApi";
 import ContactForm from "../../components/Form/ContactForm";
-import ContactFormModal from "../../components/Form/ContactFormModal";
 
 export default function Contatti() {
   const [isOpen, setIsOpen] = useState(true);
 
-  const [form, setForm] = useState({ name: "", mail: "", formContent: "" });
-  const { name, mail, formContent } = form;
-
-  const [formButtonDisabled, setFormButtonDisabled] = useState(false);
-  const [notification, setNotification] = useState({
-    text: "",
-    isError: false,
-  });
-
-  const defaultMapProps = {
-    center: {
-      lat: 10.99835602,
-      lng: 77.01502627,
-    },
-    zoom: 11,
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm({
-      ...form,
-      [name]: value,
-    });
-  };
-
-  async function submitContactForm(event) {
-    event.preventDefault();
-
-    const recipientMail = "pasquale.matarrese@gmail.com";
-
-    const res = await sendContactMail(recipientMail, name, mail, formContent);
-    if (res.status < 300) {
-      setFormButtonDisabled(true);
-      setNotification({
-        ...notification,
-        text: "Grazie, ti ricontatteremo al più presto",
-        isError: false,
-      });
-      setForm({ ...form, name: "", mail: "", formContent: "" });
-    } else {
-      setNotification({
-        ...notification,
-        text: "Per favore compila tutti i campi",
-        isError: true,
-      });
-    }
-  }
   return (
     <section className="relative text-gray-600 body-font">
       <div className="container flex flex-wrap px-5 py-24 mx-auto sm:flex-nowrap">
