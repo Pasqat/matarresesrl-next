@@ -6,11 +6,11 @@ import { HeartIcon, ShoppingCartIcon } from '@heroicons/react/outline'
 
 import Navbar from '../components/Navbars/Navbar'
 
-import { sendContactMail } from '../actions/networking/mailApi'
 import HeaderBig from '../components/Header/HeaderBig'
 import CardSquareImg from '../components/Card/CardSquareImg'
 import CardBigImg from '../components/Card/CardBigImg'
 import ContactForm from '../components/Form/ContactForm'
+import ContactFormModal from '../components/Form/ContactFormModal'
 
 export default function Home() {
   return (
@@ -85,11 +85,10 @@ export default function Home() {
                   tecnica post vendita, manutenzione e riparazione, consulenza
                   professionale continua.
                 </p>
-                <Link href="#contatti">
-                  <a className="mt-8 font-bold text-gray-700 underline hover:drop-shadow-lg">
-                    Realizza il tuo sogno!
-                  </a>
-                </Link>
+                <ContactFormModal
+                  buttonText="Realizza il tuo sogno"
+                  buttonClassName="hover:bg-opacity-70 bg-yellow-500 bg-opacity-50 text-gray-800 text-lg py-2 px-4 "
+                />
               </div>
 
               <CardBigImg

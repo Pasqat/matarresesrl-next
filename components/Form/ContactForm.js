@@ -1,48 +1,51 @@
-import { Fragment, useLayoutEffect, useRef, useState } from 'react'
-import clsx from 'clsx'
+import { useEffect, useRef, useState } from "react";
+import clsx from "clsx";
 
-import { sendContactMail } from '../../actions/networking/mailApi'
+import { sendContactMail } from "../../actions/networking/mailApi";
 
 export default function ContactForm({ hasAutoFocus }) {
-  const [form, setForm] = useState({ name: '', mail: '', formContent: '' })
-  const { name, mail, formContent } = form
-  const inputName = useRef(null)
+  const [form, setForm] = useState({ name: "", mail: "", formContent: "" });
+  const { name, mail, formContent } = form;
+  const inputName = useRef(null);
 
-  const [formButtonDisabled, setFormButtonDisabled] = useState(false)
-  const [notification, setNotification] = useState({ text: '', isError: false })
+  const [formButtonDisabled, setFormButtonDisabled] = useState(false);
+  const [notification, setNotification] = useState({
+    text: "",
+    isError: false,
+  });
 
   const handleChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setForm({
       ...form,
       [name]: value,
-    })
-  }
+    });
+  };
 
-  useLayoutEffect(() => {
-    hasAutoFocus && inputName.current.focus()
-  }, [])
+  useEffect(() => {
+    hasAutoFocus && inputName.current.focus();
+  }, []);
 
   async function submitContactForm(event) {
-    event.preventDefault()
+    event.preventDefault();
 
-    const recipientMail = 'pasquale.matarrese@gmail.com'
+    const recipientMail = "pasquale.matarrese@gmail.com";
 
-    const res = await sendContactMail(recipientMail, name, mail, formContent)
+    const res = await sendContactMail(recipientMail, name, mail, formContent);
     if (res.status < 300) {
-      setFormButtonDisabled(true)
+      setFormButtonDisabled(true);
       setNotification({
         ...notification,
-        text: 'Grazie, ti ricontatteremo al più presto',
+        text: "Grazie, ti ricontatteremo al più presto",
         isError: false,
-      })
-      setForm({ ...form, name: '', mail: '', formContent: '' })
+      });
+      setForm({ ...form, name: "", mail: "", formContent: "" });
     } else {
       setNotification({
         ...notification,
-        text: 'Per favore compila tutti i campi',
+        text: "Per favore compila tutti i campi",
         isError: true,
-      })
+      });
     }
   }
   return (
@@ -118,12 +121,12 @@ export default function ContactForm({ hasAutoFocus }) {
       </form>
       <div
         className={clsx(
-          'px-4 mb-8 text-center',
-          notification.isError ? 'text-red-700' : 'text-green-700'
+          "px-4 mb-8 text-center",
+          notification.isError ? "text-red-700" : "text-green-700"
         )}
       >
         {notification.text}
       </div>
     </>
-  )
+  );
 }
