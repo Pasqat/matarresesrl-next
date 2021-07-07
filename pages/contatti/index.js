@@ -11,6 +11,14 @@ export default function Contatti() {
   const [formButtonDisabled, setFormButtonDisabled] = useState(false)
   const [notification, setNotification] = useState({ text: '', isError: false })
 
+  const defaultMapProps = {
+    center: {
+      lat: 10.99835602,
+      lng: 77.01502627,
+    },
+    zoom: 11,
+  }
+
   const handleChange = (e) => {
     const { name, value } = e.target
     setForm({
@@ -49,12 +57,9 @@ export default function Contatti() {
             width="100%"
             height="100%"
             className="absolute inset-0"
-            frameborder="0"
-            title="map"
-            marginheight="0"
-            marginwidth="0"
             scrolling="no"
-            src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q=%C4%B0zmir+(My%20Business%20Name)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"
+            loading="lazy"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12082.632673991144!2d17.236210260625526!3d40.79152858268904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1347b28ac399465b%3A0xe5e7513c50d3197f!2sMatarrese%20Srl!5e0!3m2!1sen!2sus!4v1625668065795!5m2!1sen!2sus"
           ></iframe>
           <div className="relative flex flex-wrap py-6 bg-white rounded shadow-md">
             <div className="px-6 lg:w-1/2">
