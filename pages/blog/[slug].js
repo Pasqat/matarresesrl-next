@@ -30,7 +30,6 @@ export default function Post({ postData, posts }) {
             <title>{postData.title}</title>
           )}
         </Head>
-        <Navbar />
         <div className="container">
           <main>
             {router.isFallback ? (

@@ -14,7 +14,6 @@ export default function Blog({ allPosts: { edges } }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Navbar />
       <main className="bg-gray-100">
         <h1 className="py-12 mt-0 mb-2 text-4xl font-normal leading-normal text-center text-yellow-500 align-middle">
           Ultimi Aggiornamenti
