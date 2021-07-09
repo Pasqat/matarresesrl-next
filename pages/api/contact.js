@@ -1,9 +1,5 @@
 import nodemailer from "nodemailer";
 
-console.log("host", process.env.SENDGRID_HOST);
-console.log("adderess", process.env.SENDGRID_ADDRESS);
-console.log("password", process.env.SENDGRID_PASSWORD);
-
 const transporter = nodemailer.createTransport({
   service: "SendGrid",
   host: process.env.SENDGRID_HOST,

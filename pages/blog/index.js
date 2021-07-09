@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import Image from 'next/image'
 
 import { getAllPosts } from '../../lib/api'
 import Navbar from '../../components/Navbars/Navbar'
@@ -52,16 +51,16 @@ export default function Blog({ allPosts: { edges } }) {
                           </h2>
                           <p
                             className="mb-3 leading-relaxed"
-                            // dangerouslySetInnerHTML={{
-                            // __html:
-                            // node.excerpt.length > 80
-                            //   ? node.excerpt.substr(0, 80) + '...' :
-                            // node.excerpt,
-                            // }}
+                            dangerouslySetInnerHTML={{
+                            __html:
+                            node.excerpt.length > 160
+                              ? node.excerpt.substr(0, 160) + '...' :
+                            node.excerpt,
+                            }}
                           >
-                            {node.excerpt.length > 80
+                            {/* {node.excerpt.length > 80
                               ? node.excerpt.substr(0, 80) + '...'
-                              : node.excerpt}
+                              : node.excerpt} */}
                           </p>
                           <div className="flex flex-wrap items-center">
                             <Link href={`/blog/${node.slug}`}>

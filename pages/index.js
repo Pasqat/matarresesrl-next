@@ -1,16 +1,13 @@
-import React, { useState } from 'react'
+import Head from "next/head";
+import { HeartIcon, ShoppingCartIcon } from "@heroicons/react/outline";
 
-import Head from 'next/head'
-import Link from 'next/link'
-import { HeartIcon, ShoppingCartIcon } from '@heroicons/react/outline'
+import Navbar from "../components/Navbars/Navbar";
 
-import Navbar from '../components/Navbars/Navbar'
-
-import HeaderBig from '../components/Header/HeaderBig'
-import CardSquareImg from '../components/Card/CardSquareImg'
-import CardBigImg from '../components/Card/CardBigImg'
-import ContactForm from '../components/Form/ContactForm'
-import ContactFormModal from '../components/Form/ContactFormModal'
+import HeaderBig from "../components/Header/HeaderBig";
+import CardSquareImg from "../components/Card/CardSquareImg";
+import CardBigImg from "../components/Card/CardBigImg";
+import ContactForm from "../components/Form/ContactForm";
+import ContactFormModal from "../components/Form/ContactFormModal";
 
 export default function Home() {
   return (
@@ -42,7 +39,7 @@ export default function Home() {
               >
                 Aprire un'attività, rinnovare un locale, avere una guida per
                 migliorare il proprio lavoro: Matarrese srl è la soluzione
-                adatta alle esigenze professionali del mondo della{' '}
+                adatta alle esigenze professionali del mondo della{" "}
                 <strong>ristorazione.</strong>
               </CardSquareImg>
 
@@ -106,7 +103,7 @@ export default function Home() {
         <section className="relative py-20">
           <div
             className="absolute top-0 left-0 right-0 bottom-auto w-full h-20 -mt-20 overflow-hidden pointer-events-none"
-            style={{ transform: 'translateZ(0)' }}
+            style={{ transform: "translateZ(0)" }}
           >
             <svg
               className="absolute bottom-0 overflow-hidden"
@@ -142,7 +139,7 @@ export default function Home() {
                     Tutto per il settore food
                   </h3>
                   <p className="mt-4 text-lg leading-relaxed text-gray-500">
-                    In una struttura aziendale di <strong>5000 mq</strong>{' '}
+                    In una struttura aziendale di <strong>5000 mq</strong>{" "}
                     uniamo il laboratorio di produzione di arredi su misura,
                     l’officina e magazzino ricambi, il laboratorio di formazione
                     e un ampio showroom in cui potrai trovare:
@@ -379,7 +376,7 @@ export default function Home() {
         <section className="relative block pb-20 bg-gray-800">
           <div
             className="absolute top-0 left-0 right-0 bottom-auto w-full h-20 -mt-20 overflow-hidden pointer-events-none"
-            style={{ transform: 'translateZ(0)' }}
+            style={{ transform: "translateZ(0)" }}
           >
             <svg
               className="absolute bottom-0 overflow-hidden"
@@ -499,5 +496,5 @@ export default function Home() {
         </div>
       </footer>
     </div>
-  )
+  );
 }
