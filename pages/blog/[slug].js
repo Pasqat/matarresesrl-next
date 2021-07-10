@@ -62,17 +62,13 @@ export default function Post({ postData, posts }) {
                   />
                 </div>
                 <PostBody content={postData.content} />
-                {/* <div */}
-                {/*   className="prose-sm prose sm:prose lg:prose-lg xl:prose-xl prose-yellow" */}
-                {/*   dangerouslySetInnerHTML={{ __html: postData.content }} */}
-                {/* /> */}
+                <div className="max-w-2xl">
+                  <Link href="/blog">
+                    <a>torna agli articoli</a>
+                  </Link>
+                </div>
               </>
             )}
-            <p>
-              <Link href="/blog">
-                <a>torna agli articoli</a>
-              </Link>
-            </p>
           </main>
         </article>
       </Container>
