@@ -1,11 +1,12 @@
 import { useRouter } from "next/router";
 import Head from "next/head";
-import Link from "next/link";
 import Container from "../../components/Container";
 import Layout from "../../components/Layout";
 import Categories from "../../components/Post/post-categories";
 import CoverImage from "../../components/Post/CoverImage";
 import PostBody from "../../components/Post/post-body";
+import MorePosts from "../../components/Post/more-posts";
+import Date from "../../components/Date";
 
 import { getAllPostsWithSlug, getPostAndMorePosts } from "../../lib/api";
 
@@ -51,7 +52,7 @@ export default function Post({ postData, posts }) {
                   dangerouslySetInnerHTML={{ __html: postData.title }}
                 ></h1>
                 <div className="mb-6 text-lg">
-                  pubblicato il <time>{formatDate(postData.date)}</time>
+                  pubblicato il <Date dateString={postData.date} />
                   <Categories categories={postData.categories} />
                 </div>
                 <div className="mb-8 md:mb-16 sm:mx-0">
@@ -62,15 +63,19 @@ export default function Post({ postData, posts }) {
                   />
                 </div>
                 <PostBody content={postData.content} />
+                {/* 
                 <div className="max-w-2xl">
                   <Link href="/blog">
                     <a>torna agli articoli</a>
                   </Link>
                 </div>
+                */}
               </>
             )}
           </main>
         </article>
+        <hr />
+        <MorePosts posts={morePosts} />
       </Container>
     </Layout>
   );

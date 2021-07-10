@@ -3,7 +3,6 @@ import Head from "next/head";
 export default function Meta() {
   return (
     <Head>
-      {/* TODO: generate and add the icons */}
       <link
         rel="apple-touch-icon"
         sizes="57x57"

@@ -1,12 +1,11 @@
-import Head from 'next/head'
-import Link from 'next/link'
+import Head from "next/head";
+import Link from "next/link";
 
-import { getAllPosts } from '../../lib/api'
-import Navbar from '../../components/Navbars/Navbar'
-import { formatDate } from '../../actions/utils/formatDate'
+import { getAllPosts } from "../../lib/api";
+import { formatDate } from "../../actions/utils/formatDate";
 
 export default function Blog({ allPosts: { edges } }) {
-  if (!edges) return <div>Loading...</div>
+  if (!edges) return <div>Loading...</div>;
   return (
     <div>
       <Head>
@@ -36,8 +35,8 @@ export default function Blog({ allPosts: { edges } }) {
                         alt={node.title}
                         className={
                           !node.featuredImage?.node.sourceUrl
-                            ? 'hidden'
-                            : 'object-cover object-center w-full lg:h-48 md:h-36'
+                            ? "hidden"
+                            : "object-cover object-center w-full lg:h-48 md:h-36"
                         }
                       />
                       <div className="flex flex-col justify-between p-6">
@@ -51,10 +50,10 @@ export default function Blog({ allPosts: { edges } }) {
                           <p
                             className="mb-3 leading-relaxed"
                             dangerouslySetInnerHTML={{
-                            __html:
-                            node.excerpt.length > 160
-                              ? node.excerpt.substr(0, 160) + '...' :
-                            node.excerpt,
+                              __html:
+                                node.excerpt.length > 160
+                                  ? node.excerpt.substr(0, 160) + "..."
+                                  : node.excerpt,
                             }}
                           >
                             {/* {node.excerpt.length > 80
@@ -84,22 +83,22 @@ export default function Blog({ allPosts: { edges } }) {
                       </div>
                     </div>
                   </div>
-                )
+                );
               })}
             </div>
           </div>
         </section>
       </main>
     </div>
-  )
+  );
 }
 
 export async function getStaticProps() {
-  const allPosts = await getAllPosts(9)
+  const allPosts = await getAllPosts(9);
   return {
     props: {
       allPosts,
     },
     revalidate: 1,
-  }
+  };
 }
