@@ -9,10 +9,11 @@ export default function CoverImage({ title, coverImage, slug }) {
       height={1000}
       alt={`Immagine di copertina per ${title}`}
       src={coverImage?.sourceUrl}
-      className={clsx(
-        "shadow-small",
-        slug && "hover:shadow-medium transition-shadow duration-200"
-      )}
+      // TODO: for some reason classNames are not applied to netx/image component
+      // className={clsx(
+      //   "shadow-small",
+      //   slug ? "hover:shadow-medium transition-shadow duration-200" : ""
+      // )}
     />
   );
   return (

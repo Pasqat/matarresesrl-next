@@ -1,12 +1,16 @@
-import Link from 'next/link'
+import Link from "next/link";
 
-export default function Header({children, href}) {
-  return (
-    <h2 className="text-2xl md:text-4xl font-bold tracking-tight md:tracking-tighter leading-tight mb-20 mt-8">
+export default function Header({ children, href }) {
+  return href ? (
+    <h2 className="mb-20 text-2xl font-bold leading-tight tracking-tight md:text-4xl md:tracking-tighter">
       <Link href={href}>
         <a className="hover:underline">{children}</a>
       </Link>
       .
     </h2>
-  )
+  ) : (
+    <h2 className="mb-20 text-2xl font-bold leading-tight tracking-tight md:text-4xl md:tracking-tighter">
+      {children}.
+    </h2>
+  );
 }

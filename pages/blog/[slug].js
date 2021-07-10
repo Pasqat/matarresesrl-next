@@ -10,7 +10,6 @@ import Date from "../../components/Date";
 
 import { getAllPostsWithSlug, getPostAndMorePosts } from "../../lib/api";
 
-import { formatDate } from "../../actions/utils/formatDate";
 import Header from "../../components/Header/Header";
 
 export default function Post({ postData, posts }) {
@@ -75,7 +74,7 @@ export default function Post({ postData, posts }) {
           </main>
         </article>
         <hr />
-        <MorePosts posts={morePosts} />
+        {morePosts.length > 0 && <MorePosts posts={morePosts} />}
       </Container>
     </Layout>
   );
