@@ -3,11 +3,13 @@ import Head from "next/head";
 import Link from "next/link";
 import Container from "../../components/Container";
 import Layout from "../../components/Layout";
-import Navbar from "../../components/Navbars/Navbar";
+import Categories from "../../components/Post/post-categories";
+import CoverImage from "../../components/Post/CoverImage";
 
 import { getAllPostsWithSlug, getPostAndMorePosts } from "../../lib/api";
 
 import { formatDate } from "../../actions/utils/formatDate";
+import Header from "../../components/Header/Header";
 
 export default function Post({ postData, posts }) {
   const router = useRouter();
@@ -17,10 +19,11 @@ export default function Post({ postData, posts }) {
     console.log("sdeng 💣️");
     return <p>hmm...sembra ci sia un errore</p>;
   }
-
+  
   return (
     <Layout>
       <Container>
+        <Header href="/blog">News</Header>
         <Head>
           {router.isFallback ? (
             // NOTE: check isFallback is extremly important!!!
@@ -30,36 +33,42 @@ export default function Post({ postData, posts }) {
             <title>{postData.title}</title>
           )}
         </Head>
-        <div className="container">
-          <main>
-            {router.isFallback ? (
-              <h2>Loading...</h2>
-            ) : (
-              <>
-                <img
-                  style={{ maxWidth: "80vw" }}
-                  src={postData.featuredImage?.node.sourceUrl}
-                  alt={postData.title}
+        <main>
+          {router.isFallback ? (
+            <h2>Loading...</h2>
+          ) : (
+            <>
+              <h1
+                className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left"
+                dangerouslySetInnerHTML={{ __html: postData.title }}
+              ></h1>
+              <div className="mb-8 md:mb-16 sm:mx-0">
+                <CoverImage
+                  title={postData.title}
+                  coverImage={postData.featuredImage?.node}
+                  // slug={postData.slug}
                 />
-                <article>
-                  <div>
-                    <h1>{postData.title}</h1>
-                    <p>pubblicato il {formatDate(postData.date)}</p>
+              </div>
+              <article>
+                <div>
+                  <div className="mb-6 text-lg">
+                    pubblicato il <time>{formatDate(postData.date)}</time>
+                    <Categories categories={postData.categories} />
                   </div>
-                  <div
-                    className="prose-sm prose sm:prose lg:prose-lg xl:prose-xl prose-yellow"
-                    dangerouslySetInnerHTML={{ __html: postData.content }}
-                  />
-                </article>
-              </>
-            )}
-            <p>
-              <Link href="/blog">
-                <a>torna agli articoli</a>
-              </Link>
-            </p>
-          </main>
-        </div>
+                </div>
+                <div
+                  className="prose-sm prose sm:prose lg:prose-lg xl:prose-xl prose-yellow"
+                  dangerouslySetInnerHTML={{ __html: postData.content }}
+                />
+              </article>
+            </>
+          )}
+          <p>
+            <Link href="/blog">
+              <a>torna agli articoli</a>
+            </Link>
+          </p>
+        </main>
       </Container>
     </Layout>
   );
@@ -68,7 +77,6 @@ export default function Post({ postData, posts }) {
 export async function getStaticProps({ params, preview = false }) {
   const data = await getPostAndMorePosts(params.slug, preview);
 
-  console.log(data);
   return {
     props: {
       preview,
