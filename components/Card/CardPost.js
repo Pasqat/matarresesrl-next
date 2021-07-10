@@ -4,7 +4,6 @@ import Date from "../Date"
 import CoverImage from "../Post/CoverImage"
 
 export default function CardPost({slug, title, coverImage, date, excerpt}) {
-    console.log(coverImage)
   return (
     <div
       className="h-full overflow-hidden bg-white border-2 border-gray-200 rounded-lg border-opacity-60 hover:shadow-lg"

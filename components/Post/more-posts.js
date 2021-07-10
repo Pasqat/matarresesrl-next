@@ -6,7 +6,6 @@ import CardPost from "../../components/Card/CardPost"
 
 
 export default function MorePosts({ posts }) {
-  console.log(posts);
   return (
     <section>
       <h2 className="mb-8 text-5xl font-bold leading-tight tracking-tighter md:text-6xl">
