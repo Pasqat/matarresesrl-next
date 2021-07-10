@@ -16,7 +16,8 @@ export default function CoverImage({ title, coverImage, slug }) {
       // )}
     />
   );
-  return (
+  // TODO: Maybe creat and add a placeholder image when on coverImage
+  return coverImage ? (
     <div className="sm:mx-0">
       {slug ? (
         <Link href={slug}>
@@ -26,5 +27,5 @@ export default function CoverImage({ title, coverImage, slug }) {
         image
       )}
     </div>
-  );
+  ) : null;
 }
