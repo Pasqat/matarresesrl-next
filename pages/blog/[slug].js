@@ -5,6 +5,7 @@ import Container from "../../components/Container";
 import Layout from "../../components/Layout";
 import Categories from "../../components/Post/post-categories";
 import CoverImage from "../../components/Post/CoverImage";
+import PostBody from "../../components/Post/post-body";
 
 import { getAllPostsWithSlug, getPostAndMorePosts } from "../../lib/api";
 
@@ -19,56 +20,61 @@ export default function Post({ postData, posts }) {
     console.log("sdeng 💣️");
     return <p>hmm...sembra ci sia un errore</p>;
   }
-  
+
   return (
     <Layout>
       <Container>
         <Header href="/blog">News</Header>
-        <Head>
-          {router.isFallback ? (
-            // NOTE: check isFallback is extremly important!!!
-            // https://michaelfulton.co/posts/export-encountered-errors
-            <title>Matarrese srl</title>
-          ) : (
-            <title>{postData.title}</title>
-          )}
-        </Head>
-        <main>
-          {router.isFallback ? (
-            <h2>Loading...</h2>
-          ) : (
-            <>
-              <h1
-                className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left"
-                dangerouslySetInnerHTML={{ __html: postData.title }}
-              ></h1>
-              <div className="mb-8 md:mb-16 sm:mx-0">
-                <CoverImage
-                  title={postData.title}
-                  coverImage={postData.featuredImage?.node}
-                  // slug={postData.slug}
+        <article>
+          <Head>
+            {router.isFallback ? (
+              // NOTE: check isFallback is extremly important!!!
+              // https://michaelfulton.co/posts/export-encountered-errors
+              <title>Matarrese srl</title>
+            ) : (
+              <>
+                <title>{postData.title} | Matarrese srl</title>
+                <meta
+                  property="og:image"
+                  content={postData.featuredImage?.node?.sourceUrl}
                 />
-              </div>
-              <article>
-                <div>
-                  <div className="mb-6 text-lg">
-                    pubblicato il <time>{formatDate(postData.date)}</time>
-                    <Categories categories={postData.categories} />
-                  </div>
+              </>
+            )}
+          </Head>
+          <main>
+            {router.isFallback ? (
+              <h2>Loading...</h2>
+            ) : (
+              <>
+                <h1
+                  className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left"
+                  dangerouslySetInnerHTML={{ __html: postData.title }}
+                ></h1>
+                <div className="mb-6 text-lg">
+                  pubblicato il <time>{formatDate(postData.date)}</time>
+                  <Categories categories={postData.categories} />
                 </div>
-                <div
-                  className="prose-sm prose sm:prose lg:prose-lg xl:prose-xl prose-yellow"
-                  dangerouslySetInnerHTML={{ __html: postData.content }}
-                />
-              </article>
-            </>
-          )}
-          <p>
-            <Link href="/blog">
-              <a>torna agli articoli</a>
-            </Link>
-          </p>
-        </main>
+                <div className="mb-8 md:mb-16 sm:mx-0">
+                  <CoverImage
+                    title={postData.title}
+                    coverImage={postData.featuredImage?.node}
+                    // slug={postData.slug}
+                  />
+                </div>
+                <PostBody content={postData.content} />
+                {/* <div */}
+                {/*   className="prose-sm prose sm:prose lg:prose-lg xl:prose-xl prose-yellow" */}
+                {/*   dangerouslySetInnerHTML={{ __html: postData.content }} */}
+                {/* /> */}
+              </>
+            )}
+            <p>
+              <Link href="/blog">
+                <a>torna agli articoli</a>
+              </Link>
+            </p>
+          </main>
+        </article>
       </Container>
     </Layout>
   );
