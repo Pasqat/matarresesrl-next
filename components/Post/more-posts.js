@@ -12,7 +12,7 @@ export default function MorePosts({ posts }) {
         Altre News
       </h2>
       <div className="grid grid-cols-1 mb-32 md:grid-cols-3 md:gap-x-8 lg:gap-x-16 gap-y-10 md:gap-y-16">
-        {/* TODO: create cardPosts and add to `blog/index.js` to */}
+        {/* TODO: create cardPosts and add to `news/index.js` to */}
         {posts.map(({ node }) => (
         <CardPost 
           title={node.title}

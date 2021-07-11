@@ -21,7 +21,7 @@ export default function CardPost({slug, title, coverImage, date, excerpt}) {
             dateString={date}
           />
           <h3 className="mb-3 text-lg font-medium leading-snug text-gray-900 title-font">
-            <Link href={`/blog/${slug}`}>
+            <Link href={`/news/${slug}`}>
               <a
                 className="hover:underline"
                 dangerouslySetInnerHTML={{ __html: title }}
@@ -38,7 +38,7 @@ export default function CardPost({slug, title, coverImage, date, excerpt}) {
             }}
           ></div>
           <div className="flex flex-wrap items-center">
-            <Link href={`/blog/${slug}`}>
+            <Link href={`/news/${slug}`}>
               <a className="inline-flex items-center text-yellow-500 md:mb-2 lg:mb-0">
                 Continua a leggere
                 <svg

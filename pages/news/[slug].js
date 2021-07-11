@@ -24,7 +24,7 @@ export default function Post({ postData, posts }) {
   return (
     <Layout>
       <Container>
-        <Header href="/blog">News</Header>
+        <Header href="/news">News</Header>
         {router.isFallback ? (
           <>
             <Head>
@@ -63,7 +63,7 @@ export default function Post({ postData, posts }) {
                 <PostBody content={postData.content} />
                 {/* 
                   <div className="max-w-2xl">
-                    <Link href="/blog">
+                    <Link href="/news">
                       <a>torna agli articoli</a>
                     </Link>
                   </div>
@@ -95,7 +95,7 @@ export async function getStaticPaths() {
   const allPosts = await getAllPostsWithSlug();
 
   return {
-    paths: allPosts.edges.map(({ node }) => `/blog/${node.slug}`) || [],
+    paths: allPosts.edges.map(({ node }) => `/news/${node.slug}`) || [],
     fallback: true,
   };
 }

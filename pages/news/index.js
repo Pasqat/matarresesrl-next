@@ -13,7 +13,6 @@ export default function Blog({ allPosts: { edges } }) {
     <div>
       <Head>
         <title>Blog articles page</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Layout>

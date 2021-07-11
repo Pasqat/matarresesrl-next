@@ -5,8 +5,8 @@ function MapExample() {
   React.useEffect(() => {
     let google = window.google;
     let map = mapRef.current;
-    let lat = "40.748817";
-    let lng = "-73.985428";
+    let lat = "40.791522";
+    let lng = "17.2448473";
     const myLatlng = new google.maps.LatLng(lat, lng);
     const mapOptions = {
       zoom: 15,
@@ -67,8 +67,8 @@ function MapExample() {
     });
 
     const contentString =
-      '<div class="info-window-content"><h2>Matarrese srl</h2>' +
-      "<p>vieni a trovarci!</p></div>";
+      '<div class="text-md font-bold"><h2>Matarrese srl</h2>' +
+      "<hr/><p>vieni a trovarci!</p></div>";
 
     const infowindow = new google.maps.InfoWindow({
       content: contentString,
@@ -77,11 +77,11 @@ function MapExample() {
     google.maps.event.addListener(marker, "click", function () {
       infowindow.open(map, marker);
     });
-  });
+  },[]);
   return (
     <>
-      <div className="relative w-full rounded h-600-px">
-        <div className="rounded h-full" ref={mapRef} />
+      <div className="absolute inset-0 w-full h-full rounded">
+        <div className="h-full rounded" ref={mapRef} />
       </div>
     </>
   );
