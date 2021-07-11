@@ -5,11 +5,13 @@ import clsx from "clsx";
 import { XIcon } from "@heroicons/react/outline";
 
 import ContactForm from "../../components/Form/ContactForm";
+import Layout from "../../components/Layout"
 
 export default function Contatti() {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
+    <Layout>
     <section className="relative text-gray-600 body-font">
       <div className="container flex flex-wrap px-5 py-24 mx-auto sm:flex-nowrap">
         <div className="relative flex items-end justify-start w-full min-h-[20rem] p-10 overflow-hidden bg-gray-300 rounded-lg lg:w-2/3 md:w-1/2 sm:mr-10">
@@ -82,17 +84,9 @@ export default function Contatti() {
         <div className="flex flex-col w-full mt-8 bg-white lg:w-1/3 md:w-1/2 md:ml-auto md:py-8 md:mt-0">
           <ContactForm hasAutoFocus />
           {/* TODO: aggingungere termini e condizioni */}
-          <div className="ml-auto">
-            <label className="inline-flex items-center">
-              <input
-                type="checkbox"
-                className="text-yellow-600 border-2 border-gray-400 border-solid cursor-pointer form-checkbox"
-              />
-              <span className="ml-2">accetto i termini e le condizioni</span>
-            </label>
-          </div>
         </div>
       </div>
     </section>
+    </Layout>
   );
 }

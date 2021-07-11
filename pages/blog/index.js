@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Link from "next/link";
 
 import Layout from "../../components/Layout";
 import Container from "../../components/Container";
@@ -7,7 +6,6 @@ import Header from "../../components/Header/Header";
 import CardPost from "../../components/Card/CardPost";
 
 import { getAllPosts } from "../../lib/api";
-import { formatDate } from "../../actions/utils/formatDate";
 
 export default function Blog({ allPosts: { edges } }) {
   if (!edges) return <div>Loading...</div>;

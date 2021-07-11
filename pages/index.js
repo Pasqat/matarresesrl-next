@@ -1,15 +1,12 @@
 import Head from "next/head";
 import { HeartIcon, ShoppingCartIcon } from "@heroicons/react/outline";
 
-import Navbar from "../components/Navbars/Navbar";
-
 import HeaderBig from "../components/Header/HeaderBig";
 import CardSquareImg from "../components/Card/CardSquareImg";
 import CardBigImg from "../components/Card/CardBigImg";
 import ContactForm from "../components/Form/ContactForm";
 import ContactFormModal from "../components/Form/ContactFormModal";
 import Layout from "../components/Layout";
-import Container from "../components/Container"
 
 export default function Home() {
   return (

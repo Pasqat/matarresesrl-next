@@ -25,29 +25,28 @@ export default function Post({ postData, posts }) {
     <Layout>
       <Container>
         <Header href="/blog">News</Header>
-        <article>
-          <Head>
-            {router.isFallback ? (
-              // NOTE: check isFallback is extremly important!!!
-              // https://michaelfulton.co/posts/export-encountered-errors
+        {router.isFallback ? (
+          <>
+            <Head>
               <title>Matarrese srl</title>
-            ) : (
-              <>
+            </Head>
+            <main>
+              <h2>Loading...</h2>
+            </main>
+          </>
+        ) : (
+          <>
+            <article>
+              <Head>
                 <title>{postData.title} | Matarrese srl</title>
                 <meta
                   property="og:image"
                   content={postData.featuredImage?.node?.sourceUrl}
                 />
-              </>
-            )}
-          </Head>
-          <main>
-            {router.isFallback ? (
-              <h2>Loading...</h2>
-            ) : (
-              <>
+              </Head>
+              <main>
                 <h1
-                  className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left"
+                  className="mb-12 text-4xl font-bold leading-tight tracking-tighter text-center md:text-6xl lg:text-7xl md:leading-none md:text-left"
                   dangerouslySetInnerHTML={{ __html: postData.title }}
                 ></h1>
                 <div className="mb-6 text-lg">
@@ -63,18 +62,18 @@ export default function Post({ postData, posts }) {
                 </div>
                 <PostBody content={postData.content} />
                 {/* 
-                <div className="max-w-2xl">
-                  <Link href="/blog">
-                    <a>torna agli articoli</a>
-                  </Link>
-                </div>
-                */}
-              </>
-            )}
-          </main>
-        </article>
-        <hr />
-        {morePosts.length > 0 && <MorePosts posts={morePosts} />}
+                  <div className="max-w-2xl">
+                    <Link href="/blog">
+                      <a>torna agli articoli</a>
+                    </Link>
+                  </div>
+                  */}
+              </main>
+            </article>
+            <hr />
+            {morePosts.length > 0 && <MorePosts posts={morePosts} />}
+          </>
+        )}
       </Container>
     </Layout>
   );

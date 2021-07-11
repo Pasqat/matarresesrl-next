@@ -118,6 +118,16 @@ export default function ContactForm({ hasAutoFocus }) {
             Invia
           </button>
         </div>
+          {/* TODO: aggingungere termini e condizioni */}
+          <div className="mt-5 text-right text-gray-600">
+            <label className="inline-flex items-center">
+              <input
+                type="checkbox"
+                className="text-yellow-600 border-2 border-gray-400 border-solid cursor-pointer form-checkbox"
+              />
+              <span className="ml-2">accetto i termini e le condizioni</span>
+            </label>
+          </div>
       </form>
       <div
         className={clsx(
