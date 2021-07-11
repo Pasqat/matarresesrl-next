@@ -25,7 +25,7 @@ export default function Contatti() {
 
         <Container>
           <Header>Contatti</Header>
-          <section className="relative text-gray-600 body-font">
+          <section className="relative pb-10 text-gray-600 md:pb-52 body-font">
             <div className="flex flex-wrap mx-auto sm:flex-nowrap">
               <div className="relative flex items-end justify-start w-full min-h-[20rem] p-10 overflow-hidden bg-gray-300 rounded-lg lg:w-2/3 md:w-1/2 sm:mr-10">
                 <Map />

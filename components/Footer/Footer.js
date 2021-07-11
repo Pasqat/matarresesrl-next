@@ -94,7 +94,7 @@ export default function Footer() {
                       className="block pb-2 text-sm font-semibold text-gray-600 hover:text-gray-800"
                       href="https://www.github.com/creativetimofficial?ref=nnjs-footer"
                     >
-                      Github
+                    TODO
                     </a>
                   </li>
                   <li>
@@ -102,7 +102,7 @@ export default function Footer() {
                       className="block pb-2 text-sm font-semibold text-gray-600 hover:text-gray-800"
                       href="https://www.creative-tim.com/bootstrap-themes/free?ref=nnjs-footer"
                     >
-                      Free Products
+                    TODO
                     </a>
                   </li>
                 </ul>
@@ -117,7 +117,7 @@ export default function Footer() {
                       className="block pb-2 text-sm font-semibold text-gray-600 hover:text-gray-800"
                       href="https://github.com/creativetimofficial/notus-nextjs/blob/main/LICENSE.md?ref=nnjs-footer"
                     >
-                      MIT License
+                    TODO
                     </a>
                   </li>
                   <li>
