@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="py-5">
+    <footer className="relative pt-8 pb-6 bg-gray-200">
       <div
         className="absolute top-0 left-0 right-0 bottom-auto w-full h-20 -mt-20 overflow-hidden pointer-events-none"
         style={{ transform: "translateZ(0)" }}
@@ -150,38 +150,53 @@ export default function Footer() {
         </div>
         <hr className="my-6 border-gray-300" />
         <div className="flex flex-wrap items-center justify-center md:justify-between">
-            <div className="py-1 text-sm font-semibold text-gray-500">
-              Copyright © {new Date().getFullYear()} Matarrese srl{" "}
-            </div>
-            <div className="flex flex-wrap items-center text-sm text-gray-500">
-              <p>
-                Build By <span className="font-bold">Pasquale Matarrese</span>
-              </p>
-              <a
-                href="https://www.github.com/pasqat"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="pl-3"
+          <div className="py-1 text-sm font-semibold text-gray-500">
+            Copyright © {new Date().getFullYear()} Matarrese srl{" "}
+          </div>
+          <div className="flex flex-wrap items-center text-sm text-gray-500">
+            <p>
+              Build By <span className="font-bold">Pasquale Matarrese</span>
+            </p>
+            <a
+              href="https://www.github.com/pasqat"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="pl-3"
+            >
+              <button
+                className="items-center justify-center w-5 h-5 font-normal text-gray-700 bg-white rounded-full shadow-md outline-none align-center focus:outline-none hover:shadow-sm"
+                type="button"
               >
-                <i className="text-xl fab fa-github" />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/pasquale-matarrese/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="pl-3"
+                <i className="fab fa-github" />
+              </button>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/pasquale-matarrese/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="pl-3"
+            >
+              <button
+                className="items-center justify-center w-5 h-5 font-normal text-gray-700 bg-white rounded-full shadow-md outline-none align-center focus:outline-none hover:shadow-sm"
+                type="button"
               >
-                <i className="text-xl text-blue-900 fab fa-linkedin" />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/pasquale-matarrese/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="pl-3"
+                <i className="fab fa-linkedin" />
+              </button>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/pasquale-matarrese/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="pl-3"
+            >
+              <button
+                className="items-center justify-center w-5 h-5 font-normal text-gray-700 bg-white rounded-full shadow-md outline-none align-center focus:outline-none hover:shadow-sm"
+                type="button"
               >
-                <i className="text-xl text-green-600 fas fa-house-user" />
-              </a>
-            </div>
+                <i className="fas fa-house-user" />
+              </button>
+            </a>
+          </div>
         </div>
       </div>
       {/* TODO: change with portfolio link          */}
