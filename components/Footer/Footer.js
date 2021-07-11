@@ -74,7 +74,6 @@ export default function Footer() {
                   <li>
                     <a
                       className="block pb-2 text-sm font-semibold text-gray-600 hover:text-gray-800"
-                      href="https://www.creative-tim.com/presentation?ref=nnjs-footer"
                     >
                       Chi Siamo
                     </a>
@@ -83,7 +82,6 @@ export default function Footer() {
                     <Link href="/news">
                       <a
                         className="block pb-2 text-sm font-semibold text-gray-600 hover:text-gray-800"
-                        href="https://blog.creative-tim.com?ref=nnjs-footer"
                       >
                         News
                       </a>
@@ -92,7 +90,6 @@ export default function Footer() {
                   <li>
                     <a
                       className="block pb-2 text-sm font-semibold text-gray-600 hover:text-gray-800"
-                      href="https://www.github.com/creativetimofficial?ref=nnjs-footer"
                     >
                     TODO
                     </a>
@@ -100,7 +97,6 @@ export default function Footer() {
                   <li>
                     <a
                       className="block pb-2 text-sm font-semibold text-gray-600 hover:text-gray-800"
-                      href="https://www.creative-tim.com/bootstrap-themes/free?ref=nnjs-footer"
                     >
                     TODO
                     </a>
@@ -115,7 +111,6 @@ export default function Footer() {
                   <li>
                     <a
                       className="block pb-2 text-sm font-semibold text-gray-600 hover:text-gray-800"
-                      href="https://github.com/creativetimofficial/notus-nextjs/blob/main/LICENSE.md?ref=nnjs-footer"
                     >
                     TODO
                     </a>
@@ -123,7 +118,6 @@ export default function Footer() {
                   <li>
                     <a
                       className="block pb-2 text-sm font-semibold text-gray-600 hover:text-gray-800"
-                      href="https://creative-tim.com/terms?ref=nnjs-footer"
                     >
                       Termini e Condizioni
                     </a>
@@ -131,7 +125,6 @@ export default function Footer() {
                   <li>
                     <a
                       className="block pb-2 text-sm font-semibold text-gray-600 hover:text-gray-800"
-                      href="https://creative-tim.com/privacy?ref=nnjs-footer"
                     >
                       Privacy Policy
                     </a>
