@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import { HeartIcon, ShoppingCartIcon } from "@heroicons/react/outline";
+import { Transition } from "@headlessui/react";
 
 import HeaderBig from "../components/Header/HeaderBig";
 import CardSquareImg from "../components/Card/CardSquareImg";
@@ -31,97 +32,126 @@ export default function Home() {
           />
           <section className="pb-20 -mt-24 bg-gray-200">
             <div className="container px-4 mx-auto">
-              <div className="flex flex-wrap">
-                <CardSquareImg
-                  imgSrc="/img/servizio-completo1-150x150.jpg"
-                  title="Dall'idea al progetto reale"
-                  className="md:mt-5"
+              <Transition as="div" className="flex flex-wrap" show={true}>
+                <Transition.Child
+                  enter="transition ease-in-out duration-[800ms] transform"
+                  enterFrom="translate-y-full opacity-0"
+                  enterTo="-translate-y-0"
+                  // leave="transition ease-in-out duration-300 transform"
+                  // leaveFrom="translate-y-0"
+                  // leaveTo="-translate-y-full"
+                  className="md:w-4/12 "
                 >
-                  <div>
-                    Aprire un'attività, rinnovare un locale, avere una guida per
-                    migliorare il proprio lavoro: Matarrese srl è la soluzione
-                    adatta alle esigenze professionali del mondo della{" "}
-                    <strong>ristorazione.</strong>
-                  </div>
-                  <Link href="/servizi">
-                    <a className="inline-flex items-center mt-4 text-yellow-500 group md:mb-2 lg:mb-0 ">
-                      Scopri i servizi
-                      <svg
-                        className="w-4 h-4 ml-2 group-hover:translate-x-2"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        fill="none"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="M5 12h14"></path>
-                        <path d="M12 5l7 7-7 7"></path>
-                      </svg>
-                    </a>
-                  </Link>
-                </CardSquareImg>
-
-                <CardSquareImg
-                  imgSrc="/img/prodotti-qualita-150x150.jpg"
-                  title="Marchi e attrezzature di qualità"
-                  className="md:-mt-10"
+                  <CardSquareImg
+                    imgSrc="/img/servizio-completo1-150x150.jpg"
+                    title="Dall'idea al progetto reale"
+                    className="md:mt-5"
+                  >
+                    <div>
+                      Aprire un'attività, rinnovare un locale, avere una guida
+                      per migliorare il proprio lavoro: Matarrese srl è la
+                      soluzione adatta alle esigenze professionali del mondo
+                      della <strong>ristorazione.</strong>
+                    </div>
+                    <Link href="/servizi">
+                      <a className="inline-flex items-center mt-4 text-yellow-500 group md:mb-2 lg:mb-0 ">
+                        Scopri i servizi
+                        <svg
+                          className="w-4 h-4 ml-2 group-hover:translate-x-2"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          fill="none"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="M5 12h14"></path>
+                          <path d="M12 5l7 7-7 7"></path>
+                        </svg>
+                      </a>
+                    </Link>
+                  </CardSquareImg>
+                </Transition.Child>
+                <Transition.Child
+                  enter="transition ease-in-out duration-[1000ms] transform"
+                  enterFrom="translate-y-full opacity-0"
+                  enterTo="-translate-y-0"
+                  leave="transition ease-in-out duration-300 transform"
+                  leaveFrom="translate-y-0"
+                  leaveTo="-translate-y-full"
+                  className="md:w-4/12 "
                 >
-                  <div>
-                    Selezioniamo i migliori marchi del settore al fine di
-                    fornire sempre un vasto assortimento di attrezzature e
-                    prodotti di alta qualità, per soddisfare ogni esigenza dei
-                    nostri clienti.
-                  </div>
-                  <Link href="/prodotti">
-                    <a className="inline-flex items-center mt-4 text-yellow-500 group md:mb-2 lg:mb-0 ">
-                      Scopri i prodotti
-                      <svg
-                        className="w-4 h-4 ml-2 group-hover:translate-x-2"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        fill="none"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="M5 12h14"></path>
-                        <path d="M12 5l7 7-7 7"></path>
-                      </svg>
-                    </a>
-                  </Link>
-                </CardSquareImg>
-
-                <CardSquareImg
-                  imgSrc="/img/info-e-supporto-150x150.jpg"
-                  title="Supporto pre e post intervento"
+                  <CardSquareImg
+                    imgSrc="/img/prodotti-qualita-150x150.jpg"
+                    title="Marchi e attrezzature di qualità"
+                    className="md:-mt-10"
+                  >
+                    <div>
+                      Selezioniamo i migliori marchi del settore al fine di
+                      fornire sempre un vasto assortimento di attrezzature e
+                      prodotti di alta qualità, per soddisfare ogni esigenza dei
+                      nostri clienti.
+                    </div>
+                    <Link href="/prodotti">
+                      <a className="inline-flex items-center mt-4 text-yellow-500 group md:mb-2 lg:mb-0 ">
+                        Scopri i prodotti
+                        <svg
+                          className="w-4 h-4 ml-2 group-hover:translate-x-2"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          fill="none"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="M5 12h14"></path>
+                          <path d="M12 5l7 7-7 7"></path>
+                        </svg>
+                      </a>
+                    </Link>
+                  </CardSquareImg>
+                </Transition.Child>
+                <Transition.Child
+                  enter="transition ease-in-out duration-[1200ms] transform"
+                  enterFrom="translate-y-full opacity-0"
+                  enterTo="-translate-y-0"
+                  leave="transition ease-in-out duration-300 transform"
+                  leaveFrom="translate-y-0"
+                  leaveTo="-translate-y-full"
+                  className="md:w-4/12 "
                 >
-                  <div>
-                    Promuoviamo la cultura, la professionalità, la conoscenza
-                    nel mondo dell'enogastronomia, aiutiamo le idee a diventare
-                    progetti reali, forniamo <strong>assistenza tecnica</strong>
-                    ,<strong>riparazione</strong> e{" "}
-                    <strong>manutenzione.</strong>
-                  </div>
-                  <Link href="/contatti">
-                    <a className="inline-flex items-center mt-4 text-yellow-500 group md:mb-2 lg:mb-0 ">
-                    Richiedi assistenza
-                      <svg
-                        className="w-4 h-4 ml-2 group-hover:translate-x-2"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        fill="none"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="M5 12h14"></path>
-                        <path d="M12 5l7 7-7 7"></path>
-                      </svg>
-                    </a>
-                  </Link>
-                </CardSquareImg>
-              </div>
+                  <CardSquareImg
+                    imgSrc="/img/info-e-supporto-150x150.jpg"
+                    title="Supporto pre e post intervento"
+                  >
+                    <div>
+                      Promuoviamo la cultura, la professionalità, la conoscenza
+                      nel mondo dell'enogastronomia, aiutiamo le idee a
+                      diventare progetti reali, forniamo{" "}
+                      <strong>assistenza tecnica</strong>,
+                      <strong>riparazione</strong> e{" "}
+                      <strong>manutenzione.</strong>
+                    </div>
+                    <Link href="/contatti">
+                      <a className="inline-flex items-center mt-4 text-yellow-500 group md:mb-2 lg:mb-0 ">
+                        Richiedi assistenza
+                        <svg
+                          className="w-4 h-4 ml-2 group-hover:translate-x-2"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          fill="none"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="M5 12h14"></path>
+                          <path d="M12 5l7 7-7 7"></path>
+                        </svg>
+                      </a>
+                    </Link>
+                  </CardSquareImg>
+                </Transition.Child>
+              </Transition>
 
               <div className="flex flex-wrap items-center mt-32">
                 <div className="w-full px-4 ml-auto mr-auto md:w-5/12">
