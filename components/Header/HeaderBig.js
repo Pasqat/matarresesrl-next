@@ -1,4 +1,5 @@
-import Link from 'next/link'
+import Link from "next/link";
+import { Transition } from "@headlessui/react";
 
 /**
  * @param backgroundImgSrc - 'url(/img/homeBackground.jpg)'
@@ -8,11 +9,11 @@ import Link from 'next/link'
  * @param button - {text: 'Button', link: '#'}
  */
 function HeaderBig({
-  backgroundImgSrc = 'url(/img/homeBackground.jpg',
-  overlay = 'bg-black opacity-80',
-  title = 'Title',
-  subtitle = '',
-  button = { text: 'Button', link: '#' },
+  backgroundImgSrc = "url(/img/homeBackground.jpg",
+  overlay = "bg-black opacity-80",
+  title = "Title",
+  subtitle = "",
+  button = { text: "Button", link: "#" },
   noButton = false,
   children,
 }) {
@@ -33,8 +34,21 @@ function HeaderBig({
         <div className="flex flex-wrap items-center">
           <div className="w-full px-4 ml-auto mr-auto text-center lg:w-6/12">
             <div className="pr-12">
-              <h1 className="text-5xl font-semibold text-white">{title}</h1>
+              <Transition
+                enter="transition-opacity duration-700"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="transition-opacity duration-150"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+                show={true}
+                as="h1"
+                className="text-5xl font-semibold text-white"
+              >
+                {title}
+              </Transition>
               <p className="mt-4 text-lg font-bold text-gray-300">{subtitle}</p>
+
               {!noButton && (
                 <Link href={button.link}>
                   <a
@@ -52,7 +66,7 @@ function HeaderBig({
       </div>
       <div
         className="absolute bottom-0 left-0 right-0 top-auto w-full h-16 overflow-hidden pointer-events-none"
-        style={{ transform: 'translateZ(0)' }}
+        style={{ transform: "translateZ(0)" }}
       >
         <svg
           className="absolute bottom-0 overflow-hidden"
@@ -70,7 +84,7 @@ function HeaderBig({
         </svg>
       </div>
     </div>
-  )
+  );
 }
 
-export default HeaderBig
+export default HeaderBig;

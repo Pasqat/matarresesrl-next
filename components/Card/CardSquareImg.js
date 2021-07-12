@@ -1,7 +1,7 @@
 function CardSquareImg({ imgSrc, imgAlt, title, children, className }) {
   return (
     <div
-      className={`w-full px-4 pt-6 text-center lg:pt-12 mb-8 md:w-4/12 ${className}`}
+      className={`w-full px-4 pt-6 text-center lg:pt-12 mb-8 ${className}`}
     >
       <div className="relative flex flex-col w-full min-w-0 break-words bg-white rounded-lg shadow-lg hover:shadow-xl ">
         <div className="flex-auto px-4 py-5">
