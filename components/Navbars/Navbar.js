@@ -22,8 +22,8 @@ export default function Navbar(props) {
     <Disclosure as="nav" className="sticky top-0 z-50 bg-gray-900 shadow-md">
       {({ open }) => (
         <>
-          <div className="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <div className="relative flex items-center justify-between h-16 md:justify-between">
+          <div className="mx-auto max-w-7xl sm:px-6 ">
+            <div className="relative flex items-center justify-center h-16 lg:justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">
                 {/* Mobile menu button*/}
                 <Disclosure.Button className="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
@@ -35,12 +35,12 @@ export default function Navbar(props) {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="flex items-center justify-between flex-1 sm:items-stretch md:justify-between">
-                <div className="flex items-center justify-center flex-shrink-0">
+              <div className="flex items-center justify-center flex-1 sm:items-stretch md:justify-between">
+                <div className="inline-flex items-center justify-start flex-shrink-0">
                   <Link href="/">
                     <a>
                       <img
-                        className="w-6/12 h-auto m-auto md:w-8/12"
+                        className="block w-8/12 h-auto m-auto lg:inline"
                         src="https://www.matarrese.it/wp-content/uploads/2015/09/logo-matarrese-bianco-350.png"
                         alt="Logo Matarrese srl"
                       />
@@ -48,7 +48,7 @@ export default function Navbar(props) {
                   </Link>
                 </div>
                 <div className="flex-wrap items-center justify-between hidden w-full lg:flex">
-                  <div className="flex space-x-1 xl:space-x-4">
+                  <div className="flex m-auto space-x-1 xl:space-x-4">
                     {navigation.map((item) => (
                       <Link key={item.name} href={item.href}>
                         <a
