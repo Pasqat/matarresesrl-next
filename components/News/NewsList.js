@@ -7,8 +7,6 @@ const updateQuery = (previousResult, { fetchMoreResult }) => {
 
 export default function NewsList({ data, error, loading, fetchMore, batchSize }) {
 
-  console.log("client", data, loading, error);
-
   if (error) {
     return (
       <div>

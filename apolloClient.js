@@ -26,7 +26,9 @@ console.log(API_URL)
 const client = new ApolloClient({
   ssr: true,
   link: new HttpLink({
-    uri: API_URL,
+    // FIXME: if use the const it request to `localhost:3000/graphql`
+    // end not to WP_API_URL.
+    uri: `${API_URL}/graphql`,
     credentials: 'same-origin',
     fetch
   }),
