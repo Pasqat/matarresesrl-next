@@ -2,10 +2,10 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import Container from "../../components/Container";
 import Layout from "../../components/Layout";
-import Categories from "../../components/Post/post-categories";
-import CoverImage from "../../components/Post/CoverImage";
-import PostBody from "../../components/Post/post-body";
-import MorePosts from "../../components/Post/more-posts";
+import Categories from "../../components/News/post-categories";
+import CoverImage from "../../components/News/CoverImage";
+import PostBody from "../../components/News/post-body";
+import MorePosts from "../../components/News/more-posts";
 import Date from "../../components/Date";
 
 import { getAllPostsWithSlug, getPostAndMorePosts } from "../../lib/api";

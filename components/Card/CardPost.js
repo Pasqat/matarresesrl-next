@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Date from "../Date";
 
-import CoverImage from "../Post/CoverImage";
+import CoverImage from "../News/CoverImage";
 
 export default function CardPost({ slug, title, coverImage, date, excerpt }) {
   return (

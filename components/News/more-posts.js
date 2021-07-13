@@ -1,9 +1,4 @@
-import Link from "next/link";
-
-import Date from "../../components/Date";
-import CoverImage from "../../components/Post/CoverImage";
 import CardPost from "../../components/Card/CardPost"
-
 
 export default function MorePosts({ posts }) {
   return (
