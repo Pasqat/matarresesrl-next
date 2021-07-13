@@ -9,6 +9,10 @@
   @apply my-6;
 }
 
+.content p {
+  @apply text-justify;
+}
+
 .content a {
   @apply underline;
 }
