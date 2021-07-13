@@ -2,7 +2,7 @@ import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function CoverImage({ title, coverImage, slug }) {
+export default function CoverImage({ title, coverImage, slug, href }) {
   const image = (
     <Image
       width={2000}
@@ -20,7 +20,7 @@ export default function CoverImage({ title, coverImage, slug }) {
   return coverImage ? (
     <div className="sm:mx-0">
       {slug ? (
-        <Link href={`/${slug}`}>
+        <Link href={href}>
           <a aria-label={title}>{image}</a>
         </Link>
       ) : (

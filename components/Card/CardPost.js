@@ -9,7 +9,7 @@ export default function CardPost({ slug, title, coverImage, date, excerpt }) {
       className="h-full overflow-hidden bg-white border-2 border-gray-200 rounded-lg border-opacity-60 hover:shadow-lg"
       key={slug}
     >
-      <CoverImage title={title} coverImage={coverImage} slug={slug} />
+      <CoverImage title={title} coverImage={coverImage} slug={slug} href={`/news/${slug}`}/>
       <div className="flex flex-col justify-between p-6">
         <div>
           <Date
