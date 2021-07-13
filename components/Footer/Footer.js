@@ -31,23 +31,23 @@ export default function Footer() {
               lavorativi
             </h5>
             <div className="mt-6 mb-6 lg:mb-0">
-              <a
-                href="https://www.linkedin.com/company/matarrese-srl/"
-                target="_blank"
-              >
-                <button
-                  className="items-center justify-center w-10 h-10 mr-2 font-normal text-blue-400 bg-white rounded-full shadow-lg outline-none align-center hover:shadow-md focus:outline-none"
-                  type="button"
-                >
-                  <i className="fab fa-linkedin"></i>
-                </button>
-              </a>
               <a href="https://www.facebook.com/matarresesrl" target="_blank">
                 <button
                   className="items-center justify-center w-10 h-10 mr-2 font-normal text-blue-600 bg-white rounded-full shadow-lg outline-none hover:shadow-md align-center focus:outline-none"
                   type="button"
                 >
                   <i className="fab fa-facebook-square"></i>
+                </button>
+              </a>
+              <a
+                href="https://www.linkedin.com/company/matarrese-srl/"
+                target="_blank"
+              >
+                <button
+                  className="items-center justify-center w-10 h-10 mr-2 font-normal text-blue-500 bg-white rounded-full shadow-lg outline-none align-center hover:shadow-md focus:outline-none"
+                  type="button"
+                >
+                  <i className="fab fa-linkedin"></i>
                 </button>
               </a>
               <a
