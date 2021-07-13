@@ -21,12 +21,12 @@ const API_URL =
     ? process.env.WP_API_URL
     : process.env.WP_API_URL_LOCAL
 
-console.log(typeof API_URL)
+console.log(API_URL)
 
 const client = new ApolloClient({
   ssr: true,
   link: new HttpLink({
-    uri: "http://localhost/matarrese/graphql",
+    uri: API_URL,
     credentials: 'same-origin',
     fetch
   }),
