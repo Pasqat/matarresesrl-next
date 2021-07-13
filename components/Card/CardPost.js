@@ -1,19 +1,15 @@
 import Link from "next/link";
-import Date from "../Date"
+import Date from "../Date";
 
-import CoverImage from "../Post/CoverImage"
+import CoverImage from "../Post/CoverImage";
 
-export default function CardPost({slug, title, coverImage, date, excerpt}) {
+export default function CardPost({ slug, title, coverImage, date, excerpt }) {
   return (
     <div
       className="h-full overflow-hidden bg-white border-2 border-gray-200 rounded-lg border-opacity-60 hover:shadow-lg"
       key={slug}
     >
-        <CoverImage
-          title={title}
-          coverImage={coverImage}
-          slug={slug}
-        />
+      <CoverImage title={title} coverImage={coverImage} slug={slug} />
       <div className="flex flex-col justify-between p-6">
         <div>
           <Date
@@ -32,9 +28,7 @@ export default function CardPost({slug, title, coverImage, date, excerpt}) {
             className="mb-3 leading-relaxed"
             dangerouslySetInnerHTML={{
               __html:
-                excerpt.length > 160
-                  ? excerpt.substr(0, 160) + "..."
-                  : excerpt,
+                excerpt.length > 160 ? excerpt.substr(0, 160) + "..." : excerpt,
             }}
           ></div>
           <div className="flex flex-wrap items-center">
