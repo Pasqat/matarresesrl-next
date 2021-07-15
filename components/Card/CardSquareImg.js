@@ -14,7 +14,7 @@ function CardSquareImg({ imgSrc, imgAlt, title, children, className }) {
             />
           </div>
           <h6 className="text-xl font-semibold">{title}</h6>
-          <p className="mt-2 mb-4 text-gray-500">{children}</p>
+          <div className="mt-2 mb-4 text-gray-500">{children}</div>
         </div>
       </div>
     </div>
