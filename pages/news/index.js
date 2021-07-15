@@ -1,15 +1,60 @@
 import Head from "next/head";
+import { useQuery, gql } from "@apollo/client";
 
 import Layout from "../../components/Layout";
 import Container from "../../components/Container";
 import Header from "../../components/Header/Header";
-import CardPost from "../../components/Card/CardPost";
+import NewsList from "../../components/News/NewsList";
 
-import { getAllPosts } from "../../lib/api";
+const BATCH_SIZE = 9;
 
-export default function Blog({ allPosts: { edges } }) {
-  if (!edges) return <div>Loading...</div>;
-  return (
+const GET_PAGINATED_POSTS = gql`
+  query GET_PAGINATED_POSTS(
+    $first: Int
+    $last: Int
+    $after: String
+    $before: String
+  ) {
+    posts(first: $first, last: $last, after: $after, before: $before) {
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+        startCursor
+        endCursor
+      }
+      edges {
+        node {
+          title
+          excerpt
+          slug
+          date
+          id
+          featuredImage {
+            node {
+              sourceUrl
+              mediaItemUrl
+              mediaDetails {
+                sizes {
+                  sourceUrl
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+
+export default function News() {
+  const { data, loading, error, fetchMore } = useQuery(GET_PAGINATED_POSTS, {
+    variables: { first: BATCH_SIZE, last: null, after: null, before: null },
+    notifyOnNetworkStatusChange: true,
+  });
+
+
+   return (
     <div>
       <Head>
         <title>Blog articles page</title>
@@ -20,39 +65,16 @@ export default function Blog({ allPosts: { edges } }) {
           <Container>
             <Header>Ultimi Aggiornamenti</Header>
             <hr />
-
-            <section className="text-gray-600 body-font">
-              <div className="container py-24 mx-auto">
-                <div className="flex flex-wrap -m-4">
-                  {edges.map(({ node }) => {
-                    return (
-                      <div key={node.title} className="p-4 md:w-1/3">
-                        <CardPost
-                          slug={node.slug}
-                          title={node.title}
-                          coverImage={node.featuredImage?.node}
-                          date={node.date}
-                          excerpt={node.excerpt}
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </section>
+            <NewsList
+              error={error}
+              loading={loading}
+              data={data}
+              fetchMore={fetchMore}
+              batchSize={BATCH_SIZE}
+            />
           </Container>
         </div>
       </Layout>
     </div>
   );
-}
-
-export async function getStaticProps() {
-  const allPosts = await getAllPosts(9);
-  return {
-    props: {
-      allPosts,
-    },
-    revalidate: 1,
-  };
 }
