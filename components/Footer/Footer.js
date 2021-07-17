@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from 'next/image'
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -25,19 +25,15 @@ export default function Footer() {
       </div>
       <div className="container flex flex-col flex-wrap px-5 py-24 mx-auto md:items-center lg:items-start md:flex-row md:flex-nowrap">
         <div className="flex-shrink-0 w-64 mx-auto text-center md:mx-0 md:text-left">
-          <a className="flex items-center justify-center font-medium text-gray-900 title-font md:justify-start">
-    <Image
-      width={340}
-      height={20}
-      alt={"Logo Matarrese srl"}
-      src="/img/logo-matarrese-grigio-350.png"
-      // TODO: for some reason classNames are not applied to next/image component
-      // className={clsx(
-      //   "shadow-small",
-      //   slug ? "hover:shadow-medium transition-shadow duration-200" : ""
-      // )}
-    />
-            {/* <svg
+          <Link href="/">
+            <a className="flex items-center justify-center pb-2 font-medium text-gray-900 title-font md:justify-start">
+              <Image
+                width={340}
+                height={20}
+                alt={"Logo Matarrese srl"}
+                src="/img/logo-matarrese-grigio-350.png"
+              />
+              {/* <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               stroke="currentColor"
@@ -50,7 +46,8 @@ export default function Footer() {
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
             </svg>
             <span className="ml-3 text-xl">Tailblocks</span> */}
-          </a>
+            </a>
+          </Link>
           <p className="mt-2 text-sm text-gray-500">
             Puoi trovarci anche sui nostri social, risponderemo in 1-2 giorni
             lavorativi
