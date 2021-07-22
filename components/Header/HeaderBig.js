@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Transition } from "@headlessui/react";
+import { SlopeDivSection } from "../../ui/SlopeDivSection";
 
 /**
  * @param backgroundImgSrc - 'url(/img/homeBackground.jpg)'
@@ -64,25 +65,7 @@ function HeaderBig({
           </div>
         </div>
       </div>
-      <div
-        className="absolute bottom-0 left-0 right-0 top-auto w-full h-16 overflow-hidden pointer-events-none"
-        style={{ transform: "translateZ(0)" }}
-      >
-        <svg
-          className="absolute bottom-0 overflow-hidden"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="none"
-          version="1.1"
-          viewBox="0 0 2560 100"
-          x="0"
-          y="0"
-        >
-          <polygon
-            className="text-gray-200 fill-current "
-            points="2560 0 2560 100 0 100"
-          ></polygon>
-        </svg>
-      </div>
+      <SlopeDivSection color="text-gray-200" position="bottom" />
     </div>
   );
 }

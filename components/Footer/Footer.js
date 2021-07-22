@@ -1,5 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
+import logoEccelsa from "../../public/img/logos/Eccelsa-RGB_400x400.png"
+import logoQucino from "../../public/img/logos/MARCHIO-QUCINO150.png"
+import logoAliGroup from "../../public/img/logos/Ali_Group_logo.png"
 
 export default function Footer() {
   return (
@@ -74,10 +77,11 @@ export default function Footer() {
               <a>
                 <div className="relative w-16 h-20">
                   <Image
+                    placeholder="blur"
                     layout="fill"
                     objectFit="contain"
                     alt="Logo Istituto Eccelsa"
-                    src="/img/logos/Eccelsa-RGB_400x400.png"
+                    src={logoEccelsa}
                   />
                 </div>
               </a>
@@ -89,7 +93,8 @@ export default function Footer() {
                     layout="fill"
                     objectFit="contain"
                     alt="Logo Qucino"
-                    src="/img/logos/MARCHIO-QUCINO150.png"
+                    src={logoQucino}
+                    placeholder="blur"
                   />
                 </div>
               </a>
@@ -101,7 +106,8 @@ export default function Footer() {
                     layout="fill"
                     objectFit="contain"
                     alt="Logo Aligroup"
-                    src="/img/logos/Ali_Group_logo.png"
+                    src={logoAliGroup}
+                    placeholder="blur"
                   />
                 </div>
               </a>

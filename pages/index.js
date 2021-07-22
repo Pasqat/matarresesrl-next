@@ -9,6 +9,7 @@ import CardBigImg from "../components/Card/CardBigImg";
 import ContactForm from "../components/Form/ContactForm";
 import ContactFormModal from "../components/Form/ContactFormModal";
 import Layout from "../components/Layout";
+import { SlopeDivSection } from "../ui/SlopeDivSection";
 
 export default function Home() {
   return (
@@ -190,26 +191,7 @@ export default function Home() {
           </section>
 
           <section className="relative py-20">
-            <div
-              className="absolute top-0 left-0 right-0 bottom-auto w-full h-20 -mt-20 overflow-hidden pointer-events-none"
-              style={{ transform: "translateZ(0)" }}
-            >
-              <svg
-                className="absolute bottom-0 overflow-hidden"
-                xmlns="http://www.w3.org/2000/svg"
-                preserveAspectRatio="none"
-                version="1.1"
-                viewBox="0 0 2560 100"
-                x="0"
-                y="0"
-              >
-                <polygon
-                  className="text-white fill-current"
-                  points="2560 0 2560 100 0 100"
-                ></polygon>
-              </svg>
-            </div>
-
+            <SlopeDivSection color="text-white" />
             <div className="container px-4 mx-auto">
               <div className="flex flex-wrap items-center">
                 <div className="w-full px-4 ml-auto mr-auto md:w-5/12">
@@ -310,10 +292,10 @@ export default function Home() {
               <div className="flex flex-wrap justify-center mb-24 text-center">
                 <div className="w-full px-4 lg:w-6/12">
                   <h2 className="text-4xl font-semibold">
-                    Here are our heroes
+                    Alcuni dei nostri lavori
                   </h2>
                   <p className="m-4 text-lg leading-relaxed text-gray-500">
-                    According to the National Oceanic and Atmospheric
+                    According to th National Oceanic and Atmospheric
                     Administration, Ted, Scambos, NSIDClead scentist, puts the
                     potentially record maximum.
                   </p>
@@ -465,31 +447,13 @@ export default function Home() {
           </section>
 
           <section className="relative block pb-20 bg-gray-800">
-            <div
-              className="absolute top-0 left-0 right-0 bottom-auto w-full h-20 -mt-20 overflow-hidden pointer-events-none"
-              style={{ transform: "translateZ(0)" }}
-            >
-              <svg
-                className="absolute bottom-0 overflow-hidden"
-                xmlns="http://www.w3.org/2000/svg"
-                preserveAspectRatio="none"
-                version="1.1"
-                viewBox="0 0 2560 100"
-                x="0"
-                y="0"
-              >
-                <polygon
-                  className="text-gray-800 fill-current"
-                  points="2560 0 2560 100 0 100"
-                ></polygon>
-              </svg>
-            </div>
+            <SlopeDivSection color="text-gray-800" />
 
             <div className="container px-4 mx-auto lg:pt-24 lg:pb-64">
               <div className="flex flex-wrap justify-center text-center">
                 <div className="w-full px-4 lg:w-6/12">
                   <h2 className="text-4xl font-semibold text-white">
-                    Build something
+                    Cosa dicono di noi
                   </h2>
                   <p className="mt-4 mb-4 text-lg leading-relaxed text-gray-400">
                     Put the potentially record low maximum sea ice extent tihs
@@ -504,11 +468,10 @@ export default function Home() {
                     <i className="text-xl fas fa-medal"></i>
                   </div>
                   <h6 className="mt-5 text-xl font-semibold text-white">
-                    Excelent Services
+                    Ciccio Cappuccio
                   </h6>
                   <p className="mt-2 mb-4 text-gray-400">
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
+                    Incredibile lavoro di lorem ipsum dolor sit!
                   </p>
                 </div>
                 <div className="w-full px-4 text-center lg:w-3/12">
@@ -516,7 +479,7 @@ export default function Home() {
                     <i className="text-xl fas fa-poll"></i>
                   </div>
                   <h5 className="mt-5 text-xl font-semibold text-white">
-                    Grow your market
+                    Tal Dei Tali
                   </h5>
                   <p className="mt-2 mb-4 text-gray-400">
                     Some quick example text to build on the card title and make
@@ -528,7 +491,7 @@ export default function Home() {
                     <i className="text-xl fas fa-lightbulb"></i>
                   </div>
                   <h5 className="mt-5 text-xl font-semibold text-white">
-                    Launch time
+                    Mario Rossi
                   </h5>
                   <p className="mt-2 mb-4 text-gray-400">
                     Some quick example text to build on the card title and make
@@ -541,10 +504,12 @@ export default function Home() {
           <section
             className="relative block py-24 bg-gray-800 lg:pt-0"
             id="#contatti"
-          >
-            <div className="container px-4 mx-auto">
+          ></section>
+          <section className="relative py-20">
+            <SlopeDivSection color="text-white" />
+            <div className="container px-4 mx-auto mb-12">
               <div className="flex flex-wrap justify-center -mt-48 lg:-mt-64">
-                <div className="w-full px-4 lg:w-6/12">
+                <div className="w-full px-4 md:w-3/4">
                   <div className="relative flex flex-col w-full min-w-0 mb-6 break-words bg-gray-200 rounded-lg shadow-lg">
                     <ContactForm />
                   </div>
@@ -552,6 +517,7 @@ export default function Home() {
               </div>
             </div>
           </section>
+          <section className="relative py-20"></section>
         </main>
       </Layout>
     </div>
