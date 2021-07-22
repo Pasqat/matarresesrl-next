@@ -1,9 +1,9 @@
-import { Dialog, Transition } from '@headlessui/react'
-import { ChatIcon } from '@heroicons/react/outline'
-import { Fragment, useEffect, useState } from 'react'
-import clsx from 'clsx'
+import { Dialog, Transition } from "@headlessui/react";
+import { ChatIcon } from "@heroicons/react/outline";
+import { Fragment, useEffect, useState } from "react";
+import clsx from "clsx";
 
-import { sendContactMail } from '../../actions/networking/mailApi'
+import { sendContactMail } from "../../actions/networking/mailApi";
 
 /**
  * @param buttonClassName default value: "px-4 py-2 text-sm text-white
@@ -11,71 +11,71 @@ import { sendContactMail } from '../../actions/networking/mailApi'
  * if it is falsy the button will have a `ChatIcon` and will be centered in a div
  */
 export default function ContactFormModal({
-  buttonText = 'Contattaci',
+  buttonText = "Contattaci",
   buttonClassName,
 }) {
-  let [isOpen, setIsOpen] = useState(false)
-  const [form, setForm] = useState({ name: '', mail: '', formContent: '' })
-  const { name, mail, formContent } = form
+  let [isOpen, setIsOpen] = useState(false);
+  const [form, setForm] = useState({ name: "", mail: "", formContent: "" });
+  const { name, mail, formContent } = form;
 
-  const [formButtonDisabled, setFormButtonDisabled] = useState(false)
+  const [formButtonDisabled, setFormButtonDisabled] = useState(false);
   const [notification, setNotification] = useState({
-    text: '',
+    text: "",
     isError: false,
-  })
+  });
 
   function closeModal() {
-    setIsOpen(false)
+    setIsOpen(false);
   }
 
   function openModal() {
-    setIsOpen(true)
+    setIsOpen(true);
   }
 
   const handleChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setForm({
       ...form,
       [name]: value,
-    })
-  }
+    });
+  };
 
   useEffect(() => {
-    setFormButtonDisabled(false)
-    setForm({ ...form, name: '', mail: '' })
-    setNotification({ text: '', isError: false })
-  }, [isOpen])
+    setFormButtonDisabled(false);
+    setForm({ ...form, name: "", mail: "" });
+    setNotification({ text: "", isError: false });
+  }, [isOpen]);
 
   async function submitContactForm(event) {
-    event.preventDefault()
+    event.preventDefault();
 
-    const recipientMail = 'pasquale.matarrese@gmail.com'
+    const recipientMail = "pasquale.matarrese@gmail.com";
 
-    const res = await sendContactMail(recipientMail, name, mail, formContent)
+    const res = await sendContactMail(recipientMail, name, mail, formContent);
     if (res.status < 300) {
-      setFormButtonDisabled(true)
+      setFormButtonDisabled(true);
       setNotification({
         ...notification,
-        text: 'Grazie, ti ricontatteremo al più presto',
+        text: "Grazie, ti ricontatteremo al più presto",
         isError: false,
-      })
-      setForm({ ...form, name: '', mail: '', formContent: '' })
+      });
+      setForm({ ...form, name: "", mail: "", formContent: "" });
       setTimeout(() => {
-        closeModal()
-      }, 2000)
+        closeModal();
+      }, 2000);
     } else {
       setNotification({
         ...notification,
-        text: 'Per favore compila tutti i campi',
+        text: "Per favore compila tutti i campi",
         isError: true,
-      })
+      });
     }
   }
   return (
     <>
       <div
         className={clsx(
-          buttonClassName ? null : 'inset-0 flex items-center justify-center'
+          buttonClassName ? null : "inset-0 flex items-center justify-center"
         )}
       >
         <button
@@ -83,8 +83,8 @@ export default function ContactFormModal({
           onClick={openModal}
           className={clsx(
             buttonClassName ??
-              'px-4 py-2 text-sm text-white bg-yellow-600 hover:bg-yellow-500 ',
-            'font-medium rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75'
+              "px-4 py-2 text-sm text-white bg-yellow-600 hover:bg-yellow-500 ",
+            "font-medium rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
           )}
         >
           {buttonClassName ? null : (
@@ -203,7 +203,7 @@ export default function ContactFormModal({
                     <div className="mt-4">
                       <button
                         type="button"
-                        className="inline-flex justify-center px-4 py-2 text-sm font-medium text-red-900 transition-all duration-150 ease-linear bg-red-100 border border-transparent rounded-sm hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                        className="inline-flex justify-center px-4 py-2 text-sm font-bold text-white bg-red-500 border border-transparent rounded-sm shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 hover:ring-2 hover:ring-offset-2 hover:ring-red-400"
                         onClick={closeModal}
                       >
                         Chiudi
@@ -211,7 +211,7 @@ export default function ContactFormModal({
                     </div>
                     <div className="mt-4">
                       <button
-                        className="inline-flex px-4 py-2 text-sm font-medium text-green-900 transition-all duration-150 ease-linear bg-green-100 border border-transparent rounded-sm hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 disabled:bg-green-600 disabled:opacity-50 disabled:pointer-events-none active:bg-gray-600 "
+                        className="hover:ring-2 hover:ring-offset-2 hover:ring-green-400 inline-flex px-4 py-2 text-sm font-bold text-white bg-green-500 border border-transparent rounded-sm hover:bg-opacity-90 shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 disabled:bg-green-600 disabled:opacity-50 disabled:pointer-events-none active:bg-gray-600 "
                         type="submit"
                         disabled={formButtonDisabled}
                       >
@@ -222,8 +222,8 @@ export default function ContactFormModal({
                 </form>
                 <div
                   className={clsx(
-                    'px-4 text-center',
-                    notification.isError ? 'text-red-700' : 'text-green-700'
+                    "px-4 text-center",
+                    notification.isError ? "text-red-700" : "text-green-700"
                   )}
                 >
                   {notification.text}
@@ -234,5 +234,5 @@ export default function ContactFormModal({
         </Dialog>
       </Transition>
     </>
-  )
+  );
 }
