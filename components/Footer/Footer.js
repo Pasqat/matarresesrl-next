@@ -73,8 +73,8 @@ export default function Footer() {
           </div>
           <div className="flex flex-wrap items-end justify-between h-full mt-16">
             {/* TODO: link to Qucino */}
-            <Link href="/#">
-              <a>
+            <Link href="https://www.istitutoeccelsa.it">
+              <a target="_blank">
                 <div className="relative w-16 h-20">
                   <Image
                     placeholder="blur"
