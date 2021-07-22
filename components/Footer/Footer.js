@@ -68,7 +68,7 @@ export default function Footer() {
               </button>
             </a>
           </div>
-          <div className="flex flex-wrap items-end justify-between h-full mt-auto">
+          <div className="flex flex-wrap items-end justify-between h-full mt-16">
             {/* TODO: link to Qucino */}
             <Link href="/#">
               <a>
