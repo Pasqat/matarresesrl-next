@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="text-gray-600 shadow-inner body-font">
+    <footer className="relative text-gray-600 body-font">
       <div
         className="absolute top-0 left-0 right-0 bottom-auto w-full h-20 -mt-20 overflow-hidden pointer-events-none"
         style={{ transform: "translateZ(0)" }}
@@ -18,7 +18,7 @@ export default function Footer() {
           y="0"
         >
           <polygon
-            className="text-gray-200 fill-current"
+            className="text-white fill-current"
             points="2560 0 2560 100 0 100"
           ></polygon>
         </svg>
@@ -39,7 +39,7 @@ export default function Footer() {
             Puoi trovarci anche sui nostri social, risponderemo in 1-2 giorni
             lavorativi
           </p>
-          <div className="mt-6 mb-6 lg:mb-0">
+          <div className="mt-6 mb-6 text-center">
             <a href="https://www.facebook.com/matarresesrl" target="_blank">
               <button
                 className="items-center justify-center w-10 h-10 mr-2 font-normal text-blue-600 bg-white rounded-full shadow-lg outline-none hover:shadow-md align-center focus:outline-none"
@@ -68,7 +68,7 @@ export default function Footer() {
               </button>
             </a>
           </div>
-          <div className="flex flex-wrap justify-between mt-10">
+          <div className="flex flex-wrap items-end justify-between h-full mt-auto">
             {/* TODO: link to Qucino */}
             <Link href="/#">
               <a>
@@ -197,7 +197,7 @@ export default function Footer() {
                 <div className="ml-3 font-semibold text-gray-500">chiuso</div>
               </div>
             </div>
-            <div className="mb-10 text-sm text-gray-600">
+            <div className="text-sm text-gray-600">
               <p>
                 Servizio tecnico:{" "}
                 <a
