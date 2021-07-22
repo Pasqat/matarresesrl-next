@@ -31,7 +31,7 @@ export default function Footer() {
                 width={340}
                 height={20}
                 alt={"Logo Matarrese srl"}
-                src="/img/logo-matarrese-grigio-350.png"
+                src="/img/logos/logo-matarrese-grigio-350.png"
               />
             </a>
           </Link>
@@ -77,7 +77,7 @@ export default function Footer() {
                     layout="fill"
                     objectFit="contain"
                     alt="Logo Istituto Eccelsa"
-                    src="/img/Eccelsa-RGB_400x400.png"
+                    src="/img/logos/Eccelsa-RGB_400x400.png"
                   />
                 </div>
               </a>
@@ -89,7 +89,7 @@ export default function Footer() {
                     layout="fill"
                     objectFit="contain"
                     alt="Logo Qucino"
-                    src="/img/MARCHIO-QUCINO150.png"
+                    src="/img/logos/MARCHIO-QUCINO150.png"
                   />
                 </div>
               </a>
@@ -101,7 +101,7 @@ export default function Footer() {
                     layout="fill"
                     objectFit="contain"
                     alt="Logo Aligroup"
-                    src="/img/Ali_Group_logo.png"
+                    src="/img/logos/Ali_Group_logo.png"
                   />
                 </div>
               </a>
