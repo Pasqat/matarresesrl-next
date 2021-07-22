@@ -77,7 +77,7 @@ export default function Footer() {
                     layout="fill"
                     objectFit="contain"
                     alt="Logo Istituto Eccelsa"
-                    src="/img/Eccelsa-RGB_1200x1200.jpg"
+                    src="/img/Eccelsa-RGB_400x400.png"
                   />
                 </div>
               </a>
