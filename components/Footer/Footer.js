@@ -33,19 +33,6 @@ export default function Footer() {
                 alt={"Logo Matarrese srl"}
                 src="/img/logo-matarrese-grigio-350.png"
               />
-              {/* <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              className="w-10 h-10 p-2 text-white bg-yellow-500 rounded-full"
-              viewBox="0 0 24 24"
-            >
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-            </svg>
-            <span className="ml-3 text-xl">Tailblocks</span> */}
             </a>
           </Link>
           <p className="mt-2 text-sm text-gray-500">
@@ -81,6 +68,45 @@ export default function Footer() {
               </button>
             </a>
           </div>
+          <div className="flex flex-wrap justify-between mt-10">
+            {/* TODO: link to Qucino */}
+            <Link href="/#">
+              <a>
+                <div className="relative w-16 h-20">
+                  <Image
+                    layout="fill"
+                    objectFit="contain"
+                    alt="Logo Istituto Eccelsa"
+                    src="/img/Eccelsa-RGB_1200x1200.jpg"
+                  />
+                </div>
+              </a>
+            </Link>
+            <Link href="/#">
+              <a>
+                <div className="relative w-24 h-20">
+                  <Image
+                    layout="fill"
+                    objectFit="contain"
+                    alt="Logo Qucino"
+                    src="/img/MARCHIO-QUCINO150.png"
+                  />
+                </div>
+              </a>
+            </Link>
+            <Link href="/#">
+              <a>
+                <div className="relative w-16 h-16">
+                  <Image
+                    layout="fill"
+                    objectFit="contain"
+                    alt="Logo Aligroup"
+                    src="/img/Ali_Group_logo.png"
+                  />
+                </div>
+              </a>
+            </Link>
+          </div>
         </div>
         <div className="flex flex-wrap flex-grow mt-10 -mb-10 text-center md:pl-20 md:mt-0 md:text-left">
           <div className="w-full px-4 xl:w-1/5 lg:w-1/2">
@@ -89,19 +115,30 @@ export default function Footer() {
             </h2>
             <nav className="mb-10 list-none">
               <li>
-                <a className="text-gray-600 hover:text-gray-800">Chi siamo</a>
+                <Link href="/azienda">
+                  <a className="text-gray-600 hover:text-gray-800">Chi siamo</a>
+                </Link>
               </li>
               <li>
-                <a className="text-gray-600 hover:text-gray-800">Contatti</a>
+                <Link href="/contatti">
+                  <a className="text-gray-600 hover:text-gray-800">Contatti</a>
+                </Link>
               </li>
               <li>
-                <a className="text-gray-600 hover:text-gray-800">News</a>
+                <Link href="/news">
+                  <a className="text-gray-600 hover:text-gray-800">News</a>
+                </Link>
               </li>
               <li>
-                <a className="text-gray-600 hover:text-gray-800">Assogi</a>
+                <Link href="/assogi">
+                  <a className="text-gray-600 hover:text-gray-800">Assogi</a>
+                </Link>
               </li>
               <li>
-                <a className="text-gray-600 hover:text-gray-800">Termini e Condizioni</a>
+                {/* TODO: add terms and conditions */}
+                <a className="text-gray-600 hover:text-gray-800">
+                  Termini e Condizioni
+                </a>
               </li>
             </nav>
           </div>
