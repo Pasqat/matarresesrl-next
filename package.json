@@ -17,6 +17,7 @@
     "apollo-boost": "^0.4.9",
     "axios": "^0.21.1",
     "clsx": "^1.1.1",
+    "embla-carousel": "^4.5.3",
     "graphql": "^15.5.1",
     "next": "11.0.1",
     "nodemailer": "^6.6.2",
