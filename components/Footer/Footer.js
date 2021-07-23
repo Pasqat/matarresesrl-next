@@ -6,7 +6,7 @@ import logoAliGroup from "../../public/img/logos/Ali_Group_logo.png"
 
 export default function Footer() {
   return (
-    <footer className="relative text-gray-600 body-font">
+    <footer className="relative text-gray-600 body-font bg-gray-100">
       <div
         className="absolute top-0 left-0 right-0 bottom-auto w-full h-20 -mt-20 overflow-hidden pointer-events-none"
         style={{ transform: "translateZ(0)" }}
@@ -21,7 +21,7 @@ export default function Footer() {
           y="0"
         >
           <polygon
-            className="text-white fill-current"
+            className="text-gray-100 fill-current"
             points="2560 0 2560 100 0 100"
           ></polygon>
         </svg>
