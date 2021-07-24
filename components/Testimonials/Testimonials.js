@@ -87,7 +87,7 @@ const EmblaCarousel = () => {
   }, [play]);
 
   return (
-    <div className="relative w-5/6 p-8 ml-auto mr-auto md:p-16 shadow-medium embla rounded-xl">
+    <div className="relative w-full p-8 ml-auto mr-auto md:w-5/6 md:p-16 shadow-medium embla rounded-xl">
       <div className="w-full overflow-hidden embla__viewport" ref={viewportRef}>
         <div className="flex -ml-3 select-none embla__container">
           {slides.map((slide, index) => (
@@ -96,8 +96,8 @@ const EmblaCarousel = () => {
               <blockquote className="px-10 text-xl italic tracking-wider text-right text-gray-700 md:text-3xl lg:text-4xl">
                 "{slide.content}"
               </blockquote>
-              <div className="flex flex-col-reverse md:flex-row items-end justify-center md:items-center md:justify-end pt-5 pr-12 ">
-                <h6 className="md:pr-3 pt-3 md:pt-0 font-semibold text-gray-600 align-top text-md">
+              <div className="flex flex-col-reverse items-end justify-center pt-5 pr-12 md:flex-row md:items-center md:justify-end ">
+                <h6 className="pt-3 font-semibold text-gray-600 align-top md:pr-3 md:pt-0 text-md">
                   {slide.name}
                 </h6>
                 <div className="flex">

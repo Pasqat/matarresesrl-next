@@ -290,7 +290,7 @@ export default function Home() {
           </section>
 
           <section className="pt-20 pb-48">
-            <div className="container px-4 mx-auto">
+            <div className="container px-8 md:mx-auto">
               <div className="flex flex-wrap justify-center text-center">
                 <div className="w-full px-4 lg:w-6/12">
                   <h2 className="text-4xl font-semibold text-gray-800">
