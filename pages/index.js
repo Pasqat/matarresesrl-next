@@ -11,68 +11,7 @@ import ContactFormModal from "../components/Form/ContactFormModal";
 import Layout from "../components/Layout";
 import { SlopeDivSection } from "../ui/SlopeDivSection";
 
-import Carousel from "../components/Carousel/Carousel";
-
-const slides = [
-  <div className="px-4 text-center">
-    <div className="inline-flex items-center justify-center w-12 h-12 p-3 text-gray-800 bg-white rounded-full shadow-lg">
-      <i className="text-xl fas fa-medal"></i>
-    </div>
-    <h6 className="mt-5 text-xl font-semibold text-white">Ciccio Cappuccio</h6>
-    <p className="mt-2 mb-4 text-gray-400">
-      Incredibile lavoro di lorem ipsum dolor sit!
-    </p>
-  </div>,
-  <div className="px-4 text-center">
-    <div className="inline-flex items-center justify-center w-12 h-12 p-3 text-gray-800 bg-white rounded-full shadow-lg">
-      <i className="text-xl fas fa-poll"></i>
-    </div>
-    <h5 className="mt-5 text-xl font-semibold text-white">Tal Dei Tali</h5>
-    <p className="mt-2 mb-4 text-gray-400">
-      Some quick example text to build on the card title and make up the bulk of
-      the card's content.
-    </p>
-  </div>,
-  <div className="px-4 text-center">
-    <div className="inline-flex items-center justify-center w-12 h-12 p-3 text-gray-800 bg-white rounded-full shadow-lg">
-      <i className="text-xl fas fa-lightbulb"></i>
-    </div>
-    <h5 className="mt-5 text-xl font-semibold text-white">Mario Rossi</h5>
-    <p className="mt-2 mb-4 text-gray-400">
-      Some quick example text to build on the card title and make up the bulk of
-      the card's content.
-    </p>
-  </div>,
-  <div className="px-4 text-center ">
-    <div className="inline-flex items-center justify-center w-12 h-12 p-3 text-gray-800 bg-white rounded-full shadow-lg">
-      <i className="text-xl fas fa-medal"></i>
-    </div>
-    <h6 className="mt-5 text-xl font-semibold text-white">Ciccio Cappuccio</h6>
-    <p className="mt-2 mb-4 text-gray-400">
-      Incredibile lavoro di lorem ipsum dolor sit!
-    </p>
-  </div>,
-  <div className="px-4 text-center">
-    <div className="inline-flex items-center justify-center w-12 h-12 p-3 text-gray-800 bg-white rounded-full shadow-lg">
-      <i className="text-xl fas fa-poll"></i>
-    </div>
-    <h5 className="mt-5 text-xl font-semibold text-white">Tal Dei Tali</h5>
-    <p className="mt-2 mb-4 text-gray-400">
-      Some quick example text to build on the card title and make up the bulk of
-      the card's content.
-    </p>
-  </div>,
-  <div className="px-4 text-center">
-    <div className="inline-flex items-center justify-center w-12 h-12 p-3 text-gray-800 bg-white rounded-full shadow-lg">
-      <i className="text-xl fas fa-lightbulb"></i>
-    </div>
-    <h5 className="mt-5 text-xl font-semibold text-white">Mario Rossi</h5>
-    <p className="mt-2 mb-4 text-gray-400">
-      Some quick example text to build on the card title and make up the bulk of
-      the card's content.
-    </p>
-  </div>,
-];
+import Testimonials from "../components/Testimonials/Testimonials";
 
 export default function Home() {
   return (
@@ -352,6 +291,23 @@ export default function Home() {
 
           <section className="pt-20 pb-48">
             <div className="container px-4 mx-auto">
+              <div className="flex flex-wrap justify-center text-center">
+                <div className="w-full px-4 lg:w-6/12">
+                  <h2 className="text-4xl font-semibold text-gray-800">
+                    Cosa dicono di noi
+                  </h2>
+                </div>
+              </div>
+              <div className="mt-20">
+                <Testimonials />
+              </div>
+            </div>
+          </section>
+
+          <section className="relative block pb-20 bg-gray-800">
+            <SlopeDivSection color="text-gray-800" />
+
+            <div className="container px-4 mx-auto lg:pt-24 lg:pb-64">
               <div className="flex flex-wrap justify-center mb-24 text-center">
                 <div className="w-full px-4 lg:w-6/12">
                   <h2 className="text-4xl font-semibold">
@@ -505,28 +461,6 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </section>
-
-          <section className="relative block pb-20 bg-gray-800">
-            <SlopeDivSection color="text-gray-800" />
-
-            <div className="container px-4 mx-auto lg:pt-24 lg:pb-64">
-              <div className="flex flex-wrap justify-center text-center">
-                <div className="w-full px-4 lg:w-6/12">
-                  <h2 className="text-4xl font-semibold text-white">
-                    Cosa dicono di noi
-                  </h2>
-                  <p className="mt-4 mb-4 text-lg leading-relaxed text-gray-400">
-                    Put the potentially record low maximum sea ice extent tihs
-                    year down to low ice. According to the National Oceanic and
-                    Atmospheric Administration, Ted, Scambos.
-                  </p>
-                </div>
-              </div>
-              <div className="mt-8">
-                <Carousel slides={slides} />
               </div>
             </div>
           </section>
