@@ -203,7 +203,7 @@ export default function ContactFormModal({
                     <div className="mt-4">
                       <button
                         type="button"
-                        className="inline-flex justify-center px-4 py-2 text-sm font-bold text-white bg-red-500 border border-transparent rounded-sm shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 hover:ring-2 hover:ring-offset-2 hover:ring-red-400"
+                        className="inline-flex justify-center px-4 py-2 text-sm font-bold text-gray-300 bg-transparent border border-gray-300 rounded-sm shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 hover:ring-2 hover:ring-offset-2 hover:ring-red-400"
                         onClick={closeModal}
                       >
                         Chiudi
