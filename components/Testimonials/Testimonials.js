@@ -9,7 +9,7 @@ const AUTOPLAY_INTERVAL = 4000;
 
 export const PrevButton = ({ enabled, onClick }) => (
   <button
-    className="absolute items-center justify-center w-8 h-8 p-0 -translate-y-1/2 bg-transparent border-0 outline-none cursor-pointer embla__button embla__button--prev z-2 top-1/2 -left-20"
+    className="absolute items-center justify-center hidden w-8 h-8 p-0 -translate-y-1/2 bg-transparent border-0 outline-none cursor-pointer md:block embla__button embla__button--prev z-2 top-1/2 -left-20"
     onClick={onClick}
     disabled={!enabled}
   >
@@ -24,7 +24,7 @@ export const PrevButton = ({ enabled, onClick }) => (
 
 export const NextButton = ({ enabled, onClick }) => (
   <button
-    className="absolute items-center justify-center w-8 h-8 p-0 -translate-y-1/2 bg-transparent border-0 outline-none cursor-pointer embla__button embla__button--next z-2 top-1/2 -right-20"
+    className="absolute items-center justify-center hidden w-8 h-8 p-0 -translate-y-1/2 bg-transparent border-0 outline-none cursor-pointer md:block embla__button embla__button--next z-2 top-1/2 -right-20"
     onClick={onClick}
     disabled={!enabled}
   >
@@ -87,20 +87,22 @@ const EmblaCarousel = () => {
   }, [play]);
 
   return (
-    <div className="relative w-5/6 p-8 md:p-16 ml-auto mr-auto shadow-medium embla rounded-xl">
+    <div className="relative w-5/6 p-8 ml-auto mr-auto md:p-16 shadow-medium embla rounded-xl">
       <div className="w-full overflow-hidden embla__viewport" ref={viewportRef}>
         <div className="flex -ml-3 select-none embla__container">
           {slides.map((slide, index) => (
             <div className="relative min-w-full pl-3 embla__slide" key={index}>
               {/* <div className="relative h-48 embla__slide__inner"> */}
-              <blockquote className="px-10 text-2xl md:text-4xl italic tracking-wider text-right text-gray-700">
+              <blockquote className="px-10 text-xl italic tracking-wider text-right text-gray-700 md:text-3xl lg:text-4xl">
                 "{slide.content}"
               </blockquote>
-              <div className="flex items-center justify-end pt-5 pr-12 ">
-                <h6 className="pr-3 font-semibold text-gray-600 align-top text-md">
+              <div className="flex flex-col-reverse md:flex-row items-end justify-center md:items-center md:justify-end pt-5 pr-12 ">
+                <h6 className="md:pr-3 pt-3 md:pt-0 font-semibold text-gray-600 align-top text-md">
                   {slide.name}
                 </h6>
+                <div className="flex">
                 <IconStar number={slide.stars} />
+                </div>
               </div>
             </div>
           ))}
