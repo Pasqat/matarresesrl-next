@@ -32,7 +32,7 @@ export default function PrivacyPolicy() {
             <div className="mb-14 md:columns">
               Questa pagina descrive le modalità di trattamento dei dati
               personali degli utenti che consultano il Sito Web{" "}
-              <Link href="https://www.matarrese.it">
+              <Link href="/">
                 <a className="text-yellow-600">www.matarrese.it</a>
               </Link>{" "}
               oppure inviano messaggi di posta elettronica (e-mail) agli
@@ -78,18 +78,24 @@ export default function PrivacyPolicy() {
                     <Link href="https://www.matarrese.it">
                       <a className="text-yellow-600">www.matarrese.it</a>
                     </Link>
-                    , ire dall’indirizzo{" "}
-                    <Link href="https://www.matarrese.it">
-                      <a className="text-yellow-600">www.matarrese.it</a>
+                    , accessibile per via telematica a partire dall'indirizzo{" "}
+                    <Link href="/">
+                      <a className="text-yellow-500">www.matarrese.it</a>
                     </Link>{" "}
-                    consultazione del presente Sito, oltre che con l’invio di
-                    comunicazioni ai contatti presenti sul Sito{" "}
-                    <Link href="https://www.matarrese.it">
-                      <a className="text-yellow-600">www.matarrese.it</a>
-                    </Link>{" "}
-                    e con pecifiche, possono essere trattati dati che consentano
-                    di identificare – direttamente o indirettamente – gli
-                    utenti.
+                    corrispondente alla <em>home page</em>.
+                  </p>
+                  <p>
+                    Nella consultazione del presente Sito, oltre che con l’invio
+                    di comunicazioni ai contatti presenti sul Sito{" "}
+                    <a
+                      href="https://www.matarrese.it"
+                      className="text-yellow-600"
+                    >
+                      www.matarrese.it
+                    </a>{" "}
+                    e con la copmilazione di moduli in pagine specifiche,
+                    possono essere trattati dati che consentano di identificare
+                    – direttamente o indirettamente – gli utenti.
                   </p>
                 </div>
               </section>
@@ -100,7 +106,7 @@ export default function PrivacyPolicy() {
                 </h3>
                 <div className="md:columns">
                   L’informativa è riferita solo al Sito{" "}
-                  <Link href="htts://www.matarrese.it">
+                  <Link href="/">
                     <a className="text-yellow-600">www.matarrese.it</a>
                   </Link>{" "}
                   e non riguarda altri Siti Web eventualmente consultati dagli
@@ -179,7 +185,7 @@ export default function PrivacyPolicy() {
                       </span>{" "}
                       I sistemi informatici e le procedure software connesse al
                       funzionamento del Sito{" "}
-                      <Link href="htts://www.matarrese.it">
+                      <Link href="/">
                         <a className="text-yellow-600">www.matarrese.it</a>
                       </Link>{" "}
                       potranno avere la necessità di memorizzare alcuni Suoi
@@ -239,7 +245,7 @@ export default function PrivacyPolicy() {
                       nonché eventuali altri Suoi dati personali, da Lei
                       volontariamente trasmessi tramite l’invio di messaggi di
                       posta elettronica agli indirizzi presenti sul Sito{" "}
-                      <Link href="htts://www.matarrese.it">
+                      <Link href="/">
                         <a className="text-yellow-600">www.matarrese.it</a>
                       </Link>{" "}
                       o tramite la compilazione e successivo inoltro di moduli
@@ -272,7 +278,7 @@ export default function PrivacyPolicy() {
                     <li>
                       fornitori di servizi legati alla gestione e al
                       funzionamento del sito{" "}
-                      <Link href="htts://www.matarrese.it">
+                      <Link href="/">
                         <a className="text-yellow-600">www.matarrese.it</a>
                       </Link>{" "}
                     </li>
@@ -287,7 +293,7 @@ export default function PrivacyPolicy() {
                     <li>
                       fornitori di servizi e-mail, servizi legati alla gestione
                       e al funzionamento del sito{" "}
-                      <Link href="htts://www.matarrese.it">
+                      <Link href="/">
                         <a className="text-yellow-600">www.matarrese.it</a>
                       </Link>{" "}
                       (tra cui anche Google Adwords, Google Analytics), servizi
@@ -330,7 +336,7 @@ export default function PrivacyPolicy() {
                   nell’ambito delle finalità di cui sopra, i dati di navigazione
                   e i dati inviati spontaneamente dagli utenti attraverso i
                   diversi canali messi a disposizione dal Sito{" "}
-                  <Link href="htts://www.matarrese.it">
+                  <Link href="/">
                     <a className="text-yellow-600">www.matarrese.it</a>
                   </Link>{" "}
                   potrebbero essere trasferiti su server ubicati in Paesi
@@ -404,12 +410,12 @@ export default function PrivacyPolicy() {
                   </h4>{" "}
                   I dati da Lei spontaneamente e volontariamente forniti
                   mediante gli indirizzi e-mail presenti sul Sito
-                  <Link href="htts://www.matarrese.it">
+                  <Link href="/">
                     <a className="text-yellow-600">www.matarrese.it</a>
                   </Link>{" "}
                   e/o mediante la compilazione di moduli presenti in specifiche
                   pagine del Sito{" "}
-                  <Link href="htts://www.matarrese.it">
+                  <Link href="/">
                     <a className="text-yellow-600 ">www.matarrese.it</a>
                   </Link>{" "}
                   non saranno utilizzati per scopi di profilazione, né per
@@ -448,7 +454,7 @@ export default function PrivacyPolicy() {
                 <div className="md:columns">
                   La presente Privacy Policy potrà essere modificata in
                   occasione di nuove funzionalità aggiunte al Sito{" "}
-                  <Link href="htts://www.matarrese.it">
+                  <Link href="/">
                     <a className="text-yellow-600">www.matarrese.it</a>
                   </Link>{" "}
                   , modifiche e/o integrazioni della normativa di riferimento, o
