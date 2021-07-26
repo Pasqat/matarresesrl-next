@@ -1,56 +1,88 @@
-import { useEffect, useRef, useState } from 'react'
-import clsx from 'clsx'
+import { useEffect, useRef, useState } from "react";
+import clsx from "clsx";
+import Link from "next/link";
 
-import { sendContactMail } from '../../actions/networking/mailApi'
+import { sendContactMail } from "../../actions/networking/mailApi";
 
 export default function ContactForm({ hasAutoFocus }) {
-  const [form, setForm] = useState({ name: '', mail: '', formContent: '' })
-  const { name, mail, formContent } = form
-  const inputName = useRef(null)
+  const [form, setForm] = useState({
+    name: "",
+    mail: "",
+    formContent: "",
+  });
+  const { name, mail, formContent} = form;
 
-  const [formButtonDisabled, setFormButtonDisabled] = useState(false)
+  const [isChecked, setIsChecked] = useState(false)
+
+  const inputName = useRef(null);
+
+  const [formButtonDisabled, setFormButtonDisabled] = useState(false);
   const [notification, setNotification] = useState({
-    text: '',
+    text: "",
     isError: false,
-  })
+  });
 
   const handleChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setForm({
       ...form,
       [name]: value,
-    })
-  }
+    });
+  };
 
   useEffect(() => {
-    hasAutoFocus && inputName.current.focus()
-  }, [])
+    hasAutoFocus && inputName.current.focus();
+  }, []);
+
+  useEffect(() => {
+    if (isChecked && notification.text.includes("termini")) {
+      setNotification({ text: "", isError: false });
+    }
+  }, [isChecked]);
 
   async function submitContactForm(event) {
-    event.preventDefault()
+    event.preventDefault();
 
-    const recipientMail = 'pasquale.matarrese@gmail.com'
+    if (name === "" || mail === "" || formContent === "") {
+      return setNotification({
+        ...notification,
+        text: "Per favore compila tutti i campi",
+        isError: true
+      })
+    }
 
-    const res = await sendContactMail(recipientMail, name, mail, formContent)
+    if (isChecked === false) {
+      return setNotification({
+        ...notification,
+        text: "Non dimenticare di accettare i termini e le condizioni",
+        isError: true
+      })
+    }
+
+    const res = await sendContactMail(name, mail, formContent);
     if (res.status < 300) {
-      setFormButtonDisabled(true)
+      setFormButtonDisabled(true);
       setNotification({
         ...notification,
-        text: 'Grazie, ti ricontatteremo al più presto',
+        text: "Grazie, ti ricontatteremo al più presto",
         isError: false,
-      })
-      setForm({ ...form, name: '', mail: '', formContent: '' })
+      });
+      setForm({ ...form, name: "", mail: "", formContent: ""});
+      setIsChecked(false)
     } else {
       setNotification({
         ...notification,
-        text: 'Per favore compila tutti i campi',
+        text: "Per favore compila tutti i campi",
         isError: true,
-      })
+      });
     }
   }
   return (
     <>
-      <form className="flex-auto space-y-8 p-5  lg:p-10" onSubmit={submitContactForm}>
+      <form
+        className="flex-auto space-y-8 p-5  lg:p-10"
+        onSubmit={submitContactForm}
+      >
         <h4 className="text-2xl font-semibold">
           Hai un' idea che vorresti realizzare, o hai bisogno di informazioni?
         </h4>
@@ -111,32 +143,39 @@ export default function ContactForm({ hasAutoFocus }) {
         </div>
         <div className="mt-6 text-center">
           <button
-            className="inline-flex px-4 py-2 text-sm font-medium text-white transition-all duration-150 ease-linear bg-yellow-600 border border-transparent rounded-sm hover:bg-yellow-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 disabled:bg-yellow-600 disabled:opacity-50 disabled:pointer-events-none active:bg-gray-600 "
+            className="inline-flex px-4 py-2 text-sm font-medium text-white transition-all duration-150 ease-linear bg-yellow-600 border border-transparent rounded hover:bg-yellow-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 disabled:bg-yellow-600 disabled:opacity-50 disabled:pointer-events-none active:bg-gray-600 "
             type="submit"
             disabled={formButtonDisabled}
           >
             Invia
           </button>
         </div>
-          {/* TODO: aggingungere termini e condizioni */}
-          <div className="mt-5 text-right text-gray-600">
-            <label className="inline-flex items-center">
-              <input
-                type="checkbox"
-                className="text-yellow-600 border-2 border-gray-400 border-solid cursor-pointer form-checkbox"
-              />
-              <span className="ml-2">accetto i termini e le condizioni</span>
-            </label>
-          </div>
+        <div className="mt-5 text-right text-gray-600">
+          <label className="inline-flex items-center">
+            <input
+              type="checkbox"
+              className="text-yellow-600 border-2 border-gray-400 border-solid cursor-pointer form-checkbox"
+              name="conditions"
+              checked={isChecked}
+              onChange={() => setIsChecked(!isChecked)}
+            />
+            <span className="ml-2 text-sm">
+              accetto i{" "}
+              <Link href="/privacy-policy">
+                <a className="text-yellow-600" target="_blank">termini e le condizioni</a>
+              </Link>
+            </span>
+          </label>
+        </div>
       </form>
       <div
         className={clsx(
-          'px-4 mb-8 text-center',
-          notification.isError ? 'text-red-700' : 'text-green-700'
+          "px-4 mb-8 text-center",
+          notification.isError ? "text-red-700" : "text-green-700"
         )}
       >
         {notification.text}
       </div>
     </>
-  )
+  );
 }

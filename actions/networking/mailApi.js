@@ -1,30 +1,30 @@
-import axios from 'axios'
+import axios from "axios";
 
-export const sendContactMail = async (
-  recipientMail,
-  name,
-  senderMail,
-  content
-) => {
+const recipientMail = () => {
+  return process.env.NEXT_PUBLIC_SEND_MAIL_TO;
+};
+
+
+export const sendContactMail = async (name, senderMail, content) => {
   const data = {
-    recipientMail,
+    recipientMail: recipientMail(),
     name,
     senderMail,
     content,
-  }
+  };
 
   try {
     const res = await axios({
-      method: 'post',
-      url: '/api/contact',
+      method: "post",
+      url: "/api/contact",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       data,
-    })
-    return res
+    });
+    return res;
   } catch (error) {
-    console.log(error)
-    return error
+    console.log(error);
+    return error;
   }
-}
+};

@@ -1,6 +1,8 @@
+import { Fragment, useEffect, useState } from "react";
+import Link from "next/link";
+
 import { Dialog, Transition } from "@headlessui/react";
 import { ChatIcon } from "@heroicons/react/outline";
-import { Fragment, useEffect, useState } from "react";
 import clsx from "clsx";
 
 import { sendContactMail } from "../../actions/networking/mailApi";
@@ -17,6 +19,7 @@ export default function ContactFormModal({
   let [isOpen, setIsOpen] = useState(false);
   const [form, setForm] = useState({ name: "", mail: "", formContent: "" });
   const { name, mail, formContent } = form;
+  const [isChecked, setIsChecked] = useState(false);
 
   const [formButtonDisabled, setFormButtonDisabled] = useState(false);
   const [notification, setNotification] = useState({
@@ -43,15 +46,36 @@ export default function ContactFormModal({
   useEffect(() => {
     setFormButtonDisabled(false);
     setForm({ ...form, name: "", mail: "" });
+    setIsChecked(false);
     setNotification({ text: "", isError: false });
   }, [isOpen]);
+
+  useEffect(() => {
+    if (isChecked && notification.text.includes("termini")) {
+      setNotification({ text: "", isError: false });
+    }
+  }, [isChecked]);
 
   async function submitContactForm(event) {
     event.preventDefault();
 
-    const recipientMail = "pasquale.matarrese@gmail.com";
+    if (name === "" || mail === "" || formContent === "") {
+      return setNotification({
+        ...notification,
+        text: "Per favore compila tutti i campi",
+        isError: true,
+      });
+    }
 
-    const res = await sendContactMail(recipientMail, name, mail, formContent);
+    if (!isChecked) {
+      return setNotification({
+        ...notification,
+        text: "Non dimenticare di accettare i termini e le condizioni",
+        isError: true,
+      });
+    }
+
+    const res = await sendContactMail(name, mail, formContent);
     if (res.status < 300) {
       setFormButtonDisabled(true);
       setNotification({
@@ -60,6 +84,7 @@ export default function ContactFormModal({
         isError: false,
       });
       setForm({ ...form, name: "", mail: "", formContent: "" });
+      setIsChecked(false);
       setTimeout(() => {
         closeModal();
       }, 2000);
@@ -164,7 +189,6 @@ export default function ContactFormModal({
                       onChange={handleChange}
                     />
                   </div>
-
                   <div className="relative w-full">
                     <label
                       className="block mb-2 text-xs font-bold text-gray-600 uppercase"
@@ -181,7 +205,6 @@ export default function ContactFormModal({
                       onChange={handleChange}
                     />
                   </div>
-
                   <div className="relative w-full">
                     <label
                       className="block mb-2 text-xs font-bold text-gray-600 uppercase"
@@ -198,6 +221,25 @@ export default function ContactFormModal({
                       value={formContent}
                       onChange={handleChange}
                     />
+                  </div>{" "}
+                  <div className="mt-5 text-right text-gray-600">
+                    <label className="inline-flex items-center">
+                      <input
+                        type="checkbox"
+                        className="text-yellow-600 border-2 border-gray-400 border-solid cursor-pointer form-checkbox"
+                        name="conditions"
+                        checked={isChecked}
+                        onChange={() => setIsChecked(!isChecked)}
+                      />
+                      <span className="ml-2 text-sm">
+                        accetto i{" "}
+                        <Link href="/privacy-policy">
+                          <a className="text-yellow-600" target="_blank">
+                            termini e le condizioni
+                          </a>
+                        </Link>
+                      </span>
+                    </label>
                   </div>
                   <div className="flex flex-wrap justify-between mt-6 text-center">
                     <div className="mt-4">
