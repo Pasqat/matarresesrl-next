@@ -31,8 +31,8 @@ export default function NewsList({
     <section>
       <div className="py-24 container mx-auto">
         <div className="flex flex-wrap -m-4">
-          {newsPlaceholder.map((_) => (
-            <div className="p-4 w-full md:w-1/3">
+          {newsPlaceholder.map((_, i) => (
+            <div className="p-4 w-full md:w-1/3" key={i}>
               <div className="h-full overflow-hidden bg-white border-2 border-gray-200 rounded-lg hover:shadow-lg">
                 <div className="animate-pulse">
                   <div className="w-full h-64 md:h-36 lg:h-48 bg-gray-300" />
