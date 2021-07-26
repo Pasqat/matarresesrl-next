@@ -6,6 +6,11 @@ strong {
   @apply text-gray-900;
 }
 
+.columns {
+  columns: 2;
+  column-gap: 2em;
+}
+
 .wp-block-image img {
   @apply max-w-full mt-2;
 }

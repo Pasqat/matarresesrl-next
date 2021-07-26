@@ -90,11 +90,21 @@ module.exports = {
   plugins: [
     require("@tailwindcss/typography"),
     require("autoprefixer"),
-    require("@tailwindcss/custom-forms"),
     require("@tailwindcss/forms"),
     plugin(function ({ addComponents, theme }) {
       const screens = theme("screens", {});
       addComponents([
+        {
+          ".columns": { calumns: "1" },
+        },
+        {
+          [`@media (min-width: ${screens.lg})`]: {
+            ".columns": {
+              columns: "2",
+              columnGap: "2em",
+            },
+          },
+        },
         {
           ".container": { width: "100%" },
         },
