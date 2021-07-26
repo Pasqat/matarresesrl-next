@@ -281,7 +281,7 @@ export default function Footer() {
               </svg>
             </a>
             <a
-              href="https://linkedin.com/in/pasquale.matarrese"
+              href="https://www.linkedin.com/in/pasquale-matarrese/"
               className="ml-3 text-gray-500 hover:text-blue-800"
             >
               <svg

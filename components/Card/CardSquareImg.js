@@ -1,12 +1,10 @@
 function CardSquareImg({ imgSrc, imgAlt, title, children, className }) {
   return (
-    <div
-      className={`w-full px-4 pt-6 text-center lg:pt-12 mb-8 ${className}`}
-    >
+    <div className={`w-full px-4 pt-6 text-center lg:pt-12 mb-8 ${className}`}>
       <div className="relative flex flex-col w-full min-w-0 break-words bg-white rounded-lg shadow-lg hover:shadow-xl ">
         <div className="flex-auto px-4 py-5">
           {/* TODO: use higher resolution image. Find them in ../uploads/2015/03 */}
-          <div className="inline-flex items-center justify-center mb-5 text-center text-white bg-yellow-500 rounded-lg shadow-lg">
+          <div className="inline-flex items-center justify-center mb-5 text-center text-white rounded-lg shadow-lg">
             <img
               src={imgSrc}
               className="w-full align-middle rounded-lg"
@@ -18,7 +16,7 @@ function CardSquareImg({ imgSrc, imgAlt, title, children, className }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default CardSquareImg
+export default CardSquareImg;
