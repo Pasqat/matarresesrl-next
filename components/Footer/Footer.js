@@ -95,7 +95,7 @@ export default function Footer() {
                 />
               </div>
             </a>
-            <a>
+            <a href="https://www.aligroup.it/" target="_blank">
               <div className="relative w-16 h-16">
                 <Image
                   layout="fill"
