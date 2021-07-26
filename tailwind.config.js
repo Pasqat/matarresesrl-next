@@ -101,7 +101,7 @@ module.exports = {
           [`@media (min-width: ${screens.lg})`]: {
             ".columns": {
               columns: "2",
-              columnGap: "2em",
+              columnGap: "4em",
             },
           },
         },

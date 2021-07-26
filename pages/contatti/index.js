@@ -21,8 +21,6 @@ export default function Contatti() {
         <title>Cantatti | Matarrese srl</title>
       </Head>
       <Layout>
-        <div className="pt-10">
-
         <Container>
           <Header>Contatti</Header>
           <section className="relative pb-10 text-gray-600 md:pb-52 body-font">
@@ -104,7 +102,6 @@ export default function Contatti() {
             </div>
           </section>
         </Container>
-        </div>
       </Layout>
     </>
   );

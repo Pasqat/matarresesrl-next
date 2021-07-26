@@ -24,7 +24,7 @@ export default function CookiePolicy() {
       <Layout>
         <Container>
           <Header>Tipologie ed utilizzo dei Cookies</Header>
-          <main className="container px-8 pb-20 mx-auto text-justify text-gray-900">
+          <main className="container pb-20 mx-auto text-justify text-gray-900">
             <div className="flex flex-col space-y-14">
               <section>
                 <h3 className="pb-3 text-2xl">Utilizzo dei Cookie</h3>
@@ -88,7 +88,7 @@ export default function CookiePolicy() {
                     ad ogni altro dispositivo che l’utente può utilizzare per
                     connettersi al Sito.
                   </p>
-                  <h4 className="pb-2 pt-4 text-lg">Cookies tecnici</h4>
+                  <h4 className="pt-4 pb-2 text-lg">Cookies tecnici</h4>
                   <p className="pb-2">
                     I cookies tecnici sono quelli utilizzati al solo fine di
                     effettuare la trasmissione di una comunicazione su una rete

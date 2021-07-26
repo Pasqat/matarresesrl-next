@@ -24,7 +24,7 @@ export default function PrivacyPolicy() {
       <Layout>
         <Container>
           <Header>Trattamento dei dati - privacy policy</Header>
-          <main className="container px-8 pb-20 mx-auto text-justify text-gray-900">
+          <main className="container pb-20 mx-auto text-justify text-gray-900">
             <h2 className="text-3xl text-center">Privacy policy sito web</h2>
             <p className="py-4 text-sm italic text-center">
               Versione 1.0 del 01/01/2019
