@@ -145,10 +145,10 @@ export default function ContactFormModal({
                 </div>
 
                 <form
-                  className="flex-auto p-5 lg:p-10"
+                  className="flex-auto p-5 lg:p-10 space-y-8 mt-8"
                   onSubmit={submitContactForm}
                 >
-                  <div className="relative w-full mt-8 mb-3">
+                  <div className="relative w-full">
                     <label
                       className="block mb-2 text-xs font-bold text-gray-600 uppercase"
                       htmlFor="full-name"
@@ -165,7 +165,7 @@ export default function ContactFormModal({
                     />
                   </div>
 
-                  <div className="relative w-full mb-3">
+                  <div className="relative w-full">
                     <label
                       className="block mb-2 text-xs font-bold text-gray-600 uppercase"
                       htmlFor="email"
@@ -182,7 +182,7 @@ export default function ContactFormModal({
                     />
                   </div>
 
-                  <div className="relative w-full mb-3">
+                  <div className="relative w-full">
                     <label
                       className="block mb-2 text-xs font-bold text-gray-600 uppercase"
                       htmlFor="messaggio"

@@ -50,14 +50,14 @@ export default function ContactForm({ hasAutoFocus }) {
   }
   return (
     <>
-      <form className="flex-auto p-5 lg:p-10" onSubmit={submitContactForm}>
+      <form className="flex-auto space-y-8 p-5  lg:p-10" onSubmit={submitContactForm}>
         <h4 className="text-2xl font-semibold">
           Hai un' idea che vorresti realizzare, o hai bisogno di informazioni?
         </h4>
         <p className="mt-1 mb-4 leading-relaxed text-gray-500">
           Completa questo form, ti risponderemo entro 24 ore (escluso festivi)
         </p>
-        <div className="relative w-full mt-8 mb-3">
+        <div className="relative w-full ">
           <label
             className="block mb-2 text-xs font-bold text-gray-600 uppercase"
             htmlFor="full-name"
@@ -75,7 +75,7 @@ export default function ContactForm({ hasAutoFocus }) {
           />
         </div>
 
-        <div className="relative w-full mb-3">
+        <div className="relative w-full ">
           <label
             className="block mb-2 text-xs font-bold text-gray-600 uppercase"
             htmlFor="email"
@@ -92,7 +92,7 @@ export default function ContactForm({ hasAutoFocus }) {
           />
         </div>
 
-        <div className="relative w-full mb-3">
+        <div className="relative w-full ">
           <label
             className="block mb-2 text-xs font-bold text-gray-600 uppercase"
             htmlFor="messaggio"
