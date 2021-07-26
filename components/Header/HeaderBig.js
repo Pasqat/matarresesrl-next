@@ -34,34 +34,32 @@ function HeaderBig({
       <div className="container relative mx-auto">
         <div className="flex flex-wrap items-center">
           <div className="w-full px-4 ml-auto mr-auto text-center lg:w-6/12">
-            <div className="pr-12">
-              <Transition
-                enter="transition-opacity duration-700"
-                enterFrom="opacity-0"
-                enterTo="opacity-100"
-                leave="transition-opacity duration-150"
-                leaveFrom="opacity-100"
-                leaveTo="opacity-0"
-                show={true}
-                as="h1"
-                className="text-5xl font-semibold text-white"
-              >
-                {title}
-              </Transition>
-              <p className="mt-4 text-lg font-bold text-gray-300">{subtitle}</p>
+            <Transition
+              enter="transition-opacity duration-700"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="transition-opacity duration-150"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+              show={true}
+              as="h1"
+              className="text-5xl font-semibold text-white"
+            >
+              {title}
+            </Transition>
+            <p className="mt-4 text-lg font-bold text-gray-300">{subtitle}</p>
 
-              {!noButton && (
-                <Link href={button.link}>
-                  <a
-                    className="px-8 py-3 mt-5 mb-1 mr-1 text-base font-bold text-white uppercase transition-all duration-150 ease-linear bg-yellow-600 rounded shadow-md outline-none active:bg-yellow-700 hover:shadow-lg focus:outline-none"
-                    type="button"
-                  >
-                    <i className="fas fa-message" /> {button.text}
-                  </a>
-                </Link>
-              )}
-              {children}
-            </div>
+            {!noButton && (
+              <Link href={button.link}>
+                <a
+                  className="px-8 py-3 mt-5 mb-1 mr-1 text-base font-bold text-white uppercase transition-all duration-150 ease-linear bg-yellow-600 rounded shadow-md outline-none active:bg-yellow-700 hover:shadow-lg focus:outline-none"
+                  type="button"
+                >
+                  <i className="fas fa-message" /> {button.text}
+                </a>
+              </Link>
+            )}
+            {children}
           </div>
         </div>
       </div>
