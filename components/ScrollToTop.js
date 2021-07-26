@@ -32,9 +32,9 @@ export const ScrollToTop = () => {
           className="w-5 h-5 text-white animate-bounce mb-1"
           viewBox="0 0 10 20"
           fill="none"
-          stroke-linecap="round"
-          stroke-width="2"
-          stroke-linejoin="round"
+          strokeLinecap="round"
+          strokeWidth="2"
+          strokeLinejoin="round"
           fill="none"
           stroke="currentColor"
         >
