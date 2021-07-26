@@ -79,6 +79,9 @@ module.exports = {
       backgroundSize: {
         full: "100%",
       },
+      listStyleType: {
+        alpha: "lower-alpha",
+      },
     },
   },
   variants: {
@@ -87,7 +90,7 @@ module.exports = {
   plugins: [
     require("@tailwindcss/typography"),
     require("autoprefixer"),
-    require("@tailwindcss/custom-forms"), 
+    require("@tailwindcss/custom-forms"),
     require("@tailwindcss/forms"),
     plugin(function ({ addComponents, theme }) {
       const screens = theme("screens", {});

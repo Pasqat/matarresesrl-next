@@ -81,7 +81,10 @@ export default function Meta() {
 
       <link rel="shortcut icon" href="/favicon/favicon.ico" />
       <meta name="msapplication-TileColor" content="#e0851f" />
-      <meta name="msapplication-config" content="/img/favicon/browserconfig.xml" />
+      <meta
+        name="msapplication-config"
+        content="/img/favicon/browserconfig.xml"
+      />
       <meta name="theme-color" content="#e0851f" />
       {/* <link rel="alternate" type="application/rss+xml" href="/feed.xml" /> */}
       <meta
@@ -91,7 +94,12 @@ export default function Meta() {
       {/*   TODO: what is og:image???     */}
       {/* <meta property="og:image" content={HOME_OG_IMAGE_URL} /> */}
       <link rel="manifest" href="/img/favicon/manifest.json" />
-      <meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png" />
+      <meta
+        name="msapplication-TileImage"
+        content="/img/favicon/ms-icon-144x144.png"
+      />
+      <meta property="og:site_name" content="Matarrese srl"/>
+      <meta property="og:locale" content="it_IT"/>
     </Head>
   );
 }

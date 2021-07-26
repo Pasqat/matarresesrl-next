@@ -46,18 +46,32 @@ const GET_PAGINATED_POSTS = gql`
   }
 `;
 
-
 export default function News() {
   const { data, loading, error, fetchMore } = useQuery(GET_PAGINATED_POSTS, {
     variables: { first: BATCH_SIZE, last: null, after: null, before: null },
     notifyOnNetworkStatusChange: true,
   });
 
-
-   return (
+  return (
     <div>
       <Head>
-        <title>Blog articles page</title>
+        <title>News | Matarrese srl</title>
+        <link rel="canonical" href="https://www.matarrese.it/news/" />
+        <meta
+          name="robots"
+          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        />
+        <meta
+          name="description"
+          content="Approfondimenti sul mondo della ristorazione, horeca, pasticcerie, gelaterie, pizzerie e tanto altro"
+        />
+        <meta property="og:title" content="News" />
+        <meta
+          property="og:description"
+          content="Approfondimenti sul mondo della ristorazione, horeca, pasticcerie, gelaterie, pizzerie e tanto altro"
+        />
+        <meta property="og:url" content="https://www.matarrese.it/news" />
+        <meta property="og:type" content="blog" />
       </Head>
 
       <Layout>
