@@ -75,19 +75,17 @@ export default function News() {
       </Head>
 
       <Layout>
-        <div className="pt-10 bg-gray-100">
-          <Container>
-            <Header>Ultimi Aggiornamenti</Header>
-            <hr />
-            <NewsList
-              error={error}
-              loading={loading}
-              data={data}
-              fetchMore={fetchMore}
-              batchSize={BATCH_SIZE}
-            />
-          </Container>
-        </div>
+        <Container>
+          <Header>Ultimi Aggiornamenti</Header>
+          <hr />
+          <NewsList
+            error={error}
+            loading={loading}
+            data={data}
+            fetchMore={fetchMore}
+            batchSize={BATCH_SIZE}
+          />
+        </Container>
       </Layout>
     </div>
   );

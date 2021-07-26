@@ -40,9 +40,6 @@ export default function Home() {
                   enter="transition ease-in-out duration-[800ms] transform"
                   enterFrom="translate-y-full opacity-0"
                   enterTo="-translate-y-0"
-                  // leave="transition ease-in-out duration-300 transform"
-                  // leaveFrom="translate-y-0"
-                  // leaveTo="-translate-y-full"
                   className="md:w-4/12 "
                 >
                   <CardSquareImg
@@ -79,9 +76,6 @@ export default function Home() {
                   enter="transition ease-in-out duration-[1000ms] transform"
                   enterFrom="translate-y-full opacity-0"
                   enterTo="-translate-y-0"
-                  leave="transition ease-in-out duration-300 transform"
-                  leaveFrom="translate-y-0"
-                  leaveTo="-translate-y-full"
                   className="md:w-4/12 "
                 >
                   <CardSquareImg
@@ -118,9 +112,6 @@ export default function Home() {
                   enter="transition ease-in-out duration-[1200ms] transform"
                   enterFrom="translate-y-full opacity-0"
                   enterTo="-translate-y-0"
-                  leave="transition ease-in-out duration-300 transform"
-                  leaveFrom="translate-y-0"
-                  leaveTo="-translate-y-full"
                   className="md:w-4/12 "
                 >
                   <CardSquareImg
