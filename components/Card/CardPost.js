@@ -35,7 +35,7 @@ export default function CardPost({ slug, title, coverImage, date, excerpt }) {
               <a className="inline-flex items-center text-yellow-500 md:mb-2 lg:mb-0">
                 Continua a leggere
                 <svg
-                  className="w-4 h-4 ml-2"
+                  className="w-4 h-4 ml-2 animate-bounceX"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                   strokeWidth="2"

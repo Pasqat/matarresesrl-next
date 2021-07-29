@@ -96,7 +96,7 @@ export default function Contatti() {
                 </div>
               </div>
               <div className="flex flex-col w-full mt-8 bg-white lg:w-1/3 md:w-1/2 md:ml-auto md:py-8 md:mt-0">
-                <ContactForm hasAutoFocus />
+                <ContactForm />
                 {/* TODO: aggingungere termini e condizioni */}
               </div>
             </div>
