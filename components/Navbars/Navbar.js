@@ -1,11 +1,10 @@
-import { Fragment } from "react";
-
-import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { BellIcon, MenuIcon, XIcon, ChatIcon } from "@heroicons/react/outline";
+import { Disclosure } from "@headlessui/react";
+import { MenuIcon, XIcon, ChatIcon } from "@heroicons/react/outline";
 
 import Link from "next/link";
+import clsx from "clsx";
 
-const navigation = [
+let navigation = [
   { name: "Home", href: "/", current: true },
   { name: "Prodotti", href: "#", current: false },
   { name: "Servizi", href: "#", current: false },
@@ -13,13 +12,16 @@ const navigation = [
   { name: "News", href: "/news", current: false },
 ];
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-
-export default function Navbar(props) {
+export default function Navbar({ isTransparent }) {
   return (
-    <Disclosure as="nav" className="sticky top-0 z-50 bg-gray-900 shadow-md">
+    <Disclosure
+      as="nav"
+      className={clsx(
+        isTransparent
+          ? "absolute w-full top-0 z-50"
+          : "sticky top-0 z-50 bg-gray-900 shadow-md"
+      )}
+    >
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl sm:px-6 ">
@@ -52,7 +54,7 @@ export default function Navbar(props) {
                     {navigation.map((item) => (
                       <Link key={item.name} href={item.href}>
                         <a
-                          className={classNames(
+                          className={clsx(
                             item.current
                               ? "bg-gray-900 text-white"
                               : "text-gray-300 hover:bg-gray-700 hover:text-white",
@@ -107,7 +109,7 @@ export default function Navbar(props) {
                 <a
                   key={item.name}
                   href={item.href}
-                  className={classNames(
+                  className={clsx(
                     item.current
                       ? "bg-gray-900 text-white"
                       : "text-gray-300 hover:bg-gray-700 hover:text-white",

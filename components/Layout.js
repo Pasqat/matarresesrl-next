@@ -3,11 +3,11 @@ import Footer from './Footer/Footer'
 import Meta from '../components/meta'
 import Navbar from './Navbars/Navbar'
 
-export default function Layout({ preview, children }) {
+export default function Layout({ preview, children, navbarTransparent }) {
   return (
     <>
       <Meta />
-      <Navbar />
+      <Navbar isTransparent={navbarTransparent} />
       <div className="min-h-screen">
         {/* <Alert preview={preview} /> */}
         <main>{children}</main>

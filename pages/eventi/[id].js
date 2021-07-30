@@ -17,10 +17,8 @@ export default function Events({ event }) {
     return <p>hmm...sembra ci sia un errore</p>;
   }
 
-  console.log(event?.organizers.nodes[0].website);
-
   return (
-    <Layout>
+    <Layout navbarTransparent>
       {router.isFallback ? (
         <>
           <Header href="/eventi">Eventi</Header>
