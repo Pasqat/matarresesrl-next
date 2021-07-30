@@ -24,7 +24,7 @@ export default function Navbar({ isTransparent }) {
     >
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl sm:px-6 ">
+          <div className="mx-auto max-w-7xl sm:px-6">
             <div className="relative flex items-center justify-center h-16 lg:justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">
                 {/* Mobile menu button*/}
@@ -55,10 +55,10 @@ export default function Navbar({ isTransparent }) {
                       <Link key={item.name} href={item.href}>
                         <a
                           className={clsx(
+                            "px-3 py-2 rounded-md text-sm font-semibold text-gray-100",
                             item.current
-                              ? "bg-gray-900 text-white"
-                              : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                            "px-3 py-2 rounded-md text-sm font-medium"
+                              ? "hover:first-letter:text-yellow-500"
+                              : "hover:no-underline hover:first-letter:text-yellow-500"
                           )}
                           aria-current={item.current ? "page" : undefined}
                         >
