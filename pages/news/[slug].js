@@ -1,16 +1,16 @@
 import { useRouter } from "next/router";
+
 import Head from "next/head";
 import Container from "../../components/Container";
-import Layout from "../../components/Layout";
-import Categories from "../../components/News/post-categories";
-import CoverImage from "../../components/News/CoverImage";
-import PostBody from "../../components/News/post-body";
-import MorePosts from "../../components/News/more-posts";
 import Date from "../../components/Date";
+import Header from "../../components/Header/Header";
+import Layout from "../../components/Layout";
+import CoverImage from "../../components/News/CoverImage";
+import MorePosts from "../../components/News/more-posts";
+import PostBody from "../../components/News/post-body";
+import Categories from "../../components/News/post-categories";
 
 import { getAllPostsWithSlug, getPostAndMorePosts } from "../../lib/api";
-
-import Header from "../../components/Header/Header";
 
 export default function Post({ postData, posts }) {
   const router = useRouter();
