@@ -12,14 +12,15 @@ import { SlopeDivSection } from "../../ui/SlopeDivSection";
 function HeaderBig({
   backgroundImgSrc = "url(/img/homeBackground.jpg",
   overlay = "bg-black opacity-80",
-  title = "Title",
+  title = "",
   subtitle = "",
   button = { text: "Button", link: "#" },
   noButton = false,
   children,
+  slopeSectionColor = "text-gray-200"
 }) {
   return (
-    <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-[75vh]">
+    <div className="relative pt-16 pb-32 flex content-center items-center justify-center h-[500px]">
       <div
         className="absolute top-0 w-full h-full bg-center bg-cover"
         style={{
@@ -63,7 +64,7 @@ function HeaderBig({
           </div>
         </div>
       </div>
-      <SlopeDivSection color="text-gray-200" position="bottom" />
+      <SlopeDivSection color={slopeSectionColor} position="bottom" />
     </div>
   );
 }
