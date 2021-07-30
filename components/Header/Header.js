@@ -5,7 +5,7 @@ export default function Header({ children, href, className }) {
   return href ? (
     <h2
       className={clsx(
-        "pb-20 text-2xl font-bold leading-tight tracking-tight md:text-4xl md:tracking-tighter",
+        "py-10 text-2xl font-bold leading-tight tracking-tight md:text-4xl md:tracking-tighter",
         className
       )}
     >
