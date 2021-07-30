@@ -1,9 +1,9 @@
 import Head from "next/head";
 import Link from "next/link";
 
-import Container from "../components/Container";
-import Header from "../components/Header/Header";
-import Layout from "../components/Layout";
+import Container from "../../components/Container";
+import Header from "../../components/Header/Header";
+import Layout from "../../components/Layout";
 
 export default function CookiePolicy() {
   return (
