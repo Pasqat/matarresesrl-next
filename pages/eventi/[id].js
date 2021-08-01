@@ -2,7 +2,6 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 
 import Layout from "../../components/Layout";
-import Date from "../../components/Date";
 import Header from "../../components/Header/Header";
 import EventBody from "../../components/Events/event-body";
 

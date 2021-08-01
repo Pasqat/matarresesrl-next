@@ -9,7 +9,7 @@ const AUTOPLAY_INTERVAL = 4000;
 
 export const PrevButton = ({ enabled, onClick }) => (
   <button
-    className="absolute items-center justify-center w-8 h-8 p-2 bg-gray-400 rounded shadow-md -translate-y-1/2 bg-transparent border-0 outline-none cursor-pointer embla__button embla__button--prev z-2 top-1/2 -left-4 md:-left-20"
+    className="absolute items-center justify-center w-8 h-8 p-2 bg-gray-400 active:bg-yellow-500 rounded shadow-md -translate-y-1/2 bg-transparent border-0 outline-none cursor-pointer embla__button embla__button--prev z-2 top-1/2 -left-4 md:-left-20"
     onClick={onClick}
     disabled={!enabled}
   >
@@ -24,7 +24,7 @@ export const PrevButton = ({ enabled, onClick }) => (
 
 export const NextButton = ({ enabled, onClick }) => (
   <button
-    className="absolute items-center justify-center w-8 h-8 p-2 -translate-y-1/2 bg-transparent bg-gray-400 border-0 shadow-md rounded outline-none cursor-pointer embla__button embla__button--next z-2 top-1/2 -right-4 md:-right-20"
+    className="absolute items-center justify-center w-8 h-8 p-2 -translate-y-1/2 bg-transparent active:bg-yellow-500 bg-gray-400 border-0 shadow-md rounded outline-none cursor-pointer embla__button embla__button--next z-2 top-1/2 -right-4 md:-right-20"
     onClick={onClick}
     disabled={!enabled}
   >

@@ -170,7 +170,7 @@ export default function Home() {
                   </p>
                   <ContactFormModal
                     buttonText="Realizza il tuo sogno"
-                    buttonClassName="hover:shadow-none bg-yellow-600 shadow-md text-yellow-100 text-lg py-2 px-4 "
+                    buttonClassName="hover:shadow-none bg-yellow-600 shadow-md text-white rounded text-lg py-2 px-4 "
                   />
                 </div>
 
