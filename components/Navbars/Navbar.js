@@ -24,7 +24,7 @@ export default function Navbar({ isTransparent }) {
     >
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl sm:px-6">
+          <div className={clsx("mx-auto max-w-7xl sm:px-6", open && "bg-gray-900")}>
             <div className="relative flex items-center justify-center h-16 lg:justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">
                 {/* Mobile menu button*/}
@@ -104,7 +104,7 @@ export default function Navbar({ isTransparent }) {
           </div>
 
           <Disclosure.Panel className="lg:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1">
+            <div className="px-2 pt-2 pb-3 space-y-1 bg-gray-900">
               {navigation.map((item) => (
                 <a
                   key={item.name}
