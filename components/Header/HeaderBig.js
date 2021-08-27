@@ -10,7 +10,7 @@ import { SlopeDivSection } from "../../ui/SlopeDivSection";
  * @param button - {text: 'Button', link: '#'}
  */
 function HeaderBig({
-  backgroundImgSrc = "url(/img/homeBackground.jpg",
+  backgroundImgSrc = "url(/img/homeBackground.jpg)",
   overlay = "bg-black opacity-80",
   title = "",
   subtitle = "",
