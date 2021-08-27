@@ -25,36 +25,59 @@ const transporter = nodemailer.createTransport({
 // })
 
 export default async (req, res) => {
-  const { senderMail, name, content, recipientMail } = req.body;
+  const {
+    senderMail,
+    name,
+    surname,
+    tel,
+    participants,
+    formContent,
+    recipientMail,
+    title,
+  } = req.body;
 
   // Check if fields are all filled
-  if (
-    senderMail === "" ||
-    name === "" ||
-    content === "" ||
-    recipientMail === ""
-  ) {
+  if (name === "" || recipientMail === "") {
     res.status(403).send("");
     return;
   }
 
+  if (name === "" && tel === "") {
+    res.status(403).send("");
+    return;
+  }
+
+  console.log("type", typeof formContent);
+  console.log("content", formContent);
+
+  // let content =
+  //   typeof formContent === undefined
+  //     ? `partecipanti: ${participants}`
+  //     : `messaggio: ${formContent}`;
+
+  let content = formContent ? `messaggio: ${formContent}` : `partecipanti: ${participants}`;
+
   const mailerRes = await mailer({
     senderMail,
-    name,
-    text: content,
+    name: `${name} ${surname}`,
+    title,
+    text: `tel: ${tel}\n${content}`,
     recipientMail,
   });
   res.send(mailerRes);
 };
 
-const mailer = ({ senderMail, name, text, recipientMail }) => {
+const mailer = ({ senderMail, name, title, text, recipientMail }) => {
   const fromReal =
     name && senderMail ? `${name} <${senderMail}>` : `${name || senderMail}`;
+  const subject = title
+    ? `Partecipazione per l'evento ${title} da ${fromReal}`
+    : `Nuovo messaggio da ${fromReal}`;
   const from = process.env.SENDGRID_ADDRESS;
   const message = {
     from,
     to: `${recipientMail}`,
-    subject: `Nuovo messaggio da ${fromReal}`,
+    subject,
     text,
     replyTo: fromReal,
   };

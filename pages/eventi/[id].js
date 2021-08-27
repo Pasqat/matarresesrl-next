@@ -8,6 +8,7 @@ import EventBody from "../../components/Events/event-body";
 import { getAllEventsWithSlug, getEvent } from "../../lib/api";
 import HeaderBig from "../../components/Header/HeaderBig";
 import Link from "next/link";
+import FormModal from "../../components/Form/FormModal";
 
 export default function Events({ event }) {
   const router = useRouter();
@@ -49,12 +50,12 @@ export default function Events({ event }) {
                       </div>
                       <div className="w-full px-4 lg:w-4/12 lg:order-3 lg:text-right lg:self-center">
                         <div className="px-3 py-6 mt-32 sm:mt-0">
-                          <button
-                            className="px-4 py-2 mb-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-yellow-600 rounded shadow outline-none active:bg-yellow-500 hover:shadow-md focus:outline-none sm:mr-2"
-                            type="button"
-                          >
-                            Partecipa
-                          </button>
+                          <FormModal
+                            buttonText="Partecipa"
+                            buttonClassName="px-4 py-2 mb-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-yellow-600 rounded shadow outline-none active:bg-yellow-500 hover:shadow-md focus:outline-none sm:mr-2"
+                            type="reservation"
+                            title={event.title}
+                          />
                         </div>
                       </div>
                       <div className="w-full px-4 lg:w-4/12 lg:order-1">
@@ -125,7 +126,9 @@ export default function Events({ event }) {
                 </div>
                 <div className="flex justify-center ">
                   <Link href="/eventi">
-                    <a className="p-4 mt-10 text-center bg-white rounded shadow-lg uppercase hover:shadow-sm">Eventi</a>
+                    <a className="p-4 mt-10 text-center bg-white rounded shadow-lg uppercase hover:shadow-sm">
+                      Eventi
+                    </a>
                   </Link>
                 </div>
               </div>

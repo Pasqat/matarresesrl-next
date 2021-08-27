@@ -5,13 +5,19 @@ const recipientMail = () => {
 };
 
 
-export const sendContactMail = async (name, senderMail, content) => {
+export const sendContactMail = async (name, surname, senderMail, tel, formContent, participants, title) => {
   const data = {
     recipientMail: recipientMail(),
     name,
+    surname,
     senderMail,
-    content,
+    tel,
+    formContent,
+    participants,
+    title
   };
+
+  console.table(data)
 
   try {
     const res = await axios({

@@ -8,6 +8,7 @@ import CardSquareImg from "../components/Card/CardSquareImg";
 import CardBigImg from "../components/Card/CardBigImg";
 import ContactForm from "../components/Form/ContactForm";
 import ContactFormModal from "../components/Form/ContactFormModal";
+import FormModal from "../components/Form/FormModal";
 import Layout from "../components/Layout";
 import { SlopeDivSection } from "../ui/SlopeDivSection";
 
@@ -168,7 +169,7 @@ export default function Home() {
                     tecnica post vendita, manutenzione e riparazione, consulenza
                     professionale continua.
                   </p>
-                  <ContactFormModal
+                  <FormModal
                     buttonText="Realizza il tuo sogno"
                     buttonClassName="hover:shadow-none bg-yellow-600 shadow-md text-white rounded text-lg py-2 px-4 "
                   />
