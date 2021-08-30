@@ -47,7 +47,7 @@ export default async (req, res) => {
     return;
   }
 
-  console.log("type", typeof formContent);
+  console.log("type", typeof(formContent));
   console.log("content", formContent);
 
   // let content =
@@ -61,7 +61,7 @@ export default async (req, res) => {
     senderMail,
     name: `${name} ${surname}`,
     title,
-    text: `tel: ${tel}\n${content}`,
+    text: `email: ${senderMail}\ntel: ${tel}\n${content}`,
     recipientMail,
   });
   res.send(mailerRes);

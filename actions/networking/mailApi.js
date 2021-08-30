@@ -4,8 +4,15 @@ const recipientMail = () => {
   return process.env.NEXT_PUBLIC_SEND_MAIL_TO;
 };
 
-
-export const sendContactMail = async (name, surname, senderMail, tel, formContent, participants, title) => {
+export const sendContactMail = async (
+  name,
+  surname,
+  senderMail,
+  tel,
+  formContent,
+  participants,
+  title
+) => {
   const data = {
     recipientMail: recipientMail(),
     name,
@@ -14,10 +21,8 @@ export const sendContactMail = async (name, surname, senderMail, tel, formConten
     tel,
     formContent,
     participants,
-    title
+    title,
   };
-
-  console.table(data)
 
   try {
     const res = await axios({

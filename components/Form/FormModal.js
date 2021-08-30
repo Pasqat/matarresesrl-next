@@ -82,7 +82,7 @@ export default function FormModal({
     }
 
     if (type === "reservation") {
-      if (typeof participants === null || participants === "") {
+      if (typeof(participants) === null || participants === "") {
         return setNotification({
           ...notification,
           text: "Per favore compila tutti i campi",
