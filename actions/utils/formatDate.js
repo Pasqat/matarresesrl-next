@@ -1,7 +1,15 @@
 export const formatDate = (date) => {
-  const newDate = new Date(date)
+  const newDate = new Date(date);
 
-  return `${newDate.getDate()}/${
-    newDate.getMonth() + 1
-  }/${newDate.getFullYear()}`
-}
+  return newDate.toLocaleDateString("it-it", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+};
+
+export const getMonth = (date) => {
+  const newDate = new Date(date);
+
+  return newDate.toLocaleDateString("it", { month: "long" });
+};

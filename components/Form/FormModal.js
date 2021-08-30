@@ -165,9 +165,9 @@ export default function FormModal({
           type="button"
           onClick={openModal}
           className={clsx(
+            "font-medium rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75",
             buttonClassName ??
-              "px-4 py-2 text-sm text-white bg-yellow-600 hover:bg-yellow-500 ",
-            "font-medium rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+            "px-4 py-2 text-sm text-white bg-yellow-600 hover:bg-yellow-500 "
           )}
         >
           {buttonClassName ? null : (

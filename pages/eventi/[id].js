@@ -59,7 +59,7 @@ export default function Events({ event }) {
                         </div>
                       </div>
                       <div className="w-full px-4 lg:w-4/12 lg:order-1">
-                        <div className="flex justify-center py-4 pt-8 lg:pt-4">
+                        {/* <div className="flex justify-center py-4 pt-8 lg:pt-4">
                           <div className="p-3 mr-4 text-center">
                             <span className="block text-xl font-bold tracking-wide text-gray-600 uppercase">
                               22
@@ -84,7 +84,7 @@ export default function Events({ event }) {
                               Comments
                             </span>
                           </div>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                     <div className="mt-12 text-center">
