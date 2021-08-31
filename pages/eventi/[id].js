@@ -93,14 +93,14 @@ export default function Events({ event }) {
                       </h3>
                       <div className="mt-0 mb-2 text-sm font-bold leading-normal text-gray-400 uppercase">
                         <i className="mr-2 text-lg text-gray-400 fas fa-map-marker-alt"></i>{" "}
-                        {event.venue.title} - {event.venue.address},{" "}
-                        {event.venue.city}
+                        {event.venue?.title} - {event.venue?.address},{" "}
+                        {event.venue?.city}
                       </div>
                       <div className="mt-10 mb-2 text-gray-600">
                         <i className="mr-2 text-lg text-gray-400 fas fa-briefcase"></i>
                         Organizzato da:{" "}
-                        <a href={event.organizers.nodes[0].link}>
-                          {event.organizers.nodes[0].title}
+                        <a href={event.organizers?.nodes[0].link}>
+                          {event.organizers?.nodes[0].title}
                         </a>
                       </div>
                       <div className="mb-2 text-gray-600">
