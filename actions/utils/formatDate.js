@@ -13,3 +13,10 @@ export const getMonth = (date) => {
 
   return newDate.toLocaleDateString("it", { month: "long" });
 };
+
+
+export const getDay = (date) => {
+  const newDate = new Date(date);
+
+  return newDate.toLocaleDateString("it", { day: "numeric" });
+};

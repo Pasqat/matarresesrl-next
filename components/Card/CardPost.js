@@ -27,7 +27,7 @@ export default function CardPost({ slug, title, coverImage, date, excerpt }) {
             className="mb-3 leading-relaxed"
             dangerouslySetInnerHTML={{
               __html:
-                excerpt.length > 160 ? excerpt.substr(0, 160) + "..." : excerpt,
+                excerpt?.length > 160 ? excerpt?.substr(0, 160) + "..." : excerpt,
             }}
           ></div>
           <div className="flex flex-wrap items-center">
