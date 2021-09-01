@@ -37,7 +37,7 @@ function sortByMonth(data) {
                       ></a>
                     </Link>
                   </h3>
-                  <div className=" absolute z-0 text-7xl transform md:scale-[5] scale-[3.5] text-gray-100 opacity-30 font-extrabold font-serif">
+                  <div className="leading-tight select-none absolute z-0 text-7xl transform md:scale-[5] scale-[3.5] text-gray-100 opacity-30 font-extrabold font-serif">
                     {getDay(event.startDate)}
                   </div>
                 </div>
@@ -72,10 +72,10 @@ function sortByMonth(data) {
                       }}
                     ></div>
                     <div className="text-right font-bold">{event.cost ? `${event.cost} €` : "gratis"}</div>
-                    <div className="flex flex-wrap items-center">
+                    <div className="flex flex-wrap items-center ">
                       <Link href={`/eventi/${event.id}`}>
-                        <a className="inline-flex items-center text-yellow-500 md:mb-2 lg:mb-0">
-                          Maggiori Dettagli
+                        <a className="z-2 inline-flex items-center text-yellow-500 md:mb-2 lg:mb-0">
+                          maggiori dettagli
                           <svg
                             className="w-4 h-4 ml-2 animate-bounceX"
                             viewBox="0 0 24 24"

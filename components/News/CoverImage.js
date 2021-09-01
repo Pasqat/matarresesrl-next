@@ -9,11 +9,6 @@ export default function CoverImage({ title, coverImage, slug, href }) {
       height={1000}
       alt={`Immagine di copertina per ${title}`}
       src={coverImage?.sourceUrl}
-      // TODO: for some reason classNames are not applied to next/image component
-      // className={clsx(
-      //   "shadow-small",
-      //   slug ? "hover:shadow-medium transition-shadow duration-200" : ""
-      // )}
     />
   );
   // TODO: Maybe creat and add a placeholder image when on coverImage
