@@ -9,7 +9,7 @@ import CardPost from "../../components/Card/CardPost";
 
 import { formatDate, getMonth, getDay } from "../../actions/utils/formatDate";
 
-function sortByMonth(data) {
+function groupByMonth(data) {
   const scheduledMonth = [];
   data.forEach((event) => {
     const month = getMonth(event.startDate);
@@ -109,7 +109,7 @@ export default function Events({ data }) {
     <Layout>
       <Container>
         <Header>Eventi</Header>
-        {sortByMonth(data.nodes)}
+        {groupByMonth(data)}
       </Container>
     </Layout>
   );
