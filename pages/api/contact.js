@@ -47,8 +47,6 @@ export default async (req, res) => {
     return;
   }
 
-  console.log("type", typeof(formContent));
-  console.log("content", formContent);
 
   // let content =
   //   typeof formContent === undefined
