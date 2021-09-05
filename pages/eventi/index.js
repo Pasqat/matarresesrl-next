@@ -9,7 +9,7 @@ import CardPost from "../../components/Card/CardPost";
 
 import { formatDate, getMonth, getDay } from "../../actions/utils/formatDate";
 
-function GroupByMonth({data}) {
+function GroupByMonth({ data }) {
   const scheduledMonth = [];
   data.forEach((event) => {
     const month = getMonth(event.startDate);
@@ -23,9 +23,10 @@ function GroupByMonth({data}) {
     <div key={m}>
       <h3 className="mt-8 mb-6 text-3xl font-bold uppercase border-b">{m}</h3>
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 mb-12">
-        {data.map((event) =>
-          getMonth(event.startDate) === m ? (
-            <div className="w-full h-full" key={event.slug}>
+        {data.map((event) => {
+          console.log('event', event)
+          return getMonth(event.startDate) === m ? (
+            <div className="w-full h-full" key={event.id}>
               {/* CARD */}
               <div className="overflow-hidden bg-white border-2 border-gray-200 rounded-lg border-opacity-60 shadow-lg">
                 <div className="relative flex items-center justify-center min-h-[10rem] text-center bg-yellow-600">
@@ -44,31 +45,27 @@ function GroupByMonth({data}) {
                 <div className="flex flex-col justify-between p-6">
                   <div>
                     {formatDate(event.startDate) ===
-                    formatDate(event.endDate) ? (
+                      formatDate(event.endDate) ? (
                       <Date
                         dateString={event.startDate}
-                        className="mb-1 text-xs font-medium tracking-widest text-gray-400 title-font"
-                      />
+                        className="mb-1 text-xs font-medium tracking-widest text-gray-400 title-font" />
                     ) : (
                       <>
                         <Date
                           dateString={event.startDate}
-                          className="mb-1 text-xs font-medium tracking-widest text-gray-400 title-font"
-                        />
+                          className="mb-1 text-xs font-medium tracking-widest text-gray-400 title-font" />
                         {" - "}
                         <Date
                           dateString={event.endDate}
-                          className="mb-1 text-xs font-medium tracking-widest text-gray-400 title-font"
-                        />
+                          className="mb-1 text-xs font-medium tracking-widest text-gray-400 title-font" />
                       </>
                     )}
                     <div
                       className="mb-3 leading-relaxed"
                       dangerouslySetInnerHTML={{
-                        __html:
-                          event.excerpt?.length > 160
-                            ? event.excerpt?.substr(0, 160) + "..."
-                            : event.excerpt,
+                        __html: event.excerpt?.length > 160
+                          ? event.excerpt?.substr(0, 160) + "..."
+                          : event.excerpt,
                       }}
                     ></div>
                     <div className="text-right font-bold">{event.cost ? `${event.cost} €` : "gratis"}</div>
@@ -97,7 +94,8 @@ function GroupByMonth({data}) {
 
               {/* <div>{event.organizers?.nodes.title}</div> */}
             </div>
-          ) : null
+          ) : null;
+        }
         )}
       </div>
     </div>
@@ -105,11 +103,12 @@ function GroupByMonth({data}) {
 }
 
 export default function Events({ data }) {
+  console.log('data', data)
   return (
     <Layout>
       <Container>
         <Header>Eventi</Header>
-        <GroupByMonth data={data}/>
+        <GroupByMonth data={data} />
       </Container>
     </Layout>
   );
