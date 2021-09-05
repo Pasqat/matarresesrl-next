@@ -5,7 +5,7 @@ import Layout from "../../components/Layout";
 import Header from "../../components/Header/Header";
 import EventBody from "../../components/Events/event-body";
 
-import { getAllEventsWithSlug, getEvent } from "../../lib/api";
+import { getAllEventsWithId, getEvent } from "../../lib/api";
 import HeaderBig from "../../components/Header/HeaderBig";
 import Link from "next/link";
 import FormModal from "../../components/Form/FormModal";
@@ -151,10 +151,10 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const allEvents = await getAllEventsWithSlug();
+  const allEvents = await getAllEventsWithId();
 
   return {
-    paths: allEvents.edges.map(({ node }) => `/eventi/${node.slug}`) || [],
+    paths: allEvents.edges.map(({ node }) => `/eventi/${node.id}`) || [],
     fallback: true,
   };
 }
