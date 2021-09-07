@@ -93,6 +93,7 @@ export default function Events({ event }) {
                       </h3>
                       <div className="mt-0 mb-2 text-sm font-bold leading-normal text-gray-400 uppercase">
                         <i className="mr-2 text-lg text-gray-400 fas fa-map-marker-alt"></i>{" "}
+                        {/* TODO: make venue address a link to a maps */}
                         {event.venue?.title} - {event.venue?.address},{" "}
                         {event.venue?.city}
                       </div>
