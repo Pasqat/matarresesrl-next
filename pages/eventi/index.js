@@ -7,7 +7,7 @@ import Date from "../../components/Date";
 import Header from "../../components/Header/Header";
 import CardEvent from "../../components/Card/CardEvent";
 
-import { formatDate, getMonth, getDay } from "../../actions/utils/formatDate";
+import { formatDate, getMonth, getDayNumeric } from "../../actions/utils/formatDate";
 
 function GroupByMonth({ data }) {
   const scheduledMonth = [];
@@ -20,12 +20,14 @@ function GroupByMonth({ data }) {
   });
 
   return scheduledMonth.map((m) => (
-    <div key={m}>
-      <h3 className="mt-8 mb-6 text-3xl font-bold uppercase border-b">{m}</h3>
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-3 mb-12">
+    <div key={m} className="flex flex-col md:flex-row py-6">
+      <div className="flex justify-center items-center bg-red-500 mb-4 md:mb-0 md:mr-10 md:w-14">
+        <h3 className="md:-rotate-90 text-3xl font-bold text-red-100 leading-none">{m}</h3>
+      </div>
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:mb-12">
         {data.map((event) =>
           getMonth(event.startDate) === m ? (
-            < div className="" key={event.id} >
+            < div className="border-b md:border-b-0 md:border-r py-6 md:px-6 border-red-400" key={event.id} >
               {/* CARD */}
               <CardEvent
                 title={event.title}
@@ -34,6 +36,8 @@ function GroupByMonth({ data }) {
                 startDate={event.startDate}
                 endDate={event.endDate}
                 excerpt={event.excerpt}
+                venue={event.venue}
+                coverImage={event.featuredImage?.node}
               />
               {/* < div className="overflow-hidden bg-white border-2 border-gray-200 rounded-lg border-opacity-60 shadow-lg" >
                 <div className="relative flex items-center justify-center min-h-[10rem] text-center bg-yellow-600">
@@ -119,10 +123,12 @@ export default function Events({ data }) {
     <>
       {/*  TODO: add <Head> see news/index.js */}
       <Layout>
-        <Container>
-          <Header>Eventi</Header>
-          <GroupByMonth data={data} />
-        </Container>
+        <div className="bg-[rgb(255,250,250)]">
+          <Container>
+            <Header>Eventi</Header>
+            <GroupByMonth data={data} />
+          </Container>
+        </div>
       </Layout>
     </>
   );

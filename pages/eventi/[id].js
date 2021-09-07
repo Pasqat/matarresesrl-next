@@ -33,7 +33,7 @@ export default function Events({ event }) {
       ) : (
         <>
           <HeaderBig noButton slopeSectionColor="text-gray-100" />
-          <div className="w-full text-gray-800 bg-gray-100">
+          <div className="w-full text-gray-800 bg-red-50">
             <section className="relative pt-16 pb-24 bg-gray-100">
               <div className="container px-4 mx-auto">
                 <div className="relative flex flex-col w-full min-w-0 mb-6 -mt-64 break-words bg-white rounded-lg shadow-xl">
