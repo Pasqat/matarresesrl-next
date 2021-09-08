@@ -1,4 +1,8 @@
+import Link from "next/link";
 import CardPost from "../Card/CardPost";
+import Date from "../Date";
+
+import CoverImage from "../News/CoverImage"
 
 // Function to update the query with the new results
 const updateQuery = (previousResult, { fetchMoreResult }) => {
@@ -23,6 +27,7 @@ export default function NewsList({
       </div>
     );
   }
+
 
   const newsPlaceholder = Array(9).fill(null);
 
@@ -62,14 +67,49 @@ export default function NewsList({
 
   const { posts } = data;
 
+  const heroPost = posts.edges[0]?.node
+  const morePosts = posts.edges.slice(1)
+
+  console.log(heroPost)
+
   return (
     <>
       {posts && posts.edges ? (
         <>
           <section className="text-gray-600 body-font">
             <div className="py-24 mx-auto">
+              {heroPost && (
+                <section>
+                  <div className="flex flex-col lg:flex-row pt-4 pb-12 px-4">
+                    <div className="mb-8">
+                      <CoverImage title={heroPost.title} coverImage={heroPost.featuredImage?.node} slug={heroPost.slug} href={`/news/${heroPost.slug}`} />
+                    </div>
+                    <div className="flex flex-col md:flex-row lg:flex-col lg:ml-8">
+                      <div className="flex flex-col md:flex-col-reverse lg:flex-col">
+                        <div className="mb-4 md:mb-0 text-lg font-medium text-gray-400">
+                          <Date dateString={heroPost.date} />
+                        </div>
+                        <h3 className="mb-4 text-4xl lg:text-6xl font-bold leading-none text-gray-600">
+                          <Link href={`/news/${heroPost.slug}`}>
+                            <a
+                              className="hover:underline"
+                              dangerouslySetInnerHTML={{ __html: heroPost.title }}
+                            />
+                          </Link>
+                        </h3>
+                      </div>
+                      <div>
+                        <div
+                          className="text-lg leading-relaxed mb-4"
+                          dangerouslySetInnerHTML={{ __html: heroPost.excerpt }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              )}
               <div className="flex flex-wrap -m-4">
-                {posts.edges.map(({ node }) => {
+                {morePosts.map(({ node }) => {
                   return (
                     <div key={node.title} className="p-4 md:w-1/3">
                       <CardPost

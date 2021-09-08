@@ -6,7 +6,7 @@ import Container from "../../components/Container";
 import Header from "../../components/Header/Header";
 import NewsList from "../../components/News/NewsList";
 
-const BATCH_SIZE = 9;
+const BATCH_SIZE = 10;
 
 const GET_PAGINATED_POSTS = gql`
   query GET_PAGINATED_POSTS(
