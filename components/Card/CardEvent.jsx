@@ -22,8 +22,8 @@ export default function CardEvent({ title, slug, id, startDate, endDate, excerpt
       {coverImage ? (
         <CoverImage title={title} coverImage={coverImage} slug={slug} href={`/eventi/${id}`} />
       ) : (
-        <div className="relative rounded-xl flex items-center justify-center min-h-[9.5rem] text-center bg-gradient-to-tl from-red-600 to-yellow-400 overflow-hidden">
-          <div className="leading-tight select-none absolute z-0 text-7xl transform md:scale-[5] scale-[3.5] text-gray-100 opacity-30 font-extrabold font-serif">
+        <div className="relative rounded-xl flex items-center justify-center w-full pb-[50%] text-center bg-gradient-to-tl from-red-600 to-yellow-400 overflow-hidden">
+          <div className="leading-tight bottom-[40%] select-none absolute z-0 text-7xl transform md:scale-[5] scale-[3.5] text-gray-100 opacity-30 font-extrabold font-serif">
             {getDayNumeric(startDate)}
           </div>
         </div>
