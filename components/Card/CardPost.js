@@ -27,7 +27,7 @@ export default function CardPost({ slug, title, coverImage, date, excerpt }) {
             </Link>
           </h3>
           <div
-            className="mb-3 leading-tight font-light"
+            className="mb-3 leading-tight text-gray-500"
             dangerouslySetInnerHTML={{
               __html:
                 excerpt?.length > 160 ? excerpt?.substr(0, 160) + "..." : excerpt,

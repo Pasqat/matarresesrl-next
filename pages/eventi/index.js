@@ -21,13 +21,13 @@ function GroupByMonth({ data }) {
 
   return scheduledMonth.map((m) => (
     <div key={m} className="flex flex-col md:flex-row py-6">
-      <div className="flex justify-center items-center bg-red-500 mb-4 md:mb-0 md:mr-10 md:w-14">
-        <h3 className="md:-rotate-90 text-3xl font-bold text-red-100 leading-none">{m}</h3>
+      <div className="flex justify-center items-center bg-yellow-500 mb-4 md:mb-0 md:mr-10 md:w-14">
+        <h3 className="md:-rotate-90 text-3xl font-bold text-yellow-100 leading-none">{m}</h3>
       </div>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:mb-12">
         {data.map((event) =>
           getMonth(event.startDate) === m ? (
-            < div className="border-b md:border-b-0 md:border-r py-6 md:px-6 border-red-400" key={event.id} >
+            < div className="py-6 md:px-6 " key={event.id} >
               {/* CARD */}
               <CardEvent
                 title={event.title}
@@ -122,10 +122,11 @@ export default function Events({ data }) {
   return (
     <>
       {/*  TODO: add <Head> see news/index.js */}
-      <Layout>
-        <div className="bg-[rgb(255,250,250)]">
+      <Layout className="bg-gray-100">
+        <div>
           <Container>
             <Header>Eventi</Header>
+            <hr />
             <GroupByMonth data={data} />
           </Container>
         </div>
