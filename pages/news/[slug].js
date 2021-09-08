@@ -44,7 +44,7 @@ export default function Post({ postData, posts }) {
                   content={postData.featuredImage?.node?.sourceUrl}
                 />
               </Head>
-              <main>
+              <main className="mb-24">
                 <h1
                   className="mb-12 text-4xl font-bold leading-tight tracking-tighter text-center md:text-6xl lg:text-7xl md:leading-none md:text-left"
                   dangerouslySetInnerHTML={{ __html: postData.title }}
@@ -57,7 +57,7 @@ export default function Post({ postData, posts }) {
                   <CoverImage
                     title={postData.title}
                     coverImage={postData.featuredImage?.node}
-                    // slug={postData.slug}
+                  // slug={postData.slug}
                   />
                 </div>
                 <PostBody content={postData.content} />
