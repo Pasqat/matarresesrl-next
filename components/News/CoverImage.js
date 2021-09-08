@@ -8,6 +8,7 @@ export default function CoverImage({ title, coverImage, slug, href }) {
       height={1000}
       alt={`Immagine di copertina per ${title}`}
       src={coverImage?.sourceUrl}
+      objectFit="cover"
       className="rounded-xl"
     />
   );
