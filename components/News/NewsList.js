@@ -1,8 +1,10 @@
 import Link from "next/link";
 import CardPost from "../Card/CardPost";
+import HeroPost from "./HeroPost"
+import CoverImage from "../News/CoverImage"
+
 import Date from "../Date";
 
-import CoverImage from "../News/CoverImage"
 
 // Function to update the query with the new results
 const updateQuery = (previousResult, { fetchMoreResult }) => {
@@ -38,7 +40,7 @@ export default function NewsList({
           <div className="flex flex-wrap -m-4">
             {newsPlaceholder.map((_, i) => (
               <div className="p-4 w-full md:w-1/3" key={i}>
-                <div className="h-full overflow-hidden bg-white border-2 border-gray-200 rounded-lg hover:shadow-lg">
+                <div className="h-full overflow-hidden ">
                   <div className="animate-pulse">
                     <div className="w-full h-64 md:h-36 lg:h-48 bg-gray-300" />
                     <div className="flex flex-col justify-between p-6 space-y-4">
@@ -79,34 +81,13 @@ export default function NewsList({
           <section className="text-gray-600 body-font">
             <div className="py-24 mx-auto">
               {heroPost && (
-                <section>
-                  <div className="flex flex-col lg:flex-row pt-4 pb-12 px-4">
-                    <div className="mb-8">
-                      <CoverImage title={heroPost.title} coverImage={heroPost.featuredImage?.node} slug={heroPost.slug} href={`/news/${heroPost.slug}`} />
-                    </div>
-                    <div className="flex flex-col md:flex-row lg:flex-col lg:ml-8">
-                      <div className="flex flex-col md:flex-col-reverse lg:flex-col">
-                        <div className="mb-4 md:mb-0 text-lg font-medium text-gray-400">
-                          <Date dateString={heroPost.date} />
-                        </div>
-                        <h3 className="mb-4 text-4xl lg:text-6xl font-bold leading-none text-gray-600">
-                          <Link href={`/news/${heroPost.slug}`}>
-                            <a
-                              className="hover:underline"
-                              dangerouslySetInnerHTML={{ __html: heroPost.title }}
-                            />
-                          </Link>
-                        </h3>
-                      </div>
-                      <div>
-                        <div
-                          className="text-lg leading-relaxed mb-4"
-                          dangerouslySetInnerHTML={{ __html: heroPost.excerpt }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </section>
+                <HeroPost
+                  title={heroPost.title}
+                  coverImage={heroPost.featuredImage?.node}
+                  slug={heroPost.slug}
+                  date={heroPost.date}
+                  excerpt={heroPost.excerpt}
+                />
               )}
               <div className="flex flex-wrap -m-4">
                 {morePosts.map(({ node }) => {

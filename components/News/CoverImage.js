@@ -9,7 +9,7 @@ export default function CoverImage({ title, coverImage, slug, href, placeholderT
       alt={`Immagine di copertina per ${title}`}
       src={coverImage?.sourceUrl}
       objectFit="cover"
-      className="rounded-xl shadow-small"
+      className="rounded-xl"
     />
   );
   // TODO: Maybe creat and add a placeholder image when on coverImage
