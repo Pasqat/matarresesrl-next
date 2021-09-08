@@ -18,6 +18,8 @@ export default function Events({ event }) {
     return <p>hmm...sembra ci sia un errore</p>;
   }
 
+  console.log(event)
+
   return (
     <Layout navbarTransparent>
       {router.isFallback ? (
@@ -40,23 +42,21 @@ export default function Events({ event }) {
                   <div className="px-6">
                     <div className="flex flex-wrap justify-center">
                       <div className="flex justify-center w-full px-4 lg:w-3/12 lg:order-2">
-                        <div className="relative">
+                        <div className="relative rounded-full w-[150px] h-[150px]">
                           <img
                             alt="..."
-                            src="/img/prodotti-qualita-150x150.jpg"
-                            className="absolute h-auto -m-16 -ml-20 align-middle border-none rounded-full shadow-xl lg:-ml-16 max-w-150-px"
+                            src={event.featuredImage ? event.featuredImage.node.sourceUrl : "/img/prodotti-qualita-150x150.jpg"}
+                            className="top-0 left-0 absolute -mt-16 align-middle object-cover border-none rounded-full shadow-xl w-full h-full"
                           />
                         </div>
                       </div>
-                      <div className="w-full px-4 lg:w-4/12 lg:order-3 lg:text-right lg:self-center">
-                        <div className="px-3 py-6 mt-32 sm:mt-0">
-                          <FormModal
-                            buttonText="Partecipa"
-                            buttonClassName="px-4 py-2 mb-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-yellow-600 rounded shadow outline-none active:bg-yellow-500 hover:shadow-md focus:outline-none sm:mr-2"
-                            type="reservation"
-                            title={event.title}
-                          />
-                        </div>
+                      <div className="h-auto w-full px-4 lg:w-4/12 lg:order-3 lg:text-right lg:self-center">
+                        <FormModal
+                          buttonText="Partecipa"
+                          buttonClassName="px-4 py-2 mb-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-yellow-600 rounded shadow outline-none active:bg-yellow-500 hover:shadow-md focus:outline-none sm:mr-2"
+                          type="reservation"
+                          title={event.title}
+                        />
                       </div>
                       <div className="w-full px-4 lg:w-4/12 lg:order-1">
                         {/* <div className="flex justify-center py-4 pt-8 lg:pt-4">
