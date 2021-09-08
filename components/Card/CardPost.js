@@ -11,16 +11,7 @@ export default function CardPost({ slug, title, coverImage, date, excerpt }) {
           className="h-full overflow-hidden p-4"
         // className="h-full overflow-hidden bg-white border-2 border-gray-200 rounded-lg border-opacity-60 hover:shadow-lg"
         >
-          {coverImage ? (
-            <CoverImage title={title} coverImage={coverImage} slug={slug} href={`/news/${slug}`} />
-          ) : (
-
-            <div className="relative rounded-xl flex items-center justify-center w-full pb-[50%] text-center bg-gradient-to-tl from-red-600 to-yellow-400 overflow-hidden">
-              <div className="leading-tight select-none absolute bottom-[30%] z-0 text-4xl transform scale-150 text-gray-100 opacity-30 font-extrabold font-serif">
-                {title}
-              </div>
-            </div>
-          )}
+          <CoverImage title={title} coverImage={coverImage} slug={slug} href={`/news/${slug}`} placeholderText={title} />
           <div className="flex flex-col justify-between">
             <div>
               <div className="my-4">
