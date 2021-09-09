@@ -1,14 +1,16 @@
 import { useRouter } from "next/router";
 import Head from "next/head";
+import Link from "next/link";
 
 import Layout from "../../components/Layout";
 import Header from "../../components/Header/Header";
 import EventBody from "../../components/Events/event-body";
+import Date from "../../components/Date"
+import HeaderBig from "../../components/Header/HeaderBig";
+import FormModal from "../../components/Form/FormModal";
 
 import { getAllEventsWithId, getEvent } from "../../lib/api";
-import HeaderBig from "../../components/Header/HeaderBig";
-import Link from "next/link";
-import FormModal from "../../components/Form/FormModal";
+import { formatDate, getHour } from "../../actions/utils/formatDate"
 
 export default function Events({ event }) {
   const router = useRouter();
@@ -53,38 +55,34 @@ export default function Events({ event }) {
                       <div className="h-auto w-full px-4 lg:w-4/12 lg:order-3 lg:text-right lg:self-center">
                         <FormModal
                           buttonText="Partecipa"
-                          buttonClassName="px-4 py-2 mb-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-yellow-600 rounded shadow outline-none active:bg-yellow-500 hover:shadow-md focus:outline-none sm:mr-2"
+                          buttonClassName="px-4 py-2 mb-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-gradient-to-tl from-red-600 to-yellow-400 rounded shadow outline-none active:bg-yellow-500 hover:shadow-md focus:outline-none sm:mr-2"
                           type="reservation"
                           title={event.title}
                         />
                       </div>
-                      <div className="w-full px-4 lg:w-4/12 lg:order-1">
-                        {/* <div className="flex justify-center py-4 pt-8 lg:pt-4">
-                          <div className="p-3 mr-4 text-center">
-                            <span className="block text-xl font-bold tracking-wide text-gray-600 uppercase">
-                              22
-                            </span>
-                            <span className="text-sm text-gray-400">
-                              Friends
-                            </span>
+                      <div className="lg:self-center w-full px-4 lg:w-4/12 lg:order-1">
+                        <div className="flex justify-center py-4 pt-8 lg:pt-4">
+                          <div className="mb-2 text-center text-gray-800">
+                            {formatDate(event.startDate) === formatDate(event.endDate) ? (
+                              <>
+                                <span className="block text-xl font-bold tracking-wide text-gray-600 uppercase">
+                                  <Date dateString={event.startDate} />
+                                </span>
+                                <span className="block text-lg font-bold text-yellow-500">
+                                  h {getHour(event.startDate)} - {getHour(event.endDate)}
+                                </span>
+                              </>
+                            ) : (
+                              <>
+                                dal <span className="text-xl font-bold tracking-wide text-gray-600 uppercase"><Date dateString={event.startDate} /></span><br />
+                                al <span className="text-xl font-bold tracking-wide text-gray-600 uppercase"><Date dateString={event.startDate} /></span>
+                                <span className="block text-lg font-bold text-yellow-500 ">
+                                  h {getHour(event.startDate)} - {getHour(event.endDate)}
+                                </span>
+                              </>
+                            )}
                           </div>
-                          <div className="p-3 mr-4 text-center">
-                            <span className="block text-xl font-bold tracking-wide text-gray-600 uppercase">
-                              10
-                            </span>
-                            <span className="text-sm text-gray-400">
-                              Photos
-                            </span>
-                          </div>
-                          <div className="p-3 text-center lg:mr-4">
-                            <span className="block text-xl font-bold tracking-wide text-gray-600 uppercase">
-                              89
-                            </span>
-                            <span className="text-sm text-gray-400">
-                              Comments
-                            </span>
-                          </div>
-                        </div> */}
+                        </div>
                       </div>
                     </div>
                     <div className="mt-12 text-center">
@@ -103,10 +101,6 @@ export default function Events({ event }) {
                         <a href={event.organizers?.nodes[0].link}>
                           {event.organizers?.nodes[0].title}
                         </a>
-                      </div>
-                      <div className="mb-2 text-gray-600">
-                        <i className="mr-2 text-lg text-gray-400 fas fa-clock"></i>
-                        {event.startDate} - {event.endDate}
                       </div>
                     </div>
                     <div className="py-10 mt-10 text-center border-t border-gray-200">
