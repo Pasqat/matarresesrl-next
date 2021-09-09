@@ -479,7 +479,7 @@ export default function Home() {
           <section className="relative py-20">
             <div className="container px-4 mx-auto mb-12">
               <h2 className="mb-8 text-center text-4xl">I Nostri partner</h2>
-              <div className="grid grid-cols-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
                 {logos.map(logo => {
                   return (
                     logo.href ? (
