@@ -4,12 +4,13 @@
  */
 function CardBigImg({
   textColor = 'text-white',
-  bgColor = 'bg-yellow-600',
+  bgColor = 'bg-gradient-to-t from-green-500 to-blue-500',
   imgSrc,
   imgAlt,
   title = 'title',
   content,
   children,
+  noSlope
 }) {
   const polygonColor = bgColor.replace('bg', 'text')
 
@@ -24,17 +25,19 @@ function CardBigImg({
           className="w-full align-middle rounded-t-lg"
         />
         <blockquote className="relative p-8 mb-4">
-          <svg
-            preserveAspectRatio="none"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 583 95"
-            className="absolute left-0 w-full block h-[95px] top-[-94px]"
-          >
-            <polygon
-              points="-30,95 583,95 583,65"
-              className={`fill-current ${polygonColor}`}
-            ></polygon>
-          </svg>
+          {!noSlope &&
+            <svg
+              preserveAspectRatio="none"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 583 95"
+              className="absolute left-0 w-full block h-[95px] top-[-94px]"
+            >
+              <polygon
+                points="-30,95 583,95 583,65"
+                className={`fill-current ${polygonColor}`}
+              ></polygon>
+            </svg>
+          }
           <h4 className={`text-xl font-bold ${textColor}`}>{title}</h4>
           <p className={`mt-2 font-light ${textColor} text-md`}>{content}</p>
         </blockquote>

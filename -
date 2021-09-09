@@ -202,7 +202,7 @@ export default function Home() {
                 <div className="w-full px-4 ml-auto mr-auto md:w-5/12">
                   <div className="md:pr-12">
                     <div className="inline-flex items-center justify-center w-16 h-16 p-3 mb-6 text-center text-gray-500 bg-gray-200 rounded-full shadow-lg">
-                      <ShoppingCartIcon className="text-xl text-indigo-500" />
+                      <ShoppingCartIcon className="text-xl text-yellow-600" />
                     </div>
                     <h3 className="text-3xl font-semibold">
                       Tutto per il settore food

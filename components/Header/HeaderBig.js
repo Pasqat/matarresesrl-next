@@ -53,7 +53,7 @@ function HeaderBig({
             {!noButton && (
               <Link href={button.link}>
                 <a
-                  className="px-8 py-3 mt-5 mb-1 mr-1 text-base font-bold text-white uppercase transition-all duration-150 ease-linear bg-yellow-600 rounded shadow-md outline-none active:bg-yellow-700 hover:shadow-lg focus:outline-none"
+                  className="px-8 py-3 mt-5 mb-1 mr-1 text-base font-bold text-white uppercase transition-all duration-150 ease-linear bg-gradient-tl-yellow rounded shadow-md outline-none active:bg-yellow-700 hover:shadow-lg focus:outline-none"
                   type="button"
                 >
                   <i className="fas fa-message" /> {button.text}

@@ -6,6 +6,12 @@ strong {
   @apply text-gray-900;
 }
 
+@layer components {
+  .bg-gradient-tl-yellow {
+    @apply bg-gradient-to-tl from-red-600 to-yellow-400 ;
+  }
+}
+
 .columns {
   columns: 2;
   column-gap: 2em;

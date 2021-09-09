@@ -106,11 +106,11 @@ module.exports = {
     require("@tailwindcss/typography"),
     require("autoprefixer"),
     require("@tailwindcss/forms"),
-    plugin(function ({ addComponents, theme }) {
+    plugin(function({ addComponents, theme }) {
       const screens = theme("screens", {});
       addComponents([
         {
-          ".columns": { calumns: "1" },
+          ".columns": { columns: "1" },
         },
         {
           [`@media (min-width: ${screens.lg})`]: {

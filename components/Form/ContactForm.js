@@ -10,7 +10,7 @@ export default function ContactForm({ hasAutoFocus }) {
     mail: "",
     formContent: "",
   });
-  const { name, mail, formContent} = form;
+  const { name, mail, formContent } = form;
 
   const [isChecked, setIsChecked] = useState(false)
 
@@ -67,7 +67,7 @@ export default function ContactForm({ hasAutoFocus }) {
         text: "Grazie, ti ricontatteremo al più presto",
         isError: false,
       });
-      setForm({ ...form, name: "", mail: "", formContent: ""});
+      setForm({ ...form, name: "", mail: "", formContent: "" });
       setIsChecked(false)
     } else {
       setNotification({
@@ -143,7 +143,7 @@ export default function ContactForm({ hasAutoFocus }) {
         </div>
         <div className="mt-6 text-center">
           <button
-            className="inline-flex px-4 py-2 text-sm font-medium text-white transition-all duration-150 ease-linear bg-yellow-600 border border-transparent rounded hover:bg-yellow-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 disabled:bg-yellow-600 disabled:opacity-50 disabled:pointer-events-none active:bg-gray-600 "
+            className="inline-flex px-4 py-2 text-sm font-medium text-white rounded transition-all duration-150 ease-linear bg-gradient-to-tl from-green-400 to-blue-500 active:from-blue-500 active:to-green-400 disabled:from-green-300 disabled:to-blue-300 disabled:pointer-events-none"
             type="submit"
             disabled={formButtonDisabled}
           >
