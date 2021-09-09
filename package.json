@@ -15,7 +15,7 @@
     "@heroicons/react": "^1.0.1",
     "@tailwindcss/forms": "^0.3.3",
     "apollo-boost": "^0.4.9",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "clsx": "^1.1.1",
     "date-fns": "^2.23.0",
     "embla-carousel": "^4.5.3",
