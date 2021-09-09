@@ -13,6 +13,8 @@ import Layout from "../components/Layout";
 import { SlopeDivSection } from "../ui/SlopeDivSection";
 
 import Testimonials from "../components/Testimonials/Testimonials";
+import { logos } from "../data/partner-logo"
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -473,7 +475,27 @@ export default function Home() {
               </div>
             </div>
           </section>
-          <section className="relative py-20"></section>
+          {/* LOGO SECTION */}
+          <section className="relative py-20">
+            <div className="container px-4 mx-auto mb-12">
+              <h2 className="mb-8 text-center text-4xl">I Nostri partner</h2>
+              <div className="grid grid-cols-4">
+                {logos.map(logo => {
+                  return (
+                    logo.href ? (
+                      <Link href={logo.href}>
+                        <a className="cursor-pointer text-center hover:drop-shadow-md">
+                          <Image width={180} height={95} objectFit="contain" src={logo.url} />
+                        </a>
+                      </Link>
+                    ) : (
+                      <Image width={180} height={95} objectFit="contain" src={logo.url} />
+                    )
+                  )
+                })}
+              </div>
+            </div>
+          </section>
         </main>
       </Layout>
     </div>
