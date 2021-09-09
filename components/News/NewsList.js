@@ -72,8 +72,6 @@ export default function NewsList({
   const heroPost = posts.edges[0]?.node
   const morePosts = posts.edges.slice(1)
 
-  console.log(heroPost)
-
   return (
     <>
       {posts && posts.edges ? (

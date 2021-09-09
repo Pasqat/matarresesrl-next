@@ -7,7 +7,6 @@ import CoverImage from "../News/CoverImage";
   * @param coverImage eg. node.featuredImage?.node
   **/
 export default function CardEvent({ title, slug, id, startDate, endDate, excerpt, coverImage, venue }) {
-  console.log(startDate)
   return (
     <div
       className="h-full overflow-hidden"
