@@ -8,6 +8,7 @@ import Header from "../../components/Header/Header";
 import CardEvent from "../../components/Card/CardEvent";
 
 import { formatDate, getMonth, getDayNumeric } from "../../actions/utils/formatDate";
+import Head from "next/head";
 
 function GroupByMonth({ data }) {
   const scheduledMonth = [];
@@ -121,7 +122,24 @@ function GroupByMonth({ data }) {
 export default function Events({ data }) {
   return (
     <>
-      {/*  TODO: add <Head> see news/index.js */}
+      <Head>
+        <title>I Prossimi Eventi | Matarrese srl</title>
+        <link rel="canonical" href="https://www.matarrese.it/eventi/" />
+        <meta
+          name="robots"
+          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        />
+        <meta
+          name="description"
+          content="I prossimi eventi che si terranno a cura di Matarrese srl. Approfondimenti, master class, demo ed altro"
+        />
+        <meta property="og:title" content="Eventi" />
+        <meta
+          property="og:description"
+          content="I prossimi eventi che si terranno a cura di Matarrese srl. Approfondimenti, master class, demo ed altro"
+        />
+        <meta property="og:url" content="https://www.matarrese.it/eventi" />
+      </Head>
       <Layout className="bg-gray-100">
         <div className="mb-24">
           <Container>
