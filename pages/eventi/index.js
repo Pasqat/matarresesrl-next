@@ -123,7 +123,7 @@ export default function Events({ data }) {
     <>
       {/*  TODO: add <Head> see news/index.js */}
       <Layout className="bg-gray-100">
-        <div>
+        <div className="mb-24">
           <Container>
             <Header>Eventi</Header>
             <hr />
