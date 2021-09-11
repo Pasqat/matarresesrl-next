@@ -26,7 +26,7 @@ export default function Events({ event }) {
     const parsedAddress = [];
 
     for (let element of props) {
-      parsedAddress.push(element.split(" ").join("+"))
+      parsedAddress.push(element.split(/\W/).join("+"))
     }
 
     return parsedAddress.join("+")
