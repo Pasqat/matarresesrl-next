@@ -7,7 +7,6 @@ import HeaderBig from "../components/Header/HeaderBig";
 import CardSquareImg from "../components/Card/CardSquareImg";
 import CardBigImg from "../components/Card/CardBigImg";
 import ContactForm from "../components/Form/ContactForm";
-import ContactFormModal from "../components/Form/ContactFormModal";
 import FormModal from "../components/Form/FormModal";
 import Layout from "../components/Layout";
 import { SlopeDivSection } from "../ui/SlopeDivSection";
