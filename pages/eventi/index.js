@@ -26,7 +26,7 @@ function GroupByMonth({ data }) {
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:mb-12">
         {data.map((event) =>
           getMonth(event.startDate) === m ? (
-            < div className="py-6 md:px-6 " key={event.id} >
+            <div className="py-6 md:px-6 " key={event.id}>
               {/* CARD */}
               <CardEvent
                 title={event.title}

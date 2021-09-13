@@ -45,20 +45,22 @@ export default function Post({ postData, posts }) {
                 />
               </Head>
               <main className="mb-24">
-                <h1
-                  className="mb-12 text-4xl font-bold leading-tight tracking-tighter text-center md:text-6xl lg:text-7xl md:leading-none md:text-left"
-                  dangerouslySetInnerHTML={{ __html: postData.title }}
-                ></h1>
-                <div className="mb-6 text-lg">
-                  pubblicato il <Date dateString={postData.date} />
-                  <Categories categories={postData.categories} />
-                </div>
-                <div className="mb-8 md:mb-16 sm:mx-0">
-                  <CoverImage
-                    title={postData.title}
-                    coverImage={postData.featuredImage?.node}
-                  // slug={postData.slug}
-                  />
+                <div className="max-w-3xl mx-auto">
+                  <div className="mb-6 text-lg">
+                    <Date dateString={postData.date} className="text-sm font-semibold text-gray-500" />
+                    <Categories categories={postData.categories} />
+                  </div>
+                  <h1
+                    className="mb-12 text-4xl font-bold leading-tight tracking-tighter text-center md:text-5xl lg:text-5xl md:text-left"
+                    dangerouslySetInnerHTML={{ __html: postData.title }}
+                  ></h1>
+                  <div className="mb-8 md:mb-16 sm:mx-0">
+                    <CoverImage
+                      title={postData.title}
+                      coverImage={postData.featuredImage?.node}
+                    // slug={postData.slug}
+                    />
+                  </div>
                 </div>
                 <PostBody content={postData.content} />
                 {/* 
