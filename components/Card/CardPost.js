@@ -6,13 +6,13 @@ import CoverImage from "../News/CoverImage";
 export default function CardPost({ slug, title, coverImage, date, excerpt }) {
   return (
     <Link href={`/news/${slug}`}>
-      <a className="inline-flex items-center text-yellow-500 md:mb-2 lg:mb-0">
+      <a className="inline-flex h-full items-center text-yellow-500 md:mb-2 lg:mb-0">
         <div
-          className="h-full overflow-hidden p-4"
-        // className="h-full overflow-hidden bg-white border-2 border-gray-200 rounded-lg border-opacity-60 hover:shadow-lg"
+          // className="h-full overflow-hidden p-4"
+          className="h-full overflow-hidden bg-white shadow-md"
         >
           <CoverImage title={title} coverImage={coverImage} slug={slug} href={`/news/${slug}`} placeholderText={title} />
-          <div className="flex flex-col justify-between">
+          <div className="flex flex-col justify-between p-4">
             <div>
               <div className="my-4">
                 <Date

@@ -16,7 +16,7 @@ export default function MorePosts({ posts }) {
               date={node.date}
               coverImage={node.featuredImage?.node}
               key={node.databesId}
-               />
+            />
           );
         })}
       </div>

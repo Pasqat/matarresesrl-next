@@ -9,7 +9,7 @@ export default function CoverImage({ title, coverImage, slug, href, placeholderT
       alt={`Immagine di copertina per ${title}`}
       src={coverImage?.sourceUrl}
       objectFit="cover"
-      className="rounded-xl"
+      className="z-0"
     />
   );
   // TODO: Maybe creat and add a placeholder image when on coverImage
@@ -24,7 +24,7 @@ export default function CoverImage({ title, coverImage, slug, href, placeholderT
       )}
     </div>
   ) : (
-    <div className="relative rounded-xl flex items-center justify-center w-full pb-[50%] text-center bg-gradient-to-tl from-red-600 to-yellow-400 overflow-hidden shadow-md">
+    <div className="relative flex items-center justify-center w-full pb-[50%] text-center bg-gradient-to-tl from-red-600 to-yellow-400 overflow-hidden shadow-md">
       <div className="leading-tight select-none absolute bottom-[30%] z-0 text-4xl transform scale-150 text-gray-100 opacity-30 font-extrabold font-serif">
         {placeholderText}
       </div>

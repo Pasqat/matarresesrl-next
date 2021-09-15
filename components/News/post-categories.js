@@ -12,13 +12,13 @@ export default function Categories({ categories }) {
 
           return (
             <span key={index} className={clsx(category.node.id && color,
-              'ml-3 text-gray-600 cursor-pointer')}>
-              {category.node.name}
+              'text-gray-600 cursor-pointer')}>
+              {category.node.name.toUpperCase()}
             </span>
           );
         })
       ) : (
-        <span className={clsx(category.node.id && color, "ml-1 text-gray-600 cursor-pointer")}>{categories.edges.node.name}</span>
+        <span className={clsx(category.node.id && color, "ml-1 text-gray-600 cursor-pointer")}>{categories.edges.node.name.toUpperCase()}</span>
       )}
     </span>
   );

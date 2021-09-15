@@ -21,48 +21,51 @@ export default function Post({ postData, posts }) {
     return <p>hmm...sembra ci sia un errore</p>;
   }
 
+  console.log(router)
+
   return (
     <Layout>
-      <Container>
-        <Header href="/news">News</Header>
-        {router.isFallback ? (
-          <>
+      {router.isFallback ? (
+        <>
+          <Head>
+            <title>Matarrese srl</title>
+          </Head>
+          <main>
+            <h2>Loading...</h2>
+          </main>
+        </>
+      ) : (
+        <>
+          <article className="bg-gray-100">
             <Head>
-              <title>Matarrese srl</title>
+              <title>{postData.title} | Matarrese srl</title>
+              <meta
+                property="og:image"
+                content={postData.featuredImage?.node?.sourceUrl}
+              />
             </Head>
-            <main>
-              <h2>Loading...</h2>
-            </main>
-          </>
-        ) : (
-          <>
-            <article>
-              <Head>
-                <title>{postData.title} | Matarrese srl</title>
-                <meta
-                  property="og:image"
-                  content={postData.featuredImage?.node?.sourceUrl}
-                />
-              </Head>
+            <div className="px-5 container mx-auto max-w-7xl py-16">
               <main className="mb-24">
-                <div className="max-w-3xl mx-auto">
-                  <div className="mb-6 text-lg">
-                    <Date dateString={postData.date} className="text-sm font-semibold text-gray-500" />
-                    <Categories categories={postData.categories} />
-                  </div>
-                  <h1
-                    className="mb-12 text-4xl font-bold leading-tight tracking-tighter text-center md:text-5xl lg:text-5xl md:text-left"
-                    dangerouslySetInnerHTML={{ __html: postData.title }}
-                  ></h1>
-                  <div className="mb-8 md:mb-16 sm:mx-0">
-                    <CoverImage
-                      title={postData.title}
-                      coverImage={postData.featuredImage?.node}
-                    // slug={postData.slug}
-                    />
-                  </div>
+                <div className="mb-8 md:mb-16 sm:mx-0">
+                  <CoverImage
+                    title={postData.title}
+                    coverImage={postData.featuredImage?.node}
+                  // slug={postData.slug}
+                  />
                 </div>
-                <PostBody content={postData.content} />
+                <div className="relative max-w-3xl bg-white -mt-56 z-2 shadow-lg p-10 ml-24">
+                  <div className="">
+                    <div className="mb-6 text-lg">
+                      <Categories categories={postData.categories} />
+                      <Date dateString={postData.date} className="ml-4 text-sm text-gray-400" />
+                    </div>
+                    <h1
+                      className="mb-12 text-4xl font-bold leading-tight tracking-tighter text-center md:text-5xl lg:text-5xl md:text-left"
+                      dangerouslySetInnerHTML={{ __html: postData.title }}
+                    ></h1>
+                  </div>
+                  <PostBody content={postData.content} />
+                </div>
                 {/* 
                   <div className="max-w-2xl">
                     <Link href="/news">
@@ -71,12 +74,14 @@ export default function Post({ postData, posts }) {
                   </div>
                   */}
               </main>
-            </article>
-            <hr />
+            </div>
+          </article>
+          <hr />
+          <div className="px-5 container mx-auto max-w-7xl py-8">
             {morePosts.length > 0 && <MorePosts posts={morePosts} />}
-          </>
-        )}
-      </Container>
+          </div>
+        </>
+      )}
     </Layout>
   );
 }
