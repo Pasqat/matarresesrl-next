@@ -22,6 +22,8 @@ export default function Events({ event }) {
 
   // console.log(event.venue)
 
+  // take n String arguments and join them
+  // in split case (this-is-spilt-case)
   function addressToMapsLink(...props) {
     const parsedAddress = [];
 

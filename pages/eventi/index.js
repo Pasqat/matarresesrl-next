@@ -27,7 +27,6 @@ function GroupByMonth({ data }) {
         {data.map((event) =>
           getMonth(event.startDate) === m ? (
             <div className="py-6 md:px-6 " key={event.id}>
-              {/* CARD */}
               <CardEvent
                 title={event.title}
                 slug={event.slug}
