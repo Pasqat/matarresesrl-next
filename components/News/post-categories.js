@@ -7,7 +7,6 @@ export default function Categories({ categories }) {
       {categories.edges.length > 0 ? (
         categories.edges.map((category, index) => {
 
-          console.log(category.node.id, category.node.name)
           let color = colors[category.node.id]
 
           return (

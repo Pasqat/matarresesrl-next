@@ -1,9 +1,7 @@
 import { useRouter } from "next/router";
 
 import Head from "next/head";
-import Container from "../../components/Container";
 import Date from "../../components/Date";
-import Header from "../../components/Header/Header";
 import Layout from "../../components/Layout";
 import CoverImage from "../../components/News/CoverImage";
 import MorePosts from "../../components/News/more-posts";
@@ -21,7 +19,7 @@ export default function Post({ postData, posts }) {
     return <p>hmm...sembra ci sia un errore</p>;
   }
 
-  console.log(router)
+  // console.log(router)
 
   return (
     <Layout>
@@ -76,7 +74,6 @@ export default function Post({ postData, posts }) {
               </main>
             </div>
           </article>
-          <hr />
           <div className="px-5 container mx-auto max-w-7xl py-8">
             {morePosts.length > 0 && <MorePosts posts={morePosts} />}
           </div>
