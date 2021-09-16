@@ -62,18 +62,27 @@ export default function Post({ postData, posts }) {
                       <Date dateString={postData.date} className="ml-4 text-sm text-gray-400" />
                     </div>
                     <h1
-                      className="mb-12 text-4xl font-bold leading-tight tracking-tighter text-center md:text-5xl lg:text-5xl md:text-left"
+                      className="mb-12 text-gray-700 text-4xl font-bold leading-tight tracking-tighter text-center md:text-5xl lg:text-5xl md:text-left"
                       dangerouslySetInnerHTML={{ __html: postData.title }}
                     ></h1>
                     <PostBody content={postData.content} />
                   </div>
 
-                  <div className="sticky top-20 lg:ml-4 h-full">
+                  <div className="sticky top-20 flex flex-row lg:flex-col justify-center items-center mt-8 lg:mt-0 lg:ml-4 h-full">
                     <a
                       href={`https://www.facebook.com/sharer/sharer.php?u=${domainUrl}${router.asPath}`}
                       target="_blank"
+                      rel="noopener noreferrer follow"
                     >
-                      <i className="text-4xl text-gray-600 hover:text-yellow-600 fab fa-facebook"></i>
+                      <i className="text-3xl text-gray-600 hover:text-yellow-600 fab fa-facebook"></i>
+                    </a>
+                    <a
+                      href={`https://twitter.com/intent/tweet?text=${postData.title}&url=${domainUrl}${router.asPath}`}
+                      target="_blank"
+                      className="ml-4 lg:mt-4 lg:ml-0"
+                      rel="noopener noreferrer follow"
+                    >
+                      <i className="text-3xl text-gray-600 hover:text-yellow-600 fab fa-twitter"></i>
                     </a>
                   </div>
 
@@ -93,8 +102,9 @@ export default function Post({ postData, posts }) {
             {morePosts.length > 0 && <MorePosts posts={morePosts} />}
           </div>
         </>
-      )}
-    </Layout>
+      )
+      }
+    </Layout >
   );
 }
 
