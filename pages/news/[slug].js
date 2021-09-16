@@ -10,6 +10,10 @@ import Categories from "../../components/News/post-categories";
 
 import { getAllPostsWithSlug, getPostAndMorePosts } from "../../lib/api";
 
+// TODO: is it usefull have local and production domain?
+// const domainUrl = process.env.NODE_ENV === 'production' ? process.env.NEXT_PUBLIC_WP_API_URL : process.env.NEXT_PUBLIC_WP_API_URL_LOCAL
+const domainUrl = process.env.NEXT_PUBLIC_WP_API_URL
+
 export default function Post({ postData, posts }) {
   const router = useRouter();
   const morePosts = posts?.edges;
@@ -18,8 +22,6 @@ export default function Post({ postData, posts }) {
     console.log("sdeng 💣️");
     return <p>hmm...sembra ci sia un errore</p>;
   }
-
-  {/* console.log(router) */ }
 
   return (
     <Layout>
@@ -66,12 +68,12 @@ export default function Post({ postData, posts }) {
                     <PostBody content={postData.content} />
                   </div>
 
-                  <div className="sticky top-20 lg:ml-4 border h-full">
+                  <div className="sticky top-20 lg:ml-4 h-full">
                     <a
-                      href={`https://www.facebook.com/sharer/sharer.php?u=${router.asPath}`}
+                      href={`https://www.facebook.com/sharer/sharer.php?u=${domainUrl}${router.asPath}`}
                       target="_blank"
                     >
-                      <i className="text-4xl text-gray-600 hover:text-yellow-700 fab fa-facebook"></i>
+                      <i className="text-4xl text-gray-600 hover:text-yellow-600 fab fa-facebook"></i>
                     </a>
                   </div>
 
