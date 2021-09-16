@@ -19,7 +19,7 @@ export default function Post({ postData, posts }) {
     return <p>hmm...sembra ci sia un errore</p>;
   }
 
-  // console.log(router)
+  {/* console.log(router) */ }
 
   return (
     <Layout>
@@ -51,8 +51,10 @@ export default function Post({ postData, posts }) {
                   // slug={postData.slug}
                   />
                 </div>
-                <div className="relative max-w-3xl bg-white -mt-56 z-2 shadow-lg p-10 ml-24">
-                  <div className="">
+
+                <div className="relative lg:flex lg:flex-row">
+
+                  <div className="relative max-w-3xl bg-white lg:-mt-56 z-2 shadow-lg p-10 lg:ml-24">
                     <div className="mb-6 text-lg">
                       <Categories categories={postData.categories} />
                       <Date dateString={postData.date} className="ml-4 text-sm text-gray-400" />
@@ -61,8 +63,19 @@ export default function Post({ postData, posts }) {
                       className="mb-12 text-4xl font-bold leading-tight tracking-tighter text-center md:text-5xl lg:text-5xl md:text-left"
                       dangerouslySetInnerHTML={{ __html: postData.title }}
                     ></h1>
+                    <PostBody content={postData.content} />
                   </div>
-                  <PostBody content={postData.content} />
+
+                  <div className="sticky top-20 lg:ml-4 border h-full">
+                    <a
+                      href={`https://www.facebook.com/sharer/sharer.php?u=${router.asPath()}`}
+                      target="_blank"
+                    >
+                      <i className="text-4xl text-gray-600 hover:text-yellow-700 fab fa-facebook"></i>
+                    </a>
+                  </div>
+
+
                 </div>
                 {/* 
                   <div className="max-w-2xl">
