@@ -68,7 +68,7 @@ export default function Post({ postData, posts }) {
 
                   <div className="sticky top-20 lg:ml-4 border h-full">
                     <a
-                      href={`https://www.facebook.com/sharer/sharer.php?u=${router.asPath()}`}
+                      href={`https://www.facebook.com/sharer/sharer.php?u=${router.asPath}`}
                       target="_blank"
                     >
                       <i className="text-4xl text-gray-600 hover:text-yellow-700 fab fa-facebook"></i>
