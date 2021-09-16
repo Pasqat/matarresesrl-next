@@ -25,7 +25,7 @@ export const ScrollToTop = () => {
   return (
     isVisible && (
       <div
-        className="fixed w-8 h-8 bg-gradient-tl-yellow  rounded cursor-pointer bottom-10 right-4 shadow-md items-end flex justify-center"
+        className="fixed w-8 h-8 bg-gradient-tl-yellow z-20 rounded cursor-pointer bottom-10 right-4 shadow-md items-end flex justify-center"
         onClick={scrollToTop}
       >
         <svg
