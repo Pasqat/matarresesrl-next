@@ -12,7 +12,7 @@ export default function SocialShareButton(props) {
         href={href}
         target="_blank"
         rel="noopener noreferrer follow"
-        {...props}
+        className="mr-4 lg:mr-0 lg:mb-4"
       >
         <i className={`text-3xl text-gray-600 hover:text-yellow-600 ${icon}`} />
         {children}
@@ -23,7 +23,7 @@ export default function SocialShareButton(props) {
       href={href}
       target="_blank"
       rel="noopener noreferrer follow"
-      {...props}
+      className="mr-4 lg:mr-0 lg:mb-4"
     >
       <i className={`text-3xl text-gray-600 hover:text-yellow-600 ${icon}`} />
       {children}
