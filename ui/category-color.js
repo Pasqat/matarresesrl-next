@@ -7,4 +7,5 @@ export const colors = {
   "dGVybTozNjA=": "bg-indigo-200",
   "dGVybTo2NA==": "bg-purple-200",
   "dGVybTozNTc=": "bg-pink-200",
+  "dGVybTo2NA==": "bg-gray-300",
 }
