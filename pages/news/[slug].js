@@ -7,10 +7,10 @@ import CoverImage from "../../components/News/CoverImage";
 import MorePosts from "../../components/News/more-posts";
 import PostBody from "../../components/News/post-body";
 import Categories from "../../components/News/post-categories";
-import SocialButton from "../../components/SocialShareButton/SocialShareButton";
 
 import { getAllPostsWithSlug, getPostAndMorePosts } from "../../lib/api";
 import SocialShareButton from "../../components/SocialShareButton/SocialShareButton";
+import SocialShareBar from "../../components/SocialShareBar/SocialShareBar";
 
 // TODO: is it usefull have local and production domain?
 // const domainUrl = process.env.NODE_ENV === 'production' ? process.env.NEXT_PUBLIC_WP_API_URL : process.env.NEXT_PUBLIC_WP_API_URL_LOCAL
@@ -70,25 +70,10 @@ export default function Post({ postData, posts }) {
                     <PostBody content={postData.content} />
                   </div>
 
-                  <div className="sticky top-28 flex flex-row lg:flex-col z-3 justify-center items-center mt-8 lg:mt-0 lg:ml-10 h-full">
-                    <SocialShareButton
-                      href={`https://www.facebook.com/sharer/sharer.php?u=${domainUrl}${router.asPath}`}
-                      icon="fab fa-facebook"
-                    />
-                    <SocialShareButton
-                      href={`https://twitter.com/intent/tweet?text=${postData.title}&url=${domainUrl}${router.asPath}`}
-                      icon="fab fa-twitter"
-                    />
-                    <SocialShareButton
-                      href={`https://www.linkedin.com/sharing/share-offsite/?url=${domainUrl}${router.asPath}`}
-                      icon="fab fa-linkedin"
-                    />
-                    <SocialShareButton
-                      href={`mailto:?subject=${postData.title}&body=News: ${domainUrl}${router.asPath}`}
-                      icon="fas fa-envelope"
-                    />
-                  </div>
-
+                  <SocialShareBar
+                    route={router.asPath}
+                    title={postData.title}
+                  />
 
                 </div>
                 {/* 

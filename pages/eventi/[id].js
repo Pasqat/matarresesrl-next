@@ -8,6 +8,7 @@ import EventBody from "../../components/Events/event-body";
 import Date from "../../components/Date"
 import HeaderBig from "../../components/Header/HeaderBig";
 import FormModal from "../../components/Form/FormModal";
+import SocialShareBar from "../../components/SocialShareBar/SocialShareBar";
 
 import { getAllEventsWithId, getEvent } from "../../lib/api";
 import { formatDate, getHour } from "../../actions/utils/formatDate"
@@ -49,53 +50,42 @@ export default function Events({ event }) {
         </>
       ) : (
         <>
-          <HeaderBig noButton slopeSectionColor="text-gray-100" />
-          <div className="w-full text-gray-800 bg-red-50">
-            <section className="relative pt-16 pb-24 bg-gray-100">
-              <div className="container px-4 mx-auto">
-                <div className="relative flex flex-col w-full min-w-0 mb-6 -mt-64 break-words bg-white rounded-lg shadow-xl">
+          <HeaderBig noButton slopeSectionColor="text-gray-100" backgroundImgSrc={`url(${event.featuredImage.node.sourceUrl})`} />
+          <section className="w-full relative pt-16 pb-24 bg-gray-100 text-gray-800">
+            <div className="container px-4 mx-auto">
+              <div className="relative lg:flex lg:flex-row">
+                <div className="relative flex flex-col w-full min-w-0 mb-6 -mt-64 break-words bg-white shadow-lg">
                   <div className="px-6">
-                    <div className="flex flex-wrap justify-center">
-                      <div className="flex justify-center w-full px-4 lg:w-3/12 lg:order-2">
-                        <div className="relative rounded-full w-[150px] h-[150px]">
-                          <img
-                            alt="..."
-                            src={event.featuredImage ? event.featuredImage.node.sourceUrl : "/img/prodotti-qualita-150x150.jpg"}
-                            className="top-0 left-0 absolute -mt-16 align-middle object-cover border-none rounded-full shadow-xl w-full h-full"
-                          />
+                    <div className="mt-8 flex flex-wrap justify-center">
+                      <div className="flex items-center justify-center">
+                        <div className="mb-2 text-left text-gray-800">
+                          {formatDate(event.startDate) === formatDate(event.endDate) ? (
+                            <>
+                              <span className="block text-xl font-bold tracking-wide text-gray-600 uppercase">
+                                <Date dateString={event.startDate} />
+                              </span>
+                              <span className="block text-lg font-bold text-yellow-500">
+                                h {getHour(event.startDate)} - {getHour(event.endDate)}
+                              </span>
+                            </>
+                          ) : (
+                            <>
+                              dal <span className="text-xl font-bold tracking-wide text-gray-600 uppercase"><Date dateString={event.startDate} /></span><br />
+                              al <span className="text-xl font-bold tracking-wide text-gray-600 uppercase"><Date dateString={event.startDate} /></span>
+                              <span className="block text-lg font-bold text-yellow-500 ">
+                                h {getHour(event.startDate)} - {getHour(event.endDate)}
+                              </span>
+                            </>
+                          )}
                         </div>
                       </div>
-                      <div className="h-auto w-full px-4 lg:w-4/12 lg:order-3 lg:text-right lg:self-center">
+                      <div className="px-4 w-4/12 text-right self-center">
                         <FormModal
                           buttonText="Partecipa"
                           buttonClassName="px-4 py-2 mb-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-gradient-to-tl from-red-600 to-yellow-400 rounded shadow outline-none active:bg-yellow-500 hover:shadow-md focus:outline-none sm:mr-2"
                           type="reservation"
                           title={event.title}
                         />
-                      </div>
-                      <div className="lg:self-center w-full px-4 lg:w-4/12 lg:order-1">
-                        <div className="flex justify-center py-4 pt-8 lg:pt-4">
-                          <div className="mb-2 text-center text-gray-800">
-                            {formatDate(event.startDate) === formatDate(event.endDate) ? (
-                              <>
-                                <span className="block text-xl font-bold tracking-wide text-gray-600 uppercase">
-                                  <Date dateString={event.startDate} />
-                                </span>
-                                <span className="block text-lg font-bold text-yellow-500">
-                                  h {getHour(event.startDate)} - {getHour(event.endDate)}
-                                </span>
-                              </>
-                            ) : (
-                              <>
-                                dal <span className="text-xl font-bold tracking-wide text-gray-600 uppercase"><Date dateString={event.startDate} /></span><br />
-                                al <span className="text-xl font-bold tracking-wide text-gray-600 uppercase"><Date dateString={event.startDate} /></span>
-                                <span className="block text-lg font-bold text-yellow-500 ">
-                                  h {getHour(event.startDate)} - {getHour(event.endDate)}
-                                </span>
-                              </>
-                            )}
-                          </div>
-                        </div>
                       </div>
                     </div>
                     <div className="mt-12 text-center">
@@ -116,32 +106,37 @@ export default function Events({ event }) {
                         </a>
                       </div>
                     </div>
+
                     <div className="py-10 mt-10 text-center border-t border-gray-200">
                       <div className="flex flex-wrap justify-center">
                         <div className="w-full px-4 lg:w-9/12">
                           <EventBody content={event.content} />
-                          <a
-                            href="#"
-                            className="font-normal text-yellow-500"
-                            onClick={(e) => e.preventDefault()}
-                          >
-                            Altri dettagli
-                          </a>
+                          {/* <a */}
+                          {/*   href="#" */}
+                          {/*   className="font-normal text-yellow-500" */}
+                          {/*   onClick={(e) => e.preventDefault()} */}
+                          {/* > */}
+                          {/*   Altri dettagli */}
+                          {/* </a> */}
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="flex justify-center ">
-                  <Link href="/eventi">
-                    <a className="p-4 mt-10 text-center bg-white rounded shadow-lg uppercase hover:shadow-sm">
-                      Eventi
-                    </a>
-                  </Link>
-                </div>
+                <SocialShareBar
+                  route={router.asPath}
+                  title={event.title}
+                />
               </div>
-            </section>
-          </div>
+              <div className="flex justify-center ">
+                <Link href="/eventi">
+                  <a className="p-4 mt-10 text-center bg-white rounded shadow-lg uppercase hover:shadow-sm">
+                    Eventi
+                  </a>
+                </Link>
+              </div>
+            </div>
+          </section>
         </>
       )}
     </Layout>
