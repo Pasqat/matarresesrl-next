@@ -5,29 +5,15 @@ import Tooltip from "../Tooltip/Tooltip";
   * @param children - maybe usefull for tooltip
   */
 export default function SocialShareButton(props) {
-  const { href, icon, children, tooltipContent, tooltipDirection } = props
-  return tooltipContent ? (
-    <Tooltip content={tooltipContent} direction={tooltipDirection}>
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer follow"
-        className="mr-4 lg:mr-0 lg:mb-4"
-      >
-        <i className={`text-3xl text-gray-600 hover:text-yellow-600 ${icon}`} />
-        {children}
-      </a>
-    </Tooltip>
-  ) : (
+  const { href, icon, children } = props
+  return (
     <a
       href={href}
       target="_blank"
-      rel="noopener noreferrer follow"
-      className="mr-4 lg:mr-0 lg:mb-4"
+      className="mr-4 lg:mr-0 lg:mb-6"
     >
       <i className={`text-3xl text-gray-600 hover:text-yellow-600 ${icon}`} />
       {children}
     </a>
   )
-
 }

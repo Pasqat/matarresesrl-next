@@ -70,30 +70,22 @@ export default function Post({ postData, posts }) {
                     <PostBody content={postData.content} />
                   </div>
 
-                  <div className="sticky top-20 flex flex-row lg:flex-col z-3 justify-center items-center mt-8 lg:mt-0 lg:ml-4 h-full">
+                  <div className="sticky top-28 flex flex-row lg:flex-col z-3 justify-center items-center mt-8 lg:mt-0 lg:ml-10 h-full">
                     <SocialShareButton
                       href={`https://www.facebook.com/sharer/sharer.php?u=${domainUrl}${router.asPath}`}
                       icon="fab fa-facebook"
-                      tooltipContent="condividi su facebook"
-                      tooltipDirection="top"
                     />
                     <SocialShareButton
                       href={`https://twitter.com/intent/tweet?text=${postData.title}&url=${domainUrl}${router.asPath}`}
                       icon="fab fa-twitter"
-                      tooltipContent="condividi su twitter"
-                      tooltipDirection="top"
                     />
                     <SocialShareButton
                       href={`https://www.linkedin.com/sharing/share-offsite/?url=${domainUrl}${router.asPath}`}
                       icon="fab fa-linkedin"
-                      tooltipContent="condividi su linkedin"
-                      tooltipDirection="top"
                     />
                     <SocialShareButton
                       href={`mailto:?subject=${postData.title}&body=News: ${domainUrl}${router.asPath}`}
                       icon="fas fa-envelope"
-                      tooltipContent="condividi via email"
-                      tooltipDirection="top"
                     />
                   </div>
 
