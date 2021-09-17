@@ -80,12 +80,14 @@ export default function Post({ postData, posts }) {
                       href={`https://twitter.com/intent/tweet?text=${postData.title}&url=${domainUrl}${router.asPath}`}
                       className="ml-4 lg:mt-4 lg:ml-0"
                       icon="fab fa-twitter"
+                      tooltipContent="condividi su twitter"
                     />
-                    {/* <SocialShareButton */}
-                    {/*   href={`https://twitter.com/intent/tweet?text=${postData.title}&url=${domainUrl}${router.asPath}`} */}
-                    {/*   className="ml-4 lg:mt-4 lg:ml-0" */}
-                    {/*   icon="fab fa-linkedin" */}
-                    {/* /> */}
+                    <SocialShareButton
+                      href={`https://www.linkedin.com/sharing/share-offsite/?url=${postData.title}&url=${domainUrl}${router.asPath}`}
+                      className="ml-4 lg:mt-4 lg:ml-0"
+                      icon="fab fa-linkedin"
+                      tooltipContent="condividi su linkedin"
+                    />
                   </div>
 
 
