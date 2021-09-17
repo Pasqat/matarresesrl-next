@@ -21,8 +21,6 @@ export default function Events({ event }) {
     return <p>hmm...sembra ci sia un errore</p>;
   }
 
-  // console.log(event.venue)
-
   // take n String arguments and join them
   // in split case (this-is-spilt-case)
   function addressToMapsLink(...props) {
@@ -50,7 +48,7 @@ export default function Events({ event }) {
         </>
       ) : (
         <>
-          <HeaderBig noButton slopeSectionColor="text-gray-100" backgroundImgSrc={`url(${event.featuredImage.node.sourceUrl})`} />
+          <HeaderBig noButton slopeSectionColor="text-gray-100" backgroundImgSrc={event.featuredImage && `url(${event.featuredImage.node.sourceUrl})`} />
           <section className="w-full relative pt-16 pb-24 bg-gray-100 text-gray-800">
             <div className="container px-4 mx-auto">
               <div className="relative lg:flex lg:flex-row">

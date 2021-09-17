@@ -10,7 +10,7 @@ import { SlopeDivSection } from "../../ui/SlopeDivSection";
  * @param button - {text: 'Button', link: '#'}
  */
 function HeaderBig({
-  backgroundImgSrc = "url(/img/homeBackground.jpg)",
+  backgroundImgSrc,
   overlay = "bg-black opacity-80",
   title = "",
   subtitle = "",
@@ -19,12 +19,14 @@ function HeaderBig({
   children,
   slopeSectionColor = "text-gray-200"
 }) {
+
+  console.log(typeof backgroundImgSrc)
   return (
     <div className="relative pt-16 pb-32 flex content-center items-center justify-center h-[500px]">
       <div
         className="absolute top-0 w-full h-full bg-center bg-cover"
         style={{
-          backgroundImage: backgroundImgSrc,
+          backgroundImage: backgroundImgSrc || "url(/img/homeBackground.jpg)",
         }}
       >
         <span
