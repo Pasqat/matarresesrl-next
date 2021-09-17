@@ -7,8 +7,10 @@ import CoverImage from "../../components/News/CoverImage";
 import MorePosts from "../../components/News/more-posts";
 import PostBody from "../../components/News/post-body";
 import Categories from "../../components/News/post-categories";
+import SocialButton from "../../components/SocialShareButton/SocialShareButton";
 
 import { getAllPostsWithSlug, getPostAndMorePosts } from "../../lib/api";
+import SocialShareButton from "../../components/SocialShareButton/SocialShareButton";
 
 // TODO: is it usefull have local and production domain?
 // const domainUrl = process.env.NODE_ENV === 'production' ? process.env.NEXT_PUBLIC_WP_API_URL : process.env.NEXT_PUBLIC_WP_API_URL_LOCAL
@@ -69,21 +71,21 @@ export default function Post({ postData, posts }) {
                   </div>
 
                   <div className="sticky top-20 flex flex-row lg:flex-col justify-center items-center mt-8 lg:mt-0 lg:ml-4 h-full">
-                    <a
+                    <SocialShareButton
                       href={`https://www.facebook.com/sharer/sharer.php?u=${domainUrl}${router.asPath}`}
-                      target="_blank"
-                      rel="noopener noreferrer follow"
-                    >
-                      <i className="text-3xl text-gray-600 hover:text-yellow-600 fab fa-facebook"></i>
-                    </a>
-                    <a
+                      icon="fab fa-facebook"
+                      tooltipContent="condividi su facebook"
+                    />
+                    <SocialShareButton
                       href={`https://twitter.com/intent/tweet?text=${postData.title}&url=${domainUrl}${router.asPath}`}
-                      target="_blank"
                       className="ml-4 lg:mt-4 lg:ml-0"
-                      rel="noopener noreferrer follow"
-                    >
-                      <i className="text-3xl text-gray-600 hover:text-yellow-600 fab fa-twitter"></i>
-                    </a>
+                      icon="fab fa-twitter"
+                    />
+                    {/* <SocialShareButton */}
+                    {/*   href={`https://twitter.com/intent/tweet?text=${postData.title}&url=${domainUrl}${router.asPath}`} */}
+                    {/*   className="ml-4 lg:mt-4 lg:ml-0" */}
+                    {/*   icon="fab fa-linkedin" */}
+                    {/* /> */}
                   </div>
 
 
