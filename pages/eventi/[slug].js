@@ -22,7 +22,7 @@ export default function Events({ event }) {
   }
 
   // take n String arguments and join them
-  // in split case (this-is-spilt-case)
+  // in split case (this-is-split-case)
   function addressToMapsLink(...props) {
     const parsedAddress = [];
 
@@ -32,7 +32,6 @@ export default function Events({ event }) {
 
     return parsedAddress.join("+")
   }
-
 
   return (
     <Layout navbarTransparent>
@@ -109,13 +108,6 @@ export default function Events({ event }) {
                       <div className="flex flex-wrap justify-center">
                         <div className="w-full px-4 lg:w-9/12">
                           <EventBody content={event.content} />
-                          {/* <a */}
-                          {/*   href="#" */}
-                          {/*   className="font-normal text-yellow-500" */}
-                          {/*   onClick={(e) => e.preventDefault()} */}
-                          {/* > */}
-                          {/*   Altri dettagli */}
-                          {/* </a> */}
                         </div>
                       </div>
                     </div>
@@ -144,8 +136,8 @@ export default function Events({ event }) {
 export async function getStaticProps({ params }) {
   const data = await getEvent(params.slug);
 
-  // console.log('params: ', params)
-  // console.log('data: ', data)
+  console.log('params: ', params)
+  console.log('data: ', data)
 
   return {
     props: {
