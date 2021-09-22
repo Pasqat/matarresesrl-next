@@ -5,6 +5,7 @@ import Layout from "../../components/Layout";
 import Container from "../../components/Container";
 import Header from "../../components/Header/Header";
 import NewsList from "../../components/News/NewsList";
+import CategoriesList from "../../components/categories-list/CategoriesList"
 
 const BATCH_SIZE = 10;
 
@@ -43,6 +44,14 @@ const GET_PAGINATED_POSTS = gql`
         }
       }
     }
+  categories {
+    nodes {
+      categoryId
+      name
+      slug
+      id
+    }
+  }
   }
 `;
 
@@ -78,11 +87,12 @@ export default function News() {
         <div className="bg-gray-100">
           <Container>
             <Header>Ultimi Aggiornamenti</Header>
+            <CategoriesList categories={data?.categories.nodes} />
             <hr />
             <NewsList
               error={error}
               loading={loading}
-              data={data}
+              posts={data?.posts}
               fetchMore={fetchMore}
               batchSize={BATCH_SIZE}
             />

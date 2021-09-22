@@ -1,10 +1,5 @@
-import Link from "next/link";
 import CardPost from "../Card/CardPost";
 import HeroPost from "./HeroPost"
-import CoverImage from "../News/CoverImage"
-
-import Date from "../Date";
-
 
 // Function to update the query with the new results
 const updateQuery = (previousResult, { fetchMoreResult }) => {
@@ -12,7 +7,7 @@ const updateQuery = (previousResult, { fetchMoreResult }) => {
 };
 
 export default function NewsList({
-  data,
+  posts,
   error,
   loading,
   fetchMore,
@@ -66,8 +61,6 @@ export default function NewsList({
         </div>
       </section>
     );
-
-  const { posts } = data;
 
   const heroPost = posts.edges[0]?.node
   const morePosts = posts.edges.slice(1)

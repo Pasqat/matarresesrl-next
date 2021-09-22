@@ -7,7 +7,7 @@ import Date from "../Date"
 export default function HeroPost({ title, coverImage, slug, date, excerpt }) {
   return (
     <div className="flex flex-col lg:flex-row h-full overflow-hidden bg-white lg:bg-transparent shadow-md lg:shadow-none">
-      <CoverImage title={title} coverImage={coverImage} slug={slug} href={`/news/${slug}`} className="flex-1 bg-red-800" />
+      <CoverImage title={title} coverImage={coverImage} slug={slug} href={`/news/${slug}`} />
       <div className="flex flex-col p-4 lg:p-8 ">
         <div className="flex flex-col md:flex-col-reverse lg:flex-col">
           <div className="mb-4">
