@@ -20,7 +20,6 @@ function HeaderBig({
   slopeSectionColor = "text-gray-200"
 }) {
 
-  console.log(typeof backgroundImgSrc)
   return (
     <div className="relative pt-16 pb-32 flex content-center items-center justify-center h-[500px]">
       <div
