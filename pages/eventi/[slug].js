@@ -154,6 +154,10 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
   const allEvents = await getAllEventsWithSlug();
 
+  console.log('All events: ', allEvents)
+  console.log("-".repeat(6))
+  console.log(allEvents.edges.map(({ node }) => `/eventi/${node.slug}`))
+
   return {
     paths: allEvents.edges.map(({ node }) => `/eventi/${node.sulg}`) || [],
     fallback: true,
