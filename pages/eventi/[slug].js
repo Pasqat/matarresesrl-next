@@ -136,6 +136,9 @@ export default function Events({ event }) {
 export async function getStaticProps({ params }) {
   const data = await getEvent(params.slug);
 
+  console.log('params: ', params)
+  console.log('data: ', data)
+
   return {
     props: {
       event: data.event,
@@ -145,6 +148,10 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
   const allEvents = await getAllEventsWithSlug();
+
+  console.log('All events: ', allEvents)
+  console.log("-".repeat(6))
+  console.log(allEvents.edges.map(({ node }) => `/eventi/${node.slug}`))
 
   return {
     paths: allEvents.edges.map(({ node }) => `/eventi/${node.sulg}`) || [],
