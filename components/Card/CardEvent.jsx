@@ -1,6 +1,5 @@
 import Link from 'next/link';
-import { formatDate, getDayNumeric, getDayOfWeek, getHour } from '../../actions/utils/formatDate';
-import Date from '../Date';
+import { getDayNumeric, getDayOfWeek, getHour } from '../../actions/utils/formatDate';
 import CoverImage from "../News/CoverImage";
 
 /**
@@ -18,7 +17,7 @@ export default function CardEvent({ title, slug, id, startDate, endDate, excerpt
       </div>
       <div className="h-full overflow-hidden bg-white shadow-md">
         {coverImage ? (
-          <CoverImage title={title} coverImage={coverImage} slug={slug} href={`/eventi/${id}`} placeholderText={getDayNumeric(startDate)} />
+          <CoverImage title={title} coverImage={coverImage} slug={slug} href={`/eventi/${slug}`} placeholderText={getDayNumeric(startDate)} />
         ) : (
           <div className="relative flex items-center justify-center w-full pb-[50%] text-center bg-gradient-to-tl from-red-600 to-yellow-400 overflow-hidden">
             <div className="leading-tight bottom-[40%] select-none absolute z-0 text-7xl transform md:scale-[5] scale-[3.5] text-gray-100 opacity-30 font-extrabold font-serif">
@@ -35,14 +34,14 @@ export default function CardEvent({ title, slug, id, startDate, endDate, excerpt
           <div className="flex flex-col justify-between ">
             <div>
               <h3 className="mb-3 text-2xl font-bold leading-snug text-gray-600 title-font">
-                <Link href={`/eventi/${id}`}>
+                <Link href={`/eventi/${slug}`}>
                   <a
                     className="hover:underline"
                     dangerouslySetInnerHTML={{ __html: title }}
                   ></a>
                 </Link>
               </h3>
-              <Link href={`/eventi/${id}`}>
+              <Link href={`/eventi/${slug}`}>
                 <a className="inline-flex items-center text-yellow-500 mb-3">
                   Maggiori informazioni
                   <svg

@@ -10,7 +10,7 @@ import HeaderBig from "../../components/Header/HeaderBig";
 import FormModal from "../../components/Form/FormModal";
 import SocialShareBar from "../../components/SocialShareBar/SocialShareBar";
 
-import { getAllEventsWithId, getEvent } from "../../lib/api";
+import { getAllEventsWithSlug, getEvent } from "../../lib/api";
 import { formatDate, getHour } from "../../actions/utils/formatDate"
 
 export default function Events({ event }) {
@@ -142,7 +142,7 @@ export default function Events({ event }) {
 }
 
 export async function getStaticProps({ params }) {
-  const data = await getEvent(params.id);
+  const data = await getEvent(params.slug);
 
   return {
     props: {
@@ -152,10 +152,10 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const allEvents = await getAllEventsWithId();
+  const allEvents = await getAllEventsWithSlug();
 
   return {
-    paths: allEvents.edges.map(({ node }) => `/eventi/${node.id}`) || [],
+    paths: allEvents.edges.map(({ node }) => `/eventi/${node.sulg}`) || [],
     fallback: true,
   };
 }
