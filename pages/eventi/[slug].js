@@ -144,8 +144,8 @@ export default function Events({ event }) {
 export async function getStaticProps({ params }) {
   const data = await getEvent(params.slug);
 
-  console.log('params: ', params)
-  console.log('data: ', data)
+  // console.log('params: ', params)
+  // console.log('data: ', data)
 
   return {
     props: {
