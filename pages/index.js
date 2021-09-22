@@ -50,7 +50,7 @@ export default function Home() {
                     className="md:mt-5"
                   >
                     <div>
-                      Aprire un'attività, rinnovare un locale, avere una guida
+                      Aprire un&apos;attività, rinnovare un locale, avere una guida
                       per migliorare il proprio lavoro: Matarrese srl è la
                       soluzione adatta alle esigenze professionali del mondo
                       della <strong>ristorazione.</strong>
@@ -123,7 +123,7 @@ export default function Home() {
                   >
                     <div>
                       Promuoviamo la cultura, la professionalità, la conoscenza
-                      nel mondo dell'enogastronomia, aiutiamo le idee a
+                      nel mondo dell&apos;enogastronomia, aiutiamo le idee a
                       diventare progetti reali, forniamo{" "}
                       <strong>assistenza tecnica</strong>,
                       <strong>riparazione</strong> e{" "}
@@ -485,11 +485,11 @@ export default function Home() {
                     logo.href ? (
                       <Link href={logo.href}>
                         <a key={logo.name} className="cursor-pointer text-center hover:drop-shadow-md">
-                          <Image width={180} height={95} objectFit="contain" src={logo.url} />
+                          <Image width={180} height={95} objectFit="contain" src={logo.url} alt={`${logo.name} logo`} />
                         </a>
                       </Link>
                     ) : (
-                      <Image key={logo.name} width={180} height={95} objectFit="contain" src={logo.url} />
+                      <Image key={logo.name} width={180} height={95} objectFit="contain" src={logo.url} alt={`${logo.name} logo`} />
                     )
                   )
                 })}

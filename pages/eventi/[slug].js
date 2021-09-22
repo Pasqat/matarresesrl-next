@@ -91,7 +91,7 @@ export default function Events({ event }) {
                       </h3>
                       <div className="mt-0 mb-2 text-sm font-bold leading-normal text-gray-400 uppercase">
                         <i className="mr-2 text-lg text-gray-400 fas fa-map-marker-alt"></i>{" "}
-                        <a href={`https://maps.google.com/?q=${addressToMapsLink(event.venue?.title, event.venue?.city, event.venue?.address)}`} target="_blank">
+                        <a href={`https://maps.google.com/?q=${addressToMapsLink(event.venue?.title, event.venue?.city, event.venue?.address)}`} target="_blank" rel="noreferrer">
                           {event.venue?.title} - {event.venue?.address},{" "}{event.venue?.city}
                         </a>
                       </div>
@@ -136,6 +136,7 @@ export default function Events({ event }) {
 export async function getStaticProps({ params }) {
   const data = await getEvent(params.slug);
 
+  // FIX: when deployed params returns `undefined`
   console.log('params: ', params)
   console.log('data: ', data)
 
@@ -148,10 +149,6 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
   const allEvents = await getAllEventsWithSlug();
-
-  console.log('All events: ', allEvents)
-  console.log("-".repeat(6))
-  console.log(allEvents.edges.map(({ node }) => `/eventi/${node.slug}`))
 
   return {
     paths: allEvents.edges.map(({ node }) => `/eventi/${node.sulg}`) || [],
