@@ -6,6 +6,7 @@ import Container from "../../components/Container";
 import Header from "../../components/Header/Header";
 import NewsList from "../../components/News/NewsList";
 import CategoriesList from "../../components/categories-list/CategoriesList"
+import { useEffect, useState } from "react";
 
 const BATCH_SIZE = 10;
 
@@ -15,8 +16,13 @@ const GET_PAGINATED_POSTS = gql`
     $last: Int
     $after: String
     $before: String
+    $categoryId: Int
   ) {
-    posts(first: $first, last: $last, after: $after, before: $before) {
+    posts(first: $first,
+          last: $last
+          after: $after
+          before: $before
+          where: {categoryId: $categoryId}) {
       pageInfo {
         hasNextPage
         hasPreviousPage
@@ -50,16 +56,38 @@ const GET_PAGINATED_POSTS = gql`
       name
       slug
       id
+      count
     }
   }
   }
 `;
 
 export default function News() {
+  const [category, setCategory] = useState(null)
+
   const { data, loading, error, fetchMore } = useQuery(GET_PAGINATED_POSTS, {
-    variables: { first: BATCH_SIZE, last: null, after: null, before: null },
+    variables: { first: BATCH_SIZE, last: null, after: null, before: null, categoryId: category },
     notifyOnNetworkStatusChange: true,
   });
+
+  useEffect(() => {
+    fetchMore({
+      variables: {
+        first: BATCH_SIZE,
+        after: null,
+        last: null,
+        before: null,
+        categoryId: null
+      },
+    });
+  }, [])
+
+  function selectCategory(categoryId) {
+    setCategory(categoryId)
+  }
+
+  const categeriesList = data?.categories.nodes.filter(category => category.count > 0)
+
 
   return (
     <div>
@@ -87,7 +115,7 @@ export default function News() {
         <div className="bg-gray-100">
           <Container>
             <Header>Ultimi Aggiornamenti</Header>
-            <CategoriesList categories={data?.categories.nodes} />
+            <CategoriesList categories={categeriesList} onClick={selectCategory} currentCategory={category} />
             <hr />
             <NewsList
               error={error}

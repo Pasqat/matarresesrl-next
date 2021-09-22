@@ -70,17 +70,15 @@ export default function NewsList({
       {posts && posts.edges ? (
         <>
           <section className="text-gray-600 body-font">
-            <div className="py-24 mx-auto">
+            <div className="pb-16 mx-auto">
               {heroPost && (
-                <div className="pb-8">
-                  <HeroPost
-                    title={heroPost.title}
-                    coverImage={heroPost.featuredImage?.node}
-                    slug={heroPost.slug}
-                    date={heroPost.date}
-                    excerpt={heroPost.excerpt}
-                  />
-                </div>
+                <HeroPost
+                  title={heroPost.title}
+                  coverImage={heroPost.featuredImage?.node}
+                  slug={heroPost.slug}
+                  date={heroPost.date}
+                  excerpt={heroPost.excerpt}
+                />
               )}
               <div className="flex flex-wrap -m-4">
                 {morePosts.map(({ node }) => {
@@ -99,9 +97,9 @@ export default function NewsList({
               </div>
             </div>
           </section>
-          <div className="flex justify-between w-5/12 pb-24 m-auto">
+          <div className="flex items-center justify-between md:w-5/12 pb-24 m-auto">
             <button
-              className="disabled:opacity-25 disabled:pointer-events-none"
+              className="disabled:opacity-25 disabled:pointer-events-none bg-white shadow w-10 h-10 rounded"
               disabled={!posts.pageInfo.hasPreviousPage}
               onClick={() => {
                 fetchMore({
@@ -115,10 +113,10 @@ export default function NewsList({
                 });
               }}
             >
-              Precedenti
+              <i className="fas fa-arrow-left" />
             </button>
             <button
-              className="disabled:opacity-25 disabled:pointer-events-none"
+              className="disabled:opacity-25 disabled:pointer-events-none bg-white shadow w-10 h-10 rounded"
               disabled={!posts.pageInfo.hasNextPage}
               onClick={() => {
                 fetchMore({
@@ -132,7 +130,7 @@ export default function NewsList({
                 });
               }}
             >
-              Successivi
+              <i className="fas fa-arrow-right" />
             </button>
           </div>
         </>
