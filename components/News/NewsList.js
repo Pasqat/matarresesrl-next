@@ -79,13 +79,15 @@ export default function NewsList({
           <section className="text-gray-600 body-font">
             <div className="py-24 mx-auto">
               {heroPost && (
-                <HeroPost
-                  title={heroPost.title}
-                  coverImage={heroPost.featuredImage?.node}
-                  slug={heroPost.slug}
-                  date={heroPost.date}
-                  excerpt={heroPost.excerpt}
-                />
+                <div className="pb-8">
+                  <HeroPost
+                    title={heroPost.title}
+                    coverImage={heroPost.featuredImage?.node}
+                    slug={heroPost.slug}
+                    date={heroPost.date}
+                    excerpt={heroPost.excerpt}
+                  />
+                </div>
               )}
               <div className="flex flex-wrap -m-4">
                 {morePosts.map(({ node }) => {

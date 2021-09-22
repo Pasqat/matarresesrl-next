@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function CoverImage({ title, coverImage, slug, href, placeholderText }) {
+export default function CoverImage({ title, coverImage, slug, href, placeholderText, ...otherProps }) {
   const image = (
     <Image
       width={2000}
@@ -9,7 +9,8 @@ export default function CoverImage({ title, coverImage, slug, href, placeholderT
       alt={`Immagine di copertina per ${title}`}
       src={coverImage?.sourceUrl}
       objectFit="cover"
-      className="z-0"
+      className={`z-0 ${otherProps.className} `}
+      {...otherProps}
     />
   );
   // TODO: Maybe creat and add a placeholder image when on coverImage

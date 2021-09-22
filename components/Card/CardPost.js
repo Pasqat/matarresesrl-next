@@ -9,7 +9,7 @@ export default function CardPost({ slug, title, coverImage, date, excerpt }) {
       <CoverImage title={title} coverImage={coverImage} slug={slug} href={`/news/${slug}`} placeholderText={title} />
       <div className="flex flex-col justify-between p-4">
         <div>
-          <div className="my-4">
+          <div className="mb-4">
             <Date
               className="text-xs font-medium tracking-widest text-gray-400 title-font"
               dateString={date}
