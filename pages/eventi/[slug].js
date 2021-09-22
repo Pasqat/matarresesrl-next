@@ -48,7 +48,7 @@ export default function Events({ event }) {
         </>
       ) : (
         <>
-          <HeaderBig noButton slopeSectionColor="text-gray-100" backgroundImgSrc={event.featuredImage && `url(${event.featuredImage.node.sourceUrl})`} />
+          <HeaderBig noButton overlay="bg-gradient-to-br from-purple-600 via-red-700 to-yellow-500 opacity-80" slopeSectionColor="text-gray-100" backgroundImgSrc={event.featuredImage && `url(${event.featuredImage.node.sourceUrl})`} />
           <section className="w-full relative pt-16 pb-24 bg-gray-100 text-gray-800">
             <div className="container px-4 mx-auto">
               <div className="relative lg:flex lg:flex-row">

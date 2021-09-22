@@ -31,7 +31,7 @@ function HeaderBig({
       >
         <span
           id="blackOverlay"
-          className={`absolute w-full h-full bg-black opacity-80 ${overlay}`}
+          className={`absolute w-full h-full ${overlay}`}
         />
       </div>
       <div className="container relative mx-auto">
