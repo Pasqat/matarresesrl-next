@@ -175,7 +175,7 @@ export async function getStaticPaths() {
   const allEvents = await getAllEventsWithSlug();
 
   return {
-    paths: allEvents.edges.map(({ node }) => `/eventi/${node.id}`) || [],
+    paths: allEvents.edges.map(({ node }) => `/eventi/${node.slug}`) || [],
     fallback: true,
   };
 }
