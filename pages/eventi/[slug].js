@@ -5,13 +5,13 @@ import Link from "next/link";
 import Layout from "../../components/Layout";
 import Header from "../../components/Header/Header";
 import EventBody from "../../components/Events/event-body";
-import Date from "../../components/Date"
+import Date from "../../components/Date";
 import HeaderBig from "../../components/Header/HeaderBig";
 import FormModal from "../../components/Form/FormModal";
 import SocialShareBar from "../../components/SocialShareBar/SocialShareBar";
 
 import { getAllEventsWithSlug, getEvent } from "../../lib/api";
-import { formatDate, getHour } from "../../actions/utils/formatDate"
+import { formatDate, getHour } from "../../actions/utils/formatDate";
 
 export default function Events({ event }) {
   const router = useRouter();
@@ -27,10 +27,10 @@ export default function Events({ event }) {
     const parsedAddress = [];
 
     for (let element of props) {
-      parsedAddress.push(element.split(/\W/).join("+"))
+      parsedAddress.push(element.split(/\W/).join("+"));
     }
 
-    return parsedAddress.join("+")
+    return parsedAddress.join("+");
   }
 
   return (
@@ -47,7 +47,15 @@ export default function Events({ event }) {
         </>
       ) : (
         <>
-          <HeaderBig noButton overlay="bg-gradient-to-br from-purple-600 via-red-700 to-yellow-500 opacity-80" slopeSectionColor="text-gray-100" backgroundImgSrc={event.featuredImage && `url(${event.featuredImage.node.sourceUrl})`} />
+          <HeaderBig
+            noButton
+            overlay="bg-gradient-to-br from-purple-600 via-red-700 to-yellow-500 opacity-80"
+            slopeSectionColor="text-gray-100"
+            backgroundImgSrc={
+              event.featuredImage &&
+              `url(${event.featuredImage.node.sourceUrl})`
+            }
+          />
           <section className="w-full relative pt-16 pb-24 bg-gray-100 text-gray-800">
             <div className="container px-4 mx-auto">
               <div className="relative lg:flex lg:flex-row">
@@ -56,21 +64,31 @@ export default function Events({ event }) {
                     <div className="mt-8 flex flex-wrap justify-center">
                       <div className="flex items-center justify-center">
                         <div className="mb-2 text-left text-gray-800">
-                          {formatDate(event.startDate) === formatDate(event.endDate) ? (
+                          {formatDate(event.startDate) ===
+                          formatDate(event.endDate) ? (
                             <>
                               <span className="block text-xl font-bold tracking-wide text-gray-600 uppercase">
                                 <Date dateString={event.startDate} />
                               </span>
                               <span className="block text-lg font-bold text-yellow-500">
-                                h {getHour(event.startDate)} - {getHour(event.endDate)}
+                                h {getHour(event.startDate)} -{" "}
+                                {getHour(event.endDate)}
                               </span>
                             </>
                           ) : (
                             <>
-                              dal <span className="text-xl font-bold tracking-wide text-gray-600 uppercase"><Date dateString={event.startDate} /></span><br />
-                              al <span className="text-xl font-bold tracking-wide text-gray-600 uppercase"><Date dateString={event.startDate} /></span>
+                              dal{" "}
+                              <span className="text-xl font-bold tracking-wide text-gray-600 uppercase">
+                                <Date dateString={event.startDate} />
+                              </span>
+                              <br />
+                              al{" "}
+                              <span className="text-xl font-bold tracking-wide text-gray-600 uppercase">
+                                <Date dateString={event.startDate} />
+                              </span>
                               <span className="block text-lg font-bold text-yellow-500 ">
-                                h {getHour(event.startDate)} - {getHour(event.endDate)}
+                                h {getHour(event.startDate)} -{" "}
+                                {getHour(event.endDate)}
                               </span>
                             </>
                           )}
@@ -91,8 +109,17 @@ export default function Events({ event }) {
                       </h3>
                       <div className="mt-0 mb-2 text-sm font-bold leading-normal text-gray-400 uppercase">
                         <i className="mr-2 text-lg text-gray-400 fas fa-map-marker-alt"></i>{" "}
-                        <a href={`https://maps.google.com/?q=${addressToMapsLink(event.venue?.title, event.venue?.city, event.venue?.address)}`} target="_blank" rel="noreferrer">
-                          {event.venue?.title} - {event.venue?.address},{" "}{event.venue?.city}
+                        <a
+                          href={`https://maps.google.com/?q=${addressToMapsLink(
+                            event.venue?.title,
+                            event.venue?.city,
+                            event.venue?.address
+                          )}`}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          {event.venue?.title} - {event.venue?.address},{" "}
+                          {event.venue?.city}
                         </a>
                       </div>
                       <div className="mt-10 mb-2 text-gray-600">
@@ -113,10 +140,7 @@ export default function Events({ event }) {
                     </div>
                   </div>
                 </div>
-                <SocialShareBar
-                  route={router.asPath}
-                  title={event.title}
-                />
+                <SocialShareBar route={router.asPath} title={event.title} />
               </div>
               <div className="flex justify-center ">
                 <Link href="/eventi">
@@ -137,8 +161,8 @@ export async function getStaticProps({ params }) {
   const data = await getEvent(params.slug);
 
   // FIX: when deployed params returns `undefined`
-  console.log('params: ', params)
-  console.log('data: ', data)
+  console.log("params: ", params);
+  console.log("data: ", data);
 
   return {
     props: {
