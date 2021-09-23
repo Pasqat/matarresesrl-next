@@ -5,13 +5,17 @@ import CoverImage from "../News/CoverImage";
 /**
   * @param coverImage eg. node.featuredImage?.node
   **/
-export default function CardEvent({ title, slug, id, startDate, endDate, excerpt, coverImage, venue }) {
+export default function CardEvent({ title, slug, id, startDate, excerpt, coverImage, venue }) {
   return (
     <div className="flex flex-col h-full">
       <div className="mb-4">
         <div className="flex">
-          <time className="uppercase text-yellow-500 border-b-4 border-yellow-500 mr-2 align-baseline ">{getDayOfWeek(startDate)}</time>
-          <div className="leading-none text-yellow-500 text-6xl oldstyle-nums text-right">{getDayNumeric(startDate)}</div>
+          <time className="uppercase text-yellow-500 border-b-4 border-yellow-500 mr-2 align-baseline ">
+            {getDayOfWeek(startDate)}
+          </time>
+          <div className="leading-none text-yellow-500 text-6xl oldstyle-nums text-right">
+            {getDayNumeric(startDate)}
+          </div>
         </div>
         <p className="text-yellow-500">{getHour(startDate)}</p>
       </div>
