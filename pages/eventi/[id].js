@@ -158,7 +158,7 @@ export default function Events({ event }) {
 }
 
 export async function getStaticProps({ params }) {
-  const data = await getEvent(params.slug);
+  const data = await getEvent(params.id);
 
   // FIX: when deployed params returns `undefined`
   console.log("params: ", params);
@@ -175,7 +175,7 @@ export async function getStaticPaths() {
   const allEvents = await getAllEventsWithSlug();
 
   return {
-    paths: allEvents.edges.map(({ node }) => `/eventi/${node.sulg}`) || [],
+    paths: allEvents.edges.map(({ node }) => `/eventi/${node.id}`) || [],
     fallback: true,
   };
 }
