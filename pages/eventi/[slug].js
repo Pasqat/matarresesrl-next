@@ -10,7 +10,7 @@ import HeaderBig from "../../components/Header/HeaderBig";
 import FormModal from "../../components/Form/FormModal";
 import SocialShareBar from "../../components/SocialShareBar/SocialShareBar";
 
-import { getAllEventsWithSlug, getEvent } from "../../lib/api";
+import { getAllEventsWithSlug, getEvent } from "../../lib/event_api";
 import { formatDate, getHour } from "../../actions/utils/formatDate";
 
 export default function Events({ event }) {

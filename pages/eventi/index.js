@@ -1,4 +1,4 @@
-import { getEvents } from "../../lib/api";
+import { getEvents } from "../../lib/event_api";
 
 import Layout from "../../components/Layout";
 import Container from "../../components/Container";

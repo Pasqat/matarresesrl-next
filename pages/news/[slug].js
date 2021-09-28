@@ -8,7 +8,7 @@ import MorePosts from "../../components/News/more-posts";
 import PostBody from "../../components/News/post-body";
 import Categories from "../../components/News/post-categories";
 
-import { getAllPostsWithSlug, getPostAndMorePosts } from "../../lib/api";
+import { getAllPostsWithSlug, getPostAndMorePosts } from "../../lib/post_api";
 import SocialShareBar from "../../components/SocialShareBar/SocialShareBar";
 
 // TODO: is it usefull have local and production domain?
