@@ -9,12 +9,11 @@ import PostBody from "../../components/News/post-body";
 import Categories from "../../components/News/post-categories";
 
 import { getAllPostsWithSlug, getPostAndMorePosts } from "../../lib/api";
-import SocialShareButton from "../../components/SocialShareButton/SocialShareButton";
 import SocialShareBar from "../../components/SocialShareBar/SocialShareBar";
 
 // TODO: is it usefull have local and production domain?
 // const domainUrl = process.env.NODE_ENV === 'production' ? process.env.NEXT_PUBLIC_WP_API_URL : process.env.NEXT_PUBLIC_WP_API_URL_LOCAL
-const domainUrl = process.env.NEXT_PUBLIC_WP_API_URL
+// const domainUrl = process.env.NEXT_PUBLIC_WP_API_URL
 
 export default function Post({ postData, posts }) {
   const router = useRouter();
@@ -58,7 +57,7 @@ export default function Post({ postData, posts }) {
 
                 <div className="relative lg:flex lg:flex-row">
 
-                  <div className="relative max-w-3xl bg-white lg:-mt-56 z-2 shadow-lg p-10 lg:ml-24">
+                  <div className="relative max-w-4xl bg-white lg:-mt-56 z-2 shadow-lg p-10 lg:ml-24">
                     <div className="mb-6 text-lg">
                       <Categories categories={postData.categories} />
                       <Date dateString={postData.date} className="ml-4 text-sm text-gray-400" />
