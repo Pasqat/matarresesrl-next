@@ -160,10 +160,6 @@ export default function Events({ event }) {
 export async function getStaticProps({ params }) {
   const data = await getEvent(params.slug);
 
-  // FIX: when deployed params returns `undefined`
-  console.log("params: ", params);
-  console.log("data: ", data);
-
   return {
     props: {
       event: data.event,
