@@ -58,6 +58,14 @@ const GET_PAGINATED_POSTS = gql`
   }
 `;
 
+// Function to update the query with the new results
+// TODO: this could be exported in is own file
+const updateQuery = (previousResult, { fetchMoreResult }) => {
+  return fetchMoreResult.projects.edges.length
+    ? fetchMoreResult
+    : previousResult;
+};
+
 export default function News() {
   // const [category, setCategory] = useState(null)
 
@@ -194,17 +202,17 @@ export default function News() {
                     );
                   })}
                 </div>
-                <div className="flex items-center justify-between md:w-5/12 pb-24 m-auto">
+                <div className="flex items-center justify-between md:w-5/12 pt-16 pb-24 m-auto">
                   <button
                     className="disabled:opacity-25 disabled:pointer-events-none bg-white shadow w-10 h-10 rounded"
-                    disabled={!projects.pageInfo.hasPreviousPage}
+                    disabled={!data?.projects.pageInfo.hasPreviousPage}
                     onClick={() => {
                       fetchMore({
                         variables: {
                           first: null,
                           after: null,
                           last: BATCH_SIZE,
-                          before: projects.pageInfo.startCursor || null,
+                          before: data?.projects.pageInfo.startCursor || null,
                         },
                         updateQuery,
                       });
@@ -214,12 +222,12 @@ export default function News() {
                   </button>
                   <button
                     className="disabled:opacity-25 disabled:pointer-events-none bg-white shadow w-10 h-10 rounded"
-                    disabled={!projects.pageInfo.hasNextPage}
+                    disabled={!data?.projects.pageInfo.hasNextPage}
                     onClick={() => {
                       fetchMore({
                         variables: {
                           first: BATCH_SIZE,
-                          after: projects.pageInfo.endCursor || null,
+                          after: data?.projects.pageInfo.endCursor || null,
                           last: null,
                           before: null,
                         },
