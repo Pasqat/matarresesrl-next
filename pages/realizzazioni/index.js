@@ -4,11 +4,10 @@ import { useQuery, gql } from "@apollo/client";
 import Layout from "../../components/Layout";
 import Container from "../../components/Container";
 import Header from "../../components/Header/Header";
-import NewsList from "../../components/News/NewsList";
-import CategoriesList from "../../components/categories-list/CategoriesList";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+// import CategoriesList from "../../components/categories-list/CategoriesList";
 
 const BATCH_SIZE = 10;
 
@@ -17,11 +16,8 @@ const GET_PAGINATED_POSTS = gql`
     $first: Int
     $last: Int
     $after: String
-    $before: String
-  ) 
-  # NOTE: can't find a way to filter by category
-  # $portfolioCategoryId: Int
-  {
+    $before: String # NOTE: can't find a way to filter by category  $portfolioCategoryId: Int
+  ) {
     projects(
       first: $first
       last: $last
@@ -93,6 +89,8 @@ export default function News() {
   //   }
 
   //   const categeriesList = data?.categories.nodes.filter(category => category.count > 0)
+  // TODO: make a proper error notification/page system
+  if (error) <div>{JSON.stringify(error)}</div>;
 
   return (
     <div>
@@ -123,27 +121,34 @@ export default function News() {
             {/* <CategoriesList categories={categeriesList} onClick={selectCategory} currentCategory={category} /> */}
             <hr />
             <div className="grid grid-cols-3 grid-rows-3">
-              {data?.projects?.edges.map(edge => {
+              {data?.projects?.edges.map((edge) => {
                 const {
                   date,
-                  excerpt, 
-                  featuredImage, 
-                  id, 
+                  excerpt,
+                  featuredImage,
+                  id,
                   projectId,
                   slug,
-                  title
-                } = edge.node
+                  title,
+                } = edge.node;
 
                 return (
                   <Link href={`/realizzazioni/${slug}`}>
-                    <a className="group">
-                      <div className="relative w-full h-full bg-blend-multiply bg-green-600">
-                        <Image objectFit="cover" width="800" height="800" src={featuredImage?.node?.sourceUrl}/>
-                        <div className="absolute top-1/2 left-auto text-2xl group-hover:text-red-700 text-white">{title}</div>
+                    <a key={id} className="group">
+                      <div className="relative w-full h-full bg-blend-multiply ">
+                        <Image
+                          objectFit="cover"
+                          width="800"
+                          height="800"
+                          src={featuredImage?.node?.sourceUrl}
+                        />
+                        <div className="absolute top-1/2 left-auto text-2xl group-hover:text-red-700 text-white">
+                          {title}
+                        </div>
                       </div>
                     </a>
                   </Link>
-                )
+                );
               })}
             </div>
           </Container>
