@@ -9,7 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 // import CategoriesList from "../../components/categories-list/CategoriesList";
 
-const BATCH_SIZE = 10;
+const BATCH_SIZE = 9;
 
 const GET_PAGINATED_POSTS = gql`
   query GET_PAGINATED_POSTS(
@@ -90,7 +90,19 @@ export default function News() {
 
   //   const categeriesList = data?.categories.nodes.filter(category => category.count > 0)
   // TODO: make a proper error notification/page system
-  if (error) <div>{JSON.stringify(error)}</div>;
+  if (error) {
+    return (
+      <div>
+        <p className="text-lg">
+          Ci dispiace, ma sembra che qualcosa sia andato storto. Prova a
+          ricaricare la pagina.
+        </p>
+        <p>{JSON.stringify(error)}</p>
+      </div>
+    );
+  }
+
+  const projectPlaceholder = Array(9).fill(null);
 
   return (
     <div>
@@ -120,37 +132,106 @@ export default function News() {
             <Header>Alcune delle nostre realizzazioni</Header>
             {/* <CategoriesList categories={categeriesList} onClick={selectCategory} currentCategory={category} /> */}
             <hr />
-            <div className="grid grid-cols-3 grid-rows-3">
-              {data?.projects?.edges.map((edge) => {
-                const {
-                  date,
-                  excerpt,
-                  featuredImage,
-                  id,
-                  projectId,
-                  slug,
-                  title,
-                } = edge.node;
+            {loading ? (
+              <div className="absolute top-1/2 left-1/2">
+                <svg
+                  width="141"
+                  height="144"
+                  viewBox="0 0 141 144"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="animate-ping"
+                >
+                  <path
+                    d="M24.4614 2.53423C24.4614 2.53423 65 117.534 70 118.034C75 118.534 116.442 2.53423 116.442 2.53423C116.442 2.53423 129 0.533933 140.5 2.53423C140.5 5.03423 140.5 143.534 140.5 143.534H121.949V88.6256L123.688 29.3591C123.688 29.3591 88 129.5 77.5048 143.534H63.3019C53.5 131 17.215 29.6496 17.215 29.6496L19.0507 88.6256V143.534H0.5V2.53423C10.5 -0.966122 24.4614 2.53423 24.4614 2.53423Z"
+                    fill="url(#paint0_linear)"
+                  />
+                  <defs>
+                    <linearGradient
+                      id="paint0_linear"
+                      x1="-3"
+                      y1="3"
+                      x2="139"
+                      y2="146.5"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop stop-color="#FFD600" />
+                      <stop offset="1" stop-color="#EF4444" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+            ) : (
+              <section>
+                <div className="grid grid-cols-3 grid-rows-3">
+                  {data?.projects?.edges.map((edge) => {
+                    const {
+                      date,
+                      excerpt,
+                      featuredImage,
+                      id,
+                      projectId,
+                      slug,
+                      title,
+                    } = edge.node;
 
-                return (
-                  <Link href={`/realizzazioni/${slug}`}>
-                    <a key={id} className="group">
-                      <div className="relative w-full h-full bg-blend-multiply ">
-                        <Image
-                          objectFit="cover"
-                          width="800"
-                          height="800"
-                          src={featuredImage?.node?.sourceUrl}
-                        />
-                        <div className="absolute top-1/2 left-auto text-2xl group-hover:text-red-700 text-white">
-                          {title}
-                        </div>
-                      </div>
-                    </a>
-                  </Link>
-                );
-              })}
-            </div>
+                    return (
+                      <Link href={`/realizzazioni/${slug}`}>
+                        <a key={id} className="group">
+                          <div className="relative w-full h-full bg-blend-multiply ">
+                            <Image
+                              objectFit="cover"
+                              width="800"
+                              height="800"
+                              src={featuredImage?.node?.sourceUrl}
+                            />
+                            <div className="absolute top-1/2 left-auto text-2xl group-hover:text-red-700 text-white">
+                              {title}
+                            </div>
+                          </div>
+                        </a>
+                      </Link>
+                    );
+                  })}
+                </div>
+                <div className="flex items-center justify-between md:w-5/12 pb-24 m-auto">
+                  <button
+                    className="disabled:opacity-25 disabled:pointer-events-none bg-white shadow w-10 h-10 rounded"
+                    disabled={!projects.pageInfo.hasPreviousPage}
+                    onClick={() => {
+                      fetchMore({
+                        variables: {
+                          first: null,
+                          after: null,
+                          last: BATCH_SIZE,
+                          before: projects.pageInfo.startCursor || null,
+                        },
+                        updateQuery,
+                      });
+                    }}
+                  >
+                    <i className="fas fa-arrow-left" />
+                  </button>
+                  <button
+                    className="disabled:opacity-25 disabled:pointer-events-none bg-white shadow w-10 h-10 rounded"
+                    disabled={!projects.pageInfo.hasNextPage}
+                    onClick={() => {
+                      fetchMore({
+                        variables: {
+                          first: BATCH_SIZE,
+                          after: projects.pageInfo.endCursor || null,
+                          last: null,
+                          before: null,
+                        },
+                        updateQuery,
+                      });
+                    }}
+                  >
+                    <i className="fas fa-arrow-right" />
+                  </button>
+                </div>
+              </section>
+            )}
           </Container>
         </div>
       </Layout>

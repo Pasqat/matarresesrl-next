@@ -5,14 +5,10 @@ import Link from "next/link";
 import Layout from "../../components/Layout";
 import Header from "../../components/Header/Header";
 import EventBody from "../../components/Events/event-body";
-import Date from "../../components/Date";
 import HeaderBig from "../../components/Header/HeaderBig";
-import FormModal from "../../components/Form/FormModal";
 import SocialShareBar from "../../components/SocialShareBar/SocialShareBar";
 
 import { getProject, getAllProjectsWithSlug } from "../../lib/project_api";
-
-import { formatDate, getHour } from "../../actions/utils/formatDate";
 
 export default function Project({ project }) {
   const router = useRouter();
@@ -75,14 +71,11 @@ export default function Project({ project }) {
                         {project.title}
                       </h3>
                       <div className="mt-0 mb-2 text-sm font-bold leading-normal text-gray-400 uppercase">
-                        <i className="mr-2 text-lg text-gray-400 fas fa-map-marker-alt"></i>{" "}
-                        <a target="_blank" rel="noreferrer">
-                          indirizzo
-                        </a>
-                      </div>
-                      <div className="mt-10 mb-2 text-gray-600">
-                        <i className="mr-2 text-lg text-gray-400 fas fa-briefcase"></i>
-                        Organizzato da: <a>nessuno imbecille!!!</a>
+                        {project.portfolioCategories.edges.map(
+                          ({ node } = category) => (
+                            <div key={node.id}>{node.name}</div>
+                          )
+                        )}
                       </div>
                     </div>
 
