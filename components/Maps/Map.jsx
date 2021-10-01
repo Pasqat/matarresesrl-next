@@ -25,6 +25,16 @@ function MapExample() {
           stylers: [{ color: "#f2f2f2" }],
         },
         {
+          featureType: 'landscape.man_made',
+          elementType: 'geometry',
+          stylers: [
+            { hue: '#aaffaa' },
+            { saturation: -80 },
+            { lightness: -5 },
+            { visibility: 'on' }
+          ]
+        },
+        {
           featureType: "poi",
           elementType: "all",
           stylers: [{ visibility: "off" }],
@@ -32,7 +42,7 @@ function MapExample() {
         {
           featureType: "road",
           elementType: "all",
-          stylers: [{ saturation: -100 }, { lightness: 45 }],
+          stylers: [{ saturation: -50 }, { lightness: 45 }],
         },
         {
           featureType: "road.highway",
@@ -42,7 +52,7 @@ function MapExample() {
         {
           featureType: "road.arterial",
           elementType: "labels.icon",
-          stylers: [{ visibility: "off" }],
+          stylers: [{ visibility: "on" }],
         },
         {
           featureType: "transit",
@@ -74,7 +84,7 @@ function MapExample() {
       content: contentString,
     });
 
-    google.maps.event.addListener(marker, "click", function () {
+    google.maps.event.addListener(marker, "click", function() {
       infowindow.open(map, marker);
     });
   }, []);

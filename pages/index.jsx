@@ -302,20 +302,21 @@ export default function Home() {
           <section className="relative block pb-20 bg-gray-800">
             <SlopeDivSection color="text-gray-800" />
 
-            <div className="container px-4 mx-auto lg:pt-24 lg:pb-64">
-              <div className="flex flex-wrap justify-center mb-24 text-center">
-                <div className="w-full px-4 lg:w-6/12">
-                  <h2 className="text-4xl font-semibold">
-                    Alcuni dei nostri lavori
-                  </h2>
-                  <p className="m-4 text-lg leading-relaxed text-gray-500">
-                    According to th National Oceanic and Atmospheric
-                    Administration, Ted, Scambos, NSIDClead scentist, puts the
-                    potentially record maximum.
+            <div className="container px-4 mx-auto lg:py-24">
+              <div className="flex flex-wrap justify-center text-center">
+                <div className="w-full px-4 lg:w-8/12">
+                  <h2 className="text-4xl text-gray-100 font-semibold">MePA</h2>
+                  <p className="m-4 text-2xl leading-relaxed text-gray-400">
+                    Siamo presenti sul{" "}
+                    <strong className="text-yellow-500">MEPA</strong>: il
+                    Mercato Elettronico della Pubblica Amministrazione digitale
+                    in cui le Amministrazioni abilitate possono acquistare i
+                    beni e servizi offerti da fornitori abilitati a presentare i
+                    propri cataloghi sul sistema.
                   </p>
                 </div>
               </div>
-              <div className="flex flex-wrap">
+              {/*             <div className="flex flex-wrap">
                 <div className="w-full px-4 mb-12 md:w-6/12 lg:w-3/12 lg:mb-0">
                   <div className="px-6">
                     <img
@@ -457,6 +458,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
+              */}
             </div>
           </section>
           <section

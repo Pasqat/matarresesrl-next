@@ -1,4 +1,4 @@
-import Tooltip from "../Tooltip/Tooltip";
+// import Tooltip from "../Tooltip/Tooltip";
 
 /**
  * @param {string} icon - FontAwesome icon name, eg. fab fa-facebook
