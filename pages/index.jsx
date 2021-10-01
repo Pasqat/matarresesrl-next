@@ -12,7 +12,7 @@ import Layout from "../components/Layout";
 import { SlopeDivSection } from "../ui/SlopeDivSection";
 
 import Testimonials from "../components/Testimonials/Testimonials";
-import { logos } from "../data/partner-logo"
+import { logos } from "../data/partner-logo";
 import Image from "next/image";
 
 export default function Home() {
@@ -50,8 +50,8 @@ export default function Home() {
                     className="md:mt-5"
                   >
                     <div>
-                      Aprire un&apos;attività, rinnovare un locale, avere una guida
-                      per migliorare il proprio lavoro: Matarrese srl è la
+                      Aprire un&apos;attività, rinnovare un locale, avere una
+                      guida per migliorare il proprio lavoro: Matarrese srl è la
                       soluzione adatta alle esigenze professionali del mondo
                       della <strong>ristorazione.</strong>
                     </div>
@@ -480,18 +480,32 @@ export default function Home() {
             <div className="container px-4 mx-auto mb-12">
               <h2 className="mb-8 text-center text-4xl">I Nostri partner</h2>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
-                {logos.map(logo => {
-                  return (
-                    logo.href ? (
-                      <Link href={logo.href}>
-                        <a key={logo.name} className="cursor-pointer text-center hover:drop-shadow-md">
-                          <Image width={180} height={95} objectFit="contain" src={logo.url} alt={`${logo.name} logo`} />
-                        </a>
-                      </Link>
-                    ) : (
-                      <Image key={logo.name} width={180} height={95} objectFit="contain" src={logo.url} alt={`${logo.name} logo`} />
-                    )
-                  )
+                {logos.map((logo) => {
+                  return logo.href ? (
+                    <Link href={logo.href}>
+                      <a
+                        key={logo.name}
+                        className="cursor-pointer text-center hover:drop-shadow-md"
+                      >
+                        <Image
+                          width={180}
+                          height={95}
+                          objectFit="contain"
+                          src={logo.url}
+                          alt={`${logo.name} logo`}
+                        />
+                      </a>
+                    </Link>
+                  ) : (
+                    <Image
+                      key={logo.name}
+                      width={180}
+                      height={95}
+                      objectFit="contain"
+                      src={logo.url}
+                      alt={`${logo.name} logo`}
+                    />
+                  );
                 })}
               </div>
             </div>

@@ -1,7 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function CoverImage({ title, coverImage, slug, href, placeholderText, ...otherProps }) {
+export default function CoverImage({
+  title,
+  coverImage,
+  slug,
+  href,
+  placeholderText,
+  ...otherProps
+}) {
   const image = (
     <Image
       width={2000}
@@ -30,5 +37,5 @@ export default function CoverImage({ title, coverImage, slug, href, placeholderT
         {placeholderText}
       </div>
     </div>
-  )
+  );
 }

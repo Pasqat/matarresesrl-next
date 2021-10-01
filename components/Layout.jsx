@@ -1,7 +1,7 @@
 // import Alert from '../components/alert'
-import Footer from './Footer/Footer'
-import Meta from '../components/meta'
-import Navbar from './Navbars/Navbar'
+import Footer from "./Footer/Footer";
+import Meta from "../components/meta";
+import Navbar from "./Navbars/Navbar";
 
 export default function Layout({ preview, children, navbarTransparent }) {
   return (
@@ -14,5 +14,5 @@ export default function Layout({ preview, children, navbarTransparent }) {
       </div>
       <Footer />
     </>
-  )
+  );
 }

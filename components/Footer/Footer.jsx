@@ -180,7 +180,7 @@ export default function Footer() {
               </li>
             </nav>
           </div>
-          <div className="w-full px-4 xl:w-2/5 ">
+          <div className="w-full pl-4 xl:w-2/5 ">
             <h2 className="mb-3 text-sm font-medium tracking-widest text-gray-900 uppercase title-font">
               Orari
             </h2>

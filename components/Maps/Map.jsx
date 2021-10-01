@@ -77,7 +77,7 @@ function MapExample() {
     google.maps.event.addListener(marker, "click", function () {
       infowindow.open(map, marker);
     });
-  },[]);
+  }, []);
   return (
     <>
       <div className="absolute inset-0 w-full h-full rounded">

@@ -8,7 +8,7 @@ import MorePosts from "../../components/News/more-posts";
 import PostBody from "../../components/News/post-body";
 import Categories from "../../components/News/post-categories";
 
-import { getAllPostsWithSlug, getPostAndMorePosts } from "../../lib/api";
+import { getAllPostsWithSlug, getPostAndMorePosts } from "../../lib/post_api";
 import SocialShareBar from "../../components/SocialShareBar/SocialShareBar";
 
 export default function Post({ postData, posts }) {
@@ -47,16 +47,18 @@ export default function Post({ postData, posts }) {
                   <CoverImage
                     title={postData.title}
                     coverImage={postData.featuredImage?.node}
-                  // slug={postData.slug}
+                    // slug={postData.slug}
                   />
                 </div>
 
                 <div className="relative lg:flex lg:flex-row">
-
                   <div className="relative max-w-4xl bg-white lg:-mt-56 z-2 shadow-lg p-10 lg:ml-24">
                     <div className="mb-6 text-lg">
                       <Categories categories={postData.categories} />
-                      <Date dateString={postData.date} className="ml-4 text-sm text-gray-400" />
+                      <Date
+                        dateString={postData.date}
+                        className="ml-4 text-sm text-gray-400"
+                      />
                     </div>
                     <h1
                       className="mb-12 text-gray-700 text-4xl font-bold leading-tight tracking-tighter text-center md:text-5xl lg:text-5xl md:text-left"
@@ -69,7 +71,6 @@ export default function Post({ postData, posts }) {
                     route={router.asPath}
                     title={postData.title}
                   />
-
                 </div>
                 {/* 
                   <div className="max-w-2xl">
@@ -85,9 +86,8 @@ export default function Post({ postData, posts }) {
             {morePosts.length > 0 && <MorePosts posts={morePosts} />}
           </div>
         </>
-      )
-      }
-    </Layout >
+      )}
+    </Layout>
   );
 }
 

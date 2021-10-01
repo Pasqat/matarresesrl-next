@@ -1,4 +1,4 @@
-import CardPost from "../../components/Card/CardPost"
+import CardPost from "../../components/Card/CardPost";
 
 export default function MorePosts({ posts }) {
   return (

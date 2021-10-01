@@ -1,5 +1,5 @@
 import CardPost from "../Card/CardPost";
-import HeroPost from "./HeroPost"
+import HeroPost from "./HeroPost";
 
 // Function to update the query with the new results
 const updateQuery = (previousResult, { fetchMoreResult }) => {
@@ -24,7 +24,6 @@ export default function NewsList({
       </div>
     );
   }
-
 
   const newsPlaceholder = Array(9).fill(null);
 
@@ -62,8 +61,8 @@ export default function NewsList({
       </section>
     );
 
-  const heroPost = posts.edges[0]?.node
-  const morePosts = posts.edges.slice(1)
+  const heroPost = posts.edges[0]?.node;
+  const morePosts = posts.edges.slice(1);
 
   return (
     <>
