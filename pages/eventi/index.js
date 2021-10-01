@@ -19,7 +19,7 @@ function GroupByMonth({ data }) {
   });
 
   return scheduledMonth.map((m) => (
-    <div key={m} className="flex flex-col md:flex-row py-6">
+    <div key={m} className="flex flex-col lg:flex-row py-6">
       <div className="flex justify-center items-center bg-yellow-500 mb-4 md:mb-0 md:mr-10 md:w-14">
         <h3 className="md:-rotate-90 text-3xl font-bold text-yellow-100 leading-none">{m}</h3>
       </div>

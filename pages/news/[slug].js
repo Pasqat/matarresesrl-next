@@ -8,12 +8,8 @@ import MorePosts from "../../components/News/more-posts";
 import PostBody from "../../components/News/post-body";
 import Categories from "../../components/News/post-categories";
 
-import { getAllPostsWithSlug, getPostAndMorePosts } from "../../lib/post_api";
+import { getAllPostsWithSlug, getPostAndMorePosts } from "../../lib/api";
 import SocialShareBar from "../../components/SocialShareBar/SocialShareBar";
-
-// TODO: is it usefull have local and production domain?
-// const domainUrl = process.env.NODE_ENV === 'production' ? process.env.NEXT_PUBLIC_WP_API_URL : process.env.NEXT_PUBLIC_WP_API_URL_LOCAL
-// const domainUrl = process.env.NEXT_PUBLIC_WP_API_URL
 
 export default function Post({ postData, posts }) {
   const router = useRouter();
