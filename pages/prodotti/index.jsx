@@ -3,7 +3,6 @@ import Link from "next/link";
 import { HeartIcon, ShoppingCartIcon } from "@heroicons/react/outline";
 
 import HeaderBig from "../../components/Header/HeaderBig";
-import CardSquareImg from "../../components/Card/CardSquareImg";
 import CardBigImg from "../../components/Card/CardBigImg";
 import ContactForm from "../../components/Form/ContactForm";
 import FormModal from "../../components/Form/FormModal";
@@ -17,7 +16,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Matarrese srl | Home</title>
+        <title>Matarrese srl | Prodotti</title>
         <link rel="canonical" href="https://www.matarrese.it/" />
         <meta
           name="description"
@@ -29,162 +28,152 @@ export default function Home() {
       <Layout navbarTransparent>
         <main>
           <HeaderBig
-            title="Specialisti della Ristorazione"
-            subtitle="Dal design dell'arredo alla formazione del personale per realizzare i tuoi progetti"
+            title="Prodotti"
+            subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In."
+            button={{ text: "visita il nostro showroom", link: "/contatti" }}
+
           />
-          <section className="pb-20 -mt-24 bg-gray-200">
+          <section className="pb-20 bg-gray-200">
             <div className="container px-4 mx-auto">
-              <div className="flex flex-wrap">
-                <div
-                  enter="transition ease-in-out duration-[800ms] transform"
-                  enterFrom="translate-y-full opacity-0"
-                  enterTo="-translate-y-0"
-                  className="md:w-4/12 "
-                >
-                  <CardSquareImg
-                    imgSrc="/img/servizio-completo1-150x150.jpg"
-                    title="Dall'idea al progetto reale"
-                    className="md:mt-5"
-                  >
-                    <div>
-                      Aprire un&apos;attività, rinnovare un locale, avere una
-                      guida per migliorare il proprio lavoro: Matarrese srl è la
-                      soluzione adatta alle esigenze professionali del mondo
-                      della <strong>ristorazione.</strong>
-                    </div>
-                    <Link href="/servizi">
-                      <a className="inline-flex items-center mt-4 text-yellow-500 group md:mb-2 lg:mb-0 ">
-                        Scopri i servizi
-                        <svg
-                          className="w-4 h-4 ml-2 animate-bounceX"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          fill="none"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <path d="M5 12h14"></path>
-                          <path d="M12 5l7 7-7 7"></path>
-                        </svg>
-                      </a>
-                    </Link>
-                  </CardSquareImg>
-                </div>
-                <div
-                  enter="transition ease-in-out duration-[1000ms] transform"
-                  enterFrom="translate-y-full opacity-0"
-                  enterTo="-translate-y-0"
-                  className="md:w-4/12 "
-                >
-                  <CardSquareImg
-                    imgSrc="/img/prodotti-qualita-150x150.jpg"
-                    title="Marchi e attrezzature di qualità"
-                    className="md:-mt-10"
-                  >
-                    <div>
-                      Selezioniamo i migliori marchi del settore al fine di
-                      fornire sempre un vasto assortimento di attrezzature e
-                      prodotti di alta qualità, per soddisfare ogni esigenza dei
-                      nostri clienti.
-                    </div>
-                    <Link href="/prodotti">
-                      <a className="inline-flex items-center mt-4 text-yellow-500 group md:mb-2 lg:mb-0 ">
-                        Scopri i prodotti
-                        <svg
-                          // className="w-4 h-4 ml-2 group-hover:translate-x-2"
-                          className="w-4 h-4 ml-2 animate-bounceX"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          fill="none"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <path d="M5 12h14"></path>
-                          <path d="M12 5l7 7-7 7"></path>
-                        </svg>
-                      </a>
-                    </Link>
-                  </CardSquareImg>
-                </div>
-                <div
-                  enter="transition ease-in-out duration-[1200ms] transform"
-                  enterFrom="translate-y-full opacity-0"
-                  enterTo="-translate-y-0"
-                  className="md:w-4/12 "
-                >
-                  <CardSquareImg
-                    imgSrc="/img/info-e-supporto-150x150.jpg"
-                    title="Supporto pre e post intervento"
-                  >
-                    <div>
-                      Promuoviamo la cultura, la professionalità, la conoscenza
-                      nel mondo dell&apos;enogastronomia, aiutiamo le idee a
-                      diventare progetti reali, forniamo{" "}
-                      <strong>assistenza tecnica</strong>,
-                      <strong>riparazione</strong> e{" "}
-                      <strong>manutenzione.</strong>
-                    </div>
-                    <Link href="/contatti">
-                      <a className="inline-flex items-center mt-4 text-yellow-500 group md:mb-2 lg:mb-0 ">
-                        Richiedi assistenza
-                        <svg
-                          className="w-4 h-4 ml-2 animate-bounceX"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          fill="none"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <path d="M5 12h14"></path>
-                          <path d="M12 5l7 7-7 7"></path>
-                        </svg>
-                      </a>
-                    </Link>
-                  </CardSquareImg>
+              <div className="-mt-24 flex">
+                <div className="w-full p-8 h-64 bg-white text-lg font-semibold text-gray-700 items-center justify-center rounded-lg shadow-md grid grid-cols-2 z-3">
+                  <div className="text-center">
+                    Per la Lavorazione
+                  </div>
+                  <div className="text-center">
+                    Tutto per l'accoglienza
+                  </div>
+                  <div className="text-center">
+                    Igiene
+                  </div>
+                  <div className="text-center">
+                    Trattamento dell'aria
+                  </div>
                 </div>
               </div>
+              <div className="w-full px-4 my-32">
+                <h2 className="text-4xl text-center font-semibold text-gray-800">
+                  Per la Lavorazione
+                </h2>
+              </div>
 
-              <div className="flex flex-wrap items-center mt-32">
+              <div className="flex flex-wrap items-center">
                 <div className="w-full px-4 ml-auto mr-auto md:w-5/12">
+                  <div className="md:pr-12 text-lg">
+                    <div className="inline-flex items-center justify-center w-16 h-16 p-3 mb-6 text-center text-blue-400 bg-white rounded-full shadow-lg">
+                      <i className="far fa-snowflake" />
+                    </div>
+                    <h3 className="text-3xl font-semibold">
+                      Cottura
+                    </h3>
+                    <p className="mt-4 leading-relaxed text-gray-500">
+                      Aprire un'attività, rinnovare un locale, avere una guida
+                      per migliorare il proprio lavoro: Matarrese srl è la
+                      soluzione adatta alle esigenze professionali del mondo
+                      della ristorazione.
+                    </p>
+                    <p className="mt-4 leading-relaxed text-gray-500">
+                      Altro testo a caso che possa avere un minimo di senso e di keywords utili
+                    </p>
+                    <div className="mt-6">
+                      <Link href="#">
+                        <a className="text-yellow-600">
+                          Approfondisci
+                        </a>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+                <div className="w-full px-4 ml-auto mr-auto md:w-4/12">
+                  <Image
+                    alt="attrezzature ristorazione nello showroom"
+                    className="max-w-full rounded-lg shadow-lg"
+                    src="/img/attrezzature-esposizione.jpg"
+                    width="1000"
+                    height="1300"
+                    objectFit="cover"
+                  />
+                </div>
+              </div>
+              <div className="flex flex-wrap items-center my-24">
+                <CardBigImg
+                  title="Macchinari per l'agroalimentare"
+                  content="Vieni a trovarci nel nostro showrooms, raccontaci le tue esigenze e insieme troveremo la soluzione più adeguata anche per impianti di trasformazione industriali"
+                  imgSrc="/img/vicini-al-cliente.jpg"
+                  noSlope
+                />
+                <div className="w-full text-lg  px-4 ml-auto mr-auto md:w-5/12">
                   <div className="inline-flex items-center justify-center w-16 h-16 p-3 mb-6 text-center text-gray-500 bg-white rounded-full shadow-lg">
                     <HeartIcon className="text-xl text-yellow-500" />
                   </div>
                   <h3 className="mb-2 text-3xl font-semibold leading-normal">
-                    Da oltre 30 anni partner degli operatori del settore
+                    Attrezzature
                   </h3>
-                  <p className="mt-4 mb-4 text-lg font-light leading-relaxed text-gray-600">
-                    Offriamo prodotti di alta qualità e servizi professionali:
-                    interior design, consulenza per trasformare l’idea in un
-                    reale progetto, realizzazione arredo e complementi d’arredo
-                    su misura.
+                  <p className="mt-4 leading-relaxed text-gray-500">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Phasellus vehicula quam ipsum, at aliquam tellus mollis
+                    varius. Integer nisi urna, vulputate non risus ac, imperdiet
+                    vestibulum dolor. Proin rutrum nunc id pellentesque semper.
                   </p>
-                  <p className="mt-0 mb-4 text-lg font-light leading-relaxed text-gray-600">
-                    Forniture di attrezzature, tra cui attrezzature per
-                    ristorazione e cucine professionali, impianti, assistenza
-                    tecnica post vendita, manutenzione e riparazione, consulenza
-                    professionale continua.
+                  <p className="mt-4 leading-relaxed text-gray-500">
+                    Maecenas efficitur dictum
+                    est sed eleifend. Sed mauris diam, dapibus eu gravida ut,
+                    lacinia nec odio. Sed ultricies convallis lobortis. Nam a ex
+                    sed sem cursus tincidunt. Nam nec nunc id velit imperdiet
+
                   </p>
-                  <FormModal
-                    buttonText="Realizza il tuo sogno"
-                    buttonClassName="hover:shadow-none bg-gradient-tl-yellow shadow-md text-white rounded text-lg py-2 px-4 "
-                  />
+                  <div className="mt-6">
+                    <Link href="#">
+                      <a className="text-yellow-600">
+                        Approfondisci
+                      </a>
+                    </Link>
+                  </div>
                 </div>
 
-                <CardBigImg
-                  title="Vicini al Cliente"
-                  content="Dalla progettazione alla realizzazione,
-                  i nostri esperti seguono il cliente per trasformare le idee in realtà"
-                  imgSrc="/img/vicini-al-cliente.jpg"
-                  noSlope
-                />
+              </div>
+              <div className="flex flex-wrap items-center">
+                <div className="w-full px-4 ml-auto mr-auto md:w-5/12">
+                  <div className="md:pr-12 text-lg">
+                    <div className="inline-flex items-center justify-center w-16 h-16 p-3 mb-6 text-center text-blue-400 bg-white rounded-full shadow-lg">
+                      <i className="far fa-snowflake" />
+                    </div>
+                    <h3 className="text-3xl font-semibold">
+                      Refrigerazione
+                    </h3>
+                    <p className="mt-4 leading-relaxed text-gray-500">
+                      Aprire un'attività, rinnovare un locale, avere una guida
+                      per migliorare il proprio lavoro: Matarrese srl è la
+                      soluzione adatta alle esigenze professionali del mondo
+                      della ristorazione.
+                    </p>
+                    <p className="mt-4 leading-relaxed text-gray-500">
+                      Altro testo a caso che possa avere un minimo di senso e di keywords utili
+                    </p>
+                    <div className="mt-6">
+                      <Link href="#">
+                        <a className="text-yellow-600">
+                          Approfondisci
+                        </a>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+                <div className="w-full px-4 ml-auto mr-auto md:w-4/12">
+                  <Image
+                    alt="attrezzature ristorazione nello showroom"
+                    className="max-w-full rounded-lg shadow-lg"
+                    src="/img/attrezzature-esposizione.jpg"
+                    width="1000"
+                    height="1300"
+                    objectFit="cover"
+                  />
+                </div>
               </div>
             </div>
           </section>
 
-          <section className="relative py-20">
+          <section className="relative py-32">
             <SlopeDivSection color="text-white" />
             <div className="container px-4 mx-auto">
               <div className="flex flex-wrap items-center">
@@ -197,81 +186,81 @@ export default function Home() {
                 </div>
                 <div className="w-full px-4 ml-auto mr-auto md:w-5/12">
                   <div className="md:pr-12">
-                    <div className="inline-flex items-center justify-center w-16 h-16 p-3 mb-6 text-center text-gray-500 bg-gray-200 rounded-full shadow-lg">
-                      <ShoppingCartIcon className="text-xl text-indigo-500" />
-                    </div>
+                    {/* <div className="inline-flex items-center justify-center w-16 h-16 p-3 mb-6 text-center text-gray-500 bg-gray-200 rounded-full shadow-lg"> */}
+                    {/*   <ShoppingCartIcon className="text-xl text-indigo-500" /> */}
+                    {/* </div> */}
                     <h3 className="text-3xl font-semibold">
-                      Tutto per il settore food
+                      Tutto per l'accoglienza
                     </h3>
                     <p className="mt-4 text-lg leading-relaxed text-gray-500">
-                      In una struttura aziendale di <strong>5000 mq</strong>{" "}
-                      uniamo il laboratorio di produzione di arredi su misura,
-                      l’officina e magazzino ricambi, il laboratorio di
-                      formazione e un ampio showroom in cui potrai trovare:
+                      Qualsiasi stile hai scelto per la tua attività da noi
+                      puoi trovare l’arredo e i complementi che fanno per te. E
+                      per le esigenze più particolari possiamo realizzare il tuo
+                      arredo su misura.
+                      Scopri di più su:
                     </p>
-                    <ul className="mt-6 list-none">
+                    <ul className="mt-6 list-none text-lg">
                       <li className="py-2">
-                        <div className="flex items-center">
-                          <div>
-                            <span className="inline-block px-2 py-1 mr-3 text-xs font-semibold text-gray-500 uppercase bg-gray-100 rounded-full">
-                              <i className="fas fa-blender"></i>
-                            </span>
-                          </div>
-                          <div>
-                            <h4 className="text-gray-500">
-                              Attrezzature per ristorazione
-                            </h4>
-                          </div>
+                        <div className="flex flex-wrap items-center">
+                          <Link href="#">
+                            <a className="inline-flex items-center text-yellow-500 md:mb-2 lg:mb-0">
+                              Arredi e complementi
+                              <svg
+                                className="w-4 h-4 ml-2 animate-bounceX"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                fill="none"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              >
+                                <path d="M5 12h14"></path>
+                                <path d="M12 5l7 7-7 7"></path>
+                              </svg>
+                            </a>
+                          </Link>
                         </div>
                       </li>
                       <li className="py-2">
-                        <div className="flex items-center">
-                          <div>
-                            <span className="inline-block px-2 py-1 mr-3 text-xs font-semibold text-gray-500 uppercase bg-gray-100 rounded-full">
-                              <i className="fas fa-chair"></i>
-                            </span>
-                          </div>
-                          <div>
-                            <h4 className="text-gray-500">Arredamenti</h4>
-                          </div>
+                        <div className="flex flex-wrap items-center">
+                          <Link href="#">
+                            <a className="inline-flex items-center text-yellow-500 md:mb-2 lg:mb-0">
+                              Arredi su misura
+                              <svg
+                                className="w-4 h-4 ml-2 animate-bounceX"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                fill="none"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              >
+                                <path d="M5 12h14"></path>
+                                <path d="M12 5l7 7-7 7"></path>
+                              </svg>
+                            </a>
+                          </Link>
                         </div>
                       </li>
                       <li className="py-2">
-                        <div className="flex items-center">
-                          <div>
-                            <span className="inline-block px-2 py-1 mr-3 text-xs font-semibold text-gray-500 uppercase bg-gray-100 rounded-full">
-                              <i className="fas fa-utensils"></i>
-                            </span>
-                          </div>
-                          <div>
-                            <h4 className="text-gray-500">
-                              Utensili da cucina
-                            </h4>
-                          </div>
-                        </div>
-                      </li>
-                      <li className="py-2">
-                        <div className="flex items-center">
-                          <div>
-                            <span className="inline-block px-2 py-1 mr-3 text-xs font-semibold text-gray-500 uppercase bg-gray-100 rounded-full">
-                              <i className="fas fa-concierge-bell"></i>
-                            </span>
-                          </div>
-                          <div>
-                            <h4 className="text-gray-500">Hotellerie</h4>
-                          </div>
-                        </div>
-                      </li>
-                      <li className="py-2">
-                        <div className="flex items-center">
-                          <div>
-                            <span className="inline-block px-2 py-1 mr-3 text-xs font-semibold text-gray-500 uppercase bg-gray-100 rounded-full">
-                              <i className="fab fa-html5"></i>
-                            </span>
-                          </div>
-                          <div>
-                            <h4 className="text-gray-500">...e tanto altro</h4>
-                          </div>
+                        <div className="flex flex-wrap items-center">
+                          <Link href="#">
+                            <a className="inline-flex items-center text-yellow-500 md:mb-2 lg:mb-0">
+                              Forniture alberghiere
+                              <svg
+                                className="w-4 h-4 ml-2 animate-bounceX"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                fill="none"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              >
+                                <path d="M5 12h14"></path>
+                                <path d="M12 5l7 7-7 7"></path>
+                              </svg>
+                            </a>
+                          </Link>
                         </div>
                       </li>
                     </ul>
@@ -281,20 +270,6 @@ export default function Home() {
             </div>
           </section>
 
-          <section className="pt-20 pb-48">
-            <div className="container px-8 md:mx-auto">
-              <div className="flex flex-wrap justify-center text-center">
-                <div className="w-full px-4 lg:w-6/12">
-                  <h2 className="text-4xl font-semibold text-gray-800">
-                    Cosa dicono di noi
-                  </h2>
-                </div>
-              </div>
-              <div className="mt-20">
-                <Testimonials />
-              </div>
-            </div>
-          </section>
 
           <section className="relative block pb-20 bg-gray-800">
             <SlopeDivSection color="text-gray-800" />
@@ -302,15 +277,51 @@ export default function Home() {
             <div className="container px-4 mx-auto lg:py-24">
               <div className="flex flex-wrap justify-center text-center">
                 <div className="w-full px-4 lg:w-8/12">
-                  <h2 className="text-4xl text-gray-100 font-semibold">MePA</h2>
-                  <p className="m-4 text-2xl leading-relaxed text-gray-400">
-                    Siamo presenti sul{" "}
-                    <strong className="text-yellow-500">MEPA</strong>: il
-                    Mercato Elettronico della Pubblica Amministrazione digitale
-                    in cui le Amministrazioni abilitate possono acquistare i
-                    beni e servizi offerti da fornitori abilitati a presentare i
-                    propri cataloghi sul sistema.
-                  </p>
+                  <h2 className="text-4xl text-gray-100 font-semibold">Igiene</h2>
+                  <div class="grid-cols-3 text-gray-200 text-lg">
+                    <div>
+                      <Image
+                        width="400"
+                        height="400"
+                        objectFit="cover"
+                        className="rounded-lg shadow-md"
+                        src="/img/servizio-completo1-150x150.jpg" />
+                      <p className="font-semibold text-2xl">Sanificazione</p>
+                      <Link href="#">
+                        <a className="text-yellow-500">
+                          Scopri di più
+                        </a>
+                      </Link>
+                    </div>
+                    <div>
+                      <Image
+                        width="400"
+                        height="400"
+                        objectFit="cover"
+                        className="rounded-lg shadow-md"
+                        src="/img/servizio-completo1-150x150.jpg" />
+                      <p className="font-semibold text-2xl">Lavaggio</p>
+                      <Link href="#">
+                        <a className="text-yellow-500">
+                          Scopri di più
+                        </a>
+                      </Link>
+                    </div>
+                    <div>
+                      <Image
+                        width="400"
+                        height="400"
+                        objectFit="cover"
+                        className="rounded-lg shadow-md"
+                        src="/img/servizio-completo1-150x150.jpg" />
+                      <p className="font-semibold text-2xl">Lavanderia</p>
+                      <Link href="#">
+                        <a className="text-yellow-500">
+                          Scopri di più
+                        </a>
+                      </Link>
+                    </div>
+                  </div>
                 </div>
               </div>
               {/*             <div className="flex flex-wrap">
