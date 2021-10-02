@@ -21,7 +21,7 @@ export default function Header({ children, href, className }) {
         className
       )}
     >
-      {children}.
+      {children}
     </h2>
   );
 }

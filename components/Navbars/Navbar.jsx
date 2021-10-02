@@ -6,7 +6,7 @@ import clsx from "clsx";
 
 let navigation = [
   { name: "Home", href: "/", current: false },
-  { name: "Prodotti", href: "#", current: false },
+  { name: "Prodotti", href: "/prodotti", current: false },
   { name: "Servizi", href: "#", current: false },
   { name: "Eventi", href: "/eventi", current: false },
   { name: "News", href: "/news", current: false },

@@ -12,15 +12,15 @@ export default function ContactForm({ hasAutoFocus }) {
   });
   const { name, mail, formContent } = form;
 
-  const [isChecked, setIsChecked] = useState(false)
-
-  const inputName = useRef(null);
-
+  const [isCheckedTerms, setIsCheckedTerms] = useState(false)
+  const [isCheckedNewsletter, setIsCheckedNewsletter] = useState(false)
   const [formButtonDisabled, setFormButtonDisabled] = useState(false);
   const [notification, setNotification] = useState({
     text: "",
     isError: false,
   });
+
+  const inputName = useRef(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,10 +35,10 @@ export default function ContactForm({ hasAutoFocus }) {
   }, []);
 
   useEffect(() => {
-    if (isChecked && notification.text.includes("termini")) {
+    if (isCheckedTerms && notification.text.includes("termini")) {
       setNotification({ text: "", isError: false });
     }
-  }, [isChecked]);
+  }, [isCheckedTerms]);
 
   async function submitContactForm(event) {
     event.preventDefault();
@@ -51,7 +51,7 @@ export default function ContactForm({ hasAutoFocus }) {
       })
     }
 
-    if (isChecked === false) {
+    if (isCheckedTerms === false) {
       return setNotification({
         ...notification,
         text: "Non dimenticare di accettare i termini e le condizioni",
@@ -68,7 +68,7 @@ export default function ContactForm({ hasAutoFocus }) {
         isError: false,
       });
       setForm({ ...form, name: "", mail: "", formContent: "" });
-      setIsChecked(false)
+      setIsCheckedTerms(false)
     } else {
       setNotification({
         ...notification,
@@ -80,7 +80,7 @@ export default function ContactForm({ hasAutoFocus }) {
   return (
     <>
       <form
-        className="flex-auto space-y-8 p-5  lg:p-10"
+        className="flex-auto space-y-8 p-2 lg:p-8"
         onSubmit={submitContactForm}
       >
         <h4 className="text-2xl font-semibold">
@@ -151,21 +151,36 @@ export default function ContactForm({ hasAutoFocus }) {
           </button>
         </div>
         <div className="mt-5 text-right text-gray-600">
-          <label className="inline-flex items-center">
+          <label className="inline-flex items-center w-full">
             <input
               type="checkbox"
               className="text-yellow-600 border-2 border-gray-400 border-solid cursor-pointer form-checkbox"
               name="conditions"
-              checked={isChecked}
-              onChange={() => setIsChecked(!isChecked)}
+              checked={isCheckedTerms}
+              onChange={() => setIsCheckedTerms(!isCheckedTerms)}
             />
-            <span className="ml-2 text-sm">
-              accetto i{" "}
+            <span className="ml-auto text-xs">
+              accetto il{" "}
               <Link href="/privacy-policy">
-                <a className="text-yellow-600" target="_blank">termini e le condizioni</a>
+                <a className="text-yellow-600" target="_blank">trattamento dei dati e condizioni</a>
               </Link>
             </span>
+            *
           </label>
+          {/* <label className="inline-flex items-center w-full"> */}
+          {/*   <input */}
+          {/*     type="checkbox" */}
+          {/*     className="text-yellow-600 border-2 border-gray-400 border-solid cursor-pointer form-checkbox" */}
+          {/*     name="newsletter" */}
+          {/*     checked={isCheckedNewsletter} */}
+          {/*     onChange={() => setIsCheckedNewsletter(!isCheckedNewsletter)} */}
+          {/*   /> */}
+          {/*   <span className="ml-auto text-xs"> */}
+          {/*     voglio rimanere aggiornato su novità e promozioni */}
+          {/*   </span> */}
+          {/* </label> */}
+        </div>
+        <div className="mt-5 text-right text-gray-600">
         </div>
       </form>
       <div

@@ -82,7 +82,7 @@ export default function FormModal({
     }
 
     if (type === "reservation") {
-      if (typeof(participants) === null || participants === "") {
+      if (typeof (participants) === null || participants === "") {
         return setNotification({
           ...notification,
           text: "Per favore compila tutti i campi",
@@ -229,12 +229,12 @@ export default function FormModal({
                       </p>
                     </div>
                   </>
-                ) : 
-                <Dialog.Title
-                as="h3"
-                className="text-lg font-medium leading-6 text-gray-900">
-                  {title}
-                </Dialog.Title>
+                ) :
+                  <Dialog.Title
+                    as="h3"
+                    className="text-lg font-medium leading-6 text-gray-900">
+                    {title}
+                  </Dialog.Title>
                 }
 
                 <form
@@ -354,10 +354,10 @@ export default function FormModal({
                         onChange={() => setIsChecked(!isChecked)}
                       />
                       <span className="ml-2 text-sm">
-                        accetto i{" "}
+                        accetto il{" "}
                         <Link href="/privacy-policy">
                           <a className="text-yellow-600" target="_blank">
-                            termini e le condizioni
+                            trattamento dei dati e condizioni
                           </a>
                         </Link>
                       </span>
