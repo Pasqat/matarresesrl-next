@@ -161,8 +161,8 @@ export default function Home() {
                   <p className="mt-4 mb-4 text-lg font-light leading-relaxed text-gray-600">
                     Offriamo prodotti di alta qualità e servizi professionali:
                     interior design, consulenza per trasformare l’idea in un
-                    reale progetto, realizzazione arredo e complementi d’arredo
-                    su misura.
+                    progetto reale, realizzazione arredo e complementi d’arredo s
+                    s s su misura.
                   </p>
                   <p className="mt-0 mb-4 text-lg font-light leading-relaxed text-gray-600">
                     Forniture di attrezzature, tra cui attrezzature per
