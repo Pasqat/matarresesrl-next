@@ -12,8 +12,8 @@ export default function ContactForm({ hasAutoFocus }) {
   });
   const { name, mail, formContent } = form;
 
-  const [isCheckedTerms, setIsCheckedTerms] = useState(false)
-  const [isCheckedNewsletter, setIsCheckedNewsletter] = useState(false)
+  const [isCheckedTerms, setIsCheckedTerms] = useState(false);
+  const [isCheckedNewsletter, setIsCheckedNewsletter] = useState(false);
   const [formButtonDisabled, setFormButtonDisabled] = useState(false);
   const [notification, setNotification] = useState({
     text: "",
@@ -32,7 +32,7 @@ export default function ContactForm({ hasAutoFocus }) {
 
   useEffect(() => {
     hasAutoFocus && inputName.current.focus();
-  }, []);
+  });
 
   useEffect(() => {
     if (isCheckedTerms && notification.text.includes("termini")) {
@@ -47,16 +47,16 @@ export default function ContactForm({ hasAutoFocus }) {
       return setNotification({
         ...notification,
         text: "Per favore compila tutti i campi",
-        isError: true
-      })
+        isError: true,
+      });
     }
 
     if (isCheckedTerms === false) {
       return setNotification({
         ...notification,
         text: "Non dimenticare di accettare i termini e le condizioni",
-        isError: true
-      })
+        isError: true,
+      });
     }
 
     const res = await sendContactMail(name, mail, formContent);
@@ -68,7 +68,7 @@ export default function ContactForm({ hasAutoFocus }) {
         isError: false,
       });
       setForm({ ...form, name: "", mail: "", formContent: "" });
-      setIsCheckedTerms(false)
+      setIsCheckedTerms(false);
     } else {
       setNotification({
         ...notification,
@@ -84,7 +84,8 @@ export default function ContactForm({ hasAutoFocus }) {
         onSubmit={submitContactForm}
       >
         <h4 className="text-2xl font-semibold">
-          Hai un' idea che vorresti realizzare, o hai bisogno di informazioni?
+          Hai un&apos;idea che vorresti realizzare, o hai bisogno di
+          informazioni?
         </h4>
         <p className="mt-1 mb-4 leading-relaxed text-gray-500">
           Completa questo form, ti risponderemo entro 24 ore (escluso festivi)
@@ -151,7 +152,7 @@ export default function ContactForm({ hasAutoFocus }) {
           </button>
         </div>
         <div className="mt-5 text-right text-gray-600">
-          <label className="inline-flex items-center w-full">
+          <label className="inline-flex items-center flex-end w-full">
             <input
               type="checkbox"
               className="text-yellow-600 border-2 border-gray-400 border-solid cursor-pointer form-checkbox"
@@ -159,15 +160,17 @@ export default function ContactForm({ hasAutoFocus }) {
               checked={isCheckedTerms}
               onChange={() => setIsCheckedTerms(!isCheckedTerms)}
             />
-            <span className="ml-auto text-xs">
+            <span className="ml-2 text-xs">
               accetto il{" "}
               <Link href="/privacy-policy">
-                <a className="text-yellow-600" target="_blank">trattamento dei dati e condizioni</a>
+                <a className="text-yellow-600" target="_blank">
+                  trattamento dei dati e condizioni
+                </a>
               </Link>
             </span>
             *
           </label>
-          {/* <label className="inline-flex items-center w-full"> */}
+          {/* <label className="inline-flex items-center flex-end w-full"> */}
           {/*   <input */}
           {/*     type="checkbox" */}
           {/*     className="text-yellow-600 border-2 border-gray-400 border-solid cursor-pointer form-checkbox" */}
@@ -175,13 +178,12 @@ export default function ContactForm({ hasAutoFocus }) {
           {/*     checked={isCheckedNewsletter} */}
           {/*     onChange={() => setIsCheckedNewsletter(!isCheckedNewsletter)} */}
           {/*   /> */}
-          {/*   <span className="ml-auto text-xs"> */}
+          {/*   <span className="ml-2 text-xs"> */}
           {/*     voglio rimanere aggiornato su novità e promozioni */}
           {/*   </span> */}
           {/* </label> */}
         </div>
-        <div className="mt-5 text-right text-gray-600">
-        </div>
+        <div className="mt-5 text-right text-gray-600"></div>
       </form>
       <div
         className={clsx(
