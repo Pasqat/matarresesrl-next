@@ -5,7 +5,6 @@ import { HeartIcon } from "@heroicons/react/outline";
 import HeaderBig from "../../components/Header/HeaderBig";
 import CardBigImg from "../../components/Card/CardBigImg";
 import ContactForm from "../../components/Form/ContactForm";
-import FormModal from "../../components/Form/FormModal";
 import Layout from "../../components/Layout";
 import { SlopeDivSection } from "../../ui/SlopeDivSection";
 
@@ -35,12 +34,26 @@ export default function Home() {
             <div className="container px-4 mx-auto">
               <div className="-mt-24 flex">
                 <div className="w-full p-8 h-64 bg-white text-lg font-semibold text-gray-700 items-center justify-center rounded-lg shadow-md grid grid-cols-2 z-3">
-                  <div className="text-center">Per la Lavorazione</div>
                   <div className="text-center">
-                    Tutto per l&apos;accoglienza
+                    <Link href="#lavorazione">
+                      <a>Per la Lavorazione</a>
+                    </Link>
                   </div>
-                  <div className="text-center">Igiene</div>
-                  <div className="text-center">Trattamento dell&apos;aria</div>
+                  <div className="text-center">
+                    <Link href="#accoglienza">
+                      <a>Tutto per l&apos;accoglienza</a>
+                    </Link>
+                  </div>
+                  <div className="text-center">
+                    <Link href="#igiene">
+                      <a>Igiene</a>
+                    </Link>
+                  </div>
+                  <div className="text-center">
+                    <Link href="#trattamento-aria">
+                      <a>Trattamento dell&apos;aria</a>
+                    </Link>
+                  </div>
                 </div>
               </div>
               <div className="w-full px-4 my-32">
@@ -49,7 +62,7 @@ export default function Home() {
                 </h2>
               </div>
 
-              <div className="flex flex-wrap items-center">
+              <div className="flex flex-wrap items-center" id="lavorazione">
                 <div className="w-full px-4 ml-auto mr-auto md:w-5/12">
                   <div className="md:pr-12 text-lg">
                     <div className="inline-flex items-center justify-center w-16 h-16 p-3 mb-6 text-center text-blue-400 bg-white rounded-full shadow-lg">
@@ -57,7 +70,7 @@ export default function Home() {
                     </div>
                     <h3 className="text-3xl font-semibold">Cottura</h3>
                     <p className="mt-4 leading-relaxed text-gray-500">
-                      Aprire un&apos;attività, rinnovare un locale, avere una 
+                      Aprire un&apos;attività, rinnovare un locale, avere una
                       guida per migliorare il proprio lavoro: Matarrese srl è la
                       soluzione adatta alle esigenze professionali del mondo
                       della ristorazione.
@@ -73,11 +86,11 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="w-full px-4 ml-auto mr-auto md:w-4/12">
+                <div className="inline-flex w-full ml-auto mr-auto md:w-4/12 overflow-hidden shadow-lg rounded-lg">
                   <Image
-                    alt="attrezzature ristorazione nello showroom"
+                    alt="prodotti per la cucina professionale"
                     className="max-w-full rounded-lg shadow-lg"
-                    src="/img/cottura-prodotti.jpg"
+                    src="/img/cottura-prodotti.png"
                     width="1000"
                     height="1300"
                     objectFit="cover"
@@ -88,7 +101,7 @@ export default function Home() {
                 <CardBigImg
                   title="Macchinari per l'agroalimentare"
                   content="Vieni a trovarci nel nostro showrooms, raccontaci le tue esigenze e insieme troveremo la soluzione più adeguata anche per impianti di trasformazione industriali"
-                  imgSrc="/img/vicini-al-cliente.jpg"
+                  imgSrc="/img/pastorizzatore-prodotti.jpg"
                   noSlope
                 />
                 <div className="w-full text-lg  px-4 ml-auto mr-auto md:w-5/12">
@@ -141,11 +154,10 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="w-full px-4 ml-auto mr-auto md:w-4/12">
+                <div className="inline-flex w-full ml-auto mr-auto md:w-4/12 overflow-hidden shadow-lg rounded-lg">
                   <Image
-                    alt="attrezzature ristorazione nello showroom"
-                    className="max-w-full rounded-lg shadow-lg"
-                    src="/img/attrezzature-esposizione.jpg"
+                    alt="refrigerazione alimentare"
+                    src="/img/refrigerazione-prodotti.jpg"
                     width="1000"
                     height="1300"
                     objectFit="cover"
@@ -155,15 +167,17 @@ export default function Home() {
             </div>
           </section>
 
-          <section className="relative py-32">
+          <section className="relative py-32" id="accoglienza">
             <SlopeDivSection color="text-white" />
             <div className="container px-4 mx-auto">
               <div className="flex flex-wrap items-center">
-                <div className="w-full px-4 ml-auto mr-auto md:w-5/12">
-                  <img
-                    alt="attrezzature ristorazione nello showroom"
-                    className="max-w-full rounded-lg shadow-lg"
-                    src="/img/attrezzature-esposizione.jpg"
+                <div className="inline-flex w-full ml-auto mr-auto md:w-5/12 overflow-hidden shadow-lg rounded-lg">
+                  <Image
+                    alt="arredi su misura"
+                    src="/img/arredo-su-misura-prodotti.jpg"
+                    width="1000"
+                    height="1300"
+                    objectFit="cover"
                   />
                 </div>
                 <div className="w-full px-4 ml-auto mr-auto md:w-5/12">
@@ -251,7 +265,7 @@ export default function Home() {
             </div>
           </section>
 
-          <section className="relative block pb-20 bg-gray-800">
+          <section className="relative block pb-20 bg-gray-800" id="igiene">
             <SlopeDivSection color="text-gray-800" />
 
             <div className="container px-4 mx-auto lg:py-24">
@@ -266,8 +280,8 @@ export default function Home() {
                         width="400"
                         height="400"
                         objectFit="cover"
-                        className="rounded-lg shadow-md"
-                        src="/img/servizio-completo1-150x150.jpg"
+                        className="rounded-lg shadow-m"
+                        src="/img/sanificatore-prodotti.png"
                         alt="Sanificatore"
                       />
                       <p className="mt-6 mb-4 font-semibold text-2xl">
@@ -283,7 +297,8 @@ export default function Home() {
                         height="400"
                         objectFit="cover"
                         className="rounded-lg shadow-md"
-                        src="/img/servizio-completo1-150x150.jpg"
+                        src="/img/lavaggio-prodotti.jpg"
+                        alt="lavastovigle professionali"
                       />
                       <p className="mt-6 mb-4 font-semibold text-2xl">
                         Lavaggio
@@ -298,7 +313,8 @@ export default function Home() {
                         height="400"
                         objectFit="cover"
                         className="rounded-lg shadow-md"
-                        src="/img/servizio-completo1-150x150.jpg"
+                        src="/img/lavanderia-prodotti.jpg"
+                        alt="lavatrici indutriali"
                       />
                       <p className="mt-6 mb-4 font-semibold text-2xl">
                         Lavanderia
@@ -312,82 +328,84 @@ export default function Home() {
               </div>
             </div>
           </section>
-          <section className="relative py-20" id="#igiene">
+          <section className="relative py-20" id="trattamento-aria">
             <SlopeDivSection color="text-white" />
             <div className="w-full px-4 my-32">
               <h2 className="text-4xl text-center font-semibold text-gray-800">
                 Per il trattamento dell&apos;aria
               </h2>
             </div>
-            <div className="flex flex-wrap items-center" id="#aspirazione">
-              <div className="w-full px-4 ml-auto mr-auto md:w-5/12">
-                <div className="md:pr-12 text-lg">
-                  <div className="inline-flex items-center justify-center w-16 h-16 p-3 mb-6 text-center text-blue-400 bg-white rounded-full shadow-lg">
-                    <i className="far fa-snowflake" />
-                  </div>
-                  <h3 className="text-3xl font-semibold">Aspirazione</h3>
-                  <p className="mt-4 leading-relaxed text-gray-500">
-                    Aprire un&apos;attività, rinnovare un locale, avere una
-                    guida per migliorare il proprio lavoro: Matarrese srl è la
-                    soluzione adatta alle esigenze professionali del mondo della
-                    ristorazione.
-                  </p>
-                  <p className="mt-4 leading-relaxed text-gray-500">
-                    Altro testo a caso che possa avere un minimo di senso e di
-                    keywords utili
-                  </p>
-                  <div className="mt-6">
-                    <Link href="#">
-                      <a className="text-yellow-600">Approfondisci</a>
-                    </Link>
+            <div className="container px-4 mx-auto lg:py-24">
+              <div className="flex flex-wrap items-center" id="#aspirazione">
+                <div className="w-full px-4 ml-auto mr-auto md:w-5/12">
+                  <div className="md:pr-12 text-lg">
+                    <div className="inline-flex items-center justify-center w-16 h-16 p-3 mb-6 text-center text-blue-400 bg-white rounded-full shadow-lg">
+                      <i className="far fa-snowflake" />
+                    </div>
+                    <h3 className="text-3xl font-semibold">Aspirazione</h3>
+                    <p className="mt-4 leading-relaxed text-gray-500">
+                      Aprire un&apos;attività, rinnovare un locale, avere una
+                      guida per migliorare il proprio lavoro: Matarrese srl è la
+                      soluzione adatta alle esigenze professionali del mondo
+                      della ristorazione.
+                    </p>
+                    <p className="mt-4 leading-relaxed text-gray-500">
+                      Altro testo a caso che possa avere un minimo di senso e di
+                      keywords utili
+                    </p>
+                    <div className="mt-6">
+                      <Link href="#">
+                        <a className="text-yellow-600">Approfondisci</a>
+                      </Link>
+                    </div>
                   </div>
                 </div>
+                <div className="w-full px-4 ml-auto mr-auto md:w-4/12">
+                  <Image
+                    alt="sistemi di aspirazione e trattamento dell'aria"
+                    className="max-w-full rounded-lg shadow-lg"
+                    src="/img/aspirazione-prodotti.jpg"
+                    width="1000"
+                    height="1300"
+                    objectFit="cover"
+                  />
+                </div>
               </div>
-              <div className="w-full px-4 ml-auto mr-auto md:w-4/12">
-                <Image
-                  alt="attrezzature ristorazione nello showroom"
-                  className="max-w-full rounded-lg shadow-lg"
-                  src="/img/attrezzature-esposizione.jpg"
-                  width="1000"
-                  height="1300"
-                  objectFit="cover"
-                />
-              </div>
-            </div>
-            <div
-              className="flex flex-wrap items-center mt-24"
-              id="#climatizzazione"
-            >
-              <div className="w-full px-4 ml-auto mr-auto md:w-4/12">
-                <Image
-                  alt="attrezzature ristorazione nello showroom"
-                  className="max-w-full rounded-lg shadow-lg"
-                  src="/img/attrezzature-esposizione.jpg"
-                  width="1000"
-                  height="1300"
-                  objectFit="cover"
-                />
-              </div>
-              <div className="w-full px-4 ml-auto mr-auto md:w-5/12">
-                <div className="md:pr-12 text-lg">
-                  <div className="inline-flex items-center justify-center w-16 h-16 p-3 mb-6 text-center text-blue-400 bg-white rounded-full shadow-lg">
-                    <i className="far fa-snowflake" />
-                  </div>
-                  <h3 className="text-3xl font-semibold">Climatizzazione</h3>
-                  <p className="mt-4 leading-relaxed text-gray-500">
-                    Aprire un&apos;attività, rinnovare un locale, avere una
-                    guida per migliorare il proprio lavoro: Matarrese srl è la
-                    soluzione adatta alle esigenze professionali del mondo della
-                    ristorazione.
-                  </p>
-                  <p className="mt-4 leading-relaxed text-gray-500">
-                    Altro testo a caso che possa avere un minimo di senso e di
-                    keywords utili
-                  </p>
-                  <div className="mt-6">
-                    <Link href="#">
-                      <a className="text-yellow-600">Approfondisci</a>
-                    </Link>
+              <div
+                className="flex flex-wrap items-center mt-36"
+                id="#climatizzazione"
+              >
+                <div className="w-full px-4 ml-auto mr-auto md:w-4/12">
+                  <Image
+                    alt="climatizzazione indutstriale"
+                    className="max-w-full rounded-lg shadow-lg"
+                    src="/img/climatizzazione-prodotti.jpg"
+                    width="1000"
+                    height="1300"
+                    objectFit="cover"
+                  />
+                </div>
+                <div className="w-full px-4 ml-auto mr-auto md:w-5/12">
+                  <div className="md:pr-12 text-lg">
+                    <div className="inline-flex items-center justify-center w-16 h-16 p-3 mb-6 text-center text-blue-400 bg-white rounded-full shadow-lg">
+                      <i className="far fa-snowflake" />
+                    </div>
+                    <h3 className="text-3xl font-semibold">Climatizzazione</h3>
+                    <p className="mt-4 leading-relaxed text-gray-500">
+                      Aprire un&apos;attività, rinnovare un locale, avere una
+                      guida per migliorare il proprio lavoro: Matarrese srl è la
+                      soluzione adatta alle esigenze professionali del mondo
+                      della ristorazione.
+                    </p>
+                    <p className="mt-4 leading-relaxed text-gray-500">
+                      Altro testo a caso che possa avere un minimo di senso e di
+                      keywords utili
+                    </p>
+                    <div className="mt-6">
+                      <Link href="#">
+                        <a className="text-yellow-600">Approfondisci</a>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
