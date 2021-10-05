@@ -35,7 +35,6 @@ export const ScrollToTop = () => {
           strokeLinecap="round"
           strokeWidth="2"
           strokeLinejoin="round"
-          fill="none"
           stroke="currentColor"
         >
           <path d="M1 5L5 1M5 1L9 5M5 1V19" />

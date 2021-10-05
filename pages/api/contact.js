@@ -24,7 +24,7 @@ const transporter = nodemailer.createTransport({
 //   }
 // })
 
-export default async (req, res) => {
+const sendMail = async (req, res) => {
   const {
     senderMail,
     name,
@@ -47,13 +47,14 @@ export default async (req, res) => {
     return;
   }
 
-
   // let content =
   //   typeof formContent === undefined
   //     ? `partecipanti: ${participants}`
   //     : `messaggio: ${formContent}`;
 
-  let content = formContent ? `messaggio: ${formContent}` : `partecipanti: ${participants}`;
+  let content = formContent
+    ? `messaggio: ${formContent}`
+    : `partecipanti: ${participants}`;
 
   const mailerRes = await mailer({
     senderMail,
@@ -86,3 +87,5 @@ const mailer = ({ senderMail, name, title, text, recipientMail }) => {
     );
   });
 };
+
+export default sendMail;

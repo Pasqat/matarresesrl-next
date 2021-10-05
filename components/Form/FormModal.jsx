@@ -14,7 +14,7 @@ import { sendContactMail } from "../../actions/networking/mailApi";
  * if it is falsy the button will have a `ChatIcon` and will be centered in a div
  *
  * @param {string} type "contacts" | "reservation"
- * 
+ *
  * @param {stirng} title usefull to pass event title to the email subject
  */
 export default function FormModal({
@@ -59,7 +59,7 @@ export default function FormModal({
 
   useEffect(() => {
     setFormButtonDisabled(false);
-    setForm({ ...form, name: "", surname: "", mail: "", tel: "" });
+    setForm((form) => ({ ...form, name: "", surname: "", mail: "", tel: "" }));
     setIsChecked(false);
     setNotification({ text: "", isError: false });
   }, [isOpen]);
@@ -68,7 +68,7 @@ export default function FormModal({
     if (isChecked && notification.text.includes("termini")) {
       setNotification({ text: "", isError: false });
     }
-  }, [isChecked]);
+  }, [isChecked, notification.text]);
 
   async function submitContactForm(event) {
     event.preventDefault();
@@ -82,7 +82,7 @@ export default function FormModal({
     }
 
     if (type === "reservation") {
-      if (typeof (participants) === null || participants === "") {
+      if (typeof participants === null || participants === "") {
         return setNotification({
           ...notification,
           text: "Per favore compila tutti i campi",
@@ -167,7 +167,7 @@ export default function FormModal({
           className={clsx(
             "font-medium rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75",
             buttonClassName ??
-            "px-4 py-2 text-sm text-white bg-yellow-600 hover:bg-yellow-500 "
+              "px-4 py-2 text-sm text-white bg-yellow-600 hover:bg-yellow-500 "
           )}
         >
           {buttonClassName ? null : (
@@ -219,7 +219,7 @@ export default function FormModal({
                       as="h3"
                       className="text-lg font-medium leading-6 text-gray-900"
                     >
-                      Hai un' idea che vorresti realizzare, o hai bisogno di
+                      Hai un&apos;idea che vorresti realizzare, o hai bisogno di
                       informazioni?
                     </Dialog.Title>
                     <div className="mt-2">
@@ -229,13 +229,14 @@ export default function FormModal({
                       </p>
                     </div>
                   </>
-                ) :
+                ) : (
                   <Dialog.Title
                     as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900">
+                    className="text-lg font-medium leading-6 text-gray-900"
+                  >
                     {title}
                   </Dialog.Title>
-                }
+                )}
 
                 <form
                   className="flex-auto space-y-8 mt-8"

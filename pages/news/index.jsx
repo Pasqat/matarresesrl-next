@@ -5,7 +5,7 @@ import Layout from "../../components/Layout";
 import Container from "../../components/Container";
 import Header from "../../components/Header/Header";
 import NewsList from "../../components/News/NewsList";
-import CategoriesList from "../../components/categories-list/CategoriesList"
+import CategoriesList from "../../components/categories-list/CategoriesList";
 import { useEffect, useState } from "react";
 
 const BATCH_SIZE = 10;
@@ -18,11 +18,13 @@ const GET_PAGINATED_POSTS = gql`
     $before: String
     $categoryId: Int
   ) {
-    posts(first: $first,
-          last: $last
-          after: $after
-          before: $before
-          where: {categoryId: $categoryId}) {
+    posts(
+      first: $first
+      last: $last
+      after: $after
+      before: $before
+      where: { categoryId: $categoryId }
+    ) {
       pageInfo {
         hasNextPage
         hasPreviousPage
@@ -50,23 +52,29 @@ const GET_PAGINATED_POSTS = gql`
         }
       }
     }
-  categories {
-    nodes {
-      categoryId
-      name
-      slug
-      id
-      count
+    categories {
+      nodes {
+        categoryId
+        name
+        slug
+        id
+        count
+      }
     }
-  }
   }
 `;
 
 export default function News() {
-  const [category, setCategory] = useState(null)
+  const [category, setCategory] = useState(null);
 
   const { data, loading, error, fetchMore } = useQuery(GET_PAGINATED_POSTS, {
-    variables: { first: BATCH_SIZE, last: null, after: null, before: null, categoryId: category },
+    variables: {
+      first: BATCH_SIZE,
+      last: null,
+      after: null,
+      before: null,
+      categoryId: category,
+    },
     notifyOnNetworkStatusChange: true,
   });
 
@@ -77,17 +85,18 @@ export default function News() {
         after: null,
         last: null,
         before: null,
-        categoryId: null
+        categoryId: null,
       },
     });
-  }, [])
+  }, []);
 
   function selectCategory(categoryId) {
-    setCategory(categoryId)
+    setCategory(categoryId);
   }
 
-  const categeriesList = data?.categories.nodes.filter(category => category.count > 0)
-
+  const categeriesList = data?.categories.nodes.filter(
+    (category) => category.count > 0
+  );
 
   return (
     <div>
@@ -115,7 +124,11 @@ export default function News() {
         <div className="bg-gray-100">
           <Container>
             <Header>Ultimi Aggiornamenti</Header>
-            <CategoriesList categories={categeriesList} onClick={selectCategory} currentCategory={category} />
+            <CategoriesList
+              categories={categeriesList}
+              onClick={selectCategory}
+              currentCategory={category}
+            />
             <hr />
             <NewsList
               error={error}

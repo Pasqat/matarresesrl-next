@@ -4,7 +4,7 @@ import { useQuery, gql } from "@apollo/client";
 import Layout from "../../components/Layout";
 import Container from "../../components/Container";
 import Header from "../../components/Header/Header";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 // import CategoriesList from "../../components/categories-list/CategoriesList";
@@ -110,8 +110,6 @@ export default function News() {
     );
   }
 
-  const projectPlaceholder = Array(9).fill(null);
-
   return (
     <div>
       <Head>
@@ -162,10 +160,7 @@ export default function News() {
                       x2="139"
                       y2="146.5"
                       gradientUnits="userSpaceOnUse"
-                    >
-                      <stop stop-color="#FFD600" />
-                      <stop offset="1" stop-color="#EF4444" />
-                    </linearGradient>
+                    ></linearGradient>
                   </defs>
                 </svg>
               </div>
@@ -173,25 +168,18 @@ export default function News() {
               <section>
                 <div className="grid grid-cols-3 grid-rows-3">
                   {data?.projects?.edges.map((edge) => {
-                    const {
-                      date,
-                      excerpt,
-                      featuredImage,
-                      id,
-                      projectId,
-                      slug,
-                      title,
-                    } = edge.node;
+                    const { featuredImage, id, slug, title } = edge.node;
 
                     return (
-                      <Link href={`/realizzazioni/${slug}`}>
-                        <a key={id} className="group">
+                      <Link key={id} href={`/realizzazioni/${slug}`}>
+                        <a className="group">
                           <div className="relative w-full h-full bg-blend-multiply ">
                             <Image
                               objectFit="cover"
                               width="800"
                               height="800"
                               src={featuredImage?.node?.sourceUrl}
+                              alt={title ? title : ""}
                             />
                             <div className="absolute top-1/2 left-auto text-2xl group-hover:text-red-700 text-white">
                               {title}

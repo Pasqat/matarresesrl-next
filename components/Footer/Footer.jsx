@@ -43,7 +43,11 @@ export default function Footer() {
             lavorativi
           </p>
           <div className="mt-6 mb-6 text-center">
-            <a href="https://www.facebook.com/matarresesrl" target="_blank">
+            <a
+              href="https://www.facebook.com/matarresesrl"
+              target="_blank"
+              rel="noreferrer"
+            >
               <button
                 className="items-center justify-center w-10 h-10 mr-2 font-normal text-blue-600 bg-white rounded-full shadow-lg outline-none hover:shadow-md align-center focus:outline-none"
                 type="button"
@@ -53,6 +57,7 @@ export default function Footer() {
             </a>
             <a
               href="https://www.linkedin.com/company/matarrese-srl/"
+              rel="noreferrer"
               target="_blank"
             >
               <button
@@ -62,7 +67,11 @@ export default function Footer() {
                 <i className="fab fa-linkedin"></i>
               </button>
             </a>
-            <a href="https://www.instagram.com/matarrese.srl/" target="_blank">
+            <a
+              rel="noreferrer"
+              href="https://www.instagram.com/matarrese.srl/"
+              target="_blank"
+            >
               <button
                 className="items-center justify-center w-10 h-10 mr-2 font-normal text-pink-700 bg-white rounded-full shadow-lg outline-none align-center focus:outline-none hover:shadow-md"
                 type="button"
@@ -73,7 +82,11 @@ export default function Footer() {
           </div>
           <div className="flex flex-wrap items-end justify-between h-full mt-16">
             {/* TODO: link to Qucino */}
-            <a href="https://www.istitutoeccelsa.it" target="_blank">
+            <a
+              rel="noreferrer"
+              href="https://www.istitutoeccelsa.it"
+              target="_blank"
+            >
               <div className="relative w-16 h-20">
                 <Image
                   placeholder="blur"
@@ -84,7 +97,7 @@ export default function Footer() {
                 />
               </div>
             </a>
-            <a href="https://www.qucino.it/" target="_blank">
+            <a rel="noreferrer" href="https://www.qucino.it/" target="_blank">
               <div className="relative w-24 h-20">
                 <Image
                   layout="fill"
@@ -95,7 +108,7 @@ export default function Footer() {
                 />
               </div>
             </a>
-            <a href="https://www.aligroup.it/" target="_blank">
+            <a rel="noreferrer" href="https://www.aligroup.it/" target="_blank">
               <div className="relative w-16 h-16">
                 <Image
                   layout="fill"
@@ -220,8 +233,8 @@ export default function Footer() {
               </p>
               <p className="italic">
                 Per urgenze nei giorni festivi , il servizio di risposta verrà
-                garantito entro 24 h dalla chiamata e l'eventuale intervento
-                tecnico urgente verrà valutato con tariffa dedicata.
+                garantito entro 24 h dalla chiamata e l&apos;eventuale
+                intervento tecnico urgente verrà valutato con tariffa dedicata.
               </p>
             </div>
           </div>

@@ -24,7 +24,9 @@ export default function Navbar({ isTransparent }) {
     >
       {({ open }) => (
         <>
-          <div className={clsx("mx-auto max-w-7xl sm:px-6", open && "bg-gray-900")}>
+          <div
+            className={clsx("mx-auto max-w-7xl sm:px-6", open && "bg-gray-900")}
+          >
             <div className="relative flex items-center justify-center h-16 lg:justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">
                 {/* Mobile menu button*/}
@@ -71,6 +73,7 @@ export default function Navbar({ isTransparent }) {
                     <a
                       href="https://www.facebook.com/matarresesrl"
                       target="_blank"
+                      rel="noreferrer"
                     >
                       <i className="text-gray-100 fab fa-facebook"></i>
                     </a>
@@ -78,6 +81,7 @@ export default function Navbar({ isTransparent }) {
                     <a
                       href="https://www.linkedin.com/company/matarrese-srl/"
                       target="_blank"
+                      rel="noreferrer"
                     >
                       <i className="text-gray-100 fab fa-linkedin"></i>
                     </a>
@@ -85,6 +89,7 @@ export default function Navbar({ isTransparent }) {
                     <a
                       href="https://www.instagram.com/matarrese.srl/"
                       target="_blank"
+                      rel="noreferrer"
                     >
                       <i className="text-gray-100 fab fa-instagram"></i>
                     </a>

@@ -78,7 +78,8 @@ export default function PrivacyPolicy() {
                     <Link href="https://www.matarrese.it">
                       <a className="text-yellow-600">www.matarrese.it</a>
                     </Link>
-                    , accessibile per via telematica a partire dall'indirizzo{" "}
+                    , accessibile per via telematica a partire
+                    dall&apos;indirizzo{" "}
                     <Link href="/">
                       <a className="text-yellow-500">www.matarrese.it</a>
                     </Link>{" "}

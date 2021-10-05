@@ -32,7 +32,7 @@ export default function ContactForm({ hasAutoFocus }) {
 
   useEffect(() => {
     hasAutoFocus && inputName.current.focus();
-  });
+  }, []);
 
   useEffect(() => {
     if (isCheckedTerms && notification.text.includes("termini")) {

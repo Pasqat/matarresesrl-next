@@ -61,13 +61,13 @@ const EmblaCarousel = () => {
     if (!embla) return;
     embla.scrollPrev();
     stop();
-  }, [embla]);
+  }, [embla, stop]);
 
   const scrollNext = useCallback(() => {
     if (!embla) return;
     embla.scrollNext();
     stop();
-  }, [embla]);
+  }, [embla, stop]);
 
   const onSelect = useCallback(() => {
     if (!embla) return;
@@ -94,7 +94,7 @@ const EmblaCarousel = () => {
             <div className="relative min-w-full pl-3 embla__slide" key={index}>
               {/* <div className="relative h-48 embla__slide__inner"> */}
               <blockquote className="text-xl italic tracking-wider text-right text-gray-700 lg:px-10 md:text-3xl lg:text-4xl">
-                "{slide.content}"
+                &ldquo;{slide.content}&rdquo;
               </blockquote>
               <div className="flex flex-col-reverse items-end justify-center pt-5 lg:pr-12 md:flex-row md:items-center md:justify-end ">
                 <h6 className="pt-3 font-semibold text-gray-600 align-top md:pr-3 md:pt-0 text-md">
