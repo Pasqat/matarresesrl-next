@@ -77,7 +77,7 @@ export default function Home() {
                   <Image
                     alt="attrezzature ristorazione nello showroom"
                     className="max-w-full rounded-lg shadow-lg"
-                    src="/img/attrezzature-esposizione.jpg"
+                    src="/img/cottura-prodotti.jpg"
                     width="1000"
                     height="1300"
                     objectFit="cover"
