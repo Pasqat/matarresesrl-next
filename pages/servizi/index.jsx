@@ -17,6 +17,7 @@ export default function Servizi() {
   function calculateScrollDistance() {
     const {offsetTop, offsetHeight} = divProgettazione.current
     const offsetBottom = offsetTop + offsetHeight
+    // need to be rafactored. Not dynamic.
     const scrollPosition = Math.floor(
       ((window.scrollY - offsetTop * 0.8) / offsetBottom) * 100,
     )
@@ -915,7 +916,7 @@ export default function Servizi() {
                   <h2 className="text-gray-100 text-4xl font-semibold">
                     Formazione
                   </h2>
-                  <div className="grid gap-24 grid-cols-3 justify-evenly my-10 w-full text-gray-200 text-lg">
+                  <div className="flex flex-wrap justify-evenly my-10 w-full text-gray-200 text-lg">
                     <div>
                       <Image
                         width="400"
