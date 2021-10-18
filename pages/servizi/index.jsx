@@ -9,6 +9,7 @@ import Layout from '../../components/Layout'
 import {SlopeDivSection} from '../../ui/SlopeDivSection'
 
 import Image from 'next/image'
+import { H2, H3, H4 } from '../../components/typography'
 
 export default function Servizi() {
   const [position, setPosition] = useState(0)
@@ -58,12 +59,12 @@ export default function Servizi() {
           <section className="pb-20">
             <div className="container mx-auto pb-60 px-4">
               <div className="my-32 px-4 w-full">
-                <h2 className="text-center text-gray-800 text-4xl font-semibold">
+                <H2 variant="secondary" className="text-center">
                   Progettazione tecnica e realizzazione arredi
-                </h2>
-                <p className="mt-2 text-center text-gray-400 text-xl font-medium">
+                </H2>
+                <H4 as="p" className="mt-2 text-center">
                   Grandi idee per prodotti di successo
-                </p>
+                </H4>
               </div>
 
               <div className="flex items-start">
@@ -455,12 +456,12 @@ export default function Servizi() {
                       <div className="w-px h-full bg-gray-300" />
                     </div>
                     <div className="pb-8 pt-1 text-lg">
-                      <h3
+                      <H3
                         id="consulenza-tecnica"
-                        className="text-3xl font-semibold"
+                        variant="secondary"
                       >
                         Consulenza tecnica
-                      </h3>
+                      </H3>
                       <p className="mt-4 text-gray-500 leading-relaxed">
                         Ascoltiamo le idee del cliente per trasformarle in{' '}
                         <strong>progetti reali.</strong>
@@ -524,9 +525,9 @@ export default function Servizi() {
                       <div className="w-px h-full bg-gray-300" />
                     </div>
                     <div className="pb-8 pt-1 text-lg">
-                      <h3 className="text-3xl font-semibold" id="il-progetto">
+                      <H3 variant="secondary" id="il-progetto">
                         Il progetto
-                      </h3>
+                      </H3>
                       <p className="mt-4 text-gray-500 leading-relaxed">
                         Realizziamo il complesso dei{' '}
                         <strong>disegni, calcoli e relazioni</strong>
@@ -590,12 +591,12 @@ export default function Servizi() {
                       <div className="w-px h-full bg-gray-300" />
                     </div>
                     <div className="pb-8 pt-1 text-lg">
-                      <h3
-                        className="text-3xl font-semibold"
+                      <H3
+                        variant="secondary"
                         id="iter-operativo"
                       >
                         Iter Operativo
-                      </h3>
+                      </H3>
                       <p className="mt-4 text-gray-500 leading-relaxed">
                         L’iter operativo da seguire per aprire un ristorante,
                         aprire un bar, aprire una gelateria, aprire una
@@ -656,12 +657,12 @@ export default function Servizi() {
                       <div className="w-px h-full bg-gray-300" />
                     </div>
                     <div className="pb-8 pt-1 text-lg">
-                      <h3
+                      <H3
+                        variant="secondary"
                         id="arredi-su-misura"
-                        className="text-3xl font-semibold"
                       >
                         Realizzazione Arredi su misura
-                      </h3>
+                      </H3>
                       <p className="mt-4 text-gray-500 leading-relaxed">
                         Per <strong>l’arredamento di ogni struttura</strong>{' '}
                         della ristorazione e alberghiera, nel nostro laboratorio
@@ -718,12 +719,12 @@ export default function Servizi() {
                       <div className="w-px h-full bg-gray-300" />
                     </div>
                     <div className="pb-8 pt-1 text-lg">
-                      <h3
+                      <H3
                         id="coordinamento-lavori"
-                        className="text-3xl font-semibold"
+                        variant="secondary"
                       >
                         Coordinamento lavori
-                      </h3>
+                      </H3>
                       <p className="mt-4 text-gray-500 leading-relaxed">
                         La realizzazione di un progetto è seguita costantemente
                         dai tecnici supervisori che si occupano del
@@ -774,9 +775,9 @@ export default function Servizi() {
                       <div className="w-px h-full bg-gray-300" />
                     </div>
                     <div className="pb-8 pt-1 text-lg">
-                      <h3 id="collaudo" className="text-3xl font-semibold">
+                      <H3 id="collaudo" variant="secondary">
                         Collaudo
-                      </h3>
+                      </H3>
                       <p className="mt-4 text-gray-500 leading-relaxed">
                         L’arredo viene consegnato e collocato nella sua
                         destinazione operativa e collaudato prima dell’apertura
@@ -841,7 +842,7 @@ export default function Servizi() {
                     <div className="inline-flex items-center justify-center mb-6 p-3 w-16 h-16 text-center text-blue-400 bg-white rounded-full shadow-lg">
                       <i className="far fa-snowflake" />
                     </div>
-                    <h3 className="text-3xl font-semibold">Aspirazione</h3>
+                    <H3 variant="secondary">Aspirazione</H3>
                     <p className="mt-4 text-gray-500 leading-relaxed">
                       Aprire un&apos;attività, rinnovare un locale, avere una
                       guida per migliorare il proprio lavoro: Matarrese srl è la
@@ -886,7 +887,7 @@ export default function Servizi() {
                     <div className="inline-flex items-center justify-center mb-6 p-3 w-16 h-16 text-center text-blue-400 bg-white rounded-full shadow-lg">
                       <i className="far fa-snowflake" />
                     </div>
-                    <h3 className="text-3xl font-semibold">Climatizzazione</h3>
+                    <H3 variant="secondary">Climatizzazione</H3>
                     <p className="mt-4 text-gray-500 leading-relaxed">
                       Aprire un&apos;attività, rinnovare un locale, avere una
                       guida per migliorare il proprio lavoro: Matarrese srl è la

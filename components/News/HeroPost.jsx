@@ -1,31 +1,40 @@
-import Link from "next/link"
+import Link from 'next/link'
 
-import CoverImage from "./CoverImage"
-import Date from "../Date"
+import CoverImage from './CoverImage'
+import Date from '../Date'
+import {H3} from '../typography'
 
-
-export default function HeroPost({ title, coverImage, slug, date, excerpt }) {
+export default function HeroPost({title, coverImage, slug, date, excerpt}) {
   return (
-    <div className="items-center my-12 flex flex-col lg:flex-row h-full overflow-hidden">
-      <CoverImage title={title} coverImage={coverImage} slug={slug} href={`/news/${slug}`} className="flex-1 bg-red-800" />
-      <div className="flex flex-col p-4 lg:p-8 ">
+    <div className="flex flex-col items-center my-12 h-full overflow-hidden lg:flex-row">
+      <CoverImage
+        title={title}
+        coverImage={coverImage}
+        slug={slug}
+        href={`/news/${slug}`}
+        className="flex-1 bg-red-800"
+      />
+      <div className="flex flex-col p-4 lg:p-8">
         <div className="flex flex-col md:flex-col-reverse lg:flex-col">
           <div className="mb-4">
-            <Date className="text-xs lg:text-lg font-medium tracking-widest text-gray-400 title-font " dateString={date} />
+            <Date
+              className="title-font text-gray-400 text-xs font-medium tracking-widest lg:text-lg"
+              dateString={date}
+            />
           </div>
-          <h3 className="mb-3 lg:mb-4 text-xl lg:text-3xl font-bold leading-none text-gray-600">
+          <H3 className="mb-3" variant="secondary">
             <Link href={`/news/${slug}`}>
               <a
                 className="hover:underline"
-                dangerouslySetInnerHTML={{ __html: title }}
+                dangerouslySetInnerHTML={{__html: title}}
               />
             </Link>
-          </h3>
+          </H3>
         </div>
         <div>
           <div
-            className="mb-3 lg:text-lg leading-tight lg:leading-relaxed"
-            dangerouslySetInnerHTML={{ __html: excerpt }}
+            className="mb-3 leading-tight lg:text-lg lg:leading-relaxed"
+            dangerouslySetInnerHTML={{__html: excerpt}}
           />
         </div>
         <div className="flex flex-wrap items-center lg:hidden">
@@ -33,7 +42,7 @@ export default function HeroPost({ title, coverImage, slug, date, excerpt }) {
             <a className="inline-flex items-center text-yellow-500 md:mb-2 lg:mb-0">
               Continua a leggere
               <svg
-                className="w-4 h-4 ml-2 animate-bounceX"
+                className="ml-2 w-4 h-4 animate-bounceX"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
                 strokeWidth="2"

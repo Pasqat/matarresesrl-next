@@ -5,6 +5,8 @@ import {useRecursiveTimeout} from './useRecursiveTimeout'
 import slides from '../../data/testimonials'
 import IconStar from '../../ui/IconStar'
 
+import {H6} from '../typography'
+
 const AUTOPLAY_INTERVAL = 4000
 
 export const PrevButton = ({enabled, onClick}) => (
@@ -87,7 +89,7 @@ const EmblaCarousel = () => {
   }, [play])
 
   return (
-    <div className="embla relative ml-auto mr-auto p-12 w-full rounded-xl shadow-medium md:p-16 md:w-5/6">
+    <div className="embla relative ml-auto mr-auto p-12 w-full rounded-xl shadow-lg md:p-16 md:w-5/6">
       <div className="embla__viewport w-full overflow-hidden" ref={viewportRef}>
         <div className="embla__container flex -ml-3 select-none">
           {slides.map((slide, index) => (
@@ -97,9 +99,13 @@ const EmblaCarousel = () => {
                 &ldquo;{slide.content}&rdquo;
               </blockquote>
               <div className="flex flex-col-reverse items-end justify-center pt-5 md:flex-row md:items-center md:justify-end lg:pr-12">
-                <h6 className="text-md align-top pt-3 text-gray-600 font-semibold md:pr-3 md:pt-0">
+                <H6
+                  as="p"
+                  variant="secondary"
+                  className="align-top pt-3 md:pr-3 md:pt-0"
+                >
                   {slide.name}
-                </h6>
+                </H6>
                 <div className="flex">
                   <IconStar number={slide.stars} />
                 </div>

@@ -1,9 +1,11 @@
-import Head from "next/head";
-import Link from "next/link";
+import Head from 'next/head'
+import Link from 'next/link'
 
-import Container from "../../components/Container";
-import Header from "../../components/Header/Header";
-import Layout from "../../components/Layout";
+import Container from '../../components/Container'
+import Header from '../../components/Header/Header'
+import Layout from '../../components/Layout'
+
+import {H3, H4} from '../../components/typography'
 
 export default function CookiePolicy() {
   return (
@@ -24,10 +26,10 @@ export default function CookiePolicy() {
       <Layout>
         <Container>
           <Header>Tipologie ed utilizzo dei Cookies</Header>
-          <main className="container pb-20 mx-auto text-justify text-gray-900">
+          <main className="container mx-auto pb-20 text-justify text-gray-900">
             <div className="flex flex-col space-y-14">
               <section>
-                <h3 className="pb-3 text-2xl">Utilizzo dei Cookie</h3>
+                <H3 className="pb-3">Utilizzo dei Cookie</H3>
                 <div className="md:columns">
                   <p className="pb-2">
                     I cookie sono righe di testo che fungono da marcatori
@@ -61,15 +63,13 @@ export default function CookiePolicy() {
                 </div>
               </section>
               <section>
-                <h3 className="pb-3 text-2xl">
-                  Tipologie e gestione dei cookies
-                </h3>
+                <H3 className="pb-3">Tipologie e gestione dei cookies</H3>
                 <div className="md:columns">
                   <p className="pb-2">
-                    La presente Cookie Policy è relativa al sito{" "}
+                    La presente Cookie Policy è relativa al sito{' '}
                     <Link href="/">
                       <a className="text-yellow-600">www.matarrese.it</a>
-                    </Link>{" "}
+                    </Link>{' '}
                     (“Sito”) gestito e operato dalla società Matarrese srl, con
                     sede in c.da Popoleto nc, 70011 Alberobello (Bari), Italia,
                     P.IVA: 04356890725
@@ -88,7 +88,9 @@ export default function CookiePolicy() {
                     ad ogni altro dispositivo che l’utente può utilizzare per
                     connettersi al Sito.
                   </p>
-                  <h4 className="pt-4 pb-2 text-lg">Cookies tecnici</h4>
+                  <H4 className="pb-2 pt-4" variant="secondary">
+                    Cookies tecnici
+                  </H4>
                   <p className="pb-2">
                     I cookies tecnici sono quelli utilizzati al solo fine di
                     effettuare la trasmissione di una comunicazione su una rete
@@ -124,11 +126,11 @@ export default function CookiePolicy() {
                 </div>
               </section>
               <section>
-                <h3 className="pt-4 pb-2 text-2xl">
-                  Tipologie di cookies utilizzati
-                </h3>
+                <H3 className="pb-2 pt-4">Tipologie di cookies utilizzati</H3>
                 <div className="columns">
-                  <h4 className="pt-4 pb-2 text-xl">Cookies di prima parte</h4>
+                  <H4 className="pb-2 pt-4" variant="secondary">
+                    Cookies di prima parte
+                  </H4>
                   <div>
                     <p className="pb-2">
                       I cookies di prima parte (ovvero i cookies che
@@ -140,7 +142,9 @@ export default function CookiePolicy() {
                       visitatori.
                     </p>
                   </div>
-                  <h4 className="pt-4 pb-2 text-xl">Cookies di terzi</h4>
+                  <H4 className="pb-2 pt-4" variant="secondary">
+                    Cookies di terzi
+                  </H4>
                   <div>
                     <p className="pb-2">
                       I cookies di terzi sono impostati da un dominio differente
@@ -149,7 +153,9 @@ export default function CookiePolicy() {
                       quel sito, si è in presenza di cookies di terze parti.
                     </p>
                   </div>
-                  <h4 className="pt-4 pb-2 text-xl">Cookies di sessione</h4>
+                  <H4 className="pb-2 pt-4" variant="secondary">
+                    Cookies di sessione
+                  </H4>
                   <div>
                     <p className="pb-2">
                       I c.d. ‘cookies di sessione’ sono memorizzati
@@ -177,7 +183,9 @@ export default function CookiePolicy() {
                       come sopra definito.
                     </p>
                   </div>
-                  <h4 className="pt-4 pb-2 text-xl">Cookies persistenti</h4>
+                  <H4 className="pb-2 pt-4" variant="secondary">
+                    Cookies persistenti
+                  </H4>
                   <div>
                     <p className="pb-2">
                       I cookies persistenti sono memorizzati sul dispositivo
@@ -188,7 +196,9 @@ export default function CookiePolicy() {
                       utilizza il Sito.
                     </p>
                   </div>
-                  <h4 className="pt-4 pb-2 text-xl">Cookies essenziali</h4>
+                  <H4 className="pb-2 pt-4" variant="secondary">
+                    Cookies essenziali
+                  </H4>
                   <div>
                     <p className="pb-2">
                       Questi cookies sono strettamente necessari per il
@@ -200,7 +210,9 @@ export default function CookiePolicy() {
                       disattivati.
                     </p>
                   </div>
-                  <h4 className="pt-4 pb-2 text-xl">Cookies funzionali</h4>
+                  <H4 className="pb-2 pt-4" variant="secondary">
+                    Cookies funzionali
+                  </H4>
                   <div>
                     <p className="pb-2">
                       Questi cookies sono strettamente necessari per il
@@ -212,9 +224,9 @@ export default function CookiePolicy() {
                       disattivati.
                     </p>
                   </div>
-                  <h4 className="pt-4 pb-2 text-xl">
+                  <H4 className="pb-2 pt-4" variant="secondary">
                     Cookies di condivisone sui Social Network
-                  </h4>
+                  </H4>
                   <div>
                     <p className="pb-2">
                       Questi cookies facilitano la condivisione dei contenuti
@@ -229,9 +241,9 @@ export default function CookiePolicy() {
                 </div>
               </section>
               <section>
-                <h3 className="pb-3 text-2xl">
+                <H3 className="pb-3">
                   Come modificare le impostazioni sui cookies
-                </h3>
+                </H3>
                 <div className="md:columns">
                   <p className="pb-2">
                     La maggior parte dei browser accetta automaticamente i
@@ -249,7 +261,7 @@ export default function CookiePolicy() {
                   <p className="pb-2">
                     Per maggiori informazioni sui cookie e per gestire le
                     preferenze sui cookie (di prima e/o terza parte) si invitano
-                    gli utenti a visitare anche la piattaforma{" "}
+                    gli utenti a visitare anche la piattaforma{' '}
                     <a
                       className="text-yellow-600"
                       href="www.youronlinechoices.com"
@@ -268,5 +280,5 @@ export default function CookiePolicy() {
         </Container>
       </Layout>
     </div>
-  );
+  )
 }

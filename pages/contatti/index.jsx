@@ -1,19 +1,20 @@
-import Head from "next/head";
+import Head from 'next/head'
 
-import { Fragment, useState } from "react";
-import { Transition } from "@headlessui/react";
-import clsx from "clsx";
+import {Fragment, useState} from 'react'
+import {Transition} from '@headlessui/react'
+import clsx from 'clsx'
 
-import { XIcon } from "@heroicons/react/outline";
+import {XIcon} from '@heroicons/react/outline'
 
-import ContactForm from "../../components/Form/ContactForm";
-import Layout from "../../components/Layout";
-import Map from "../../components/Maps/Map";
-import Header from "../../components/Header/Header";
-import Container from "../../components/Container";
+import ContactForm from '../../components/Form/ContactForm'
+import Layout from '../../components/Layout'
+import Map from '../../components/Maps/Map'
+import Header from '../../components/Header/Header'
+import Container from '../../components/Container'
+import {H4, H5, H6} from '../../components/typography'
 
 export default function Contatti() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(true)
 
   return (
     <>
@@ -22,10 +23,12 @@ export default function Contatti() {
       </Head>
       <Layout>
         <Container>
-          <Header>Fatti ispirare dalle nostre soluzioni. Visita il nostro showroom!</Header>
-          <section className="relative pb-10 text-gray-600 md:pb-52 body-font">
+          <Header>
+            Fatti ispirare dalle nostre soluzioni. Visita il nostro showroom!
+          </Header>
+          <section className="body-font relative pb-10 text-gray-600 md:pb-52">
             <div className="flex flex-wrap mx-auto sm:flex-nowrap">
-              <div className="relative flex items-end justify-start w-full min-h-[20rem] p-10 overflow-hidden bg-gray-300 rounded-lg lg:w-2/3 md:w-1/2 sm:mr-10">
+              <div className="min-h-[20rem] relative flex items-end justify-start p-10 w-full bg-gray-300 rounded-lg overflow-hidden sm:mr-10 md:w-1/2 lg:w-2/3">
                 <Map />
                 {/*
               <iframe
@@ -48,54 +51,73 @@ export default function Contatti() {
                   leave="ease-in duration-200"
                   leaveFrom="opacity-100 scale-100"
                   leaveTo="opacity-0 scale-95"
-                  className="relative flex flex-wrap w-full py-6 bg-white rounded shadow-md"
+                  className="relative flex flex-wrap py-6 w-full bg-white rounded shadow-md"
                 >
                   <div
                     className={clsx(
-                      !isOpen && "hidden",
-                      "relative flex flex-wrap py-6 bg-white rounded shadow-md w-full"
+                      !isOpen && 'hidden',
+                      'relative flex flex-wrap py-6 w-full bg-white rounded shadow-md',
                     )}
                   >
                     <XIcon
-                      className="absolute w-5 h-5 ml-auto cursor-pointer right-2 top-2"
+                      className="absolute right-2 top-2 ml-auto w-5 h-5 cursor-pointer"
                       onClick={() => setIsOpen(!isOpen)}
                     />
-                    <div className="px-6 lg:w-1/2">
-                      <h2 className="text-xs font-semibold tracking-widest text-gray-900 title-font">
-                        INDIRIZZO
-                      </h2>
-                      <p className="mt-1">
-                        contrada popoleto,n.c. {"\n"} Alberobello (BA) 70011
-                      </p>
+                    <div className="flex flex-col justify-between px-6 lg:w-1/2">
+                      <div>
+                        <H6 as="h2" variant="secondary">
+                          Indirizzo
+                        </H6>
+                        <p className="mt-1">
+                          contrada popoleto,n.c. {'\n'} Alberobello (BA) 70011
+                        </p>
+                      </div>
+                      <div>
+                        <H6 className="mt-4" as="h2" variant="secondary">
+                          email
+                        </H6>
+                        <a
+                          className="text-yellow-500 leading-relaxed"
+                          href="mailto:matarrese@matarrese.it"
+                        >
+                          matarrese@matarrese.it
+                        </a>
+                      </div>
                     </div>
-                    <div className="px-6 mt-4 lg:w-1/2 lg:mt-0">
-                      <h2 className="text-xs font-semibold tracking-widest text-gray-900 title-font">
-                        EMAIL
-                      </h2>
-                      <a
-                        className="leading-relaxed text-yellow-500"
-                        href="mailto:matarrese@matarrese.it"
-                      >
-                        matarrese@matarrese.it
-                      </a>
-                      <h2 className="mt-4 text-xs font-semibold tracking-widest text-gray-900 title-font">
-                        TELEFONO
-                      </h2>
-                      <p className="leading-relaxed">+39 080 4323 431</p>
+                    <div className="flex flex-col justify-between mt-4 px-6 lg:mt-0 lg:w-1/2">
+                      <div>
+                        <H6 as="h2" variant="secondary">
+                          Telefono
+                        </H6>
+                        <a href="tel:000804323431" className="leading-relaxed">
+                          +39 080 4323 431
+                        </a>
+                      </div>
+                      <div>
+                        <H6 as="h2" variant="secondary" className="mt-4">
+                          Assistenza
+                        </H6>
+                        <a
+                          href="tel:00390804323651"
+                          className="leading-relaxed"
+                        >
+                          +39 080 4323 651
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </Transition>
                 <div
                   onClick={() => setIsOpen(!isOpen)}
                   className={clsx(
-                    isOpen && "hidden",
-                    "ring-8 ring-black ring-opacity-50 text-2xl absolute rounded-full w-10 h-10 bg-yellow-400 text-white flex justify-center items-center cursor-pointer font-bold shadow-md hover:shadow-lg "
+                    isOpen && 'hidden',
+                    'absolute flex items-center justify-center w-10 h-10 text-white text-2xl font-bold bg-yellow-400 rounded-full hover:shadow-lg shadow-md cursor-pointer ring-8 ring-black ring-opacity-50 ',
                   )}
                 >
                   +
                 </div>
               </div>
-              <div className="flex flex-col w-full mt-8 bg-white lg:w-1/3 md:w-1/2 md:ml-auto md:py-8 md:mt-0">
+              <div className="flex flex-col mt-8 w-full bg-white md:ml-auto md:mt-0 md:py-8 md:w-1/2 lg:w-1/3">
                 <ContactForm />
                 {/* TODO: aggingungere termini e condizioni */}
               </div>
@@ -104,5 +126,5 @@ export default function Contatti() {
         </Container>
       </Layout>
     </>
-  );
+  )
 }

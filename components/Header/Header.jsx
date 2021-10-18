@@ -1,27 +1,24 @@
-import clsx from "clsx";
-import Link from "next/link";
+import clsx from 'clsx'
+import Link from 'next/link'
 
-export default function Header({ children, href, className }) {
+import {H2} from '../typography'
+
+export default function Header({
+  children,
+  href,
+  className,
+  textVariant = 'secondary',
+}) {
   return href ? (
-    <h2
-      className={clsx(
-        "py-10 text-2xl font-bold leading-tight tracking-tight md:text-4xl md:tracking-tighter",
-        className
-      )}
-    >
+    <H2 variant={textVariant} className={clsx('py-10', className)}>
       <Link href={href}>
         <a className="hover:underline">{children}</a>
       </Link>
       .
-    </h2>
+    </H2>
   ) : (
-    <h2
-      className={clsx(
-        "py-10 text-2xl font-bold leading-tight tracking-tight md:text-4xl md:tracking-tighter",
-        className
-      )}
-    >
+    <H2 variant={textVariant} className={clsx('py-10', className)}>
       {children}
-    </h2>
-  );
+    </H2>
+  )
 }

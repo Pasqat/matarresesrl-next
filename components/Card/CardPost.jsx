@@ -1,30 +1,41 @@
-import Link from "next/link";
-import Date from "../Date";
+import Link from 'next/link'
+import Date from '../Date'
 
-import CoverImage from "../News/CoverImage";
+import CoverImage from '../News/CoverImage'
+import {H3} from '../typography'
 
-export default function CardPost({ slug, title, coverImage, date, excerpt }) {
+export default function CardPost({slug, title, coverImage, date, excerpt}) {
   return (
-    <div className="h-full overflow-hidden bg-white shadow-md">
-      <CoverImage title={title} coverImage={coverImage} slug={slug} href={`/news/${slug}`} placeholderText={title} />
+    <div className="h-full bg-white shadow-md overflow-hidden">
+      <CoverImage
+        title={title}
+        coverImage={coverImage}
+        slug={slug}
+        href={`/news/${slug}`}
+        placeholderText={title}
+      />
       <div className="flex flex-col justify-between p-4">
         <div>
           <div className="mb-4">
             <Date
-              className="text-xs font-medium tracking-widest text-gray-400 title-font"
+              className="title-font text-gray-400 text-xs font-medium tracking-widest"
               dateString={date}
             />
           </div>
           <Link href={`/news/${slug}`}>
             <a>
-              <h3 className="mb-3 text-xl font-bold leading-snug text-gray-600 title-font" dangerouslySetInnerHTML={{ __html: title }} />
+              <H3 className="mb-3" variant="secondary">
+                {title}
+              </H3>
             </a>
           </Link>
           <div
-            className="mb-3 leading-tight text-gray-500"
+            className="mb-3 text-gray-500 leading-tight"
             dangerouslySetInnerHTML={{
               __html:
-                excerpt?.length > 160 ? excerpt?.substr(0, 160) + "..." : excerpt,
+                excerpt?.length > 160
+                  ? excerpt?.substr(0, 160) + '...'
+                  : excerpt,
             }}
           ></div>
           <div className="flex flex-wrap items-center">
@@ -32,7 +43,7 @@ export default function CardPost({ slug, title, coverImage, date, excerpt }) {
               <a className="inline-flex items-center text-yellow-500 md:mb-2 lg:mb-0">
                 Continua a leggere
                 <svg
-                  className="w-4 h-4 ml-2 animate-bounceX"
+                  className="ml-2 w-4 h-4 animate-bounceX"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                   strokeWidth="2"
@@ -48,6 +59,6 @@ export default function CardPost({ slug, title, coverImage, date, excerpt }) {
           </div>
         </div>
       </div>
-    </div >
-  );
+    </div>
+  )
 }

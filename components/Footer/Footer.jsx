@@ -1,15 +1,17 @@
-import Link from "next/link";
-import Image from "next/image";
-import logoEccelsa from "../../public/img/logos/Eccelsa-RGB_400x400.png";
-import logoQucino from "../../public/img/logos/MARCHIO-QUCINO150.png";
-import logoAliGroup from "../../public/img/logos/Ali_Group_logo.png";
+import Link from 'next/link'
+import Image from 'next/image'
+import logoEccelsa from '../../public/img/logos/Eccelsa-RGB_400x400.png'
+import logoQucino from '../../public/img/logos/MARCHIO-QUCINO150.png'
+import logoAliGroup from '../../public/img/logos/Ali_Group_logo.png'
+
+import {H4} from '../typography'
 
 export default function Footer() {
   return (
-    <footer className="relative text-gray-600 body-font bg-gray-100">
+    <footer className="body-font relative text-gray-600 bg-gray-100">
       <div
-        className="absolute top-0 left-0 right-0 bottom-auto w-full h-20 -mt-20 overflow-hidden pointer-events-none"
-        style={{ transform: "translateZ(0)" }}
+        className="absolute bottom-auto left-0 right-0 top-0 -mt-20 w-full h-20 pointer-events-none overflow-hidden"
+        style={{transform: 'translateZ(0)'}}
       >
         <svg
           className="absolute bottom-0 overflow-hidden"
@@ -26,30 +28,30 @@ export default function Footer() {
           ></polygon>
         </svg>
       </div>
-      <div className="container flex flex-col flex-wrap px-5 py-24 mx-auto md:items-center lg:items-start md:flex-row md:flex-nowrap">
-        <div className="flex-shrink-0 w-64 mx-auto text-center md:mx-0 md:text-left">
+      <div className="container flex flex-col flex-wrap mx-auto px-5 py-24 md:flex-row md:flex-nowrap md:items-center lg:items-start">
+        <div className="flex-shrink-0 mx-auto w-64 text-center md:mx-0 md:text-left">
           <Link href="/">
-            <a className="flex items-center justify-center pb-2 font-medium text-gray-900 title-font md:justify-start">
+            <a className="title-font flex items-center justify-center pb-2 text-gray-900 font-medium md:justify-start">
               <Image
                 width={340}
                 height={20}
-                alt={"Logo Matarrese srl"}
+                alt={'Logo Matarrese srl'}
                 src="/img/logos/logo-matarrese-grigio-350.png"
               />
             </a>
           </Link>
-          <p className="mt-2 text-sm text-gray-500">
+          <p className="mt-2 text-gray-500 text-sm">
             Puoi trovarci anche sui nostri social, risponderemo in 1-2 giorni
             lavorativi
           </p>
-          <div className="mt-6 mb-6 text-center">
+          <div className="mb-6 mt-6 text-center">
             <a
               href="https://www.facebook.com/matarresesrl"
               target="_blank"
               rel="noreferrer"
             >
               <button
-                className="items-center justify-center w-10 h-10 mr-2 font-normal text-blue-600 bg-white rounded-full shadow-lg outline-none hover:shadow-md align-center focus:outline-none"
+                className="align-center items-center justify-center mr-2 w-10 h-10 text-blue-600 font-normal bg-white rounded-full outline-none focus:outline-none shadow-lg hover:shadow-md"
                 type="button"
               >
                 <i className="fab fa-facebook-square"></i>
@@ -61,7 +63,7 @@ export default function Footer() {
               target="_blank"
             >
               <button
-                className="items-center justify-center w-10 h-10 mr-2 font-normal text-blue-500 bg-white rounded-full shadow-lg outline-none align-center hover:shadow-md focus:outline-none"
+                className="align-center items-center justify-center mr-2 w-10 h-10 text-blue-500 font-normal bg-white rounded-full outline-none focus:outline-none shadow-lg hover:shadow-md"
                 type="button"
               >
                 <i className="fab fa-linkedin"></i>
@@ -73,14 +75,14 @@ export default function Footer() {
               target="_blank"
             >
               <button
-                className="items-center justify-center w-10 h-10 mr-2 font-normal text-pink-700 bg-white rounded-full shadow-lg outline-none align-center focus:outline-none hover:shadow-md"
+                className="align-center items-center justify-center mr-2 w-10 h-10 text-pink-700 font-normal bg-white rounded-full outline-none focus:outline-none shadow-lg hover:shadow-md"
                 type="button"
               >
                 <i className="fab fa-instagram"></i>
               </button>
             </a>
           </div>
-          <div className="flex flex-wrap items-end justify-between h-full mt-16">
+          <div className="flex flex-wrap items-end justify-between mt-16 h-full">
             {/* TODO: link to Qucino */}
             <a
               rel="noreferrer"
@@ -121,11 +123,9 @@ export default function Footer() {
             </a>
           </div>
         </div>
-        <div className="flex flex-wrap flex-grow mt-10 -mb-10 text-center md:pl-20 md:mt-0 md:text-left">
-          <div className="w-full px-4 xl:w-1/5 lg:w-1/2">
-            <h2 className="mb-3 text-sm font-medium tracking-widest text-gray-900 uppercase title-font">
-              Links
-            </h2>
+        <div className="flex flex-grow flex-wrap -mb-10 mt-10 text-center md:mt-0 md:pl-20 md:text-left">
+          <div className="px-4 w-full lg:w-1/2 xl:w-1/5">
+            <H4 variant="secondary">Links</H4>
             <nav className="mb-10 list-none">
               <li>
                 <Link href="/azienda">
@@ -163,19 +163,17 @@ export default function Footer() {
               </li>
             </nav>
           </div>
-          <div className="w-full px-4 xl:w-2/5 lg:w-1/2">
-            <h2 className="mb-3 text-sm font-medium tracking-widest text-gray-900 uppercase title-font">
-              Contatti
-            </h2>
+          <div className="px-4 w-full lg:w-1/2 xl:w-2/5">
+            <H4 variant="secondary">Contatti</H4>
             <nav className="mb-10 text-sm list-none">
               <li className="mb-2">
-                <i className="text-gray-400 fas fa-map-marker-alt"></i>
+                <i className="fas fa-map-marker-alt text-gray-400"></i>
                 <span className="ml-2 text-gray-600 hover:text-gray-800">
                   contrada Popoleto n.c. 70011 Alberobello (BA)
                 </span>
               </li>
               <li className="mb-2">
-                <i className="text-gray-400 fas fa-phone-alt"></i>
+                <i className="fas fa-phone-alt text-gray-400"></i>
                 <a
                   className="ml-2 text-gray-600 hover:text-gray-800"
                   href="tel:00390804323431"
@@ -184,7 +182,7 @@ export default function Footer() {
                 </a>
               </li>
               <li className="mb-2">
-                <i className="text-gray-400 fas fa-envelope"></i>
+                <i className="fas fa-envelope text-gray-400"></i>
                 <a
                   className="ml-2 text-gray-600 hover:text-gray-800"
                   href="mailto:matarrese@matarrese.it"
@@ -193,34 +191,34 @@ export default function Footer() {
                 </a>
               </li>
               <li className="mb-2">
-                <i className="text-gray-400 fas fa-file-invoice"></i>
+                <i className="fas fa-file-invoice text-gray-400"></i>
                 <span className="ml-2 text-gray-600 hover:text-gray-800">
                   IVA 04356890725
                 </span>
               </li>
             </nav>
           </div>
-          <div className="w-full pl-4 xl:w-2/5 ">
-            <h2 className="mb-3 text-sm font-medium tracking-widest text-gray-900 uppercase title-font">
+          <div className="pl-4 w-full xl:w-2/5">
+            <H4 as="h2" variant="secondary">
               Orari
-            </h2>
-            <div className="mb-10 text-sm text-gray-600">
+            </H4>
+            <div className="mb-10 text-gray-600 text-sm">
               <p className="mb-2">Per contattare i nostri uffici:</p>
               <div className="flex flex-row justify-center md:justify-between">
                 <div>Lunedì - Venerdì</div>
-                <div className="ml-3 font-semibold text-gray-500">
+                <div className="ml-3 text-gray-500 font-medium">
                   <p>08:30 - 13:00</p>
                   <p> 15:00 - 19:00</p>
                 </div>
               </div>
               <div className="flex flex-row justify-center md:justify-between">
                 <div>Sabato - Domenica</div>
-                <div className="ml-3 font-semibold text-gray-500">chiuso</div>
+                <div className="ml-3 text-gray-500 font-medium">chiuso</div>
               </div>
             </div>
-            <div className="text-sm text-gray-600">
+            <div className="text-gray-600 text-sm">
               <p>
-                Servizio tecnico:{" "}
+                Servizio tecnico:{' '}
                 <a
                   href="tel:00300804323651"
                   className="underline cursor-pointer"
@@ -241,17 +239,17 @@ export default function Footer() {
         </div>
       </div>
       <div className="bg-gray-100">
-        <div className="container flex flex-col flex-wrap px-5 py-4 mx-auto sm:flex-row">
-          <p className="text-sm text-center text-gray-500 sm:text-left">
-            Copyright © {new Date().getFullYear()} Matarrese srl{" "}
+        <div className="container flex flex-col flex-wrap mx-auto px-5 py-4 sm:flex-row">
+          <p className="text-center text-gray-500 text-sm sm:text-left">
+            Copyright © {new Date().getFullYear()} Matarrese srl{' '}
           </p>
-          <div className="inline-flex justify-center mt-2 sm:ml-auto sm:mt-0 sm:justify-start">
-            <p className="text-sm text-center text-gray-500">
+          <div className="inline-flex justify-center mt-2 sm:justify-start sm:ml-auto sm:mt-0">
+            <p className="text-center text-gray-500 text-sm">
               by <span className="font-semibold">Pasquale Matarrese</span>
             </p>
             <a
               href="https://www.facebook.com/pasqat"
-              className="ml-3 text-gray-500 cursor-pointer hover:text-blue-800"
+              className="ml-3 hover:text-blue-800 text-gray-500 cursor-pointer"
             >
               <svg
                 fill="currentColor"
@@ -266,7 +264,7 @@ export default function Footer() {
             </a>
             <a
               href="https://twitter.com/pasqat"
-              className="ml-3 text-gray-500 hover:text-blue-500"
+              className="ml-3 hover:text-blue-500 text-gray-500"
             >
               <svg
                 fill="currentColor"
@@ -281,7 +279,7 @@ export default function Footer() {
             </a>
             <a
               href="https://github.com/pasqat/"
-              className="ml-3 text-gray-500 hover:text-black"
+              className="ml-3 hover:text-black text-gray-500"
             >
               <svg
                 fill="currentColor"
@@ -302,7 +300,7 @@ export default function Footer() {
             </a>
             <a
               href="https://www.linkedin.com/in/pasquale-matarrese/"
-              className="ml-3 text-gray-500 hover:text-blue-800"
+              className="ml-3 hover:text-blue-800 text-gray-500"
             >
               <svg
                 fill="currentColor"
@@ -315,7 +313,7 @@ export default function Footer() {
               >
                 <path
                   stroke="none"
-                  d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"
+                  d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H4z"
                 ></path>
                 <circle cx="4" cy="4" r="2" stroke="none"></circle>
               </svg>
@@ -324,5 +322,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  );
+  )
 }

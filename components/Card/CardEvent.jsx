@@ -1,55 +1,76 @@
-import Link from 'next/link';
-import { getDayNumeric, getDayOfWeek, getHour } from '../../actions/utils/formatDate';
-import CoverImage from "../News/CoverImage";
+import Link from 'next/link'
+import {
+  getDayNumeric,
+  getDayOfWeek,
+  getHour,
+} from '../../actions/utils/formatDate'
+import CoverImage from '../News/CoverImage'
+
+import {H3} from '../typography'
 
 /**
-  * @param coverImage eg. node.featuredImage?.node
-  **/
-export default function CardEvent({ title, slug, id, startDate, excerpt, coverImage, venue }) {
+ * @param coverImage eg. node.featuredImage?.node
+ **/
+export default function CardEvent({
+  title,
+  slug,
+  id,
+  startDate,
+  excerpt,
+  coverImage,
+  venue,
+}) {
   return (
     <div className="flex flex-col h-full">
       <div className="mb-4">
         <div className="flex">
-          <time className="uppercase text-yellow-500 border-b-4 border-yellow-500 mr-2 align-baseline ">
+          <time className="align-baseline mr-2 text-yellow-500 border-b-4 border-yellow-500 uppercase">
             {getDayOfWeek(startDate)}
           </time>
-          <div className="leading-none text-yellow-500 text-6xl oldstyle-nums text-right">
+          <div className="text-right text-yellow-500 text-6xl oldstyle-nums leading-none">
             {getDayNumeric(startDate)}
           </div>
         </div>
         <p className="text-yellow-500">{getHour(startDate)}</p>
       </div>
-      <div className="h-full overflow-hidden bg-white shadow-md">
+      <div className="h-full bg-white shadow-md overflow-hidden">
         {coverImage ? (
-          <CoverImage title={title} coverImage={coverImage} slug={slug} href={`/eventi/${slug}`} placeholderText={getDayNumeric(startDate)} />
+          <CoverImage
+            title={title}
+            coverImage={coverImage}
+            slug={slug}
+            href={`/eventi/${slug}`}
+            placeholderText={getDayNumeric(startDate)}
+          />
         ) : (
-          <div className="relative flex items-center justify-center w-full pb-[50%] text-center bg-gradient-to-tl from-red-600 to-yellow-400 overflow-hidden">
-            <div className="leading-tight bottom-[40%] select-none absolute z-0 text-7xl transform md:scale-[5] scale-[3.5] text-gray-100 opacity-30 font-extrabold font-serif">
+          <div className="pb-[50%] relative flex items-center justify-center w-full text-center bg-gradient-to-tl from-red-600 to-yellow-400 overflow-hidden">
+            <div className="bottom-[40%] scale-[3.5] md:scale-[5] absolute z-0 text-gray-100 font-serif text-7xl font-extrabold leading-tight opacity-30 select-none transform">
               {getDayNumeric(startDate)}
             </div>
           </div>
         )}
         <div className="p-6">
-          {venue && <div className="my-4 text-xs font-medium tracking-widest text-gray-400 ">
-            <i className="text-sm text-gray-400 fas fa-map-marker-alt"></i>{" "}
-            {venue?.title}
-          </div>
-          }
-          <div className="flex flex-col justify-between ">
+          {venue && (
+            <div className="my-4 text-gray-400 text-xs font-medium tracking-widest">
+              <i className="fas fa-map-marker-alt text-gray-400 text-sm"></i>{' '}
+              {venue?.title}
+            </div>
+          )}
+          <div className="flex flex-col justify-between">
             <div>
-              <h3 className="mb-3 text-2xl font-bold leading-snug text-gray-600 title-font">
+              <H3 className="mb-3" variant="secondary">
                 <Link href={`/eventi/${slug}`}>
                   <a
                     className="hover:underline"
-                    dangerouslySetInnerHTML={{ __html: title }}
+                    dangerouslySetInnerHTML={{__html: title}}
                   ></a>
                 </Link>
-              </h3>
+              </H3>
               <Link href={`/eventi/${slug}`}>
-                <a className="inline-flex items-center text-yellow-500 mb-3">
+                <a className="inline-flex items-center mb-3 text-yellow-500">
                   Maggiori informazioni
                   <svg
-                    className="w-4 h-4 ml-2 animate-bounceX"
+                    className="ml-2 w-4 h-4 animate-bounceX"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                     strokeWidth="2"
@@ -63,10 +84,12 @@ export default function CardEvent({ title, slug, id, startDate, excerpt, coverIm
                 </a>
               </Link>
               <div
-                className="mb-3 leading-tight text-gray-500"
+                className="mb-3 text-gray-500 leading-tight"
                 dangerouslySetInnerHTML={{
                   __html:
-                    excerpt?.length > 160 ? excerpt?.substr(0, 160) + "..." : excerpt,
+                    excerpt?.length > 160
+                      ? excerpt?.substr(0, 160) + '...'
+                      : excerpt,
                 }}
               ></div>
             </div>

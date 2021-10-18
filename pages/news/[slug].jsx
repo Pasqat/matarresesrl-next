@@ -1,23 +1,25 @@
-import { useRouter } from "next/router";
+import {useRouter} from 'next/router'
+import Head from 'next/head'
 
-import Head from "next/head";
-import Date from "../../components/Date";
-import Layout from "../../components/Layout";
-import CoverImage from "../../components/News/CoverImage";
-import MorePosts from "../../components/News/more-posts";
-import PostBody from "../../components/News/post-body";
-import Categories from "../../components/News/post-categories";
+import Date from '../../components/Date'
+import Layout from '../../components/Layout'
+import CoverImage from '../../components/News/CoverImage'
+import MorePosts from '../../components/News/more-posts'
+import PostBody from '../../components/News/post-body'
+import Categories from '../../components/News/post-categories'
+import SocialShareBar from '../../components/SocialShareBar/SocialShareBar'
 
-import { getAllPostsWithSlug, getPostAndMorePosts } from "../../lib/post_api";
-import SocialShareBar from "../../components/SocialShareBar/SocialShareBar";
+import {H1} from '../../components/typography'
 
-export default function Post({ postData, posts }) {
-  const router = useRouter();
-  const morePosts = posts?.edges;
+import {getAllPostsWithSlug, getPostAndMorePosts} from '../../lib/post_api'
+
+export default function Post({postData, posts}) {
+  const router = useRouter()
+  const morePosts = posts?.edges
 
   if (!router.isFallback && !postData.slug) {
-    console.log("sdeng 💣️");
-    return <p>hmm...sembra ci sia un errore</p>;
+    console.log('sdeng 💣️')
+    return <p>hmm...sembra ci sia un errore</p>
   }
 
   return (
@@ -41,9 +43,9 @@ export default function Post({ postData, posts }) {
                 content={postData.featuredImage?.node?.sourceUrl}
               />
             </Head>
-            <div className="px-5 container mx-auto max-w-7xl py-16">
+            <div className="container mx-auto px-5 py-16 max-w-7xl">
               <main className="mb-24">
-                <div className="mb-8 md:mb-16 sm:mx-0">
+                <div className="mb-8 sm:mx-0 md:mb-16">
                   <CoverImage
                     title={postData.title}
                     coverImage={postData.featuredImage?.node}
@@ -52,18 +54,20 @@ export default function Post({ postData, posts }) {
                 </div>
 
                 <div className="relative lg:flex lg:flex-row">
-                  <div className="relative max-w-4xl bg-white lg:-mt-56 z-2 shadow-lg p-10 lg:ml-24">
+                  <div className="relative z-2 p-10 max-w-4xl bg-white shadow-lg lg:-mt-56 lg:ml-24">
                     <div className="mb-6 text-lg">
                       <Categories categories={postData.categories} />
                       <Date
                         dateString={postData.date}
-                        className="ml-4 text-sm text-gray-400"
+                        className="ml-4 text-gray-400 text-sm"
                       />
                     </div>
-                    <h1
-                      className="mb-12 text-gray-700 text-4xl font-bold leading-tight tracking-tighter text-center md:text-5xl lg:text-5xl md:text-left"
-                      dangerouslySetInnerHTML={{ __html: postData.title }}
-                    ></h1>
+                    <H1
+                      variant="secondary"
+                      className="mb-12 text-center md:text-left"
+                    >
+                      {postData.title}
+                    </H1>
                     <PostBody content={postData.content} />
                   </div>
 
@@ -82,17 +86,17 @@ export default function Post({ postData, posts }) {
               </main>
             </div>
           </article>
-          <div className="px-5 container mx-auto max-w-7xl py-8">
+          <div className="container mx-auto px-5 py-8 max-w-7xl">
             {morePosts.length > 0 && <MorePosts posts={morePosts} />}
           </div>
         </>
       )}
     </Layout>
-  );
+  )
 }
 
-export async function getStaticProps({ params, preview = false }) {
-  const data = await getPostAndMorePosts(params.slug, preview);
+export async function getStaticProps({params, preview = false}) {
+  const data = await getPostAndMorePosts(params.slug, preview)
 
   return {
     props: {
@@ -100,14 +104,14 @@ export async function getStaticProps({ params, preview = false }) {
       postData: data.post,
       posts: data.posts,
     },
-  };
+  }
 }
 
 export async function getStaticPaths() {
-  const allPosts = await getAllPostsWithSlug();
+  const allPosts = await getAllPostsWithSlug()
 
   return {
-    paths: allPosts.edges.map(({ node }) => `/news/${node.slug}`) || [],
+    paths: allPosts.edges.map(({node}) => `/news/${node.slug}`) || [],
     fallback: true,
-  };
+  }
 }

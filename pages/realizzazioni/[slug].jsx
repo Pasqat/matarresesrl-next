@@ -9,6 +9,7 @@ import HeaderBig from "../../components/Header/HeaderBig";
 import SocialShareBar from "../../components/SocialShareBar/SocialShareBar";
 
 import { getProject, getAllProjectsWithSlug } from "../../lib/project_api";
+import { H2, H3 } from "../../components/typography";
 
 export default function Project({ project }) {
   const router = useRouter();
@@ -27,7 +28,9 @@ export default function Project({ project }) {
             <title>Matarrese srl | Realizzazioni</title>
           </Head>
           <main>
-            <h2>Caricamento dei progetti realizzati</h2>
+            <H2>
+            Caricamento dei progetti realizzati
+            </H2>
           </main>
         </>
       ) : (
@@ -67,9 +70,9 @@ export default function Project({ project }) {
                     {/*   </div> */}
                     {/* </div> */}
                     <div className="mt-12 text-center">
-                      <h3 className="mb-2 text-4xl font-semibold leading-normal text-gray-700">
+                      <H3 className="mb-2" variant="secondary">
                         {project.title}
-                      </h3>
+                      </H3>
                       <div className="mt-0 mb-2 text-sm font-bold leading-normal text-gray-400 uppercase">
                         {project.portfolioCategories.edges.map(
                           ({ node } = category) => (

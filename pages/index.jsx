@@ -14,6 +14,7 @@ import { SlopeDivSection } from "../ui/SlopeDivSection";
 import Testimonials from "../components/Testimonials/Testimonials";
 import { logos } from "../data/partner-logo";
 import Image from "next/image";
+import { H2, H3, H4, H5, H6 } from "../components/typography";
 
 export default function Home() {
   return (
@@ -155,9 +156,9 @@ export default function Home() {
                   <div className="inline-flex items-center justify-center w-16 h-16 p-3 mb-6 text-center text-gray-500 bg-white rounded-full shadow-lg">
                     <HeartIcon className="text-xl text-yellow-500" />
                   </div>
-                  <h3 className="mb-2 text-3xl font-semibold leading-normal">
+                  <H3 className="mb-2" variant="secondary">
                     Da oltre 30 anni partner degli operatori del settore
-                  </h3>
+                  </H3>
                   <p className="mt-4 mb-4 text-lg font-light leading-relaxed text-gray-600">
                     Offriamo prodotti di alta qualità e servizi professionali:
                     interior design, consulenza per trasformare l’idea in un
@@ -203,9 +204,9 @@ export default function Home() {
                     <div className="inline-flex items-center justify-center w-16 h-16 p-3 mb-6 text-center text-gray-500 bg-gray-200 rounded-full shadow-lg">
                       <ShoppingCartIcon className="text-xl text-indigo-500" />
                     </div>
-                    <h3 className="text-3xl font-semibold">
+                    <H3 variant="secondary">
                       Tutto per il settore food
-                    </h3>
+                    </H3>
                     <p className="mt-4 text-lg leading-relaxed text-gray-500">
                       In una struttura aziendale di <strong>5000 mq</strong>{" "}
                       uniamo il laboratorio di produzione di arredi su misura,
@@ -221,9 +222,9 @@ export default function Home() {
                             </span>
                           </div>
                           <div>
-                            <h4 className="text-gray-500">
+                            <H5 as="h4">
                               Attrezzature per ristorazione
-                            </h4>
+                            </H5>
                           </div>
                         </div>
                       </li>
@@ -235,7 +236,9 @@ export default function Home() {
                             </span>
                           </div>
                           <div>
-                            <h4 className="text-gray-500">Arredamenti</h4>
+                            <H5 as="h4">
+                            Arredamenti
+                            </H5>
                           </div>
                         </div>
                       </li>
@@ -247,9 +250,9 @@ export default function Home() {
                             </span>
                           </div>
                           <div>
-                            <h4 className="text-gray-500">
+                            <H5 as="h4">
                               Utensili da cucina
-                            </h4>
+                            </H5>
                           </div>
                         </div>
                       </li>
@@ -261,7 +264,9 @@ export default function Home() {
                             </span>
                           </div>
                           <div>
-                            <h4 className="text-gray-500">Hotellerie</h4>
+                            <H5 as="h4">
+                              Hotellerie
+                            </H5>
                           </div>
                         </div>
                       </li>
@@ -273,7 +278,7 @@ export default function Home() {
                             </span>
                           </div>
                           <div>
-                            <h4 className="text-gray-500">...e tanto altro</h4>
+                            <H5 as="h4">...e tanto altro</H5>
                           </div>
                         </div>
                       </li>
@@ -288,9 +293,9 @@ export default function Home() {
             <div className="container px-8 md:mx-auto">
               <div className="flex flex-wrap justify-center text-center">
                 <div className="w-full px-4 lg:w-6/12">
-                  <h2 className="text-4xl font-semibold text-gray-800">
+                  <H2 variant="secondary">
                     Cosa dicono di noi
-                  </h2>
+                  </H2>
                 </div>
               </div>
               <div className="mt-20">
@@ -305,7 +310,7 @@ export default function Home() {
             <div className="container px-4 mx-auto lg:py-24">
               <div className="flex flex-wrap justify-center text-center">
                 <div className="w-full px-4 lg:w-8/12">
-                  <h2 className="text-4xl text-gray-100 font-semibold">MePA</h2>
+                  <H2 className="text-white">MePA</H2>
                   <p className="m-4 text-2xl leading-relaxed text-gray-400">
                     Siamo presenti sul{" "}
                     <strong className="text-yellow-500">MEPA</strong>: il
@@ -316,149 +321,6 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-              {/*             <div className="flex flex-wrap">
-                <div className="w-full px-4 mb-12 md:w-6/12 lg:w-3/12 lg:mb-0">
-                  <div className="px-6">
-                    <img
-                      alt="..."
-                      src="/img/team-1-800x800.jpg"
-                      className="mx-auto rounded-full shadow-lg max-w-120-px"
-                    />
-                    <div className="pt-6 text-center">
-                      <h5 className="text-xl font-bold">Ryan Tompson</h5>
-                      <p className="mt-1 text-sm font-semibold text-gray-400 uppercase">
-                        Web Developer
-                      </p>
-                      <div className="mt-6">
-                        <button
-                          className="w-8 h-8 mb-1 mr-1 text-white rounded-full outline-none bg-lightBlue-400 focus:outline-none"
-                          type="button"
-                        >
-                          <i className="fab fa-twitter"></i>
-                        </button>
-                        <button
-                          className="w-8 h-8 mb-1 mr-1 text-white rounded-full outline-none bg-lightBlue-600 focus:outline-none"
-                          type="button"
-                        >
-                          <i className="fab fa-facebook-f"></i>
-                        </button>
-                        <button
-                          className="w-8 h-8 mb-1 mr-1 text-white bg-pink-500 rounded-full outline-none focus:outline-none"
-                          type="button"
-                        >
-                          <i className="fab fa-dribbble"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="w-full px-4 mb-12 md:w-6/12 lg:w-3/12 lg:mb-0">
-                  <div className="px-6">
-                    <img
-                      alt="..."
-                      src="/img/team-2-800x800.jpg"
-                      className="mx-auto rounded-full shadow-lg max-w-120-px"
-                    />
-                    <div className="pt-6 text-center">
-                      <h5 className="text-xl font-bold">Romina Hadid</h5>
-                      <p className="mt-1 text-sm font-semibold text-gray-400 uppercase">
-                        Marketing Specialist
-                      </p>
-                      <div className="mt-6">
-                        <button
-                          className="w-8 h-8 mb-1 mr-1 text-white bg-red-600 rounded-full outline-none focus:outline-none"
-                          type="button"
-                        >
-                          <i className="fab fa-google"></i>
-                        </button>
-                        <button
-                          className="w-8 h-8 mb-1 mr-1 text-white rounded-full outline-none bg-lightBlue-600 focus:outline-none"
-                          type="button"
-                        >
-                          <i className="fab fa-facebook-f"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="w-full px-4 mb-12 md:w-6/12 lg:w-3/12 lg:mb-0">
-                  <div className="px-6">
-                    <img
-                      alt="..."
-                      src="/img/team-3-800x800.jpg"
-                      className="mx-auto rounded-full shadow-lg max-w-120-px"
-                    />
-                    <div className="pt-6 text-center">
-                      <h5 className="text-xl font-bold">Alexa Smith</h5>
-                      <p className="mt-1 text-sm font-semibold text-gray-400 uppercase">
-                        UI/UX Designer
-                      </p>
-                      <div className="mt-6">
-                        <button
-                          className="w-8 h-8 mb-1 mr-1 text-white bg-red-600 rounded-full outline-none focus:outline-none"
-                          type="button"
-                        >
-                          <i className="fab fa-google"></i>
-                        </button>
-                        <button
-                          className="w-8 h-8 mb-1 mr-1 text-white rounded-full outline-none bg-lightBlue-400 focus:outline-none"
-                          type="button"
-                        >
-                          <i className="fab fa-twitter"></i>
-                        </button>
-                        <button
-                          className="w-8 h-8 mb-1 mr-1 text-white bg-gray-700 rounded-full outline-none focus:outline-none"
-                          type="button"
-                        >
-                          <i className="fab fa-instagram"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="w-full px-4 mb-12 md:w-6/12 lg:w-3/12 lg:mb-0">
-                  <div className="px-6">
-                    <img
-                      alt="..."
-                      src="/img/team-4-470x470.png"
-                      className="mx-auto rounded-full shadow-lg max-w-120-px"
-                    />
-                    <div className="pt-6 text-center">
-                      <h5 className="text-xl font-bold">Jenna Kardi</h5>
-                      <p className="mt-1 text-sm font-semibold text-gray-400 uppercase">
-                        Founder and CEO
-                      </p>
-                      <div className="mt-6">
-                        <button
-                          className="w-8 h-8 mb-1 mr-1 text-white bg-pink-500 rounded-full outline-none focus:outline-none"
-                          type="button"
-                        >
-                          <i className="fab fa-dribbble"></i>
-                        </button>
-                        <button
-                          className="w-8 h-8 mb-1 mr-1 text-white bg-red-600 rounded-full outline-none focus:outline-none"
-                          type="button"
-                        >
-                          <i className="fab fa-google"></i>
-                        </button>
-                        <button
-                          className="w-8 h-8 mb-1 mr-1 text-white rounded-full outline-none bg-lightBlue-400 focus:outline-none"
-                          type="button"
-                        >
-                          <i className="fab fa-twitter"></i>
-                        </button>
-                        <button
-                          className="w-8 h-8 mb-1 mr-1 text-white bg-gray-700 rounded-full outline-none focus:outline-none"
-                          type="button"
-                        >
-                          <i className="fab fa-instagram"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              */}
             </div>
           </section>
           <section
@@ -480,7 +342,7 @@ export default function Home() {
           {/* LOGO SECTION */}
           <section className="relative py-20">
             <div className="container px-4 mx-auto mb-12">
-              <h2 className="mb-8 text-center text-4xl">I Nostri partner</h2>
+              <H2 className="mb-8 text-center" variant="secondary">I Nostri partner</H2>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
                 {logos.map((logo) => {
                   return logo.href ? (

@@ -1,11 +1,11 @@
-import { Fragment, useEffect, useState } from "react";
-import Link from "next/link";
+import {Fragment, useEffect, useState} from 'react'
+import Link from 'next/link'
 
-import { Dialog, Transition } from "@headlessui/react";
-import { ChatIcon } from "@heroicons/react/outline";
-import clsx from "clsx";
+import {Dialog, Transition} from '@headlessui/react'
+import {ChatIcon} from '@heroicons/react/outline'
+import clsx from 'clsx'
 
-import { sendContactMail } from "../../actions/networking/mailApi";
+import {sendContactMail} from '../../actions/networking/mailApi'
 
 /**
  * @param buttonText default "Contattaci"
@@ -18,103 +18,103 @@ import { sendContactMail } from "../../actions/networking/mailApi";
  * @param {stirng} title usefull to pass event title to the email subject
  */
 export default function FormModal({
-  buttonText = "Contattaci",
+  buttonText = 'Contattaci',
   buttonClassName,
-  type = "contacts",
+  type = 'contacts',
   title = null,
 }) {
-  let [isOpen, setIsOpen] = useState(false);
+  let [isOpen, setIsOpen] = useState(false)
   const [form, setForm] = useState({
-    name: "",
-    surname: "",
-    mail: "",
-    tel: "",
-    formContent: "",
+    name: '',
+    surname: '',
+    mail: '',
+    tel: '',
+    formContent: '',
     participants: null,
-  });
-  const { name, surname, mail, tel, formContent, participants } = form;
-  const [isChecked, setIsChecked] = useState(false);
+  })
+  const {name, surname, mail, tel, formContent, participants} = form
+  const [isChecked, setIsChecked] = useState(false)
 
-  const [formButtonDisabled, setFormButtonDisabled] = useState(false);
+  const [formButtonDisabled, setFormButtonDisabled] = useState(false)
   const [notification, setNotification] = useState({
-    text: "",
+    text: '',
     isError: false,
-  });
+  })
 
   function closeModal() {
-    setIsOpen(false);
+    setIsOpen(false)
   }
 
   function openModal() {
-    setIsOpen(true);
+    setIsOpen(true)
   }
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = e => {
+    const {name, value} = e.target
     setForm({
       ...form,
       [name]: value,
-    });
-  };
+    })
+  }
 
   useEffect(() => {
-    setFormButtonDisabled(false);
-    setForm((form) => ({ ...form, name: "", surname: "", mail: "", tel: "" }));
-    setIsChecked(false);
-    setNotification({ text: "", isError: false });
-  }, [isOpen]);
+    setFormButtonDisabled(false)
+    setForm(form => ({...form, name: '', surname: '', mail: '', tel: ''}))
+    setIsChecked(false)
+    setNotification({text: '', isError: false})
+  }, [isOpen])
 
   useEffect(() => {
-    if (isChecked && notification.text.includes("termini")) {
-      setNotification({ text: "", isError: false });
+    if (isChecked && notification.text.includes('termini')) {
+      setNotification({text: '', isError: false})
     }
-  }, [isChecked, notification.text]);
+  }, [isChecked, notification.text])
 
   async function submitContactForm(event) {
-    event.preventDefault();
+    event.preventDefault()
 
-    if (name === "" || surname === "") {
+    if (name === '' || surname === '') {
       return setNotification({
         ...notification,
-        text: "Per favore compila tutti i campi",
+        text: 'Per favore compila tutti i campi',
         isError: true,
-      });
+      })
     }
 
-    if (type === "reservation") {
-      if (typeof participants === null || participants === "") {
+    if (type === 'reservation') {
+      if (typeof participants === null || participants === '') {
         return setNotification({
           ...notification,
-          text: "Per favore compila tutti i campi",
+          text: 'Per favore compila tutti i campi',
           isError: true,
-        });
+        })
       }
     }
 
-    if (type !== "reservation") {
-      if (formContent === "") {
+    if (type !== 'reservation') {
+      if (formContent === '') {
         return setNotification({
           ...notification,
-          text: "Per favore compila tutti i campi",
+          text: 'Per favore compila tutti i campi',
           isError: true,
-        });
+        })
       }
     }
 
-    if (mail === "" && tel === "") {
+    if (mail === '' && tel === '') {
       return setNotification({
         ...notification,
-        text: "Per favore inserisci un numero valido o una email valida",
+        text: 'Per favore inserisci un numero valido o una email valida',
         isError: true,
-      });
+      })
     }
 
     if (!isChecked) {
       return setNotification({
         ...notification,
-        text: "Non dimenticare di accettare i termini e le condizioni",
+        text: 'Non dimenticare di accettare i termini e le condizioni',
         isError: true,
-      });
+      })
     }
 
     const res = await sendContactMail(
@@ -124,54 +124,54 @@ export default function FormModal({
       tel,
       formContent,
       participants,
-      title
-    );
+      title,
+    )
     if (res.status < 300) {
-      setFormButtonDisabled(true);
+      setFormButtonDisabled(true)
       setNotification({
         ...notification,
-        text: "Grazie, ti ricontatteremo al più presto",
+        text: 'Grazie, ti ricontatteremo al più presto',
         isError: false,
-      });
+      })
       setForm({
         ...form,
-        name: "",
-        surname: "",
-        tel: "",
-        mail: "",
-        formContent: "",
-        participants: "",
-      });
-      setIsChecked(false);
+        name: '',
+        surname: '',
+        tel: '',
+        mail: '',
+        formContent: '',
+        participants: '',
+      })
+      setIsChecked(false)
       setTimeout(() => {
-        closeModal();
-      }, 2000);
+        closeModal()
+      }, 2000)
     } else {
       setNotification({
         ...notification,
-        text: "Per favore compila tutti i campi",
+        text: 'Per favore compila tutti i campi',
         isError: true,
-      });
+      })
     }
   }
   return (
     <>
       <div
         className={clsx(
-          buttonClassName ? null : "inset-0 flex items-center justify-center"
+          buttonClassName ? null : 'inset-0 flex items-center justify-center',
         )}
       >
         <button
           type="button"
           onClick={openModal}
           className={clsx(
-            "font-medium rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75",
+            'font-medium rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75',
             buttonClassName ??
-              "px-4 py-2 text-sm text-white bg-yellow-600 hover:bg-yellow-500 "
+              'px-4 py-2 text-sm text-white bg-yellow-600 hover:bg-yellow-500 ',
           )}
         >
           {buttonClassName ? null : (
-            <ChatIcon className="inline-block w-5 h-5 mr-1" />
+            <ChatIcon className="inline-block mr-1 w-5 h-5" />
           )}
           {buttonText}
         </button>
@@ -180,10 +180,10 @@ export default function FormModal({
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
-          className="fixed inset-0 z-[51] overflow-y-auto bg-black bg-opacity-60"
+          className="z-[51] fixed inset-0 bg-black bg-opacity-60 overflow-y-auto"
           onClose={closeModal}
         >
-          <div className="min-h-screen px-4 text-center">
+          <div className="px-4 min-h-screen text-center">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -198,7 +198,7 @@ export default function FormModal({
 
             {/* This element is to trick the browser into centering the modal contents. */}
             <span
-              className="inline-block h-screen align-middle"
+              className="inline-block align-middle h-screen"
               aria-hidden="true"
             >
               &#8203;
@@ -212,18 +212,18 @@ export default function FormModal({
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="inline-block w-full max-w-md p-10 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
-                {type === "contacts" ? (
+              <div className="inline-block align-middle my-8 p-10 w-full max-w-md text-left bg-white rounded-2xl shadow-xl overflow-hidden transform transition-all">
+                {type === 'contacts' ? (
                   <>
                     <Dialog.Title
                       as="h3"
-                      className="text-lg font-medium leading-6 text-gray-900"
+                      className="leading-tigth text-gray-900 text-lg font-medium"
                     >
                       Hai un&apos;idea che vorresti realizzare, o hai bisogno di
                       informazioni?
                     </Dialog.Title>
                     <div className="mt-2">
-                      <p className="text-sm text-gray-500">
+                      <p className="text-gray-500 text-sm">
                         Completa questo form, ti risponderemo entro 24 ore
                         (escluso festivi)
                       </p>
@@ -232,27 +232,27 @@ export default function FormModal({
                 ) : (
                   <Dialog.Title
                     as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900"
+                    className="text-gray-900 text-lg font-medium leading-6"
                   >
                     {title}
                   </Dialog.Title>
                 )}
 
                 <form
-                  className="flex-auto space-y-8 mt-8"
+                  className="flex-auto mt-8 space-y-8"
                   onSubmit={submitContactForm}
                 >
-                  <div className="grid grid-cols-2 gap-2 relative w-full">
+                  <div className="relative grid gap-2 grid-cols-2 w-full">
                     <div className="w-full">
                       <label
-                        className="block mb-2 text-xs font-bold text-gray-600 uppercase"
+                        className="block mb-2 text-gray-600 text-xs font-bold uppercase"
                         htmlFor="name"
                       >
                         Nome
                       </label>
                       <input
                         type="text"
-                        className="w-full px-3 py-3 text-sm text-gray-600 placeholder-gray-300 transition-all duration-150 ease-linear bg-white border-0 rounded shadow focus:outline-none focus:ring"
+                        className="placeholder-gray-300 px-3 py-3 w-full text-gray-600 text-sm bg-white border-0 rounded focus:outline-none shadow transition-all duration-150 ease-linear focus:ring"
                         placeholder="Nome"
                         name="name"
                         value={name}
@@ -261,14 +261,14 @@ export default function FormModal({
                     </div>
                     <div className="w-full">
                       <label
-                        className="block mb-2 text-xs font-bold text-gray-600 uppercase"
+                        className="block mb-2 text-gray-600 text-xs font-bold uppercase"
                         htmlFor="surname"
                       >
                         Cognome
                       </label>
                       <input
                         type="text"
-                        className="w-full px-3 py-3 text-sm text-gray-600 placeholder-gray-300 transition-all duration-150 ease-linear bg-white border-0 rounded shadow focus:outline-none focus:ring"
+                        className="placeholder-gray-300 px-3 py-3 w-full text-gray-600 text-sm bg-white border-0 rounded focus:outline-none shadow transition-all duration-150 ease-linear focus:ring"
                         placeholder="Cognome"
                         name="surname"
                         value={surname}
@@ -278,14 +278,14 @@ export default function FormModal({
                   </div>
                   <div className="relative w-full">
                     <label
-                      className="block mb-2 text-xs font-bold text-gray-600 uppercase"
+                      className="block mb-2 text-gray-600 text-xs font-bold uppercase"
                       htmlFor="email"
                     >
                       Email
                     </label>
                     <input
                       type="email"
-                      className="w-full px-3 py-3 text-sm text-gray-600 placeholder-gray-300 transition-all duration-150 ease-linear bg-white border-0 rounded shadow focus:outline-none focus:ring"
+                      className="placeholder-gray-300 px-3 py-3 w-full text-gray-600 text-sm bg-white border-0 rounded focus:outline-none shadow transition-all duration-150 ease-linear focus:ring"
                       placeholder="Email"
                       name="mail"
                       value={mail}
@@ -294,24 +294,24 @@ export default function FormModal({
                   </div>
                   <div className="relative w-full">
                     <label
-                      className="block mb-2 text-xs font-bold text-gray-600 uppercase"
+                      className="block mb-2 text-gray-600 text-xs font-bold uppercase"
                       htmlFor="tel"
                     >
                       Telefono
                     </label>
                     <input
                       type="tel"
-                      className="w-full px-3 py-3 text-sm text-gray-600 placeholder-gray-300 transition-all duration-150 ease-linear bg-white border-0 rounded shadow focus:outline-none focus:ring"
+                      className="placeholder-gray-300 px-3 py-3 w-full text-gray-600 text-sm bg-white border-0 rounded focus:outline-none shadow transition-all duration-150 ease-linear focus:ring"
                       placeholder="Telefono"
                       name="tel"
                       value={tel}
                       onChange={handleChange}
                     />
                   </div>
-                  {type === "reservation" ? (
+                  {type === 'reservation' ? (
                     <div className="relative w-full">
                       <label
-                        className="block mb-2 text-xs font-bold text-gray-600 uppercase"
+                        className="block mb-2 text-gray-600 text-xs font-bold uppercase"
                         htmlFor="messaggio"
                       >
                         Numero Partecipanti
@@ -319,7 +319,7 @@ export default function FormModal({
                       <input
                         type="number"
                         min="1"
-                        className="w-full px-3 py-3 text-sm text-gray-600 placeholder-gray-300 transition-all duration-150 ease-linear bg-white border-0 rounded shadow focus:outline-none focus:ring"
+                        className="placeholder-gray-300 px-3 py-3 w-full text-gray-600 text-sm bg-white border-0 rounded focus:outline-none shadow transition-all duration-150 ease-linear focus:ring"
                         placeholder="Numero partecipanti"
                         name="participants"
                         value={participants}
@@ -329,7 +329,7 @@ export default function FormModal({
                   ) : (
                     <div className="relative w-full">
                       <label
-                        className="block mb-2 text-xs font-bold text-gray-600 uppercase"
+                        className="block mb-2 text-gray-600 text-xs font-bold uppercase"
                         htmlFor="messaggio"
                       >
                         Message
@@ -337,7 +337,7 @@ export default function FormModal({
                       <textarea
                         rows="4"
                         cols="80"
-                        className="w-full px-3 py-3 text-sm text-gray-600 placeholder-gray-300 bg-white border-0 rounded shadow focus:outline-none focus:ring"
+                        className="placeholder-gray-300 px-3 py-3 w-full text-gray-600 text-sm bg-white border-0 rounded focus:outline-none shadow focus:ring"
                         placeholder="Scrivi la tua richiesta..."
                         name="formContent"
                         value={formContent}
@@ -349,13 +349,13 @@ export default function FormModal({
                     <label className="inline-flex items-center">
                       <input
                         type="checkbox"
-                        className="text-yellow-600 border-2 border-gray-400 border-solid cursor-pointer form-checkbox"
+                        className="form-checkbox text-yellow-600 border-2 border-solid border-gray-400 cursor-pointer"
                         name="conditions"
                         checked={isChecked}
                         onChange={() => setIsChecked(!isChecked)}
                       />
                       <span className="ml-2 text-sm">
-                        accetto il{" "}
+                        accetto il{' '}
                         <Link href="/privacy-policy">
                           <a className="text-yellow-600" target="_blank">
                             trattamento dei dati e condizioni
@@ -368,7 +368,7 @@ export default function FormModal({
                     <div className="mt-4">
                       <button
                         type="button"
-                        className="inline-flex justify-center px-4 py-2 text-sm text-red-600 bg-transparent border border-red-600 rounded-sm shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 hover:ring-2 hover:ring-offset-2 hover:ring-red-400"
+                        className="inline-flex justify-center px-4 py-2 text-red-600 text-sm bg-transparent border border-red-600 rounded-sm focus:outline-none shadow-md focus-visible:ring-2 hover:ring-2 focus-visible:ring-blue-500 hover:ring-red-400 focus-visible:ring-offset-2 hover:ring-offset-2"
                         onClick={closeModal}
                       >
                         Chiudi
@@ -376,7 +376,7 @@ export default function FormModal({
                     </div>
                     <div className="mt-4">
                       <button
-                        className="hover:ring-2 hover:ring-offset-2 hover:ring-green-400 inline-flex px-4 py-2 text-sm font-bold text-white bg-green-500 border border-transparent rounded-sm hover:bg-opacity-90 shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 disabled:bg-green-600 disabled:opacity-50 disabled:pointer-events-none active:bg-gray-600 "
+                        className="inline-flex px-4 py-2 text-white text-sm font-bold active:bg-gray-600 bg-green-500 disabled:bg-green-600 hover:bg-opacity-90 border border-transparent rounded-sm focus:outline-none shadow-md disabled:opacity-50 disabled:pointer-events-none hover:ring-2 focus-visible:ring-2 focus-visible:ring-blue-500 hover:ring-green-400 hover:ring-offset-2 focus-visible:ring-offset-2"
                         type="submit"
                         disabled={formButtonDisabled}
                       >
@@ -387,8 +387,8 @@ export default function FormModal({
                 </form>
                 <div
                   className={clsx(
-                    "px-4 text-center",
-                    notification.isError ? "text-red-700" : "text-green-700"
+                    'px-4 text-center',
+                    notification.isError ? 'text-red-700' : 'text-green-700',
                   )}
                 >
                   {notification.text}
@@ -399,5 +399,5 @@ export default function FormModal({
         </Dialog>
       </Transition>
     </>
-  );
+  )
 }
