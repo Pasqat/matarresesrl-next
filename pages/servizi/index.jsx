@@ -9,7 +9,7 @@ import Layout from '../../components/Layout'
 import {SlopeDivSection} from '../../ui/SlopeDivSection'
 
 import Image from 'next/image'
-import { H2, H3, H4 } from '../../components/typography'
+import {H2, H3, H4} from '../../components/typography'
 
 export default function Servizi() {
   const [position, setPosition] = useState(0)
@@ -456,10 +456,7 @@ export default function Servizi() {
                       <div className="w-px h-full bg-gray-300" />
                     </div>
                     <div className="pb-8 pt-1 text-lg">
-                      <H3
-                        id="consulenza-tecnica"
-                        variant="secondary"
-                      >
+                      <H3 id="consulenza-tecnica" variant="secondary">
                         Consulenza tecnica
                       </H3>
                       <p className="mt-4 text-gray-500 leading-relaxed">
@@ -591,10 +588,7 @@ export default function Servizi() {
                       <div className="w-px h-full bg-gray-300" />
                     </div>
                     <div className="pb-8 pt-1 text-lg">
-                      <H3
-                        variant="secondary"
-                        id="iter-operativo"
-                      >
+                      <H3 variant="secondary" id="iter-operativo">
                         Iter Operativo
                       </H3>
                       <p className="mt-4 text-gray-500 leading-relaxed">
@@ -657,10 +651,7 @@ export default function Servizi() {
                       <div className="w-px h-full bg-gray-300" />
                     </div>
                     <div className="pb-8 pt-1 text-lg">
-                      <H3
-                        variant="secondary"
-                        id="arredi-su-misura"
-                      >
+                      <H3 variant="secondary" id="arredi-su-misura">
                         Realizzazione Arredi su misura
                       </H3>
                       <p className="mt-4 text-gray-500 leading-relaxed">
@@ -719,10 +710,7 @@ export default function Servizi() {
                       <div className="w-px h-full bg-gray-300" />
                     </div>
                     <div className="pb-8 pt-1 text-lg">
-                      <H3
-                        id="coordinamento-lavori"
-                        variant="secondary"
-                      >
+                      <H3 id="coordinamento-lavori" variant="secondary">
                         Coordinamento lavori
                       </H3>
                       <p className="mt-4 text-gray-500 leading-relaxed">
@@ -831,9 +819,9 @@ export default function Servizi() {
           <section className="relative py-20 bg-gray-200">
             <SlopeDivSection color="text-gray-200" />
             <div className="px-4 w-full">
-              <h2 className="text-center text-gray-800 text-4xl font-semibold">
+              <H2 className="text-center" variant="secondary">
                 Assistensa e manutenzione
-              </h2>
+              </H2>
             </div>
             <div className="container mx-auto px-4 lg:py-24">
               <div className="flex flex-wrap items-center">
@@ -914,9 +902,9 @@ export default function Servizi() {
             <div className="container mx-auto px-4 lg:py-24">
               <div className="flex flex-wrap justify-center text-center">
                 <div className="px-4 w-full lg:w-9/12">
-                  <h2 className="text-gray-100 text-4xl font-semibold">
+                  <H2 className="text-center" variant="secondary">
                     Formazione
-                  </h2>
+                  </H2>
                   <div className="flex flex-wrap justify-evenly my-10 w-full text-gray-200 text-lg">
                     <div>
                       <Image
@@ -976,9 +964,9 @@ export default function Servizi() {
             <SlopeDivSection color="text-white" />
             <div className="container mx-auto px-4 lg:py-24">
               <div className="flex flex-wrap justify-center">
-                <h2 className="text-center text-gray-800 text-4xl font-semibold">
+                <H2 className="text-center" variant="secondary">
                   MePA
-                </h2>
+                </H2>
                 <div>
                   Siamo presenti anche sul Mepa: Mercato Elettronico della
                   Pubblica Amministrazione (MePA) è un mercato digitale in cui

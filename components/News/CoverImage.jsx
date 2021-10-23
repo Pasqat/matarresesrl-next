@@ -1,5 +1,5 @@
-import Image from "next/image";
-import Link from "next/link";
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function CoverImage({
   title,
@@ -7,8 +7,10 @@ export default function CoverImage({
   slug,
   href,
   placeholderText,
-  ...otherProps
+  className,
+  ...rest
 }) {
+  console.log(coverImage?.sourceUrl)
   const image = (
     <Image
       width={2000}
@@ -16,10 +18,10 @@ export default function CoverImage({
       alt={`Immagine di copertina per ${title}`}
       src={coverImage?.sourceUrl}
       objectFit="cover"
-      className={`z-0 ${otherProps.className} `}
-      {...otherProps}
+      className={`z-0 ${className} `}
+      {...rest}
     />
-  );
+  )
   // TODO: Maybe creat and add a placeholder image when on coverImage
   return coverImage ? (
     <div className="sm:mx-0">
@@ -32,10 +34,10 @@ export default function CoverImage({
       )}
     </div>
   ) : (
-    <div className="relative flex items-center justify-center w-full pb-[50%] text-center bg-gradient-to-tl from-red-600 to-yellow-400 overflow-hidden shadow-md">
-      <div className="leading-tight select-none absolute bottom-[30%] z-0 text-4xl transform scale-150 text-gray-100 opacity-30 font-extrabold font-serif">
+    <div className="pb-[50%] relative flex items-center justify-center w-full text-center bg-gradient-to-tl shadow-md from-red-600 to-yellow-400 overflow-hidden">
+      <div className="bottom-[30%] absolute z-0 text-gray-100 font-serif text-4xl font-extrabold leading-tight opacity-30 select-none transform scale-150">
         {placeholderText}
       </div>
     </div>
-  );
+  )
 }

@@ -110,9 +110,7 @@ export default function Home() {
                   <div className="inline-flex items-center justify-center mb-6 p-3 w-16 h-16 text-center text-gray-500 bg-white rounded-full shadow-lg">
                     <HeartIcon className="text-yellow-500 text-xl" />
                   </div>
-<H3 variant="secondary">
-                    Attrezzature
-                  </H3>
+                  <H3 variant="secondary">Attrezzature</H3>
                   <p className="mt-4 text-gray-500 leading-relaxed">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Phasellus vehicula quam ipsum, at aliquam tellus mollis
@@ -187,9 +185,7 @@ export default function Home() {
                     {/* <div className="inline-flex items-center justify-center w-16 h-16 p-3 mb-6 text-center text-gray-500 bg-gray-200 rounded-full shadow-lg"> */}
                     {/*   <ShoppingCartIcon className="text-xl text-indigo-500" /> */}
                     {/* </div> */}
-                    <H2 variant='secondary'>
-                      Tutto per l&apos;accoglienza
-                    </H2>
+                    <H2 variant="secondary">Tutto per l&apos;accoglienza</H2>
                     <p className="mt-4 text-gray-500 text-lg leading-relaxed">
                       Qualsiasi stile hai scelto per la tua attività da noi puoi
                       trovare l’arredo e i complementi che fanno per te. E per
@@ -273,9 +269,7 @@ export default function Home() {
             <div className="container mx-auto px-4 lg:py-24">
               <div className="flex flex-wrap justify-center text-center">
                 <div className="px-4 w-full lg:w-9/12">
-                  <H2>
-                    Igiene
-                  </H2>
+                  <H2>Igiene</H2>
                   <div className="grid gap-24 grid-cols-3 justify-evenly my-10 w-full text-gray-200 text-lg">
                     <div>
                       <Image
@@ -286,9 +280,7 @@ export default function Home() {
                         src="/img/sanificatore-prodotti.png"
                         alt="Sanificatore"
                       />
-                      <H3 className="mb-4 mt-6 text-white"> 
-                        Sanificazione
-                      </H3>
+                      <H3 className="mb-4 mt-6 text-white">Sanificazione</H3>
                       <Link href="#">
                         <a className="text-yellow-500">Scopri di più</a>
                       </Link>
@@ -302,9 +294,7 @@ export default function Home() {
                         src="/img/lavaggio-prodotti.jpg"
                         alt="lavastovigle professionali"
                       />
-                      <H3 className="mb-4 mt-6 text-white"> 
-                        Lavaggio
-                      </H3>
+                      <H3 className="mb-4 mt-6 text-white">Lavaggio</H3>
                       <Link href="#">
                         <a className="text-yellow-500">Scopri di più</a>
                       </Link>
@@ -318,9 +308,7 @@ export default function Home() {
                         src="/img/lavanderia-prodotti.jpg"
                         alt="lavatrici indutriali"
                       />
-                      <H3 className="mb-4 mt-6 text-white"> 
-                        Lavanderia
-                      </H3>
+                      <H3 className="mb-4 mt-6 text-white">Lavanderia</H3>
                       <Link href="#">
                         <a className="text-yellow-500">Scopri di più</a>
                       </Link>
@@ -332,19 +320,19 @@ export default function Home() {
           </section>
           <section className="relative py-20" id="trattamento-aria">
             <SlopeDivSection color="text-white" />
-            <div className="my-32 px-4 w-full">
-              <H2 className="text-center " variant="secondary">
+            <div className="mb-8 mt-16 px-4 w-full">
+              <H2 className="text-center" variant="secondary">
                 Per il trattamento dell&apos;aria
               </H2>
             </div>
-            <div className="container mx-auto px-4 lg:py-24">
+            <div className="container mx-auto px-4 py-8">
               <div className="flex flex-wrap items-center" id="#aspirazione">
                 <div className="ml-auto mr-auto px-4 w-full md:w-5/12">
                   <div className="text-lg md:pr-12">
                     <div className="inline-flex items-center justify-center mb-6 p-3 w-16 h-16 text-center text-blue-400 bg-white rounded-full shadow-lg">
                       <i className="far fa-snowflake" />
                     </div>
-                    <H3 variant='secondary'>Aspirazione</H3>
+                    <H3 variant="secondary">Aspirazione</H3>
                     <p className="mt-4 text-gray-500 leading-relaxed">
                       Aprire un&apos;attività, rinnovare un locale, avere una
                       guida per migliorare il proprio lavoro: Matarrese srl è la
@@ -392,7 +380,7 @@ export default function Home() {
                     <div className="inline-flex items-center justify-center mb-6 p-3 w-16 h-16 text-center text-blue-400 bg-white rounded-full shadow-lg">
                       <i className="far fa-snowflake" />
                     </div>
-                    <H3 variant='secondary'>Climatizzazione</H3>
+                    <H3 variant="secondary">Climatizzazione</H3>
                     <p className="mt-4 text-gray-500 leading-relaxed">
                       Aprire un&apos;attività, rinnovare un locale, avere una
                       guida per migliorare il proprio lavoro: Matarrese srl è la

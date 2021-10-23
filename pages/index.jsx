@@ -1,20 +1,20 @@
-import Head from "next/head";
-import Link from "next/link";
-import { HeartIcon, ShoppingCartIcon } from "@heroicons/react/outline";
-import { Transition } from "@headlessui/react";
+import Head from 'next/head'
+import Link from 'next/link'
+import {HeartIcon, ShoppingCartIcon} from '@heroicons/react/outline'
+import {Transition} from '@headlessui/react'
 
-import HeaderBig from "../components/Header/HeaderBig";
-import CardSquareImg from "../components/Card/CardSquareImg";
-import CardBigImg from "../components/Card/CardBigImg";
-import ContactForm from "../components/Form/ContactForm";
-import FormModal from "../components/Form/FormModal";
-import Layout from "../components/Layout";
-import { SlopeDivSection } from "../ui/SlopeDivSection";
+import HeaderBig from '../components/Header/HeaderBig'
+import CardSquareImg from '../components/Card/CardSquareImg'
+import CardBigImg from '../components/Card/CardBigImg'
+import ContactForm from '../components/Form/ContactForm'
+import FormModal from '../components/Form/FormModal'
+import Layout from '../components/Layout'
+import {SlopeDivSection} from '../ui/SlopeDivSection'
 
-import Testimonials from "../components/Testimonials/Testimonials";
-import { logos } from "../data/partner-logo";
-import Image from "next/image";
-import { H2, H3, H4, H5, H6 } from "../components/typography";
+import Testimonials from '../components/Testimonials/Testimonials'
+import {logos} from '../data/partner-logo'
+import Image from 'next/image'
+import {H2, H3, H5} from '../components/typography'
 
 export default function Home() {
   return (
@@ -36,14 +36,14 @@ export default function Home() {
             subtitle="Dal design dell'arredo alla formazione del personale per realizzare i tuoi progetti"
             noButton
           />
-          <section className="pb-20 -mt-24 bg-gray-200">
-            <div className="container px-4 mx-auto">
+          <section className="-mt-24 pb-20 bg-gray-200">
+            <div className="container mx-auto px-4">
               <Transition as="div" className="flex flex-wrap" show={true}>
                 <Transition.Child
                   enter="transition ease-in-out duration-[800ms] transform"
                   enterFrom="translate-y-full opacity-0"
                   enterTo="-translate-y-0"
-                  className="md:w-4/12 "
+                  className="md:w-4/12"
                 >
                   <CardSquareImg
                     imgSrc="/img/servizio-completo1-150x150.jpg"
@@ -57,10 +57,10 @@ export default function Home() {
                       della <strong>ristorazione.</strong>
                     </div>
                     <Link href="/servizi">
-                      <a className="inline-flex items-center mt-4 text-yellow-500 group md:mb-2 lg:mb-0 ">
+                      <a className="group inline-flex items-center mt-4 text-yellow-500 md:mb-2 lg:mb-0">
                         Scopri i servizi
                         <svg
-                          className="w-4 h-4 ml-2 animate-bounceX"
+                          className="ml-2 w-4 h-4 animate-bounceX"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
                           strokeWidth="2"
@@ -79,7 +79,7 @@ export default function Home() {
                   enter="transition ease-in-out duration-[1000ms] transform"
                   enterFrom="translate-y-full opacity-0"
                   enterTo="-translate-y-0"
-                  className="md:w-4/12 "
+                  className="md:w-4/12"
                 >
                   <CardSquareImg
                     imgSrc="/img/prodotti-qualita-150x150.jpg"
@@ -93,11 +93,11 @@ export default function Home() {
                       nostri clienti.
                     </div>
                     <Link href="/prodotti">
-                      <a className="inline-flex items-center mt-4 text-yellow-500 group md:mb-2 lg:mb-0 ">
+                      <a className="group inline-flex items-center mt-4 text-yellow-500 md:mb-2 lg:mb-0">
                         Scopri i prodotti
                         <svg
                           // className="w-4 h-4 ml-2 group-hover:translate-x-2"
-                          className="w-4 h-4 ml-2 animate-bounceX"
+                          className="ml-2 w-4 h-4 animate-bounceX"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
                           strokeWidth="2"
@@ -116,7 +116,7 @@ export default function Home() {
                   enter="transition ease-in-out duration-[1200ms] transform"
                   enterFrom="translate-y-full opacity-0"
                   enterTo="-translate-y-0"
-                  className="md:w-4/12 "
+                  className="md:w-4/12"
                 >
                   <CardSquareImg
                     imgSrc="/img/info-e-supporto-150x150.jpg"
@@ -125,16 +125,16 @@ export default function Home() {
                     <div>
                       Promuoviamo la cultura, la professionalità, la conoscenza
                       nel mondo dell&apos;enogastronomia, aiutiamo le idee a
-                      diventare progetti reali, forniamo{" "}
+                      diventare progetti reali, forniamo{' '}
                       <strong>assistenza tecnica</strong>,
-                      <strong>riparazione</strong> e{" "}
+                      <strong>riparazione</strong> e{' '}
                       <strong>manutenzione.</strong>
                     </div>
                     <Link href="/contatti">
-                      <a className="inline-flex items-center mt-4 text-yellow-500 group md:mb-2 lg:mb-0 ">
+                      <a className="group inline-flex items-center mt-4 text-yellow-500 md:mb-2 lg:mb-0">
                         Richiedi assistenza
                         <svg
-                          className="w-4 h-4 ml-2 animate-bounceX"
+                          className="ml-2 w-4 h-4 animate-bounceX"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
                           strokeWidth="2"
@@ -152,20 +152,20 @@ export default function Home() {
               </Transition>
 
               <div className="flex flex-wrap items-center mt-32">
-                <div className="w-full px-4 ml-auto mr-auto md:w-5/12">
-                  <div className="inline-flex items-center justify-center w-16 h-16 p-3 mb-6 text-center text-gray-500 bg-white rounded-full shadow-lg">
-                    <HeartIcon className="text-xl text-yellow-500" />
+                <div className="ml-auto mr-auto px-4 w-full md:w-5/12">
+                  <div className="inline-flex items-center justify-center mb-6 p-3 w-16 h-16 text-center text-gray-500 bg-white rounded-full shadow-lg">
+                    <HeartIcon className="text-yellow-500 text-xl" />
                   </div>
                   <H3 className="mb-2" variant="secondary">
                     Da oltre 30 anni partner degli operatori del settore
                   </H3>
-                  <p className="mt-4 mb-4 text-lg font-light leading-relaxed text-gray-600">
+                  <p className="mb-4 mt-4 text-gray-600 text-lg font-light leading-relaxed">
                     Offriamo prodotti di alta qualità e servizi professionali:
                     interior design, consulenza per trasformare l’idea in un
-                    progetto reale, realizzazione arredo e complementi d’arredo s
-                    s s su misura.
+                    progetto reale, realizzazione arredo e complementi d’arredo
+                    s s s su misura.
                   </p>
-                  <p className="mt-0 mb-4 text-lg font-light leading-relaxed text-gray-600">
+                  <p className="mb-4 mt-0 text-gray-600 text-lg font-light leading-relaxed">
                     Forniture di attrezzature, tra cui attrezzature per
                     ristorazione e cucine professionali, impianti, assistenza
                     tecnica post vendita, manutenzione e riparazione, consulenza
@@ -190,25 +190,23 @@ export default function Home() {
 
           <section className="relative py-20">
             <SlopeDivSection color="text-white" />
-            <div className="container px-4 mx-auto">
+            <div className="container mx-auto px-4">
               <div className="flex flex-wrap items-center">
-                <div className="w-full px-4 ml-auto mr-auto md:w-5/12">
+                <div className="ml-auto mr-auto px-4 w-full md:w-5/12">
                   <img
                     alt="attrezzature ristorazione nello showroom"
                     className="max-w-full rounded-lg shadow-lg"
                     src="/img/attrezzature-esposizione.jpg"
                   />
                 </div>
-                <div className="w-full px-4 ml-auto mr-auto md:w-5/12">
+                <div className="ml-auto mr-auto px-4 w-full md:w-5/12">
                   <div className="md:pr-12">
-                    <div className="inline-flex items-center justify-center w-16 h-16 p-3 mb-6 text-center text-gray-500 bg-gray-200 rounded-full shadow-lg">
-                      <ShoppingCartIcon className="text-xl text-indigo-500" />
+                    <div className="inline-flex items-center justify-center mb-6 p-3 w-16 h-16 text-center text-gray-500 bg-gray-200 rounded-full shadow-lg">
+                      <ShoppingCartIcon className="text-indigo-500 text-xl" />
                     </div>
-                    <H3 variant="secondary">
-                      Tutto per il settore food
-                    </H3>
-                    <p className="mt-4 text-lg leading-relaxed text-gray-500">
-                      In una struttura aziendale di <strong>5000 mq</strong>{" "}
+                    <H3 variant="secondary">Tutto per il settore food</H3>
+                    <p className="mt-4 text-gray-500 text-lg leading-relaxed">
+                      In una struttura aziendale di <strong>5000 mq</strong>{' '}
                       uniamo il laboratorio di produzione di arredi su misura,
                       l’officina e magazzino ricambi, il laboratorio di
                       formazione e un ampio showroom in cui potrai trovare:
@@ -217,63 +215,55 @@ export default function Home() {
                       <li className="py-2">
                         <div className="flex items-center">
                           <div>
-                            <span className="inline-block px-2 py-1 mr-3 text-xs font-semibold text-gray-500 uppercase bg-gray-100 rounded-full">
+                            <span className="inline-block mr-3 px-2 py-1 text-gray-500 text-xs font-semibold bg-gray-100 rounded-full uppercase">
                               <i className="fas fa-blender"></i>
                             </span>
                           </div>
                           <div>
-                            <H5 as="h4">
-                              Attrezzature per ristorazione
-                            </H5>
+                            <H5 as="h4">Attrezzature per ristorazione</H5>
                           </div>
                         </div>
                       </li>
                       <li className="py-2">
                         <div className="flex items-center">
                           <div>
-                            <span className="inline-block px-2 py-1 mr-3 text-xs font-semibold text-gray-500 uppercase bg-gray-100 rounded-full">
+                            <span className="inline-block mr-3 px-2 py-1 text-gray-500 text-xs font-semibold bg-gray-100 rounded-full uppercase">
                               <i className="fas fa-chair"></i>
                             </span>
                           </div>
                           <div>
-                            <H5 as="h4">
-                            Arredamenti
-                            </H5>
+                            <H5 as="h4">Arredamenti</H5>
                           </div>
                         </div>
                       </li>
                       <li className="py-2">
                         <div className="flex items-center">
                           <div>
-                            <span className="inline-block px-2 py-1 mr-3 text-xs font-semibold text-gray-500 uppercase bg-gray-100 rounded-full">
+                            <span className="inline-block mr-3 px-2 py-1 text-gray-500 text-xs font-semibold bg-gray-100 rounded-full uppercase">
                               <i className="fas fa-utensils"></i>
                             </span>
                           </div>
                           <div>
-                            <H5 as="h4">
-                              Utensili da cucina
-                            </H5>
+                            <H5 as="h4">Utensili da cucina</H5>
                           </div>
                         </div>
                       </li>
                       <li className="py-2">
                         <div className="flex items-center">
                           <div>
-                            <span className="inline-block px-2 py-1 mr-3 text-xs font-semibold text-gray-500 uppercase bg-gray-100 rounded-full">
+                            <span className="inline-block mr-3 px-2 py-1 text-gray-500 text-xs font-semibold bg-gray-100 rounded-full uppercase">
                               <i className="fas fa-concierge-bell"></i>
                             </span>
                           </div>
                           <div>
-                            <H5 as="h4">
-                              Hotellerie
-                            </H5>
+                            <H5 as="h4">Hotellerie</H5>
                           </div>
                         </div>
                       </li>
                       <li className="py-2">
                         <div className="flex items-center">
                           <div>
-                            <span className="inline-block px-2 py-1 mr-3 text-xs font-semibold text-gray-500 uppercase bg-gray-100 rounded-full">
+                            <span className="inline-block mr-3 px-2 py-1 text-gray-500 text-xs font-semibold bg-gray-100 rounded-full uppercase">
                               <i className="fab fa-html5"></i>
                             </span>
                           </div>
@@ -289,13 +279,11 @@ export default function Home() {
             </div>
           </section>
 
-          <section className="pt-20 pb-48">
+          <section className="pb-48 pt-20">
             <div className="container px-8 md:mx-auto">
               <div className="flex flex-wrap justify-center text-center">
-                <div className="w-full px-4 lg:w-6/12">
-                  <H2 variant="secondary">
-                    Cosa dicono di noi
-                  </H2>
+                <div className="px-4 w-full lg:w-6/12">
+                  <H2 variant="secondary">Cosa dicono di noi</H2>
                 </div>
               </div>
               <div className="mt-20">
@@ -307,12 +295,12 @@ export default function Home() {
           <section className="relative block pb-20 bg-gray-800">
             <SlopeDivSection color="text-gray-800" />
 
-            <div className="container px-4 mx-auto lg:py-24">
+            <div className="container mx-auto px-4 lg:py-24">
               <div className="flex flex-wrap justify-center text-center">
-                <div className="w-full px-4 lg:w-8/12">
+                <div className="px-4 w-full lg:w-8/12">
                   <H2 className="text-white">MePA</H2>
-                  <p className="m-4 text-2xl leading-relaxed text-gray-400">
-                    Siamo presenti sul{" "}
+                  <p className="m-4 text-gray-400 text-2xl leading-relaxed">
+                    Siamo presenti sul{' '}
                     <strong className="text-yellow-500">MEPA</strong>: il
                     Mercato Elettronico della Pubblica Amministrazione digitale
                     in cui le Amministrazioni abilitate possono acquistare i
@@ -329,10 +317,10 @@ export default function Home() {
           ></section>
           <section className="relative py-20">
             <SlopeDivSection color="text-white" />
-            <div className="container px-4 mx-auto mb-12">
+            <div className="container mb-12 mx-auto px-4">
               <div className="flex flex-wrap justify-center -mt-48 lg:-mt-64">
-                <div className="w-full px-4 md:w-3/4">
-                  <div className="relative flex flex-col w-full min-w-0 mb-6 break-words bg-gray-200 rounded-lg shadow-lg">
+                <div className="px-4 w-full md:w-3/4">
+                  <div className="relative flex flex-col mb-6 w-full min-w-0 break-words bg-gray-200 rounded-lg shadow-lg">
                     <ContactForm />
                   </div>
                 </div>
@@ -341,16 +329,15 @@ export default function Home() {
           </section>
           {/* LOGO SECTION */}
           <section className="relative py-20">
-            <div className="container px-4 mx-auto mb-12">
-              <H2 className="mb-8 text-center" variant="secondary">I Nostri partner</H2>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
-                {logos.map((logo) => {
+            <div className="container mb-12 mx-auto px-4">
+              <H2 className="mb-8 text-center" variant="secondary">
+                I Nostri partner
+              </H2>
+              <div className="grid grid-cols-2 2xl:grid-cols-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                {logos.map(logo => {
                   return logo.href ? (
-                    <Link href={logo.href}>
-                      <a
-                        key={logo.name}
-                        className="cursor-pointer text-center hover:drop-shadow-md"
-                      >
+                    <Link key={logo.name} href={logo.href}>
+                      <a className="text-center cursor-pointer hover:drop-shadow-md">
                         <Image
                           width={180}
                           height={95}
@@ -369,7 +356,7 @@ export default function Home() {
                       src={logo.url}
                       alt={`${logo.name} logo`}
                     />
-                  );
+                  )
                 })}
               </div>
             </div>
@@ -377,5 +364,5 @@ export default function Home() {
         </main>
       </Layout>
     </div>
-  );
+  )
 }
