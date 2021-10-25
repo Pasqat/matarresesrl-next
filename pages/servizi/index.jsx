@@ -824,73 +824,87 @@ export default function Servizi() {
               </H2>
             </div>
             <div className="container mx-auto px-4 lg:py-24">
-              <div className="flex flex-wrap items-center">
-                <div className="ml-auto mr-auto px-4 w-full md:w-5/12">
-                  <div className="text-lg md:pr-12">
-                    <div className="inline-flex items-center justify-center mb-6 p-3 w-16 h-16 text-center text-blue-400 bg-white rounded-full shadow-lg">
-                      <i className="far fa-snowflake" />
-                    </div>
-                    <H3 variant="secondary">Aspirazione</H3>
-                    <p className="mt-4 text-gray-500 leading-relaxed">
-                      Aprire un&apos;attività, rinnovare un locale, avere una
-                      guida per migliorare il proprio lavoro: Matarrese srl è la
-                      soluzione adatta alle esigenze professionali del mondo
-                      della ristorazione.
+              <div className="flex flex-wrap items-center space-y-8">
+                <div className="bg-white lg:mx-8 lg:flex lg:max-w-5xl lg:shadow-lg lg:rounded-lg">
+                  <div className="lg:w-1/2">
+                    <div
+                      className="h-64 bg-cover lg:rounded-lg lg:h-full"
+                      style={{
+                        backgroundImage: "url('/img/aspirazione-prodotti.jpg')",
+                      }}
+                    ></div>
+                  </div>
+
+                  <div className="max-w-xl px-6 py-12 lg:max-w-5xl lg:w-1/2">
+                    <H2 variant="secondary">Manutenzione</H2>
+                    <p className="mt-4 text-gray-600 dark:text-gray-400">
+                      Il servizio di assistenza tecnica consiste nelle attività
+                      di: installazione, collaudo, messa in funzione e
+                      manutenzione di grandi impianti di ogni genere:
+                      attrezzature ristorazione, attrezzature bar, cucine
+                      professionali, macchine alimentari, impianti di
+                      riscaldamento, impianti di climatizzazione, trattamento
+                      aria, attrezzature per gelaterie, forni per pizza, ovvero
+                      tutto quanto fa parte di una struttura di ristorazione o
+                      laboratorio alimentare.
                     </p>
-                    <p className="mt-4 text-gray-500 leading-relaxed">
-                      Altro testo a caso che possa avere un minimo di senso e di
-                      keywords utili
-                    </p>
-                    <div className="mt-6">
-                      <Link href="#">
-                        <a className="text-yellow-600">Approfondisci</a>
-                      </Link>
-                    </div>
                   </div>
                 </div>
-                <div className="ml-auto mr-auto px-4 w-full md:w-4/12">
-                  <Image
-                    alt="sistemi di aspirazione e trattamento dell'aria"
-                    className="max-w-full rounded-lg shadow-lg"
-                    src="/img/aspirazione-prodotti.jpg"
-                    width="1000"
-                    height="1300"
-                    objectFit="cover"
-                  />
-                </div>
-              </div>
-              <div className="flex flex-wrap items-center mt-36">
-                <div className="ml-auto mr-auto px-4 w-full md:w-4/12">
-                  <Image
-                    alt="climatizzazione indutstriale"
-                    className="max-w-full rounded-lg shadow-lg"
-                    src="/img/climatizzazione-prodotti.jpg"
-                    width="1000"
-                    height="1300"
-                    objectFit="cover"
-                  />
-                </div>
-                <div className="ml-auto mr-auto px-4 w-full md:w-5/12">
-                  <div className="text-lg md:pr-12">
-                    <div className="inline-flex items-center justify-center mb-6 p-3 w-16 h-16 text-center text-blue-400 bg-white rounded-full shadow-lg">
-                      <i className="far fa-snowflake" />
-                    </div>
-                    <H3 variant="secondary">Climatizzazione</H3>
-                    <p className="mt-4 text-gray-500 leading-relaxed">
-                      Aprire un&apos;attività, rinnovare un locale, avere una
-                      guida per migliorare il proprio lavoro: Matarrese srl è la
-                      soluzione adatta alle esigenze professionali del mondo
-                      della ristorazione.
+
+                <div className="bg-white lg:mx-8 lg:flex lg:max-w-5xl lg:shadow-lg lg:rounded-lg">
+                  <div className="lg:w-1/2">
+                    <div
+                      className="h-64 bg-cover lg:rounded-lg lg:h-full"
+                      style={{
+                        backgroundImage: "url('/img/aspirazione-prodotti.jpg')",
+                      }}
+                    ></div>
+                  </div>
+
+                  <div className="max-w-xl px-6 py-12 lg:max-w-5xl lg:w-1/2">
+                    <H2 variant="secondary">Valore Aggiunto</H2>
+                    <p className="mt-4 text-gray-600 dark:text-gray-400">
+                      La cura del cliente e la sua serenità lavorativa ci stanno
+                      a cuore nel pieno interesse di assicurare l’efficienza di
+                      funzionamento e mantenimento delle macchine. Il servizio
+                      di assistenza tecnica post vendita da parte di tecnici
+                      specializzati è un altro valore aggiunto alla semplice
+                      fornitura di attrezzature per ristorazione poiché,
+                      disponendo di un ampio magazzino con ricambi originali,
+                      riusciamo a garantire un efficiente pronto intervento per
+                      a manutenzione, riparazione e assistenza.
                     </p>
-                    <p className="mt-4 text-gray-500 leading-relaxed">
-                      Altro testo a caso che possa avere un minimo di senso e di
-                      keywords utili
+                  </div>
+                </div>
+
+                <div className="bg-white lg:mx-8 lg:flex lg:max-w-5xl lg:shadow-lg lg:rounded-lg">
+                  <div className="lg:w-1/2">
+                    <div
+                      className="h-64 bg-cover lg:rounded-lg lg:h-full"
+                      style={{
+                        backgroundImage: "url('/img/aspirazione-prodotti.jpg')",
+                      }}
+                    ></div>
+                  </div>
+
+                  <div className="max-w-xl px-6 py-12 lg:max-w-5xl lg:w-1/2">
+                    <H2 variant="secondary">
+                      <span className="text-yellow-600">Tempestività</span> del 
+                      pronto intervento
+                    </H2>
+                    <p className="mt-4 text-gray-600 dark:text-gray-400">
+                      Il nostro team di tecnici specializzati – costantemente
+                      aggiornato mediante corsi tecnici presso le aziende
+                      fornitrici – opera con efficienza e professionalità per
+                      garantire un tempestivo pronto intervento post vendita.
                     </p>
-                    <div className="mt-6">
-                      <Link href="#">
-                        <a className="text-yellow-600">Approfondisci</a>
-                      </Link>
-                    </div>
+                    <p className="mt-4 text-gray-600">
+                      Il servizio di risposta per assistenza tecnica è garantito
+                      entro le 48 ore dalla richiesta di intervento su tutto il
+                      territorio regionale grazie ai rapporti di esclusività per
+                      la Puglia con i più prestigiosi marchi di aziende del
+                      ttore (Panasonic, Lainox, Silko, Sirman, ecc.)
+                    </p>
                   </div>
                 </div>
               </div>
