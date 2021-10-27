@@ -1,4 +1,4 @@
-import {useState, useEffect, useMemo, useRef} from 'react'
+import {useState, useEffect, useRef} from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import clsx from 'clsx'
@@ -10,6 +10,9 @@ import {SlopeDivSection} from '../../ui/SlopeDivSection'
 
 import Image from 'next/image'
 import {H2, H3, H4} from '../../components/typography'
+import logoAcquistinrete from '../../public/img/logos/acquistinrete.webp'
+import logoMEF from '../../public/img/logos/Logo_mef.webp'
+import logoConsip from '../../public/img/logos/Consip_Logo.webp'
 
 export default function Servizi() {
   const [position, setPosition] = useState(0)
@@ -68,6 +71,7 @@ export default function Servizi() {
               </div>
 
               <div className="flex items-start">
+                {/* TODO: extract this in a component? name it like StepBlock */}
                 <div className="sticky top-4 hidden ml-auto mr-auto px-4 w-full md:block md:w-4/12">
                   <div className="lg:pr-16">
                     <div className="flex">
@@ -825,19 +829,19 @@ export default function Servizi() {
             </div>
             <div className="container mx-auto px-4 lg:py-24">
               <div className="flex flex-wrap items-center space-y-8">
-                <div className="bg-white lg:mx-8 lg:flex lg:max-w-5xl lg:shadow-lg lg:rounded-lg">
+                <div className="bg-white lg:flex lg:mx-8 lg:max-w-5xl lg:rounded-lg lg:shadow-lg">
                   <div className="lg:w-1/2">
                     <div
-                      className="h-64 bg-cover lg:rounded-lg lg:h-full"
+                      className="h-64 bg-cover lg:h-full lg:rounded-lg"
                       style={{
                         backgroundImage: "url('/img/aspirazione-prodotti.jpg')",
                       }}
                     ></div>
                   </div>
 
-                  <div className="max-w-xl px-6 py-12 lg:max-w-5xl lg:w-1/2">
+                  <div className="px-6 py-12 max-w-xl lg:w-1/2 lg:max-w-5xl">
                     <H2 variant="secondary">Manutenzione</H2>
-                    <p className="mt-4 text-gray-600 dark:text-gray-400">
+                    <p className="mt-4 dark:text-gray-400 text-gray-600">
                       Il servizio di assistenza tecnica consiste nelle attività
                       di: installazione, collaudo, messa in funzione e
                       manutenzione di grandi impianti di ogni genere:
@@ -851,19 +855,10 @@ export default function Servizi() {
                   </div>
                 </div>
 
-                <div className="bg-white lg:mx-8 lg:flex lg:max-w-5xl lg:shadow-lg lg:rounded-lg">
-                  <div className="lg:w-1/2">
-                    <div
-                      className="h-64 bg-cover lg:rounded-lg lg:h-full"
-                      style={{
-                        backgroundImage: "url('/img/aspirazione-prodotti.jpg')",
-                      }}
-                    ></div>
-                  </div>
-
-                  <div className="max-w-xl px-6 py-12 lg:max-w-5xl lg:w-1/2">
+                <div className="bg-white lg:flex lg:mx-8 lg:max-w-5xl lg:rounded-lg lg:shadow-lg">
+                  <div className="px-6 py-12 max-w-xl lg:w-1/2 lg:max-w-5xl">
                     <H2 variant="secondary">Valore Aggiunto</H2>
-                    <p className="mt-4 text-gray-600 dark:text-gray-400">
+                    <p className="mt-4 dark:text-gray-400 text-gray-600">
                       La cura del cliente e la sua serenità lavorativa ci stanno
                       a cuore nel pieno interesse di assicurare l’efficienza di
                       funzionamento e mantenimento delle macchine. Il servizio
@@ -875,24 +870,32 @@ export default function Servizi() {
                       a manutenzione, riparazione e assistenza.
                     </p>
                   </div>
-                </div>
-
-                <div className="bg-white lg:mx-8 lg:flex lg:max-w-5xl lg:shadow-lg lg:rounded-lg">
                   <div className="lg:w-1/2">
                     <div
-                      className="h-64 bg-cover lg:rounded-lg lg:h-full"
+                      className="h-64 bg-cover lg:h-full lg:rounded-lg"
+                      style={{
+                        backgroundImage: "url('/img/aspirazione-prodotti.jpg')",
+                      }}
+                    ></div>
+                  </div>
+                </div>
+
+                <div className="bg-white lg:flex lg:mx-8 lg:max-w-5xl lg:rounded-lg lg:shadow-lg">
+                  <div className="lg:w-1/2">
+                    <div
+                      className="h-64 bg-cover lg:h-full lg:rounded-lg"
                       style={{
                         backgroundImage: "url('/img/aspirazione-prodotti.jpg')",
                       }}
                     ></div>
                   </div>
 
-                  <div className="max-w-xl px-6 py-12 lg:max-w-5xl lg:w-1/2">
+                  <div className="px-6 py-12 max-w-xl lg:w-1/2 lg:max-w-5xl">
                     <H2 variant="secondary">
-                      <span className="text-yellow-600">Tempestività</span> del 
+                      <span className="text-yellow-600">Tempestività</span> del
                       pronto intervento
                     </H2>
-                    <p className="mt-4 text-gray-600 dark:text-gray-400">
+                    <p className="mt-4 dark:text-gray-400 text-gray-600">
                       Il nostro team di tecnici specializzati – costantemente
                       aggiornato mediante corsi tecnici presso le aziende
                       fornitrici – opera con efficienza e professionalità per
@@ -916,58 +919,17 @@ export default function Servizi() {
             <div className="container mx-auto px-4 lg:py-24">
               <div className="flex flex-wrap justify-center text-center">
                 <div className="px-4 w-full lg:w-9/12">
-                  <H2 className="text-center" variant="secondary">
+                  <H2 className="text-center" variant="primary">
                     Formazione
                   </H2>
-                  <div className="flex flex-wrap justify-evenly my-10 w-full text-gray-200 text-lg">
-                    <div>
-                      <Image
-                        width="400"
-                        height="400"
-                        objectFit="cover"
-                        className="shadow-m rounded-lg"
-                        src="/img/sanificatore-prodotti.png"
-                        alt="Sanificatore"
-                      />
-                      <p className="mb-4 mt-6 text-2xl font-semibold">
-                        Sanificazione
-                      </p>
-                      <Link href="#">
-                        <a className="text-yellow-500">Scopri di più</a>
-                      </Link>
-                    </div>
-                    <div>
-                      <Image
-                        width="400"
-                        height="400"
-                        objectFit="cover"
-                        className="rounded-lg shadow-md"
-                        src="/img/lavaggio-prodotti.jpg"
-                        alt="lavastovigle professionali"
-                      />
-                      <p className="mb-4 mt-6 text-2xl font-semibold">
-                        Lavaggio
-                      </p>
-                      <Link href="#">
-                        <a className="text-yellow-500">Scopri di più</a>
-                      </Link>
-                    </div>
-                    <div>
-                      <Image
-                        width="400"
-                        height="400"
-                        objectFit="cover"
-                        className="rounded-lg shadow-md"
-                        src="/img/lavanderia-prodotti.jpg"
-                        alt="lavatrici indutriali"
-                      />
-                      <p className="mb-4 mt-6 text-2xl font-semibold">
-                        Lavanderia
-                      </p>
-                      <Link href="#">
-                        <a className="text-yellow-500">Scopri di più</a>
-                      </Link>
-                    </div>
+                  <div className="my-10 w-full text-center text-gray-100 text-xl">
+                    La Formazione continua crea eccellenza
+                  </div>
+                  <div className="my-10 w-full text-center text-gray-100 text-xl">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
                   </div>
                 </div>
               </div>
@@ -976,31 +938,51 @@ export default function Servizi() {
 
           <section className="relative block pb-20">
             <SlopeDivSection color="text-white" />
-            <div className="container mx-auto px-4 lg:py-24">
-              <div className="flex flex-wrap justify-center">
-                <H2 className="text-center" variant="secondary">
-                  MePA
-                </H2>
-                <div>
-                  Siamo presenti anche sul Mepa: Mercato Elettronico della
-                  Pubblica Amministrazione (MePA) è un mercato digitale in cui
-                  le Amministrazioni abilitate possono acquistare, per valori
-                  inferiori alla soglia comunitaria, i beni e servizi offerti da
-                  fornitori abilitati a presentare i propri cataloghi sul
-                  sistema. Consip definisce con appositi bandi le tipologie di
-                  beni e servizi e le condizioni generali di fornitura, gestisce
-                  l’abilitazione dei fornitori e la pubblicazione e
-                  l’aggiornamento dei cataloghi. Accedendo alla Vetrina del
-                  Mercato Elettronico o navigando sul catalogo prodotti, le
-                  Amministrazioni possono verificare l’offerta di beni e/o
-                  servizi e, una volta abilitate, effettuare acquisti on line,
-                  confrontando le proposte dei diversi fornitori e scegliendo
-                  più rispondente alle proprie esigenze.
+            <div className="container mx-auto px-24 lg:py-24">
+              <H2 className="text-center" variant="secondary">
+                MePA
+              </H2>
+              <div className="text-xl mt-8">
+                Siamo presenti anche sul{' '}
+                <span className="text-yellow-500">MePa</span>:{' '}
+                <em>Mercato Elettronico della Pubblica Amministrazione</em>{' '}
+                (MePA) è un mercato digitale in cui le Amministrazioni abilitate
+                possono acquistare, per valori inferiori alla soglia
+                comunitaria, i beni e servizi offerti da fornitori abilitati a
+                presentare i propri cataloghi sul sistema. Consip definisce con
+                appositi bandi le tipologie di beni e servizi e le condizioni
+                generali di fornitura, gestisce l’abilitazione dei fornitori e
+                la pubblicazione e l’aggiornamento dei cataloghi. Accedendo alla{' '}
+                <strong>Vetrina del Mercato Elettronico</strong> o navigando sul
+                catalogo prodotti, le Amministrazioni possono verificare
+                l’offerta di beni e/o servizi e, una volta abilitate, effettuare
+                acquisti on line, confrontando le proposte dei diversi fornitori
+                e scegliendo più rispondente alle proprie esigenze.
+              </div>
+              <div className="grid grid-cols-3 mt-12 justify-center items-center">
+                <div className="text-center">
+                  <Image
+                    src={logoAcquistinrete}
+                    alt="logo acquistinrete"
+                    layout="intrinsic"
+                    placeholder="blur"
+                  />
                 </div>
-                <div className="flex flex-row flex-wrap justify-evenly mt-14 w-full text-xl">
-                  <div>Logo1</div>
-                  <div>Logo2</div>
-                  <div>Logo3</div>
+                <div className="text-center">
+                  <Image
+                    src={logoConsip}
+                    alt="logo consig"
+                    layout="intrinsic"
+                    placeholder="blur"
+                  />
+                </div>
+                <div className="text-center">
+                  <Image
+                    src={logoMEF}
+                    alt="logo ministero dell'economia"
+                    layout="intrinsic"
+                    placeholder="blur"
+                  />
                 </div>
               </div>
             </div>
