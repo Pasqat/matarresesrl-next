@@ -10,6 +10,7 @@ import ContactForm from '../components/Form/ContactForm'
 import FormModal from '../components/Form/FormModal'
 import Layout from '../components/Layout'
 import {SlopeDivSection} from '../ui/SlopeDivSection'
+import {LinkButton} from '../components/button'
 
 import Testimonials from '../components/Testimonials/Testimonials'
 import {logos} from '../data/partner-logo'
@@ -56,23 +57,9 @@ export default function Home() {
                       soluzione adatta alle esigenze professionali del mondo
                       della <strong>ristorazione.</strong>
                     </div>
-                    <Link href="/servizi">
-                      <a className="group inline-flex items-center mt-4 text-yellow-500 md:mb-2 lg:mb-0">
-                        Scopri i servizi
-                        <svg
-                          className="ml-2 w-4 h-4 animate-bounceX"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          fill="none"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <path d="M5 12h14"></path>
-                          <path d="M12 5l7 7-7 7"></path>
-                        </svg>
-                      </a>
-                    </Link>
+                    <LinkButton className="mt-4" href="/servizi" withArrow>
+                      Scopri i servizi
+                    </LinkButton>
                   </CardSquareImg>
                 </Transition.Child>
                 <Transition.Child
@@ -92,24 +79,9 @@ export default function Home() {
                       prodotti di alta qualità, per soddisfare ogni esigenza dei
                       nostri clienti.
                     </div>
-                    <Link href="/prodotti">
-                      <a className="group inline-flex items-center mt-4 text-yellow-500 md:mb-2 lg:mb-0">
-                        Scopri i prodotti
-                        <svg
-                          // className="w-4 h-4 ml-2 group-hover:translate-x-2"
-                          className="ml-2 w-4 h-4 animate-bounceX"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          fill="none"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <path d="M5 12h14"></path>
-                          <path d="M12 5l7 7-7 7"></path>
-                        </svg>
-                      </a>
-                    </Link>
+                    <LinkButton className="mt-4" href="/prodotti" withArrow>
+                      Scopri i prodotti
+                    </LinkButton>
                   </CardSquareImg>
                 </Transition.Child>
                 <Transition.Child
@@ -130,23 +102,9 @@ export default function Home() {
                       <strong>riparazione</strong> e{' '}
                       <strong>manutenzione.</strong>
                     </div>
-                    <Link href="/contatti">
-                      <a className="group inline-flex items-center mt-4 text-yellow-500 md:mb-2 lg:mb-0">
-                        Richiedi assistenza
-                        <svg
-                          className="ml-2 w-4 h-4 animate-bounceX"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          fill="none"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <path d="M5 12h14"></path>
-                          <path d="M12 5l7 7-7 7"></path>
-                        </svg>
-                      </a>
-                    </Link>
+                    <LinkButton className="mt-4" href="/contatti" withArrow>
+                      Richiedi assistenza
+                    </LinkButton>
                   </CardSquareImg>
                 </Transition.Child>
               </Transition>

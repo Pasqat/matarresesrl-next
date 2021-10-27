@@ -6,6 +6,7 @@ import {ChatIcon} from '@heroicons/react/outline'
 import clsx from 'clsx'
 
 import {sendContactMail} from '../../actions/networking/mailApi'
+import {Button, LinkButton} from '../../components/button'
 
 /**
  * @param buttonText default "Contattaci"
@@ -156,27 +157,9 @@ export default function FormModal({
   }
   return (
     <>
-      <div
-        className={clsx(
-          buttonClassName ? null : 'inset-0 flex items-center justify-center',
-        )}
-      >
-        <button
-          type="button"
-          onClick={openModal}
-          className={clsx(
-            'font-medium rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75',
-            buttonClassName ??
-              'px-4 py-2 text-sm text-white bg-yellow-600 hover:bg-yellow-500 ',
-          )}
-        >
-          {buttonClassName ? null : (
-            <ChatIcon className="inline-block mr-1 w-5 h-5" />
-          )}
-          {buttonText}
-        </button>
-      </div>
-
+      <Button size="medium" onClick={openModal}>
+        {buttonText}
+      </Button>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
