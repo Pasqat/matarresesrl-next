@@ -4,7 +4,7 @@ import * as React from 'react'
 
 function getClassName({className}) {
   return clsx(
-    'group relative inline-flex text-lg font-medium focus:outline-none opacity-100 disabled:opacity-50 transition',
+    'group relative cursor-pointer inline-flex text-lg font-medium focus:outline-none opacity-100 disabled:opacity-50 transition',
     className,
   )
 }
@@ -97,4 +97,17 @@ function LinkButton({
   )
 }
 
-export {Button, LinkButton}
+const ButtonLink = React.forwardRef(function ButtonLink(
+  {children, variant = 'primary', href, className, size, ...rest},
+  ref,
+) {
+  return (
+    <a ref={ref} className={getClassName({className})} {...rest}>
+      <ButtonInner variant={variant} size={size}>
+        {children}
+      </ButtonInner>
+    </a>
+  )
+})
+
+export {Button, LinkButton, ButtonLink}

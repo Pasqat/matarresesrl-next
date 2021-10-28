@@ -11,6 +11,7 @@ import {SlopeDivSection} from '../../ui/SlopeDivSection'
 import {H2, H3} from '../../components/typography'
 
 import Image from 'next/image'
+import {LinkButton} from '../../components/button'
 
 export default function Home() {
   return (
@@ -82,9 +83,7 @@ export default function Home() {
                       keywords utili
                     </p>
                     <div className="mt-6">
-                      <Link href="#">
-                        <a className="text-yellow-600">Approfondisci</a>
-                      </Link>
+                      <LinkButton href="#">Approfondisci</LinkButton>
                     </div>
                   </div>
                 </div>
@@ -124,9 +123,7 @@ export default function Home() {
                     nec nunc id velit imperdiet
                   </p>
                   <div className="mt-6">
-                    <Link href="#">
-                      <a className="text-yellow-600">Approfondisci</a>
-                    </Link>
+                    <LinkButton href="#">Approfondisci</LinkButton>
                   </div>
                 </div>
               </div>
@@ -148,9 +145,7 @@ export default function Home() {
                       keywords utili
                     </p>
                     <div className="mt-6">
-                      <Link href="#">
-                        <a className="text-yellow-600">Approfondisci</a>
-                      </Link>
+                      <LinkButton href="#">Approfondisci</LinkButton>
                     </div>
                   </div>
                 </div>
@@ -195,65 +190,23 @@ export default function Home() {
                     <ul className="mt-6 text-lg list-none">
                       <li className="py-2">
                         <div className="flex flex-wrap items-center">
-                          <Link href="#">
-                            <a className="inline-flex items-center text-yellow-500 md:mb-2 lg:mb-0">
-                              Arredi e complementi
-                              <svg
-                                className="ml-2 w-4 h-4 animate-bounceX"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                fill="none"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              >
-                                <path d="M5 12h14"></path>
-                                <path d="M12 5l7 7-7 7"></path>
-                              </svg>
-                            </a>
-                          </Link>
+                          <LinkButton href="#" withArrow>
+                            Arredi e complementi
+                          </LinkButton>
                         </div>
                       </li>
                       <li className="py-2">
                         <div className="flex flex-wrap items-center">
-                          <Link href="#">
-                            <a className="inline-flex items-center text-yellow-500 md:mb-2 lg:mb-0">
-                              Arredi su misura
-                              <svg
-                                className="ml-2 w-4 h-4 animate-bounceX"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                fill="none"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              >
-                                <path d="M5 12h14"></path>
-                                <path d="M12 5l7 7-7 7"></path>
-                              </svg>
-                            </a>
-                          </Link>
+                          <LinkButton href="#" withArrow>
+                            Arredi su misura
+                          </LinkButton>
                         </div>
                       </li>
                       <li className="py-2">
                         <div className="flex flex-wrap items-center">
-                          <Link href="#">
-                            <a className="inline-flex items-center text-yellow-500 md:mb-2 lg:mb-0">
-                              Forniture alberghiere
-                              <svg
-                                className="ml-2 w-4 h-4 animate-bounceX"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                fill="none"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              >
-                                <path d="M5 12h14"></path>
-                                <path d="M12 5l7 7-7 7"></path>
-                              </svg>
-                            </a>
-                          </Link>
+                          <LinkButton href="#" withArrow>
+                            Forniture alberghiere
+                          </LinkButton>
                         </div>
                       </li>
                     </ul>
@@ -281,9 +234,7 @@ export default function Home() {
                         alt="Sanificatore"
                       />
                       <H3 className="mb-4 mt-6 text-white">Sanificazione</H3>
-                      <Link href="#">
-                        <a className="text-yellow-500">Scopri di più</a>
-                      </Link>
+                      <LinkButton href="#">Scopri di più</LinkButton>
                     </div>
                     <div>
                       <Image
@@ -295,9 +246,7 @@ export default function Home() {
                         alt="lavastovigle professionali"
                       />
                       <H3 className="mb-4 mt-6 text-white">Lavaggio</H3>
-                      <Link href="#">
-                        <a className="text-yellow-500">Scopri di più</a>
-                      </Link>
+                      <LinkButton href="#">Scopri di più</LinkButton>
                     </div>
                     <div>
                       <Image
@@ -309,9 +258,7 @@ export default function Home() {
                         alt="lavatrici indutriali"
                       />
                       <H3 className="mb-4 mt-6 text-white">Lavanderia</H3>
-                      <Link href="#">
-                        <a className="text-yellow-500">Scopri di più</a>
-                      </Link>
+                      <LinkButton href="#">Scopri di più</LinkButton>
                     </div>
                   </div>
                 </div>
@@ -344,9 +291,7 @@ export default function Home() {
                       keywords utili
                     </p>
                     <div className="mt-6">
-                      <Link href="#">
-                        <a className="text-yellow-600">Approfondisci</a>
-                      </Link>
+                      <LinkButton href="#">Approfondisci</LinkButton>
                     </div>
                   </div>
                 </div>
@@ -392,9 +337,7 @@ export default function Home() {
                       keywords utili
                     </p>
                     <div className="mt-6">
-                      <Link href="#">
-                        <a className="text-yellow-600">Approfondisci</a>
-                      </Link>
+                      <LinkButton href="#">Approfondisci</LinkButton>
                     </div>
                   </div>
                 </div>

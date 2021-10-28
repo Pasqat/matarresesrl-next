@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import {Transition} from '@headlessui/react'
 import {SlopeDivSection} from '../../ui/SlopeDivSection'
+import {ButtonLink} from '../button'
 
 /**
  * @param backgroundImgSrc - 'url(/img/homeBackground.jpg)'
@@ -51,13 +52,10 @@ function HeaderBig({
             <p className="mt-4 text-gray-300 text-lg font-medium">{subtitle}</p>
 
             {!noButton && (
-              <Link href={button.link}>
-                <a
-                  className="bg-gradient-tl-yellow mb-1 mr-1 mt-5 px-8 py-3 text-white text-base font-bold active:bg-yellow-700 rounded outline-none focus:outline-none hover:shadow-lg shadow-md uppercase transition-all duration-150 ease-linear"
-                  type="button"
-                >
+              <Link href={button.link} passHref>
+                <ButtonLink size="medium" className="mt-8">
                   <i className="fas fa-message" /> {button.text}
-                </a>
+                </ButtonLink>
               </Link>
             )}
             {children}
