@@ -4,7 +4,7 @@ import * as React from 'react'
 
 function getClassName({className}) {
   return clsx(
-    'group relative cursor-pointer inline-flex text-lg font-medium focus:outline-none opacity-100 disabled:opacity-50 transition',
+    'group relative cursor-pointer hover:no-underline inline-flex text-lg font-medium focus:outline-none opacity-100 disabled:opacity-50 transition disabled:pointer-events-none',
     className,
   )
 }
@@ -31,8 +31,9 @@ function ButtonInner({children, variant, size}) {
             'bg-gradient-tl-yellow shadow-md text-white rounded text-lg':
               variant === 'primary',
             'text-red-500': variant === 'danger',
-            'px-11 py-6 space-x-5': size !== 'medium',
+            'px-11 py-6 space-x-5': size === 'large',
             'px-4 py-2 space-x-3': size === 'medium',
+            'px-2 py-1 space-x-1': size === 'small',
           },
         )}
       >

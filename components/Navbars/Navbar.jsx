@@ -3,6 +3,7 @@ import {MenuIcon, XIcon, ChatIcon} from '@heroicons/react/outline'
 
 import Link from 'next/link'
 import clsx from 'clsx'
+import {Button, ButtonLink} from '../button'
 
 let navigation = [
   {name: 'Home', href: '/', current: false},
@@ -93,14 +94,11 @@ export default function Navbar({isTransparent}) {
                     >
                       <i className="fab fa-instagram text-gray-100"></i>
                     </a>
-                    <Link href="/contatti">
-                      <a
-                        className="bg-gradient-tl-yellow flex items-center px-3 py-2 text-white hover:text-white text-xs font-semibold hover:bg-opacity-70 rounded-md hover:shadow-md uppercase lg:text-sm"
-                        aria-current={undefined}
-                      >
+                    <Link href="/contatti" passHref>
+                      <ButtonLink size="small">
                         <ChatIcon className="inline-block mr-1 w-5 h-5" />
                         Contattaci
-                      </a>
+                      </ButtonLink>
                     </Link>
                   </div>
                 </div>

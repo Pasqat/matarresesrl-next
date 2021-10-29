@@ -3,6 +3,7 @@ import clsx from 'clsx'
 import Link from 'next/link'
 
 import {H4} from '../typography'
+import {Button} from '../button'
 
 import {sendContactMail} from '../../actions/networking/mailApi'
 
@@ -145,13 +146,17 @@ export default function ContactForm({hasAutoFocus}) {
           />
         </div>
         <div className="mt-6 text-center">
-          <button
-            className="inline-flex px-4 py-2 text-white text-sm font-medium bg-gradient-to-tl rounded active:from-blue-500 disabled:from-green-300 from-green-400 disabled:to-blue-300 to-blue-500 active:to-green-400 disabled:pointer-events-none transition-all duration-150 ease-linear"
-            type="submit"
-            disabled={formButtonDisabled}
-          >
+          <Button type="submit" disabled={formButtonDisabled} size="small">
             Invia
-          </button>
+          </Button>
+        </div>
+        <div
+          className={clsx(
+            'mb-8 px-4 text-center',
+            notification.isError ? 'text-red-700' : 'text-green-700',
+          )}
+        >
+          {notification.text}
         </div>
         <div className="mt-5 text-right text-gray-600">
           <label className="flex-end inline-flex items-center w-full">
@@ -187,14 +192,6 @@ export default function ContactForm({hasAutoFocus}) {
         </div>
         <div className="mt-5 text-right text-gray-600"></div>
       </form>
-      <div
-        className={clsx(
-          'mb-8 px-4 text-center',
-          notification.isError ? 'text-red-700' : 'text-green-700',
-        )}
-      >
-        {notification.text}
-      </div>
     </>
   )
 }

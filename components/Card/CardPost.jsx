@@ -3,6 +3,7 @@ import Date from '../Date'
 
 import CoverImage from '../News/CoverImage'
 import {H3} from '../typography'
+import {LinkButton} from '../button'
 
 export default function CardPost({slug, title, coverImage, date, excerpt}) {
   return (
@@ -39,23 +40,9 @@ export default function CardPost({slug, title, coverImage, date, excerpt}) {
             }}
           ></div>
           <div className="flex flex-wrap items-center">
-            <Link href={`/news/${slug}`}>
-              <a className="inline-flex items-center text-yellow-500 md:mb-2 lg:mb-0">
-                Continua a leggere
-                <svg
-                  className="ml-2 w-4 h-4 animate-bounceX"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M5 12h14"></path>
-                  <path d="M12 5l7 7-7 7"></path>
-                </svg>
-              </a>
-            </Link>
+            <LinkButton href={`/news/${slug}`} withArrow>
+              Continua a leggere
+            </LinkButton>
           </div>
         </div>
       </div>
