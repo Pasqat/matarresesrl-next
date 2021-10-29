@@ -5,6 +5,7 @@ import {
   getHour,
 } from '../../actions/utils/formatDate'
 import CoverImage from '../News/CoverImage'
+import {LinkButton} from '../../components/button'
 
 import {H3} from '../typography'
 
@@ -66,23 +67,9 @@ export default function CardEvent({
                   ></a>
                 </Link>
               </H3>
-              <Link href={`/eventi/${slug}`}>
-                <a className="inline-flex items-center mb-3 text-yellow-500">
-                  Maggiori informazioni
-                  <svg
-                    className="ml-2 w-4 h-4 animate-bounceX"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M5 12h14"></path>
-                    <path d="M12 5l7 7-7 7"></path>
-                  </svg>
-                </a>
-              </Link>
+              <LinkButton withArrow href={`/eventi/${slug}`}>
+                Maggiori Informazioni
+              </LinkButton>
               <div
                 className="mb-3 text-gray-500 leading-tight"
                 dangerouslySetInnerHTML={{
