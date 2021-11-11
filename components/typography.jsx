@@ -11,8 +11,9 @@ const fontSize = {
 }
 
 const titleColors = {
-  primary: 'text-yellow-500',
-  secondary: 'text-gray-700',
+  primary: 'text-gray-900',
+  secondary: 'text-gray-600',
+  accent: 'text-yellow-500',
 }
 
 function Title({variant = 'primary', size, as, className, ...rest}) {
@@ -50,8 +51,16 @@ function H6(props) {
   return <Title {...props} size="h6" />
 }
 
-function Paragraph({className, as = 'p', ...rest}) {
-  // TODO: make this
+function Paragraph({
+  className,
+  as = 'p',
+  textColorClassName = 'text-secondary',
+  ...rest
+}) {
+  return React.createElement(as, {
+    className: clsx('max-w-full text-lg', textColorClassName, className),
+    ...rest,
+  })
 }
 
-export {H1, H2, H3, H4, H5, H6}
+export {H1, H2, H3, H4, H5, H6, Paragraph}

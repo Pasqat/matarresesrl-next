@@ -41,14 +41,36 @@ strong {
   }
 
   .text-secondary {
-    @apply text-yellow-500
+    @apply text-gray-600;
   }
 
   .text-primary {
     @apply text-gray-900
   }
 
+  .text-accent {
+    @apply text-yellow-500;
+  }
 
+  .bg-primary {
+    @apply bg-white;
+  }
+
+  .bg-secondary {
+    @apply bg-gray-200;
+  }
+
+  .bg-inverse {
+    @apply bg-black;
+  }
+
+  .border-primary {
+    @apply border-gray-900;
+  }
+
+  .border-secondary {
+    @apply border-gray-200;
+  }
   .wp-block-image img {
     @apply max-w-full mt-2;
   }
