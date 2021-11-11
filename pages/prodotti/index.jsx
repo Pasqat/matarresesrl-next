@@ -329,6 +329,8 @@ export default function Home() {
             </div>
           </section>
           <div className="container mx-auto px-4">
+            {/* TODO: make an utility function to parse testimonials based on
+            category or topic */}
             <TestimonialSection
               testimonials={testimonials}
               className="mb-24 lg:mb-64"
