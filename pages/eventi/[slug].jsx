@@ -25,7 +25,7 @@ export default function Events({event}) {
   // take n String arguments and join them
   // in split case (this-is-split-case)
   function addressToMapsLink(...props) {
-    const parsedAddress = []
+    let parsedAddress = []
 
     for (let element of props) {
       parsedAddress.push(element.split(/\W/).join('+'))
@@ -108,21 +108,23 @@ export default function Events({event}) {
                       <H3 className="mb-2" variant="secondary">
                         {event.title}
                       </H3>
-                      <div className="mb-2 mt-0 text-gray-400 text-sm font-bold leading-normal uppercase">
-                        <i className="fas fa-map-marker-alt mr-2 text-gray-400 text-lg"></i>{' '}
-                        <a
-                          href={`https://maps.google.com/?q=${addressToMapsLink(
-                            event.venue?.title,
-                            event.venue?.city,
-                            event.venue?.address,
-                          )}`}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          {event.venue?.title} - {event.venue?.address},{' '}
-                          {event.venue?.city}
-                        </a>
-                      </div>
+                      {event.venue && (
+                        <div className="mb-2 mt-0 text-gray-400 text-sm font-bold leading-normal uppercase">
+                          <i className="fas fa-map-marker-alt mr-2 text-gray-400 text-lg"></i>{' '}
+                          <a
+                            href={`https://maps.google.com/?q=${addressToMapsLink(
+                              event.venue.title,
+                              event.venue.city,
+                              event.venue.address,
+                            )}`}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            {event.venue.title} - {event.venue.address},{' '}
+                            {event.venue.city}
+                          </a>
+                        </div>
+                      )}
                       <div className="mb-2 mt-10 text-gray-600">
                         <i className="fas fa-briefcase mr-2 text-gray-400 text-lg"></i>
                         Organizzato da:{' '}
