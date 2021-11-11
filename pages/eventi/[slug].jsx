@@ -34,28 +34,6 @@ export default function Events({event}) {
     return parsedAddress.join('+')
   }
 
-  console.log(
-    '**************************************************************************\n\n\n',
-  )
-  console.log('event', event)
-  console.log(
-    '\n\n\n**************************************************************************',
-  )
-  console.log(
-    '**************************************************************************\n\n\n',
-  )
-  console.log('venue', event.venue)
-  console.log(
-    '\n\n\n**************************************************************************',
-  )
-  console.log(
-    '**************************************************************************\n\n\n',
-  )
-  console.log('orginizers', event.organizers)
-  console.log(
-    '\n\n\n**************************************************************************',
-  )
-
   return (
     <Layout navbarTransparent>
       {router.isFallback ? (
@@ -130,7 +108,9 @@ export default function Events({event}) {
                       <H3 className="mb-2" variant="secondary">
                         {event.title}
                       </H3>
-                      {event.venue && (
+                      {/* FIXME: with the latest version of the event calendar WP
+                        ql-event can't fetch venue and organization */}
+                      {/* {event.venue && (
                         <div className="mb-2 mt-0 text-gray-400 text-sm font-bold leading-normal uppercase">
                           <i className="fas fa-map-marker-alt mr-2 text-gray-400 text-lg"></i>{' '}
                           <a
@@ -155,7 +135,7 @@ export default function Events({event}) {
                             {event.organizers?.nodes[0].title}
                           </a>
                         </div>
-                      )}
+                      )} */}
                     </div>
 
                     <div className="mt-10 py-10 text-center border-t border-gray-200">
