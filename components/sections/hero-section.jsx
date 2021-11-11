@@ -77,7 +77,9 @@ function HeroSection({
           }}
         >
           <motion.div variants={childVariants}>
-            <H2 as="h2">{title}</H2>
+            <H2 as="h2" variant="accent">
+              {title}
+            </H2>
           </motion.div>
 
           {subtitle ? (
