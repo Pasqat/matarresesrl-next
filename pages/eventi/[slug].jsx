@@ -34,6 +34,28 @@ export default function Events({event}) {
     return parsedAddress.join('+')
   }
 
+  console.log(
+    '**************************************************************************\n\n\n',
+  )
+  console.log('event', event)
+  console.log(
+    '\n\n\n**************************************************************************',
+  )
+  console.log(
+    '**************************************************************************\n\n\n',
+  )
+  console.log('venue', event.venue)
+  console.log(
+    '\n\n\n**************************************************************************',
+  )
+  console.log(
+    '**************************************************************************\n\n\n',
+  )
+  console.log('orginizers', event.organizers)
+  console.log(
+    '\n\n\n**************************************************************************',
+  )
+
   return (
     <Layout navbarTransparent>
       {router.isFallback ? (
