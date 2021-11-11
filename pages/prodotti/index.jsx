@@ -325,13 +325,15 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <TestimonialSection
-                  testimonials={testimonials}
-                  className="mb-24 lg:mb-64"
-                />
               </div>
             </div>
           </section>
+          <div className="container mx-auto px-4">
+            <TestimonialSection
+              testimonials={testimonials}
+              className="mb-24 lg:mb-64"
+            />
+          </div>
           <section className="relative py-20" id="contatti">
             <div className="container mb-12 mx-auto px-4">
               <div className="flex flex-wrap justify-center">

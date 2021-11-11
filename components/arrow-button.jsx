@@ -98,7 +98,7 @@ function ArrowButtonContent({children, direction = 'right'}) {
             />
 
             <motion.circle
-              className="text-primary"
+              className="text-accent"
               stroke="currentColor"
               strokeWidth="2"
               fill="transparent"

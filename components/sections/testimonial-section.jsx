@@ -3,6 +3,7 @@ import clsx from 'clsx'
 import {H2} from '../typography'
 import {Grid} from '../grid'
 import {ArrowButton} from '../arrow-button'
+import IconStar from '../../ui/IconStar'
 
 function TestimonialSection({testimonials, className, nested}) {
   const [page, setPage] = React.useState(0)
@@ -44,7 +45,10 @@ function TestimonialSection({testimonials, className, nested}) {
             <p className="text-primary mb-14 text-base">
               “{testimonial.content}”
             </p>
-            <div className="flex items-center">
+            <div className="flex items-center justify-between">
+              <div className="flex mr-8 w-16">
+                <IconStar number={testimonial.stars} />
+              </div>
               <div>
                 <p className="text-primary mb-2 text-lg font-medium leading-none">
                   {testimonial.name}
