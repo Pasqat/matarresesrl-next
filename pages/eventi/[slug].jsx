@@ -125,13 +125,15 @@ export default function Events({event}) {
                           </a>
                         </div>
                       )}
-                      <div className="mb-2 mt-10 text-gray-600">
-                        <i className="fas fa-briefcase mr-2 text-gray-400 text-lg"></i>
-                        Organizzato da:{' '}
-                        <a href={event.organizers?.nodes[0].link}>
-                          {event.organizers?.nodes[0].title}
-                        </a>
-                      </div>
+                      {event.organizers && (
+                        <div className="mb-2 mt-10 text-gray-600">
+                          <i className="fas fa-briefcase mr-2 text-gray-400 text-lg"></i>
+                          Organizzato da:{' '}
+                          <a href={event.organizers?.nodes[0].link}>
+                            {event.organizers?.nodes[0].title}
+                          </a>
+                        </div>
+                      )}
                     </div>
 
                     <div className="mt-10 py-10 text-center border-t border-gray-200">
