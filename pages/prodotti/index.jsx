@@ -9,8 +9,11 @@ import {Grid} from '../../components/grid'
 import {FeatureCard} from '../../components/feature-card'
 import {H2, H3, H6, Paragraph} from '../../components/typography'
 import {LinkButton} from '../../components/button'
+import {TestimonialSection} from '../../components/sections/testimonial-section'
 
 import {BriefCaseIcon} from '../../components/icons/briefcase-icon'
+
+import testimonials from '../../data/testimonials'
 
 export default function Home() {
   return (
@@ -322,6 +325,10 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
+                <TestimonialSection
+                  testimonials={testimonials}
+                  className="mb-24 lg:mb-64"
+                />
               </div>
             </div>
           </section>
