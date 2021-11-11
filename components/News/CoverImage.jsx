@@ -10,7 +10,6 @@ export default function CoverImage({
   className,
   ...rest
 }) {
-  console.log(coverImage?.sourceUrl)
   const image = (
     <Image
       width={2000}

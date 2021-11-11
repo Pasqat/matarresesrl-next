@@ -4,7 +4,7 @@ import * as React from 'react'
 
 function getClassName({className}) {
   return clsx(
-    'group relative cursor-pointer hover:no-underline inline-flex text-lg font-medium focus:outline-none opacity-100 disabled:opacity-50 transition disabled:pointer-events-none',
+    'group relative inline-flex hover:no-underline text-lg font-medium focus:outline-none opacity-100 disabled:opacity-50 cursor-pointer disabled:pointer-events-none transition',
     className,
   )
 }
@@ -75,7 +75,7 @@ function LinkButton({
           withArrow
             ? 'no-underline'
             : 'underline whitespace-nowrap focus:outline-none',
-          'text-secondary inline-flex group items-center md:mb-2 lg:mb-0',
+          'text-secondary group inline-flex items-center md:mb-2 lg:mb-0',
         )}
       >
         {children}

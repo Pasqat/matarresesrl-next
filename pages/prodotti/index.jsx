@@ -12,10 +12,11 @@ import {H2, H3} from '../../components/typography'
 
 import Image from 'next/image'
 import {LinkButton} from '../../components/button'
+import {HeroSection} from '../../components/sections/hero-section'
 
 export default function Home() {
   return (
-    <div>
+    <>
       <Head>
         <title>Matarrese srl | Prodotti</title>
         <link rel="canonical" href="https://www.matarrese.it/" />
@@ -28,10 +29,17 @@ export default function Home() {
 
       <Layout navbarTransparent>
         <main>
-          <HeaderBig
+          {/* <HeaderBig
             title="Prodotti"
             subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In."
             button={{text: 'visita il nostro showroom', link: '/contatti'}}
+          /> */}
+          <HeroSection
+            title="Tutto per l'Accoglienza"
+            subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In."
+            image="/img/pastorizzatore-prodotti.jpg"
+            arrowUrl="#accoglienza"
+            arrowLabel="Leggi leggi"
           />
           <section className="pb-20 bg-gray-200">
             <div className="container mx-auto px-4">
@@ -66,7 +74,7 @@ export default function Home() {
               </div>
 
               <div className="flex flex-wrap items-center" id="lavorazione">
-                <div className="ml-auto mr-auto px-4 w-full md:w-5/12">
+                <div className="ml-auto mr-auto px-4 w-full md:w-1/2">
                   <div className="text-lg md:pr-12">
                     <div className="inline-flex items-center justify-center mb-6 p-3 w-16 h-16 text-center text-blue-400 bg-white rounded-full shadow-lg">
                       <i className="far fa-snowflake" />
@@ -87,7 +95,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="inline-flex ml-auto mr-auto w-full rounded-lg shadow-lg overflow-hidden md:w-4/12">
+                <div className="inline-flex ml-auto mr-auto w-full rounded-lg shadow-lg overflow-hidden md:w-1/2">
                   <Image
                     alt="prodotti per la cucina professionale"
                     className="max-w-full rounded-lg shadow-lg"
@@ -357,6 +365,6 @@ export default function Home() {
           </section>
         </main>
       </Layout>
-    </div>
+    </>
   )
 }
