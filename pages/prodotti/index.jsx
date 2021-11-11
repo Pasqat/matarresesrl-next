@@ -30,7 +30,7 @@ export default function Home() {
           <ProductSection />
         </div>
         <main>
-          <section className="pb-20 pt-12">
+          <section className="pb-20 pt-12" id="lavorazione">
             <div className="container mx-auto px-4">
               <Grid className="mb-24 lg:mb-64">
                 <div className="col-span-full lg:col-span-6 lg:col-start-1">
@@ -62,9 +62,9 @@ export default function Home() {
 
               <Grid className="mb-24 lg:mb-48">
                 <div className="col-span-full" e>
-                  <H2 className="mb-3 lg:mt-6">{`Per la Lavorazione`}</H2>
+                  <H2 className="mb-3 lg:mt-6">{`Prodotti per la lavorazione e conservazione degli alimenti`}</H2>
                   <H2 as="p" variant="secondary" className="mb-14">
-                    {`Lorem Ipsum doler sit`}
+                    {`Lorem ipsum dolor sit amet`}
                   </H2>
                 </div>
 
@@ -126,11 +126,36 @@ export default function Home() {
 
           <section className="relative py-32" id="accoglienza">
             <div className="container mx-auto px-4">
+              <Grid className="mb-24 lg:mb-64">
+                <div className="col-span-full lg:col-span-6 lg:col-start-1">
+                  <H2 id="perche-comprare-da-noi" className="mb-10">
+                    {`Tutto per l'Accoglienza`}
+                  </H2>
+                  <H6 as="h3" className="mb-4">
+                    {`Titolo 1`}
+                  </H6>
+                  <Paragraph className="mb-12">{`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`}</Paragraph>
+                  <H6 as="h3" className="mb-4">{`Titolo 2`}</H6>
+                  <Paragraph className="mb-12">{`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`}</Paragraph>
+                </div>
+                <div className="col-span-full lg:col-span-5 lg:col-start-8 lg:row-start-1">
+                  <div className="aspect-h-6 aspect-w-4 mb-12 lg:mb-0">
+                    <Image
+                      alt="prodotti per la cucina professionale"
+                      className="max-w-full rounded-lg shadow-lg"
+                      src="/img/arredo-su-misura-prodotti.jpg"
+                      width="1000"
+                      height="1300"
+                      objectFit="cover"
+                    />
+                  </div>
+                </div>
+              </Grid>
               <Grid className="mb-24 lg:mb-48">
                 <div className="col-span-full" e>
-                  <H2 className="mb-3 lg:mt-6">{`Per l'accoglienza`}</H2>
+                  <H2 className="mb-3 lg:mt-6">{`Qualità e stile anche nei dettagli`}</H2>
                   <H2 as="p" variant="secondary" className="mb-14">
-                    {`Lorem Ipsum doler sit`}
+                    {`Lascia i tuoi clienti a bocca aperta`}
                   </H2>
                 </div>
 
@@ -169,56 +194,6 @@ export default function Home() {
                   </Grid>
                 </div>
               </Grid>
-
-              <SlopeDivSection color="text-white" />
-              <div className="flex flex-wrap items-center">
-                <div className="inline-flex ml-auto mr-auto w-full rounded-lg shadow-lg overflow-hidden md:w-5/12">
-                  <Image
-                    alt="arredi su misura"
-                    src="/img/arredo-su-misura-prodotti.jpg"
-                    width="1000"
-                    height="1300"
-                    objectFit="cover"
-                  />
-                </div>
-                <div className="ml-auto mr-auto px-4 w-full md:w-5/12">
-                  <div className="md:pr-12">
-                    {/* <div className="inline-flex items-center justify-center w-16 h-16 p-3 mb-6 text-center text-gray-500 bg-gray-200 rounded-full shadow-lg"> */}
-                    {/*   <ShoppingCartIcon className="text-xl text-indigo-500" /> */}
-                    {/* </div> */}
-                    <H2 variant="secondary">Tutto per l&apos;accoglienza</H2>
-                    <p className="mt-4 text-gray-500 text-lg leading-relaxed">
-                      Qualsiasi stile hai scelto per la tua attività da noi puoi
-                      trovare l’arredo e i complementi che fanno per te. E per
-                      le esigenze più particolari possiamo realizzare il tuo
-                      arredo su misura. Scopri di più su:
-                    </p>
-                    <ul className="mt-6 text-lg list-none">
-                      <li className="py-2">
-                        <div className="flex flex-wrap items-center">
-                          <LinkButton href="#" withArrow>
-                            Arredi e complementi
-                          </LinkButton>
-                        </div>
-                      </li>
-                      <li className="py-2">
-                        <div className="flex flex-wrap items-center">
-                          <LinkButton href="#" withArrow>
-                            Arredi su misura
-                          </LinkButton>
-                        </div>
-                      </li>
-                      <li className="py-2">
-                        <div className="flex flex-wrap items-center">
-                          <LinkButton href="#" withArrow>
-                            Forniture alberghiere
-                          </LinkButton>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
             </div>
           </section>
 
