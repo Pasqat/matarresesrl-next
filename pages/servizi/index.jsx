@@ -8,11 +8,14 @@ import ContactForm from '../../components/Form/ContactForm'
 import Layout from '../../components/Layout'
 import {H2, H3, H4} from '../../components/typography'
 import {HeroSection} from '../../components/sections/hero-section'
+import {FeatureCard} from '../../components/feature-card'
+import {Grid} from '../../components/grid'
 
 import {SlopeDivSection} from '../../ui/SlopeDivSection'
 import logoConsip from '../../public/img/logos/Consip_Logo.webp'
 import logoAcquistinrete from '../../public/img/logos/acquistinrete.webp'
 import logoMEF from '../../public/img/logos/Logo_mef.webp'
+import {BriefCaseIcon} from '../../components/icons/briefcase-icon'
 
 export default function Servizi() {
   const [position, setPosition] = useState(0)
@@ -62,14 +65,82 @@ export default function Servizi() {
                 offriamo le migliori soluzioni per le vostre richieste
               </div>
             }
-            arrowUrl="#progettazione"
+            arrowUrl="#panoramica"
             image="/img/blogging.svg"
+            imageSize="large"
           />
         </div>
         <main>
-          <section className="pb-20" id="progettazione">
+          <section className="pb-20" id="panoramica">
             <div className="container mx-auto pb-60 px-4">
-              <div className="my-32 px-4 w-full">
+
+              <Grid className="mb-24 lg:mb-48">
+                <div className="col-span-full">
+                  <H2 className="mb-3 lg:mt-6">{`Alcuni dei nostri servizi`}</H2>
+                  <H2 as="p" variant="secondary" className="mb-14">
+                    {`Lorem ipsum dolor sit amet`}
+                  </H2>
+                </div>
+
+                <div className="col-span-full">
+                  <Grid rowGap nested>
+                    <div className="col-span-full lg:col-span-3">
+                      <FeatureCard
+                        title="Consulenza tecnica"
+                        icon={<BriefCaseIcon size={48} />}
+                      />
+                    </div>
+                    <div className="col-span-full lg:col-span-3">
+                      <FeatureCard
+                        title="Progettazione"
+                        icon={<BriefCaseIcon size={48} />}
+                      />
+                    </div>
+                    <div className="col-span-full lg:col-span-3">
+                      <FeatureCard
+                        title="Manutenzione"
+                        icon={<BriefCaseIcon size={48} />}
+                      />
+                    </div>
+                    <div className="col-span-full lg:col-span-3">
+                      <FeatureCard
+                        title="Assistenza pre e post vendita"
+                        icon={<BriefCaseIcon size={48} />}
+                      />
+                    </div>
+                    <div className="col-span-full lg:col-span-3">
+                      <FeatureCard
+                        title="Formazione"
+                        icon={<BriefCaseIcon size={48} />}
+                      />
+                    </div>
+                    <div className="col-span-full lg:col-span-3">
+                      <FeatureCard
+                        title="Consulenza tecnica"
+                        icon={<BriefCaseIcon size={48} />}
+                      />
+                    </div>
+                    <div className="col-span-full lg:col-span-3">
+                      <FeatureCard
+                        title="Consulenza tecnica"
+                        icon={<BriefCaseIcon size={48} />}
+                      />
+                    </div>
+                    <div className="col-span-full lg:col-span-3">
+                      <FeatureCard
+                        title="Consulenza tecnica"
+                        icon={<BriefCaseIcon size={48} />}
+                      />
+                    </div>
+                  </Grid>
+                </div>
+              </Grid>
+
+
+
+
+
+              <div className="my-32 w-full">
                 <H2 variant="secondary" className="text-center">
                   Progettazione tecnica e realizzazione arredi
                 </H2>
@@ -80,7 +151,7 @@ export default function Servizi() {
 
               <div className="flex items-start">
                 {/* TODO: extract this in a component? name it like StepBlock */}
-                <div className="sticky top-4 hidden ml-auto mr-auto px-4 w-full md:block md:w-4/12">
+                <div className="sticky top-4 hidden ml-auto mr-auto w-full md:block md:w-4/12">
                   <div className="lg:pr-16">
                     <div className="flex">
                       <div className="flex flex-col items-center mr-4">
