@@ -1,18 +1,18 @@
 import {useState, useEffect, useRef} from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
+import Image from 'next/image'
 import clsx from 'clsx'
 
-import HeaderBig from '../../components/Header/HeaderBig'
 import ContactForm from '../../components/Form/ContactForm'
 import Layout from '../../components/Layout'
-import {SlopeDivSection} from '../../ui/SlopeDivSection'
-
-import Image from 'next/image'
 import {H2, H3, H4} from '../../components/typography'
+import {HeroSection} from '../../components/sections/hero-section'
+
+import {SlopeDivSection} from '../../ui/SlopeDivSection'
+import logoConsip from '../../public/img/logos/Consip_Logo.webp'
 import logoAcquistinrete from '../../public/img/logos/acquistinrete.webp'
 import logoMEF from '../../public/img/logos/Logo_mef.webp'
-import logoConsip from '../../public/img/logos/Consip_Logo.webp'
 
 export default function Servizi() {
   const [position, setPosition] = useState(0)
@@ -51,15 +51,23 @@ export default function Servizi() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Layout navbarTransparent>
-        <main>
-          <HeaderBig
+      <Layout>
+        <div className="container mx-auto px-4">
+          <HeroSection
             title="Servizi"
-            subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In."
-            noButton
-            slopeSectionColor="text-white"
+            subtitle="Il nostro punto di forza è l'esperienza!"
+            action={
+              <div className="text-xl">
+                Comprendiamo le esigenze più disparate dei nostri clienti e
+                offriamo le migliori soluzioni per le vostre richieste
+              </div>
+            }
+            arrowUrl="#progettazione"
+            image="/img/blogging.svg"
           />
-          <section className="pb-20">
+        </div>
+        <main>
+          <section className="pb-20" id="progettazione">
             <div className="container mx-auto pb-60 px-4">
               <div className="my-32 px-4 w-full">
                 <H2 variant="secondary" className="text-center">
