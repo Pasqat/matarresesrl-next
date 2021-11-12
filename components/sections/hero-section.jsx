@@ -5,6 +5,7 @@ import {motion, useReducedMotion} from 'framer-motion'
 import {H2} from '../typography'
 import {Grid} from '../grid'
 import {LinkButton} from '../button'
+import {ArrowLink} from '../arrow-button'
 
 function HeroSection({
   action,
@@ -105,9 +106,12 @@ function HeroSection({
             transition={{delay: 1}}
             className="hidden pt-12 lg:block"
           >
-            <LinkButton href={arrowUrl} withArrow>
+            <ArrowLink to={arrowUrl} direction="down" textSize="small">
               {arrowLabel}
-            </LinkButton>
+            </ArrowLink>
+            {/* <LinkButton href={arrowUrl} withArrow> */}
+            {/*   {arrowLabel} */}
+            {/* </LinkButton> */}
           </motion.div>
         ) : null}
       </div>

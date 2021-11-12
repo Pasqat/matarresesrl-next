@@ -154,36 +154,24 @@ function ArrowButton({onClick, type, ...props}) {
 
 // const MotionLink = motion(Link)
 
-// function ArrowLink({to, href, ...props}) {
-//   const [ref, state] = useElementState()
-//   const shouldReduceMotion = useReducedMotion()
+function ArrowLink({to, ...props}) {
+  const [ref, state] = useElementState()
+  const shouldReduceMotion = useReducedMotion()
 
-//   if (href) {
-//     return (
-//       <motion.a
-//         href={href}
-//         {...getBaseProps(props)}
-//         ref={ref}
-//         animate={state}
-//         transition={shouldReduceMotion ? {duration: 0} : {}}
-//       >
-//         <ArrowButtonContent {...props} />
-//       </motion.a>
-//     )
-//   } else if (to) {
-//     return (
-//       <MotionLink
-//         href={to}
-//         {...getBaseProps(props)}
-//         ref={ref}
-//         animate={state}
-//         transition={shouldReduceMotion ? {duration: 0} : {}}
-//       >
-//         <ArrowButtonContent {...props} />
-//       </MotionLink>
-//     )
-//   }
-//   throw new Error("Must provide either 'to' or 'href' to ArrowLink")
-// }
+  if (to) {
+    return (
+      <motion.a
+        href={to}
+        {...getBaseProps(props)}
+        ref={ref}
+        animate={state}
+        transition={shouldReduceMotion ? {duration: 0} : {}}
+      >
+        <ArrowButtonContent {...props} />
+      </motion.a>
+    )
+  }
+  throw new Error("Must provide either 'to' or 'href' to ArrowLink")
+}
 
-export {ArrowButton}
+export {ArrowButton, ArrowLink}
