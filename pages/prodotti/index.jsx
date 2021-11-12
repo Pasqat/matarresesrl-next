@@ -3,13 +3,12 @@ import Image from 'next/image'
 
 import ContactForm from '../../components/Form/ContactForm'
 import Layout from '../../components/Layout'
-import {SlopeDivSection} from '../../ui/SlopeDivSection'
 import ProductSection from '../../components/sections/product-section'
 import {Grid} from '../../components/grid'
 import {FeatureCard} from '../../components/feature-card'
-import {H2, H3, H6, Paragraph} from '../../components/typography'
-import {LinkButton} from '../../components/button'
+import {H2, H6, Paragraph} from '../../components/typography'
 import {TestimonialSection} from '../../components/sections/testimonial-section'
+import {HeroSection} from '../../components/sections/hero-section'
 
 import {BriefCaseIcon} from '../../components/icons/briefcase-icon'
 
@@ -64,7 +63,7 @@ export default function Home() {
               </Grid>
 
               <Grid className="mb-24 lg:mb-48">
-                <div className="col-span-full" e>
+                <div className="col-span-full">
                   <H2 className="mb-3 lg:mt-6">{`Prodotti per la lavorazione e conservazione degli alimenti`}</H2>
                   <H2 as="p" variant="secondary" className="mb-14">
                     {`Lorem ipsum dolor sit amet`}
@@ -155,7 +154,7 @@ export default function Home() {
                 </div>
               </Grid>
               <Grid>
-                <div className="col-span-full" e>
+                <div className="col-span-full">
                   <H2 className="mb-3 lg:mt-6">{`Qualità e stile anche nei dettagli`}</H2>
                   <H2 as="p" variant="secondary" className="mb-14">
                     {`Lascia i tuoi clienti a bocca aperta`}
@@ -200,91 +199,59 @@ export default function Home() {
             </div>
           </section>
 
-
           <section className="relative py-20" id="trattamento-aria">
-            <div className="mb-8 mt-16 px-4 w-full">
-              <H2 className="text-center" variant="secondary">
-                Per il trattamento dell&apos;aria
-              </H2>
-            </div>
             <div className="container mx-auto px-4 py-8">
-              <div className="flex flex-wrap items-center" id="#aspirazione">
-                <div className="ml-auto mr-auto px-4 w-full md:w-5/12">
-                  <div className="text-lg md:pr-12">
-                    <div className="inline-flex items-center justify-center mb-6 p-3 w-16 h-16 text-center text-blue-400 bg-white rounded-full shadow-lg">
-                      <i className="far fa-snowflake" />
-                    </div>
-                    <H3 variant="secondary">Aspirazione</H3>
-                    <p className="mt-4 text-gray-500 leading-relaxed">
-                      Aprire un&apos;attività, rinnovare un locale, avere una
-                      guida per migliorare il proprio lavoro: Matarrese srl è la
-                      soluzione adatta alle esigenze professionali del mondo
-                      della ristorazione.
-                    </p>
-                    <p className="mt-4 text-gray-500 leading-relaxed">
-                      Altro testo a caso che possa avere un minimo di senso e di
-                      keywords utili
-                    </p>
-                    <div className="mt-6">
-                      <LinkButton href="#">Approfondisci</LinkButton>
-                    </div>
-                  </div>
+              <HeroSection
+                title="Lorem Ipsum Dolor sit"
+                subtitle="Bla bla bla"
+                image="/img/climatizzazione-prodotti.jpg"
+                imageSize="giant"
+              />
+              <Grid className="my-24 lg:my-48">
+                <div className="col-span-full">
+                  <H2 className="mb-3 lg:mt-6">{`Trattamento dell'aria`}</H2>
+                  <H2 as="p" variant="secondary" className="mb-14">
+                    {`Lorem ipsum dolor sit amet`}
+                  </H2>
                 </div>
-                <div className="ml-auto mr-auto px-4 w-full md:w-4/12">
-                  <Image
-                    alt="sistemi di aspirazione e trattamento dell'aria"
-                    className="max-w-full rounded-lg shadow-lg"
-                    src="/img/aspirazione-prodotti.jpg"
-                    width="1000"
-                    height="1300"
-                    objectFit="cover"
-                  />
-                </div>
-              </div>
-              <div
-                className="flex flex-wrap items-center mt-36"
-                id="#climatizzazione"
-              >
-                <div className="ml-auto mr-auto px-4 w-full md:w-4/12">
-                  <Image
-                    alt="climatizzazione indutstriale"
-                    className="max-w-full rounded-lg shadow-lg"
-                    src="/img/climatizzazione-prodotti.jpg"
-                    width="1000"
-                    height="1300"
-                    objectFit="cover"
-                  />
-                </div>
-                <div className="ml-auto mr-auto px-4 w-full md:w-5/12">
-                  <div className="text-lg md:pr-12">
-                    <div className="inline-flex items-center justify-center mb-6 p-3 w-16 h-16 text-center text-blue-400 bg-white rounded-full shadow-lg">
-                      <i className="far fa-snowflake" />
+
+                <div className="col-span-full">
+                  <Grid rowGap nested>
+                    <div className="col-span-full lg:col-span-6">
+                      <FeatureCard
+                        title="Aspirazione"
+                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Phasellus vehicula quam ipsum, at aliquam tellus mollis
+                    varius. Integer nisi urna, vulputate non risus ac, imperdiet
+                    vestibulum dolor. Proin rutrum nunc id pellentesque semper."
+                        url="/prodotti/macchinari-agroalimentare"
+                        urlText="Scopri di più"
+                        icon={<BriefCaseIcon size={48} />}
+                      />
                     </div>
-                    <H3 variant="secondary">Climatizzazione</H3>
-                    <p className="mt-4 text-gray-500 leading-relaxed">
-                      Aprire un&apos;attività, rinnovare un locale, avere una
-                      guida per migliorare il proprio lavoro: Matarrese srl è la
-                      soluzione adatta alle esigenze professionali del mondo
-                      della ristorazione.
-                    </p>
-                    <p className="mt-4 text-gray-500 leading-relaxed">
-                      Altro testo a caso che possa avere un minimo di senso e di
-                      keywords utili
-                    </p>
-                    <div className="mt-6">
-                      <LinkButton href="#">Approfondisci</LinkButton>
+                    <div className="col-span-full lg:col-span-6">
+                      <FeatureCard
+                        title="Climatizzazione"
+                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Phasellus vehicula quam ipsum, at aliquam tellus mollis
+                    varius. Integer nisi urna, vulputate non risus ac, imperdiet
+                    vestibulum dolor. Proin rutrum nunc id pellentesque semper."
+                        url="/prodotti/refrigerazione"
+                        urlText="Scopri di più"
+                        icon={<BriefCaseIcon size={48} />}
+                      />
                     </div>
-                  </div>
+                  </Grid>
                 </div>
-              </div>
+              </Grid>
             </div>
           </section>
 
           <section className="relative block bg-gray-800" id="igiene">
             <div className="container mx-auto px-4 lg:py-24">
               <Grid>
-                <div className="col-span-full" e>
-                  <H2 className="mb-3 lg:mt-6 text-gray-50" >{`Negli ultimi anni l'igiene ha assunto sempre più importanza`}</H2>
+                <div className="col-span-full">
+                  <H2 className="mb-3 lg:mt-6 text-gray-50">{`Negli ultimi anni l'igiene ha assunto sempre più importanza`}</H2>
                   <H2 as="p" className="mb-14 text-gray-300">
                     {`Possiamo aiutarti a mantenere i tuoi ambienti puliti ed igenizzati`}
                   </H2>
@@ -325,7 +292,6 @@ export default function Home() {
                   </Grid>
                 </div>
               </Grid>
-
             </div>
           </section>
           <div className="container mx-auto px-4 my-24 lg:mb-48">

@@ -11,7 +11,12 @@ function ListMenu() {
   }
 
   return (
-    <ul className="text-secondary text-xl">
+    <motion.ul className="text-secondary text-xl"
+          variants={{
+            initial: {opacity: 0},
+            visible: {opacity: 1, transition: {staggerChildren: 0.2}},
+          }}
+    >
       <motion.li variants={childVariants} className="my-2">
         <LinkButton href="#lavorazione" withArrow>
           Per la Lavorazione
@@ -32,7 +37,7 @@ function ListMenu() {
           Trattamento dell&apos;aria
         </LinkButton>
       </motion.li>
-    </ul>
+    </motion.ul>
   )
 }
 

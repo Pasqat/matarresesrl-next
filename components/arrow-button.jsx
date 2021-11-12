@@ -3,7 +3,6 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import {motion, useReducedMotion, Variant} from 'framer-motion'
 import {ArrowIcon} from './icons/arrow-icon'
-import {H6} from './typography'
 import {useElementState} from './hooks/use-element-state'
 
 const arrowVariants = {
@@ -152,5 +151,39 @@ function ArrowButton({onClick, type, ...props}) {
     </motion.button>
   )
 }
+
+// const MotionLink = motion(Link)
+
+// function ArrowLink({to, href, ...props}) {
+//   const [ref, state] = useElementState()
+//   const shouldReduceMotion = useReducedMotion()
+
+//   if (href) {
+//     return (
+//       <motion.a
+//         href={href}
+//         {...getBaseProps(props)}
+//         ref={ref}
+//         animate={state}
+//         transition={shouldReduceMotion ? {duration: 0} : {}}
+//       >
+//         <ArrowButtonContent {...props} />
+//       </motion.a>
+//     )
+//   } else if (to) {
+//     return (
+//       <MotionLink
+//         href={to}
+//         {...getBaseProps(props)}
+//         ref={ref}
+//         animate={state}
+//         transition={shouldReduceMotion ? {duration: 0} : {}}
+//       >
+//         <ArrowButtonContent {...props} />
+//       </MotionLink>
+//     )
+//   }
+//   throw new Error("Must provide either 'to' or 'href' to ArrowLink")
+// }
 
 export {ArrowButton}

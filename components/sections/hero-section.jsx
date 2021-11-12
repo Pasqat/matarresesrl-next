@@ -18,7 +18,7 @@ function HeroSection({
   imageSize = 'medium',
   as = 'header',
 }) {
-  const hasImage = Boolean(image ?? imageProps ?? imageBuilder)
+  const hasImage = Boolean(image)
   const shouldReduceMotion = useReducedMotion()
 
   const childVariants = {
