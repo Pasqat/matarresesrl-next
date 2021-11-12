@@ -6,7 +6,7 @@ import clsx from 'clsx'
 
 import ContactForm from '../../components/Form/ContactForm'
 import Layout from '../../components/Layout'
-import {H2, H3, H4} from '../../components/typography'
+import {H2, H3, H4, H6, Paragraph} from '../../components/typography'
 import {HeroSection} from '../../components/sections/hero-section'
 import {FeatureCard} from '../../components/feature-card'
 import {Grid} from '../../components/grid'
@@ -73,7 +73,6 @@ export default function Servizi() {
         <main>
           <section className="pb-20" id="panoramica">
             <div className="container mx-auto pb-60 px-4">
-
               <Grid className="mb-24 lg:mb-48">
                 <div className="col-span-full">
                   <H2 className="mb-3 lg:mt-6">{`Alcuni dei nostri servizi`}</H2>
@@ -135,10 +134,6 @@ export default function Servizi() {
                   </Grid>
                 </div>
               </Grid>
-
-
-
-
 
               <div className="my-32 w-full">
                 <H2 variant="secondary" className="text-center">
@@ -900,96 +895,74 @@ export default function Servizi() {
           </section>
 
           <section className="relative py-20 bg-gray-200">
-            <SlopeDivSection color="text-gray-200" />
-            <div className="px-4 w-full">
-              <H2 className="text-center" variant="secondary">
-                Assistensa e manutenzione
-              </H2>
-            </div>
+            {/* <SlopeDivSection color="text-gray-200" /> */}
+            {/* <div className="px-4 w-full"> */}
+            {/*   <H2 className="text-center" variant="secondary"> */}
+            {/*     Assistensa e manutenzione */}
+            {/*   </H2> */}
+            {/* </div> */}
             <div className="container mx-auto px-4 lg:py-24">
-              <div className="flex flex-wrap items-center space-y-8">
-                <div className="bg-white lg:flex lg:mx-8 lg:max-w-5xl lg:rounded-lg lg:shadow-lg">
-                  <div className="lg:w-1/2">
-                    <div
-                      className="h-64 bg-cover lg:h-full lg:rounded-lg"
-                      style={{
-                        backgroundImage: "url('/img/aspirazione-prodotti.jpg')",
-                      }}
-                    ></div>
-                  </div>
-
-                  <div className="px-6 py-12 max-w-xl lg:w-1/2 lg:max-w-5xl">
-                    <H2 variant="secondary">Manutenzione</H2>
-                    <p className="mt-4 dark:text-gray-400 text-gray-600">
-                      Il servizio di assistenza tecnica consiste nelle attività
-                      di: installazione, collaudo, messa in funzione e
-                      manutenzione di grandi impianti di ogni genere:
-                      attrezzature ristorazione, attrezzature bar, cucine
-                      professionali, macchine alimentari, impianti di
-                      riscaldamento, impianti di climatizzazione, trattamento
-                      aria, attrezzature per gelaterie, forni per pizza, ovvero
-                      tutto quanto fa parte di una struttura di ristorazione o
-                      laboratorio alimentare.
-                    </p>
+              <Grid className="mb-24 lg:mb-64">
+                <div className="col-span-full lg:col-span-6 lg:col-start-7">
+                  <div className="mb-12 lg:mb-0">
+                    <Image
+                      src="/img/vicini-al-cliente.jpg"
+                      alt=""
+                      className="max-w-full rounded-lg"
+                      width="1000"
+                      height="1300"
+                      objectFit="cover"
+                    />
                   </div>
                 </div>
 
-                <div className="bg-white lg:flex lg:mx-8 lg:max-w-5xl lg:rounded-lg lg:shadow-lg">
-                  <div className="px-6 py-12 max-w-xl lg:w-1/2 lg:max-w-5xl">
-                    <H2 variant="secondary">Valore Aggiunto</H2>
-                    <p className="mt-4 dark:text-gray-400 text-gray-600">
-                      La cura del cliente e la sua serenità lavorativa ci stanno
-                      a cuore nel pieno interesse di assicurare l’efficienza di
-                      funzionamento e mantenimento delle macchine. Il servizio
-                      di assistenza tecnica post vendita da parte di tecnici
-                      specializzati è un altro valore aggiunto alla semplice
-                      fornitura di attrezzature per ristorazione poiché,
-                      disponendo di un ampio magazzino con ricambi originali,
-                      riusciamo a garantire un efficiente pronto intervento per
-                      a manutenzione, riparazione e assistenza.
-                    </p>
-                  </div>
-                  <div className="lg:w-1/2">
-                    <div
-                      className="h-64 bg-cover lg:h-full lg:rounded-lg"
-                      style={{
-                        backgroundImage: "url('/img/aspirazione-prodotti.jpg')",
-                      }}
-                    ></div>
-                  </div>
-                </div>
+                <div className="col-span-full lg:col-span-5 lg:col-start-1 lg:row-start-1">
+                  <H2 className="mb-10">Assistenza e Manutenzione</H2>
 
-                <div className="bg-white lg:flex lg:mx-8 lg:max-w-5xl lg:rounded-lg lg:shadow-lg">
-                  <div className="lg:w-1/2">
-                    <div
-                      className="h-64 bg-cover lg:h-full lg:rounded-lg"
-                      style={{
-                        backgroundImage: "url('/img/aspirazione-prodotti.jpg')",
-                      }}
-                    ></div>
-                  </div>
-
-                  <div className="px-6 py-12 max-w-xl lg:w-1/2 lg:max-w-5xl">
-                    <H2 variant="secondary">
-                      <span className="text-yellow-600">Tempestività</span> del
-                      pronto intervento
-                    </H2>
-                    <p className="mt-4 dark:text-gray-400 text-gray-600">
-                      Il nostro team di tecnici specializzati – costantemente
-                      aggiornato mediante corsi tecnici presso le aziende
-                      fornitrici – opera con efficienza e professionalità per
-                      garantire un tempestivo pronto intervento post vendita.
-                    </p>
-                    <p className="mt-4 text-gray-600">
-                      Il servizio di risposta per assistenza tecnica è garantito
-                      entro le 48 ore dalla richiesta di intervento su tutto il
-                      territorio regionale grazie ai rapporti di esclusività per
-                      la Puglia con i più prestigiosi marchi di aziende del
-                      ttore (Panasonic, Lainox, Silko, Sirman, ecc.)
-                    </p>
-                  </div>
+                  <H6 as="h3" className="mb-4">
+                    {`Manutenzione`}
+                  </H6>
+                  <Paragraph className="mb-12">
+                    Il servizio di assistenza tecnica consiste nelle attività
+                    di: installazione, collaudo, messa in funzione e
+                    manutenzione di grandi impianti di ogni genere: attrezzature
+                    ristorazione, attrezzature bar, cucine professionali,
+                    macchine alimentari, impianti di riscaldamento, impianti di
+                    climatizzazione, trattamento aria, attrezzature per
+                    gelaterie, forni per pizza, ovvero tutto quanto fa parte di
+                    una struttura di ristorazione o laboratorio alimentare.
+                  </Paragraph>
+                  <H6 as="h3" className="mb-4">
+                    {`Valore aggiunto`}
+                  </H6>
+                  <Paragraph className="mb-12">
+                    La cura del cliente e la sua serenità lavorativa ci stanno a
+                    cuore nel pieno interesse di assicurare l’efficienza di
+                    funzionamento e mantenimento delle macchine. Il servizio di
+                    assistenza tecnica post vendita da parte di tecnici
+                    specializzati è un altro valore aggiunto alla semplice
+                    fornitura di attrezzature per ristorazione poiché,
+                    disponendo di un ampio magazzino con ricambi originali,
+                    riusciamo a garantire un efficiente pronto intervento per a
+                    manutenzione, riparazione e assistenza.
+                  </Paragraph>
+                  <H6 as="h3" className="mb-4">
+                    {`Tempestività del pronto intervento`}
+                  </H6>
+                  <Paragraph className="mb-12">
+                    Il nostro team di tecnici specializzati – costantemente
+                    aggiornato mediante corsi tecnici presso le aziende
+                    fornitrici – opera con efficienza e professionalità per
+                    garantire un tempestivo pronto intervento post vendita.
+                    <br />
+                    Il servizio di risposta per assistenza tecnica è garantito
+                    entro le 48 ore dalla richiesta di intervento su tutto il
+                    territorio regionale grazie ai rapporti di esclusività per
+                    la Puglia con i più prestigiosi marchi di aziende del ttore
+                    (Panasonic, Lainox, Silko, Sirman, ecc.)
+                  </Paragraph>
                 </div>
-              </div>
+              </Grid>
             </div>
           </section>
           <section className="relative block pb-20 bg-gray-900">
