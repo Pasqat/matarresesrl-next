@@ -154,7 +154,7 @@ export default function Home() {
                   </div>
                 </div>
               </Grid>
-              <Grid className="mb-24 lg:mb-48">
+              <Grid>
                 <div className="col-span-full" e>
                   <H2 className="mb-3 lg:mt-6">{`Qualità e stile anche nei dettagli`}</H2>
                   <H2 as="p" variant="secondary" className="mb-14">
@@ -200,57 +200,8 @@ export default function Home() {
             </div>
           </section>
 
-          <section className="relative block pb-20 bg-gray-800" id="igiene">
-            <SlopeDivSection color="text-gray-800" />
 
-            <div className="container mx-auto px-4 lg:py-24">
-              <div className="flex flex-wrap justify-center text-center">
-                <div className="px-4 w-full lg:w-9/12">
-                  <H2>Igiene</H2>
-                  <div className="grid gap-24 grid-cols-3 justify-evenly my-10 w-full text-gray-200 text-lg">
-                    <div>
-                      <Image
-                        width="400"
-                        height="400"
-                        objectFit="cover"
-                        className="shadow-m rounded-lg"
-                        src="/img/sanificatore-prodotti.png"
-                        alt="Sanificatore"
-                      />
-                      <H3 className="mb-4 mt-6 text-white">Sanificazione</H3>
-                      <LinkButton href="#">Scopri di più</LinkButton>
-                    </div>
-                    <div>
-                      <Image
-                        width="400"
-                        height="400"
-                        objectFit="cover"
-                        className="rounded-lg shadow-md"
-                        src="/img/lavaggio-prodotti.jpg"
-                        alt="lavastovigle professionali"
-                      />
-                      <H3 className="mb-4 mt-6 text-white">Lavaggio</H3>
-                      <LinkButton href="#">Scopri di più</LinkButton>
-                    </div>
-                    <div>
-                      <Image
-                        width="400"
-                        height="400"
-                        objectFit="cover"
-                        className="rounded-lg shadow-md"
-                        src="/img/lavanderia-prodotti.jpg"
-                        alt="lavatrici indutriali"
-                      />
-                      <H3 className="mb-4 mt-6 text-white">Lavanderia</H3>
-                      <LinkButton href="#">Scopri di più</LinkButton>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
           <section className="relative py-20" id="trattamento-aria">
-            <SlopeDivSection color="text-white" />
             <div className="mb-8 mt-16 px-4 w-full">
               <H2 className="text-center" variant="secondary">
                 Per il trattamento dell&apos;aria
@@ -328,7 +279,56 @@ export default function Home() {
               </div>
             </div>
           </section>
-          <div className="container mx-auto px-4">
+
+          <section className="relative block bg-gray-800" id="igiene">
+            <div className="container mx-auto px-4 lg:py-24">
+              <Grid>
+                <div className="col-span-full" e>
+                  <H2 className="mb-3 lg:mt-6 text-gray-50" >{`Negli ultimi anni l'igiene ha assunto sempre più importanza`}</H2>
+                  <H2 as="p" className="mb-14 text-gray-300">
+                    {`Possiamo aiutarti a mantenere i tuoi ambienti puliti ed igenizzati`}
+                  </H2>
+                </div>
+
+                <div className="col-span-full mb-12">
+                  <Grid rowGap nested>
+                    <div className="col-span-full lg:col-span-4">
+                      <FeatureCard
+                        title="Sanificazione"
+                        description="Aprire un'attività, rinnovare un locale, avere una
+                      guida per migliorare il proprio lavoro: Matarrese srl è la
+                      soluzione adatta alle."
+                        url="/prodotti/cottura"
+                        urlText="Scopri di più"
+                        icon={<BriefCaseIcon size={48} />}
+                      />
+                    </div>
+                    <div className="col-span-full lg:col-span-4">
+                      <FeatureCard
+                        title="Lavaggio"
+                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                        url="/prodotti/attrezzature"
+                        urlText="Scopri di più"
+                        icon={<BriefCaseIcon size={48} />}
+                      />
+                    </div>
+                    <div className="col-span-full lg:col-span-4">
+                      <FeatureCard
+                        title="Lavanderia"
+                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vehicula quam ipsum, at aliquam tellus mollis
+                    varius."
+                        url="/prodotti/macchinari-agroalimentare"
+                        urlText="Scopri di più"
+                        icon={<BriefCaseIcon size={48} />}
+                      />
+                    </div>
+                  </Grid>
+                </div>
+              </Grid>
+
+            </div>
+          </section>
+          <div className="container mx-auto px-4 my-24 lg:mb-48">
             {/* TODO: make an utility function to parse testimonials based on
             category or topic */}
             <TestimonialSection

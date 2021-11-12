@@ -1,5 +1,4 @@
 import * as React from 'react'
-import Link from 'next/link'
 import {LinkButton} from './button'
 
 function FeatureCard({title, description, icon, url, urlText}) {
@@ -23,5 +22,4 @@ function FeatureCard({title, description, icon, url, urlText}) {
     </div>
   )
 }
-
 export {FeatureCard}
