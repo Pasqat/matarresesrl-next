@@ -136,17 +136,19 @@ export default function Servizi() {
               </Grid>
 
               <div className="my-32 w-full">
-                <H2 variant="secondary" className="text-center">
+                <H2 className="mb-3 lg:mt-6">
+                  {`
                   Progettazione tecnica e realizzazione arredi
+                  `}
                 </H2>
-                <H4 as="p" className="mt-2 text-center">
-                  Grandi idee per prodotti di successo
-                </H4>
+                <H2 as="p" variant="secondary" className="mb-14">
+                  {`Grandi idee per prodotti di successo`}
+                </H2>
               </div>
 
-              <div className="flex items-start">
+              <div className="flex items-start justify-between">
                 {/* TODO: extract this in a component? name it like StepBlock */}
-                <div className="sticky top-4 hidden ml-auto mr-auto w-full md:block md:w-4/12">
+                <div className="sticky top-4 hidden w-full lg:block md:col-span-4">
                   <div className="lg:pr-16">
                     <div className="flex">
                       <div className="flex flex-col items-center mr-4">
@@ -489,12 +491,9 @@ export default function Servizi() {
                   </div>
                 </div>
 
-                <div
-                  className="ml-auto mr-auto md:w-6/12"
-                  ref={divProgettazione}
-                >
+                <div className="md:col-span-8" ref={divProgettazione}>
                   <div className="flex">
-                    <div className="flex flex-col items-center mr-4 md:hidden">
+                    <div className="flex flex-col items-center mr-4 lg:hidden">
                       <div>
                         <div
                           className={clsx(
@@ -533,15 +532,13 @@ export default function Servizi() {
                       </div>
                       <div className="w-px h-full bg-gray-300" />
                     </div>
-                    <div className="pb-8 pt-1 text-lg">
-                      <H3 id="consulenza-tecnica" variant="secondary">
-                        Consulenza tecnica
-                      </H3>
-                      <p className="mt-4 text-gray-500 leading-relaxed">
+                    <div className="text-lg bg-secondary rounded-lg p-12 mb-8 lg:mb-16">
+                      <H3 id="consulenza-tecnica">Consulenza tecnica</H3>
+                      <Paragraph className="mt-4 text-gray-500 leading-relaxed">
                         Ascoltiamo le idee del cliente per trasformarle in{' '}
                         <strong>progetti reali.</strong>
-                      </p>
-                      <p className="mt-4 text-gray-500 leading-relaxed">
+                      </Paragraph>
+                      <Paragraph className="mt-4 text-gray-500 leading-relaxed">
                         Per chi vuole <strong>aprire un ristorante</strong>, un{' '}
                         <strong>bar</strong>, una <strong>gelateria</strong>,
                         una
@@ -550,17 +547,17 @@ export default function Servizi() {
                         l’ottimizzazione degli spazi,al fine di renderli
                         funzionali e fruibili, adattando prodotti e tecnologie a
                         qualsiasi esigenza.
-                      </p>
-                      <p className="mt-4 text-gray-500 leading-relaxed">
+                      </Paragraph>
+                      <Paragraph className="mt-4 text-gray-500 leading-relaxed">
                         Dal laboratorio di 30 mq alla struttura ricettiva di
                         7800 posti letto, traduciamo le idee in opere finite
                         delineando soluzioni personalizzate, dall’
                         <strong>interior design</strong> alle attrezzature.
-                      </p>
+                      </Paragraph>
                     </div>
                   </div>
                   <div className="flex">
-                    <div className="flex flex-col items-center mr-4 md:hidden">
+                    <div className="flex flex-col items-center mr-4 lg:hidden">
                       <div>
                         <div
                           className={clsx(
@@ -599,10 +596,8 @@ export default function Servizi() {
                       </div>
                       <div className="w-px h-full bg-gray-300" />
                     </div>
-                    <div className="pb-8 pt-1 text-lg">
-                      <H3 variant="secondary" id="il-progetto">
-                        Il progetto
-                      </H3>
+                    <div className="text-lg bg-secondary rounded-lg p-12 mb-8 lg:mb-16">
+                      <H3 id="il-progetto">Il progetto</H3>
                       <p className="mt-4 text-gray-500 leading-relaxed">
                         Realizziamo il complesso dei{' '}
                         <strong>disegni, calcoli e relazioni</strong>
@@ -626,7 +621,7 @@ export default function Servizi() {
                     </div>
                   </div>
                   <div className="flex">
-                    <div className="flex flex-col items-center mr-4 md:hidden">
+                    <div className="flex flex-col items-center mr-4 lg:hidden">
                       <div>
                         <div
                           className={clsx(
@@ -665,10 +660,8 @@ export default function Servizi() {
                       </div>
                       <div className="w-px h-full bg-gray-300" />
                     </div>
-                    <div className="pb-8 pt-1 text-lg">
-                      <H3 variant="secondary" id="iter-operativo">
-                        Iter Operativo
-                      </H3>
+                    <div className="text-lg bg-secondary rounded-lg p-12 mb-8 lg:mb-16">
+                      <H3 id="iter-operativo">Iter Operativo</H3>
                       <p className="mt-4 text-gray-500 leading-relaxed">
                         L’iter operativo da seguire per aprire un ristorante,
                         aprire un bar, aprire una gelateria, aprire una
@@ -689,7 +682,7 @@ export default function Servizi() {
                     </div>
                   </div>
                   <div className="flex">
-                    <div className="flex flex-col items-center mr-4 md:hidden">
+                    <div className="flex flex-col items-center mr-4 lg:hidden">
                       <div>
                         <div
                           className={clsx(
@@ -728,8 +721,8 @@ export default function Servizi() {
                       </div>
                       <div className="w-px h-full bg-gray-300" />
                     </div>
-                    <div className="pb-8 pt-1 text-lg">
-                      <H3 variant="secondary" id="arredi-su-misura">
+                    <div className="text-lg bg-secondary rounded-lg p-12 mb-8 lg:mb-16">
+                      <H3 id="arredi-su-misura">
                         Realizzazione Arredi su misura
                       </H3>
                       <p className="mt-4 text-gray-500 leading-relaxed">
@@ -748,7 +741,7 @@ export default function Servizi() {
                     </div>
                   </div>
                   <div className="flex">
-                    <div className="flex flex-col items-center mr-4 md:hidden">
+                    <div className="flex flex-col items-center mr-4 lg:hidden">
                       <div>
                         <div
                           className={clsx(
@@ -787,10 +780,8 @@ export default function Servizi() {
                       </div>
                       <div className="w-px h-full bg-gray-300" />
                     </div>
-                    <div className="pb-8 pt-1 text-lg">
-                      <H3 id="coordinamento-lavori" variant="secondary">
-                        Coordinamento lavori
-                      </H3>
+                    <div className="text-lg bg-secondary rounded-lg p-12 mb-8 lg:mb-16">
+                      <H3 id="coordinamento-lavori">Coordinamento lavori</H3>
                       <p className="mt-4 text-gray-500 leading-relaxed">
                         La realizzazione di un progetto è seguita costantemente
                         dai tecnici supervisori che si occupano del
@@ -801,7 +792,7 @@ export default function Servizi() {
                     </div>
                   </div>
                   <div className="flex">
-                    <div className="flex flex-col items-center mr-4 md:hidden">
+                    <div className="flex flex-col items-center mr-4 lg:hidden">
                       <div>
                         <div
                           className={clsx(
@@ -840,10 +831,8 @@ export default function Servizi() {
                       </div>
                       <div className="w-px h-full bg-gray-300" />
                     </div>
-                    <div className="pb-8 pt-1 text-lg">
-                      <H3 id="collaudo" variant="secondary">
-                        Collaudo
-                      </H3>
+                    <div className="text-lg bg-secondary rounded-lg p-12 mb-8 mb-16">
+                      <H3 id="collaudo">Collaudo</H3>
                       <p className="mt-4 text-gray-500 leading-relaxed">
                         L’arredo viene consegnato e collocato nella sua
                         destinazione operativa e collaudato prima dell’apertura
@@ -851,7 +840,7 @@ export default function Servizi() {
                       </p>
                     </div>
                   </div>
-                  <div className="flex md:hidden">
+                  <div className="flex lg:hidden">
                     <div className="flex flex-col items-center mr-4">
                       <div>
                         <div
@@ -883,10 +872,7 @@ export default function Servizi() {
                       </div>
                     </div>
                     <div className="pt-1">
-                      <p className="mb-2 text-lg font-bold">
-                        Congratulazioni 🎉
-                      </p>
-                      <p className="text-gray-700" />
+                      <p className="text-2xl font-bold">Congratulazioni 🎉</p>
                     </div>
                   </div>
                 </div>
@@ -894,7 +880,7 @@ export default function Servizi() {
             </div>
           </section>
 
-          <section className="relative py-20 bg-gray-200">
+          <section className="relative py-20">
             {/* <SlopeDivSection color="text-gray-200" /> */}
             {/* <div className="px-4 w-full"> */}
             {/*   <H2 className="text-center" variant="secondary"> */}

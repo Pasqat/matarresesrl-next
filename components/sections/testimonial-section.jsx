@@ -6,6 +6,7 @@ import {ArrowButton} from '../arrow-button'
 import IconStar from '../../ui/IconStar'
 
 function TestimonialSection({testimonials, className, nested}) {
+  // FIXME: scrolling bag is bugged after some click
   const [page, setPage] = React.useState(0)
 
   return (

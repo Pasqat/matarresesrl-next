@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import Image from 'next/image'
 import {HeartIcon, ShoppingCartIcon} from '@heroicons/react/outline'
 import {Transition} from '@headlessui/react'
 
@@ -11,11 +12,12 @@ import FormModal from '../components/Form/FormModal'
 import Layout from '../components/Layout'
 import {SlopeDivSection} from '../ui/SlopeDivSection'
 import {LinkButton} from '../components/button'
+import {TestimonialSection} from '../components/sections/testimonial-section'
 
-import Testimonials from '../components/Testimonials/Testimonials'
 import {logos} from '../data/partner-logo'
-import Image from 'next/image'
 import {H2, H3, H5} from '../components/typography'
+
+import testimonal from '../data/testimonials'
 
 export default function Home() {
   return (
@@ -239,13 +241,8 @@ export default function Home() {
 
           <section className="pb-48 pt-20">
             <div className="container px-8 md:mx-auto">
-              <div className="flex flex-wrap justify-center text-center">
-                <div className="px-4 w-full lg:w-6/12">
-                  <H2 variant="secondary">Cosa dicono di noi</H2>
-                </div>
-              </div>
               <div className="mt-20">
-                <Testimonials />
+                <TestimonialSection testimonials={testimonal} />
               </div>
             </div>
           </section>
