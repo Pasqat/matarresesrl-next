@@ -6,7 +6,7 @@ import clsx from 'clsx'
 
 import ContactForm from '../../components/Form/ContactForm'
 import Layout from '../../components/Layout'
-import {H2, H3, H4, H6, Paragraph} from '../../components/typography'
+import {H2, H3, H6, Paragraph} from '../../components/typography'
 import {HeroSection} from '../../components/sections/hero-section'
 import {FeatureCard} from '../../components/feature-card'
 import {Grid} from '../../components/grid'
@@ -831,7 +831,7 @@ export default function Servizi() {
                       </div>
                       <div className="w-px h-full bg-gray-300" />
                     </div>
-                    <div className="text-lg bg-secondary rounded-lg p-12 mb-8 mb-16">
+                    <div className="text-lg bg-secondary rounded-lg p-12 mb-8 lg:mb-16">
                       <H3 id="collaudo">Collaudo</H3>
                       <p className="mt-4 text-gray-500 leading-relaxed">
                         L’arredo viene consegnato e collocato nella sua
@@ -952,8 +952,6 @@ export default function Servizi() {
             </div>
           </section>
           <section className="relative block pb-20 bg-gray-900">
-            <SlopeDivSection color="text-gray-900" />
-
             <div className="container mx-auto px-4 lg:py-24">
               <div className="flex flex-wrap justify-center text-center">
                 <div className="px-4 w-full lg:w-9/12">
@@ -975,8 +973,63 @@ export default function Servizi() {
           </section>
 
           <section className="relative block pb-20">
-            <SlopeDivSection color="text-white" />
-            <div className="container mx-auto px-24 lg:py-24">
+            <div className="container mx-10vw lg:py-24">
+              <div className="mb-24 lg:mb-48">
+                <Grid featured>
+                  <div className="flex flex-col col-span-full items-stretch mb-40 lg:col-span-5 lg:items-start lg:mb-0">
+                    <H2 className="mb-8">MePA</H2>
+                    <H2 className="mb-16" variant="secondary" as="p">
+                      Siamo presenti anche su Mepa: Mercato Elettronico della
+                      Pubblica Amministrazione
+                    </H2>
+                    <div className="flex justify-center items-center gap-2">
+                      <div className="col-span-full lg:col-span-4">
+                        <Image
+                          src={logoAcquistinrete}
+                          alt="logo acquistinrete"
+                          layout="intrinsic"
+                          placeholder="blur"
+                        />
+                      </div>
+                      <div className="col-span-full lg:col-span-4">
+                        <Image
+                          src={logoConsip}
+                          alt="logo consig"
+                          layout="intrinsic"
+                          placeholder="blur"
+                        />
+                      </div>
+                      <div className="col-span-full lg:col-span-4">
+                        <Image
+                          src={logoMEF}
+                          alt="logo ministero dell'economia"
+                          layout="intrinsic"
+                          placeholder="blur"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-span-full lg:col-span-5 lg:col-start-8 lg:mr-12">
+                    <Paragraph>
+                      Il MePA è un mercato digitale in cui le Amministrazioni
+                      abilitate possono acquistare, per valori inferiori alla
+                      soglia comunitaria, i beni e servizi offerti da fornitori
+                      abilitati a presentare i propri cataloghi sul sistema.
+                      Consip definisce con appositi bandi le tipologie di beni e
+                      servizi e le condizioni generali di fornitura, gestisce
+                      l’abilitazione dei fornitori e la pubblicazione e
+                      l’aggiornamento dei cataloghi. Accedendo alla{' '}
+                      <strong>Vetrina del Mercato Elettronico</strong> o
+                      navigando sul catalogo prodotti, le Amministrazioni
+                      possono verificare l’offerta di beni e/o servizi e, una
+                      volta abilitate, effettuare acquisti on line, confrontando
+                      le proposte dei diversi fornitori e scegliendo più
+                      rispondente alle proprie esigenze.
+                    </Paragraph>
+                  </div>
+                </Grid>
+              </div>
+
               <H2 className="text-center" variant="secondary">
                 MePA
               </H2>
@@ -984,44 +1037,7 @@ export default function Servizi() {
                 Siamo presenti anche sul{' '}
                 <span className="text-yellow-500">MePa</span>:{' '}
                 <em>Mercato Elettronico della Pubblica Amministrazione</em>{' '}
-                (MePA) è un mercato digitale in cui le Amministrazioni abilitate
-                possono acquistare, per valori inferiori alla soglia
-                comunitaria, i beni e servizi offerti da fornitori abilitati a
-                presentare i propri cataloghi sul sistema. Consip definisce con
-                appositi bandi le tipologie di beni e servizi e le condizioni
-                generali di fornitura, gestisce l’abilitazione dei fornitori e
-                la pubblicazione e l’aggiornamento dei cataloghi. Accedendo alla{' '}
-                <strong>Vetrina del Mercato Elettronico</strong> o navigando sul
-                catalogo prodotti, le Amministrazioni possono verificare
-                l’offerta di beni e/o servizi e, una volta abilitate, effettuare
-                acquisti on line, confrontando le proposte dei diversi fornitori
-                e scegliendo più rispondente alle proprie esigenze.
-              </div>
-              <div className="grid grid-cols-3 mt-12 justify-center items-center">
-                <div className="text-center">
-                  <Image
-                    src={logoAcquistinrete}
-                    alt="logo acquistinrete"
-                    layout="intrinsic"
-                    placeholder="blur"
-                  />
-                </div>
-                <div className="text-center">
-                  <Image
-                    src={logoConsip}
-                    alt="logo consig"
-                    layout="intrinsic"
-                    placeholder="blur"
-                  />
-                </div>
-                <div className="text-center">
-                  <Image
-                    src={logoMEF}
-                    alt="logo ministero dell'economia"
-                    layout="intrinsic"
-                    placeholder="blur"
-                  />
-                </div>
+                (MePA){' '}
               </div>
             </div>
           </section>
