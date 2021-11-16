@@ -16,7 +16,7 @@ let navigation = [
 export default function Navbar({isTransparent}) {
   return (
     <Disclosure
-      as="nav"
+      as="div"
       className={clsx(
         isTransparent
           ? 'absolute w-full top-0 z-50'
@@ -25,23 +25,10 @@ export default function Navbar({isTransparent}) {
     >
       {({open}) => (
         <>
-          <div
-            className={clsx('mx-auto max-w-7xl sm:px-6', open && 'bg-gray-900')}
-          >
-            <div className="relative flex items-center justify-center h-16 lg:justify-between">
-              <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">
-                {/* Mobile menu button*/}
-                <Disclosure.Button className="inline-flex items-center justify-center p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                  <span className="sr-only">Apri il menù principale</span>
-                  {open ? (
-                    <XIcon className="block w-6 h-6" aria-hidden="true" />
-                  ) : (
-                    <MenuIcon className="block w-6 h-6" aria-hidden="true" />
-                  )}
-                </Disclosure.Button>
-              </div>
-              <div className="flex flex-1 items-center justify-center sm:items-stretch md:justify-between">
-                <div className="inline-flex flex-shrink-0 items-center justify-start">
+          <div className={clsx('sm:px-6', open && 'bg-gray-900')}>
+            <nav className="flex h-16">
+              <div className="flex flex-1 items-center justify-between max-w-8xl mx-auto lg:justify-between">
+                <div className="inline-flex flex-shrink-0 items-center">
                   <Link href="/">
                     <a>
                       <img
@@ -102,8 +89,17 @@ export default function Navbar({isTransparent}) {
                     </Link>
                   </div>
                 </div>
+                {/* Mobile menu button*/}
+                <Disclosure.Button className="items-end lg:hidden p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500">
+                  <span className="sr-only">Apri il menù principale</span>
+                  {open ? (
+                    <XIcon className="block w-6 h-6" aria-hidden="true" />
+                  ) : (
+                    <MenuIcon className="block w-6 h-6" aria-hidden="true" />
+                  )}
+                </Disclosure.Button>
               </div>
-            </div>
+            </nav>
           </div>
 
           <Disclosure.Panel className="lg:hidden">

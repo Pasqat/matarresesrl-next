@@ -9,26 +9,7 @@ import {H4} from '../typography'
 export default function Footer() {
   return (
     <footer className="body-font relative text-gray-600 bg-gray-100">
-      <div
-        className="absolute bottom-auto left-0 right-0 top-0 -mt-20 w-full h-20 pointer-events-none overflow-hidden"
-        style={{transform: 'translateZ(0)'}}
-      >
-        <svg
-          className="absolute bottom-0 overflow-hidden"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="none"
-          version="1.1"
-          viewBox="0 0 2560 100"
-          x="0"
-          y="0"
-        >
-          <polygon
-            className="text-gray-100 fill-current"
-            points="2560 0 2560 100 0 100"
-          ></polygon>
-        </svg>
-      </div>
-      <div className="container flex flex-col flex-wrap mx-auto px-5 py-24 md:flex-row md:flex-nowrap md:items-center lg:items-start">
+      <div className="flex flex-col flex-wrap mx-10vw py-24 md:flex-row md:flex-nowrap md:items-center lg:items-start">
         <div className="flex-shrink-0 mx-auto w-64 text-center md:mx-0 md:text-left">
           <Link href="/">
             <a className="title-font flex items-center justify-center pb-2 text-gray-900 font-medium md:justify-start">
