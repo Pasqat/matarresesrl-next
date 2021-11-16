@@ -133,7 +133,7 @@ export default function Servizi() {
             </Grid>
           </section>
 
-          <section className="mx-10vw mb-24 lg:mb-48">
+          <section className="max-w-7xl mx-auto mb-24 lg:mb-48">
             <div className="w-full">
               <H2 className="mb-3 lg:mt-6">
                 {`
@@ -936,10 +936,10 @@ export default function Servizi() {
             </Grid>
           </section>
 
-          <section className="mx-10vw mb-24 lg:mb-48 bg-gray-900">
-            <div className="flex flex-wrap justify-center text-center">
+          <section className="w-full mb-24 lg:mb-48 bg-gray-900 py-12">
+            <div className="flex flex-wrap mx-10vw justify-center text-center">
               <div className="px-4 w-full lg:w-9/12">
-                <H2 className="text-center" variant="primary">
+                <H2 className="text-center" variant="accent">
                   Formazione
                 </H2>
                 <div className="my-10 w-full text-center text-gray-100 text-xl">
