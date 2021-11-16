@@ -1,9 +1,10 @@
 import {Disclosure} from '@headlessui/react'
 import {MenuIcon, XIcon, ChatIcon} from '@heroicons/react/outline'
+import Image from 'next/image'
 
 import Link from 'next/link'
 import clsx from 'clsx'
-import {Button, ButtonLink} from '../button'
+import {ButtonLink} from '../button'
 
 let navigation = [
   {name: 'Home', href: '/', current: false},
@@ -26,15 +27,16 @@ export default function Navbar({isTransparent}) {
       {({open}) => (
         <>
           <div className={clsx('sm:px-6', open && 'bg-gray-900')}>
-            <nav className="flex h-16">
-              <div className="flex flex-1 items-center justify-between max-w-8xl mx-auto lg:justify-between">
-                <div className="inline-flex flex-shrink-0 items-center">
+            <nav className="flex h-16 mx-10vw">
+              <div className="flex flex-1 items-center justify-between max-w-8xl mx-auto md:justify-between">
+                <div className="inline-flex items-center">
                   <Link href="/">
                     <a>
-                      <img
-                        className="block m-auto w-8/12 h-auto lg:inline"
+                      <Image
+                        width={263}
+                        height={19}
+                        alt="logo Matarrese srl"
                         src="https://www.matarrese.it/wp-content/uploads/2015/09/logo-matarrese-bianco-350.png"
-                        alt="Logo Matarrese srl"
                       />
                     </a>
                   </Link>
@@ -90,7 +92,7 @@ export default function Navbar({isTransparent}) {
                   </div>
                 </div>
                 {/* Mobile menu button*/}
-                <Disclosure.Button className="items-end lg:hidden p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500">
+                <Disclosure.Button className="items-end lg:hidden p-2 text-gray-100 hover:text-white hover:bg-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500">
                   <span className="sr-only">Apri il menù principale</span>
                   {open ? (
                     <XIcon className="block w-6 h-6" aria-hidden="true" />

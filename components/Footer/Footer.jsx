@@ -9,7 +9,7 @@ import {H4} from '../typography'
 export default function Footer() {
   return (
     <footer className="body-font relative text-gray-600 bg-gray-100">
-      <div className="flex flex-col flex-wrap mx-10vw py-24 md:flex-row md:flex-nowrap md:items-center lg:items-start">
+      <div className="flex flex-col flex-wrap mx-10vw py-24 md:flex-row md:flex-nowrap items-start">
         <div className="flex-shrink-0 mx-auto w-64 text-center md:mx-0 md:text-left">
           <Link href="/">
             <a className="title-font flex items-center justify-center pb-2 text-gray-900 font-medium md:justify-start">
@@ -219,8 +219,8 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="bg-gray-100">
-        <div className="container flex flex-col flex-wrap mx-auto px-5 py-4 sm:flex-row">
+      <div className="mx-10vw bg-gray-100">
+        <div className="max-w-8xl flex flex-col flex-wrap mx-auto px-5 py-4 md:flex-row items-center justify-between">
           <p className="text-center text-gray-500 text-sm sm:text-left">
             Copyright © {new Date().getFullYear()} Matarrese srl{' '}
           </p>

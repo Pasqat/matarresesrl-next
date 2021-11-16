@@ -2,11 +2,10 @@ import {Fragment, useEffect, useState} from 'react'
 import Link from 'next/link'
 
 import {Dialog, Transition} from '@headlessui/react'
-import {ChatIcon} from '@heroicons/react/outline'
 import clsx from 'clsx'
 
 import {sendContactMail} from '../../actions/networking/mailApi'
-import {Button, LinkButton} from '../../components/button'
+import {Button} from '../../components/button'
 
 /**
  * @param buttonText default "Contattaci"

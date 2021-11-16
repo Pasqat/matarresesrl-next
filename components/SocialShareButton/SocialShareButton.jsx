@@ -13,7 +13,7 @@ export default function SocialShareButton(props) {
       rel="noreferrer"
       className="mr-4 lg:mr-0 lg:mb-6"
     >
-      <i className={`text-3xl text-gray-600 hover:text-yellow-600 ${icon}`} />
+      <i className={`text-3xl text-gray-600 hover:text-yellow-500 ${icon}`} />
       {children}
     </a>
   );

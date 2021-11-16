@@ -50,7 +50,7 @@ export default function Events({event}) {
         <>
           <HeaderBig
             noButton
-            overlay="bg-gradient-to-br from-purple-600 via-red-700 to-yellow-500 opacity-80"
+            overlay="bg-gradient-to-br from-primary to-secondary opacity-80"
             slopeSectionColor="text-gray-100"
             backgroundImgSrc={
               event.featuredImage &&
@@ -98,7 +98,7 @@ export default function Events({event}) {
                       <div className="self-center px-4 w-4/12 text-right">
                         <FormModal
                           buttonText="Partecipa"
-                          buttonClassName="px-4 py-2 mb-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-gradient-to-tl from-red-600 to-yellow-400 rounded shadow outline-none active:bg-yellow-500 hover:shadow-md focus:outline-none sm:mr-2"
+                          buttonClassName="px-4 py-2 mb-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-gradient-to-tl from-primary to-secondary rounded shadow outline-none active:bg-yellow-500 hover:shadow-md focus:outline-none sm:mr-2"
                           type="reservation"
                           title={event.title}
                         />

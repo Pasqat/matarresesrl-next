@@ -37,7 +37,7 @@ export default function Project({ project }) {
         <>
           <HeaderBig
             noButton
-            overlay="bg-gradient-to-br from-purple-600 via-red-700 to-yellow-500 opacity-80"
+            overlay="bg-gradient-to-br from-primary to-secondary opacity-80"
             slopeSectionColor="text-gray-100"
             backgroundImgSrc={
               project.featuredImage &&

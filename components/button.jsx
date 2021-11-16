@@ -9,17 +9,17 @@ function getClassName({className}) {
   )
 }
 // hover:shadow-none bg-gradient-tl-yellow shadow-md text-white rounded text-lg py-2 px-4
-function ButtonInner({children, variant, size}) {
+function ButtonInner({children, variant = "primary", size}) {
   return (
     <>
       <div
         className={clsx(
-          'focus-ring absolute inset-0 rounded opacity-100 disabled:opacity-50 transform transition',
+          'focus-ring ring-yellow-600 absolute inset-0 rounded-full opacity-100 disabled:opacity-50 transform transition',
           {
             'border-2 group-hover:border-transparent group-focus:border-transparent':
               variant === 'secondary' || variant === 'danger',
-            danger: variant === 'danger',
-            'bg-inverse': variant === 'primary',
+            'danger': variant === 'danger',
+            'bg-yellow-500': variant === 'primary',
           },
         )}
       />
@@ -28,7 +28,7 @@ function ButtonInner({children, variant, size}) {
           'relative flex items-center justify-center w-full h-full whitespace-nowrap',
           {
             'text-primary': variant === 'secondary',
-            'bg-gradient-tl-yellow shadow-md text-white rounded text-lg':
+            'shadow-md text-white rounded-full text-lg':
               variant === 'primary',
             'text-red-500': variant === 'danger',
             'px-11 py-6 space-x-5': size === 'large',

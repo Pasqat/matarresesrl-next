@@ -27,7 +27,7 @@ export default function CategoriesList({ categories, onClick, currentCategory })
       {categories.map((category) => (
         <button
           className={clsx("p-1 m-1 shadow-sm cursor-pointer",
-            currentCategory === category.categoryId ? "bg-gradient-tl-yellow text-white font-semibold" : "bg-gray-200 text-gray-700")}
+            currentCategory === category.categoryId ? "bg-yellow-500 text-white font-semibold" : "bg-gray-200 text-gray-700")}
           key={category.id}
           onClick={() => onClick(category.categoryId)}
         >
@@ -36,7 +36,7 @@ export default function CategoriesList({ categories, onClick, currentCategory })
       ))}
       <button
         className={clsx("p-1 m-1 shadow-sm cursor-pointer",
-          currentCategory === null ? "bg-gradient-tl-yellow text-white font-semibold" : "bg-gray-200 text-gray-700")}
+          currentCategory === null ? "bg-gray-900 text-white font-semibold" : "bg-gray-200 text-gray-700")}
         key="00000"
         onClick={() => onClick(null)}
       >

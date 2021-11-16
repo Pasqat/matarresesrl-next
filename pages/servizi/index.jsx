@@ -133,8 +133,8 @@ export default function Servizi() {
             </Grid>
           </section>
 
-          <section className="max-w-7xl mx-auto mb-24 lg:mb-48">
-            <div className="w-full">
+          <section className="mx-10vw mb-24 lg:mb-48">
+            <div className="max-w-7xl mx-auto">
               <H2 className="mb-3 lg:mt-6">
                 {`
                   Progettazione tecnica e realizzazione arredi
@@ -143,8 +143,6 @@ export default function Servizi() {
               <H2 as="p" variant="secondary" className="mb-14">
                 {`Grandi idee per prodotti di successo`}
               </H2>
-            </div>
-
             <div className="flex items-start justify-between">
               {/* TODO: extract this in a component? name it like StepBlock */}
               <div className="sticky top-4 hidden w-full lg:block md:col-span-4">
@@ -870,6 +868,8 @@ export default function Servizi() {
                 </div>
               </div>
             </div>
+            </div>
+
           </section>
 
           <section>

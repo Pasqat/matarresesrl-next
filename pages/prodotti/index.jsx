@@ -244,7 +244,7 @@ export default function Home() {
           <section className="relative bg-gray-800 mb-24 lg:mb-48" id="igiene">
               <Grid className="py-24">
                 <div className="col-span-full">
-                  <H2 className="mb-3 lg:mt-6 text-gray-50">{`Negli ultimi anni l'igiene ha assunto sempre più importanza`}</H2>
+                  <H2 className="mb-3 lg:mt-6 text-gray-100">{`Negli ultimi anni l'igiene ha assunto sempre più importanza`}</H2>
                   <H2 as="p" className="mb-14 text-gray-300">
                     {`Possiamo aiutarti a mantenere i tuoi ambienti puliti ed igenizzati`}
                   </H2>

@@ -12,7 +12,7 @@ export default function HeroPost({title, coverImage, slug, date, excerpt}) {
         coverImage={coverImage}
         slug={slug}
         href={`/news/${slug}`}
-        className="flex-1 bg-gradient-tl-yellow bg-opacity-70"
+        className="flex-1 bg-opacity-70 bg-yellow-500"
       />
       <div className="flex flex-col p-4 lg:p-8">
         <div className="flex flex-col md:flex-col-reverse lg:flex-col">

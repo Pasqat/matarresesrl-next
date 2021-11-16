@@ -1,35 +1,36 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from 'react'
+import {ArrowButton} from './arrow-button'
 
 export const ScrollToTop = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false)
 
   const toggleVisibility = () => {
     if (window.pageYOffset > 300) {
-      setIsVisible(true);
+      setIsVisible(true)
     } else {
-      setIsVisible(false);
+      setIsVisible(false)
     }
-  };
+  }
 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
-    });
-  };
+      behavior: 'smooth',
+    })
+  }
 
   useEffect(() => {
-    window.addEventListener("scroll", toggleVisibility);
-  }, []);
+    window.addEventListener('scroll', toggleVisibility)
+  }, [])
 
   return (
     isVisible && (
       <div
-        className="fixed w-8 h-8 bg-gradient-tl-yellow z-20 rounded cursor-pointer bottom-10 right-4 shadow-md items-end flex justify-center"
+        className="fixed w-8 h-8 bg-yellow-500 z-20 rounded-full cursor-pointer bottom-10 right-4 items-center flex justify-center group"
         onClick={scrollToTop}
       >
         <svg
-          className="w-5 h-5 text-white animate-bounce mb-1"
+          className="w-4 h-4 text-white group-hover:-translate-y-1"
           viewBox="0 0 10 20"
           fill="none"
           strokeLinecap="round"
@@ -41,7 +42,7 @@ export const ScrollToTop = () => {
         </svg>
       </div>
     )
-  );
-};
+  )
+}
 
-export default ScrollToTop;
+export default ScrollToTop
