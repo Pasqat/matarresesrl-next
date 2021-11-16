@@ -32,7 +32,7 @@ export default function Home() {
           <ProductSection />
         </div>
         <main>
-          <section className="relative mx-10vw" id="lavorazione">
+          <section className="relative" id="lavorazione">
             <Grid className="mb-24 lg:mb-48">
               <div className="col-span-full lg:col-span-6 lg:col-start-1">
                 <div className="aspect-h-6 aspect-w-4 mb-12 lg:mb-0">
@@ -201,7 +201,7 @@ export default function Home() {
             image="/img/climatizzazione-prodotti.jpg"
             imageSize="large"
           />
-          <section className="relative mx-10vw" id="trattamento-aria">
+          <section className="relative" id="trattamento-aria">
             <Grid className="mb-24 lg:mb-48">
               <div className="col-span-full">
                 <H2 className="mb-3 lg:mt-6">{`Trattamento dell'aria`}</H2>
@@ -295,7 +295,7 @@ export default function Home() {
               className="mb-24 lg:mb-64"
             />
           </div>
-          <section className="relative py-20" id="contatti">
+          <section className="relative" id="contatti">
             <div className="container mb-12 mx-auto px-4">
               <div className="flex flex-wrap justify-center">
                 <div className="px-4 w-full md:w-3/4">
