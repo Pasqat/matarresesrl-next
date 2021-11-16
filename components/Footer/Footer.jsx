@@ -5,14 +5,15 @@ import logoQucino from '../../public/img/logos/MARCHIO-QUCINO150.png'
 import logoAliGroup from '../../public/img/logos/Ali_Group_logo.png'
 
 import {H4} from '../typography'
+import {Grid} from '../grid'
 
 export default function Footer() {
   return (
     <footer className="body-font relative text-gray-600 bg-gray-100">
-      <div className="flex flex-col flex-wrap mx-10vw py-24 md:flex-row md:flex-nowrap items-start">
-        <div className="flex-shrink-0 mx-auto w-64 text-center md:mx-0 md:text-left">
+      <Grid className="py-24">
+        <div className="col-span-full lg:col-span-3 mx-auto text-center">
           <Link href="/">
-            <a className="title-font flex items-center justify-center pb-2 text-gray-900 font-medium md:justify-start">
+            <a className="items-center justify-center pb-2 ">
               <Image
                 width={340}
                 height={20}
@@ -25,7 +26,7 @@ export default function Footer() {
             Puoi trovarci anche sui nostri social, risponderemo in 1-2 giorni
             lavorativi
           </p>
-          <div className="mb-6 mt-6 text-center">
+          <div className="my-6 text-center">
             <a
               href="https://www.facebook.com/matarresesrl"
               target="_blank"
@@ -63,7 +64,7 @@ export default function Footer() {
               </button>
             </a>
           </div>
-          <div className="flex flex-wrap items-end justify-between mt-16 h-full">
+          <div className="flex flex-wrap justify-between my-16">
             {/* TODO: link to Qucino */}
             <a
               rel="noreferrer"
@@ -104,123 +105,116 @@ export default function Footer() {
             </a>
           </div>
         </div>
-        <div className="flex flex-grow flex-wrap -mb-10 mt-10 text-center md:mt-0 md:pl-20 md:text-left">
-          <div className="px-4 w-full lg:w-1/2 xl:w-1/5">
-            <H4 variant="secondary">Links</H4>
-            <nav className="mb-10 list-none">
-              <li>
-                <Link href="/azienda">
-                  <a className="text-gray-600 hover:text-gray-800">Chi siamo</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/contatti">
-                  <a className="text-gray-600 hover:text-gray-800">Contatti</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/news">
-                  <a className="text-gray-600 hover:text-gray-800">News</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/realizzazioni">
-                  <a className="text-gray-600 hover:text-gray-800">
-                    Realizzazioni
-                  </a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/assogi">
-                  <a className="text-gray-600 hover:text-gray-800">Assogi</a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/privacy-policy">
-                  <a className="text-gray-600 hover:text-gray-800">
-                    Termini e Condizioni
-                  </a>
-                </Link>
-              </li>
-            </nav>
-          </div>
-          <div className="px-4 w-full lg:w-1/2 xl:w-2/5">
-            <H4 variant="secondary">Contatti</H4>
-            <nav className="mb-10 text-sm list-none">
-              <li className="mb-2">
-                <i className="fas fa-map-marker-alt text-gray-400"></i>
-                <span className="ml-2 text-gray-600 hover:text-gray-800">
-                  contrada Popoleto n.c. 70011 Alberobello (BA)
-                </span>
-              </li>
-              <li className="mb-2">
-                <i className="fas fa-phone-alt text-gray-400"></i>
-                <a
-                  className="ml-2 text-gray-600 hover:text-gray-800"
-                  href="tel:00390804323431"
-                >
-                  +39 080 4323431
+        <div className="col-span-full lg:col-span-3 pl-4">
+          <H4 variant="secondary">Links</H4>
+          <nav className="mb-10 list-none">
+            <li>
+              <Link href="/azienda">
+                <a className="text-gray-600 hover:text-gray-800">Chi siamo</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/contatti">
+                <a className="text-gray-600 hover:text-gray-800">Contatti</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/news">
+                <a className="text-gray-600 hover:text-gray-800">News</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/realizzazioni">
+                <a className="text-gray-600 hover:text-gray-800">
+                  Realizzazioni
                 </a>
-              </li>
-              <li className="mb-2">
-                <i className="fas fa-envelope text-gray-400"></i>
-                <a
-                  className="ml-2 text-gray-600 hover:text-gray-800"
-                  href="mailto:matarrese@matarrese.it"
-                >
-                  matarrese@matarrese.it
+              </Link>
+            </li>
+            <li>
+              <Link href="/assogi">
+                <a className="text-gray-600 hover:text-gray-800">Assogi</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/privacy-policy">
+                <a className="text-gray-600 hover:text-gray-800">
+                  Termini e Condizioni
                 </a>
-              </li>
-              <li className="mb-2">
-                <i className="fas fa-file-invoice text-gray-400"></i>
-                <span className="ml-2 text-gray-600 hover:text-gray-800">
-                  IVA 04356890725
-                </span>
-              </li>
-            </nav>
-          </div>
-          <div className="pl-4 w-full xl:w-2/5">
-            <H4 as="h2" variant="secondary">
-              Orari
-            </H4>
-            <div className="mb-10 text-gray-600 text-sm">
-              <p className="mb-2">Per contattare i nostri uffici:</p>
-              <div className="flex flex-row justify-center md:justify-between">
-                <div>Lunedì - Venerdì</div>
-                <div className="ml-3 text-gray-500 font-medium">
-                  <p>08:30 - 13:00</p>
-                  <p> 15:00 - 19:00</p>
-                </div>
-              </div>
-              <div className="flex flex-row justify-center md:justify-between">
-                <div>Sabato - Domenica</div>
-                <div className="ml-3 text-gray-500 font-medium">chiuso</div>
+              </Link>
+            </li>
+          </nav>
+        </div>
+        <div className="pl-4 w-full col-span-full lg:col-span-3">
+          <H4 variant="secondary">Contatti</H4>
+          <nav className="mb-10 text-sm list-none">
+            <li className="mb-2">
+              <i className="fas fa-map-marker-alt text-gray-400"></i>
+              <span className="ml-2 text-gray-600 hover:text-gray-800">
+                contrada Popoleto n.c. 70011 Alberobello (BA)
+              </span>
+            </li>
+            <li className="mb-2">
+              <i className="fas fa-phone-alt text-gray-400"></i>
+              <a
+                className="ml-2 text-gray-600 hover:text-gray-800"
+                href="tel:00390804323431"
+              >
+                +39 080 4323431
+              </a>
+            </li>
+            <li className="mb-2">
+              <i className="fas fa-envelope text-gray-400"></i>
+              <a
+                className="ml-2 text-gray-600 hover:text-gray-800"
+                href="mailto:matarrese@matarrese.it"
+              >
+                matarrese@matarrese.it
+              </a>
+            </li>
+            <li className="mb-2">
+              <i className="fas fa-file-invoice text-gray-400"></i>
+              <span className="ml-2 text-gray-600 hover:text-gray-800">
+                IVA 04356890725
+              </span>
+            </li>
+          </nav>
+        </div>
+        <div className="col-span-full lg:col-span-3 pl-4">
+          <H4 as="h2" variant="secondary">
+            Orari
+          </H4>
+          <div className="mb-10 text-gray-600 text-sm">
+            <p className="mb-2">Per contattare i nostri uffici:</p>
+            <div className="flex flex-row justify-between">
+              <div>Lunedì - Venerdì</div>
+              <div className="ml-3 text-gray-500 font-medium">
+                <p>08:30 - 13:00</p>
+                <p> 15:00 - 19:00</p>
               </div>
             </div>
-            <div className="text-gray-600 text-sm">
-              <p>
-                Servizio tecnico:{' '}
-                <a
-                  href="tel:00300804323651"
-                  className="underline cursor-pointer"
-                >
-                  +39 080 4323651
-                </a>
-              </p>
-              <p>
-                Numero attivo dal lunedì al venerdì 8.30/13.00 – 15.00/19.00
-              </p>
-              <p className="italic">
-                Per urgenze nei giorni festivi , il servizio di risposta verrà
-                garantito entro 24 h dalla chiamata e l&apos;eventuale
-                intervento tecnico urgente verrà valutato con tariffa dedicata.
-              </p>
+            <div className="flex flex-row justify-between">
+              <div>Sabato - Domenica</div>
+              <div className="ml-3 text-gray-500 font-medium">chiuso</div>
             </div>
+          </div>
+          <div className="text-gray-600 text-sm">
+            <p>
+              Servizio tecnico:{' '}
+              <a href="tel:00300804323651" className="underline cursor-pointer">
+                +39 080 4323651
+              </a>
+            </p>
+            <p>Numero attivo dal lunedì al venerdì 8.30/13.00 – 15.00/19.00</p>
+            <p className="italic">
+              Per urgenze nei giorni festivi , il servizio di risposta verrà
+              garantito entro 24 h dalla chiamata e l&apos;eventuale intervento
+              tecnico urgente verrà valutato con tariffa dedicata.
+            </p>
           </div>
         </div>
-      </div>
+      </Grid>
       <div className="mx-10vw bg-gray-100">
-        <div className="max-w-8xl flex flex-col flex-wrap mx-auto px-5 py-4 md:flex-row items-center justify-between">
+        <div className="max-w-7xl flex flex-col flex-wrap mx-auto px-5 py-4 md:flex-row items-center justify-between">
           <p className="text-center text-gray-500 text-sm sm:text-left">
             Copyright © {new Date().getFullYear()} Matarrese srl{' '}
           </p>
