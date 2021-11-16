@@ -27,7 +27,7 @@ strong {
 
 @layer components {
   .bg-gradient-tl-yellow {
-    @apply bg-gradient-to-tl from-red-600 to-yellow-400;
+    @apply bg-gradient-to-tl from-primary to-secondary;
   }
 }
 

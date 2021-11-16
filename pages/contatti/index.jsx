@@ -111,7 +111,7 @@ export default function Contatti() {
                   onClick={() => setIsOpen(!isOpen)}
                   className={clsx(
                     isOpen && 'hidden',
-                    'absolute flex items-center justify-center w-10 h-10 text-white text-2xl font-bold bg-yellow-400 rounded-full hover:shadow-lg shadow-md cursor-pointer ring-8 ring-black ring-opacity-50 ',
+                    'absolute flex items-center justify-center w-10 h-10 text-white text-2xl font-bold bg-yellow-500 rounded-full hover:shadow-lg shadow-md cursor-pointer ring-8 ring-black ring-opacity-50 ',
                   )}
                 >
                   +

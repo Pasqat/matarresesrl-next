@@ -153,7 +153,7 @@ export default function ContactForm({hasAutoFocus}) {
         <div
           className={clsx(
             'mb-8 px-4 text-center',
-            notification.isError ? 'text-red-700' : 'text-green-700',
+            notification.isError ? 'text-red-600' : 'text-green-600',
           )}
         >
           {notification.text}
@@ -162,7 +162,7 @@ export default function ContactForm({hasAutoFocus}) {
           <label className="flex-end inline-flex items-center w-full">
             <input
               type="checkbox"
-              className="form-checkbox text-yellow-600 border-2 border-solid border-gray-400 cursor-pointer"
+              className="form-checkbox text-yellow-500 border-2 border-solid border-gray-400 cursor-pointer"
               name="conditions"
               checked={isCheckedTerms}
               onChange={() => setIsCheckedTerms(!isCheckedTerms)}
@@ -170,7 +170,7 @@ export default function ContactForm({hasAutoFocus}) {
             <span className="ml-2 text-xs">
               accetto il{' '}
               <Link href="/privacy-policy">
-                <a className="text-yellow-600" target="_blank">
+                <a className="text-yellow-500" target="_blank">
                   trattamento dei dati e condizioni
                 </a>
               </Link>

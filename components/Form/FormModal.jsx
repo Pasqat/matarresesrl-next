@@ -162,7 +162,7 @@ export default function FormModal({
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
-          className="z-[51] fixed inset-0 bg-black bg-opacity-60 overflow-y-auto"
+          className="z-[51] fixed inset-0 bg-yellow-500 bg-opacity-90 overflow-y-auto"
           onClose={closeModal}
         >
           <div className="px-4 min-h-screen text-center">
@@ -331,7 +331,7 @@ export default function FormModal({
                     <label className="inline-flex items-center">
                       <input
                         type="checkbox"
-                        className="form-checkbox text-yellow-600 border-2 border-solid border-gray-400 cursor-pointer"
+                        className="form-checkbox text-yellow-500 border-2 border-solid border-gray-400 cursor-pointer"
                         name="conditions"
                         checked={isChecked}
                         onChange={() => setIsChecked(!isChecked)}
@@ -339,7 +339,7 @@ export default function FormModal({
                       <span className="ml-2 text-sm">
                         accetto il{' '}
                         <Link href="/privacy-policy">
-                          <a className="text-yellow-600" target="_blank">
+                          <a className="text-yellow-500" target="_blank">
                             trattamento dei dati e condizioni
                           </a>
                         </Link>
@@ -370,7 +370,7 @@ export default function FormModal({
                 <div
                   className={clsx(
                     'px-4 text-center',
-                    notification.isError ? 'text-red-700' : 'text-green-700',
+                    notification.isError ? 'text-red-600' : 'text-green-600',
                   )}
                 >
                   {notification.text}
