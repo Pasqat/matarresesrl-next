@@ -13,11 +13,12 @@ import Layout from '../components/Layout'
 import {SlopeDivSection} from '../ui/SlopeDivSection'
 import {LinkButton} from '../components/button'
 import {TestimonialSection} from '../components/sections/testimonial-section'
+import {MepaSection} from '../components/sections/mepa-section'
 
 import {logos} from '../data/partner-logo'
 import {H2, H3, H5} from '../components/typography'
 
-import testimonal from '../data/testimonials'
+import testimonials from '../data/testimonials'
 
 export default function Home() {
   return (
@@ -239,32 +240,12 @@ export default function Home() {
             </div>
           </section>
 
-          <section className="pb-48 pt-20">
-            <div className="container px-8 md:mx-auto">
-              <div className="mt-20">
-                <TestimonialSection testimonials={testimonal} />
-              </div>
-            </div>
+          <section className="mb-24 lg:mb-48">
+                <TestimonialSection testimonials={testimonials} />
           </section>
 
-          <section className="relative block pb-20 bg-gray-800">
-            <SlopeDivSection color="text-gray-800" />
-
-            <div className="container mx-auto px-4 lg:py-24">
-              <div className="flex flex-wrap justify-center text-center">
-                <div className="px-4 w-full lg:w-8/12">
-                  <H2 className="text-white">MePA</H2>
-                  <p className="m-4 text-gray-400 text-2xl leading-relaxed">
-                    Siamo presenti sul{' '}
-                    <strong className="text-yellow-500">MEPA</strong>: il
-                    Mercato Elettronico della Pubblica Amministrazione digitale
-                    in cui le Amministrazioni abilitate possono acquistare i
-                    beni e servizi offerti da fornitori abilitati a presentare i
-                    propri cataloghi sul sistema.
-                  </p>
-                </div>
-              </div>
-            </div>
+          <section className="mx-10vw mb-24 lg:mb-48">
+            <MepaSection />
           </section>
           <section
             className="relative block py-24 bg-gray-800 lg:pt-0"
