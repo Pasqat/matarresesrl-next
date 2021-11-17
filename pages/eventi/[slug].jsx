@@ -105,8 +105,8 @@ export default function Events({event}) {
                         />
                       </div>
                     </div>
-                    <div className="mt-12 text-center">
-                      <H3 className="mb-2" variant="secondary">
+                    <div className="mt-12">
+                      <H3 className="mb-2 text-center" variant="secondary">
                         {event.title}
                       </H3>
                       {/* FIXME: with the latest version of the event calendar WP
@@ -139,7 +139,7 @@ export default function Events({event}) {
                       )} */}
                     </div>
 
-                    <div className="mt-10 py-10 text-center border-t border-gray-200">
+                    <div className="mt-10 py-10 border-t border-gray-200">
                       <div className="flex flex-wrap justify-center">
                         <div className="px-4 w-full lg:w-9/12">
                           <EventBody content={event.content} />
