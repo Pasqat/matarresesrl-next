@@ -36,6 +36,7 @@ export default function Events({event}) {
 
   return (
     <Layout navbarTransparent>
+    {/* <Layout > */}
       {router.isFallback ? (
         <>
           <Header href="/eventi">Eventi</Header>
@@ -50,7 +51,7 @@ export default function Events({event}) {
         <>
           <HeaderBig
             noButton
-            overlay="bg-gradient-to-br from-primary to-secondary opacity-80"
+            overlay="bg-gradient-to-tl from-secondary via-primary to-black opacity-80"
             slopeSectionColor="text-gray-100"
             backgroundImgSrc={
               event.featuredImage &&
@@ -60,7 +61,7 @@ export default function Events({event}) {
           <section className="relative pb-24 pt-16 w-full text-gray-800 bg-gray-100">
             <div className="container mx-auto px-4">
               <div className="relative lg:flex lg:flex-row">
-                <div className="relative flex flex-col -mt-64 mb-6 w-full min-w-0 break-words bg-white shadow-lg">
+                <div className="relative flex flex-col -mt-80 lg:-mt-64 mb-6 w-full min-w-0 break-words bg-white shadow-lg">
                   <div className="px-6">
                     <div className="flex flex-wrap justify-center mt-8">
                       <div className="flex items-center justify-center">
