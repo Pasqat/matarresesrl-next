@@ -3,7 +3,7 @@ import CoverImage from '../News/CoverImage'
 
 import {H3, H6, Paragraph} from '../typography'
 import {Spacer} from '../spacer'
-import {formatDate,getDayNumeric} from '../../actions/utils/formatDate'
+import {formatDate, getDayNumeric} from '../../actions/utils/formatDate'
 
 function truncate(text, length) {
   if (!text || text.length <= length) {
@@ -16,11 +16,10 @@ function truncate(text, length) {
 export default function CardEvent({event}) {
   const startDate = formatDate(event.startDate)
   const endDate = formatDate(event.endDate)
-  console.log(event)
 
   return (
     <Link href={`/eventi/${event.slug}`}>
-      <a>
+      <a className="focus-ring flex flex-col p-12 pr-16 w-full h-full bg-gray-100 dark:bg-gray-800 rounded-lg">
         {event.featuredImage.node.sourceUrl ? (
           <CoverImage
             title={event.title}
@@ -34,6 +33,7 @@ export default function CardEvent({event}) {
             </div>
           </div>
         )}
+        <Spacer size="3xs" />
 
         <H3 as="div" className="flex-none">
           {event.title}
@@ -49,7 +49,7 @@ export default function CardEvent({event}) {
           */}
           <Paragraph
             className="line-clamp-3"
-            dangerouslySetInnerHTML={{__html: truncate(event.excerpt, 80)}}
+            dangerouslySetInnerHTML={{__html: truncate(event.excerpt, 120)}}
           />
         </div>
 
