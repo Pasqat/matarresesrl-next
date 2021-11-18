@@ -15,7 +15,7 @@ export default function CoverImage({
       width={2000}
       height={1000}
       alt={`Immagine di copertina per ${title}`}
-      src={coverImage?.sourceUrl}
+      src={coverImage}
       objectFit="cover"
       className={`z-0 ${className} `}
       {...rest}
