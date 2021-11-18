@@ -1,51 +1,17 @@
+import * as React from 'react'
 import Head from 'next/head'
 
 import {getEvents} from '../../lib/event_api'
-import {getMonth} from '../../actions/utils/formatDate'
+// import {getMonth} from '../../actions/utils/formatDate'
 
 import Layout from '../../components/Layout'
-import Container from '../../components/Container'
-import Header from '../../components/Header/Header'
+import {HeroSection} from '../../components/sections/hero-section'
+import {RegistrationPanel} from '../../components/event-registration-panel'
+import {Spacer} from '../../components/spacer'
 import CardEvent from '../../components/Card/CardEvent'
 
-import {H3} from '../../components/typography'
-
-function GroupByMonth({data}) {
-  const scheduledMonth = []
-  data.forEach(event => {
-    const month = getMonth(event.startDate)
-
-    scheduledMonth.find(e => e === month)
-      ? scheduledMonth
-      : scheduledMonth.push(month)
-  })
-
-  return scheduledMonth.map(m => (
-    <div key={m} className="flex flex-col py-6 lg:flex-row">
-      <div className="flex items-center justify-center mb-4 bg-yellow-500 md:mb-0 md:mr-10 md:w-14">
-        <H3 className="text-yellow-100 md:-rotate-90">{m}</H3>
-      </div>
-      <div className="grid gap-6 grid-cols-1 md:grid-cols-3 md:mb-12">
-        {data.map(event =>
-          getMonth(event.startDate) === m ? (
-            <div className="py-6 md:px-6" key={event.id}>
-              <CardEvent
-                title={event.title}
-                slug={event.slug}
-                id={event.id}
-                startDate={event.startDate}
-                endDate={event.endDate}
-                excerpt={event.excerpt}
-                venue={event.venue}
-                coverImage={event.featuredImage?.node}
-              />
-            </div>
-          ) : null,
-        )}
-      </div>
-    </div>
-  ))
-}
+import {H3, H6} from '../../components/typography'
+import {Grid} from '../../components/grid'
 
 export default function Events({data}) {
   return (
@@ -68,13 +34,46 @@ export default function Events({data}) {
         />
         <meta property="og:url" content="https://www.matarrese.it/eventi" />
       </Head>
-      <Layout className="bg-gray-100">
+
+      <Layout>
         <div className="mb-24">
-          <Container>
-            <Header>Eventi</Header>
-            <hr />
-            <GroupByMonth data={data} />
-          </Container>
+          <HeroSection
+            title="Dai un'occhiata ai prossimi eventi"
+            subtitle="Se qulcuno ti interessa, iscriviti subito!"
+            imageSize="large"
+            image="/img/blogging.svg"
+          />
+          {data.length ? (
+            <Grid>
+              <H3 className="col-span-full">In primo piano</H3>
+              <div className="col-span-full mt-6">
+                {data.map((event, index) => (
+                  <React.Fragment key={event.id}>
+                    <RegistrationPanel event={event} />
+                    {index === data.length - 1 ? null : <Spacer size="2xs" />}
+                  </React.Fragment>
+                ))}
+              </div>
+            </Grid>
+          ) : null}
+
+          <Spacer size="base" />
+
+          <Grid className="mb-64">
+            <H6 as="h2" className="col-span-full mb-6">
+              Tutti gli eventi
+            </H6>
+
+            <div className="col-span-full">
+              <Grid nested rowGap>
+                {data.map(event => (
+                  <div key={event.slug} className="col-span-full md:col-span-4">
+                    <CardEvent event={event} />
+                  </div>
+                ))}
+              </Grid>
+            </div>
+          </Grid>
         </div>
       </Layout>
     </>
