@@ -74,7 +74,7 @@ function LinkButton({
           className,
           withArrow
             ? 'no-underline'
-            : 'underline whitespace-nowrap focus:outline-none',
+            : 'underlined whitespace-nowrap focus:outline-none',
           'text-accent group inline-flex items-center md:mb-2 lg:mb-0',
         )}
       >
