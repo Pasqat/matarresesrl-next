@@ -41,7 +41,7 @@ export default function Events({data}) {
             title="Dai un'occhiata ai prossimi eventi"
             subtitle="Se qulcuno ti interessa, iscriviti subito!"
             imageSize="large"
-            image="/img/blogging.svg"
+            image="/img/plan.svg"
           />
           {data.length ? (
             <Grid>
