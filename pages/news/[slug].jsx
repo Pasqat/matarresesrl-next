@@ -48,7 +48,7 @@ export default function Post({postData, posts}) {
                 <div className="mb-8 sm:mx-0 md:mb-16">
                   <CoverImage
                     title={postData.title}
-                    coverImage={postData.featuredImage?.node}
+                    coverImage={postData.featuredImage?.node.sourceUrl}
                     // slug={postData.slug}
                   />
                 </div>

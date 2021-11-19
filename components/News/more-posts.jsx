@@ -16,7 +16,7 @@ export default function MorePosts({posts}) {
               slug={node.slug}
               excerpt={node.excerpt}
               date={node.date}
-              coverImage={node.featuredImage?.node}
+              coverImage={node.featuredImage?.node.sourceUrl}
               key={node.slug}
             />
           )

@@ -79,7 +79,7 @@ export default function NewsList({
               {heroPost && (
                 <HeroPost
                   title={heroPost.title}
-                  coverImage={heroPost.featuredImage?.node}
+                  coverImage={heroPost.featuredImage?.node.sourceUrl}
                   slug={heroPost.slug}
                   date={heroPost.date}
                   excerpt={heroPost.excerpt}
@@ -92,7 +92,7 @@ export default function NewsList({
                       <CardPost
                         slug={node.slug}
                         title={node.title}
-                        coverImage={node.featuredImage?.node}
+                        coverImage={node.featuredImage?.node.sourceUrl}
                         date={node.date}
                         excerpt={node.excerpt}
                       />
