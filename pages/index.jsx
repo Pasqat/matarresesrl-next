@@ -244,7 +244,7 @@ export default function Home() {
                 <TestimonialSection testimonials={testimonials} />
           </section>
 
-          <section className="mx-10vw mb-24 lg:mb-48">
+          <section className="mb-24 lg:mb-48">
             <MepaSection />
           </section>
           <section

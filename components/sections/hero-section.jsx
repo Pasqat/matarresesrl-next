@@ -109,9 +109,6 @@ function HeroSection({
             <ArrowLink to={arrowUrl} direction="down" textSize="small">
               {arrowLabel}
             </ArrowLink>
-            {/* <LinkButton href={arrowUrl} withArrow> */}
-            {/*   {arrowLabel} */}
-            {/* </LinkButton> */}
           </motion.div>
         ) : null}
       </div>

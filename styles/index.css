@@ -33,7 +33,7 @@ strong {
 
 @layer utilities {
   .focus-ring {
-    @apply focus:outline-none focus-within:outline-none transition duration-300 disabled:ring-0 hover:ring-2 focus:ring-2 focus-within:ring-2 group-hover:ring-2 group-focus:ring-2 hover:ring-yellow-500 focus:ring-yellow-500 focus-within:ring-yellow-500 group-hover:ring-yellow-500 group-focus:ring-yellow-500;
+    @apply focus:outline-none focus-within:outline-none transition duration-300 disabled:ring-0 hover:ring-2 focus:ring-2 focus-within:ring-2 group-hover:ring-2 group-focus:ring-2 hover:ring-yellow-500 focus:ring-yellow-500 focus-within:ring-yellow-500 group-hover:ring-yellow-500 group-focus:ring-yellow-500 ring-offset-4 ring-offset-white;
   }
 
   .focus-ring.danger {
