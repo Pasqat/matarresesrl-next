@@ -2,7 +2,6 @@ import {matchSorter, rankings as matchSorterRankings} from 'match-sorter'
 
 function filterPosts(posts, searchString) {
   if (!searchString) return posts
-  console.log('search', posts)
 
   const options = {
     keys: [

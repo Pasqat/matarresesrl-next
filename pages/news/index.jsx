@@ -62,7 +62,7 @@ export default function News({data}) {
     setIndexToShow(initialIndexToShow)
   }, [query])
 
-  function toggleCotegory(category) {
+  function toggleCategory(category) {
     setQuery(q => {
       // create a regexp so that we can replace multiple occurrences (`this that this`)
       const expression = new RegExp(category, 'ig')
@@ -80,8 +80,11 @@ export default function News({data}) {
 
   const posts = isSearching
     ? matchingPosts.slice(0, indexToShow)
-    : matchingPosts.filter(p => p.slug !== data?.posts[0]).slice(0, indexToShow)
+    : matchingPosts
+        .filter(p => p.slug !== data?.posts[0].slug)
+        .slice(0, indexToShow)
 
+  console.log('vediamo un po', data.posts[0])
   const hasMorePosts = isSearching
     ? indexToShow < matchingPosts.length
     : indexToShow < matchingPosts.length - 1
@@ -188,17 +191,15 @@ export default function News({data}) {
               </H6>
               <div className="flex flex-wrap col-span-full -mb-4 -mr-4 lg:col-span-10">
                 {data.categories.map(category => {
-                  const selected = regularQuery.includes(category.name)
+                  const selected = regularQuery.includes(category)
 
                   return (
                     <Category
-                      key={category.name}
-                      category={category.name}
+                      key={category}
+                      category={category}
                       selected={selected}
-                      onClick={() => toggleCotegory(category.name)}
-                      disabled={
-                        !visibleCategories.has(category.name) && !selected
-                      }
+                      onClick={() => toggleCategory(category)}
+                      disabled={!visibleCategories.has(category) && !selected}
                     />
                   )
                 })}
