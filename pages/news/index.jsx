@@ -39,9 +39,11 @@ export default function News({data}) {
    */
   const ignoreInputKeyUp = React.useRef(false)
 
-  const [queryValue, setQuery] = React.useState(() => {
-    return router.query.q ?? ''
-  })
+  const [queryValue, setQuery] = React.useState('')
+
+  React.useEffect(() => {
+    setQuery(router.query.q || '')
+  }, [router.query.q])
 
   const query = queryValue.trim()
 
@@ -72,6 +74,7 @@ export default function News({data}) {
         : `${q} ${category}`
 
       // trim and remove subsequent spaces (`this   that` => `this that`)
+      router.push({query: `${category}`})
       return newQuery.replace(/\s+/g, ' ').trim()
     })
   }
@@ -84,7 +87,6 @@ export default function News({data}) {
         .filter(p => p.slug !== data?.posts[0].slug)
         .slice(0, indexToShow)
 
-  console.log('vediamo un po', data.posts[0])
   const hasMorePosts = isSearching
     ? indexToShow < matchingPosts.length
     : indexToShow < matchingPosts.length - 1
@@ -159,9 +161,9 @@ export default function News({data}) {
                     ref={searchInputRef}
                     type="search"
                     value={queryValue}
-                    onChange={event =>
-                      setQuery(event.currentTarget.value.toLowerCase())
-                    }
+                    onChange={event => {
+                      return setQuery(event.currentTarget.value.toLowerCase())
+                    }}
                     onKeyUp={e => {
                       if (!ignoreInputKeyUp.current && e.key === 'Enter') {
                         resultsRef.current
@@ -170,6 +172,13 @@ export default function News({data}) {
                         resultsRef.current?.scrollIntoView({
                           behavior: 'smooth',
                         })
+                        router.push(
+                          {
+                            query: {q: e.target.value.toLocaleLowerCase()},
+                          },
+                          {},
+                          {scroll: false, shallow: true},
+                        )
                       }
                       ignoreInputKeyUp.current = false
                     }}
@@ -182,7 +191,6 @@ export default function News({data}) {
             </div>
           }
         />
-
         <Grid className="mb-14">
           {data.categories && data.categories.length > 0 ? (
             <>

@@ -11,9 +11,9 @@ export default function Footer() {
   return (
     <footer className="body-font relative text-gray-600 bg-gray-100">
       <Grid className="py-24">
-        <div className="col-span-full lg:col-span-3 mx-auto text-center">
+        <div className="col-span-full mx-auto text-center lg:col-span-3">
           <Link href="/">
-            <a className="items-center justify-center pb-2 ">
+            <a className="items-center justify-center pb-2">
               <Image
                 width={340}
                 height={20}
@@ -33,7 +33,7 @@ export default function Footer() {
               rel="noreferrer"
             >
               <button
-                className="align-center items-center justify-center mr-2 w-10 h-10 text-blue-600 font-normal bg-white rounded-full outline-none focus:outline-none shadow-lg hover:shadow-md"
+                className="align-center text-blue-600 items-center justify-center mr-2 w-10 h-10 font-normal bg-white rounded-full outline-none focus:outline-none shadow-lg hover:shadow-md"
                 type="button"
               >
                 <i className="fab fa-facebook-square"></i>
@@ -45,7 +45,7 @@ export default function Footer() {
               target="_blank"
             >
               <button
-                className="align-center items-center justify-center mr-2 w-10 h-10 text-blue-500 font-normal bg-white rounded-full outline-none focus:outline-none shadow-lg hover:shadow-md"
+                className="align-center text-blue-500 items-center justify-center mr-2 w-10 h-10 font-normal bg-white rounded-full outline-none focus:outline-none shadow-lg hover:shadow-md"
                 type="button"
               >
                 <i className="fab fa-linkedin"></i>
@@ -57,7 +57,7 @@ export default function Footer() {
               target="_blank"
             >
               <button
-                className="align-center items-center justify-center mr-2 w-10 h-10 text-pink-700 font-normal bg-white rounded-full outline-none focus:outline-none shadow-lg hover:shadow-md"
+                className="align-center text-pink-700 items-center justify-center mr-2 w-10 h-10 font-normal bg-white rounded-full outline-none focus:outline-none shadow-lg hover:shadow-md"
                 type="button"
               >
                 <i className="fab fa-instagram"></i>
@@ -105,81 +105,85 @@ export default function Footer() {
             </a>
           </div>
         </div>
-        <div className="col-span-full lg:col-span-3 pl-4">
+        <div className="col-span-full pl-4 lg:col-span-3">
           <H4 variant="secondary">Links</H4>
           <nav className="mb-10 list-none">
-            <li>
-              <Link href="/azienda">
-                <a className="text-gray-600 hover:text-gray-800">Chi siamo</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/contatti">
-                <a className="text-gray-600 hover:text-gray-800">Contatti</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/news">
-                <a className="text-gray-600 hover:text-gray-800">News</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/realizzazioni">
-                <a className="text-gray-600 hover:text-gray-800">
-                  Realizzazioni
-                </a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/assogi">
-                <a className="text-gray-600 hover:text-gray-800">Assogi</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/privacy-policy">
-                <a className="text-gray-600 hover:text-gray-800">
-                  Termini e Condizioni
-                </a>
-              </Link>
-            </li>
+            <ul>
+              <li>
+                <Link href="/azienda">
+                  <a className="text-gray-600 hover:text-gray-800">Chi siamo</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/contatti">
+                  <a className="text-gray-600 hover:text-gray-800">Contatti</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/news">
+                  <a className="text-gray-600 hover:text-gray-800">News</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/realizzazioni">
+                  <a className="text-gray-600 hover:text-gray-800">
+                    Realizzazioni
+                  </a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/assogi">
+                  <a className="text-gray-600 hover:text-gray-800">Assogi</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/privacy-policy">
+                  <a className="text-gray-600 hover:text-gray-800">
+                    Termini e Condizioni
+                  </a>
+                </Link>
+              </li>
+            </ul>
           </nav>
         </div>
-        <div className="pl-4 w-full col-span-full lg:col-span-3">
+        <div className="col-span-full pl-4 w-full lg:col-span-3">
           <H4 variant="secondary">Contatti</H4>
           <nav className="mb-10 text-sm list-none">
-            <li className="mb-2">
-              <i className="fas fa-map-marker-alt text-gray-400"></i>
-              <span className="ml-2 text-gray-600 hover:text-gray-800">
-                contrada Popoleto n.c. 70011 Alberobello (BA)
-              </span>
-            </li>
-            <li className="mb-2">
-              <i className="fas fa-phone-alt text-gray-400"></i>
-              <a
-                className="ml-2 text-gray-600 hover:text-gray-800"
-                href="tel:00390804323431"
-              >
-                +39 080 4323431
-              </a>
-            </li>
-            <li className="mb-2">
-              <i className="fas fa-envelope text-gray-400"></i>
-              <a
-                className="ml-2 text-gray-600 hover:text-gray-800"
-                href="mailto:matarrese@matarrese.it"
-              >
-                matarrese@matarrese.it
-              </a>
-            </li>
-            <li className="mb-2">
-              <i className="fas fa-file-invoice text-gray-400"></i>
-              <span className="ml-2 text-gray-600 hover:text-gray-800">
-                IVA 04356890725
-              </span>
-            </li>
+            <ul>
+              <li className="mb-2">
+                <i className="fas fa-map-marker-alt text-gray-400"></i>
+                <span className="ml-2 text-gray-600 hover:text-gray-800">
+                  contrada Popoleto n.c. 70011 Alberobello (BA)
+                </span>
+              </li>
+              <li className="mb-2">
+                <i className="fas fa-phone-alt text-gray-400"></i>
+                <a
+                  className="ml-2 text-gray-600 hover:text-gray-800"
+                  href="tel:00390804323431"
+                >
+                  +39 080 4323431
+                </a>
+              </li>
+              <li className="mb-2">
+                <i className="fas fa-envelope text-gray-400"></i>
+                <a
+                  className="ml-2 text-gray-600 hover:text-gray-800"
+                  href="mailto:matarrese@matarrese.it"
+                >
+                  matarrese@matarrese.it
+                </a>
+              </li>
+              <li className="mb-2">
+                <i className="fas fa-file-invoice text-gray-400"></i>
+                <span className="ml-2 text-gray-600 hover:text-gray-800">
+                  IVA 04356890725
+                </span>
+              </li>
+            </ul>
           </nav>
         </div>
-        <div className="col-span-full lg:col-span-3 pl-4">
+        <div className="col-span-full pl-4 lg:col-span-3">
           <H4 as="h2" variant="secondary">
             Orari
           </H4>
@@ -214,7 +218,7 @@ export default function Footer() {
         </div>
       </Grid>
       <div className="mx-10vw bg-gray-100">
-        <div className="max-w-7xl flex flex-col flex-wrap mx-auto px-5 py-4 md:flex-row items-center justify-between">
+        <div className="flex flex-col flex-wrap items-center justify-between mx-auto px-5 py-4 max-w-7xl md:flex-row">
           <p className="text-center text-gray-500 text-sm sm:text-left">
             Copyright © {new Date().getFullYear()} Matarrese srl{' '}
           </p>
@@ -224,7 +228,7 @@ export default function Footer() {
             </p>
             <a
               href="https://www.facebook.com/pasqat"
-              className="ml-3 hover:text-blue-800 text-gray-500 cursor-pointer"
+              className="hover:text-blue-800 ml-3 text-gray-500 cursor-pointer"
             >
               <svg
                 fill="currentColor"
@@ -239,7 +243,7 @@ export default function Footer() {
             </a>
             <a
               href="https://twitter.com/pasqat"
-              className="ml-3 hover:text-blue-500 text-gray-500"
+              className="hover:text-blue-500 ml-3 text-gray-500"
             >
               <svg
                 fill="currentColor"
@@ -266,16 +270,16 @@ export default function Footer() {
                 viewBox="0 0 24 24"
               >
                 <path
-                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 
-                      1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 
-                      1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729
+                      1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0
+                      1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479
                       5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
                 />
               </svg>
             </a>
             <a
               href="https://www.linkedin.com/in/pasquale-matarrese/"
-              className="ml-3 hover:text-blue-800 text-gray-500"
+              className="hover:text-blue-800 ml-3 text-gray-500"
             >
               <svg
                 fill="currentColor"
