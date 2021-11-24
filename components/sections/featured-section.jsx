@@ -39,11 +39,8 @@ function FeaturedSection({
               <H2
                 as="h3"
                 className="mt-12"
-                // NOTE: this...
                 dangerouslySetInnerHTML={{__html: title}}
               />
-              {/* NOTE: or this?
-             {title} */}
               <div
                 className="mt-6 text-gray-500 text-xl font-medium"
                 dangerouslySetInnerHTML={{__html: subTitle}}

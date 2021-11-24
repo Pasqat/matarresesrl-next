@@ -1,37 +1,36 @@
-import { format } from "date-fns"
-import { it } from 'date-fns/locale'
+import {format} from 'date-fns'
+import {it} from 'date-fns/locale'
 
-export const formatDate = (date) => {
-  const newDate = new Date(date);
+export const formatDate = date => {
+  const newDate = new Date(date)
 
-  return newDate.toLocaleDateString("it-it", {
-    year: "numeric",
-    month: "numeric",
-    day: "numeric",
-  });
-};
+  return newDate.toLocaleDateString('it-it', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  })
+}
 
-export const getMonth = (date) => {
-  const newDate = new Date(date);
+export const getMonth = date => {
+  const newDate = new Date(date)
 
-  return newDate.toLocaleDateString("it", { month: "long" });
-};
+  return newDate.toLocaleDateString('it', {month: 'long'})
+}
 
+export const getDayNumeric = date => {
+  const newDate = new Date(date)
 
-export const getDayNumeric = (date) => {
-  const newDate = new Date(date);
+  return newDate.toLocaleDateString('it', {day: 'numeric'})
+}
 
-  return newDate.toLocaleDateString("it", { day: "numeric" });
-};
+export const getDayOfWeek = date => {
+  const newDate = new Date(date)
 
-export const getDayOfWeek = (date) => {
-  const newDate = new Date(date);
+  return format(newDate, 'eeee', {locale: it})
+}
 
-  return format(newDate, 'eeee', { locale: it });
-};
+export const getHour = date => {
+  const newDate = new Date(date)
 
-export const getHour = (date) => {
-  const newDate = new Date(date);
-
-  return format(newDate, 'HH:mm');
-};
+  return format(newDate, 'HH:mm')
+}

@@ -11,11 +11,13 @@ import Container from '../../components/Container'
 import {HeroSection} from '../../components/sections/hero-section'
 import {SearchIcon} from '../../components/icons/search-icon'
 import {Grid} from '../../components/grid'
-import {H6} from '../../components/typography'
+import {H6, H3} from '../../components/typography'
 import {Category} from '../../components/category'
 import {FeaturedSection} from '../../components/sections/featured-section'
+import {ArticleCard} from '../../components/article-card'
 
 import {filterPosts} from '../../actions/utils/blog'
+import {formatDate} from '../../actions/utils/formatDate'
 import {getAllPosts} from '../../lib/post_api'
 
 const PAGE_SIZE = 10
@@ -24,6 +26,7 @@ const initialIndexToShow = PAGE_SIZE
 const specialQueryRegex = /(?<not>!)?leader:(?<team>\w+)(\s|$)?/g
 
 export default function News({data}) {
+  console.log(data.posts[0])
   const router = useRouter()
 
   const categories = data.categories.filter(category => category.count > 0)
@@ -213,7 +216,7 @@ export default function News({data}) {
         {!isSearching ? (
           <div className="mb-10">
             <FeaturedSection
-              subTitle={data.posts[0].date}
+              subTitle={formatDate(data.posts[0].date)}
               title={data.posts[0].title}
               imageUrl={data.posts[0].featuredImage.node.sourceUrl}
               impageAlt={data.posts[0].featuredImage.node.altText}
@@ -224,6 +227,23 @@ export default function News({data}) {
             />
           </div>
         ) : null}
+
+        <Grid className="mb-64" ref={resultsRef}>
+          {posts.length === 0 ? (
+            <div className="items-centert flex flex-col col-span-full">
+              {/* // TODO: add a beautiful placeholder img */}
+              <H3 as="p" variant="secondary" className="mt-24 max-w-lg">
+                {`Purtroppo non è stato trovato nulla con i tuoi criteri di ricerca`}
+              </H3>
+            </div>
+          ) : (
+            posts.map(article => (
+              <div key={article.slug} className="col-span-4 mb-10">
+                <ArticleCard article={article} />
+              </div>
+            ))
+          )}
+        </Grid>
       </Layout>
     </div>
   )
