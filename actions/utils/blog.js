@@ -1,7 +1,35 @@
+import {matchSorter, rankings as matchSorterRankings} from 'match-sorter'
+
 function filterPosts(posts, searchString) {
   if (!searchString) return posts
+  console.log('search', posts)
+
+  const options = {
+    keys: [
+      {
+        key: 'title',
+        threshold: matchSorterRankings.CONTAINS,
+      },
+      {
+        key: 'categories',
+        threshold: matchSorterRankings.CONTAINS,
+        maxRanking: matchSorterRankings.CONTAINS,
+      },
+      {
+        key: 'meta.keywords',
+        threshold: matchSorterRankings.CONTAINS,
+        maxRanking: matchSorterRankings.CONTAINS,
+      },
+      {
+        key: 'excerpt',
+        threshold: matchSorterRankings.CONTAINS,
+        maxRanking: matchSorterRankings.CONTAINS,
+      },
+    ],
+  }
 
   const allResults = matchSorter(posts, searchString, options)
+
   const searches = new Set(searchString.split(' '))
   if (searches.size < 2) {
     // if there's only one word then we're done
@@ -19,8 +47,8 @@ function filterPosts(posts, searchString) {
     keys: options.keys.map(key => {
       return {
         ...key,
-        maxRanking: matchSorterRanking.CASE_SENSITIVE_EQUAL,
-        threshold: matchSorterRanking.WORD_STARTS_WITH,
+        maxRanking: matchSorterRankings.CASE_SENSITIVE_EQUAL,
+        threshold: matchSorterRankings.WORD_STARTS_WITH,
       }
     }),
   }
@@ -32,7 +60,7 @@ function filterPosts(posts, searchString) {
     individualWordOptions,
   )
   for (const word of restWords) {
-    const searchResult = wathSorter(
+    const searchResult = matchSorter(
       individualWordResults,
       word,
       individualWordOptions,
