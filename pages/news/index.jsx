@@ -4,10 +4,7 @@ import Head from 'next/head'
 import {useRouter} from 'next/dist/client/router'
 import clsx from 'clsx'
 
-import NewsList from '../../components/News/NewsList'
-import CategoriesList from '../../components/categories-list/CategoriesList'
 import Layout from '../../components/Layout'
-import Container from '../../components/Container'
 import {HeroSection} from '../../components/sections/hero-section'
 import {SearchIcon} from '../../components/icons/search-icon'
 import {Grid} from '../../components/grid'
@@ -15,21 +12,20 @@ import {H6, H3} from '../../components/typography'
 import {Category} from '../../components/category'
 import {FeaturedSection} from '../../components/sections/featured-section'
 import {ArticleCard} from '../../components/article-card'
+import {PlusIcon} from '../../components/icons/plus-icon'
+import {Button} from '../../components/button'
 
 import {filterPosts} from '../../actions/utils/blog'
 import {formatDate} from '../../actions/utils/formatDate'
 import {getAllPosts} from '../../lib/post_api'
 
-const PAGE_SIZE = 10
+const PAGE_SIZE = 12
 const initialIndexToShow = PAGE_SIZE
 
 const specialQueryRegex = /(?<not>!)?leader:(?<team>\w+)(\s|$)?/g
 
 export default function News({data}) {
-  console.log(data.posts[0])
   const router = useRouter()
-
-  const categories = data.categories.filter(category => category.count > 0)
 
   const searchInputRef = React.useRef(null)
 
@@ -92,11 +88,9 @@ export default function News({data}) {
 
   const visibleCategories = isSearching
     ? new Set(
-        matchingPosts
-          .flatMap(post => post.frontmatter.categories.name)
-          .filter(Boolean),
+        matchingPosts.flatMap(post => post.categories.name).filter(Boolean),
       )
-    : new Set(categories)
+    : new Set(data.categories)
 
   return (
     <div>
@@ -187,13 +181,13 @@ export default function News({data}) {
         />
 
         <Grid className="mb-14">
-          {categories && categories.length > 0 ? (
+          {data.categories && data.categories.length > 0 ? (
             <>
               <H6 as="div" className="col-span-full mb-6">
                 Filtra per categoria
               </H6>
               <div className="flex flex-wrap col-span-full -mb-4 -mr-4 lg:col-span-10">
-                {categories.map(category => {
+                {data.categories.map(category => {
                   const selected = regularQuery.includes(category.name)
 
                   return (
@@ -244,6 +238,17 @@ export default function News({data}) {
             ))
           )}
         </Grid>
+
+        {hasMorePosts ? (
+          <div className="flex justify-center mb-64 w-full">
+            <Button
+              variant="secondary"
+              onClick={() => setIndexToShow(i => i + PAGE_SIZE)}
+            >
+              <span>Mostra altri articoli</span> <PlusIcon />
+            </Button>
+          </div>
+        ) : null}
       </Layout>
     </div>
   )
@@ -251,10 +256,16 @@ export default function News({data}) {
 
 export async function getStaticProps() {
   const data = await getAllPosts()
+  const categories = data.categories
+    .filter(category => category.count > 0)
+    .map(c => c.name)
 
   return {
     props: {
-      data,
+      data: {
+        categories,
+        posts: data.posts,
+      },
     },
   }
 }

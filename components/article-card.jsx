@@ -15,15 +15,19 @@ function ArticleCard({
     <div className="relative w-full">
       <Link href={`/news/${slug}`}>
         <a className="group peer relative block w-full focus:outline-none">
-          <Image
-            className="aspect-w-4 aspect-h-3 focus-ring lg:aspect-h-5 lg:aspect-w-4 rounded-lg object-cover object-center"
-            // objectFit="cover"
-            alt={`Immagine di copertino di ${title}`}
-            src={featuredImage.node.sourceUrl}
-            width={410}
-            height={600}
-            layout="responsive"
-          />
+          {featuredImage?.node?.sourceUrl ? (
+            <Image
+              className="aspect-w-4 aspect-h-3 focus-ring lg:aspect-h-5 lg:aspect-w-4 rounded-lg object-cover object-center"
+              // objectFit="cover"
+              alt={`Immagine di copertino di ${title}`}
+              src={featuredImage?.node.sourceUrl}
+              width={410}
+              height={600}
+              layout="responsive"
+            />
+          ) : (
+            <p>No image</p>
+          )}
           <div className="mt-8 text-gray-500 text-xl font-medium">
             {formatDate(date)}
           </div>
