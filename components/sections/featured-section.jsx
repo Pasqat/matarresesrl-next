@@ -18,17 +18,6 @@ function FeaturedSection({
   subTitle,
   permalink,
 }) {
-  console.log(
-    slug,
-    href,
-    caption,
-    cta,
-    imageAlt,
-    imageUrl,
-    title,
-    subTitle,
-    permalink,
-  )
   return (
     <div className="px-8 w-full lg:px-0">
       <div className="bg-gray-100 rounded-lg lg:bg-trasparent">

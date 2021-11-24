@@ -176,8 +176,8 @@ export default function News({data}) {
                           {
                             query: {q: e.target.value.toLocaleLowerCase()},
                           },
-                          {},
-                          {scroll: false, shallow: true},
+                          '',
+                          {scroll: false},
                         )
                       }
                       ignoreInputKeyUp.current = false
