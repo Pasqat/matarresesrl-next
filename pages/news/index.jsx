@@ -11,6 +11,8 @@ import Container from '../../components/Container'
 import {HeroSection} from '../../components/sections/hero-section'
 import {SearchIcon} from '../../components/icons/search-icon'
 import {Grid} from '../../components/grid'
+import {H6} from '../../components/typography'
+import {Category} from '../../components/category'
 
 const BATCH_SIZE = 10
 
@@ -68,9 +70,38 @@ const GET_PAGINATED_POSTS = gql`
   }
 `
 
+const specialQueryRegex = /(?<not>!)?leader:(?<team>\w+)(\s|$)?/g
+
 export default function News() {
-  // TODO: next routers for search Params
+  const [category, setCategory] = React.useState(null)
   const router = useRouter()
+
+  const {data, loading, error, fetchMore} = useQuery(GET_PAGINATED_POSTS, {
+    variables: {
+      first: BATCH_SIZE,
+      last: null,
+      after: null,
+      before: null,
+      categoryId: category,
+    },
+    notifyOnNetworkStatusChange: true,
+  })
+
+  React.useEffect(() => {
+    fetchMore({
+      variables: {
+        first: BATCH_SIZE,
+        after: null,
+        last: null,
+        before: null,
+        categoryId: null,
+      },
+    })
+  }, [])
+
+  const categeriesList = data?.categories.nodes.filter(
+    category => category.count > 0,
+  )
 
   const searchInputRef = React.useRef(null)
 
@@ -102,38 +133,21 @@ export default function News() {
     })
   }
 
-  const [category, setCategory] = React.useState(null)
+  const regularQuery = query.replace(specialQueryRegex, '').trim()
 
-  const {data, loading, error, fetchMore} = useQuery(GET_PAGINATED_POSTS, {
-    variables: {
-      first: BATCH_SIZE,
-      last: null,
-      after: null,
-      before: null,
-      categoryId: category,
-    },
-    notifyOnNetworkStatusChange: true,
-  })
+  const isSearching = query.length > 0
 
-  React.useEffect(() => {
-    fetchMore({
-      variables: {
-        first: BATCH_SIZE,
-        after: null,
-        last: null,
-        before: null,
-        categoryId: null,
-      },
-    })
-  }, [])
+  const visibleCategories = isSearching
+    ? new Set(
+        matchingPosts
+          .flatMap(post => post.frontmatter.categories)
+          .filter(Boolean),
+      )
+    : new Set(categeriesList)
 
   function selectCategory(categoryId) {
     setCategory(categoryId)
   }
-
-  const categeriesList = data?.categories.nodes.filter(
-    category => category.count > 0,
-  )
 
   return (
     <div>
@@ -223,16 +237,41 @@ export default function News() {
             }
           />
 
-          <Grid>
+          <Grid className="mb-14">
+            {categeriesList && categeriesList.length > 0 ? (
+              <>
+                <H6 as="div" className="col-span-full mb-6">
+                  Filtra per categoria
+                </H6>
+                <div className="flex flex-wrap col-span-full -mb-4 -mr-4 lg:col-span-10">
+                  {categeriesList.map(category => {
+                    const selected = regularQuery.includes(category.name)
+                    console.log(category.categoryId, selected)
 
+                    return (
+                      <Category
+                        key={category.name}
+                        category={category.name}
+                        selected={selected}
+                        onClick={() => toggleCotegory(category.name)}
+                        // onClick={() => toggleCotegory(category.id)}
+                        disabled={
+                          !visibleCategory.has(category.categoryId) && !selected
+                        }
+                      />
+                    )
+                  })}
+                </div>
+              </>
+            ) : null}
           </Grid>
 
           {/* OLD */}
-          <CategoriesList
+          {/* <CategoriesList
             categories={categeriesList}
             onClick={selectCategory}
             currentCategory={category}
-          />
+          /> */}
           <hr />
           <NewsList
             error={error}
