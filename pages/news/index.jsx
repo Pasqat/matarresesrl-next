@@ -191,7 +191,6 @@ export default function News({data}) {
             </div>
           }
         />
-
         <Grid className="mb-14">
           {data.categories && data.categories.length > 0 ? (
             <>
