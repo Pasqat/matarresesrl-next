@@ -17,8 +17,8 @@ module.exports = {
   theme: {
     gradientColorStops: theme => ({
       ...theme('colors'),
-      'primary': 'var(--color-yellow-500)',
-      'secondary': 'var(--color-red-500)',
+      primary: 'var(--color-yellow-500)',
+      secondary: 'var(--color-red-500)',
     }),
     screens: {
       md: '640px',
@@ -56,8 +56,7 @@ module.exports = {
         100: 'var(--color-green-100)',
         500: 'var(--color-green-500)',
         600: 'var(--color-green-600)',
-
-      }
+      },
     },
     extend: {
       gridTemplateRows: {
@@ -284,7 +283,7 @@ module.exports = {
                   marginTop: 0,
                   marginBottom: theme('spacing.10'),
                   color: theme('colors.gray.500'),
-                  backgroundColor:('colors.gray.100')
+                  backgroundColor: 'colors.gray.100',
                 },
                 'blockquote > :last-child': {
                   marginBottom: 0,
@@ -304,6 +303,7 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/typography'),
+    require('@tailwindcss/aspect-ratio'),
     require('autoprefixer'),
     require('@tailwindcss/forms'),
     plugin(function ({addComponents, theme}) {
