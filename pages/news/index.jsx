@@ -22,6 +22,7 @@ import {getAllPosts} from '../../lib/post_api'
 const PAGE_SIZE = 12
 const initialIndexToShow = PAGE_SIZE
 
+// this really is not needed
 const specialQueryRegex = /(?<not>!)?leader:(?<team>\w+)(\s|$)?/g
 
 export default function News({data}) {
