@@ -58,6 +58,7 @@ function filterPosts(posts, searchString) {
     firstWord,
     individualWordOptions,
   )
+
   for (const word of restWords) {
     const searchResult = matchSorter(
       individualWordResults,
@@ -65,8 +66,10 @@ function filterPosts(posts, searchString) {
       individualWordOptions,
     )
     individualWordResults = individualWordResults.filter(r =>
-      searchResult.indexOf(r),
+      searchResult.includes(r),
     )
+
+    console.log(searchResult, individualWordResults)
   }
   return Array.from(new Set([...allResults, ...individualWordResults]))
 }

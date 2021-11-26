@@ -26,7 +26,10 @@ const specialQueryRegex = /(?<not>!)?leader:(?<team>\w+)(\s|$)?/g
 
 export default function News({data}) {
   const router = useRouter()
-
+  const searchParams =
+    typeof router.query.q === 'Array'
+      ? router.query.q.join('+')
+      : router.query.q
   const searchInputRef = React.useRef(null)
 
   const resultsRef = React.useRef(null)
@@ -39,11 +42,9 @@ export default function News({data}) {
    */
   const ignoreInputKeyUp = React.useRef(false)
 
-  const [queryValue, setQuery] = React.useState('')
-
-  React.useEffect(() => {
-    setQuery(router.query.q || '')
-  }, [router.query.q])
+  const [queryValue, setQuery] = React.useState(() => {
+    return searchParams ?? ''
+  })
 
   const query = queryValue.trim()
 
@@ -52,11 +53,11 @@ export default function News({data}) {
   const regularQuery = query.replace(specialQueryRegex, '').trim()
 
   const matchingPosts = React.useMemo(() => {
-    const r = new RegExp(specialQueryRegex)
-    let match = r.exec(query)
+    // const r = new RegExp(specialQueryRegex)
+    // let match = r.exec(query)
 
     return filterPosts(allPosts, regularQuery)
-  }, [allPosts, query, regularQuery])
+  }, [allPosts, regularQuery])
 
   const [indexToShow, setIndexToShow] = React.useState(initialIndexToShow)
   // when the query changes, we want to reset the index
@@ -73,8 +74,14 @@ export default function News({data}) {
         ? q.replace(expression, '')
         : `${q} ${category}`
 
+      router.push(
+        {query: {q: newQuery.toLowerCase().replace(/\s+/g, ' ').trim()}},
+        '',
+        {
+          scroll: false,
+        },
+      )
       // trim and remove subsequent spaces (`this   that` => `this that`)
-      router.push({query: `${category}`})
       return newQuery.replace(/\s+/g, ' ').trim()
     })
   }
@@ -93,7 +100,11 @@ export default function News({data}) {
 
   const visibleCategories = isSearching
     ? new Set(
-        matchingPosts.flatMap(post => post.categories.name).filter(Boolean),
+        matchingPosts
+          .flatMap(post => {
+            return post.categories
+          })
+          .filter(Boolean),
       )
     : new Set(data.categories)
 
