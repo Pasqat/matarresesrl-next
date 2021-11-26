@@ -22,11 +22,15 @@ function ArticleCard({
               alt={`Immagine di copertino di ${title}`}
               src={featuredImage?.node.sourceUrl}
               width={410}
-              height={600}
+              height={510}
               layout="responsive"
             />
           ) : (
-            <p>No image</p>
+            <div className="aspect-w-4 aspect-h-3 lg:aspect-h-5 lg:aspect-w-4 relative flex items-center justify-center w-full text-center bg-gradient-to-tl rounded-lg from-red-600 to-yellow-400 overflow-hidden">
+              <div className="bottom-[30%] absolute z-0 text-gray-100 font-serif text-4xl font-extrabold leading-tight opacity-30 select-none transform scale-150">
+                {title}
+              </div>
+            </div>
           )}
           <div className="mt-8 text-gray-500 text-xl font-medium">
             {formatDate(date)}

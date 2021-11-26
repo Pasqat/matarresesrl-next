@@ -198,6 +198,9 @@ export default function News({data}) {
                     placeholder="cerca"
                     className="text-primary bg-primary border-secondary focus:bg-secondary pl-14 pr-6 py-6 w-full text-lg font-medium border hover:border-yellow-500 focus:border-yellow-500 rounded-full focus:outline-none md:pr-24"
                   />
+                  <div className="absolute right-6 top-0 hidden items-center justify-between w-14 h-full text-gray-500 text-lg font-medium md:flex">
+                    {isSearching ? matchingPosts.length : null}
+                  </div>
                 </div>
               </form>
             </div>
