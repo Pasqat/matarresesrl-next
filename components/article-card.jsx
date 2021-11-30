@@ -16,17 +16,17 @@ function ArticleCard({
       <Link href={`/news/${slug}`}>
         <a className="group peer relative block w-full focus:outline-none">
           {featuredImage?.node?.sourceUrl ? (
-            <Image
-              className="aspect-w-4 aspect-h-3 focus-ring lg:aspect-h-5 lg:aspect-w-4 rounded-lg object-cover object-center"
-              // objectFit="cover"
-              alt={`Immagine di copertino di ${title}`}
-              src={featuredImage?.node.sourceUrl}
-              width={410}
-              height={510}
-              layout="responsive"
-            />
+            <div className="aspect-w-4 aspect-h-3 lg:aspect-h-5 lg:aspect-w-4 rounded-lg focus-ring">
+              <Image
+                className="rounded-lg"
+                objectFit="cover"
+                alt={`Immagine di copertino di ${title}`}
+                src={featuredImage?.node.sourceUrl}
+                layout="fill"
+              />
+            </div>
           ) : (
-            <div className="aspect-w-4 aspect-h-3 lg:aspect-h-5 lg:aspect-w-4 relative flex items-center justify-center w-full text-center bg-gradient-to-tl rounded-lg from-red-600 to-yellow-400 overflow-hidden">
+            <div className="focus-ring aspect-w-4 aspect-h-3 lg:aspect-h-5 lg:aspect-w-4 relative flex items-center justify-center w-full text-center bg-gradient-to-tl rounded-lg from-red-600 to-yellow-400 overflow-hidden">
               <div className="bottom-[30%] absolute z-0 text-gray-100 font-serif text-4xl font-extrabold leading-tight opacity-30 select-none transform scale-150">
                 {title}
               </div>

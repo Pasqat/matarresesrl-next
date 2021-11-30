@@ -4,7 +4,6 @@ import {motion, useReducedMotion} from 'framer-motion'
 
 import {H2} from '../typography'
 import {Grid} from '../grid'
-import {LinkButton} from '../button'
 import {ArrowLink} from '../arrow-button'
 
 function HeroSection({

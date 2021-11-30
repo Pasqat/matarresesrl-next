@@ -1,5 +1,4 @@
 import * as React from 'react'
-import {useQuery, gql} from '@apollo/client'
 import Head from 'next/head'
 import {useRouter} from 'next/dist/client/router'
 import clsx from 'clsx'
@@ -18,6 +17,7 @@ import {Button} from '../../components/button'
 import {filterPosts} from '../../actions/utils/blog'
 import {formatDate} from '../../actions/utils/formatDate'
 import {getAllPosts} from '../../lib/post_api'
+import {getPlaiceholder} from 'plaiceholder'
 
 const PAGE_SIZE = 12
 const initialIndexToShow = PAGE_SIZE
@@ -238,6 +238,8 @@ export default function News({data}) {
               subTitle={formatDate(data.posts[0].date)}
               title={data.posts[0].title}
               imageUrl={data.posts[0].featuredImage.node.sourceUrl}
+              img={data.img}
+              svg={data.svg}
               impageAlt={data.posts[0].featuredImage.node.altText}
               caption="In evidenza"
               cta="Leggi tutto"
@@ -285,11 +287,15 @@ export async function getStaticProps() {
     .filter(category => category.count > 0)
     .map(c => c.name)
 
+  const {img, svg} = await getPlaiceholder(data.posts[0].featuredImage.node.sourceUrl, {size: 64})
+
   return {
     props: {
       data: {
         categories,
         posts: data.posts,
+        img,
+        svg,
       },
     },
   }

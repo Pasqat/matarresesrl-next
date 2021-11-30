@@ -1,11 +1,13 @@
 import * as React from 'react'
-import clsx from 'clsx'
-import Image from 'next/image'
+// import clsx from 'clsx'
+// import Image from 'next/image'
 
 import {Grid} from '../grid'
 import {H2, H6} from '../typography'
 import {ArrowLink} from '../arrow-button'
 import {ClipboardCopyButton} from '../clipboard-copy-button'
+
+import {BlurringImage} from '../blurringImage.jsx'
 
 function FeaturedSection({
   slug,
@@ -13,7 +15,9 @@ function FeaturedSection({
   caption = 'In Evidenza',
   cta = 'Leggi tutto',
   imageAlt = '',
-  imageUrl,
+  // imageUrl,
+  img,
+  svg,
   title = 'Post senza titolo',
   subTitle,
   permalink,
@@ -44,14 +48,17 @@ function FeaturedSection({
             </div>
           </div>
           <div className="relative col-span-full mt-12 lg:col-span-4 lg:col-start-8">
-            <Image
-              className="aspect-w-4 aspect-h-3 lg:aspect-h-5 lg:aspect-w-4 rounded-lg object-cover object-center"
-              objectFit="cover"
-              alt={imageAlt}
-              src={imageUrl}
-              width={1000}
-              height={1300}
-            />
+            <div className="aspect-w-4 aspect-h-3 lg:aspect-h-5 lg:aspect-w-4 rounded-lg">
+              <BlurringImage
+                img={img}
+                svg={svg}
+                className="rounded-lg"
+                objectFit="cover"
+                alt={imageAlt}
+                // src={imageUrl}
+                layout="fill"
+              />
+            </div>
             {permalink ? (
               <ClipboardCopyButton
                 className="absolute z-20 left-6 top-6"

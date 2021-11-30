@@ -13,6 +13,9 @@ import {HeroSection} from '../../components/sections/hero-section'
 import {BriefCaseIcon} from '../../components/icons/briefcase-icon'
 
 import testimonials from '../../data/testimonials'
+import cotturaProdotti from '../../public/img/cottura-prodotti.png'
+import arredoSuMisura from '../../public/img/arredo-su-misura-prodotti.jpg'
+            // image="/img/climatizzazione-prodotti.jpg"
 
 export default function Home() {
   return (
@@ -39,10 +42,12 @@ export default function Home() {
                   <Image
                     alt="prodotti per la cucina professionale"
                     className="max-w-full rounded-lg shadow-lg"
-                    src="/img/cottura-prodotti.png"
-                    width="1000"
-                    height="1300"
+                    src={cotturaProdotti}
+                    // width="1000"
+                    // height="1300"
                     objectFit="cover"
+                    layout="fill"
+                    placeholder="blur"
                   />
                 </div>
               </div>
@@ -142,10 +147,11 @@ export default function Home() {
                   <Image
                     alt="prodotti per la cucina professionale"
                     className="max-w-full rounded-lg shadow-lg"
-                    src="/img/arredo-su-misura-prodotti.jpg"
-                    width="1000"
-                    height="1300"
+                    src={arredoSuMisura}
+                    // width="1000"
+                    // height="1300"
                     objectFit="cover"
+                    layout="fill"
                   />
                 </div>
               </div>
