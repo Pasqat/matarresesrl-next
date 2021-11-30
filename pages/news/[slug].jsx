@@ -5,11 +5,13 @@ import {getPlaiceholder} from 'plaiceholder'
 import Date from '../../components/Date'
 import Layout from '../../components/Layout'
 // import CoverImage from '../../components/News/CoverImage'
-import MorePosts from '../../components/News/more-posts'
+// import MorePosts from '../../components/News/more-posts'
+import {BlogSection} from '../../components/sections/blog-section'
 import PostBody from '../../components/News/post-body'
 import Categories from '../../components/News/post-categories'
 import SocialShareBar from '../../components/SocialShareBar/SocialShareBar'
 import {BlurringImage} from '../../components/blurringImage'
+import {Spacer} from '../../components/spacer'
 
 import {H1} from '../../components/typography'
 
@@ -99,9 +101,19 @@ export default function Post({postData, posts, img, svg}) {
               </main>
             </div>
           </article>
-          <div className="container mx-auto px-5 py-8 max-w-7xl">
-            {morePosts.length > 0 && <MorePosts posts={morePosts} />}
-          </div>
+          <Spacer size="base"/>
+
+          <BlogSection
+            articles={morePosts}
+            title="Se questo articolo ti è stato utile"
+            description="Potrebbe piacerti anche uno di questi"
+            shoArrowButton={false}
+            />
+
+          {/* OLD */}
+          {/* <div className="container mx-auto px-5 py-8 max-w-7xl"> */}
+          {/*   {morePosts.length > 0 && <MorePosts posts={morePosts} />} */}
+          {/* </div> */}
         </>
       )}
     </Layout>

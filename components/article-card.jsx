@@ -7,8 +7,10 @@ import {H4} from './typography'
 import {ClipboardCopyButton} from './clipboard-copy-button'
 
 function ArticleCard({
-  article: {slug, title, date = formatDate(date), featuredImage},
+  article: {slug, title, date, featuredImage},
 }) {
+console.log(slug, title, date, featuredImage)
+
   const permalink = `news/${slug}` // FIXME: this is wrong the permalink shold include the full path
 
   return (
