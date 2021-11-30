@@ -1,19 +1,21 @@
 import {useRouter} from 'next/router'
 import Head from 'next/head'
+import {getPlaiceholder} from 'plaiceholder'
 
 import Date from '../../components/Date'
 import Layout from '../../components/Layout'
-import CoverImage from '../../components/News/CoverImage'
+// import CoverImage from '../../components/News/CoverImage'
 import MorePosts from '../../components/News/more-posts'
 import PostBody from '../../components/News/post-body'
 import Categories from '../../components/News/post-categories'
 import SocialShareBar from '../../components/SocialShareBar/SocialShareBar'
+import {BlurringImage} from '../../components/blurringImage'
 
 import {H1} from '../../components/typography'
 
 import {getAllPostsWithSlug, getPostAndMorePosts} from '../../lib/post_api'
 
-export default function Post({postData, posts}) {
+export default function Post({postData, posts, img, svg}) {
   const router = useRouter()
   const morePosts = posts?.edges
 
@@ -43,18 +45,29 @@ export default function Post({postData, posts}) {
                 content={postData.featuredImage?.node?.sourceUrl}
               />
             </Head>
-            <div className="container mx-auto px-5 py-16 max-w-7xl">
-              <main className="mb-24">
+            <div className="mx-auto md:px-5 py-4 md:py-16 max-w-7xl">
+              <main className="md:mb-24">
                 <div className="mb-8 sm:mx-0 md:mb-16">
-                  <CoverImage
-                    title={postData.title}
-                    coverImage={postData.featuredImage?.node.sourceUrl}
-                    // slug={postData.slug}
+                  <div className="relative aspect-w-2 aspect-h-1">
+                  <BlurringImage
+                    img={img}
+                    svg={svg}
+                    alt={`Immagine di copertina di ${postData.title}`}
+                    objectFit="cover"
+                    layout="fill"
                   />
+                  </div>
+                  {/* <CoverImage */}
+                  {/*   title={postData.title} */}
+                  {/*   img={img} */}
+                  {/*   svg={svg} */}
+                  {/*   // coverImage={postData.featuredImage?.node.sourceUrl} */}
+                  {/*   // slug={postData.slug} */}
+                  {/* /> */}
                 </div>
 
                 <div className="relative lg:flex lg:flex-row">
-                  <div className="relative z-2 p-10 max-w-4xl bg-white shadow-lg lg:-mt-56 lg:ml-24">
+                  <div className="relative z-2 p-10 max-w-4xl bg-white shadow-lg -mt-12 lg:-mt-56 lg:ml-24">
                     <div className="mb-6 text-lg">
                       <Categories categories={postData.categories} />
                       <Date
@@ -98,11 +111,18 @@ export default function Post({postData, posts}) {
 export async function getStaticProps({params, preview = false}) {
   const data = await getPostAndMorePosts(params.slug, preview)
 
+  const {img, svg} = await getPlaiceholder(
+    data.post.featuredImage.node.sourceUrl,
+    {size: 64},
+  )
+
   return {
     props: {
       preview,
       postData: data.post,
       posts: data.posts,
+      img,
+      svg,
     },
   }
 }
