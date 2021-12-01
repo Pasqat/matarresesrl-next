@@ -35,13 +35,13 @@ export default function ContactForm({hasAutoFocus}) {
 
   useEffect(() => {
     hasAutoFocus && inputName.current.focus()
-  }, [])
+  }, [hasAutoFocus])
 
   useEffect(() => {
     if (isCheckedTerms && notification.text.includes('termini')) {
       setNotification({text: '', isError: false})
     }
-  }, [isCheckedTerms])
+  }, [isCheckedTerms, notification.text])
 
   async function submitContactForm(event) {
     event.preventDefault()
