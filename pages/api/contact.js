@@ -1,7 +1,7 @@
-import nodemailer from "nodemailer";
+import nodemailer from 'nodemailer'
 
 const transporter = nodemailer.createTransport({
-  service: "SendGrid",
+  service: 'SendGrid',
   host: process.env.SENDGRID_HOST,
   port: 587,
   secure: false, // use TLS
@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
     // do not fail on invalid certs
     rejectUnauthorized: false,
   },
-});
+})
 
 // verify connection configuration
 // transporter.verify(function (error, success) {
@@ -34,17 +34,17 @@ const sendMail = async (req, res) => {
     formContent,
     recipientMail,
     title,
-  } = req.body;
+  } = req.body
 
   // Check if fields are all filled
-  if (name === "" || recipientMail === "") {
-    res.status(403).send("");
-    return;
+  if (name === '' || recipientMail === '') {
+    res.status(403).send('')
+    return
   }
 
-  if (name === "" && tel === "") {
-    res.status(403).send("");
-    return;
+  if (name === '' && tel === '') {
+    res.status(403).send('')
+    return
   }
 
   // let content =
@@ -54,7 +54,7 @@ const sendMail = async (req, res) => {
 
   let content = formContent
     ? `messaggio: ${formContent}`
-    : `partecipanti: ${participants}`;
+    : `partecipanti: ${participants}`
 
   const mailerRes = await mailer({
     senderMail,
@@ -62,30 +62,30 @@ const sendMail = async (req, res) => {
     title,
     text: `email: ${senderMail}\ntel: ${tel}\n${content}`,
     recipientMail,
-  });
-  res.send(mailerRes);
-};
+  })
+  res.send(mailerRes)
+}
 
-const mailer = ({ senderMail, name, title, text, recipientMail }) => {
+const mailer = ({senderMail, name, title, text, recipientMail}) => {
   const fromReal =
-    name && senderMail ? `${name} <${senderMail}>` : `${name || senderMail}`;
+    name && senderMail ? `${name} <${senderMail}>` : `${name || senderMail}`
   const subject = title
     ? `Partecipazione per l'evento ${title} da ${fromReal}`
-    : `Nuovo messaggio da ${fromReal}`;
-  const from = process.env.SENDGRID_ADDRESS;
+    : `Nuovo messaggio da ${fromReal}`
+  const from = process.env.SENDGRID_ADDRESS
   const message = {
     from,
     to: `${recipientMail}`,
     subject,
     text,
     replyTo: fromReal,
-  };
+  }
 
   return new Promise((resolve, reject) => {
     transporter.sendMail(message, (error, info) =>
-      error ? reject(error) : resolve(info)
-    );
-  });
-};
+      error ? reject(error) : resolve(info),
+    )
+  })
+}
 
-export default sendMail;
+export default sendMail

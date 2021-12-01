@@ -4,8 +4,6 @@ import {getPlaiceholder} from 'plaiceholder'
 
 import Date from '../../components/Date'
 import Layout from '../../components/Layout'
-// import CoverImage from '../../components/News/CoverImage'
-// import MorePosts from '../../components/News/more-posts'
 import {BlogSection} from '../../components/sections/blog-section'
 import PostBody from '../../components/News/post-body'
 import Categories from '../../components/News/post-categories'
@@ -47,29 +45,22 @@ export default function Post({postData, posts, img, svg}) {
                 content={postData.featuredImage?.node?.sourceUrl}
               />
             </Head>
-            <div className="mx-auto md:px-5 py-4 md:py-16 max-w-7xl">
+            <div className="mx-auto py-4 max-w-7xl md:px-5 md:py-16">
               <main className="md:mb-24">
                 <div className="mb-8 sm:mx-0 md:mb-16">
-                  <div className="relative aspect-w-2 aspect-h-1">
-                  <BlurringImage
-                    img={img}
-                    svg={svg}
-                    alt={`Immagine di copertina di ${postData.title}`}
-                    objectFit="cover"
-                    layout="fill"
-                  />
+                  <div className="aspect-w-2 aspect-h-1 relative">
+                    <BlurringImage
+                      img={img}
+                      svg={svg}
+                      alt={`Immagine di copertina di ${postData.title}`}
+                      objectFit="cover"
+                      layout="fill"
+                    />
                   </div>
-                  {/* <CoverImage */}
-                  {/*   title={postData.title} */}
-                  {/*   img={img} */}
-                  {/*   svg={svg} */}
-                  {/*   // coverImage={postData.featuredImage?.node.sourceUrl} */}
-                  {/*   // slug={postData.slug} */}
-                  {/* /> */}
                 </div>
 
                 <div className="relative lg:flex lg:flex-row">
-                  <div className="relative z-2 p-10 max-w-4xl bg-white shadow-lg -mt-12 lg:-mt-56 lg:ml-24">
+                  <div className="relative z-2 -mt-12 p-10 max-w-4xl bg-white shadow-lg lg:-mt-56 lg:ml-24">
                     <div className="mb-6 text-lg">
                       <Categories categories={postData.categories} />
                       <Date
@@ -91,29 +82,20 @@ export default function Post({postData, posts, img, svg}) {
                     title={postData.title}
                   />
                 </div>
-                {/* 
-                  <div className="max-w-2xl">
-                    <Link href="/news">
-                      <a>torna agli articoli</a>
-                    </Link>
-                  </div>
-                  */}
               </main>
             </div>
           </article>
-          <Spacer size="base"/>
+
+          <Spacer size="base" />
 
           <BlogSection
             articles={morePosts}
             title="Se questo articolo ti è stato utile"
             description="Potrebbe piacerti anche uno di questi"
             shoArrowButton={false}
-            />
+          />
 
-          {/* OLD */}
-          {/* <div className="container mx-auto px-5 py-8 max-w-7xl"> */}
-          {/*   {morePosts.length > 0 && <MorePosts posts={morePosts} />} */}
-          {/* </div> */}
+          <Spacer size="base" />
         </>
       )}
     </Layout>

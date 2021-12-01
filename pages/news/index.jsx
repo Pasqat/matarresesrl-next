@@ -27,6 +27,7 @@ const specialQueryRegex = /(?<not>!)?leader:(?<team>\w+)(\s|$)?/g
 
 export default function News({data}) {
   const router = useRouter()
+
   const searchParams =
     typeof router.query.q === 'Array'
       ? router.query.q.join('+')
@@ -54,9 +55,6 @@ export default function News({data}) {
   const regularQuery = query.replace(specialQueryRegex, '').trim()
 
   const matchingPosts = React.useMemo(() => {
-    // const r = new RegExp(specialQueryRegex)
-    // let match = r.exec(query)
-
     return filterPosts(allPosts, regularQuery)
   }, [allPosts, regularQuery])
 
@@ -244,7 +242,7 @@ export default function News({data}) {
               caption="In evidenza"
               cta="Leggi tutto"
               slug={`news/${data.posts[0].slug}`}
-              permalink={`news/${data.posts[0].slug}`}
+              permalink={`${data.domain}/news/${data.posts[0].slug}`}
             />
           </div>
         ) : null}
@@ -260,7 +258,7 @@ export default function News({data}) {
           ) : (
             posts.map(article => (
               <div key={article.slug} className="col-span-4 mb-10">
-                <ArticleCard article={article} />
+                <ArticleCard article={article} domain={data.domain} />
               </div>
             ))
           )}
@@ -281,13 +279,23 @@ export default function News({data}) {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps({req}) {
   const data = await getAllPosts()
   const categories = data.categories
     .filter(category => category.count > 0)
     .map(c => c.name)
 
-  const {img, svg} = await getPlaiceholder(data.posts[0].featuredImage.node.sourceUrl, {size: 64})
+  const {img, svg} = await getPlaiceholder(
+    data.posts[0].featuredImage.node.sourceUrl,
+    {size: 64},
+  )
+
+  const host = req.headers.host
+  if (!host) {
+    throw new Error('Could not determine domain URL.')
+  }
+  const protocol = host.includes('localhost') ? 'http' : 'https'
+  const domain = `${protocol}://${host}`
 
   return {
     props: {
@@ -296,6 +304,7 @@ export async function getStaticProps() {
         posts: data.posts,
         img,
         svg,
+        domain,
       },
     },
   }

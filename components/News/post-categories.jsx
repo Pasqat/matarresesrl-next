@@ -1,5 +1,4 @@
 import clsx from "clsx";
-// import { colors } from "../../ui/category-color"
 
 export default function Categories({ categories }) {
   const colors = {

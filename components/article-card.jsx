@@ -1,24 +1,19 @@
 import * as React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import clsx from 'clsx'
 import {formatDate} from '../actions/utils/formatDate'
 import {H4} from './typography'
 import {ClipboardCopyButton} from './clipboard-copy-button'
 
-function ArticleCard({
-  article: {slug, title, date, featuredImage},
-}) {
-console.log(slug, title, date, featuredImage)
-
-  const permalink = `news/${slug}` // FIXME: this is wrong the permalink shold include the full path
+function ArticleCard({article: {slug, title, date, featuredImage}, domain}) {
+  const permalink = `${domain}/news/${slug}`
 
   return (
     <div className="relative w-full">
       <Link href={`/news/${slug}`}>
         <a className="group peer relative block w-full focus:outline-none">
           {featuredImage?.node?.sourceUrl ? (
-            <div className="aspect-w-4 aspect-h-3 lg:aspect-h-5 lg:aspect-w-4 rounded-lg focus-ring">
+            <div className="aspect-w-4 aspect-h-3 focus-ring lg:aspect-h-5 lg:aspect-w-4 rounded-lg">
               <Image
                 className="rounded-lg"
                 objectFit="cover"
@@ -44,10 +39,12 @@ console.log(slug, title, date, featuredImage)
           />
         </a>
       </Link>
-      <ClipboardCopyButton
-        value={permalink}
-        className="absolute z-10 left-6 top-6"
-      />
+      {domain ? (
+        <ClipboardCopyButton
+          value={permalink}
+          className="absolute z-10 left-6 top-6"
+        />
+      ) : null}
     </div>
   )
 }
