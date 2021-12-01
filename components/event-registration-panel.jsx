@@ -31,13 +31,3 @@ function RegistrationPanel({event}) {
 }
 
 export {RegistrationPanel}
-//               <CardEvent
-//                 title={event.title}
-//                 slug={event.slug}
-//                 id={event.id}
-//                 startDate={event.startDate}
-//                 endDate={event.endDate}
-//                 excerpt={event.excerpt}
-//                 venue={event.venue}
-//                 coverImage={event.featuredImage?.node}
-//               />

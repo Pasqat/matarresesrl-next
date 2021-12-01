@@ -6,7 +6,6 @@ import {HeaderSection} from './header-section'
 import {Spacer} from '../spacer'
 
 function BlogSection({articles, title, description, showArrowButton = true}) {
-  console.log('all -> ',articles)
   return (
     <>
       <HeaderSection

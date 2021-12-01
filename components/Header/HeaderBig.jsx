@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import {Transition} from '@headlessui/react'
-import {SlopeDivSection} from '../../ui/SlopeDivSection'
 import {ButtonLink} from '../button'
 
 /**
@@ -18,7 +17,6 @@ function HeaderBig({
   button = {text: 'Button', link: '#'},
   noButton = false,
   children,
-  slopeSectionColor = 'text-gray-200',
 }) {
   return (
     <div className="h-[500px] relative flex content-center items-center justify-center pb-32 pt-16">
@@ -66,7 +64,6 @@ function HeaderBig({
           </div>
         </div>
       )}
-      {/* <SlopeDivSection color={slopeSectionColor} position="bottom" /> */}
     </div>
   )
 }

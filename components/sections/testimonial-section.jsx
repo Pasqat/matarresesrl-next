@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import {H2} from '../typography'
 import {Grid} from '../grid'
 import {ArrowButton} from '../arrow-button'
-import IconStar from '../../ui/IconStar'
+import IconStar from '../icons/star-icon'
 
 function TestimonialSection({testimonials, className, nested}) {
   // FIXME: scrolling is bugged after some click

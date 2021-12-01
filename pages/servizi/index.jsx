@@ -12,7 +12,6 @@ import {FeatureCard} from '../../components/feature-card'
 import {Grid} from '../../components/grid'
 import {MepaSection} from '../../components/sections/mepa-section'
 
-import {SlopeDivSection} from '../../ui/SlopeDivSection'
 import {BriefCaseIcon} from '../../components/icons/briefcase-icon'
 
 export default function Servizi() {
@@ -960,7 +959,6 @@ export default function Servizi() {
           </section>
 
           <section className="relative py-20" id="contatti">
-            <SlopeDivSection color="text-white" />
             <div className="container mb-12 mx-auto px-4">
               <div className="flex flex-wrap justify-center">
                 <div className="px-4 w-full md:w-3/4">

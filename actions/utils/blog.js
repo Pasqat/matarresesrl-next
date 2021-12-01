@@ -68,8 +68,6 @@ function filterPosts(posts, searchString) {
     individualWordResults = individualWordResults.filter(r =>
       searchResult.includes(r),
     )
-
-    console.log(searchResult, individualWordResults)
   }
   return Array.from(new Set([...allResults, ...individualWordResults]))
 }

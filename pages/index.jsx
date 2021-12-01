@@ -10,7 +10,6 @@ import CardBigImg from '../components/Card/CardBigImg'
 import ContactForm from '../components/Form/ContactForm'
 import FormModal from '../components/Form/FormModal'
 import Layout from '../components/Layout'
-import {SlopeDivSection} from '../ui/SlopeDivSection'
 import {LinkButton} from '../components/button'
 import {TestimonialSection} from '../components/sections/testimonial-section'
 import {MepaSection} from '../components/sections/mepa-section'
@@ -150,7 +149,6 @@ export default function Home() {
           </section>
 
           <section className="relative py-20">
-            <SlopeDivSection color="text-white" />
             <div className="container mx-auto px-4">
               <div className="flex flex-wrap items-center">
                 <div className="ml-auto mr-auto px-4 w-full md:w-5/12">
@@ -252,7 +250,6 @@ export default function Home() {
             id="#contatti"
           ></section>
           <section className="relative py-20">
-            <SlopeDivSection color="text-white" />
             <div className="container mb-12 mx-auto px-4">
               <div className="flex flex-wrap justify-center -mt-48 lg:-mt-64">
                 <div className="px-4 w-full md:w-3/4">
