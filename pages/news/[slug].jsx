@@ -48,7 +48,7 @@ export default function Post({postData, posts, img, svg}) {
             <div className="mx-auto py-4 max-w-7xl md:px-5 md:py-16">
               <main className="md:mb-24">
                 <div className="mb-8 sm:mx-0 md:mb-16">
-                  {img | svg ? (
+                  {img || svg ? (
                     <div className="aspect-w-2 aspect-h-1 relative">
                       <BlurringImage
                         img={img}
