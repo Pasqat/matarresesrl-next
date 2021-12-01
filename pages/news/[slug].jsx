@@ -48,17 +48,20 @@ export default function Post({postData, posts, img, svg}) {
             <div className="mx-auto py-4 max-w-7xl md:px-5 md:py-16">
               <main className="md:mb-24">
                 <div className="mb-8 sm:mx-0 md:mb-16">
-                  <div className="aspect-w-2 aspect-h-1 relative">
-                    <BlurringImage
-                      img={img}
-                      svg={svg}
-                      alt={`Immagine di copertina di ${postData.title}`}
-                      objectFit="cover"
-                      layout="fill"
-                    />
-                  </div>
+                  {img | svg ? (
+                    <div className="aspect-w-2 aspect-h-1 relative">
+                      <BlurringImage
+                        img={img}
+                        svg={svg}
+                        alt={`Immagine di copertina di ${postData.title}`}
+                        objectFit="cover"
+                        layout="fill"
+                      />
+                    </div>
+                  ) : (
+                    <Spacer size="base" />
+                  )}
                 </div>
-
                 <div className="relative lg:flex lg:flex-row">
                   <div className="relative z-2 -mt-12 p-10 max-w-4xl bg-white shadow-lg lg:-mt-56 lg:ml-24">
                     <div className="mb-6 text-lg">
@@ -105,8 +108,18 @@ export default function Post({postData, posts, img, svg}) {
 export async function getStaticProps({params, preview = false}) {
   const data = await getPostAndMorePosts(params.slug, preview)
 
+  if (!data?.post?.featuredImage?.node?.sourceUrl) {
+    return {
+      props: {
+        preview,
+        postData: data.post,
+        posts: data.posts,
+      },
+    }
+  }
+
   const {img, svg} = await getPlaiceholder(
-    data?.post?.featuredImage?.node?.sourceUrl,
+    data.post.featuredImage.node.sourceUrl,
     {size: 64},
   )
 
