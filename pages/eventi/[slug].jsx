@@ -16,7 +16,6 @@ import {formatDate, getHour} from '../../actions/utils/formatDate'
 
 export default function Events({event}) {
   const router = useRouter()
-  // const moreEvents = events?.edges
 
   if (!router.isFallback && !event.slug) {
     return <p>hmm...sembra ci sia un errore</p>
@@ -36,7 +35,7 @@ export default function Events({event}) {
 
   return (
     <Layout navbarTransparent>
-    {/* <Layout > */}
+      {/* <Layout > */}
       {router.isFallback ? (
         <>
           <Header href="/eventi">Eventi</Header>
@@ -61,7 +60,7 @@ export default function Events({event}) {
           <section className="relative pb-24 pt-16 w-full text-gray-800 bg-gray-100">
             <div className="container mx-auto px-4">
               <div className="relative lg:flex lg:flex-row">
-                <div className="relative flex flex-col -mt-80 lg:-mt-64 mb-6 w-full min-w-0 break-words bg-white shadow-lg">
+                <div className="relative flex flex-col -mt-80 mb-6 w-full min-w-0 break-words bg-white shadow-lg lg:-mt-64">
                   <div className="px-6">
                     <div className="flex flex-wrap justify-center mt-8">
                       <div className="flex items-center justify-center">
@@ -172,7 +171,7 @@ export async function getStaticProps({params}) {
     props: {
       event: data.event,
     },
-    revalidate: 60
+    revalidate: 60 * 60 * 24,
   }
 }
 

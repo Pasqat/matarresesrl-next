@@ -47,12 +47,14 @@ export default function Events({data}) {
             <Grid>
               <H3 className="col-span-full">In primo piano</H3>
               <div className="col-span-full mt-6">
-                {data.map((event, index) => (
-                  <React.Fragment key={event.id}>
-                    <RegistrationPanel event={event} />
-                    {index === data.length - 1 ? null : <Spacer size="2xs" />}
-                  </React.Fragment>
-                ))}
+                {data.map((event, index) =>
+                  event.featured ? (
+                    <React.Fragment key={event.id}>
+                      <RegistrationPanel event={event} />
+                      {index === data.length - 1 ? null : <Spacer size="2xs" />}
+                    </React.Fragment>
+                  ) : null,
+                )}
               </div>
             </Grid>
           ) : null}
