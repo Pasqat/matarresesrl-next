@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Head from 'next/head'
 
-import {getEvents} from '../../lib/event_api'
+import {getEvents} from '../../lib/query/event'
 // import {getMonth} from '../../actions/utils/formatDate'
 
 import Layout from '../../components/Layout'

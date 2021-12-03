@@ -11,7 +11,7 @@ import FormModal from '../../components/Form/FormModal'
 import SocialShareBar from '../../components/SocialShareBar/SocialShareBar'
 import {H2, H3} from '../../components/typography'
 
-import {getAllEventsWithSlug, getEvent} from '../../lib/event_api'
+import {getAllEventsWithSlug, getEvent} from '../../lib/query/event'
 import {formatDate, getHour} from '../../actions/utils/formatDate'
 
 export default function Events({event}) {
