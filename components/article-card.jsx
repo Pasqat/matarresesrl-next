@@ -17,7 +17,7 @@ function ArticleCard({article: {slug, title, date, featuredImage}, domain}) {
               <Image
                 className="rounded-lg"
                 objectFit="cover"
-                alt={`Immagine di copertino di ${title}`}
+                alt={featuredImage?.node.altText}
                 src={featuredImage?.node.sourceUrl}
                 layout="fill"
               />

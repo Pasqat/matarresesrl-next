@@ -16,7 +16,7 @@ import {Button} from '../../components/button'
 
 import {filterPosts} from '../../actions/utils/blog'
 import {formatDate} from '../../actions/utils/formatDate'
-import {getAllPosts} from '../../lib/post_api'
+import {getAllPosts} from '../../lib/query/post'
 import {getPlaiceholder} from 'plaiceholder'
 
 const PAGE_SIZE = 12

@@ -13,7 +13,7 @@ import {Spacer} from '../../components/spacer'
 
 import {H1} from '../../components/typography'
 
-import {getAllPostsWithSlug, getPostAndMorePosts} from '../../lib/post_api'
+import {getAllPostsWithSlug, getPostAndMorePosts} from '../../lib/query/post'
 
 export default function Post({postData, posts, img, svg}) {
   const router = useRouter()
