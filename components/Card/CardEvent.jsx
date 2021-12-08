@@ -16,7 +16,6 @@ function truncate(text, length) {
 export default function CardEvent({event}) {
   const startDate = formatDate(event.startDate)
   const endDate = formatDate(event.endDate)
-  console.log(event)
 
   return (
     <Link href={`/eventi/${event.slug}`}>
