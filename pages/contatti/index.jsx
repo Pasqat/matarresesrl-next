@@ -22,11 +22,11 @@ export default function Contatti() {
         <title>Cantatti | Matarrese srl</title>
       </Head>
       <Layout>
-        <Header>
-          Fatti ispirare dalle nostre soluzioni. Visita il nostro showroom!
-        </Header>
-        <section className="mb-24 text-gray-600 lg:mb-48">
-          <div className="md:min-h-[30rem] relative flex items-end justify-start mb-24 bg-gray-300 rounded-lg overflow-hidden lg:mb-48">
+        <section className="mb-24 mx-10vw text-gray-600 lg:mb-48">
+          <Header>
+            Fatti ispirare dalle nostre soluzioni. Visita il nostro showroom!
+          </Header>
+          <div className="min-h-[25rem] md:min-h-[30rem] relative flex items-end justify-start mb-24 bg-gray-300 rounded-lg overflow-hidden lg:mb-48">
             <Map />
             {/*
               <iframe
@@ -49,11 +49,11 @@ export default function Contatti() {
               leave="ease-in duration-200"
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
-              className="relative flex flex-wrap py-6 w-full bg-white rounded shadow-md"
+              className="relative flex flex-wrap m-8 py-6 w-full bg-white rounded shadow-md"
             >
               <div
                 className={clsx(
-                  !isOpen && 'hidden',
+                  {hidden: !isOpen},
                   'relative flex flex-wrap py-6 w-full bg-white rounded shadow-md',
                 )}
               >
@@ -106,7 +106,7 @@ export default function Contatti() {
               onClick={() => setIsOpen(!isOpen)}
               className={clsx(
                 isOpen && 'hidden',
-                'absolute flex items-center justify-center w-10 h-10 text-white text-2xl font-bold bg-yellow-500 rounded-full hover:shadow-lg shadow-md cursor-pointer ring-8 ring-black ring-opacity-50 ',
+                'absolute flex items-center justify-center m-8 w-10 h-10 text-white text-2xl font-bold bg-yellow-500 rounded-full hover:shadow-lg shadow-md cursor-pointer ring-8 ring-black ring-opacity-50 ',
               )}
             >
               +
