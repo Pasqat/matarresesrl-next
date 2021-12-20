@@ -19,7 +19,7 @@ export default function CardEvent({event}) {
 
   return (
     <Link href={`/eventi/${event.slug}`}>
-      <a className="focus-ring flex flex-col p-12 pr-16 w-full h-full bg-gray-100 dark:bg-gray-800 rounded-lg">
+      <a className="focus-ring flex flex-col p-12 pr-16 w-full h-full bg-gray-100 rounded-lg">
         {/* {event.featuredImage ? ( */}
         {/*   <CoverImage */}
         {/*     title={event.title} */}
