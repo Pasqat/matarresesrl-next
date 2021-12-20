@@ -14,7 +14,7 @@ function ButtonInner({children, variant = "primary", size}) {
     <>
       <div
         className={clsx(
-          'focus-ring ring-yellow-600 absolute inset-0 rounded-full opacity-100 disabled:opacity-50 transform transition',
+          'focus-ring ring-yellow-600 absolute inset-0 rounded-full opacity-100 disabled:opacity-50 transition',
           {
             'border-2 group-hover:border-transparent group-focus:border-transparent':
               variant === 'secondary' || variant === 'danger',

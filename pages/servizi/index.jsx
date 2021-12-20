@@ -959,7 +959,7 @@ export default function Servizi() {
             </div>
           </section>
 
-          <section className="mb-24 mx-10vw lg:mb-48">
+          <section className="mb-24 lg:mb-48">
             <MepaSection />
           </section>
 

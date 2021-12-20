@@ -28,7 +28,7 @@ export default function CardEvent({event}) {
         {/*   /> */}
         {/* ) : ( */}
         {/*   <div className="pb-[50%] relative flex items-center justify-center w-full text-center bg-gradient-to-tl from-red-600 to-yellow-400 overflow-hidden"> */}
-        {/*     <div className="bottom-[40%] scale-[3.5] md:scale-[5] absolute z-0 text-gray-100 font-serif text-7xl font-extrabold leading-tight opacity-30 select-none transform"> */}
+        {/*     <div className="bottom-[40%] scale-[3.5] md:scale-[5] absolute z-0 text-gray-100 font-serif text-7xl font-extrabold leading-tight opacity-30 select-none "> */}
         {/*       {getDayNumeric(startDate)} */}
         {/*     </div> */}
         {/*   </div> */}

@@ -30,7 +30,7 @@ export const ScrollToTop = () => {
         onClick={scrollToTop}
       >
         <svg
-          className="w-4 h-4 text-white group-hover:-translate-y-1 transform transition ease-in-out"
+          className="w-4 h-4 text-white group-hover:-translate-y-1 transition ease-in-out"
           viewBox="0 0 10 20"
           fill="none"
           strokeLinecap="round"

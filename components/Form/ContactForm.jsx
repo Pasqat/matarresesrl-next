@@ -104,7 +104,6 @@ export default function ContactForm({hasAutoFocus, featured}) {
             label="Nome e cognome"
             error={notification.isError ? notification.text : null}
             autoComplete="given-name"
-            defaultValue={name}
             required
             disabled={formButtonDisabled}
             value={name}
@@ -134,7 +133,6 @@ export default function ContactForm({hasAutoFocus, featured}) {
             label="Email"
             autoComplete="email"
             error={notification.isError ? notification.text : null}
-            defaultValue={email}
             required
             disabled={formButtonDisabled}
             value={email}

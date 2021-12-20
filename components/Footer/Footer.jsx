@@ -57,7 +57,7 @@ export default function Footer() {
               target="_blank"
             >
               <button
-                className="align-center text-pink-700 items-center justify-center mr-2 w-10 h-10 font-normal bg-white rounded-full outline-none focus:outline-none shadow-lg hover:shadow-md"
+                className="align-center text-red-700 items-center justify-center mr-2 w-10 h-10 font-normal bg-white rounded-full outline-none focus:outline-none shadow-lg hover:shadow-md"
                 type="button"
               >
                 <i className="fab fa-instagram"></i>

@@ -43,7 +43,7 @@ export default function Home() {
             <div className="container mx-auto px-4">
               <Transition as="div" className="flex flex-wrap" show={true}>
                 <Transition.Child
-                  enter="transition ease-in-out duration-[800ms] transform"
+                  enter="transition ease-in-out duration-[800ms]"
                   enterFrom="translate-y-full opacity-0"
                   enterTo="-translate-y-0"
                   className="md:w-4/12"
@@ -65,7 +65,7 @@ export default function Home() {
                   </CardSquareImg>
                 </Transition.Child>
                 <Transition.Child
-                  enter="transition ease-in-out duration-[1000ms] transform"
+                  enter="transition ease-in-out duration-[1000ms]"
                   enterFrom="translate-y-full opacity-0"
                   enterTo="-translate-y-0"
                   className="md:w-4/12"
@@ -87,7 +87,7 @@ export default function Home() {
                   </CardSquareImg>
                 </Transition.Child>
                 <Transition.Child
-                  enter="transition ease-in-out duration-[1200ms] transform"
+                  enter="transition ease-in-out duration-[1200ms]"
                   enterFrom="translate-y-full opacity-0"
                   enterTo="-translate-y-0"
                   className="md:w-4/12"
@@ -247,10 +247,10 @@ export default function Home() {
           </section>
 
           <section className="mb-24 lg:mb-48" id="#contatti">
-            <ContactForm />
+            <ContactForm featured />
           </section>
           {/* LOGO SECTION */}
-          <section className="relative py-20">
+          <section className="relative mb-24 lg:mb-48">
             <div className="container mb-12 mx-auto px-4">
               <H2 className="mb-8 text-center" variant="secondary">
                 I Nostri partner

@@ -12,7 +12,7 @@ export const rotationMap = {
 function ArrowIcon({direction, size = 32, className}) {
   return (
     <svg
-      className={clsx(className, 'transform', rotationMap[direction])}
+      className={clsx(className, rotationMap[direction])}
       width={size}
       height={size}
       viewBox="0 0 32 32"

@@ -3,23 +3,13 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
   // the NODE_ENV thing is for https://github.com/Acidic9/prettier-plugin-tailwind/issues/29
-  mode: process.env.NODE_ENV ? 'jit' : undefined,
-  purge: {
-    mode: 'layers',
-    enobled: process.env.NODE_ENV === 'production',
+  // mode: process.env.NODE_ENV ? 'jit' : undefined,
     content: [
-      './pages/**/*.(js|jsx|ts|tsx)',
-      './components/**/*.(js|jsx|ts|tsx)',
-      './ui/**/*.(js,jsx,ts,tsx)',
+      './pages/**/*.{js,jsx,ts,tsx}',
+      './components/**/*.{js,jsx,ts,tsx}',
+      // './ui/**/*.(js,jsx,ts,tsx)',
     ],
-  },
-  darkMode: false, // or 'media' or 'class'
   theme: {
-    gradientColorStops: theme => ({
-      ...theme('colors'),
-      primary: 'var(--color-yellow-500)',
-      secondary: 'var(--color-red-500)',
-    }),
     screens: {
       md: '640px',
       lg: '1024px',
@@ -27,7 +17,7 @@ module.exports = {
     },
     colors: {
       trasparent: 'transparent',
-      current: 'current',
+      current: 'currentColor',
       white: 'var(--color-white)',
       black: 'var(--color-black)',
 
@@ -58,6 +48,11 @@ module.exports = {
         600: 'var(--color-green-600)',
       },
     },
+    gradientColorStops: theme => ({
+      ...theme('colors'),
+      primary: 'var(--color-yellow-500)',
+      secondary: 'var(--color-red-500)',
+    }),
     extend: {
       gridTemplateRows: {
         'max-content': 'max-content',
@@ -295,32 +290,10 @@ module.exports = {
       },
     },
   },
-  variants: {
-    opacity: ['responsive', 'hover', 'focus', 'dark', 'group-hover'],
-    boxShadow: ['responsive', 'hover', 'focus', 'dark'],
-    animation: ['responsive', 'motion-safe', 'motion-reduce'],
-    transitionProperty: ['responsive', 'motion-safe', 'motion-reduce'],
-  },
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
     require('autoprefixer'),
-    require('@tailwindcss/forms'),
-    plugin(function ({addComponents, theme}) {
-      const screens = theme('screens', {})
-      addComponents([
-        {
-          '.columns': {columns: '1'},
-        },
-        {
-          [`@media (min-width: ${screens.lg})`]: {
-            '.columns': {
-              columns: '2',
-              columnGap: '4em',
-            },
-          },
-        },
-      ])
-    }),
+    // require('@tailwindcss/forms'),
   ],
 }

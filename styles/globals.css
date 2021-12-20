@@ -1,9 +1,6 @@
 :root {
   --color-black: #000;
   --color-white: #fff;
-  /* --color-blue-100: #e8f2ff; */
-  /* --color-blue-500: #4b96ff; */
-  /* --color-blueGray-500: #a9adc1; */
   --color-gray-100: #f7f7f7;
   --color-gray-200: #e6e9ee;
   --color-gray-300: #dde0e4;
@@ -45,12 +42,8 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  /* @apply bg-gradient-to-t from-red-400 to-yellow-500; */
   @apply bg-yellow-500;
-  /* background: rgba(230,151,23,1); */
-  /* border-radius: 10px; */
   box-shadow: 0 3px 9px 1px rgba(63, 34, 0, 0.534);
-  /* outline: 1px solid darkorange; */
 }
 
 a {

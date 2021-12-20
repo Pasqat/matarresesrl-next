@@ -33,7 +33,7 @@ export default function PrivacyPolicy() {
             <p className="py-4 text-center text-sm italic">
               Versione 1.0 del 01/01/2019
             </p>
-            <div className="md:columns mb-14">
+            <div className="md:columns-2 mb-14">
               Questa pagina descrive le modalità di trattamento dei dati
               personali degli utenti che consultano il Sito Web{' '}
               <Link href="/">
@@ -48,7 +48,7 @@ export default function PrivacyPolicy() {
                 <H3 className="pb-3">
                   Sezione 1 – Perché questa Privacy Policy?
                 </H3>
-                <div className="md:columns">
+                <div className="md:columns-2">
                   <p>
                     A partire dal 25 maggio 2018 in tutti gli Stati dell’Unione
                     europea si applicano nuove regole sulla privacy, imposte dal
@@ -109,7 +109,7 @@ export default function PrivacyPolicy() {
                   Sezione 2 – Siti Web ai quali si applica la presente Privacy
                   Policy.
                 </H3>
-                <div className="md:columns">
+                <div className="md:columns-2">
                   L’informativa è riferita solo al Sito{' '}
                   <Link href="/">
                     <a className="text-yellow-600">www.matarrese.it</a>
@@ -124,7 +124,7 @@ export default function PrivacyPolicy() {
                 <H3 className="pb-3">
                   Sezione 3 – Titolare del trattamento e contatti.
                 </H3>
-                <div className="md:columns">
+                <div className="md:columns-2">
                   Il Titolare del trattamento dei Suoi dati personali di cui
                   alla presente Informativa è <strong>Marattese s.r.l.</strong>,
                   accessibile per ogni comunicazione o richiesta in merito ai
@@ -169,7 +169,7 @@ export default function PrivacyPolicy() {
                   Sezione 4 – Responsabile della Protezione dei Dati Personali
                   (Data Protection Officer o DPO).
                 </H3>
-                <div className="md:columns">
+                <div className="md:columns-2">
                   Non ricorrendo i presupposti di Regolamento,{' '}
                   <strong>Marattese s.r.l.</strong>
                   non ha nominato il Responsabile della Protezione dei dati
@@ -182,7 +182,7 @@ export default function PrivacyPolicy() {
                   Sezione 5 – Tipologia di dati trattati, finalità e base
                   giuridica del trattamento.
                 </H3>
-                <div className="md:columns">
+                <div className="md:columns-2">
                   <ol className="pl-6 list-alpha">
                     <li className="pb-2">
                       <span className="text-gray-700 font-bold">
@@ -273,7 +273,7 @@ export default function PrivacyPolicy() {
                   Sezione 6 – Destinatari dei dati personali (anche individuati
                   per categorie).
                 </H3>
-                <div className="md:columns">
+                <div className="md:columns-2">
                   <em>Dati di navigazione</em>, i cui destinatari sono:
                   <ul className="pl-6 py-4 list-disc">
                     <li>
@@ -333,7 +333,7 @@ export default function PrivacyPolicy() {
                   Sezione 7 – Eventuale trasferimento dei dati verso Paesi
                   Terzi.
                 </H3>
-                <div className="md:columns">
+                <div className="md:columns-2">
                   I suoi dati personali sono trattati da{' '}
                   <strong>Marattese s.r.l.</strong>
                   all’interno dell’Unione Europea e non vengono diffusi. Se
@@ -359,7 +359,7 @@ export default function PrivacyPolicy() {
                 <H3 className="pb-3">
                   Sezione 8 – I Suoi diritti come interessato.
                 </H3>
-                <div className="md:columns">
+                <div className="md:columns-2">
                   La informiamo che Lei, in qualità di Interessato, può
                   esercitare tutti i diritti riconosciuti dal Regolamento UE
                   2016/679, artt. 15-21, in particolare: diritto di accesso;
@@ -392,7 +392,7 @@ export default function PrivacyPolicy() {
                   Sezione 9 – Diritto di proporre reclamo ad un’Autorità di
                   Controllo.
                 </H3>
-                <div className="md:columns">
+                <div className="md:columns-2">
                   Ogni interessato ha la facoltà, in caso di violazione
                   consumata a pregiudizio dei propri diritti e delle proprie
                   libertà, di proporre reclamo al Garante Privacy via web
@@ -405,7 +405,7 @@ export default function PrivacyPolicy() {
                   Sezione 10 – Profilazione e processi decisionali
                   automatizzati.
                 </H3>
-                <div className="md:columns">
+                <div className="md:columns-2">
                   <h4 className="italic">Dati di navigazione e Cookies.</h4> I
                   Suoi dati di navigazione non saranno utilizzati per scopi di
                   profilazione, né per attivare processi decisionali
@@ -431,7 +431,7 @@ export default function PrivacyPolicy() {
               </section>
               <section>
                 <H3 className="pb-3">Sez. 11 – Misure di sicurezza.</H3>{' '}
-                <div className="md:columns">
+                <div className="md:columns-2">
                   <strong>Marattese s.r.l.</strong> come Titolare del
                   trattamento dei Suoi dati adotta adeguate misure di sicurezza
                   tecniche e organizzative, in conformità a quanto disposto dal
@@ -441,7 +441,7 @@ export default function PrivacyPolicy() {
               </section>
               <section>
                 <H3 className="pb-3">Sez. 12 – Modalità di trattamento.</H3>
-                <div className="md:columns">
+                <div className="md:columns-2">
                   Il trattamento dei dati sarà effettuato in conformità con
                   quanto previsto dall’art. 32 del RGPD e avverrà mediante
                   l’ausilio di mezzi informatici e telematici, oltre che manuali
@@ -452,7 +452,7 @@ export default function PrivacyPolicy() {
                 <H3 className="pb-3">
                   Sez. 13 – Modifiche alla Privacy Policy.
                 </H3>
-                <div className="md:columns">
+                <div className="md:columns-2">
                   La presente Privacy Policy potrà essere modificata in
                   occasione di nuove funzionalità aggiunte al Sito{' '}
                   <Link href="/">

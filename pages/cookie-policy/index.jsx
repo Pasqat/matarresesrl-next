@@ -30,7 +30,7 @@ export default function CookiePolicy() {
             <div className="flex flex-col space-y-14">
               <section>
                 <H3 className="pb-3">Utilizzo dei Cookie</H3>
-                <div className="md:columns">
+                <div className="md:columns-2">
                   <p className="pb-2">
                     I cookie sono righe di testo che fungono da marcatori
                     informatici inviati da un server (in questo caso, quello del
@@ -64,7 +64,7 @@ export default function CookiePolicy() {
               </section>
               <section>
                 <H3 className="pb-3">Tipologie e gestione dei cookies</H3>
-                <div className="md:columns">
+                <div className="md:columns-2">
                   <p className="pb-2">
                     La presente Cookie Policy è relativa al sito{' '}
                     <Link href="/">
@@ -244,7 +244,7 @@ export default function CookiePolicy() {
                 <H3 className="pb-3">
                   Come modificare le impostazioni sui cookies
                 </H3>
-                <div className="md:columns">
+                <div className="md:columns-2">
                   <p className="pb-2">
                     La maggior parte dei browser accetta automaticamente i
                     cookies, ma l’utente normalmente può modificare le

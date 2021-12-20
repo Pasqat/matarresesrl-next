@@ -1,6 +1,5 @@
 import '../styles/globals.css'
 import '../styles/index.css'
-import '@fortawesome/fontawesome-free/css/all.min.css'
 import {ApolloProvider} from '@apollo/client'
 
 import ScrollToTop from '../components/ScrollToTop'

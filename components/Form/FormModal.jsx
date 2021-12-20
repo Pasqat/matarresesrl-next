@@ -194,7 +194,7 @@ export default function FormModal({
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="inline-block align-middle my-8 p-10 w-full max-w-md text-left bg-white rounded-2xl shadow-xl overflow-hidden transform transition-all">
+              <div className="inline-block align-middle my-8 p-10 w-full max-w-md text-left bg-white rounded-2xl shadow-xl overflow-hidden transition-all">
                 {type === 'contacts' ? (
                   <>
                     <Dialog.Title
