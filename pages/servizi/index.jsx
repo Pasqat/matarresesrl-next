@@ -132,8 +132,8 @@ export default function Servizi() {
             </Grid>
           </section>
 
-          <section className="mx-10vw mb-24 lg:mb-48">
-            <div className="max-w-7xl mx-auto">
+          <section className="mb-24 mx-10vw lg:mb-48">
+            <div className="mx-auto max-w-7xl">
               <H2 className="mb-3 lg:mt-6">
                 {`
                   Progettazione tecnica e realizzazione arredi
@@ -142,12 +142,354 @@ export default function Servizi() {
               <H2 as="p" variant="secondary" className="mb-14">
                 {`Grandi idee per prodotti di successo`}
               </H2>
-            <div className="flex items-start justify-between">
-              {/* TODO: extract this in a component? name it like StepBlock */}
-              <div className="sticky top-4 hidden w-full lg:block md:col-span-4">
-                <div className="lg:pr-16">
+              <div className="flex items-start justify-between">
+                {/* TODO: extract this in a component? name it like StepBlock */}
+                <div className="sticky top-4 hidden w-full md:col-span-4 lg:block">
+                  <div className="lg:pr-16">
+                    <div className="flex">
+                      <div className="flex flex-col items-center mr-4">
+                        <div>
+                          <div
+                            className={clsx(
+                              'flex items-center justify-center w-10 h-10 border rounded-full',
+                              positionReached(0) && 'bg-yellow-500',
+                            )}
+                          >
+                            <svg
+                              className={clsx(
+                                'w-4',
+                                positionReached(0)
+                                  ? 'text-white'
+                                  : 'text-gray-500',
+                              )}
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              viewBox="0 0 24 24"
+                            >
+                              <line
+                                fill="none"
+                                strokeMiterlimit="10"
+                                x1="12"
+                                y1="2"
+                                x2="12"
+                                y2="22"
+                              />
+                              <polyline
+                                fill="none"
+                                strokeMiterlimit="10"
+                                points="19,15 12,22 5,15"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div className="w-px h-full bg-gray-300" />
+                      </div>
+                      <div className="pb-8 pt-1">
+                        <Link href="#consulenza-tecnica">
+                          <a className="mb-2 text-lg font-bold">
+                            Consulenza Tecnica
+                          </a>
+                        </Link>
+                        <p className="text-gray-700">
+                          Lorem ipsum dolor sit amet.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex">
+                      <div className="flex flex-col items-center mr-4">
+                        <div>
+                          <div
+                            className={clsx(
+                              positionReached(18) && 'bg-yellow-500',
+                              'flex items-center justify-center w-10 h-10 border rounded-full',
+                            )}
+                          >
+                            <svg
+                              className={clsx(
+                                'w-4',
+                                positionReached(18)
+                                  ? 'text-white'
+                                  : 'text-gray-600',
+                              )}
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              viewBox="0 0 24 24"
+                            >
+                              <line
+                                fill="none"
+                                strokeMiterlimit="10"
+                                x1="12"
+                                y1="2"
+                                x2="12"
+                                y2="22"
+                              />
+                              <polyline
+                                fill="none"
+                                strokeMiterlimit="10"
+                                points="19,15 12,22 5,15"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div className="w-px h-full bg-gray-300" />
+                      </div>
+                      <div className="pb-8 pt-1">
+                        <Link href="#il-progetto">
+                          <a className="mb-2 text-lg font-bold">Il progetto</a>
+                        </Link>
+                        <p className="text-gray-700">
+                          Lorem ipsum dolor sit amet consectetur adipisicing.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex">
+                      <div className="flex flex-col items-center mr-4">
+                        <div>
+                          <div
+                            className={clsx(
+                              positionReached(33) && 'bg-yellow-500',
+                              'flex items-center justify-center w-10 h-10 border rounded-full',
+                            )}
+                          >
+                            <svg
+                              className={clsx(
+                                'w-4',
+                                positionReached(33)
+                                  ? 'text-white'
+                                  : 'text-gray-600',
+                              )}
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              viewBox="0 0 24 24"
+                            >
+                              <line
+                                fill="none"
+                                strokeMiterlimit="10"
+                                x1="12"
+                                y1="2"
+                                x2="12"
+                                y2="22"
+                              />
+                              <polyline
+                                fill="none"
+                                strokeMiterlimit="10"
+                                points="19,15 12,22 5,15"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div className="w-px h-full bg-gray-300" />
+                      </div>
+                      <div className="pb-8 pt-1">
+                        <Link href="#iter-operativo">
+                          <a className="mb-2 text-lg font-bold">
+                            Iter Operativo
+                          </a>
+                        </Link>
+                        <p className="text-gray-700">Lorem, ipsum dolor.</p>
+                      </div>
+                    </div>
+                    <div className="flex">
+                      <div className="flex flex-col items-center mr-4">
+                        <div>
+                          <div
+                            className={clsx(
+                              positionReached(45) && 'bg-yellow-500',
+                              'flex items-center justify-center w-10 h-10 border rounded-full',
+                            )}
+                          >
+                            <svg
+                              className={clsx(
+                                'w-4',
+                                positionReached(45)
+                                  ? 'text-white'
+                                  : 'text-gray-600',
+                              )}
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              viewBox="0 0 24 24"
+                            >
+                              <line
+                                fill="none"
+                                strokeMiterlimit="10"
+                                x1="12"
+                                y1="2"
+                                x2="12"
+                                y2="22"
+                              />
+                              <polyline
+                                fill="none"
+                                strokeMiterlimit="10"
+                                points="19,15 12,22 5,15"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div className="w-px h-full bg-gray-300" />
+                      </div>
+                      <div className="pb-8 pt-1">
+                        <Link href="#arredi-su-misura">
+                          <a className="mb-2 text-lg font-bold">
+                            Realizzazione arredi su misura
+                          </a>
+                        </Link>
+                        <p className="text-gray-700">
+                          Lorem ipsum dolor sit amet.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex">
+                      <div className="flex flex-col items-center mr-4">
+                        <div>
+                          <div
+                            className={clsx(
+                              positionReached(54) && 'bg-yellow-500',
+                              'flex items-center justify-center w-10 h-10 border rounded-full',
+                            )}
+                          >
+                            <svg
+                              className={clsx(
+                                'w-4',
+                                positionReached(54)
+                                  ? 'text-white'
+                                  : 'text-gray-600',
+                              )}
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              viewBox="0 0 24 24"
+                            >
+                              <line
+                                fill="none"
+                                strokeMiterlimit="10"
+                                x1="12"
+                                y1="2"
+                                x2="12"
+                                y2="22"
+                              />
+                              <polyline
+                                fill="none"
+                                strokeMiterlimit="10"
+                                points="19,15 12,22 5,15"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div className="w-px h-full bg-gray-300" />
+                      </div>
+                      <div className="pb-8 pt-1">
+                        <Link href="#coordinamento-lavori">
+                          <a className="mb-2 text-lg font-bold">
+                            Coordinamento lavori
+                          </a>
+                        </Link>
+                        <p className="text-gray-700">
+                          Lorem ipsum dolor sit amet.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex">
+                      <div className="flex flex-col items-center mr-4">
+                        <div>
+                          <div
+                            className={clsx(
+                              positionReached(60) && 'bg-yellow-500',
+                              'flex items-center justify-center w-10 h-10 border rounded-full',
+                            )}
+                          >
+                            <svg
+                              className={clsx(
+                                'w-4',
+                                positionReached(60)
+                                  ? 'text-white'
+                                  : 'text-gray-600',
+                              )}
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              viewBox="0 0 24 24"
+                            >
+                              <line
+                                fill="none"
+                                strokeMiterlimit="10"
+                                x1="12"
+                                y1="2"
+                                x2="12"
+                                y2="22"
+                              />
+                              <polyline
+                                fill="none"
+                                strokeMiterlimit="10"
+                                points="19,15 12,22 5,15"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div className="w-px h-full bg-gray-300" />
+                      </div>
+                      <div className="pb-8 pt-1">
+                        <Link href="#collaudo">
+                          <a className="mb-2 text-lg font-bold">Collaudo</a>
+                        </Link>
+                        <p className="text-gray-700">
+                          Lorem ipsum dolor sit amet.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex">
+                      <div className="flex flex-col items-center mr-4">
+                        <div>
+                          <div
+                            className={clsx(
+                              positionReached(64) && 'bg-green-500',
+                              'flex items-center justify-center w-10 h-10 border rounded-full',
+                            )}
+                          >
+                            <svg
+                              className={clsx(
+                                'w-4',
+                                positionReached(64)
+                                  ? 'text-white'
+                                  : 'text-gray-600',
+                              )}
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <polyline
+                                fill="none"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeMiterlimit="10"
+                                points="6,12 10,16 18,8"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="pt-1">
+                        <p className="mb-2 text-lg font-bold">
+                          Congratulazioni 🎉
+                        </p>
+                        <p className="text-gray-700" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="md:col-span-8" ref={divProgettazione}>
                   <div className="flex">
-                    <div className="flex flex-col items-center mr-4">
+                    <div className="flex flex-col items-center mr-4 lg:hidden">
                       <div>
                         <div
                           className={clsx(
@@ -186,19 +528,32 @@ export default function Servizi() {
                       </div>
                       <div className="w-px h-full bg-gray-300" />
                     </div>
-                    <div className="pb-8 pt-1">
-                      <Link href="#consulenza-tecnica">
-                        <a className="mb-2 text-lg font-bold">
-                          Consulenza Tecnica
-                        </a>
-                      </Link>
-                      <p className="text-gray-700">
-                        Lorem ipsum dolor sit amet.
-                      </p>
+                    <div className="bg-secondary mb-8 p-12 text-lg rounded-lg lg:mb-16">
+                      <H3 id="consulenza-tecnica">Consulenza tecnica</H3>
+                      <Paragraph className="mt-4 text-gray-500 leading-relaxed">
+                        Ascoltiamo le idee del cliente per trasformarle in{' '}
+                        <strong>progetti reali.</strong>
+                      </Paragraph>
+                      <Paragraph className="mt-4 text-gray-500 leading-relaxed">
+                        Per chi vuole <strong>aprire un ristorante</strong>, un{' '}
+                        <strong>bar</strong>, una <strong>gelateria</strong>,
+                        una
+                        <strong>pasticceria</strong>, una{' '}
+                        <strong>struttura ricettiva</strong>, lavoriamo per
+                        l’ottimizzazione degli spazi,al fine di renderli
+                        funzionali e fruibili, adattando prodotti e tecnologie a
+                        qualsiasi esigenza.
+                      </Paragraph>
+                      <Paragraph className="mt-4 text-gray-500 leading-relaxed">
+                        Dal laboratorio di 30 mq alla struttura ricettiva di
+                        7800 posti letto, traduciamo le idee in opere finite
+                        delineando soluzioni personalizzate, dall’
+                        <strong>interior design</strong> alle attrezzature.
+                      </Paragraph>
                     </div>
                   </div>
                   <div className="flex">
-                    <div className="flex flex-col items-center mr-4">
+                    <div className="flex flex-col items-center mr-4 lg:hidden">
                       <div>
                         <div
                           className={clsx(
@@ -237,17 +592,32 @@ export default function Servizi() {
                       </div>
                       <div className="w-px h-full bg-gray-300" />
                     </div>
-                    <div className="pb-8 pt-1">
-                      <Link href="#il-progetto">
-                        <a className="mb-2 text-lg font-bold">Il progetto</a>
-                      </Link>
-                      <p className="text-gray-700">
-                        Lorem ipsum dolor sit amet consectetur adipisicing.
+                    <div className="bg-secondary mb-8 p-12 text-lg rounded-lg lg:mb-16">
+                      <H3 id="il-progetto">Il progetto</H3>
+                      <p className="mt-4 text-gray-500 leading-relaxed">
+                        Realizziamo il complesso dei{' '}
+                        <strong>disegni, calcoli e relazioni</strong>
+                        che determinano le forme e le dimensioni dell’arredo
+                        completo.
+                      </p>
+                      <p className="mt-4 text-gray-500 leading-relaxed">
+                        Stabiliamo con il cliente i{' '}
+                        <strong>
+                          materiali, il modo di esecuzione, le esigenze
+                          costruttive
+                        </strong>
+                        , i reciproci impegni tra committente e costruttore, ne
+                        stimiamo il costo.
+                      </p>
+                      <p className="mt-4 text-gray-500 leading-relaxed">
+                        Elaboriamo un <strong>rendering progettuale</strong> per
+                        dare visione tridimensionale al cliente di come verrà
+                        eseguito il progetto prima di iniziare ad operare.
                       </p>
                     </div>
                   </div>
                   <div className="flex">
-                    <div className="flex flex-col items-center mr-4">
+                    <div className="flex flex-col items-center mr-4 lg:hidden">
                       <div>
                         <div
                           className={clsx(
@@ -286,15 +656,29 @@ export default function Servizi() {
                       </div>
                       <div className="w-px h-full bg-gray-300" />
                     </div>
-                    <div className="pb-8 pt-1">
-                      <Link href="#iter-operativo">
-                        <a className="mb-2 text-lg font-bold">Iter Operativo</a>
-                      </Link>
-                      <p className="text-gray-700">Lorem, ipsum dolor.</p>
+                    <div className="bg-secondary mb-8 p-12 text-lg rounded-lg lg:mb-16">
+                      <H3 id="iter-operativo">Iter Operativo</H3>
+                      <p className="mt-4 text-gray-500 leading-relaxed">
+                        L’iter operativo da seguire per aprire un ristorante,
+                        aprire un bar, aprire una gelateria, aprire una
+                        pasticceria e qualsiasi altra attività di ristorazione
+                        prevede:
+                      </p>
+                      <ol className="ml-2 text-gray-500 list-inside list-decimal">
+                        <li>Pianta dettagliata del locale o sopralluogo</li>
+                        <li>Verifica della destinazione d’uso del locale</li>
+                        <li>
+                          Incontro con il tecnico sanitario per il rilascio
+                          delle autorizzazioni
+                        </li>
+                        <li>
+                          Appuntamento con i nostri esperti per la progettazione
+                        </li>
+                      </ol>
                     </div>
                   </div>
                   <div className="flex">
-                    <div className="flex flex-col items-center mr-4">
+                    <div className="flex flex-col items-center mr-4 lg:hidden">
                       <div>
                         <div
                           className={clsx(
@@ -333,19 +717,27 @@ export default function Servizi() {
                       </div>
                       <div className="w-px h-full bg-gray-300" />
                     </div>
-                    <div className="pb-8 pt-1">
-                      <Link href="#arredi-su-misura">
-                        <a className="mb-2 text-lg font-bold">
-                          Realizzazione arredi su misura
-                        </a>
-                      </Link>
-                      <p className="text-gray-700">
-                        Lorem ipsum dolor sit amet.
+                    <div className="bg-secondary mb-8 p-12 text-lg rounded-lg lg:mb-16">
+                      <H3 id="arredi-su-misura">
+                        Realizzazione Arredi su misura
+                      </H3>
+                      <p className="mt-4 text-gray-500 leading-relaxed">
+                        Per <strong>l’arredamento di ogni struttura</strong>{' '}
+                        della ristorazione e alberghiera, nel nostro laboratorio
+                        tecnico un team di esperti sviluppa il progetto ideato
+                        da professionisti dell’<strong>interior design.</strong>
+                      </p>
+                      <p className="mt-4 text-gray-500 leading-relaxed">
+                        Il cliente ha la possibilità di seguire l’iter dei
+                        lavori mentre l’idea diventa realtà e vedere così
+                        realizzato secondo i suoi desideri il proprio bar,
+                        ristorante, pasticceria, gelateria, attività
+                        alberghiera.
                       </p>
                     </div>
                   </div>
                   <div className="flex">
-                    <div className="flex flex-col items-center mr-4">
+                    <div className="flex flex-col items-center mr-4 lg:hidden">
                       <div>
                         <div
                           className={clsx(
@@ -384,19 +776,19 @@ export default function Servizi() {
                       </div>
                       <div className="w-px h-full bg-gray-300" />
                     </div>
-                    <div className="pb-8 pt-1">
-                      <Link href="#coordinamento-lavori">
-                        <a className="mb-2 text-lg font-bold">
-                          Coordinamento lavori
-                        </a>
-                      </Link>
-                      <p className="text-gray-700">
-                        Lorem ipsum dolor sit amet.
+                    <div className="bg-secondary mb-8 p-12 text-lg rounded-lg lg:mb-16">
+                      <H3 id="coordinamento-lavori">Coordinamento lavori</H3>
+                      <p className="mt-4 text-gray-500 leading-relaxed">
+                        La realizzazione di un progetto è seguita costantemente
+                        dai tecnici supervisori che si occupano del
+                        coordinamento dei lavori affinché siano rispettati tutti
+                        i particolari nella fase di{' '}
+                        <strong>produzione di ogni elemento.</strong>
                       </p>
                     </div>
                   </div>
                   <div className="flex">
-                    <div className="flex flex-col items-center mr-4">
+                    <div className="flex flex-col items-center mr-4 lg:hidden">
                       <div>
                         <div
                           className={clsx(
@@ -435,16 +827,16 @@ export default function Servizi() {
                       </div>
                       <div className="w-px h-full bg-gray-300" />
                     </div>
-                    <div className="pb-8 pt-1">
-                      <Link href="#collaudo">
-                        <a className="mb-2 text-lg font-bold">Collaudo</a>
-                      </Link>
-                      <p className="text-gray-700">
-                        Lorem ipsum dolor sit amet.
+                    <div className="bg-secondary mb-8 p-12 text-lg rounded-lg lg:mb-16">
+                      <H3 id="collaudo">Collaudo</H3>
+                      <p className="mt-4 text-gray-500 leading-relaxed">
+                        L’arredo viene consegnato e collocato nella sua
+                        destinazione operativa e collaudato prima dell’apertura
+                        dell’attività
                       </p>
                     </div>
                   </div>
-                  <div className="flex">
+                  <div className="flex lg:hidden">
                     <div className="flex flex-col items-center mr-4">
                       <div>
                         <div
@@ -476,399 +868,12 @@ export default function Servizi() {
                       </div>
                     </div>
                     <div className="pt-1">
-                      <p className="mb-2 text-lg font-bold">
-                        Congratulazioni 🎉
-                      </p>
-                      <p className="text-gray-700" />
+                      <p className="text-2xl font-bold">Congratulazioni 🎉</p>
                     </div>
                   </div>
                 </div>
               </div>
-
-              <div className="md:col-span-8" ref={divProgettazione}>
-                <div className="flex">
-                  <div className="flex flex-col items-center mr-4 lg:hidden">
-                    <div>
-                      <div
-                        className={clsx(
-                          'flex items-center justify-center w-10 h-10 border rounded-full',
-                          positionReached(0) && 'bg-yellow-500',
-                        )}
-                      >
-                        <svg
-                          className={clsx(
-                            'w-4',
-                            positionReached(0) ? 'text-white' : 'text-gray-500',
-                          )}
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          viewBox="0 0 24 24"
-                        >
-                          <line
-                            fill="none"
-                            strokeMiterlimit="10"
-                            x1="12"
-                            y1="2"
-                            x2="12"
-                            y2="22"
-                          />
-                          <polyline
-                            fill="none"
-                            strokeMiterlimit="10"
-                            points="19,15 12,22 5,15"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                    <div className="w-px h-full bg-gray-300" />
-                  </div>
-                  <div className="text-lg bg-secondary rounded-lg p-12 mb-8 lg:mb-16">
-                    <H3 id="consulenza-tecnica">Consulenza tecnica</H3>
-                    <Paragraph className="mt-4 text-gray-500 leading-relaxed">
-                      Ascoltiamo le idee del cliente per trasformarle in{' '}
-                      <strong>progetti reali.</strong>
-                    </Paragraph>
-                    <Paragraph className="mt-4 text-gray-500 leading-relaxed">
-                      Per chi vuole <strong>aprire un ristorante</strong>, un{' '}
-                      <strong>bar</strong>, una <strong>gelateria</strong>, una
-                      <strong>pasticceria</strong>, una{' '}
-                      <strong>struttura ricettiva</strong>, lavoriamo per
-                      l’ottimizzazione degli spazi,al fine di renderli
-                      funzionali e fruibili, adattando prodotti e tecnologie a
-                      qualsiasi esigenza.
-                    </Paragraph>
-                    <Paragraph className="mt-4 text-gray-500 leading-relaxed">
-                      Dal laboratorio di 30 mq alla struttura ricettiva di 7800
-                      posti letto, traduciamo le idee in opere finite delineando
-                      soluzioni personalizzate, dall’
-                      <strong>interior design</strong> alle attrezzature.
-                    </Paragraph>
-                  </div>
-                </div>
-                <div className="flex">
-                  <div className="flex flex-col items-center mr-4 lg:hidden">
-                    <div>
-                      <div
-                        className={clsx(
-                          positionReached(18) && 'bg-yellow-500',
-                          'flex items-center justify-center w-10 h-10 border rounded-full',
-                        )}
-                      >
-                        <svg
-                          className={clsx(
-                            'w-4',
-                            positionReached(18)
-                              ? 'text-white'
-                              : 'text-gray-600',
-                          )}
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          viewBox="0 0 24 24"
-                        >
-                          <line
-                            fill="none"
-                            strokeMiterlimit="10"
-                            x1="12"
-                            y1="2"
-                            x2="12"
-                            y2="22"
-                          />
-                          <polyline
-                            fill="none"
-                            strokeMiterlimit="10"
-                            points="19,15 12,22 5,15"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                    <div className="w-px h-full bg-gray-300" />
-                  </div>
-                  <div className="text-lg bg-secondary rounded-lg p-12 mb-8 lg:mb-16">
-                    <H3 id="il-progetto">Il progetto</H3>
-                    <p className="mt-4 text-gray-500 leading-relaxed">
-                      Realizziamo il complesso dei{' '}
-                      <strong>disegni, calcoli e relazioni</strong>
-                      che determinano le forme e le dimensioni dell’arredo
-                      completo.
-                    </p>
-                    <p className="mt-4 text-gray-500 leading-relaxed">
-                      Stabiliamo con il cliente i{' '}
-                      <strong>
-                        materiali, il modo di esecuzione, le esigenze
-                        costruttive
-                      </strong>
-                      , i reciproci impegni tra committente e costruttore, ne
-                      stimiamo il costo.
-                    </p>
-                    <p className="mt-4 text-gray-500 leading-relaxed">
-                      Elaboriamo un <strong>rendering progettuale</strong> per
-                      dare visione tridimensionale al cliente di come verrà
-                      eseguito il progetto prima di iniziare ad operare.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex">
-                  <div className="flex flex-col items-center mr-4 lg:hidden">
-                    <div>
-                      <div
-                        className={clsx(
-                          positionReached(33) && 'bg-yellow-500',
-                          'flex items-center justify-center w-10 h-10 border rounded-full',
-                        )}
-                      >
-                        <svg
-                          className={clsx(
-                            'w-4',
-                            positionReached(33)
-                              ? 'text-white'
-                              : 'text-gray-600',
-                          )}
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          viewBox="0 0 24 24"
-                        >
-                          <line
-                            fill="none"
-                            strokeMiterlimit="10"
-                            x1="12"
-                            y1="2"
-                            x2="12"
-                            y2="22"
-                          />
-                          <polyline
-                            fill="none"
-                            strokeMiterlimit="10"
-                            points="19,15 12,22 5,15"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                    <div className="w-px h-full bg-gray-300" />
-                  </div>
-                  <div className="text-lg bg-secondary rounded-lg p-12 mb-8 lg:mb-16">
-                    <H3 id="iter-operativo">Iter Operativo</H3>
-                    <p className="mt-4 text-gray-500 leading-relaxed">
-                      L’iter operativo da seguire per aprire un ristorante,
-                      aprire un bar, aprire una gelateria, aprire una
-                      pasticceria e qualsiasi altra attività di ristorazione
-                      prevede:
-                    </p>
-                    <ol className="ml-2 text-gray-500 list-inside list-decimal">
-                      <li>Pianta dettagliata del locale o sopralluogo</li>
-                      <li>Verifica della destinazione d’uso del locale</li>
-                      <li>
-                        Incontro con il tecnico sanitario per il rilascio delle
-                        autorizzazioni
-                      </li>
-                      <li>
-                        Appuntamento con i nostri esperti per la progettazione
-                      </li>
-                    </ol>
-                  </div>
-                </div>
-                <div className="flex">
-                  <div className="flex flex-col items-center mr-4 lg:hidden">
-                    <div>
-                      <div
-                        className={clsx(
-                          positionReached(45) && 'bg-yellow-500',
-                          'flex items-center justify-center w-10 h-10 border rounded-full',
-                        )}
-                      >
-                        <svg
-                          className={clsx(
-                            'w-4',
-                            positionReached(45)
-                              ? 'text-white'
-                              : 'text-gray-600',
-                          )}
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          viewBox="0 0 24 24"
-                        >
-                          <line
-                            fill="none"
-                            strokeMiterlimit="10"
-                            x1="12"
-                            y1="2"
-                            x2="12"
-                            y2="22"
-                          />
-                          <polyline
-                            fill="none"
-                            strokeMiterlimit="10"
-                            points="19,15 12,22 5,15"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                    <div className="w-px h-full bg-gray-300" />
-                  </div>
-                  <div className="text-lg bg-secondary rounded-lg p-12 mb-8 lg:mb-16">
-                    <H3 id="arredi-su-misura">
-                      Realizzazione Arredi su misura
-                    </H3>
-                    <p className="mt-4 text-gray-500 leading-relaxed">
-                      Per <strong>l’arredamento di ogni struttura</strong> della
-                      ristorazione e alberghiera, nel nostro laboratorio tecnico
-                      un team di esperti sviluppa il progetto ideato da
-                      professionisti dell’<strong>interior design.</strong>
-                    </p>
-                    <p className="mt-4 text-gray-500 leading-relaxed">
-                      Il cliente ha la possibilità di seguire l’iter dei lavori
-                      mentre l’idea diventa realtà e vedere così realizzato
-                      secondo i suoi desideri il proprio bar, ristorante,
-                      pasticceria, gelateria, attività alberghiera.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex">
-                  <div className="flex flex-col items-center mr-4 lg:hidden">
-                    <div>
-                      <div
-                        className={clsx(
-                          positionReached(54) && 'bg-yellow-500',
-                          'flex items-center justify-center w-10 h-10 border rounded-full',
-                        )}
-                      >
-                        <svg
-                          className={clsx(
-                            'w-4',
-                            positionReached(54)
-                              ? 'text-white'
-                              : 'text-gray-600',
-                          )}
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          viewBox="0 0 24 24"
-                        >
-                          <line
-                            fill="none"
-                            strokeMiterlimit="10"
-                            x1="12"
-                            y1="2"
-                            x2="12"
-                            y2="22"
-                          />
-                          <polyline
-                            fill="none"
-                            strokeMiterlimit="10"
-                            points="19,15 12,22 5,15"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                    <div className="w-px h-full bg-gray-300" />
-                  </div>
-                  <div className="text-lg bg-secondary rounded-lg p-12 mb-8 lg:mb-16">
-                    <H3 id="coordinamento-lavori">Coordinamento lavori</H3>
-                    <p className="mt-4 text-gray-500 leading-relaxed">
-                      La realizzazione di un progetto è seguita costantemente
-                      dai tecnici supervisori che si occupano del coordinamento
-                      dei lavori affinché siano rispettati tutti i particolari
-                      nella fase di{' '}
-                      <strong>produzione di ogni elemento.</strong>
-                    </p>
-                  </div>
-                </div>
-                <div className="flex">
-                  <div className="flex flex-col items-center mr-4 lg:hidden">
-                    <div>
-                      <div
-                        className={clsx(
-                          positionReached(60) && 'bg-yellow-500',
-                          'flex items-center justify-center w-10 h-10 border rounded-full',
-                        )}
-                      >
-                        <svg
-                          className={clsx(
-                            'w-4',
-                            positionReached(60)
-                              ? 'text-white'
-                              : 'text-gray-600',
-                          )}
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          viewBox="0 0 24 24"
-                        >
-                          <line
-                            fill="none"
-                            strokeMiterlimit="10"
-                            x1="12"
-                            y1="2"
-                            x2="12"
-                            y2="22"
-                          />
-                          <polyline
-                            fill="none"
-                            strokeMiterlimit="10"
-                            points="19,15 12,22 5,15"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                    <div className="w-px h-full bg-gray-300" />
-                  </div>
-                  <div className="text-lg bg-secondary rounded-lg p-12 mb-8 lg:mb-16">
-                    <H3 id="collaudo">Collaudo</H3>
-                    <p className="mt-4 text-gray-500 leading-relaxed">
-                      L’arredo viene consegnato e collocato nella sua
-                      destinazione operativa e collaudato prima dell’apertura
-                      dell’attività
-                    </p>
-                  </div>
-                </div>
-                <div className="flex lg:hidden">
-                  <div className="flex flex-col items-center mr-4">
-                    <div>
-                      <div
-                        className={clsx(
-                          positionReached(64) && 'bg-green-500',
-                          'flex items-center justify-center w-10 h-10 border rounded-full',
-                        )}
-                      >
-                        <svg
-                          className={clsx(
-                            'w-4',
-                            positionReached(64)
-                              ? 'text-white'
-                              : 'text-gray-600',
-                          )}
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <polyline
-                            fill="none"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeMiterlimit="10"
-                            points="6,12 10,16 18,8"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="pt-1">
-                    <p className="text-2xl font-bold">Congratulazioni 🎉</p>
-                  </div>
-                </div>
-              </div>
             </div>
-            </div>
-
           </section>
 
           <section>
@@ -935,8 +940,8 @@ export default function Servizi() {
             </Grid>
           </section>
 
-          <section className="w-full mb-24 lg:mb-48 bg-gray-900 py-12">
-            <div className="flex flex-wrap mx-10vw justify-center text-center">
+          <section className="mb-24 py-12 w-full bg-gray-900 lg:mb-48">
+            <div className="flex flex-wrap justify-center mx-10vw text-center">
               <div className="px-4 w-full lg:w-9/12">
                 <H2 className="text-center" variant="accent">
                   Formazione
@@ -954,20 +959,12 @@ export default function Servizi() {
             </div>
           </section>
 
-          <section className="mx-10vw mb-24 lg:mb-48">
+          <section className="mb-24 mx-10vw lg:mb-48">
             <MepaSection />
           </section>
 
-          <section className="relative py-20" id="contatti">
-            <div className="container mb-12 mx-auto px-4">
-              <div className="flex flex-wrap justify-center">
-                <div className="px-4 w-full md:w-3/4">
-                  <div className="relative flex flex-col mb-6 w-full min-w-0 break-words bg-gray-200 rounded-lg shadow-lg">
-                    <ContactForm />
-                  </div>
-                </div>
-              </div>
-            </div>
+          <section className="mb-24 lg:mb-48" id="contatti">
+            <ContactForm />
           </section>
         </main>
       </Layout>

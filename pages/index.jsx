@@ -148,7 +148,7 @@ export default function Home() {
             </div>
           </section>
 
-          <section className="relative py-20">
+          <section className="mb-24 lg:mb-48">
             <div className="container mx-auto px-4">
               <div className="flex flex-wrap items-center">
                 <div className="ml-auto mr-auto px-4 w-full md:w-5/12">
@@ -239,26 +239,15 @@ export default function Home() {
           </section>
 
           <section className="mb-24 lg:mb-48">
-                <TestimonialSection testimonials={testimonials} />
+            <MepaSection />
           </section>
 
           <section className="mb-24 lg:mb-48">
-            <MepaSection />
+            <TestimonialSection testimonials={testimonials} />
           </section>
-          <section
-            className="relative block py-24 bg-gray-800 lg:pt-0"
-            id="#contatti"
-          ></section>
-          <section className="relative py-20">
-            <div className="container mb-12 mx-auto px-4">
-              <div className="flex flex-wrap justify-center -mt-48 lg:-mt-64">
-                <div className="px-4 w-full md:w-3/4">
-                  <div className="relative flex flex-col mb-6 w-full min-w-0 break-words bg-gray-200 rounded-lg shadow-lg">
-                    <ContactForm />
-                  </div>
-                </div>
-              </div>
-            </div>
+
+          <section className="mb-24 lg:mb-48" id="#contatti">
+            <ContactForm />
           </section>
           {/* LOGO SECTION */}
           <section className="relative py-20">

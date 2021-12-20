@@ -15,7 +15,7 @@ import {BriefCaseIcon} from '../../components/icons/briefcase-icon'
 import testimonials from '../../data/testimonials'
 import cotturaProdotti from '../../public/img/cottura-prodotti.png'
 import arredoSuMisura from '../../public/img/arredo-su-misura-prodotti.jpg'
-            // image="/img/climatizzazione-prodotti.jpg"
+// image="/img/climatizzazione-prodotti.jpg"
 
 export default function Home() {
   return (
@@ -247,50 +247,50 @@ export default function Home() {
             </Grid>
           </section>
 
-          <section className="relative bg-gray-800 mb-24 lg:mb-48" id="igiene">
-              <Grid className="py-24">
-                <div className="col-span-full">
-                  <H2 className="mb-3 lg:mt-6 text-gray-100">{`Negli ultimi anni l'igiene ha assunto sempre più importanza`}</H2>
-                  <H2 as="p" className="mb-14 text-gray-300">
-                    {`Possiamo aiutarti a mantenere i tuoi ambienti puliti ed igenizzati`}
-                  </H2>
-                </div>
+          <section className="relative mb-24 bg-gray-800 lg:mb-48" id="igiene">
+            <Grid className="py-24">
+              <div className="col-span-full">
+                <H2 className="mb-3 text-gray-100 lg:mt-6">{`Negli ultimi anni l'igiene ha assunto sempre più importanza`}</H2>
+                <H2 as="p" className="mb-14 text-gray-300">
+                  {`Possiamo aiutarti a mantenere i tuoi ambienti puliti ed igenizzati`}
+                </H2>
+              </div>
 
-                <div className="col-span-full mb-12">
-                  <Grid rowGap nested>
-                    <div className="col-span-full lg:col-span-4">
-                      <FeatureCard
-                        title="Sanificazione"
-                        description="Aprire un'attività, rinnovare un locale, avere una
+              <div className="col-span-full mb-12">
+                <Grid rowGap nested>
+                  <div className="col-span-full lg:col-span-4">
+                    <FeatureCard
+                      title="Sanificazione"
+                      description="Aprire un'attività, rinnovare un locale, avere una
                       guida per migliorare il proprio lavoro: Matarrese srl è la
                       soluzione adatta alle."
-                        url="/prodotti/cottura"
-                        urlText="Scopri di più"
-                        icon={<BriefCaseIcon size={48} />}
-                      />
-                    </div>
-                    <div className="col-span-full lg:col-span-4">
-                      <FeatureCard
-                        title="Lavaggio"
-                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                        url="/prodotti/attrezzature"
-                        urlText="Scopri di più"
-                        icon={<BriefCaseIcon size={48} />}
-                      />
-                    </div>
-                    <div className="col-span-full lg:col-span-4">
-                      <FeatureCard
-                        title="Lavanderia"
-                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vehicula quam ipsum, at aliquam tellus mollis
+                      url="/prodotti/cottura"
+                      urlText="Scopri di più"
+                      icon={<BriefCaseIcon size={48} />}
+                    />
+                  </div>
+                  <div className="col-span-full lg:col-span-4">
+                    <FeatureCard
+                      title="Lavaggio"
+                      description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                      url="/prodotti/attrezzature"
+                      urlText="Scopri di più"
+                      icon={<BriefCaseIcon size={48} />}
+                    />
+                  </div>
+                  <div className="col-span-full lg:col-span-4">
+                    <FeatureCard
+                      title="Lavanderia"
+                      description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vehicula quam ipsum, at aliquam tellus mollis
                     varius."
-                        url="/prodotti/macchinari-agroalimentare"
-                        urlText="Scopri di più"
-                        icon={<BriefCaseIcon size={48} />}
-                      />
-                    </div>
-                  </Grid>
-                </div>
-              </Grid>
+                      url="/prodotti/macchinari-agroalimentare"
+                      urlText="Scopri di più"
+                      icon={<BriefCaseIcon size={48} />}
+                    />
+                  </div>
+                </Grid>
+              </div>
+            </Grid>
           </section>
 
           <div className="mb-24 lg:mb-48">
@@ -301,16 +301,8 @@ export default function Home() {
               className="mb-24 lg:mb-64"
             />
           </div>
-          <section className="relative" id="contatti">
-            <div className="container mb-12 mx-auto px-4">
-              <div className="flex flex-wrap justify-center">
-                <div className="px-4 w-full md:w-3/4">
-                  <div className="relative flex flex-col mb-6 w-full min-w-0 break-words bg-gray-200 rounded-lg shadow-lg">
-                    <ContactForm />
-                  </div>
-                </div>
-              </div>
-            </div>
+          <section className="mb-24 lg:mb-48" id="contatti">
+            <ContactForm featured />
           </section>
         </main>
       </Layout>
