@@ -6,6 +6,9 @@ import logoAliGroup from '../../public/img/logos/Ali_Group_logo.png'
 
 import {H4} from '../typography'
 import {Grid} from '../grid'
+import { FacebookIcon } from '../icons/facebook-icon'
+import { LinkedInIcon } from '../icons/linkedin-icon'
+import { InstagramIcon } from '../icons/instagram-icon'
 
 export default function Footer() {
   return (
@@ -33,10 +36,11 @@ export default function Footer() {
               rel="noreferrer"
             >
               <button
-                className="align-center text-blue-600 items-center justify-center mr-2 w-10 h-10 font-normal bg-white rounded-full outline-none focus:outline-none shadow-lg hover:shadow-md"
+                className="mr-2 w-10 h-10 font-normal"
                 type="button"
               >
-                <i className="fab fa-facebook-square"></i>
+                <FacebookIcon size='30' />
+                {/* <i className="fab fa-facebook-square"></i> */}
               </button>
             </a>
             <a
@@ -45,10 +49,10 @@ export default function Footer() {
               target="_blank"
             >
               <button
-                className="align-center text-blue-500 items-center justify-center mr-2 w-10 h-10 font-normal bg-white rounded-full outline-none focus:outline-none shadow-lg hover:shadow-md"
+                className="mr-2 w-10 h-10 font-normal"
                 type="button"
               >
-                <i className="fab fa-linkedin"></i>
+                <LinkedInIcon size='30'/>
               </button>
             </a>
             <a
@@ -57,10 +61,10 @@ export default function Footer() {
               target="_blank"
             >
               <button
-                className="align-center text-red-700 items-center justify-center mr-2 w-10 h-10 font-normal bg-white rounded-full outline-none focus:outline-none shadow-lg hover:shadow-md"
+                className="mr-2 w-10 h-10 font-normal"
                 type="button"
               >
-                <i className="fab fa-instagram"></i>
+    <InstagramIcon size='30' />
               </button>
             </a>
           </div>

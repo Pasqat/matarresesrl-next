@@ -1,20 +1,23 @@
-import {Disclosure} from '@headlessui/react'
-import {MenuIcon, XIcon, ChatIcon} from '@heroicons/react/outline'
+import { Disclosure } from '@headlessui/react'
+import { MenuIcon, XIcon, ChatIcon } from '@heroicons/react/outline'
 import Image from 'next/image'
 
 import Link from 'next/link'
 import clsx from 'clsx'
-import {ButtonLink} from '../button'
+import { ButtonLink } from '../button'
+import { LinkedInIcon } from '../icons/linkedin-icon'
+import { InstagramIcon } from '../icons/instagram-icon'
+import { FacebookIcon } from '../icons/facebook-icon'
 
 let navigation = [
-  {name: 'Home', href: '/', current: false},
-  {name: 'Prodotti', href: '/prodotti', current: false},
-  {name: 'Servizi', href: '/servizi', current: false},
-  {name: 'Eventi', href: '/eventi', current: false},
-  {name: 'News', href: '/news', current: false},
+  { name: 'Home', href: '/', current: false },
+  { name: 'Prodotti', href: '/prodotti', current: false },
+  { name: 'Servizi', href: '/servizi', current: false },
+  { name: 'Eventi', href: '/eventi', current: false },
+  { name: 'News', href: '/news', current: false },
 ]
 
-export default function Navbar({isTransparent}) {
+export default function Navbar({ isTransparent }) {
   return (
     <Disclosure
       as="div"
@@ -24,7 +27,7 @@ export default function Navbar({isTransparent}) {
           : 'sticky top-0 z-50 bg-gray-900 shadow-md',
       )}
     >
-      {({open}) => (
+      {({ open }) => (
         <>
           <div className={clsx('sm:px-6', open && 'bg-gray-900')}>
             <nav className="flex h-16 mx-10vw">
@@ -64,7 +67,9 @@ export default function Navbar({isTransparent}) {
                       href="https://www.facebook.com/matarresesrl"
                       target="_blank"
                       rel="noreferrer"
+        className='text-gray-100'
                     >
+        <FacebookIcon/>
                       <i className="fab fa-facebook text-gray-100"></i>
                     </a>
 
@@ -72,7 +77,9 @@ export default function Navbar({isTransparent}) {
                       href="https://www.linkedin.com/company/matarrese-srl/"
                       target="_blank"
                       rel="noreferrer"
+                      className='text-gray-100'
                     >
+                      <LinkedInIcon />
                       <i className="fab fa-linkedin text-gray-100"></i>
                     </a>
 
@@ -80,7 +87,9 @@ export default function Navbar({isTransparent}) {
                       href="https://www.instagram.com/matarrese.srl/"
                       target="_blank"
                       rel="noreferrer"
+                      className='text-gray-100'
                     >
+                      <InstagramIcon />
                       <i className="fab fa-instagram text-gray-100"></i>
                     </a>
                     <Link href="/contatti" passHref>
