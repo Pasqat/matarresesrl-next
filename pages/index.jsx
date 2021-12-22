@@ -2,7 +2,6 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 import {HeartIcon, ShoppingCartIcon} from '@heroicons/react/outline'
-import {Transition} from '@headlessui/react'
 
 import HeaderBig from '../components/Header/HeaderBig'
 import CardSquareImg from '../components/Card/CardSquareImg'
@@ -19,7 +18,11 @@ import {H2, H3, H5} from '../components/typography'
 
 import testimonials from '../data/testimonials'
 
+
 export default function Home() {
+
+
+
   return (
     <div>
       <Head>
@@ -41,11 +44,8 @@ export default function Home() {
           />
           <section className="-mt-24 pb-20 bg-gray-200">
             <div className="container mx-auto px-4">
-              <Transition as="div" className="flex flex-wrap" show={true}>
-                <Transition.Child
-                  enter="transition ease-in-out duration-[800ms]"
-                  enterFrom="translate-y-full opacity-0"
-                  enterTo="-translate-y-0"
+              <div as="div" className="flex flex-wrap" show={true}>
+                <div
                   className="md:w-4/12"
                 >
                   <CardSquareImg
@@ -63,11 +63,8 @@ export default function Home() {
                       Scopri i servizi
                     </LinkButton>
                   </CardSquareImg>
-                </Transition.Child>
-                <Transition.Child
-                  enter="transition ease-in-out duration-[1000ms]"
-                  enterFrom="translate-y-full opacity-0"
-                  enterTo="-translate-y-0"
+                </div>
+                <div
                   className="md:w-4/12"
                 >
                   <CardSquareImg
@@ -85,11 +82,8 @@ export default function Home() {
                       Scopri i prodotti
                     </LinkButton>
                   </CardSquareImg>
-                </Transition.Child>
-                <Transition.Child
-                  enter="transition ease-in-out duration-[1200ms]"
-                  enterFrom="translate-y-full opacity-0"
-                  enterTo="-translate-y-0"
+                </div>
+                <div
                   className="md:w-4/12"
                 >
                   <CardSquareImg
@@ -108,8 +102,8 @@ export default function Home() {
                       Richiedi assistenza
                     </LinkButton>
                   </CardSquareImg>
-                </Transition.Child>
-              </Transition>
+                </div>
+              </div>
 
               <div className="flex flex-wrap items-center mt-32">
                 <div className="ml-auto mr-auto px-4 w-full md:w-5/12">
@@ -287,4 +281,27 @@ export default function Home() {
       </Layout>
     </div>
   )
+}
+
+export async function getStaticProps() {
+const API_KEY = process.env.MAILCHIMP_API_KEY
+const options = {
+  method: 'GET',
+  headers: {
+    Accept: 'application/json',
+    'X-MailerLite-ApiDocs': 'true',
+    'X-MailerLite-ApiKey': API_KEY,
+  }
+};
+
+fetch('https://api.mailerlite.com/api/v2/groups?limit=100&offset=0&filters=null', options)
+  .then(response => response.json())
+  .then(response => console.log(response))
+  .catch(err => console.error(err));
+
+  return {
+    props: {
+      // data,
+    },
+  }
 }

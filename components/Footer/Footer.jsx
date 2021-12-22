@@ -4,8 +4,8 @@ import logoEccelsa from '../../public/img/logos/Eccelsa-RGB_400x400.png'
 import logoQucino from '../../public/img/logos/MARCHIO-QUCINO150.png'
 import logoAliGroup from '../../public/img/logos/Ali_Group_logo.png'
 
-import {H4} from '../typography'
-import {Grid} from '../grid'
+import { H4 } from '../typography'
+import { Grid } from '../grid'
 import { FacebookIcon } from '../icons/facebook-icon'
 import { LinkedInIcon } from '../icons/linkedin-icon'
 import { InstagramIcon } from '../icons/instagram-icon'
@@ -40,7 +40,6 @@ export default function Footer() {
                 type="button"
               >
                 <FacebookIcon size='30' />
-                {/* <i className="fab fa-facebook-square"></i> */}
               </button>
             </a>
             <a
@@ -52,7 +51,7 @@ export default function Footer() {
                 className="mr-2 w-10 h-10 font-normal"
                 type="button"
               >
-                <LinkedInIcon size='30'/>
+                <LinkedInIcon size='30' />
               </button>
             </a>
             <a
@@ -64,12 +63,11 @@ export default function Footer() {
                 className="mr-2 w-10 h-10 font-normal"
                 type="button"
               >
-    <InstagramIcon size='30' />
+                <InstagramIcon size='30' />
               </button>
             </a>
           </div>
           <div className="flex flex-wrap justify-between my-16">
-            {/* TODO: link to Qucino */}
             <a
               rel="noreferrer"
               href="https://www.istitutoeccelsa.it"

@@ -67,9 +67,9 @@ export default function Navbar({ isTransparent }) {
                       href="https://www.facebook.com/matarresesrl"
                       target="_blank"
                       rel="noreferrer"
-        className='text-gray-100'
+                      className='text-gray-100'
                     >
-        <FacebookIcon/>
+                      <FacebookIcon />
                       <i className="fab fa-facebook text-gray-100"></i>
                     </a>
 
