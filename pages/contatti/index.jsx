@@ -1,4 +1,5 @@
 import {Fragment, useState} from 'react'
+import Script from 'next/script'
 
 import Head from 'next/head'
 import {Transition} from '@headlessui/react'
@@ -13,6 +14,8 @@ import {H6} from '../../components/typography'
 
 import {getGroups} from '../../lib/newsletter'
 
+const MAPS_API = process.env.MAPS_API
+
 export default function Contatti({groups}) {
   const [isOpen, setIsOpen] = useState(true)
 
@@ -20,7 +23,12 @@ export default function Contatti({groups}) {
     <>
       <Head>
         <title>Cantatti | Matarrese srl</title>
+          {/* eslint-disable-next-line @next/next/no-sync-scripts */}
       </Head>
+          <Script
+            src={`https://maps.googleapis.com/maps/api/js?key=${MAPS_API}`}
+  strategy="beforeInteractive"
+          />
       <Layout>
         <section className="mb-24 mx-10vw text-gray-600 lg:mb-48">
           <Header>
