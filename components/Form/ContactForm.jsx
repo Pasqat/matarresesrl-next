@@ -9,7 +9,8 @@ import { NotificationPanel, Field } from '../form-element'
 import { Grid } from '../grid'
 import { Spacer } from '../spacer'
 import { ArrowButton } from '../arrow-button'
-import { CheckIcon } from '@heroicons/react/outline'
+import {CheckIcon} from '../icons/check-icon'
+import {ChevronLeftIcon} from '../icons/chevron-left-icon'
 
 export default function ContactForm({ hasAutoFocus, featured, groups }) {
   const [form, setForm] = useState({
@@ -36,7 +37,6 @@ export default function ContactForm({ hasAutoFocus, featured, groups }) {
       ...form,
       [name]: value,
     })
-    console.log('change', name, value)
   }
 
   useEffect(() => {
@@ -128,11 +128,11 @@ export default function ContactForm({ hasAutoFocus, featured, groups }) {
         onSubmit={submitContactForm}
       >
         <H2 as="h4">
-          Hai un&apos;idea che vorresti realizzare, o hai bisogno di
-          informazioni?
+        Hai un&apos;idea che vorresti realizzare, o hai bisogno di
+        informazioni?
         </H2>
         <H2 as="p" variant="secondary">
-          Completa questo form, ti risponderemo entro 24 ore (escluso festivi)
+        Completa questo form, ti risponderemo entro 24 ore (escluso festivi)
         </H2>
         <Spacer size="2xs" />
         <Grid nested>
@@ -187,16 +187,21 @@ export default function ContactForm({ hasAutoFocus, featured, groups }) {
               </span>
             </label>
             {isCheckedNewsletter ? (
-              <div className="ml-6">
-                <label>Scegli il tuo settore:</label>
-                <select value={newsletterGroupId} name='newsletterGroupId' onChange={handleChange} className="w-full lg:w-auto lg:ml-2 bg-white">
+              <div className="ml-4 flex items-center lg:my-6 my-2">
+                <select 
+                  value={newsletterGroupId} 
+                  name='newsletterGroupId' 
+                  onChange={handleChange} 
+                  className="w-full lg:w-auto bg-white px-2 lg:px-8 py-4 disabled:text-gray-400 text-lg font-medium rounded-lg">
                   {groups.map(group => {
                     return (
                       <option key={group.id} value={group.id}>{group.name}</option>
                     )
                   })}
                 </select>
-                </div>
+                <ChevronLeftIcon/> 
+                <label className="text-xs lg:text-lg">scegli il tuo settore</label>
+              </div>
             ) : null}
           </div>
           <div className="col-span-full lg:col-span-6">
