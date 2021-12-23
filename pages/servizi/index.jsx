@@ -14,7 +14,9 @@ import {MepaSection} from '../../components/sections/mepa-section'
 
 import {BriefCaseIcon} from '../../components/icons/briefcase-icon'
 
-export default function Servizi() {
+import {getGroups} from '../../lib/newsletter'
+
+export default function Servizi({groups}) {
   const [position, setPosition] = useState(0)
   const divProgettazione = useRef(null)
 
@@ -964,10 +966,20 @@ export default function Servizi() {
           </section>
 
           <section className="mb-24 lg:mb-48" id="contatti">
-            <ContactForm />
+            <ContactForm groups={groups}/>
           </section>
         </main>
       </Layout>
     </div>
   )
 }
+
+export async function getStaticProps() {
+  const groups = await getGroups()
+  return {
+    props: {
+      groups,
+    },
+  }
+}
+

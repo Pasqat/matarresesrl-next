@@ -17,7 +17,9 @@ import cotturaProdotti from '../../public/img/cottura-prodotti.png'
 import arredoSuMisura from '../../public/img/arredo-su-misura-prodotti.jpg'
 // image="/img/climatizzazione-prodotti.jpg"
 
-export default function Home() {
+import {getGroups} from '../../lib/newsletter'
+
+export default function ProductsHome({groups}) {
   return (
     <>
       <Head>
@@ -302,10 +304,19 @@ export default function Home() {
             />
           </div>
           <section className="mb-24 lg:mb-48" id="contatti">
-            <ContactForm featured />
+            <ContactForm featured groups={groups}/>
           </section>
         </main>
       </Layout>
     </>
   )
+}
+
+export async function getStaticProps() {
+const groups = await getGroups()
+  return {
+    props: {
+      groups
+    }
+  }
 }

@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
-import {HeartIcon, ShoppingCartIcon} from '@heroicons/react/outline'
+import { HeartIcon, ShoppingCartIcon } from '@heroicons/react/outline'
 
 import HeaderBig from '../components/Header/HeaderBig'
 import CardSquareImg from '../components/Card/CardSquareImg'
@@ -9,19 +9,18 @@ import CardBigImg from '../components/Card/CardBigImg'
 import ContactForm from '../components/Form/ContactForm'
 import FormModal from '../components/Form/FormModal'
 import Layout from '../components/Layout'
-import {LinkButton} from '../components/button'
-import {TestimonialSection} from '../components/sections/testimonial-section'
-import {MepaSection} from '../components/sections/mepa-section'
+import { LinkButton } from '../components/button'
+import { TestimonialSection } from '../components/sections/testimonial-section'
+import { MepaSection } from '../components/sections/mepa-section'
 
-import {logos} from '../data/partner-logo'
-import {H2, H3, H5} from '../components/typography'
+import { logos } from '../data/partner-logo'
+import { H2, H3, H5 } from '../components/typography'
 
 import testimonials from '../data/testimonials'
+import {getGroups} from '../lib/newsletter'
 
 
-export default function Home() {
-
-
+export default function Home({ groups }) {
 
   return (
     <div>
@@ -42,6 +41,7 @@ export default function Home() {
             subtitle="Dal design dell'arredo alla formazione del personale per realizzare i tuoi progetti"
             noButton
           />
+
           <section className="-mt-24 pb-20 bg-gray-200">
             <div className="container mx-auto px-4">
               <div as="div" className="flex flex-wrap" show={true}>
@@ -241,7 +241,7 @@ export default function Home() {
           </section>
 
           <section className="mb-24 lg:mb-48" id="#contatti">
-            <ContactForm featured />
+            <ContactForm featured groups={groups}/>
           </section>
           {/* LOGO SECTION */}
           <section className="relative mb-24 lg:mb-48">
@@ -284,24 +284,10 @@ export default function Home() {
 }
 
 export async function getStaticProps() {
-const API_KEY = process.env.MAILCHIMP_API_KEY
-const options = {
-  method: 'GET',
-  headers: {
-    Accept: 'application/json',
-    'X-MailerLite-ApiDocs': 'true',
-    'X-MailerLite-ApiKey': API_KEY,
-  }
-};
-
-fetch('https://api.mailerlite.com/api/v2/groups?limit=100&offset=0&filters=null', options)
-  .then(response => response.json())
-  .then(response => console.log(response))
-  .catch(err => console.error(err));
-
+const groups = await getGroups()
   return {
     props: {
-      // data,
-    },
+      groups
+    }
   }
 }

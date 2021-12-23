@@ -1,21 +1,22 @@
-import {useEffect, useRef, useState} from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 
-import {H1, H2} from '../typography'
-import {Button} from '../button'
+import { H2 } from '../typography'
+import { Button } from '../button'
 
-import {sendContactMail} from '../../actions/networking/mailApi'
-import {NotificationPanel, Field} from '../form-element'
-import {Grid} from '../grid'
-import {Spacer} from '../spacer'
+import { sendContactMail } from '../../actions/networking/mailApi'
+import { NotificationPanel, Field } from '../form-element'
+import { Grid } from '../grid'
+import { Spacer } from '../spacer'
 
-export default function ContactForm({hasAutoFocus, featured}) {
+export default function ContactForm({ hasAutoFocus, featured, groups }) {
   const [form, setForm] = useState({
     name: '',
     email: '',
     formContent: '',
+    newsletterGroupId: 107688379,
   })
-  const {name, email, formContent} = form
+  const { name, email, formContent, newsletterGroupId } = form
 
   const [isCheckedTerms, setIsCheckedTerms] = useState(false)
   const [isCheckedNewsletter, setIsCheckedNewsletter] = useState(false)
@@ -28,7 +29,7 @@ export default function ContactForm({hasAutoFocus, featured}) {
   const inputName = useRef(null)
 
   const handleChange = e => {
-    const {name, value} = e.target
+    const { name, value } = e.target
     setForm({
       ...form,
       [name]: value,
@@ -41,7 +42,7 @@ export default function ContactForm({hasAutoFocus, featured}) {
 
   useEffect(() => {
     if (isCheckedTerms && notification.text.includes('termini')) {
-      setNotification({text: '', isError: false})
+      setNotification({ text: '', isError: false })
     }
   }, [isCheckedTerms, notification.text])
 
@@ -72,7 +73,7 @@ export default function ContactForm({hasAutoFocus, featured}) {
         text: 'Grazie, ti ricontatteremo al più presto',
         isError: false,
       })
-      setForm({...form, name: '', email: '', formContent: ''})
+      setForm({ ...form, name: '', email: '', formContent: '' })
       setIsCheckedTerms(false)
     } else {
       setNotification({
@@ -82,6 +83,7 @@ export default function ContactForm({hasAutoFocus, featured}) {
       })
     }
   }
+
   return (
     <Grid featured={featured}>
       <form
@@ -96,13 +98,11 @@ export default function ContactForm({hasAutoFocus, featured}) {
           Completa questo form, ti risponderemo entro 24 ore (escluso festivi)
         </H2>
         <Spacer size="2xs" />
-        {/* <p className="mb-4 mt-1 text-center text-gray-500 text-lg leading-relaxed">
-        </p> */}
         <Grid nested>
           <Field
             name="name"
             label="Nome e cognome"
-            error={notification.isError ? notification.text : null}
+            // error={notification.isError ? notification.text : null}
             autoComplete="given-name"
             required
             disabled={formButtonDisabled}
@@ -110,99 +110,91 @@ export default function ContactForm({hasAutoFocus, featured}) {
             onChange={handleChange}
             className="col-span-full lg:col-span-6"
             featured={featured}
-          />
-          {/* <div className="relative w-full">
-          <label
-            className="block mb-2 text-xs font-bold text-gray-600 uppercase"
-            htmlFor="full-name"
-          >
-            Nome Completo
-          </label>
-          <input
-            type="text"
-            className="w-full px-3 py-3 text-sm text-gray-600 placeholder-gray-300 transition-all duration-150 ease-linear bg-white border-0 rounded shadow focus:outline-none focus:ring"
-            placeholder="Nome Completo"
-            name="name"
-            value={name}
-            onChange={handleChange}
-            ref={inputName}
-          />
-        </div> */}
+            />
           <Field
             name="email"
             label="Email"
             autoComplete="email"
-            error={notification.isError ? notification.text : null}
+            // error={notification.isError ? notification.text : null}
             required
             disabled={formButtonDisabled}
             value={email}
             onChange={handleChange}
             className="col-span-full lg:col-span-6"
             featured={featured}
-          />
+            />
         </Grid>
         <Field
           name="formContent"
           label="Messaggio"
-          error={notification.isError ? notification.text : null}
+          // error={notification.isError ? notification.text : null}
           required
           disabled={formButtonDisabled}
           value={formContent}
           onChange={handleChange}
           type="textarea"
           featured={featured}
-        />
-        <div className="text-right">
-          <Button type="submit" disabled={formButtonDisabled} size="medium">
-            Invia
-          </Button>
+          />
+        <div className="relative grid gap-x-4 grid-cols-4 md:grid-cols-8 lg:gap-x-6 lg:grid-cols-12 mt-5 text-gray-600">
+          <div className="col-span-full lg:col-span-6 mb-2 text-lg">
+            <label className="inline-flex items-center w-full mb-2  leading-tight">
+              <input
+                type="checkbox"
+                className="checked:bg-yellow-500 text-yellow-600 border-2 border-gray-400 border-solid cursor-pointer"
+                name="newsletter"
+                checked={isCheckedNewsletter}
+                onChange={() => setIsCheckedNewsletter(!isCheckedNewsletter)}
+                />
+              <span className="ml-2">
+              voglio rimanere aggiornato su novità e promozioni
+              </span>
+            </label>
+            {isCheckedNewsletter ? (
+              <div className="ml-6">
+                <label>Scegli il tuo settore:</label>
+                <select value={newsletterGroupId} onChange={handleChange} name="newsletterGroup" id="settore" className="w-full lg:w-auto lg:ml-2 bg-white">
+                  {groups.map(group => {
+                    return (
+                      <option key={group.id} value={group.id}>{group.name}</option>
+                    )
+                  })}
+                </select>
+                </div>
+            ) : null}
+          </div>
+          <div className="col-span-full lg:col-span-6">
+            <label className="flex-end inline-flex items-center w-full">
+              <input
+                type="checkbox"
+                className="checked:bg-yellow-500 text-yellow-500 border-2 border-solid border-gray-400 cursor-pointer"
+                name="conditions"
+                checked={isCheckedTerms}
+                onChange={() => setIsCheckedTerms(!isCheckedTerms)}
+                />
+              <span className="ml-2">
+                accetto il{' '}
+                <Link href="/privacy-policy">
+                  <a className="text-yellow-500" target="_blank">
+                  trattamento dei dati e condizioni
+                  </a>
+                </Link>
+              </span>
+              *
+            </label>
+          </div>
         </div>
+
         {notification.text ? (
           <NotificationPanel isError={notification.isError}>
             {notification.text}
           </NotificationPanel>
         ) : null}
-        {/* <div
-          className={clsx(
-            'mb-8 px-4 text-center',
-            notification.isError ? 'text-red-600' : 'text-green-600',
-          )}
-        >
-          {notification.text}
-        </div> */}
-        <div className="mt-5 text-right text-gray-600">
-          <label className="flex-end inline-flex items-center w-full">
-            <input
-              type="checkbox"
-              className="form-checkbox text-yellow-500 border-2 border-solid border-gray-400 cursor-pointer"
-              name="conditions"
-              checked={isCheckedTerms}
-              onChange={() => setIsCheckedTerms(!isCheckedTerms)}
-            />
-            <span className="ml-2 text-sm">
-              accetto il{' '}
-              <Link href="/privacy-policy">
-                <a className="text-yellow-500" target="_blank">
-                  trattamento dei dati e condizioni
-                </a>
-              </Link>
-            </span>
-            *
-          </label>
-          {/* <label className="inline-flex items-center w-full flex-end"> */}
-          {/*   <input */}
-          {/*     type="checkbox" */}
-          {/*     className="text-yellow-600 border-2 border-gray-400 border-solid cursor-pointer form-checkbox" */}
-          {/*     name="newsletter" */}
-          {/*     checked={isCheckedNewsletter} */}
-          {/*     onChange={() => setIsCheckedNewsletter(!isCheckedNewsletter)} */}
-          {/*   /> */}
-          {/*   <span className="ml-2 text-xs"> */}
-          {/*     voglio rimanere aggiornato su novità e promozioni */}
-          {/*   </span> */}
-          {/* </label> */}
+
+        <div className="text-right">
+          <Button type="submit" disabled={formButtonDisabled} size="medium">
+          Invia
+          </Button>
         </div>
-        <div className="mt-5 text-right text-gray-600"></div>
       </form>
     </Grid>
   )

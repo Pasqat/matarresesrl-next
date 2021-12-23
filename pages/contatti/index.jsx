@@ -1,19 +1,19 @@
-import Head from 'next/head'
-
 import {Fragment, useState} from 'react'
+
+import Head from 'next/head'
 import {Transition} from '@headlessui/react'
 import clsx from 'clsx'
-
 import {XIcon} from '@heroicons/react/outline'
 
 import ContactForm from '../../components/Form/ContactForm'
 import Layout from '../../components/Layout'
 import Map from '../../components/Maps/Map'
 import Header from '../../components/Header/Header'
-import Container from '../../components/Container'
-import {H4, H5, H6} from '../../components/typography'
+import {H6} from '../../components/typography'
 
-export default function Contatti() {
+import {getGroups} from '../../lib/newsletter'
+
+export default function Contatti({groups}) {
   const [isOpen, setIsOpen] = useState(true)
 
   return (
@@ -114,10 +114,20 @@ export default function Contatti() {
           </div>
         </section>
         <section className="mb-24 lg:mb-48" id="contatti">
-          <ContactForm />
+          <ContactForm groups={groups}/>
           {/* TODO: aggingungere termini e condizioni */}
         </section>
       </Layout>
     </>
   )
 }
+
+export async function getStaticProps() {
+  const groups = await getGroups()
+  return {
+    props: {
+      groups,
+    }
+  }
+}
+
