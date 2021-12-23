@@ -26,14 +26,14 @@ export default function PrivacyPolicy() {
       <Layout>
         <Container>
           <Header>Trattamento dei dati - privacy policy</Header>
-          <main className="container mx-auto pb-20 text-justify text-gray-900">
+          <main className="container pb-20 mx-auto text-justify text-gray-900">
             <H2 className="text-center" variant="secondary">
               Privacy policy sito web
             </H2>
-            <p className="py-4 text-center text-sm italic">
+            <p className="py-4 text-sm italic text-center">
               Versione 1.0 del 01/01/2019
             </p>
-            <div className="md:columns-2 mb-14">
+            <div className="mb-14 md:columns-2">
               Questa pagina descrive le modalità di trattamento dei dati
               personali degli utenti che consultano il Sito Web{' '}
               <Link href="/">
@@ -185,7 +185,7 @@ export default function PrivacyPolicy() {
                 <div className="md:columns-2">
                   <ol className="pl-6 list-alpha">
                     <li className="pb-2">
-                      <span className="text-gray-700 font-bold">
+                      <span className="font-bold text-gray-700">
                         Dati di navigazione.
                       </span>{' '}
                       I sistemi informatici e le procedure software connesse al
@@ -219,13 +219,13 @@ export default function PrivacyPolicy() {
                       dell’Autorità Giudiziaria.
                     </li>
                     <li className="pb-2">
-                      <span className="text-gray-700 font-bold">
+                      <span className="font-bold text-gray-700">
                         Cookies e altri sistemi di tracciamento.
                       </span>{' '}
                       Il Sito Web utilizza cookies tecnici (cookies di
                       navigazione, analytics, di funzionalità); le tipologie di
                       cookies utilizzati sono:
-                      <ul className="pl-8 py-4 list-disc">
+                      <ul className="py-4 pl-8 list-disc">
                         <li>Cookies di prima parte;</li>
                         <li>Cookies di terzi;</li>
                         <li>Cookies di sessione; </li>
@@ -242,7 +242,7 @@ export default function PrivacyPolicy() {
                       </Link>
                     </li>
                     <li>
-                      <span className="text-gray-700 font-bold">
+                      <span className="font-bold text-gray-700">
                         Dati forniti volontariamente dall’utente.
                       </span>{' '}
                       <strong>Marattese s.r.l.</strong>
@@ -275,7 +275,7 @@ export default function PrivacyPolicy() {
                 </H3>
                 <div className="md:columns-2">
                   <em>Dati di navigazione</em>, i cui destinatari sono:
-                  <ul className="pl-6 py-4 list-disc">
+                  <ul className="py-4 pl-6 list-disc">
                     <li>
                       dipendenti/collaboratori/addetti di{' '}
                       <strong>Marattese s.r.l.</strong>,
@@ -290,7 +290,7 @@ export default function PrivacyPolicy() {
                   </ul>
                   <em>Dati forniti volontariamente dall’utente</em>, i cui
                   destinatari sono:
-                  <ul className="pl-6 py-4 list-disc">
+                  <ul className="py-4 pl-6 list-disc">
                     <li>
                       dipendenti/collaboratori/addetti di{' '}
                       <strong>Marattese s.r.l.</strong>;

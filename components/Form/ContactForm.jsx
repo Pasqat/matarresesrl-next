@@ -234,9 +234,9 @@ export default function ContactForm({ hasAutoFocus, featured, groups }) {
 
         <div className="text-right">
           {formButtonDisabled ? (
-            <div className="flex">
+            <div className="flex justify-end">
               <CheckIcon />
-              <p className="text-secondary">
+              <p className="text-secondary text-lg">
                 {!notification.text
                 ? `Grazie, ti ricontatteremo al più presto`
                 : notification.text}

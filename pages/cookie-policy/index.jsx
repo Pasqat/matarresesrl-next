@@ -26,7 +26,7 @@ export default function CookiePolicy() {
       <Layout>
         <Container>
           <Header>Tipologie ed utilizzo dei Cookies</Header>
-          <main className="container mx-auto pb-20 text-justify text-gray-900">
+          <main className="container pb-20 mx-auto text-justify text-gray-900">
             <div className="flex flex-col space-y-14">
               <section>
                 <H3 className="pb-3">Utilizzo dei Cookie</H3>
@@ -88,7 +88,7 @@ export default function CookiePolicy() {
                     ad ogni altro dispositivo che l’utente può utilizzare per
                     connettersi al Sito.
                   </p>
-                  <H4 className="pb-2 pt-4" variant="secondary">
+                  <H4 className="pt-4 pb-2" variant="secondary">
                     Cookies tecnici
                   </H4>
                   <p className="pb-2">
@@ -126,9 +126,9 @@ export default function CookiePolicy() {
                 </div>
               </section>
               <section>
-                <H3 className="pb-2 pt-4">Tipologie di cookies utilizzati</H3>
+                <H3 className="pt-4 pb-2">Tipologie di cookies utilizzati</H3>
                 <div className="columns">
-                  <H4 className="pb-2 pt-4" variant="secondary">
+                  <H4 className="pt-4 pb-2" variant="secondary">
                     Cookies di prima parte
                   </H4>
                   <div>
@@ -142,7 +142,7 @@ export default function CookiePolicy() {
                       visitatori.
                     </p>
                   </div>
-                  <H4 className="pb-2 pt-4" variant="secondary">
+                  <H4 className="pt-4 pb-2" variant="secondary">
                     Cookies di terzi
                   </H4>
                   <div>
@@ -153,7 +153,7 @@ export default function CookiePolicy() {
                       quel sito, si è in presenza di cookies di terze parti.
                     </p>
                   </div>
-                  <H4 className="pb-2 pt-4" variant="secondary">
+                  <H4 className="pt-4 pb-2" variant="secondary">
                     Cookies di sessione
                   </H4>
                   <div>
@@ -183,7 +183,7 @@ export default function CookiePolicy() {
                       come sopra definito.
                     </p>
                   </div>
-                  <H4 className="pb-2 pt-4" variant="secondary">
+                  <H4 className="pt-4 pb-2" variant="secondary">
                     Cookies persistenti
                   </H4>
                   <div>
@@ -196,7 +196,7 @@ export default function CookiePolicy() {
                       utilizza il Sito.
                     </p>
                   </div>
-                  <H4 className="pb-2 pt-4" variant="secondary">
+                  <H4 className="pt-4 pb-2" variant="secondary">
                     Cookies essenziali
                   </H4>
                   <div>
@@ -210,7 +210,7 @@ export default function CookiePolicy() {
                       disattivati.
                     </p>
                   </div>
-                  <H4 className="pb-2 pt-4" variant="secondary">
+                  <H4 className="pt-4 pb-2" variant="secondary">
                     Cookies funzionali
                   </H4>
                   <div>
@@ -224,7 +224,7 @@ export default function CookiePolicy() {
                       disattivati.
                     </p>
                   </div>
-                  <H4 className="pb-2 pt-4" variant="secondary">
+                  <H4 className="pt-4 pb-2" variant="secondary">
                     Cookies di condivisone sui Social Network
                   </H4>
                   <div>

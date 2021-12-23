@@ -45,11 +45,11 @@ export default function Post({postData, posts, img, svg}) {
                 content={postData.featuredImage?.node?.sourceUrl}
               />
             </Head>
-            <div className="mx-auto py-4 max-w-7xl md:px-5 md:py-16">
+            <div className="py-4 md:py-16 md:px-5 mx-auto max-w-7xl">
               <main className="md:mb-24">
-                <div className="mb-8 sm:mx-0 md:mb-16">
+                <div className="sm:mx-0 mb-8 md:mb-16">
                   {img || svg ? (
-                    <div className="aspect-w-2 aspect-h-1 relative">
+                    <div className="relative aspect-w-2 aspect-h-1">
                       <BlurringImage
                         img={img}
                         svg={svg}
@@ -62,13 +62,13 @@ export default function Post({postData, posts, img, svg}) {
                     <Spacer size="base" />
                   )}
                 </div>
-                <div className="relative lg:flex lg:flex-row">
-                  <div className="relative z-2 -mt-12 p-10 max-w-4xl bg-white shadow-lg lg:-mt-56 lg:ml-24">
+                <div className="lg:flex relative lg:flex-row">
+                  <div className="relative z-2 p-10 -mt-12 lg:-mt-56 lg:ml-24 max-w-4xl bg-white shadow-lg">
                     <div className="mb-6 text-lg">
                       <Categories categories={postData.categories} />
                       <Date
                         dateString={postData.date}
-                        className="ml-4 text-gray-400 text-sm"
+                        className="ml-4 text-sm text-gray-400"
                       />
                     </div>
                     <H1

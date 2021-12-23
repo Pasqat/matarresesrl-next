@@ -44,10 +44,10 @@ export default function Project({ project }) {
               `url(${project.featuredImage.node.sourceUrl})`
             }
           />
-          <section className="w-full relative pt-16 pb-24 bg-gray-100 text-gray-800">
+          <section className="relative pt-16 pb-24 w-full text-gray-800 bg-gray-100">
             <div className="container px-4 mx-auto">
-              <div className="relative lg:flex lg:flex-row">
-                <div className="relative flex flex-col w-full min-w-0 mb-6 -mt-64 break-words bg-white shadow-lg">
+              <div className="lg:flex relative lg:flex-row">
+                <div className="flex relative flex-col -mt-64 mb-6 w-full min-w-0 break-words bg-white shadow-lg">
                   <div className="px-6">
                     {/* <div className="mt-8 flex flex-wrap justify-center"> */}
                     {/*   <div className="flex items-center justify-center"> */}
@@ -84,7 +84,7 @@ export default function Project({ project }) {
 
                     <div className="py-10 mt-10 text-center border-t border-gray-200">
                       <div className="flex flex-wrap justify-center">
-                        <div className="w-full px-4 lg:w-9/12">
+                        <div className="px-4 w-full lg:w-9/12">
                           <EventBody content={project.content} />
                         </div>
                       </div>
@@ -95,7 +95,7 @@ export default function Project({ project }) {
               </div>
               <div className="flex justify-center ">
                 <Link href="/realizzazioni">
-                  <a className="p-4 mt-10 text-center bg-white rounded shadow-lg uppercase hover:shadow-sm">
+                  <a className="p-4 mt-10 text-center uppercase bg-white rounded shadow-lg hover:shadow-sm">
                     Realizzazioni
                   </a>
                 </Link>

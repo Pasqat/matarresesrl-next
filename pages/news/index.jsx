@@ -158,7 +158,7 @@ export default function News({data}) {
                       ignoreInputKeyUp.current = false
                     }}
                     className={clsx(
-                      'absolute left-6 top-0 flex items-center justify-center p-0 h-full text-gray-500 bg-trasparent border-none',
+                      'flex absolute top-0 left-6 justify-center items-center p-0 h-full text-gray-500 bg-trasparent border-none',
                       {
                         'cursor-pointer': query !== '',
                         'cursor-default': query === '',
@@ -194,9 +194,9 @@ export default function News({data}) {
                     }}
                     name="q"
                     placeholder="cerca"
-                    className="text-primary bg-primary border-secondary focus:bg-secondary pl-14 pr-6 py-6 w-full text-lg font-medium border hover:border-yellow-500 focus:border-yellow-500 rounded-full focus:outline-none md:pr-24"
+                    className="py-6 pr-6 md:pr-24 pl-14 w-full text-lg font-medium rounded-full border hover:border-yellow-500 focus:border-yellow-500 focus:outline-none text-primary bg-primary border-secondary focus:bg-secondary"
                   />
-                  <div className="absolute right-6 top-0 hidden items-center justify-between w-14 h-full text-gray-500 text-lg font-medium md:flex">
+                  <div className="hidden md:flex absolute top-0 right-6 justify-between items-center w-14 h-full text-lg font-medium text-gray-500">
                     {isSearching ? matchingPosts.length : null}
                   </div>
                 </div>
@@ -211,7 +211,7 @@ export default function News({data}) {
               <H6 as="div" className="col-span-full mb-6">
                 Filtra per categoria
               </H6>
-              <div className="flex flex-wrap col-span-full -mb-4 -mr-4 lg:col-span-10">
+              <div className="flex flex-wrap col-span-full lg:col-span-10 -mr-4 -mb-4">
                 {data.categories.map(category => {
                   const selected = regularQuery.includes(category)
 
@@ -249,7 +249,7 @@ export default function News({data}) {
 
         <Grid className="mb-64" ref={resultsRef}>
           {posts.length === 0 ? (
-            <div className="items-centert flex flex-col col-span-full">
+            <div className="flex flex-col col-span-full items-center">
               {/* // TODO: add a beautiful placeholder img */}
               <H3 as="p" variant="secondary" className="mt-24 max-w-lg">
                 {`Purtroppo non è stato trovato nulla con i tuoi criteri di ricerca`}

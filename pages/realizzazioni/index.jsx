@@ -1,15 +1,19 @@
-import Head from "next/head";
-import { useQuery, gql } from "@apollo/client";
+import Head from 'next/head'
+import {useQuery, gql} from '@apollo/client'
 
-import Layout from "../../components/Layout";
-import Container from "../../components/Container";
-import Header from "../../components/Header/Header";
-import { useEffect } from "react";
-import Image from "next/image";
-import Link from "next/link";
-// import CategoriesList from "../../components/categories-list/CategoriesList";
+import Layout from '../../components/Layout'
+import Container from '../../components/Container'
+import Header from '../../components/Header/Header'
+import {useEffect} from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+import {H3} from '../../components/typography'
 
-const BATCH_SIZE = 9;
+import {ChevronLeftIcon} from '../../components/icons/chevron-left-icon'
+
+import {ArrowButton} from '../../components/arrow-button'
+
+const BATCH_SIZE = 9
 
 const GET_PAGINATED_POSTS = gql`
   query GET_PAGINATED_POSTS(
@@ -56,20 +60,20 @@ const GET_PAGINATED_POSTS = gql`
     #    }
     #  }
   }
-`;
+`
 
 // Function to update the query with the new results
 // TODO: this could be exported in is own file
-const updateQuery = (previousResult, { fetchMoreResult }) => {
+const updateQuery = (previousResult, {fetchMoreResult}) => {
   return fetchMoreResult.projects.edges.length
     ? fetchMoreResult
-    : previousResult;
-};
+    : previousResult
+}
 
 export default function News() {
   // const [category, setCategory] = useState(null)
 
-  const { data, loading, error, fetchMore } = useQuery(GET_PAGINATED_POSTS, {
+  const {data, loading, error, fetchMore} = useQuery(GET_PAGINATED_POSTS, {
     variables: {
       first: BATCH_SIZE,
       last: null,
@@ -78,7 +82,7 @@ export default function News() {
       // portfolioCategoryId: category,
     },
     notifyOnNetworkStatusChange: true,
-  });
+  })
 
   useEffect(() => {
     fetchMore({
@@ -89,8 +93,8 @@ export default function News() {
         before: null,
         // categoryId: null
       },
-    });
-  }, []);
+    })
+  }, [fetchMore])
 
   //   function selectCategory(categoryId) {
   //     setCategory(categoryId)
@@ -107,7 +111,7 @@ export default function News() {
         </p>
         <p>{JSON.stringify(error)}</p>
       </div>
-    );
+    )
   }
 
   return (
@@ -167,33 +171,36 @@ export default function News() {
             ) : (
               <section>
                 <div className="grid grid-cols-3 grid-rows-3">
-                  {data?.projects?.edges.map((edge) => {
-                    const { featuredImage, id, slug, title } = edge.node;
+                  {data?.projects?.edges.map(edge => {
+                    const {featuredImage, id, slug, title} = edge.node
 
                     return (
                       <Link key={id} href={`/realizzazioni/${slug}`}>
                         <a className="group">
-                          <div className="relative w-full h-full bg-blend-multiply ">
+                          <div className="relative w-full h-full bg-blend-multiply">
                             <Image
                               objectFit="cover"
                               width="800"
                               height="800"
                               src={featuredImage?.node?.sourceUrl}
-                              alt={title ? title : ""}
+                              alt={title ? title : ''}
+                              className="group-hover:opacity-20"
                             />
-                            <div className="absolute top-1/2 left-auto text-2xl group-hover:text-red-700 text-white">
+                            <H3
+                              as="p"
+                              className="hidden group-hover:block absolute top-1/2 left-1/2 text-center text-yellow-500 -translate-x-1/2 -translate-y-1/2"
+                            >
                               {title}
-                            </div>
+                            </H3>
                           </div>
                         </a>
                       </Link>
-                    );
+                    )
                   })}
                 </div>
-                <div className="flex items-center justify-between md:w-5/12 pt-16 pb-24 m-auto">
-                  <button
-                    className="disabled:opacity-25 disabled:pointer-events-none bg-white shadow w-10 h-10 rounded"
-                    disabled={!data?.projects.pageInfo.hasPreviousPage}
+                <div className="flex justify-between items-center pt-16 pb-24 m-auto md:w-5/12">
+                  <ArrowButton
+                    direction="left"
                     onClick={() => {
                       fetchMore({
                         variables: {
@@ -203,14 +210,19 @@ export default function News() {
                           before: data?.projects.pageInfo.startCursor || null,
                         },
                         updateQuery,
-                      });
+                      })
                     }}
-                  >
-                    <i className="fas fa-arrow-left" />
-                  </button>
-                  <button
-                    className="disabled:opacity-25 disabled:pointer-events-none bg-white shadow w-10 h-10 rounded"
-                    disabled={!data?.projects.pageInfo.hasNextPage}
+                    disabled={!data?.projects.pageInfo.hasPreviousPage}
+                  ></ArrowButton>
+                  {/* <button */}
+                  {/*   className="w-10 h-10 bg-white rounded shadow disabled:opacity-25 disabled:pointer-events-none" */}
+                  {/*   disabled={!data?.projects.pageInfo.hasPreviousPage} */}
+                  {/*   onClick={} */}
+                  {/* > */}
+                  {/*   <ChevronLeftIcon/> */}
+                  {/* </button> */}
+                  <ArrowButton
+                    // direction="left"
                     onClick={() => {
                       fetchMore({
                         variables: {
@@ -220,11 +232,27 @@ export default function News() {
                           before: null,
                         },
                         updateQuery,
-                      });
+                      })
                     }}
-                  >
-                    <i className="fas fa-arrow-right" />
-                  </button>
+                    disabled={!data?.projects.pageInfo.hasNextPage}
+                  ></ArrowButton>
+                  {/* <button */}
+                  {/*   className="w-10 h-10 bg-white rounded shadow disabled:opacity-25 disabled:pointer-events-none" */}
+                  {/*   disabled={!data?.projects.pageInfo.hasNextPage} */}
+                  {/*   onClick={() => { */}
+                  {/*     fetchMore({ */}
+                  {/*       variables: { */}
+                  {/*         first: BATCH_SIZE, */}
+                  {/*         after: data?.projects.pageInfo.endCursor || null, */}
+                  {/*         last: null, */}
+                  {/*         before: null, */}
+                  {/*       }, */}
+                  {/*       updateQuery, */}
+                  {/*     }) */}
+                  {/*   }} */}
+                  {/* > */}
+                  {/*   <i className="fas fa-arrow-right" /> */}
+                  {/* </button> */}
                 </div>
               </section>
             )}
@@ -232,5 +260,5 @@ export default function News() {
         </div>
       </Layout>
     </div>
-  );
+  )
 }

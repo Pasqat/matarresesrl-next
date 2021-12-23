@@ -57,21 +57,21 @@ export default function Events({event}) {
               `url(${event.featuredImage.node.sourceUrl})`
             }
           />
-          <section className="relative pb-24 pt-16 w-full text-gray-800 bg-gray-100">
-            <div className="container mx-auto px-4">
-              <div className="relative lg:flex lg:flex-row">
-                <div className="relative flex flex-col -mt-80 mb-6 w-full min-w-0 break-words bg-white shadow-lg lg:-mt-64">
+          <section className="relative pt-16 pb-24 w-full text-gray-800 bg-gray-100">
+            <div className="container px-4 mx-auto">
+              <div className="lg:flex relative lg:flex-row">
+                <div className="flex relative flex-col -mt-80 lg:-mt-64 mb-6 w-full min-w-0 break-words bg-white shadow-lg">
                   <div className="px-6">
                     <div className="flex flex-wrap justify-center mt-8">
-                      <div className="flex items-center justify-center">
+                      <div className="flex justify-center items-center">
                         <div className="mb-2 text-left text-gray-800">
                           {formatDate(event.startDate) ===
                           formatDate(event.endDate) ? (
                             <>
-                              <span className="block text-gray-600 text-xl font-bold tracking-wide uppercase">
+                              <span className="block text-xl font-bold tracking-wide text-gray-600 uppercase">
                                 <Date dateString={event.startDate} />
                               </span>
-                              <span className="block text-yellow-500 text-lg font-bold">
+                              <span className="block text-lg font-bold text-yellow-500">
                                 h {getHour(event.startDate)} -{' '}
                                 {getHour(event.endDate)}
                               </span>
@@ -79,15 +79,15 @@ export default function Events({event}) {
                           ) : (
                             <>
                               dal{' '}
-                              <span className="text-gray-600 text-xl font-bold tracking-wide uppercase">
+                              <span className="text-xl font-bold tracking-wide text-gray-600 uppercase">
                                 <Date dateString={event.startDate} />
                               </span>
                               <br />
                               al{' '}
-                              <span className="text-gray-600 text-xl font-bold tracking-wide uppercase">
+                              <span className="text-xl font-bold tracking-wide text-gray-600 uppercase">
                                 <Date dateString={event.startDate} />
                               </span>
-                              <span className="block text-yellow-500 text-lg font-bold">
+                              <span className="block text-lg font-bold text-yellow-500">
                                 h {getHour(event.startDate)} -{' '}
                                 {getHour(event.endDate)}
                               </span>
@@ -138,7 +138,7 @@ export default function Events({event}) {
                       )} */}
                     </div>
 
-                    <div className="mt-10 py-10 border-t border-gray-200">
+                    <div className="py-10 mt-10 border-t border-gray-200">
                       <div className="flex flex-wrap justify-center">
                         <div className="px-4 w-full lg:w-9/12">
                           <EventBody content={event.content} />
@@ -151,7 +151,7 @@ export default function Events({event}) {
               </div>
               <div className="flex justify-center">
                 <Link href="/eventi">
-                  <a className="mt-10 p-4 text-center bg-white rounded shadow-lg hover:shadow-sm uppercase">
+                  <a className="p-4 mt-10 text-center uppercase bg-white rounded shadow-lg hover:shadow-sm">
                     Eventi
                   </a>
                 </Link>

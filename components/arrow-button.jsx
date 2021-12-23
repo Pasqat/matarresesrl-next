@@ -59,7 +59,7 @@ const arrowVariants = {
 function getBaseProps({textSize, className}) {
   return {
     className: clsx(
-      'text-primary inline-flex items-center text-left font-medium focus:outline-none cursor-pointer transition',
+      'inline-flex items-center font-medium text-left transition cursor-pointer disabled:cursor-not-allowed focus:outline-none text-primary',
       {
         'text-xl': textSize === 'medium',
         'text-lg': textSize === 'small',
@@ -69,7 +69,7 @@ function getBaseProps({textSize, className}) {
   }
 }
 
-function ArrowButtonContent({children, direction = 'right'}) {
+function ArrowButtonContent({children, direction = 'right', disabled}) {
   const circumference = 28 * 2 * Math.PI
   const strokeDasharray = `${circumference} ${circumference}`
   const shouldReduceMotion = useReducedMotion()
@@ -83,7 +83,7 @@ function ArrowButtonContent({children, direction = 'right'}) {
         <span className="mr-8 text-xl font-medium">{children}</span>
       ) : null}
 
-      <div className="relative inline-flex flex-none items-center justify-center p-1 w-14 h-14">
+      <div className="inline-flex relative flex-none justify-center items-center p-1 w-14 h-14">
         <div className="absolute text-gray-200">
           <svg width="60" height="60">
             <circle
@@ -96,7 +96,7 @@ function ArrowButtonContent({children, direction = 'right'}) {
             />
 
             <motion.circle
-              className="text-accent"
+              className={clsx({'text-accent': !disabled})}
               stroke="currentColor"
               strokeWidth="2"
               fill="transparent"
@@ -120,9 +120,11 @@ function ArrowButtonContent({children, direction = 'right'}) {
 
         <motion.span
           transition={shouldReduceMotion ? {duration: 0} : {}}
-          variants={shouldReduceMotion ? {} : arrowVariants[direction]}
+          variants={
+            shouldReduceMotion ? {} : !disabled && arrowVariants[direction]
+          }
         >
-          <ArrowIcon direction={direction} />
+          <ArrowIcon direction={direction} disabled={disabled} />
         </motion.span>
       </div>
 
@@ -143,8 +145,9 @@ function ArrowButton({onClick, type, ...props}) {
       type={type}
       {...getBaseProps(props)}
       ref={ref}
-      animate={state}
+      animate={!props.disabled && state}
       transition={shouldReduceMotion ? {duration: 0} : {}}
+      disabled={props.disabled}
     >
       <ArrowButtonContent {...props} />
     </motion.button>

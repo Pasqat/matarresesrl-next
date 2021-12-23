@@ -40,7 +40,7 @@ export default function ProductsHome({groups}) {
           <section className="relative" id="lavorazione">
             <Grid className="mb-24 lg:mb-48">
               <div className="col-span-full lg:col-span-6 lg:col-start-1">
-                <div className="aspect-h-6 aspect-w-4 mb-12 lg:mb-0">
+                <div className="mb-12 lg:mb-0 aspect-w-4 aspect-h-6">
                   <Image
                     alt="prodotti per la cucina professionale"
                     className="max-w-full rounded-lg shadow-lg"
@@ -70,7 +70,7 @@ export default function ProductsHome({groups}) {
 
             <Grid className="mb-24 lg:mb-48">
               <div className="col-span-full">
-                <H2 className="mb-3 lg:mt-6">{`Prodotti per la lavorazione e conservazione degli alimenti`}</H2>
+                <H2 className="lg:mt-6 mb-3">{`Prodotti per la lavorazione e conservazione degli alimenti`}</H2>
                 <H2 as="p" variant="secondary" className="mb-14">
                   {`Lorem ipsum dolor sit amet`}
                 </H2>
@@ -145,7 +145,7 @@ export default function ProductsHome({groups}) {
                 <Paragraph className="mb-12">{`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`}</Paragraph>
               </div>
               <div className="col-span-full lg:col-span-5 lg:col-start-8 lg:row-start-1">
-                <div className="aspect-h-6 aspect-w-4 mb-12 lg:mb-0">
+                <div className="mb-12 lg:mb-0 aspect-w-4 aspect-h-6">
                   <Image
                     alt="prodotti per la cucina professionale"
                     className="max-w-full rounded-lg shadow-lg"
@@ -160,7 +160,7 @@ export default function ProductsHome({groups}) {
             </Grid>
             <Grid className="mb-24 lg:mb-48" rowGap>
               <div className="col-span-full">
-                <H2 className="mb-3 lg:mt-6">{`Qualità e stile anche nei dettagli`}</H2>
+                <H2 className="lg:mt-6 mb-3">{`Qualità e stile anche nei dettagli`}</H2>
                 <H2 as="p" variant="secondary" className="mb-14">
                   {`Lascia i tuoi clienti a bocca aperta`}
                 </H2>
@@ -212,7 +212,7 @@ export default function ProductsHome({groups}) {
           <section className="relative" id="trattamento-aria">
             <Grid className="mb-24 lg:mb-48">
               <div className="col-span-full">
-                <H2 className="mb-3 lg:mt-6">{`Trattamento dell'aria`}</H2>
+                <H2 className="lg:mt-6 mb-3">{`Trattamento dell'aria`}</H2>
                 <H2 as="p" variant="secondary" className="mb-14">
                   {`Lorem ipsum dolor sit amet`}
                 </H2>
@@ -249,10 +249,10 @@ export default function ProductsHome({groups}) {
             </Grid>
           </section>
 
-          <section className="relative mb-24 bg-gray-800 lg:mb-48" id="igiene">
+          <section className="relative mb-24 lg:mb-48 bg-gray-800" id="igiene">
             <Grid className="py-24">
               <div className="col-span-full">
-                <H2 className="mb-3 text-gray-100 lg:mt-6">{`Negli ultimi anni l'igiene ha assunto sempre più importanza`}</H2>
+                <H2 className="lg:mt-6 mb-3 text-gray-100">{`Negli ultimi anni l'igiene ha assunto sempre più importanza`}</H2>
                 <H2 as="p" className="mb-14 text-gray-300">
                   {`Possiamo aiutarti a mantenere i tuoi ambienti puliti ed igenizzati`}
                 </H2>

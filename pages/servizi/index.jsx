@@ -73,7 +73,7 @@ export default function Servizi({groups}) {
           <section id="panoramica">
             <Grid className="mb-24 lg:mb-48">
               <div className="col-span-full">
-                <H2 className="mb-3 lg:mt-6">{`Alcuni dei nostri servizi`}</H2>
+                <H2 className="lg:mt-6 mb-3">{`Alcuni dei nostri servizi`}</H2>
                 <H2 as="p" variant="secondary" className="mb-14">
                   {`Lorem ipsum dolor sit amet`}
                 </H2>
@@ -134,9 +134,9 @@ export default function Servizi({groups}) {
             </Grid>
           </section>
 
-          <section className="mb-24 mx-10vw lg:mb-48">
+          <section className="mx-10vw mb-24 lg:mb-48">
             <div className="mx-auto max-w-7xl">
-              <H2 className="mb-3 lg:mt-6">
+              <H2 className="lg:mt-6 mb-3">
                 {`
                   Progettazione tecnica e realizzazione arredi
                   `}
@@ -144,16 +144,16 @@ export default function Servizi({groups}) {
               <H2 as="p" variant="secondary" className="mb-14">
                 {`Grandi idee per prodotti di successo`}
               </H2>
-              <div className="flex items-start justify-between">
+              <div className="flex justify-between items-start">
                 {/* TODO: extract this in a component? name it like StepBlock */}
-                <div className="sticky top-4 hidden w-full md:col-span-4 lg:block">
+                <div className="hidden lg:block sticky top-4 md:col-span-4 w-full">
                   <div className="lg:pr-16">
                     <div className="flex">
                       <div className="flex flex-col items-center mr-4">
                         <div>
                           <div
                             className={clsx(
-                              'flex items-center justify-center w-10 h-10 border rounded-full',
+                              'flex justify-center items-center w-10 h-10 rounded-full border',
                               positionReached(0) && 'bg-yellow-500',
                             )}
                           >
@@ -188,7 +188,7 @@ export default function Servizi({groups}) {
                         </div>
                         <div className="w-px h-full bg-gray-300" />
                       </div>
-                      <div className="pb-8 pt-1">
+                      <div className="pt-1 pb-8">
                         <Link href="#consulenza-tecnica">
                           <a className="mb-2 text-lg font-bold">
                             Consulenza Tecnica
@@ -205,7 +205,7 @@ export default function Servizi({groups}) {
                           <div
                             className={clsx(
                               positionReached(18) && 'bg-yellow-500',
-                              'flex items-center justify-center w-10 h-10 border rounded-full',
+                              'flex justify-center items-center w-10 h-10 rounded-full border',
                             )}
                           >
                             <svg
@@ -239,7 +239,7 @@ export default function Servizi({groups}) {
                         </div>
                         <div className="w-px h-full bg-gray-300" />
                       </div>
-                      <div className="pb-8 pt-1">
+                      <div className="pt-1 pb-8">
                         <Link href="#il-progetto">
                           <a className="mb-2 text-lg font-bold">Il progetto</a>
                         </Link>
@@ -254,7 +254,7 @@ export default function Servizi({groups}) {
                           <div
                             className={clsx(
                               positionReached(33) && 'bg-yellow-500',
-                              'flex items-center justify-center w-10 h-10 border rounded-full',
+                              'flex justify-center items-center w-10 h-10 rounded-full border',
                             )}
                           >
                             <svg
@@ -288,7 +288,7 @@ export default function Servizi({groups}) {
                         </div>
                         <div className="w-px h-full bg-gray-300" />
                       </div>
-                      <div className="pb-8 pt-1">
+                      <div className="pt-1 pb-8">
                         <Link href="#iter-operativo">
                           <a className="mb-2 text-lg font-bold">
                             Iter Operativo
@@ -303,7 +303,7 @@ export default function Servizi({groups}) {
                           <div
                             className={clsx(
                               positionReached(45) && 'bg-yellow-500',
-                              'flex items-center justify-center w-10 h-10 border rounded-full',
+                              'flex justify-center items-center w-10 h-10 rounded-full border',
                             )}
                           >
                             <svg
@@ -337,7 +337,7 @@ export default function Servizi({groups}) {
                         </div>
                         <div className="w-px h-full bg-gray-300" />
                       </div>
-                      <div className="pb-8 pt-1">
+                      <div className="pt-1 pb-8">
                         <Link href="#arredi-su-misura">
                           <a className="mb-2 text-lg font-bold">
                             Realizzazione arredi su misura
@@ -354,7 +354,7 @@ export default function Servizi({groups}) {
                           <div
                             className={clsx(
                               positionReached(54) && 'bg-yellow-500',
-                              'flex items-center justify-center w-10 h-10 border rounded-full',
+                              'flex justify-center items-center w-10 h-10 rounded-full border',
                             )}
                           >
                             <svg
@@ -388,7 +388,7 @@ export default function Servizi({groups}) {
                         </div>
                         <div className="w-px h-full bg-gray-300" />
                       </div>
-                      <div className="pb-8 pt-1">
+                      <div className="pt-1 pb-8">
                         <Link href="#coordinamento-lavori">
                           <a className="mb-2 text-lg font-bold">
                             Coordinamento lavori
@@ -405,7 +405,7 @@ export default function Servizi({groups}) {
                           <div
                             className={clsx(
                               positionReached(60) && 'bg-yellow-500',
-                              'flex items-center justify-center w-10 h-10 border rounded-full',
+                              'flex justify-center items-center w-10 h-10 rounded-full border',
                             )}
                           >
                             <svg
@@ -439,7 +439,7 @@ export default function Servizi({groups}) {
                         </div>
                         <div className="w-px h-full bg-gray-300" />
                       </div>
-                      <div className="pb-8 pt-1">
+                      <div className="pt-1 pb-8">
                         <Link href="#collaudo">
                           <a className="mb-2 text-lg font-bold">Collaudo</a>
                         </Link>
@@ -454,7 +454,7 @@ export default function Servizi({groups}) {
                           <div
                             className={clsx(
                               positionReached(64) && 'bg-green-500',
-                              'flex items-center justify-center w-10 h-10 border rounded-full',
+                              'flex justify-center items-center w-10 h-10 rounded-full border',
                             )}
                           >
                             <svg
@@ -491,11 +491,11 @@ export default function Servizi({groups}) {
 
                 <div className="md:col-span-8" ref={divProgettazione}>
                   <div className="flex">
-                    <div className="flex flex-col items-center mr-4 lg:hidden">
+                    <div className="flex lg:hidden flex-col items-center mr-4">
                       <div>
                         <div
                           className={clsx(
-                            'flex items-center justify-center w-10 h-10 border rounded-full',
+                            'flex justify-center items-center w-10 h-10 rounded-full border',
                             positionReached(0) && 'bg-yellow-500',
                           )}
                         >
@@ -530,13 +530,13 @@ export default function Servizi({groups}) {
                       </div>
                       <div className="w-px h-full bg-gray-300" />
                     </div>
-                    <div className="bg-secondary mb-8 p-12 text-lg rounded-lg lg:mb-16">
+                    <div className="p-12 mb-8 lg:mb-16 text-lg rounded-lg bg-secondary">
                       <H3 id="consulenza-tecnica">Consulenza tecnica</H3>
-                      <Paragraph className="mt-4 text-gray-500 leading-relaxed">
+                      <Paragraph className="mt-4 leading-relaxed text-gray-500">
                         Ascoltiamo le idee del cliente per trasformarle in{' '}
                         <strong>progetti reali.</strong>
                       </Paragraph>
-                      <Paragraph className="mt-4 text-gray-500 leading-relaxed">
+                      <Paragraph className="mt-4 leading-relaxed text-gray-500">
                         Per chi vuole <strong>aprire un ristorante</strong>, un{' '}
                         <strong>bar</strong>, una <strong>gelateria</strong>,
                         una
@@ -546,7 +546,7 @@ export default function Servizi({groups}) {
                         funzionali e fruibili, adattando prodotti e tecnologie a
                         qualsiasi esigenza.
                       </Paragraph>
-                      <Paragraph className="mt-4 text-gray-500 leading-relaxed">
+                      <Paragraph className="mt-4 leading-relaxed text-gray-500">
                         Dal laboratorio di 30 mq alla struttura ricettiva di
                         7800 posti letto, traduciamo le idee in opere finite
                         delineando soluzioni personalizzate, dall’
@@ -555,12 +555,12 @@ export default function Servizi({groups}) {
                     </div>
                   </div>
                   <div className="flex">
-                    <div className="flex flex-col items-center mr-4 lg:hidden">
+                    <div className="flex lg:hidden flex-col items-center mr-4">
                       <div>
                         <div
                           className={clsx(
                             positionReached(18) && 'bg-yellow-500',
-                            'flex items-center justify-center w-10 h-10 border rounded-full',
+                            'flex justify-center items-center w-10 h-10 rounded-full border',
                           )}
                         >
                           <svg
@@ -594,15 +594,15 @@ export default function Servizi({groups}) {
                       </div>
                       <div className="w-px h-full bg-gray-300" />
                     </div>
-                    <div className="bg-secondary mb-8 p-12 text-lg rounded-lg lg:mb-16">
+                    <div className="p-12 mb-8 lg:mb-16 text-lg rounded-lg bg-secondary">
                       <H3 id="il-progetto">Il progetto</H3>
-                      <p className="mt-4 text-gray-500 leading-relaxed">
+                      <p className="mt-4 leading-relaxed text-gray-500">
                         Realizziamo il complesso dei{' '}
                         <strong>disegni, calcoli e relazioni</strong>
                         che determinano le forme e le dimensioni dell’arredo
                         completo.
                       </p>
-                      <p className="mt-4 text-gray-500 leading-relaxed">
+                      <p className="mt-4 leading-relaxed text-gray-500">
                         Stabiliamo con il cliente i{' '}
                         <strong>
                           materiali, il modo di esecuzione, le esigenze
@@ -611,7 +611,7 @@ export default function Servizi({groups}) {
                         , i reciproci impegni tra committente e costruttore, ne
                         stimiamo il costo.
                       </p>
-                      <p className="mt-4 text-gray-500 leading-relaxed">
+                      <p className="mt-4 leading-relaxed text-gray-500">
                         Elaboriamo un <strong>rendering progettuale</strong> per
                         dare visione tridimensionale al cliente di come verrà
                         eseguito il progetto prima di iniziare ad operare.
@@ -619,12 +619,12 @@ export default function Servizi({groups}) {
                     </div>
                   </div>
                   <div className="flex">
-                    <div className="flex flex-col items-center mr-4 lg:hidden">
+                    <div className="flex lg:hidden flex-col items-center mr-4">
                       <div>
                         <div
                           className={clsx(
                             positionReached(33) && 'bg-yellow-500',
-                            'flex items-center justify-center w-10 h-10 border rounded-full',
+                            'flex justify-center items-center w-10 h-10 rounded-full border',
                           )}
                         >
                           <svg
@@ -658,15 +658,15 @@ export default function Servizi({groups}) {
                       </div>
                       <div className="w-px h-full bg-gray-300" />
                     </div>
-                    <div className="bg-secondary mb-8 p-12 text-lg rounded-lg lg:mb-16">
+                    <div className="p-12 mb-8 lg:mb-16 text-lg rounded-lg bg-secondary">
                       <H3 id="iter-operativo">Iter Operativo</H3>
-                      <p className="mt-4 text-gray-500 leading-relaxed">
+                      <p className="mt-4 leading-relaxed text-gray-500">
                         L’iter operativo da seguire per aprire un ristorante,
                         aprire un bar, aprire una gelateria, aprire una
                         pasticceria e qualsiasi altra attività di ristorazione
                         prevede:
                       </p>
-                      <ol className="ml-2 text-gray-500 list-inside list-decimal">
+                      <ol className="ml-2 list-decimal list-inside text-gray-500">
                         <li>Pianta dettagliata del locale o sopralluogo</li>
                         <li>Verifica della destinazione d’uso del locale</li>
                         <li>
@@ -680,12 +680,12 @@ export default function Servizi({groups}) {
                     </div>
                   </div>
                   <div className="flex">
-                    <div className="flex flex-col items-center mr-4 lg:hidden">
+                    <div className="flex lg:hidden flex-col items-center mr-4">
                       <div>
                         <div
                           className={clsx(
                             positionReached(45) && 'bg-yellow-500',
-                            'flex items-center justify-center w-10 h-10 border rounded-full',
+                            'flex justify-center items-center w-10 h-10 rounded-full border',
                           )}
                         >
                           <svg
@@ -719,17 +719,17 @@ export default function Servizi({groups}) {
                       </div>
                       <div className="w-px h-full bg-gray-300" />
                     </div>
-                    <div className="bg-secondary mb-8 p-12 text-lg rounded-lg lg:mb-16">
+                    <div className="p-12 mb-8 lg:mb-16 text-lg rounded-lg bg-secondary">
                       <H3 id="arredi-su-misura">
                         Realizzazione Arredi su misura
                       </H3>
-                      <p className="mt-4 text-gray-500 leading-relaxed">
+                      <p className="mt-4 leading-relaxed text-gray-500">
                         Per <strong>l’arredamento di ogni struttura</strong>{' '}
                         della ristorazione e alberghiera, nel nostro laboratorio
                         tecnico un team di esperti sviluppa il progetto ideato
                         da professionisti dell’<strong>interior design.</strong>
                       </p>
-                      <p className="mt-4 text-gray-500 leading-relaxed">
+                      <p className="mt-4 leading-relaxed text-gray-500">
                         Il cliente ha la possibilità di seguire l’iter dei
                         lavori mentre l’idea diventa realtà e vedere così
                         realizzato secondo i suoi desideri il proprio bar,
@@ -739,12 +739,12 @@ export default function Servizi({groups}) {
                     </div>
                   </div>
                   <div className="flex">
-                    <div className="flex flex-col items-center mr-4 lg:hidden">
+                    <div className="flex lg:hidden flex-col items-center mr-4">
                       <div>
                         <div
                           className={clsx(
                             positionReached(54) && 'bg-yellow-500',
-                            'flex items-center justify-center w-10 h-10 border rounded-full',
+                            'flex justify-center items-center w-10 h-10 rounded-full border',
                           )}
                         >
                           <svg
@@ -778,9 +778,9 @@ export default function Servizi({groups}) {
                       </div>
                       <div className="w-px h-full bg-gray-300" />
                     </div>
-                    <div className="bg-secondary mb-8 p-12 text-lg rounded-lg lg:mb-16">
+                    <div className="p-12 mb-8 lg:mb-16 text-lg rounded-lg bg-secondary">
                       <H3 id="coordinamento-lavori">Coordinamento lavori</H3>
-                      <p className="mt-4 text-gray-500 leading-relaxed">
+                      <p className="mt-4 leading-relaxed text-gray-500">
                         La realizzazione di un progetto è seguita costantemente
                         dai tecnici supervisori che si occupano del
                         coordinamento dei lavori affinché siano rispettati tutti
@@ -790,12 +790,12 @@ export default function Servizi({groups}) {
                     </div>
                   </div>
                   <div className="flex">
-                    <div className="flex flex-col items-center mr-4 lg:hidden">
+                    <div className="flex lg:hidden flex-col items-center mr-4">
                       <div>
                         <div
                           className={clsx(
                             positionReached(60) && 'bg-yellow-500',
-                            'flex items-center justify-center w-10 h-10 border rounded-full',
+                            'flex justify-center items-center w-10 h-10 rounded-full border',
                           )}
                         >
                           <svg
@@ -829,9 +829,9 @@ export default function Servizi({groups}) {
                       </div>
                       <div className="w-px h-full bg-gray-300" />
                     </div>
-                    <div className="bg-secondary mb-8 p-12 text-lg rounded-lg lg:mb-16">
+                    <div className="p-12 mb-8 lg:mb-16 text-lg rounded-lg bg-secondary">
                       <H3 id="collaudo">Collaudo</H3>
-                      <p className="mt-4 text-gray-500 leading-relaxed">
+                      <p className="mt-4 leading-relaxed text-gray-500">
                         L’arredo viene consegnato e collocato nella sua
                         destinazione operativa e collaudato prima dell’apertura
                         dell’attività
@@ -844,7 +844,7 @@ export default function Servizi({groups}) {
                         <div
                           className={clsx(
                             positionReached(64) && 'bg-green-500',
-                            'flex items-center justify-center w-10 h-10 border rounded-full',
+                            'flex justify-center items-center w-10 h-10 rounded-full border',
                           )}
                         >
                           <svg
@@ -942,16 +942,16 @@ export default function Servizi({groups}) {
             </Grid>
           </section>
 
-          <section className="mb-24 py-12 w-full bg-gray-900 lg:mb-48">
+          <section className="py-12 mb-24 lg:mb-48 w-full bg-gray-900">
             <div className="flex flex-wrap justify-center mx-10vw text-center">
               <div className="px-4 w-full lg:w-9/12">
                 <H2 className="text-center" variant="accent">
                   Formazione
                 </H2>
-                <div className="my-10 w-full text-center text-gray-100 text-xl">
+                <div className="my-10 w-full text-xl text-center text-gray-100">
                   La Formazione continua crea eccellenza
                 </div>
-                <div className="my-10 w-full text-center text-gray-100 text-xl">
+                <div className="my-10 w-full text-xl text-center text-gray-100">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                   Ut enim ad minim veniam, quis nostrud exercitation ullamco

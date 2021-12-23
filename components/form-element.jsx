@@ -6,7 +6,7 @@ function Label({className, ...labelProps}) {
   return (
     <label
       {...labelProps}
-      className={clsx('inline-block text-gray-500 text-lg', className)}
+      className={clsx('inline-block text-lg text-gray-500', className)}
     />
   )
 }
@@ -16,13 +16,13 @@ const Input = React.forwardRef(function Input(
   ref,
 ) {
   const className = clsx(
-    'caret-yellow-500 placeholder-gray-500 focus-ring px-11 py-8 w-full text-black disabled:text-gray-400 text-lg font-medium bg-white rounded-lg',
+    'py-8 px-11 w-full text-lg font-medium placeholder-gray-500 text-black disabled:text-gray-400 disabled:bg-gray-100 bg-white rounded-lg caret-yellow-500 focus-ring',
     featured ? 'bg-white' : 'bg-gray-100',
     props.className,
   )
 
   if (props.type === 'textarea') {
-    return <textarea {...props} className={clsx('resize-y',className)} />
+    return <textarea {...props} className={clsx('resize-y', className)} />
   }
 
   return <input {...props} className={className} ref={ref} />
@@ -34,7 +34,7 @@ function InputError({children, id}) {
   }
 
   return (
-    <p role="alert" id={id} className="text-red-500 text-sm">
+    <p role="alert" id={id} className="text-sm text-red-500">
       {children}
     </p>
   )
@@ -61,12 +61,12 @@ const Field = React.forwardRef(function Field(
 
   return (
     <div className={clsx('mb-8', className)}>
-      <div className="flex gap-2 items-baseline justify-between mb-4">
+      <div className="flex gap-2 justify-between items-baseline mb-4">
         <Label htmlFor={inputId}>{label}</Label>
         {error ? (
           <InputError id={errorId}>{error}</InputError>
         ) : description ? (
-          <div id={descriptionId} className="text-primary text-lg">
+          <div id={descriptionId} className="text-lg text-primary">
             {description}
           </div>
         ) : null}
@@ -91,7 +91,7 @@ const Field = React.forwardRef(function Field(
 
 function ButtonGroup({children}) {
   return (
-    <div className="flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-6">
+    <div className="flex flex-col md:flex-row space-y-4 md:space-y-6 md:space-x-4">
       {children}
     </div>
   )
@@ -99,14 +99,14 @@ function ButtonGroup({children}) {
 
 function NotificationPanel({children, id, isError}) {
   return (
-    <div role="alert" className="relative mt-8 px-11 py-8" id={id}>
+    <div role="alert" className="relative py-8 px-11 mt-8" id={id}>
       <div
         className={clsx('absolute inset-0 rounded-lg opacity-25', {
           'bg-green-500': !isError,
           'bg-red-500': isError,
         })}
       />
-      <div className="text-primary relative text-lg font-medium">
+      <div className="relative text-lg font-medium text-primary">
         {children}
       </div>
     </div>
