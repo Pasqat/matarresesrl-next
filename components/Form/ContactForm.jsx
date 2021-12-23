@@ -82,7 +82,34 @@ export default function ContactForm({ hasAutoFocus, featured, groups }) {
         isError: true,
       })
     }
+
+  const resSubscription = await fetch('/api/subscribe', {
+      body: JSON.stringify({
+        email: email,
+        groupId: newsletterGroupId,
+        name: name,
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'POST'
+    });
+
+    const { error } = await resSubscription.json();
+
+    if (error) {
+      // 4. If there was an error, update the message in state.
+      setNotification({
+        text: error,
+        isError: true,
+      })
+
+      return;
+    }
+
   }
+
+  // 3. Send a request to our API with the user's email address.
 
   return (
     <Grid featured={featured}>
@@ -101,7 +128,7 @@ export default function ContactForm({ hasAutoFocus, featured, groups }) {
         <Grid nested>
           <Field
             name="name"
-            label="Nome e cognome"
+            label="Nome"
             // error={notification.isError ? notification.text : null}
             autoComplete="given-name"
             required
