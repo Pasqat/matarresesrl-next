@@ -1,14 +1,15 @@
-import * as React from "react"
+import * as React from "react";
 
-function MessageIcon({size = 24}) {
+function MailIcon({size = 24}) {
   return (
+
     <svg width={size} height={size} fill="none" viewBox="0 0 24 24">
       <path
         stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth={1.5}
-        d="M12 18.25c3.5 0 7.25-1.75 7.25-6.25S15.5 5.75 12 5.75 4.75 7.5 4.75 12c0 1.03.196 1.916.541 2.67.215.47.336.987.24 1.495l-.262 1.399a1 1 0 001.168 1.167l3.207-.602a2.24 2.24 0 01.764-.003c.527.084 1.062.124 1.592.124z"
+ d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" 
       />
       <path
         stroke="currentColor"
@@ -20,4 +21,4 @@ function MessageIcon({size = 24}) {
   )
 }
 
-export {MessageIcon}
+export {MailIcon}

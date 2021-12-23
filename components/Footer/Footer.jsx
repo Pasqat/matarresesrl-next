@@ -10,6 +10,11 @@ import { FacebookIcon } from '../icons/facebook-icon'
 import { LinkedInIcon } from '../icons/linkedin-icon'
 import { InstagramIcon } from '../icons/instagram-icon'
 
+import { MapIcon } from '../icons/map-icon'
+import { PhoneIcon } from '../icons/phone-icon'
+import {BadgeCheckedIcon} from '../icons/badge-checked-icon'
+import {MailIcon} from '../icons/mail-icon'
+
 export default function Footer() {
   return (
     <footer className="body-font relative text-gray-600 bg-gray-100">
@@ -152,14 +157,14 @@ export default function Footer() {
           <H4 variant="secondary">Contatti</H4>
           <nav className="mb-10 text-sm list-none">
             <ul>
-              <li className="mb-2">
-                <i className="fas fa-map-marker-alt text-gray-400"></i>
+              <li className="mb-2 flex">
+                <MapIcon />
                 <span className="ml-2 text-gray-600 hover:text-gray-800">
                   contrada Popoleto n.c. 70011 Alberobello (BA)
                 </span>
               </li>
-              <li className="mb-2">
-                <i className="fas fa-phone-alt text-gray-400"></i>
+              <li className="mb-2 flex">
+                <PhoneIcon />
                 <a
                   className="ml-2 text-gray-600 hover:text-gray-800"
                   href="tel:00390804323431"
@@ -167,8 +172,8 @@ export default function Footer() {
                   +39 080 4323431
                 </a>
               </li>
-              <li className="mb-2">
-                <i className="fas fa-envelope text-gray-400"></i>
+              <li className="mb-2 flex">
+          <MailIcon size="20"/>
                 <a
                   className="ml-2 text-gray-600 hover:text-gray-800"
                   href="mailto:matarrese@matarrese.it"
@@ -176,10 +181,10 @@ export default function Footer() {
                   matarrese@matarrese.it
                 </a>
               </li>
-              <li className="mb-2">
-                <i className="fas fa-file-invoice text-gray-400"></i>
+              <li className="mb-2 flex">
+                <BadgeCheckedIcon/>
                 <span className="ml-2 text-gray-600 hover:text-gray-800">
-                  IVA 04356890725
+                  P.IVA 04356890725
                 </span>
               </li>
             </ul>
