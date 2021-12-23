@@ -29,13 +29,11 @@ export default async (req,res) => {
   fetch(`https://api.mailerlite.com/api/v2/groups/${groupId}/subscribers`, options)
     .then(response => response.json())
     .then(response => {
-      console.log(response)
       return res.status(201).json({
-        message: 'Subscribed successfully'
+        message: `${response.email} Iscrizione avvenuta con successo`
       })
     })
     .catch(err => {
-      console.error(err);
       return res.status(500).json({ error: error.message || error.toString() });
     });
 }

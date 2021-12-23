@@ -8,6 +8,8 @@ import { sendContactMail } from '../../actions/networking/mailApi'
 import { NotificationPanel, Field } from '../form-element'
 import { Grid } from '../grid'
 import { Spacer } from '../spacer'
+import { ArrowButton } from '../arrow-button'
+import { CheckIcon } from '@heroicons/react/outline'
 
 export default function ContactForm({ hasAutoFocus, featured, groups }) {
   const [form, setForm] = useState({
@@ -34,6 +36,7 @@ export default function ContactForm({ hasAutoFocus, featured, groups }) {
       ...form,
       [name]: value,
     })
+    console.log('change', name, value)
   }
 
   useEffect(() => {
@@ -83,33 +86,40 @@ export default function ContactForm({ hasAutoFocus, featured, groups }) {
       })
     }
 
-  const resSubscription = await fetch('/api/subscribe', {
-      body: JSON.stringify({
-        email: email,
-        groupId: newsletterGroupId,
-        name: name,
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      method: 'POST'
-    });
+    // 3. Send a request to our API with the user's email address.
+    if (isCheckedNewsletter) {
+      const resSubscription = await fetch('/api/subscribe', {
+        body: JSON.stringify({
+          email: email,
+          groupId: newsletterGroupId,
+          name: name,
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        method: 'POST'
+      });
 
-    const { error } = await resSubscription.json();
+      const { message, error } = await resSubscription.json();
 
-    if (error) {
-      // 4. If there was an error, update the message in state.
-      setNotification({
-        text: error,
-        isError: true,
-      })
+      if (error) {
+        // 4. If there was an error, update the message in state.
+        setNotification({
+          ...notification,
+          text: error,
+          isError: true,
+        })
+      }
 
-      return;
+      if (message) {
+        setNotification({
+          ...notification,
+          text: message,
+          isError: false,
+        })
+      }
     }
-
   }
-
-  // 3. Send a request to our API with the user's email address.
 
   return (
     <Grid featured={featured}>
@@ -179,7 +189,7 @@ export default function ContactForm({ hasAutoFocus, featured, groups }) {
             {isCheckedNewsletter ? (
               <div className="ml-6">
                 <label>Scegli il tuo settore:</label>
-                <select value={newsletterGroupId} onChange={handleChange} name="newsletterGroup" id="settore" className="w-full lg:w-auto lg:ml-2 bg-white">
+                <select value={newsletterGroupId} name='newsletterGroupId' onChange={handleChange} className="w-full lg:w-auto lg:ml-2 bg-white">
                   {groups.map(group => {
                     return (
                       <option key={group.id} value={group.id}>{group.name}</option>
@@ -211,16 +221,27 @@ export default function ContactForm({ hasAutoFocus, featured, groups }) {
           </div>
         </div>
 
-        {notification.text ? (
+        {notification.isError ? (
           <NotificationPanel isError={notification.isError}>
             {notification.text}
           </NotificationPanel>
         ) : null}
 
         <div className="text-right">
-          <Button type="submit" disabled={formButtonDisabled} size="medium">
-          Invia
-          </Button>
+          {formButtonDisabled ? (
+            <div className="flex">
+              <CheckIcon />
+              <p className="text-secondary">
+                {!notification.text
+                ? `Grazie, ti ricontatteremo al più presto`
+                : notification.text}
+              </p>
+            </div>
+          ) : (
+            <ArrowButton className="pt-4" type="submit" direction="right">
+            Invia
+            </ArrowButton>
+          )}
         </div>
       </form>
     </Grid>
