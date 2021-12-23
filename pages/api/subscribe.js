@@ -1,8 +1,10 @@
 const API_KEY = process.env.MAILERLITE_API_KEY
 
+/* eslint import/no-anonymous-default-export: [0, {"allowAnonymousFunction": true}] */
 export default async (req,res) => {
   const { email, name,  groupId } = req.body
 
+  // see mailerlite docs for more info
   const options = {
     method: 'POST',
     headers: {
