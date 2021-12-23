@@ -2,13 +2,11 @@ const plugin = require('tailwindcss/plugin')
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
-  // the NODE_ENV thing is for https://github.com/Acidic9/prettier-plugin-tailwind/issues/29
-  mode: process.env.NODE_ENV ? 'jit' : undefined,
-    content: [
-      './pages/**/*.{js,jsx,ts,tsx}',
-      './components/**/*.{js,jsx,ts,tsx}',
-      // './ui/**/*.(js,jsx,ts,tsx)',
-    ],
+  content: [
+    './pages/**/*.{js,jsx,ts,tsx}',
+    './components/**/*.{js,jsx,ts,tsx}',
+    // './ui/**/*.(js,jsx,ts,tsx)',
+  ],
   theme: {
     screens: {
       md: '640px',

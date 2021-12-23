@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
-import { HeartIcon, ShoppingCartIcon } from '@heroicons/react/outline'
+import {HeartIcon, ShoppingCartIcon} from '@heroicons/react/outline'
 
 import HeaderBig from '../components/Header/HeaderBig'
 import CardSquareImg from '../components/Card/CardSquareImg'
@@ -9,19 +9,17 @@ import CardBigImg from '../components/Card/CardBigImg'
 import ContactForm from '../components/Form/ContactForm'
 import FormModal from '../components/Form/FormModal'
 import Layout from '../components/Layout'
-import { LinkButton } from '../components/button'
-import { TestimonialSection } from '../components/sections/testimonial-section'
-import { MepaSection } from '../components/sections/mepa-section'
+import {LinkButton} from '../components/button'
+import {TestimonialSection} from '../components/sections/testimonial-section'
+import {MepaSection} from '../components/sections/mepa-section'
 
-import { logos } from '../data/partner-logo'
-import { H2, H3, H5 } from '../components/typography'
+import {logos} from '../data/partner-logo'
+import {H2, H3, H5} from '../components/typography'
 
 import testimonials from '../data/testimonials'
 import {getGroups} from '../lib/newsletter'
 
-
-export default function Home({ groups }) {
-
+export default function Home({groups}) {
   return (
     <div>
       <Head>
@@ -42,12 +40,10 @@ export default function Home({ groups }) {
             noButton
           />
 
-          <section className="-mt-24 pb-20 bg-gray-200">
-            <div className="container mx-auto px-4">
+          <section className="pb-20 -mt-24 bg-gray-200">
+            <div className="container px-4 mx-auto">
               <div as="div" className="flex flex-wrap" show={true}>
-                <div
-                  className="md:w-4/12"
-                >
+                <div className="md:w-4/12">
                   <CardSquareImg
                     imgSrc="/img/servizio-completo1-150x150.jpg"
                     title="Dall'idea al progetto reale"
@@ -64,9 +60,7 @@ export default function Home({ groups }) {
                     </LinkButton>
                   </CardSquareImg>
                 </div>
-                <div
-                  className="md:w-4/12"
-                >
+                <div className="md:w-4/12">
                   <CardSquareImg
                     imgSrc="/img/prodotti-qualita-150x150.jpg"
                     title="Marchi e attrezzature di qualità"
@@ -83,9 +77,7 @@ export default function Home({ groups }) {
                     </LinkButton>
                   </CardSquareImg>
                 </div>
-                <div
-                  className="md:w-4/12"
-                >
+                <div className="md:w-4/12">
                   <CardSquareImg
                     imgSrc="/img/info-e-supporto-150x150.jpg"
                     title="Supporto pre e post intervento"
@@ -106,20 +98,20 @@ export default function Home({ groups }) {
               </div>
 
               <div className="flex flex-wrap items-center mt-32">
-                <div className="ml-auto mr-auto px-4 w-full md:w-5/12">
-                  <div className="inline-flex items-center justify-center mb-6 p-3 w-16 h-16 text-center text-gray-500 bg-white rounded-full shadow-lg">
-                    <HeartIcon className="text-yellow-500 text-xl" />
+                <div className="px-4 mr-auto ml-auto w-full md:w-5/12">
+                  <div className="inline-flex justify-center items-center p-3 mb-6 w-16 h-16 text-center text-gray-500 bg-white rounded-full shadow-lg">
+                    <HeartIcon className="text-xl text-yellow-500" />
                   </div>
                   <H3 className="mb-2" variant="secondary">
                     Da oltre 30 anni partner degli operatori del settore
                   </H3>
-                  <p className="mb-4 mt-4 text-gray-600 text-lg font-light leading-relaxed">
+                  <p className="mb-4 text-lg font-light leading-relaxed text-gray-600">
                     Offriamo prodotti di alta qualità e servizi professionali:
                     interior design, consulenza per trasformare l’idea in un
                     progetto reale, realizzazione arredo e complementi d’arredo
                     s s s su misura.
                   </p>
-                  <p className="mb-4 mt-0 text-gray-600 text-lg font-light leading-relaxed">
+                  <p className="mt-0 mb-4 text-lg font-light leading-relaxed text-gray-600">
                     Forniture di attrezzature, tra cui attrezzature per
                     ristorazione e cucine professionali, impianti, assistenza
                     tecnica post vendita, manutenzione e riparazione, consulenza
@@ -143,22 +135,22 @@ export default function Home({ groups }) {
           </section>
 
           <section className="mb-24 lg:mb-48">
-            <div className="container mx-auto px-4">
+            <div className="container px-4 mx-auto">
               <div className="flex flex-wrap items-center">
-                <div className="ml-auto mr-auto px-4 w-full md:w-5/12">
+                <div className="px-4 mr-auto ml-auto w-full md:w-5/12">
                   <img
                     alt="attrezzature ristorazione nello showroom"
                     className="max-w-full rounded-lg shadow-lg"
                     src="/img/attrezzature-esposizione.jpg"
                   />
                 </div>
-                <div className="ml-auto mr-auto px-4 w-full md:w-5/12">
+                <div className="px-4 mr-auto ml-auto w-full md:w-5/12">
                   <div className="md:pr-12">
-                    <div className="inline-flex items-center justify-center mb-6 p-3 w-16 h-16 text-center text-gray-500 bg-gray-200 rounded-full shadow-lg">
-                      <ShoppingCartIcon className="text-indigo-500 text-xl" />
+                    <div className="inline-flex justify-center items-center p-3 mb-6 w-16 h-16 text-center text-gray-500 bg-gray-200 rounded-full shadow-lg">
+                      <ShoppingCartIcon className="text-xl" />
                     </div>
                     <H3 variant="secondary">Tutto per il settore food</H3>
-                    <p className="mt-4 text-gray-500 text-lg leading-relaxed">
+                    <p className="mt-4 text-lg leading-relaxed text-gray-500">
                       In una struttura aziendale di <strong>5000 mq</strong>{' '}
                       uniamo il laboratorio di produzione di arredi su misura,
                       l’officina e magazzino ricambi, il laboratorio di
@@ -168,8 +160,8 @@ export default function Home({ groups }) {
                       <li className="py-2">
                         <div className="flex items-center">
                           <div>
-                            <span className="inline-block mr-3 px-2 py-1 text-gray-500 text-xs font-semibold bg-gray-100 rounded-full uppercase">
-                              <i className="fas fa-blender"></i>
+                            <span className="inline-block py-1 px-2 mr-3 text-xs font-semibold text-gray-500 uppercase bg-gray-100 rounded-full">
+                              {/* <i className="fas fa-blender"></i> */}
                             </span>
                           </div>
                           <div>
@@ -180,8 +172,8 @@ export default function Home({ groups }) {
                       <li className="py-2">
                         <div className="flex items-center">
                           <div>
-                            <span className="inline-block mr-3 px-2 py-1 text-gray-500 text-xs font-semibold bg-gray-100 rounded-full uppercase">
-                              <i className="fas fa-chair"></i>
+                            <span className="inline-block py-1 px-2 mr-3 text-xs font-semibold text-gray-500 uppercase bg-gray-100 rounded-full">
+                              {/* <i className="fas fa-chair"></i> */}
                             </span>
                           </div>
                           <div>
@@ -192,8 +184,8 @@ export default function Home({ groups }) {
                       <li className="py-2">
                         <div className="flex items-center">
                           <div>
-                            <span className="inline-block mr-3 px-2 py-1 text-gray-500 text-xs font-semibold bg-gray-100 rounded-full uppercase">
-                              <i className="fas fa-utensils"></i>
+                            <span className="inline-block py-1 px-2 mr-3 text-xs font-semibold text-gray-500 uppercase bg-gray-100 rounded-full">
+                              {/* <i className="fas fa-utensils"></i> */}
                             </span>
                           </div>
                           <div>
@@ -204,8 +196,8 @@ export default function Home({ groups }) {
                       <li className="py-2">
                         <div className="flex items-center">
                           <div>
-                            <span className="inline-block mr-3 px-2 py-1 text-gray-500 text-xs font-semibold bg-gray-100 rounded-full uppercase">
-                              <i className="fas fa-concierge-bell"></i>
+                            <span className="inline-block py-1 px-2 mr-3 text-xs font-semibold text-gray-500 uppercase bg-gray-100 rounded-full">
+                              {/* <i className="fas fa-concierge-bell"></i> */}
                             </span>
                           </div>
                           <div>
@@ -216,8 +208,8 @@ export default function Home({ groups }) {
                       <li className="py-2">
                         <div className="flex items-center">
                           <div>
-                            <span className="inline-block mr-3 px-2 py-1 text-gray-500 text-xs font-semibold bg-gray-100 rounded-full uppercase">
-                              <i className="fab fa-html5"></i>
+                            <span className="inline-block py-1 px-2 mr-3 text-xs font-semibold text-gray-500 uppercase bg-gray-100 rounded-full">
+                              {/* <i className="fab fa-html5"></i> */}
                             </span>
                           </div>
                           <div>
@@ -241,11 +233,11 @@ export default function Home({ groups }) {
           </section>
 
           <section className="mb-24 lg:mb-48" id="#contatti">
-            <ContactForm featured groups={groups}/>
+            <ContactForm featured groups={groups} />
           </section>
           {/* LOGO SECTION */}
           <section className="relative mb-24 lg:mb-48">
-            <div className="container mb-12 mx-auto px-4">
+            <div className="container px-4 mx-auto mb-12">
               <H2 className="mb-8 text-center" variant="secondary">
                 I Nostri partner
               </H2>
@@ -253,7 +245,7 @@ export default function Home({ groups }) {
                 {logos.map(logo => {
                   return logo.href ? (
                     <Link key={logo.name} href={logo.href}>
-                      <a className="text-center cursor-pointer hover:drop-shadow-md">
+                      <a className="text-center hover:drop-shadow-md cursor-pointer">
                         <Image
                           width={180}
                           height={95}
@@ -284,10 +276,10 @@ export default function Home({ groups }) {
 }
 
 export async function getStaticProps() {
-const groups = await getGroups()
+  const groups = await getGroups()
   return {
     props: {
-      groups
-    }
+      groups,
+    },
   }
 }
