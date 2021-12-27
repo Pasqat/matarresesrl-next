@@ -1,12 +1,16 @@
 {
   "name": "matarrese-next",
+  "homepage": "https://www.matarrese.it",
+  "author": "Pasquale Matarrese <pasquale.matarrese@gmail.com>",
   "version": "0.3.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "format": "yarn lint --fix",
+    "lint": "npx eslint .",
+    "lint:no-path": "npx eslint"
   },
   "dependencies": {
     "@apollo/client": "^3.4.16",
@@ -41,8 +45,12 @@
     "@tailwindcss/typography": "^0.5.0",
     "autoprefixer": "^10.4.0",
     "eslint": "<8.0.0",
-    "eslint-config-next": "12.0.1",
+    "eslint-config-next": "12.0.7",
     "eslint-plugin-tailwindcss": "^1.17.2",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "postcss": "^8.4.5",
     "prettier": "^2.5.1",
     "tailwindcss": "^3.0.7"

@@ -1,12 +1,12 @@
-import styles from "./post-body.module.css";
+import styles from './post-body.module.css'
 
-export default function PostBody({ content }) {
+export default function PostBody({content}) {
   return (
-    <div className="max-w-3xl mx-auto prose">
+    <div className="mx-auto max-w-3xl">
       <div
-        // className={styles.content}
-        dangerouslySetInnerHTML={{ __html: content }}
+        className={styles.content}
+        dangerouslySetInnerHTML={{__html: content}}
       />
     </div>
-  );
+  )
 }
