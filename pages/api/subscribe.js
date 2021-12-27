@@ -1,8 +1,7 @@
 const API_KEY = process.env.MAILERLITE_API_KEY
 
-/* eslint import/no-anonymous-default-export: [0, {"allowAnonymousFunction": true}] */
-export default async (req,res) => {
-  const { email, name,  groupId } = req.body
+export default async (req, res) => {
+  const {email, name, groupId} = req.body
 
   // see mailerlite docs for more info
   const options = {
@@ -11,7 +10,7 @@ export default async (req,res) => {
       Accept: 'application/json',
       'X-MailerLite-ApiDocs': 'true',
       'Content-Type': 'application/json',
-      'X-MailerLite-ApiKey': API_KEY
+      'X-MailerLite-ApiKey': API_KEY,
     },
     body: JSON.stringify({
       email: email,
@@ -19,23 +18,25 @@ export default async (req,res) => {
       // fields: {company: 'string', city: 'string'},
       resubscribe: true,
       autoresponders: true,
-      type: null
-    })
-  };
-
-  if (!email) {
-    return res.status(400).json({ error: 'Email is required' });
+      type: null,
+    }),
   }
 
+  if (!email) {
+    return res.status(400).json({error: 'Email is required'})
+  }
 
-  fetch(`https://api.mailerlite.com/api/v2/groups/${groupId}/subscribers`, options)
+  fetch(
+    `https://api.mailerlite.com/api/v2/groups/${groupId}/subscribers`,
+    options,
+  )
     .then(response => response.json())
     .then(response => {
       return res.status(201).json({
-        message: `${response.email} Iscrizione avvenuta con successo`
+        message: `${response.email} Iscrizione avvenuta con successo`,
       })
     })
-    .catch(err => {
-      return res.status(500).json({ error: error.message || error.toString() });
-    });
+    .catch(error => {
+      return res.status(500).json({error: error.message || error.toString()})
+    })
 }

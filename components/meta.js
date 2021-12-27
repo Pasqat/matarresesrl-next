@@ -1,4 +1,4 @@
-import Head from "next/head";
+import Head from 'next/head'
 
 export default function Meta() {
   return (
@@ -98,8 +98,8 @@ export default function Meta() {
         name="msapplication-TileImage"
         content="/img/favicon/ms-icon-144x144.png"
       />
-      <meta property="og:site_name" content="Matarrese srl"/>
-      <meta property="og:locale" content="it_IT"/>
+      <meta property="og:site_name" content="Matarrese srl" />
+      <meta property="og:locale" content="it_IT" />
     </Head>
-  );
+  )
 }

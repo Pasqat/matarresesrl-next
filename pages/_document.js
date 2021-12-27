@@ -4,8 +4,7 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="it">
-        <Head>
-        </Head>
+        <Head></Head>
         <body>
           <div id="page-transition"></div>
           <Main />
