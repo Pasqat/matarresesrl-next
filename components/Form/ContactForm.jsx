@@ -1,25 +1,25 @@
-import { useEffect, useRef, useState } from 'react'
+import {useEffect, useRef, useState} from 'react'
 import Link from 'next/link'
 
-import { H2 } from '../typography'
-import { Button } from '../button'
+import {H2} from '../typography'
+import {Button} from '../button'
 
-import { sendContactMail } from '../../actions/networking/mailApi'
-import { NotificationPanel, Field } from '../form-element'
-import { Grid } from '../grid'
-import { Spacer } from '../spacer'
-import { ArrowButton } from '../arrow-button'
+import {sendContactMail} from '../../actions/networking/mailApi'
+import {NotificationPanel, Field} from '../form-element'
+import {Grid} from '../grid'
+import {Spacer} from '../spacer'
+import {ArrowButton} from '../arrow-button'
 import {CheckIcon} from '../icons/check-icon'
 import {ChevronLeftIcon} from '../icons/chevron-left-icon'
 
-export default function ContactForm({ hasAutoFocus, featured, groups }) {
+export default function ContactForm({hasAutoFocus, featured, groups}) {
   const [form, setForm] = useState({
     name: '',
     email: '',
     formContent: '',
     newsletterGroupId: 107688379,
   })
-  const { name, email, formContent, newsletterGroupId } = form
+  const {name, email, formContent, newsletterGroupId} = form
 
   const [isCheckedTerms, setIsCheckedTerms] = useState(false)
   const [isCheckedNewsletter, setIsCheckedNewsletter] = useState(false)
@@ -32,7 +32,7 @@ export default function ContactForm({ hasAutoFocus, featured, groups }) {
   const inputName = useRef(null)
 
   const handleChange = e => {
-    const { name, value } = e.target
+    const {name, value} = e.target
     setForm({
       ...form,
       [name]: value,
@@ -45,7 +45,7 @@ export default function ContactForm({ hasAutoFocus, featured, groups }) {
 
   useEffect(() => {
     if (isCheckedTerms && notification.text.includes('termini')) {
-      setNotification({ text: '', isError: false })
+      setNotification({text: '', isError: false})
     }
   }, [isCheckedTerms, notification.text])
 
@@ -76,7 +76,7 @@ export default function ContactForm({ hasAutoFocus, featured, groups }) {
         text: 'Grazie, ti ricontatteremo al più presto',
         isError: false,
       })
-      setForm({ ...form, name: '', email: '', formContent: '' })
+      setForm({...form, name: '', email: '', formContent: ''})
       setIsCheckedTerms(false)
     } else {
       setNotification({
@@ -95,12 +95,12 @@ export default function ContactForm({ hasAutoFocus, featured, groups }) {
           name: name,
         }),
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        method: 'POST'
-      });
+        method: 'POST',
+      })
 
-      const { message, error } = await resSubscription.json();
+      const {message, error} = await resSubscription.json()
 
       if (error) {
         // 4. If there was an error, update the message in state.
@@ -128,11 +128,11 @@ export default function ContactForm({ hasAutoFocus, featured, groups }) {
         onSubmit={submitContactForm}
       >
         <H2 as="h4">
-        Hai un&apos;idea che vorresti realizzare, o hai bisogno di
-        informazioni?
+          Hai un&apos;idea che vorresti realizzare, o hai bisogno di
+          informazioni?
         </H2>
         <H2 as="p" variant="secondary">
-        Completa questo form, ti risponderemo entro 24 ore (escluso festivi)
+          Completa questo form, ti risponderemo entro 24 ore (escluso festivi)
         </H2>
         <Spacer size="2xs" />
         <Grid nested>
@@ -147,7 +147,7 @@ export default function ContactForm({ hasAutoFocus, featured, groups }) {
             onChange={handleChange}
             className="col-span-full lg:col-span-6"
             featured={featured}
-            />
+          />
           <Field
             name="email"
             label="Email"
@@ -159,7 +159,7 @@ export default function ContactForm({ hasAutoFocus, featured, groups }) {
             onChange={handleChange}
             className="col-span-full lg:col-span-6"
             featured={featured}
-            />
+          />
         </Grid>
         <Field
           name="formContent"
@@ -171,53 +171,58 @@ export default function ContactForm({ hasAutoFocus, featured, groups }) {
           onChange={handleChange}
           type="textarea"
           featured={featured}
-          />
-        <div className="relative grid gap-x-4 grid-cols-4 md:grid-cols-8 lg:gap-x-6 lg:grid-cols-12 mt-5 text-gray-600">
+        />
+        <div className="grid relative grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-x-4 lg:gap-x-6 mt-5 text-gray-600">
           <div className="col-span-full lg:col-span-6 mb-2 text-lg">
-            <label className="inline-flex items-center w-full mb-2  leading-tight">
+            <label className="inline-flex items-center mb-2 w-full leading-tight">
               <input
                 type="checkbox"
-                className="checked:bg-yellow-500 text-yellow-600 border-2 border-gray-400 border-solid cursor-pointer"
+                className="text-yellow-600 checked:bg-yellow-500 border-2 border-gray-400 border-solid cursor-pointer"
                 name="newsletter"
                 checked={isCheckedNewsletter}
                 onChange={() => setIsCheckedNewsletter(!isCheckedNewsletter)}
-                />
+              />
               <span className="ml-2">
-              voglio rimanere aggiornato su novità e promozioni
+                voglio rimanere aggiornato su novità e promozioni
               </span>
             </label>
             {isCheckedNewsletter ? (
-              <div className="ml-4 flex items-center lg:my-6 my-2">
-                <select 
-                  value={newsletterGroupId} 
-                  name='newsletterGroupId' 
-                  onChange={handleChange} 
-                  className="w-full lg:w-auto bg-white px-2 lg:px-8 py-4 disabled:text-gray-400 text-lg font-medium rounded-lg">
+              <div className="flex items-center my-2 lg:my-6 ml-4">
+                <select
+                  value={newsletterGroupId}
+                  name="newsletterGroupId"
+                  onChange={handleChange}
+                  className="py-4 px-2 lg:px-8 w-full lg:w-auto text-lg font-medium disabled:text-gray-400 bg-white rounded-lg"
+                >
                   {groups.map(group => {
                     return (
-                      <option key={group.id} value={group.id}>{group.name}</option>
+                      <option key={group.id} value={group.id}>
+                        {group.name}
+                      </option>
                     )
                   })}
                 </select>
-                <ChevronLeftIcon/> 
-                <label className="text-xs lg:text-lg">scegli il tuo settore</label>
+                <ChevronLeftIcon />
+                <label className="text-xs lg:text-lg">
+                  scegli il tuo settore
+                </label>
               </div>
             ) : null}
           </div>
           <div className="col-span-full lg:col-span-6">
-            <label className="flex-end inline-flex items-center w-full">
+            <label className="inline-flex items-center w-full flex-end">
               <input
                 type="checkbox"
-                className="checked:bg-yellow-500 text-yellow-500 border-2 border-solid border-gray-400 cursor-pointer"
+                className="text-yellow-500 checked:bg-yellow-500 border-2 border-gray-400 border-solid cursor-pointer"
                 name="conditions"
                 checked={isCheckedTerms}
                 onChange={() => setIsCheckedTerms(!isCheckedTerms)}
-                />
+              />
               <span className="ml-2">
                 accetto il{' '}
                 <Link href="/privacy-policy">
                   <a className="text-yellow-500" target="_blank">
-                  trattamento dei dati e condizioni
+                    trattamento dei dati e condizioni
                   </a>
                 </Link>
               </span>
@@ -236,15 +241,15 @@ export default function ContactForm({ hasAutoFocus, featured, groups }) {
           {formButtonDisabled ? (
             <div className="flex justify-end">
               <CheckIcon />
-              <p className="text-secondary text-lg">
+              <p className="text-lg text-secondary">
                 {!notification.text
-                ? `Grazie, ti ricontatteremo al più presto`
-                : notification.text}
+                  ? `Grazie, ti ricontatteremo al più presto`
+                  : notification.text}
               </p>
             </div>
           ) : (
             <ArrowButton className="pt-4" type="submit" direction="right">
-            Invia
+              Invia
             </ArrowButton>
           )}
         </div>

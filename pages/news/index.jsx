@@ -279,7 +279,7 @@ export default function News({data}) {
   )
 }
 
-export async function getServerSideProps({req}) {
+export async function getStaticProps() {
   const data = await getAllPosts()
   const categories = data.categories
     .filter(category => category.count > 0)
@@ -290,12 +290,7 @@ export async function getServerSideProps({req}) {
     {size: 64},
   )
 
-  const host = req.headers.host
-  if (!host) {
-    throw new Error('Could not determine domain URL.')
-  }
-  const protocol = host.includes('localhost') ? 'http' : 'https'
-  const domain = `${protocol}://${host}`
+  const domain = process.env.NEXT_PUBLIC_WP_API_URL
 
   return {
     props: {
