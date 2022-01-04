@@ -9,8 +9,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import {H3} from '../../components/typography'
 
-import {ChevronLeftIcon} from '../../components/icons/chevron-left-icon'
-
 import {ArrowButton} from '../../components/arrow-button'
 
 const BATCH_SIZE = 9
@@ -63,7 +61,6 @@ const GET_PAGINATED_POSTS = gql`
 `
 
 // Function to update the query with the new results
-// TODO: this could be exported in is own file
 const updateQuery = (previousResult, {fetchMoreResult}) => {
   return fetchMoreResult.projects.edges.length
     ? fetchMoreResult

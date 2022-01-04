@@ -72,11 +72,9 @@ export default function Project({project}) {
                         {project.title}
                       </H3>
                       <div className="mt-0 mb-2 text-sm font-bold leading-normal text-gray-400 uppercase">
-                        {project.portfolioCategories.edges.map(
-                          ({node} = category) => (
-                            <div key={node.id}>{node.name}</div>
-                          ),
-                        )}
+                        {project.portfolioCategories.edges.map(({node}) => (
+                          <div key={node.id}>{node.name}</div>
+                        ))}
                       </div>
                     </div>
 

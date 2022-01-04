@@ -45,7 +45,7 @@ export default function Post({postData, posts, img, svg}) {
                 content={postData.featuredImage?.node?.sourceUrl}
               />
             </Head>
-            <div className="py-4 md:py-16 md:px-5 mx-auto mt-[29px] max-w-7xl rounded">
+            <div className="py-4 md:py-16 md:px-5 mx-auto max-w-7xl">
               <main className="md:mb-24">
                 <div className="sm:mx-0 mb-8 md:mb-16">
                   {img || svg ? (
