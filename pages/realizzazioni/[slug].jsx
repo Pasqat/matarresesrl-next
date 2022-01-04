@@ -1,22 +1,22 @@
-import { useRouter } from "next/router";
-import Head from "next/head";
-import Link from "next/link";
+import {useRouter} from 'next/router'
+import Head from 'next/head'
+import Link from 'next/link'
 
-import Layout from "../../components/Layout";
-import Header from "../../components/Header/Header";
-import EventBody from "../../components/Events/event-body";
-import HeaderBig from "../../components/Header/HeaderBig";
-import SocialShareBar from "../../components/SocialShareBar/SocialShareBar";
+import Layout from '../../components/Layout'
+import Header from '../../components/Header/Header'
+import EventBody from '../../components/Events/event-body'
+import HeaderBig from '../../components/Header/HeaderBig'
+import SocialShareBar from '../../components/SocialShareBar/SocialShareBar'
 
-import { getProject, getAllProjectsWithSlug } from "../../lib/project_api";
-import { H2, H3 } from "../../components/typography";
+import {getProject, getAllProjectsWithSlug} from '../../lib/query/project'
+import {H2, H3} from '../../components/typography'
 
-export default function Project({ project }) {
-  const router = useRouter();
+export default function Project({project}) {
+  const router = useRouter()
   // const moreEvents = events?.edges
 
   if (!router.isFallback && !project.slug) {
-    return <p>hmm...sembra ci sia un errore</p>;
+    return <p>hmm...sembra ci sia un errore</p>
   }
 
   return (
@@ -28,9 +28,7 @@ export default function Project({ project }) {
             <title>Matarrese srl | Realizzazioni</title>
           </Head>
           <main>
-            <H2>
-            Caricamento dei progetti realizzati
-            </H2>
+            <H2>Caricamento dei progetti realizzati</H2>
           </main>
         </>
       ) : (
@@ -75,9 +73,9 @@ export default function Project({ project }) {
                       </H3>
                       <div className="mt-0 mb-2 text-sm font-bold leading-normal text-gray-400 uppercase">
                         {project.portfolioCategories.edges.map(
-                          ({ node } = category) => (
+                          ({node} = category) => (
                             <div key={node.id}>{node.name}</div>
-                          )
+                          ),
                         )}
                       </div>
                     </div>
@@ -105,25 +103,25 @@ export default function Project({ project }) {
         </>
       )}
     </Layout>
-  );
+  )
 }
 
-export async function getStaticProps({ params }) {
-  const data = await getProject(params.slug);
+export async function getStaticProps({params}) {
+  const data = await getProject(params.slug)
 
   return {
     props: {
       project: data.project,
     },
-  };
+  }
 }
 
 export async function getStaticPaths() {
-  const allProjects = await getAllProjectsWithSlug();
+  const allProjects = await getAllProjectsWithSlug()
 
   return {
     paths:
-      allProjects.edges.map(({ node }) => `/realizzazioni/${node.slug}`) || [],
+      allProjects.edges.map(({node}) => `/realizzazioni/${node.slug}`) || [],
     fallback: true,
-  };
+  }
 }
