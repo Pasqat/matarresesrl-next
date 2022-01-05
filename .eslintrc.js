@@ -14,7 +14,6 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:prettier/recommended',
     'plugin:@next/next/recommended',
-    'plugin:tailwindcss/recommended',
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -23,7 +22,7 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['react', 'react-hooks', 'tailwindcss'],
+  plugins: ['react', 'react-hooks'],
   rules: {
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
