@@ -4,7 +4,6 @@ import Head from 'next/head'
 import {getEvents} from '../../lib/query/event'
 // import {getMonth} from '../../actions/utils/formatDate'
 
-
 import Layout from '../../components/Layout'
 import {HeroSection} from '../../components/sections/hero-section'
 import {RegistrationPanel} from '../../components/event-registration-panel'
@@ -16,16 +15,17 @@ import {Grid} from '../../components/grid'
 
 export default function Events({data}) {
 
-  const fetchGroups = async (e) => {
-    const res = await fetch('/api/subscribe', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
+  // DELETE: this is just for testing
+  // const fetchGroups = async (e) => {
+  //   const res = await fetch('/api/subscribe', {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   })
 
-    console.log(res.data)
-  }
+  //   console.log(res.data)
+  // }
 
   return (
     <>
@@ -56,7 +56,6 @@ export default function Events({data}) {
             imageSize="large"
             image="/img/plan.svg"
           />
-          <button onClick={fetchGroups}>Fetch groups</button>
           {data.length ? (
             <Grid>
               <H3 className="col-span-full">In primo piano</H3>
