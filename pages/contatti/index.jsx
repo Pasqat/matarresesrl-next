@@ -23,20 +23,21 @@ export default function Contatti({groups}) {
     <>
       <Head>
         <title>Cantatti | Matarrese srl</title>
-          {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
       </Head>
-          <Script
-            src={`https://maps.googleapis.com/maps/api/js?key=${MAPS_API}`}
-  strategy="beforeInteractive"
-          />
+      <Script
+        src={`https://maps.googleapis.com/maps/api/js?key=${MAPS_API}`}
+        strategy="beforeInteractive"
+      />
       <Layout>
         <section className="mx-10vw mb-24 lg:mb-48 text-gray-600">
-          <Header>
-            Fatti ispirare dalle nostre soluzioni. Visita il nostro showroom!
-          </Header>
-          <div className="flex overflow-hidden relative justify-start items-end mb-24 lg:mb-48 bg-gray-300 rounded-lg min-h-[25rem] md:min-h-[30rem]">
-            <Map />
-            {/*
+          <div className="max-w-7xl mx-auto">
+            <Header>
+              Fatti ispirare dalle nostre soluzioni. Visita il nostro showroom!
+            </Header>
+            <div className="flex overflow-hidden relative justify-start items-end mb-24 lg:mb-48 bg-gray-300 rounded-lg min-h-[25rem] md:min-h-[30rem]">
+              <Map />
+              {/*
               <iframe
                 width="100%"
                 height="100%"
@@ -47,82 +48,83 @@ export default function Contatti({groups}) {
               ></iframe>
               */}
 
-            <Transition
-              appear
-              show={isOpen}
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 scale-95"
-              enterTo="opacity-100 scale-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-95"
-              className="flex relative flex-wrap py-6 m-8 w-full bg-white rounded shadow-md"
-            >
+              <Transition
+                appear
+                show={isOpen}
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+                className="flex relative flex-wrap py-6 m-8 w-full bg-white rounded shadow-md"
+              >
+                <div
+                  className={clsx(
+                    {hidden: !isOpen},
+                    'flex relative flex-wrap py-6 w-full bg-white rounded shadow-md',
+                  )}
+                >
+                  <XIcon
+                    className="absolute top-2 right-2 ml-auto w-5 h-5 cursor-pointer"
+                    onClick={() => setIsOpen(!isOpen)}
+                  />
+                  <div className="flex flex-col justify-between px-6 lg:w-1/2">
+                    <div>
+                      <H6 as="h2" variant="secondary">
+                        Indirizzo
+                      </H6>
+                      <p className="mt-1">
+                        contrada popoleto,n.c. {'\n'} Alberobello (BA) 70011
+                      </p>
+                    </div>
+                    <div>
+                      <H6 className="mt-4" as="h2" variant="secondary">
+                        email
+                      </H6>
+                      <a
+                        className="leading-relaxed text-yellow-500"
+                        href="mailto:matarrese@matarrese.it"
+                      >
+                        matarrese@matarrese.it
+                      </a>
+                    </div>
+                  </div>
+                  <div className="flex flex-col justify-between px-6 mt-4 lg:mt-0 lg:w-1/2">
+                    <div>
+                      <H6 as="h2" variant="secondary">
+                        Telefono
+                      </H6>
+                      <a href="tel:000804323431" className="leading-relaxed">
+                        +39 080 4323 431
+                      </a>
+                    </div>
+                    <div>
+                      <H6 as="h2" variant="secondary" className="mt-4">
+                        Assistenza
+                      </H6>
+                      <a href="tel:00390804323651" className="leading-relaxed">
+                        +39 080 4323 651
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </Transition>
               <div
+                onClick={() => setIsOpen(!isOpen)}
                 className={clsx(
-                  {hidden: !isOpen},
-                  'flex relative flex-wrap py-6 w-full bg-white rounded shadow-md',
+                  isOpen && 'hidden',
+                  'flex absolute justify-center items-center m-8 w-10 h-10 text-2xl font-bold text-white bg-yellow-500 rounded-full ring-8 ring-black ring-opacity-50 shadow-md hover:shadow-lg cursor-pointer',
                 )}
               >
-                <XIcon
-                  className="absolute top-2 right-2 ml-auto w-5 h-5 cursor-pointer"
-                  onClick={() => setIsOpen(!isOpen)}
-                />
-                <div className="flex flex-col justify-between px-6 lg:w-1/2">
-                  <div>
-                    <H6 as="h2" variant="secondary">
-                      Indirizzo
-                    </H6>
-                    <p className="mt-1">
-                      contrada popoleto,n.c. {'\n'} Alberobello (BA) 70011
-                    </p>
-                  </div>
-                  <div>
-                    <H6 className="mt-4" as="h2" variant="secondary">
-                      email
-                    </H6>
-                    <a
-                      className="leading-relaxed text-yellow-500"
-                      href="mailto:matarrese@matarrese.it"
-                    >
-                      matarrese@matarrese.it
-                    </a>
-                  </div>
-                </div>
-                <div className="flex flex-col justify-between px-6 mt-4 lg:mt-0 lg:w-1/2">
-                  <div>
-                    <H6 as="h2" variant="secondary">
-                      Telefono
-                    </H6>
-                    <a href="tel:000804323431" className="leading-relaxed">
-                      +39 080 4323 431
-                    </a>
-                  </div>
-                  <div>
-                    <H6 as="h2" variant="secondary" className="mt-4">
-                      Assistenza
-                    </H6>
-                    <a href="tel:00390804323651" className="leading-relaxed">
-                      +39 080 4323 651
-                    </a>
-                  </div>
-                </div>
+                +
               </div>
-            </Transition>
-            <div
-              onClick={() => setIsOpen(!isOpen)}
-              className={clsx(
-                isOpen && 'hidden',
-                'flex absolute justify-center items-center m-8 w-10 h-10 text-2xl font-bold text-white bg-yellow-500 rounded-full ring-8 ring-black ring-opacity-50 shadow-md hover:shadow-lg cursor-pointer',
-              )}
-            >
-              +
             </div>
           </div>
         </section>
         <section className="mb-24 lg:mb-48" id="contatti">
-          <ContactForm groups={groups}/>
+          <ContactForm groups={groups} />
           {/* TODO: aggingungere termini e condizioni */}
         </section>
       </Layout>
@@ -135,7 +137,6 @@ export async function getStaticProps() {
   return {
     props: {
       groups,
-    }
+    },
   }
 }
-

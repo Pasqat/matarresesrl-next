@@ -145,8 +145,8 @@ export default function Servizi({groups}) {
                 {`Grandi idee per prodotti di successo`}
               </H2>
               <div className="flex justify-between items-start">
-                {/* TODO: extract this in a component? name it like StepBlock */}
-                <div className="hidden lg:block sticky top-4 md:col-span-4 w-full">
+                {/* NOTE: I really need to find a better way to calculate progress of the position and coloring icons */}
+                <div className="hidden lg:block sticky top-32 md:col-span-4 w-full">
                   <div className="lg:pr-16">
                     <div className="flex">
                       <div className="flex flex-col items-center mr-4">
@@ -966,7 +966,7 @@ export default function Servizi({groups}) {
           </section>
 
           <section className="mb-24 lg:mb-48" id="contatti">
-            <ContactForm groups={groups}/>
+            <ContactForm groups={groups} />
           </section>
         </main>
       </Layout>
@@ -982,4 +982,3 @@ export async function getStaticProps() {
     },
   }
 }
-
