@@ -1,6 +1,6 @@
 import * as React from 'react'
 import clsx from 'clsx'
-import {motion, useReducedMotion, Variant} from 'framer-motion'
+import {motion, useReducedMotion} from 'framer-motion'
 import {ArrowIcon} from './icons/arrow-icon'
 import {useElementState} from './hooks/use-element-state'
 

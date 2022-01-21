@@ -1,9 +1,6 @@
 import * as React from 'react'
 
-function CheckCircledIcon({
-  size = 36,
-  className,
-}) {
+function CheckCircledIcon({size = 36, className}) {
   return (
     <svg
       width={size}

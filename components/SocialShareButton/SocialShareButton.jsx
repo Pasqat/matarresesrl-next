@@ -5,7 +5,7 @@
  * @param children - maybe usefull for tooltip
  */
 export default function SocialShareButton(props) {
-  const { href, icon, children } = props;
+  const {href, icon, children} = props
   return (
     <a
       href={href}
@@ -16,5 +16,5 @@ export default function SocialShareButton(props) {
       <i className={`text-3xl text-gray-600 hover:text-yellow-500 ${icon}`} />
       {children}
     </a>
-  );
+  )
 }

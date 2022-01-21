@@ -304,7 +304,7 @@ export default function ProductsHome({groups}) {
             />
           </div>
           <section className="mb-24 lg:mb-48" id="contatti">
-            <ContactForm featured groups={groups}/>
+            <ContactForm featured groups={groups} />
           </section>
         </main>
       </Layout>
@@ -313,10 +313,10 @@ export default function ProductsHome({groups}) {
 }
 
 export async function getStaticProps() {
-const groups = await getGroups()
+  const groups = await getGroups()
   return {
     props: {
-      groups
-    }
+      groups,
+    },
   }
 }

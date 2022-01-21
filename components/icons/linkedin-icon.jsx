@@ -1,9 +1,6 @@
 import * as React from 'react'
 
-function LinkedInIcon({
-  size = 24,
-  title = 'LinkedIn',
-}) {
+function LinkedInIcon({size = 24, title = 'LinkedIn'}) {
   return (
     <svg width={size} height={size} fill="none" viewBox="0 0 24 24">
       <title>{title}</title>

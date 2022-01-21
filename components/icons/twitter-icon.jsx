@@ -1,9 +1,6 @@
 import * as React from 'react'
 
-function TwitterIcon({
-  size = 24,
-  title = 'Twitter',
-}) {
+function TwitterIcon({size = 24, title = 'Twitter'}) {
   return (
     <svg width={size} height={size} fill="none" viewBox="0 0 24 24">
       <title>{title}</title>

@@ -1,9 +1,6 @@
 import * as React from 'react'
 
-function ChevronUpIcon({
-  className,
-  title,
-}) {
+function ChevronUpIcon({className, title}) {
   return (
     <svg
       width="24"

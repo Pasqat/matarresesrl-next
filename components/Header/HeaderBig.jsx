@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import { ButtonLink } from '../button'
-import { motion, useReducedMotion } from 'framer-motion'
-import { H2, H1 } from '../typography'
+import {ButtonLink} from '../button'
+import {motion, useReducedMotion} from 'framer-motion'
+import {H2, H1} from '../typography'
 
 /**
  * @param backgroundImgSrc - 'url(/img/homeBackground.jpg)'
@@ -15,15 +15,15 @@ function HeaderBig({
   overlay = 'bg-black opacity-80',
   title = '',
   subtitle = '',
-  button = { text: 'Button', link: '#' },
+  button = {text: 'Button', link: '#'},
   noButton = false,
   children,
 }) {
   const shouldReduceMotion = useReducedMotion()
 
   const childVariants = {
-    initial: { opacity: 0, y: shouldReduceMotion ? 0 : 25 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+    initial: {opacity: 0, y: shouldReduceMotion ? 0 : 25},
+    visible: {opacity: 1, y: 0, transition: {duration: 0.5}},
   }
 
   return (
@@ -47,24 +47,21 @@ function HeaderBig({
                 initial="initial"
                 animate="visible"
                 variants={{
-                  initial: { opacity: 0 },
-                  visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
+                  initial: {opacity: 0},
+                  visible: {opacity: 1, transition: {staggerChildren: 0.2}},
                 }}
-              className="flex flex-auto flex-col"
+                className="flex flex-auto flex-col"
               >
-        <motion.div variants={childVariants}>
-                <H1 variant='accent'>
-                  {title}
-                </H1>
-              </motion.div>
-              {subtitle ? (
                 <motion.div variants={childVariants}>
-                  <H2 as="p" className="mt-4" variant='secondary'>
-                    {subtitle}
-                  </H2>
+                  <H1 variant="accent">{title}</H1>
                 </motion.div>
-              ) : null}
-
+                {subtitle ? (
+                  <motion.div variants={childVariants}>
+                    <H2 as="p" className="mt-4" variant="secondary">
+                      {subtitle}
+                    </H2>
+                  </motion.div>
+                ) : null}
               </motion.div>
               {!noButton && (
                 <Link href={button.link} passHref>

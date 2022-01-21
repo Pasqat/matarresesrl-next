@@ -18,7 +18,6 @@ import {H2, H3, H5} from '../components/typography'
 
 import testimonials from '../data/testimonials'
 import {getGroups} from '../lib/newsletter'
-import {ArrowButton} from '../components/arrow-button'
 
 export default function Home({groups}) {
   return (

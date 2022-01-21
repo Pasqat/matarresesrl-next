@@ -2,12 +2,12 @@ import * as React from 'react'
 
 function ChevronLeftIcon({className, size = 50}) {
   return (
-    <svg 
+    <svg
       className={className}
       width={size}
       height={size}
-      viewBox="0 0 24 24" 
-      fill="none" 
+      viewBox="0 0 24 24"
+      fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path

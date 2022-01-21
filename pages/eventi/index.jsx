@@ -14,7 +14,6 @@ import {H3, H6} from '../../components/typography'
 import {Grid} from '../../components/grid'
 
 export default function Events({data}) {
-
   // DELETE: this is just for testing
   // const fetchGroups = async (e) => {
   //   const res = await fetch('/api/subscribe', {
@@ -97,7 +96,6 @@ export default function Events({data}) {
 
 export async function getStaticProps() {
   const data = await getEvents()
-
 
   return {
     props: {

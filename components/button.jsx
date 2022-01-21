@@ -9,7 +9,7 @@ function getClassName({className}) {
   )
 }
 // hover:shadow-none bg-gradient-tl-yellow shadow-md text-white rounded text-lg py-2 px-4
-function ButtonInner({children, variant = "primary", size}) {
+function ButtonInner({children, variant = 'primary', size}) {
   return (
     <>
       <div
@@ -18,7 +18,7 @@ function ButtonInner({children, variant = "primary", size}) {
           {
             'border-2 group-hover:border-transparent group-focus:border-transparent':
               variant === 'secondary' || variant === 'danger',
-            'danger': variant === 'danger',
+            danger: variant === 'danger',
             'bg-yellow-500': variant === 'primary',
           },
         )}
@@ -28,8 +28,7 @@ function ButtonInner({children, variant = "primary", size}) {
           'relative flex items-center justify-center w-full h-full whitespace-nowrap',
           {
             'text-primary': variant === 'secondary',
-            'shadow-md text-white rounded-full text-lg':
-              variant === 'primary',
+            'shadow-md text-white rounded-full text-lg': variant === 'primary',
             'text-red-500': variant === 'danger',
             'px-11 py-6 space-x-5': size === 'large',
             'px-4 py-2 space-x-3': size === 'medium',
@@ -99,7 +98,7 @@ function LinkButton({
 }
 
 const ButtonLink = React.forwardRef(function ButtonLink(
-  {children, variant = 'primary', href, className, size, ...rest},
+  {children, variant = 'primary', className, size, ...rest},
   ref,
 ) {
   return (

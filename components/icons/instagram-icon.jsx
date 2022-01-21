@@ -1,9 +1,6 @@
 import * as React from 'react'
 
-function InstagramIcon({
-  size = 24,
-  title = 'Instagram',
-}) {
+function InstagramIcon({size = 24, title = 'Instagram'}) {
   return (
     <svg width={size} height={size} fill="none" viewBox="0 0 24 24">
       <title>{title}</title>

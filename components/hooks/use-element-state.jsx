@@ -1,4 +1,4 @@
-import {useRef, useEffect, useState, RefCallback, useCallback} from 'react'
+import {useRef, useEffect, useState, useCallback} from 'react'
 
 // Kindly copy-pasted form kentcdodds siteweb codebase
 // This started as a work around for https://github.com/framer/motion/issues/1221,

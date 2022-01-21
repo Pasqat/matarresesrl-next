@@ -1,5 +1,4 @@
 import * as React from 'react'
-import Link from 'next/link'
 import {LinkButton} from '../button'
 import {HeroSection} from './hero-section'
 import {motion} from 'framer-motion'
@@ -11,11 +10,12 @@ function ListMenu() {
   }
 
   return (
-    <motion.ul className="text-secondary text-xl"
-          variants={{
-            initial: {opacity: 0},
-            visible: {opacity: 1, transition: {staggerChildren: 0.2}},
-          }}
+    <motion.ul
+      className="text-secondary text-xl"
+      variants={{
+        initial: {opacity: 0},
+        visible: {opacity: 1, transition: {staggerChildren: 0.2}},
+      }}
     >
       <motion.li variants={childVariants} className="my-2">
         <LinkButton href="#lavorazione" withArrow>

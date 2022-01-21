@@ -23,15 +23,15 @@ export default function Events({event}) {
 
   // take n String arguments and join them
   // in split case (this-is-split-case)
-  function addressToMapsLink(...props) {
-    let parsedAddress = []
+  // function addressToMapsLink(...props) {
+  //   let parsedAddress = []
 
-    for (let element of props) {
-      parsedAddress.push(element.split(/\W/).join('+'))
-    }
+  //   for (let element of props) {
+  //     parsedAddress.push(element.split(/\W/).join('+'))
+  //   }
 
-    return parsedAddress.join('+')
-  }
+  //   return parsedAddress.join('+')
+  // }
 
   return (
     <Layout navbarTransparent>

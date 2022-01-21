@@ -6,7 +6,7 @@ const fontSize = {
   H2: 'leading-tight text-3xl md:text-4xl',
   h3: 'font-medium text-2xl md:text-3xl',
   h4: 'font-medium text-xl md:text-2xl',
-  h6: 'font-medium text-lg md:text-xl',
+  h5: 'font-medium text-lg md:text-xl',
   h6: 'font-medium text-lg ',
 }
 

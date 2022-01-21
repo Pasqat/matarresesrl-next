@@ -15,11 +15,10 @@ import {Button} from '../../components/button'
  *
  * @param {string} type "contacts" | "reservation"
  *
- * @param {stirng} title usefull to pass event title to the email subject
+ * @param {'stirng'} title usefull to pass event title to the email subject
  */
 export default function FormModal({
   buttonText = 'Contattaci',
-  buttonClassName,
   type = 'contacts',
   title = null,
 }) {
