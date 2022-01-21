@@ -2,7 +2,6 @@ import {useEffect, useRef, useState} from 'react'
 import Link from 'next/link'
 
 import {H2} from '../typography'
-import {Button} from '../button'
 
 import {sendContactMail} from '../../actions/networking/mailApi'
 import {NotificationPanel, Field} from '../form-element'

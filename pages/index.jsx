@@ -18,6 +18,7 @@ import {H2, H3, H5} from '../components/typography'
 
 import testimonials from '../data/testimonials'
 import {getGroups} from '../lib/newsletter'
+import {ArrowButton} from '../components/arrow-button'
 
 export default function Home({groups}) {
   return (
@@ -40,7 +41,7 @@ export default function Home({groups}) {
             noButton
           />
 
-          <section className="pb-20 -mt-24 bg-gray-200">
+          <section className="pb-20 -mt-24">
             <div className="container px-4 mx-auto">
               <div as="div" className="flex flex-wrap" show={true}>
                 <div className="md:w-4/12">
@@ -48,13 +49,13 @@ export default function Home({groups}) {
                     imgSrc="/img/servizio-completo1-150x150.jpg"
                     title="Dall'idea al progetto reale"
                     className="md:mt-5"
-                  >
-                    <div>
-                      Aprire un&apos;attività, rinnovare un locale, avere una
+                    description={`Aprire un&apos;attività, rinnovare un locale, avere una
                       guida per migliorare il proprio lavoro: Matarrese srl è la
                       soluzione adatta alle esigenze professionali del mondo
-                      della <strong>ristorazione.</strong>
-                    </div>
+                      della <strong>ristorazione.</strong>`}
+                    urlText="Scopri i servizi"
+                    url="/servizi"
+                  >
                     <LinkButton className="mt-4" href="/servizi" withArrow>
                       Scopri i servizi
                     </LinkButton>
@@ -65,35 +66,31 @@ export default function Home({groups}) {
                     imgSrc="/img/prodotti-qualita-150x150.jpg"
                     title="Marchi e attrezzature di qualità"
                     className="md:-mt-10"
-                  >
-                    <div>
+                    description={`
                       Selezioniamo i migliori marchi del settore al fine di
                       fornire sempre un vasto assortimento di attrezzature e
                       prodotti di alta qualità, per soddisfare ogni esigenza dei
                       nostri clienti.
-                    </div>
-                    <LinkButton className="mt-4" href="/prodotti" withArrow>
-                      Scopri i prodotti
-                    </LinkButton>
-                  </CardSquareImg>
+                    `}
+                    urlText="Scopri i prodotti"
+                    url="/prodotti"
+                  ></CardSquareImg>
                 </div>
                 <div className="md:w-4/12">
                   <CardSquareImg
                     imgSrc="/img/info-e-supporto-150x150.jpg"
                     title="Supporto pre e post intervento"
-                  >
-                    <div>
+                    description={`
                       Promuoviamo la cultura, la professionalità, la conoscenza
                       nel mondo dell&apos;enogastronomia, aiutiamo le idee a
-                      diventare progetti reali, forniamo{' '}
+                      diventare progetti reali, forniamo
                       <strong>assistenza tecnica</strong>,
-                      <strong>riparazione</strong> e{' '}
+                      <strong>riparazione</strong> e
                       <strong>manutenzione.</strong>
-                    </div>
-                    <LinkButton className="mt-4" href="/contatti" withArrow>
-                      Richiedi assistenza
-                    </LinkButton>
-                  </CardSquareImg>
+                    `}
+                    url="/contatti"
+                    urlText="Richiedi assistenza"
+                  ></CardSquareImg>
                 </div>
               </div>
 

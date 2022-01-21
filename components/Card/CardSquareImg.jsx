@@ -1,22 +1,33 @@
-import {H4} from '../typography'
+import {ArrowButton} from '../arrow-button'
+import {H3} from '../typography'
+import Image from 'next/image'
 
-function CardSquareImg({imgSrc, imgAlt, title, children, className}) {
+// NOTE: 1559 1607
+function CardSquareImg({imgSrc, imgAlt, title, description, url, urlText}) {
   return (
-    <div className={`w-full px-4 pt-6 text-center lg:pt-12 mb-8 ${className}`}>
-      <div className="relative flex flex-col w-full min-w-0 break-words bg-white rounded-lg shadow-lg hover:shadow-xl">
-        <div className="flex-auto px-4 py-5">
-          {/* TODO: use higher resolution image. Find them in ../uploads/2015/03 */}
-          <div className="inline-flex items-center justify-center mb-5 text-center text-white rounded-lg shadow-lg">
-            <img
-              src={imgSrc}
-              className="align-middle w-full rounded-lg"
-              alt={imgAlt ?? title}
-            />
-          </div>
-          <H4 variant="secondary">{title}</H4>
-          <div className="mb-4 mt-2 text-gray-500">{children}</div>
+    <div className="relative flex flex-col w-full break-words bg-gray-100 rounded-lg p-6 space-y-4 lg:pt-12 mb-8">
+      <div className="flex-auto">
+        {/* TODO: use higher resolution image. Find them in ../uploads/2015/03 */}
+        <div className="relative h-32 w-full shadow-md">
+          <Image
+            objectFit="cover"
+            objectPosition="center"
+            layout="fill"
+            src={imgSrc}
+            alt={imgAlt ?? title}
+          />
         </div>
       </div>
+      <H3 variant="secondary">{title}</H3>
+      <div
+        className="text-gray-500"
+        dangerouslySetInnerHTML={{__html: description}}
+      />
+      {url ? (
+        <div className="justify-items-end text-right">
+          <ArrowButton>{urlText}</ArrowButton>
+        </div>
+      ) : null}
     </div>
   )
 }

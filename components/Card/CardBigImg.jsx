@@ -5,8 +5,8 @@ import {H4} from '../typography'
  * @param bgColor "text-yellow-600"
  */
 function CardBigImg({
-  textColor = 'text-white',
-  bgColor = 'bg-gradient-to-t from-green-500 to-blue-500',
+  textColor = 'text-black',
+  bgColor = 'bg-gray-100',
   imgSrc,
   imgAlt,
   title = 'title',
@@ -19,7 +19,7 @@ function CardBigImg({
   return (
     <div className="px-4 mt-8 mr-auto ml-auto w-full md:w-4/12">
       <div
-        className={`relative flex flex-col w-full min-w-0 mb-6 break-words rounded-lg shadow-lg ${bgColor}`}
+        className={`relative flex flex-col w-full min-w-0 mb-6 break-words rounded-lg ${bgColor}`}
       >
         <img
           alt={imgAlt ?? title}
