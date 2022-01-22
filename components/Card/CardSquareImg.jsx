@@ -2,7 +2,7 @@ import {ArrowButton} from '../arrow-button'
 import {H3} from '../typography'
 import Image from 'next/image'
 
-// NOTE: 1559 1607
+// NOTE: 0947
 function CardSquareImg({imgSrc, imgAlt, title, description, url, urlText}) {
   return (
     <div className="relative flex flex-col w-full break-words bg-gray-100 rounded-lg p-6 space-y-4 lg:pt-12 mb-8">
