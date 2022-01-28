@@ -29,9 +29,7 @@ export default function News({data}) {
   const router = useRouter()
 
   const searchParams =
-    typeof router.query.q === 'Array'
-      ? router.query.q.join('+')
-      : router.query.q
+    typeof router.query.q === Array ? router.query.q.join('+') : router.query.q
   const searchInputRef = React.useRef(null)
 
   const resultsRef = React.useRef(null)
@@ -302,5 +300,6 @@ export async function getStaticProps() {
         domain,
       },
     },
+    revalidate: 60,
   }
 }
