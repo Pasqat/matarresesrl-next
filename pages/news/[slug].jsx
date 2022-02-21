@@ -31,7 +31,7 @@ export default function Post({postData, posts, img, svg}) {
           <Head>
             <title>Matarrese srl</title>
           </Head>
-          <main>
+          <main className="max-w-7xl mx-auto py-16">
             <h2>Loading...</h2>
           </main>
         </>

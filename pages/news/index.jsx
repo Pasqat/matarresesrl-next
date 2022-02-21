@@ -300,6 +300,6 @@ export async function getStaticProps() {
         domain,
       },
     },
-    revalidate: 60,
+    revalidate: 60 * 60 * 24,
   }
 }
