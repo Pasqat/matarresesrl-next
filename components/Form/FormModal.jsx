@@ -161,7 +161,7 @@ export default function FormModal({
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
-          className="z-[51] fixed inset-0 bg-yellow-500 bg-opacity-90 overflow-y-auto"
+          className="z-[51] fixed inset-0 bg-yellow-500 bg-opacity-80 overflow-y-auto"
           onClose={closeModal}
         >
           <div className="px-4 min-h-screen text-center">
@@ -205,8 +205,8 @@ export default function FormModal({
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-gray-500 text-sm">
-                        Completa questo form, ti risponderemo entro 24 ore
-                        (escluso festivi)
+                        Completa questo modulo, un nostro consulente ti
+                        contatterà
                       </p>
                     </div>
                   </>
