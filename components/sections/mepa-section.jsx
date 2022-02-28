@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Image from 'next/image'
 
-import {H2, Paragraph} from '../typography'
+import {H2} from '../typography'
 import {Grid} from '../grid'
 import logoConsip from '../../public/img/logos/Consip_Logo.webp'
 import logoAcquistinrete from '../../public/img/logos/acquistinrete.webp'
