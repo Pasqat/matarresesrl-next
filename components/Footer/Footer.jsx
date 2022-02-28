@@ -30,10 +30,6 @@ export default function Footer() {
               />
             </a>
           </Link>
-          <p className="mt-2 text-sm text-gray-500">
-            Puoi trovarci anche sui nostri social, risponderemo in 1-2 giorni
-            lavorativi
-          </p>
           <div className="my-6 text-center">
             <a
               href="https://www.facebook.com/matarresesrl"
@@ -151,7 +147,7 @@ export default function Footer() {
               <li className="flex mb-2">
                 <MapIcon />
                 <span className="ml-2 text-gray-600 hover:text-gray-800">
-                  contrada Popoleto n.c. 70011 Alberobello (BA)
+                  Contrada popoleto n.c. 70011 Alberobello (BA)
                 </span>
               </li>
               <li className="flex mb-2">
@@ -186,7 +182,6 @@ export default function Footer() {
             Orari
           </H4>
           <div className="mb-10 text-sm text-gray-600">
-            <p className="mb-2">Per contattare i nostri uffici:</p>
             <div className="flex flex-row justify-between">
               <div>Lunedì - Venerdì</div>
               <div className="ml-3 font-medium text-gray-500">
@@ -201,14 +196,16 @@ export default function Footer() {
           </div>
           <div className="text-sm text-gray-600">
             <p>
-              Servizio tecnico:{' '}
+              Assistenza tecnica:{' '}
               <a href="tel:00300804323651" className="underline cursor-pointer">
                 +39 080 4323651
               </a>
             </p>
-            <p>Numero attivo dal lunedì al venerdì 8.30/13.00 – 15.00/19.00</p>
-            <p className="italic">
-              Per urgenze nei giorni festivi , il servizio di risposta verrà
+            <p>
+              {`Numero attivo dal lunedì al venerdì 8.30 - 13.00  15.00 - 19.00`}
+            </p>
+            <p className="italic pt-2">
+              Per urgenze nei giorni festivi, il servizio di risposta verrà
               garantito entro 24 h dalla chiamata e l&apos;eventuale intervento
               tecnico urgente verrà valutato con tariffa dedicata.
             </p>

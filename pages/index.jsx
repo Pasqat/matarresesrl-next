@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
-import {HeartIcon, ShoppingCartIcon} from '@heroicons/react/outline'
 
 import HeaderBig from '../components/Header/HeaderBig'
 import CardSquareImg from '../components/Card/CardSquareImg'
@@ -217,11 +216,11 @@ export default function Home({groups}) {
           </section>
 
           <section className="mb-24 lg:mb-48">
-            <MepaSection />
+            <TestimonialSection testimonials={testimonials} />
           </section>
 
           <section className="mb-24 lg:mb-48">
-            <TestimonialSection testimonials={testimonials} />
+            <MepaSection />
           </section>
 
           <section className="mb-24 lg:mb-48" id="#contatti">

@@ -92,7 +92,7 @@ export default function Navbar({isTransparent}) {
                     <Link href="/contatti" passHref>
                       <ButtonLink size="small">
                         <ChatIcon className="inline-block mr-1 w-5 h-5" />
-                        Contattaci
+                        Contatti
                       </ButtonLink>
                     </Link>
                   </div>

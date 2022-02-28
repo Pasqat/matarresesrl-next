@@ -127,11 +127,10 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
         onSubmit={submitContactForm}
       >
         <H2 as="h4">
-          Hai un&apos;idea che vorresti realizzare, o hai bisogno di
-          informazioni?
+          Hai un progetto da realizzare o hai bisogno di informazioni?
         </H2>
         <H2 as="p" variant="secondary">
-          Completa questo form, ti risponderemo entro 24 ore (escluso festivi)
+          Completa questo modulo, un nostro consulente ti ricontatterà.
         </H2>
         <Spacer size="2xs" />
         <Grid nested>
