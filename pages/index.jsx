@@ -48,10 +48,8 @@ export default function Home({groups}) {
                     imgSrc="/img/servizio-completo1-150x150.jpg"
                     title="Dall'idea al progetto reale"
                     className="md:mt-5"
-                    description={`Aprire un&apos;attività, rinnovare un locale, avere una
-                      guida per migliorare il proprio lavoro: Matarrese srl è la
-                      soluzione adatta alle esigenze professionali del mondo
-                      della <strong>ristorazione.</strong>`}
+                    description={`Aprire un'attività, rennovare un locale,
+                      avere una guida per migliorare il proprio lavoro: te seguiamo ad ogni passo per realizzare la tua idea.`}
                     urlText="Scopri i servizi"
                     url="/servizi"
                   >
@@ -66,12 +64,9 @@ export default function Home({groups}) {
                     title="Marchi e attrezzature di qualità"
                     className="md:-mt-10"
                     description={`
-                      Selezioniamo i migliori marchi del settore al fine di
-                      fornire sempre un vasto assortimento di attrezzature e
-                      prodotti di alta qualità, per soddisfare ogni esigenza dei
-                      nostri clienti.
+                      Selezioniamo i migliori marchi ho.re.ca, studiamo le ultime tecnologie portando innovazione in cucina ed equilibrio negli arredi.
                     `}
-                    urlText="Scopri i prodotti"
+                    urlText="Guarda i prodotti"
                     url="/prodotti"
                   ></CardSquareImg>
                 </div>
@@ -80,41 +75,40 @@ export default function Home({groups}) {
                     imgSrc="/img/info-e-supporto-150x150.jpg"
                     title="Supporto pre e post intervento"
                     description={`
-                      Promuoviamo la cultura, la professionalità, la conoscenza
-                      nel mondo dell&apos;enogastronomia, aiutiamo le idee a
-                      diventare progetti reali, forniamo
-                      <strong>assistenza tecnica</strong>,
-                      <strong>riparazione</strong> e
-                      <strong>manutenzione.</strong>
+                      Promuoviamo la cultura enogastronomica, la professionalità, e l'ottimizzazione del lavoro.
+                      Aiutiamo le idee a diventare progetti reali, assicurando il corretto ciclo di vita delle attrezzature
+                      attraverso il supporto post vendita.
                     `}
                     url="/contatti"
-                    urlText="Richiedi assistenza"
+                    urlText="Vieni a conoscerci"
                   ></CardSquareImg>
                 </div>
               </div>
 
               <div className="flex flex-wrap items-center mt-32">
                 <div className="px-4 mr-auto ml-auto w-full md:w-5/12">
-                  <div className="inline-flex justify-center items-center p-3 mb-6 w-16 h-16 text-center text-gray-500 bg-white rounded-full shadow-lg">
-                    <HeartIcon className="text-xl text-yellow-500" />
-                  </div>
+                  {/* <div className="inline-flex justify-center items-center p-3 mb-6 w-16 h-16 text-center text-gray-500 bg-white rounded-full shadow-lg"> */}
+                  {/*   <HeartIcon className="text-xl text-yellow-500" /> */}
+                  {/* </div> */}
                   <H3 className="mb-2" variant="secondary">
-                    Da oltre 30 anni partner degli operatori del settore
+                    Da 40 anni partner degli operatori ho.re.ca
                   </H3>
                   <p className="mb-4 text-lg font-light leading-relaxed text-gray-600">
-                    Offriamo prodotti di alta qualità e servizi professionali:
-                    interior design, consulenza per trasformare l’idea in un
-                    progetto reale, realizzazione arredo e complementi d’arredo
-                    s s s su misura.
+                    Creiamo spazi su misura dei professionisti. Dalla dimensione
+                    delle attrezzature professionali agli arredi su misura, ci
+                    impegniamo a cercare la soluzione ottimale per i tuoi spazi
+                    e più efficiente per il tuo lavoro.
                   </p>
                   <p className="mt-0 mb-4 text-lg font-light leading-relaxed text-gray-600">
-                    Forniture di attrezzature, tra cui attrezzature per
-                    ristorazione e cucine professionali, impianti, assistenza
-                    tecnica post vendita, manutenzione e riparazione, consulenza
-                    professionale continua.
+                    L’innovazione e la tecnologia sono componenti essenziali
+                    nella scelta di attrezzature per la ristorazione, di cucine
+                    professionali e di impianti di aerazione e climatizzazione.
+                    La professionalità e la qualità ci caratterizzano nella
+                    consulenza professionale e nell’assistenza tecnica post
+                    vendita.
                   </p>
                   <FormModal
-                    buttonText="Realizza il tuo sogno"
+                    buttonText="Realizza i tuoi progetti"
                     buttonClassName="hover:shadow-none bg-gradient-tl-yellow shadow-md text-white rounded text-lg py-2 px-4 "
                   />
                 </div>
@@ -142,10 +136,12 @@ export default function Home({groups}) {
                 </div>
                 <div className="px-4 mr-auto ml-auto w-full md:w-5/12">
                   <div className="md:pr-12">
-                    <div className="inline-flex justify-center items-center p-3 mb-6 w-16 h-16 text-center text-gray-500 bg-gray-200 rounded-full shadow-lg">
-                      <ShoppingCartIcon className="text-xl" />
-                    </div>
-                    <H3 variant="secondary">Tutto per il settore food</H3>
+                    {/* <div className="inline-flex justify-center items-center p-3 mb-6 w-16 h-16 text-center text-gray-500 bg-gray-200 rounded-full shadow-lg"> */}
+                    {/*   <ShoppingCartIcon className="text-xl" /> */}
+                    {/* </div> */}
+                    <H3 variant="secondary">
+                      Tutto per creare i tuoi spazi professionali
+                    </H3>
                     <p className="mt-4 text-lg leading-relaxed text-gray-500">
                       In una struttura aziendale di <strong>5000 mq</strong>{' '}
                       uniamo il laboratorio di produzione di arredi su misura,
@@ -185,7 +181,7 @@ export default function Home({groups}) {
                             </span>
                           </div>
                           <div>
-                            <H5 as="h4">Utensili da cucina</H5>
+                            <H5 as="h4">Utensili per cucine professionali</H5>
                           </div>
                         </div>
                       </li>
@@ -229,7 +225,7 @@ export default function Home({groups}) {
           </section>
 
           <section className="mb-24 lg:mb-48" id="#contatti">
-            <ContactForm featured groups={groups} />
+            <ContactForm groups={groups} />
           </section>
           {/* LOGO SECTION */}
           <section className="relative mb-24 lg:mb-48">

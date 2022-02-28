@@ -20,7 +20,7 @@ function CardSquareImg({imgSrc, imgAlt, title, description, url, urlText}) {
       </div>
       <H3 variant="secondary">{title}</H3>
       <div
-        className="text-gray-500"
+        className="text-gray-500 text-lg"
         dangerouslySetInnerHTML={{__html: description}}
       />
       {url ? (

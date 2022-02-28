@@ -14,10 +14,11 @@ function TestimonialSection({testimonials}) {
     <Grid>
       <div className="flex flex-col col-span-full mb-20 space-y-10 lg:flex-row lg:items-end lg:justify-between lg:space-y-0">
         <div className="space-y-2 lg:space-y-0">
-          <H2>{`Non prendete per vera solo la nostra parola`}</H2>
-          <H2 variant="secondary" as="p">
-            {`Cosa dicono i nostri clienti`}
-          </H2>
+          {/* <H2>{`Non prendete per vera solo la nostra parola`}</H2> */}
+          {/* <H2 variant="secondary" as="p"> */}
+          {/*   {`Cosa dicono i nostri clienti`} */}
+          {/* </H2> */}
+          <H2>{`Cosa dicono i nostri clienti`}</H2>
         </div>
 
         {testimonials.length > 3 ? (
