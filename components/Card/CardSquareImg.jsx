@@ -15,7 +15,7 @@ function CardSquareImg({
 }) {
   return (
     <div className="px-8 w-full h-full">
-      <div className="bg-gray-100 rounded-lg lg:bg-trasparent">
+      <div className="bg-gray-100 rounded-lg lg:bg-trasparent h-full">
         <Grid
           nested
           className="group px-6 pb-6 pt-14 rounded-lg md:pb-12 lg:bg-gray-100"
@@ -42,10 +42,10 @@ function CardSquareImg({
             />
 
             {url ? (
-              <div className="flex justify-between items-center mt-12">
+              <div className="flex justify-between items-center mt-12 lg:ml-auto">
                 <ArrowLink to={slug ?? href ?? url}>
                   {urlText}
-                  <div className="focus-ring absolute z-10 inset-0 left-0 right-0 rounded-lg md:-left-12 md:-right-12 lg:left-0 lg:right-0" />
+                  <div className="focus-ring absolute z-10 inset-0 left-0 right-0 rounded-lg md:-left-12 md:-right-12 lg:left-0 lg:right-0 h-full" />
                 </ArrowLink>
               </div>
             ) : null}

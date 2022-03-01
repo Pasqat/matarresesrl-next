@@ -14,7 +14,7 @@ import {H6} from '../../components/typography'
 
 import {getGroups} from '../../lib/newsletter'
 
-const MAPS_API = process.env.MAPS_API
+// const MAPS_API = process.env.MAPS_API
 
 export default function Contatti({groups}) {
   const [isOpen, setIsOpen] = useState(true)
@@ -25,10 +25,10 @@ export default function Contatti({groups}) {
         <title>Cantatti | Matarrese srl</title>
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
       </Head>
-      <Script
+      {/* <Script
         src={`https://maps.googleapis.com/maps/api/js?key=${MAPS_API}`}
-        strategy="beforeInteractive"
-      />
+        // strategy="beforeInteractive"
+      /> */}
       <Layout>
         <section className="mx-10vw mb-24 lg:mb-48 text-gray-600">
           <div className="max-w-7xl mx-auto">

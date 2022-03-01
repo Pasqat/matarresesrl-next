@@ -40,7 +40,7 @@ function HeaderBig({
         />
       </div>
       {title && (
-        <div className="max-w-8xl mx-auto">
+        <div className="max-w-8xl mx-auto z-20">
           <div className="flex flex-wrap items-center">
             <div className="ml-auto mr-auto px-4 w-full text-center lg:w-6/12">
               <motion.div
@@ -57,9 +57,9 @@ function HeaderBig({
                 </motion.div>
                 {subtitle ? (
                   <motion.div variants={childVariants}>
-                    <H2 as="p" className="mt-4" variant="secondary">
+                    <p className="mt-4 text-white leading-tight text-3xl md:text-4xl">
                       {subtitle}
-                    </H2>
+                    </p>
                   </motion.div>
                 ) : null}
               </motion.div>

@@ -108,6 +108,13 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@googlemaps/js-api-loader@^1.13.7":
+  version "1.13.7"
+  resolved "https://registry.yarnpkg.com/@googlemaps/js-api-loader/-/js-api-loader-1.13.7.tgz#05cd401569efbc4871d797341ee4f913aab9d729"
+  integrity sha512-nR37TVS7797p91Eng1NxEVpLeFz5H2TXkJHSBaFEM8wid+ffgBdmwRD2uD7TbcLBmHjRABLPrXPAyXhugx97tA==
+  dependencies:
+    fast-deep-equal "^3.1.3"
+
 "@graphql-typed-document-node/core@^3.0.0":
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/@graphql-typed-document-node/core/-/core-3.1.1.tgz#076d78ce99822258cf813ecc1e7fa460fa74d052"

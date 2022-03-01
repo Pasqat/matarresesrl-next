@@ -1,16 +1,20 @@
 import React from 'react'
+import {Loader} from '@googlemaps/js-api-loader'
+
+const MAPS_API = process.env.NEXT_PUBLIC_MAPS_API
 
 function MapExample() {
   const mapRef = React.useRef(null)
+
   React.useEffect(() => {
-    let google = window.google
-    let map = mapRef.current
-    let lat = '40.791522'
-    let lng = '17.2448473'
-    const myLatlng = new google.maps.LatLng(lat, lng)
+    const loader = new Loader({
+      apiKey: MAPS_API,
+      version: 'weekly',
+    })
+
     const mapOptions = {
       zoom: 15,
-      center: myLatlng,
+      center: {lat: 40.788, lng: 17.2448473},
       scrollwheel: false,
       zoomControl: true,
       styles: [
@@ -67,25 +71,32 @@ function MapExample() {
       ],
     }
 
-    map = new google.maps.Map(map, mapOptions)
+    let map
+    // let lat = '40.791522'
+    // let lng = '17.2448473'
 
-    const marker = new google.maps.Marker({
-      position: myLatlng,
-      map: map,
-      animation: google.maps.Animation.DROP,
-      title: 'Matarrese srl',
-    })
+    loader.load().then(() => {
+      // const myLatlng = new google.maps.LatLng(lat, lng)
+      map = new window.google.maps.Map(mapRef.current, mapOptions)
 
-    const contentString =
-      '<div class="text-md font-bold"><h2>Matarrese srl</h2>' +
-      '<hr/><p>vieni a trovarci!</p></div>'
+      const marker = new window.google.maps.Marker({
+        position: {lat: 40.791522, lng: 17.2448473},
+        map: map,
+        animation: window.google.maps.Animation.DROP,
+        title: 'Matarrese srl',
+      })
 
-    const infowindow = new google.maps.InfoWindow({
-      content: contentString,
-    })
+      const contentString =
+        '<div class="text-md font-bold"><h2>Matarrese srl</h2>' +
+        '<hr/><p>vieni a trovarci!</p></div>'
 
-    google.maps.event.addListener(marker, 'click', function () {
-      infowindow.open(map, marker)
+      const infowindow = new window.google.maps.InfoWindow({
+        content: contentString,
+      })
+
+      window.google.maps.event.addListener(marker, 'click', function () {
+        infowindow.open(map, marker)
+      })
     })
   }, [])
   return (
