@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import {ButtonLink} from '../button'
 import {motion, useReducedMotion} from 'framer-motion'
-import {H2, H1} from '../typography'
+import {H1} from '../typography'
 
 /**
  * @param backgroundImgSrc - 'url(/img/homeBackground.jpg)'
