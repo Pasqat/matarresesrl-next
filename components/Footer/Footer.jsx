@@ -20,8 +20,8 @@ export default function Footer() {
   return (
     <footer className="relative text-gray-600 bg-gray-100">
       <div className="bg-yellow-600 mx-10vw">
-        <div className="flex justify-between mx-auto max-w-7xl">
-          <Paragraph>yooo</Paragraph>
+        <div className="flex justify-between items-center mx-auto max-w-7xl">
+          <Paragraph>Iscriviti alla Newsletter</Paragraph>
           <Field
             name="email"
             // label="Email"
