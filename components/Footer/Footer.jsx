@@ -4,12 +4,13 @@ import logoEccelsa from '../../public/img/logos/Eccelsa-RGB_400x400.png'
 import logoQucino from '../../public/img/logos/MARCHIO-QUCINO150.png'
 import logoAliGroup from '../../public/img/logos/Ali_Group_logo.png'
 
-import {H4} from '../typography'
+import {H4, Paragraph} from '../typography'
 import {Grid} from '../grid'
+import {Field} from '../form-element'
+
 import {FacebookIcon} from '../icons/facebook-icon'
 import {LinkedInIcon} from '../icons/linkedin-icon'
 import {InstagramIcon} from '../icons/instagram-icon'
-
 import {MapIcon} from '../icons/map-icon'
 import {PhoneIcon} from '../icons/phone-icon'
 import {BadgeCheckedIcon} from '../icons/badge-checked-icon'
@@ -18,10 +19,29 @@ import {MailIcon} from '../icons/mail-icon'
 export default function Footer() {
   return (
     <footer className="relative text-gray-600 bg-gray-100">
+      <div className="bg-yellow-600 mx-10vw">
+        <div className="flex justify-between mx-auto max-w-7xl">
+          <Paragraph>yooo</Paragraph>
+          <Field
+            name="email"
+            // label="Email"
+            placeholder="email"
+            autoComplete="email"
+            // error={notification.isError ? notification.text : null}
+            required
+            // disabled={formButtonDisabled}
+            // value={email}
+            // onChange={handleChange}
+            className="col-span-full lg:col-span-6"
+            // featured={featured}
+            featured
+          />
+        </div>
+      </div>
       <Grid className="py-24">
-        <div className="col-span-full lg:col-span-3 mx-auto text-center">
+        <div className="mx-auto text-center col-span-full lg:col-span-3">
           <Link href="/">
-            <a className="justify-center items-center pb-2">
+            <a className="items-center justify-center pb-2">
               <Image
                 width={340}
                 height={20}
@@ -36,7 +56,7 @@ export default function Footer() {
               target="_blank"
               rel="noreferrer"
             >
-              <button className="mr-2 w-10 h-10 font-normal" type="button">
+              <button className="w-10 h-10 mr-2 font-normal" type="button">
                 <FacebookIcon size="30" />
               </button>
             </a>
@@ -45,7 +65,7 @@ export default function Footer() {
               rel="noreferrer"
               target="_blank"
             >
-              <button className="mr-2 w-10 h-10 font-normal" type="button">
+              <button className="w-10 h-10 mr-2 font-normal" type="button">
                 <LinkedInIcon size="30" />
               </button>
             </a>
@@ -54,7 +74,7 @@ export default function Footer() {
               href="https://www.instagram.com/matarrese.srl/"
               target="_blank"
             >
-              <button className="mr-2 w-10 h-10 font-normal" type="button">
+              <button className="w-10 h-10 mr-2 font-normal" type="button">
                 <InstagramIcon size="30" />
               </button>
             </a>
@@ -99,7 +119,7 @@ export default function Footer() {
             </a>
           </div>
         </div>
-        <div className="col-span-full lg:col-span-3 pl-4">
+        <div className="pl-4 col-span-full lg:col-span-3">
           <H4 variant="secondary">Links</H4>
           <nav className="mb-10 list-none">
             <ul>
@@ -140,7 +160,7 @@ export default function Footer() {
             </ul>
           </nav>
         </div>
-        <div className="col-span-full lg:col-span-3 pl-4 w-full">
+        <div className="w-full pl-4 col-span-full lg:col-span-3">
           <H4 variant="secondary">Contatti</H4>
           <nav className="mb-10 text-sm list-none">
             <ul>
@@ -177,7 +197,7 @@ export default function Footer() {
             </ul>
           </nav>
         </div>
-        <div className="col-span-full lg:col-span-3 pl-4">
+        <div className="pl-4 col-span-full lg:col-span-3">
           <H4 as="h2" variant="secondary">
             Orari
           </H4>
@@ -204,7 +224,7 @@ export default function Footer() {
             <p>
               {`Numero attivo dal lunedì al venerdì 8.30 - 13.00  15.00 - 19.00`}
             </p>
-            <p className="italic pt-2">
+            <p className="pt-2 italic">
               Per urgenze nei giorni festivi, il servizio di risposta verrà
               garantito entro 24 h dalla chiamata e l&apos;eventuale intervento
               tecnico urgente verrà valutato con tariffa dedicata.
@@ -212,18 +232,18 @@ export default function Footer() {
           </div>
         </div>
       </Grid>
-      <div className="mx-10vw bg-gray-100">
-        <div className="flex flex-col md:flex-row flex-wrap justify-between items-center py-4 px-5 mx-auto max-w-7xl">
-          <p className="text-sm text-center sm:text-left text-gray-500">
+      <div className="bg-gray-100 mx-10vw">
+        <div className="flex flex-col flex-wrap items-center justify-between px-5 py-4 mx-auto md:flex-row max-w-7xl">
+          <p className="text-sm text-center text-gray-500 sm:text-left">
             Copyright © {new Date().getFullYear()} Matarrese srl{' '}
           </p>
-          <div className="inline-flex justify-center sm:justify-start mt-2 sm:mt-0 sm:ml-auto">
+          <div className="inline-flex justify-center mt-2 sm:justify-start sm:mt-0 sm:ml-auto">
             <p className="text-sm text-center text-gray-500">
               by <span className="font-semibold">Pasquale Matarrese</span>
             </p>
             <a
               href="https://www.facebook.com/pasqat"
-              className="ml-3 text-gray-500 hover:text-yellow-500 cursor-pointer"
+              className="ml-3 text-gray-500 cursor-pointer hover:text-yellow-500"
             >
               <svg
                 fill="currentColor"
