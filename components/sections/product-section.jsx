@@ -19,7 +19,7 @@ function ListMenu() {
     >
       <motion.li variants={childVariants} className="my-2">
         <LinkButton href="#lavorazione" withArrow>
-          Per la Lavorazione
+          Per la lavorazione
         </LinkButton>
       </motion.li>
       <motion.li variants={childVariants} className="my-2">
@@ -45,7 +45,7 @@ export default function ProductSection() {
   return (
     <HeroSection
       title="Prodotti"
-      subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In."
+      subtitle="Tecnologia e innovazione irrinunciabili in cucina"
       image="/img/pastorizzatore-prodotti.jpg"
       action={ListMenu()}
     />

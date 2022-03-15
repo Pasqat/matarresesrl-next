@@ -55,25 +55,25 @@ export default function ProductsHome({groups}) {
               </div>
               <div className="col-span-full lg:col-span-5 lg:col-start-8 lg:row-start-1">
                 <H2 id="perche-comprare-da-noi" className="mb-10">
-                  {`Ecco alcuni dei motivi perchè dovreste comprare da noi`}
+                  {`I nostri punti di forza`}
                 </H2>
                 <H6 as="h3" className="mb-4">
                   {`Qualità`}
                 </H6>
-                <Paragraph className="mb-12">{`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`}</Paragraph>
+                <Paragraph className="mb-12">{`Ci impegnamo nella selezione delle migliori attrezzature per la ristorazione prediligendo il Made in Italy. Offriamo ai nostri clienti gli stumenti più tecnologici e innovativi per creare esplosioni di colori e gusto in cucina`}</Paragraph>
                 <H6 as="h3" className="mb-4">{`Consulenza`}</H6>
-                <Paragraph className="mb-12">{`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`}</Paragraph>
+                <Paragraph className="mb-12">{`L'esperienza tecnica e l'ascolto delle diverse esigenze ci permette di trovare soluzioni su misura per realizzare progetti e idee che favoriscono l'efficienza e l'ottimizzazione del lavoro.`}</Paragraph>
                 <H6 as="h3" className="mb-4">{`Affidabilità`}</H6>
-                <Paragraph className="mb-12">{`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`}</Paragraph>
+                <Paragraph className="mb-12">{`Da quarant'anni operiamo al fianco dei professionisti della ristorazione, li seguiamo passo passo garantendo la sicurezza di potersi affidare ad un partner competente e qualificato.`}</Paragraph>
               </div>
             </Grid>
 
             <Grid className="mb-24 lg:mb-48">
               <div className="col-span-full">
-                <H2 className="lg:mt-6 mb-3">{`Prodotti per la lavorazione e conservazione degli alimenti`}</H2>
-                <H2 as="p" variant="secondary" className="mb-14">
+                <H2 className="mb-14">{`Prodotti per la lavorazione e conservazione degli alimenti`}</H2>
+                {/* <H2 as="p" variant="secondary" className="mb-14">
                   {`Lorem ipsum dolor sit amet`}
-                </H2>
+                </H2> */}
               </div>
 
               <div className="col-span-full">
@@ -81,10 +81,10 @@ export default function ProductsHome({groups}) {
                   <div className="col-span-full lg:col-span-6">
                     <FeatureCard
                       title="Cottura"
-                      description="Aprire un'attività, rinnovare un locale, avere una
-                      guida per migliorare il proprio lavoro: Matarrese srl è la
-                      soluzione adatta alle esigenze professionali del mondo
-                      della ristorazione."
+                      description="La cucina professionale è il cuore di ogni attività ristorativa.
+                      Estro, creatività e passione espressi attraverso soluzioni
+                      modulari e blocchi cottura per l'ottimizzazione del lavoro
+                      e degli spazi."
                       url="/prodotti/cottura"
                       urlText="Scopri di più"
                       icon={<BriefCaseIcon size={48} />}
@@ -93,10 +93,10 @@ export default function ProductsHome({groups}) {
                   <div className="col-span-full lg:col-span-6">
                     <FeatureCard
                       title="Attrezzature"
-                      description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Phasellus vehicula quam ipsum, at aliquam tellus mollis
-                    varius. Integer nisi urna, vulputate non risus ac, imperdiet
-                    vestibulum dolor. Proin rutrum nunc id pellentesque semper."
+                      description="Piccole, medie e grandi attrezzature, selezionate
+                      tra i migliori marchi, sia per la preparazione dinamica
+                      (tritacarne, affettatrici, utensili, ecc) che per la preparazione statica
+                      (tavoli, lavelli, taglieri, ecc.) dei piatti"
                       url="/prodotti/attrezzature"
                       urlText="Scopri di più"
                       icon={<BriefCaseIcon size={48} />}
@@ -105,11 +105,9 @@ export default function ProductsHome({groups}) {
                   <div className="col-span-full lg:col-span-6">
                     <FeatureCard
                       title="Macchinari per l'agroalimentare"
-                      description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Phasellus vehicula quam ipsum, at aliquam tellus mollis
-                    varius. Integer nisi urna, vulputate non risus ac, imperdiet
-                    vestibulum dolor. Proin rutrum nunc id pellentesque semper."
-                      url="/prodotti/macchinari-agroalimentare"
+                      description="Dalla progettazione alla realizzazione di laboratori de trasformazione alimenti per
+                      le materie prime in tavola. Facilitiamo l'efficientamento del lavoro attraverso macchinare e
+                      soluzioni tecnologicamente avanzate."
                       urlText="Scopri di più"
                       icon={<BriefCaseIcon size={48} />}
                     />
@@ -117,10 +115,9 @@ export default function ProductsHome({groups}) {
                   <div className="col-span-full lg:col-span-6">
                     <FeatureCard
                       title="Refrigerazione"
-                      description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Phasellus vehicula quam ipsum, at aliquam tellus mollis
-                    varius. Integer nisi urna, vulputate non risus ac, imperdiet
-                    vestibulum dolor. Proin rutrum nunc id pellentesque semper."
+                      description="La sicurezza alimentare passa dalla conservazione. Soluzioni altamente innovative per
+                      refrigerare a temperature differenziate si cominano perfettamente con il design di soluzioni espositive
+                      refrigerate."
                       url="/prodotti/refrigerazione"
                       urlText="Scopri di più"
                       icon={<BriefCaseIcon size={48} />}
@@ -135,14 +132,26 @@ export default function ProductsHome({groups}) {
             <Grid className="mb-24 lg:mb-48">
               <div className="col-span-full lg:col-span-6 lg:col-start-1">
                 <H2 id="perche-comprare-da-noi" className="mb-10">
-                  {`Tutto per l'Accoglienza`}
+                  {`Tutto per l'accoglienza`}
                 </H2>
                 <H6 as="h3" className="mb-4">
-                  {`Titolo 1`}
+                  {`Forniture alberghiere`}
                 </H6>
-                <Paragraph className="mb-12">{`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`}</Paragraph>
-                <H6 as="h3" className="mb-4">{`Titolo 2`}</H6>
-                <Paragraph className="mb-12">{`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`}</Paragraph>
+                <Paragraph className="mb-12">{`Raffinati ed eleganti oppure dallo stile minimal, il nostro showroom è ricco dei
+                migliori utensili, accessori o dettagli per il tuo hotel. Dagli arredi su misura all'allestimento della cucina professionale, aiutiamo la tua struttura ricettiva ad esprimere ospitalità ed accoglienza
+                 attraverso l'innovazione tecnologica e il design.`}</Paragraph>
+                <H6 as="h3" className="mb-4">{`Attrezzature per bar`}</H6>
+                <Paragraph className="mb-12">{`Una vasta gamma di utensili, attrezzature e strumenti necessari per la
+                realizzazione di cocktail, colazioni e aperitivi di prim'ordine. Progettiamo e realizziamo i tuoi spazi
+                per accogliere i clienti allestendo con tecnologia e design banconi bar attrezzati, moduli refrigerati,
+                vetrine ecc.`}</Paragraph>
+                <H6
+                  as="h3"
+                  className="mb-4"
+                >{`Forniture per ristoranti, pizzerie e pasticcerie`}</H6>
+                <Paragraph className="mb-12">{`Abbigliamento, pentole, porcellane, accessori per cucina, attrezzature
+                elettriche e tanto altro per arredare ed equipaggiare la tua attività. Vieni a scoprire i dettagli speciali
+                per una mise en place ed un arredamento che rispecchia il tuo stile.`}</Paragraph>
               </div>
               <div className="col-span-full lg:col-span-5 lg:col-start-8 lg:row-start-1">
                 <div className="mb-12 lg:mb-0 aspect-w-4 aspect-h-6">
@@ -160,10 +169,10 @@ export default function ProductsHome({groups}) {
             </Grid>
             <Grid className="mb-24 lg:mb-48" rowGap>
               <div className="col-span-full">
-                <H2 className="lg:mt-6 mb-3">{`Qualità e stile anche nei dettagli`}</H2>
-                <H2 as="p" variant="secondary" className="mb-14">
+                <H2 className="mb-14">{`Qualità e stile anche nei dettagli`}</H2>
+                {/* <H2 as="p" variant="secondary" className="mb-14">
                   {`Lascia i tuoi clienti a bocca aperta`}
-                </H2>
+                </H2> */}
               </div>
 
               <div className="col-span-full">
@@ -171,30 +180,27 @@ export default function ProductsHome({groups}) {
                   <div className="col-span-full lg:col-span-4">
                     <FeatureCard
                       title="Arredi e complementi"
-                      description="Aprire un'attività, rinnovare un locale, avere una
-                      guida per migliorare il proprio lavoro: Matarrese srl è la
-                      soluzione adatta alle."
-                      url="/prodotti/cottura"
-                      urlText="Scopri di più"
+                      description="Sedie, tavolini e decorazioni per interno o esterno, tutti scelti per il settore Ho.Re.Ca."
+                      // url="/prodotti/cottura"
+                      // urlText="Scopri di più"
                       icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
                   <div className="col-span-full lg:col-span-4">
                     <FeatureCard
                       title="Arredi su misura"
-                      description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                      url="/prodotti/attrezzature"
-                      urlText="Scopri di più"
+                      description="Qualunque sia il tuo stile di arredo, noi lo realizziamo su misura dei tuoi spazi."
+                      // url="/prodotti/attrezzature"
+                      // urlText="Scopri di più"
                       icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
                   <div className="col-span-full lg:col-span-4">
                     <FeatureCard
                       title="Forniture alberghiere"
-                      description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vehicula quam ipsum, at aliquam tellus mollis
-                    varius."
-                      url="/prodotti/macchinari-agroalimentare"
-                      urlText="Scopri di più"
+                      description="Soluzioni d'arredo pensate per gli spazi esterni del tuo ristornate, bar, pasticceria, pizzeria o gastronomia d'asporto."
+                      // url="/prodotti/macchinari-agroalimentare"
+                      // urlText="Scopri di più"
                       icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
@@ -202,6 +208,10 @@ export default function ProductsHome({groups}) {
               </div>
             </Grid>
           </section>
+
+          <div>CTA</div>
+          <div>Visita il nostro showroom</div>
+          <button>click</button>
 
           <HeroSection
             title="Lorem Ipsum Dolor sit"
