@@ -159,6 +159,17 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
             className="col-span-full lg:col-span-6"
             featured={featured}
           />
+          <Field
+            name="tel"
+            label="Tel"
+            autoComplete="tel" // TODO: what is the tel autocomplete?
+            // error={notification.isError ? notification.text : null}
+            disabled={formButtonDisabled}
+            value={tel}
+            onChange={handleChange}
+            className="col-span-full lg:col-span-6"
+            featured={featured}
+          />
         </Grid>
         <Field
           name="formContent"
