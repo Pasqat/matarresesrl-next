@@ -30,5 +30,11 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     '@next/next/no-img-element': 'off',
     requireStringLiterals: 'off',
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: true,
+      },
+    ],
   },
 }
