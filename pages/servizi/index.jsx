@@ -57,13 +57,13 @@ export default function Servizi({groups}) {
         <div className="mb-24 lg:mb-48">
           <HeroSection
             title="Servizi"
-            subtitle="Il nostro punto di forza è l'esperienza!"
-            action={
-              <div className="text-xl">
-                Comprendiamo le esigenze più disparate dei nostri clienti e
-                offriamo le migliori soluzioni per le vostre richieste
-              </div>
-            }
+            subtitle="La nostra esperienza a tua disposizione"
+            // action={
+            //   <div className="text-xl">
+            //     Comprendiamo le esigenze più disparate dei nostri clienti e
+            //     offriamo le migliori soluzioni per le vostre richieste
+            //   </div>
+            // }
             arrowUrl="#panoramica"
             image="/img/blogging.svg"
             imageSize="large"
@@ -73,59 +73,67 @@ export default function Servizi({groups}) {
           <section id="panoramica">
             <Grid className="mb-24 lg:mb-48">
               <div className="col-span-full">
-                <H2 className="lg:mt-6 mb-3">{`Alcuni dei nostri servizi`}</H2>
-                <H2 as="p" variant="secondary" className="mb-14">
+                <H2 className="mb-14">{`Alcuni dei nostri servizi`}</H2>
+                {/* <H2 as="p" variant="secondary" className="mb-14">
                   {`Lorem ipsum dolor sit amet`}
-                </H2>
+                </H2> */}
               </div>
 
               <div className="col-span-full">
                 <Grid rowGap nested>
                   <div className="col-span-full lg:col-span-3">
                     <FeatureCard
-                      title="Consulenza tecnica"
+                      title="Consulenza commerciale"
+                      description="I nostri esperti ti guidano nella scelta delle migliori soluzioni Ho.Re.Ca disponibili sul mercato."
                       icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
                   <div className="col-span-full lg:col-span-3">
                     <FeatureCard
-                      title="Progettazione"
+                      title="Progettazione tecnica attività commerciali"
+                      description="Ascoltiamo le tue idee e condividiamo la loro progettazione in anteprima."
                       icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
                   <div className="col-span-full lg:col-span-3">
                     <FeatureCard
-                      title="Manutenzione"
+                      title="Realizzazine arredi su misura"
+                      description="Adattiamo gli arredi e scegliamo le attrezzature migliori per i tuoi ambienti."
                       icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
                   <div className="col-span-full lg:col-span-3">
                     <FeatureCard
-                      title="Assistenza pre e post vendita"
+                      title="Progettazione cucine professionali"
+                      description="Organizziamo gli spazi della tua cucina per garantire l'ottimizzazione del lavoro e dei tempi di preparazione."
                       icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
                   <div className="col-span-full lg:col-span-3">
                     <FeatureCard
                       title="Formazione"
+                      description="Offiramo soluzioni di formazione finanziata per la tua crescita professionale e quella dei tuoi collaboratori."
                       icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
                   <div className="col-span-full lg:col-span-3">
                     <FeatureCard
-                      title="Consulenza tecnica"
+                      title="Assistenza tecnica e manutenzione"
+                      description="Garantiamo assistenza tecnica qualificata e manutenzione delle attrezzature che scegli per la tua attività."
                       icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
                   <div className="col-span-full lg:col-span-3">
                     <FeatureCard
-                      title="Consulenza tecnica"
+                      title="Progettazione impianti di climatizzazione"
+                      description="Caldo o freddo impostiamo la temperatura giusta all'interno della tua attività per il comfort tuo e dei tuoi clienti."
                       icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
                   <div className="col-span-full lg:col-span-3">
                     <FeatureCard
-                      title="Consulenza tecnica"
+                      title="Progettazione impianti di aspirazione"
+                      description="Non sottovalutiamo la qualità dell'aria negli ambienti di lavoro e ti proponiamo le soluzioni più innovative."
                       icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
@@ -136,14 +144,14 @@ export default function Servizi({groups}) {
 
           <section className="mx-10vw mb-24 lg:mb-48">
             <div className="mx-auto max-w-7xl">
-              <H2 className="lg:mt-6 mb-3">
+              <H2 className="mb-14">
                 {`
-                  Progettazione tecnica e realizzazione arredi
+                Il nostro metodo per realizzare i tuoi progetti
                   `}
               </H2>
-              <H2 as="p" variant="secondary" className="mb-14">
+              {/* <H2 as="p" variant="secondary" className="mb-14">
                 {`Grandi idee per prodotti di successo`}
-              </H2>
+              </H2> */}
               <div className="flex justify-between items-start">
                 {/* NOTE: I really need to find a better way to calculate progress of the position and coloring icons */}
                 <div className="hidden lg:block sticky top-32 md:col-span-4 w-full">
@@ -194,9 +202,6 @@ export default function Servizi({groups}) {
                             Consulenza Tecnica
                           </a>
                         </Link>
-                        <p className="text-gray-700">
-                          Lorem ipsum dolor sit amet.
-                        </p>
                       </div>
                     </div>
                     <div className="flex">
@@ -243,9 +248,9 @@ export default function Servizi({groups}) {
                         <Link href="#il-progetto">
                           <a className="mb-2 text-lg font-bold">Il progetto</a>
                         </Link>
-                        <p className="text-gray-700">
+                        {/* <p className="text-gray-700">
                           Lorem ipsum dolor sit amet consectetur adipisicing.
-                        </p>
+                        </p> */}
                       </div>
                     </div>
                     <div className="flex">
@@ -294,7 +299,6 @@ export default function Servizi({groups}) {
                             Iter Operativo
                           </a>
                         </Link>
-                        <p className="text-gray-700">Lorem, ipsum dolor.</p>
                       </div>
                     </div>
                     <div className="flex">
@@ -343,9 +347,6 @@ export default function Servizi({groups}) {
                             Realizzazione arredi su misura
                           </a>
                         </Link>
-                        <p className="text-gray-700">
-                          Lorem ipsum dolor sit amet.
-                        </p>
                       </div>
                     </div>
                     <div className="flex">
@@ -394,9 +395,6 @@ export default function Servizi({groups}) {
                             Coordinamento lavori
                           </a>
                         </Link>
-                        <p className="text-gray-700">
-                          Lorem ipsum dolor sit amet.
-                        </p>
                       </div>
                     </div>
                     <div className="flex">
@@ -443,9 +441,6 @@ export default function Servizi({groups}) {
                         <Link href="#collaudo">
                           <a className="mb-2 text-lg font-bold">Collaudo</a>
                         </Link>
-                        <p className="text-gray-700">
-                          Lorem ipsum dolor sit amet.
-                        </p>
                       </div>
                     </div>
                     <div className="flex">
@@ -481,7 +476,7 @@ export default function Servizi({groups}) {
                       </div>
                       <div className="pt-1">
                         <p className="mb-2 text-lg font-bold">
-                          Congratulazioni 🎉
+                          Congratulazioni!
                         </p>
                         <p className="text-gray-700" />
                       </div>
@@ -537,14 +532,14 @@ export default function Servizi({groups}) {
                         <strong>progetti reali.</strong>
                       </Paragraph>
                       <Paragraph className="mt-4 leading-relaxed text-gray-500">
-                        Per chi vuole <strong>aprire un ristorante</strong>, un{' '}
+                        Che tu voglia <strong>aprire un ristorante</strong>, un{' '}
                         <strong>bar</strong>, una <strong>gelateria</strong>,
                         una
                         <strong>pasticceria</strong>, una{' '}
-                        <strong>struttura ricettiva</strong>, lavoriamo per
-                        l’ottimizzazione degli spazi,al fine di renderli
-                        funzionali e fruibili, adattando prodotti e tecnologie a
-                        qualsiasi esigenza.
+                        <strong>struttura ricettiva</strong>, noi ci impegniamo
+                        nella progettazione ottimizzando gli spazi, rendendoli
+                        funzionali e fruibili e adattando prodotti e tecnologie
+                        a qualsiasi esigenza.
                       </Paragraph>
                       <Paragraph className="mt-4 leading-relaxed text-gray-500">
                         Dal laboratorio di 30 mq alla struttura ricettiva di
@@ -597,13 +592,11 @@ export default function Servizi({groups}) {
                     <div className="p-12 mb-8 lg:mb-16 text-lg rounded-lg bg-secondary">
                       <H3 id="il-progetto">Il progetto</H3>
                       <p className="mt-4 leading-relaxed text-gray-500">
-                        Realizziamo il complesso dei{' '}
-                        <strong>disegni, calcoli e relazioni</strong>
-                        che determinano le forme e le dimensioni dell’arredo
-                        completo.
+                        Realizziamo disegni, calcoli e relazioni che determinano
+                        le forme e le dimensioni dell&apos;arredo completo.
                       </p>
                       <p className="mt-4 leading-relaxed text-gray-500">
-                        Stabiliamo con il cliente i{' '}
+                        Stabiliamo insieme a te i{' '}
                         <strong>
                           materiali, il modo di esecuzione, le esigenze
                           costruttive
@@ -613,8 +606,8 @@ export default function Servizi({groups}) {
                       </p>
                       <p className="mt-4 leading-relaxed text-gray-500">
                         Elaboriamo un <strong>rendering progettuale</strong> per
-                        dare visione tridimensionale al cliente di come verrà
-                        eseguito il progetto prima di iniziare ad operare.
+                        darti una visione tridimensionale al cliente di come
+                        verrà eseguito il progetto prima di iniziare ad operare.
                       </p>
                     </div>
                   </div>
@@ -661,10 +654,9 @@ export default function Servizi({groups}) {
                     <div className="p-12 mb-8 lg:mb-16 text-lg rounded-lg bg-secondary">
                       <H3 id="iter-operativo">Iter Operativo</H3>
                       <p className="mt-4 leading-relaxed text-gray-500">
-                        L’iter operativo da seguire per aprire un ristorante,
-                        aprire un bar, aprire una gelateria, aprire una
-                        pasticceria e qualsiasi altra attività di ristorazione
-                        prevede:
+                        L’iter operativo da seguire per aprire un ristorante, un
+                        bar, una gelateria, una pasticceria o qualsiasi altra
+                        attività di ristorazione prevede:
                       </p>
                       <ol className="ml-2 list-decimal list-inside text-gray-500">
                         <li>Pianta dettagliata del locale o sopralluogo</li>
@@ -724,17 +716,20 @@ export default function Servizi({groups}) {
                         Realizzazione Arredi su misura
                       </H3>
                       <p className="mt-4 leading-relaxed text-gray-500">
-                        Per <strong>l’arredamento di ogni struttura</strong>{' '}
-                        della ristorazione e alberghiera, nel nostro laboratorio
+                        Per{' '}
+                        <strong>l&apos;arredamento di ogni struttura</strong>{' '}
+                        ristorativa o alberghiera, nel nostro laboratorio
                         tecnico un team di esperti sviluppa il progetto ideato
-                        da professionisti dell’<strong>interior design.</strong>
+                        da professionisti dell&apos;
+                        <strong>interior design</strong> che puoi anche
+                        scegliere tu.
                       </p>
                       <p className="mt-4 leading-relaxed text-gray-500">
-                        Il cliente ha la possibilità di seguire l’iter dei
-                        lavori mentre l’idea diventa realtà e vedere così
-                        realizzato secondo i suoi desideri il proprio bar,
-                        ristorante, pasticceria, gelateria, attività
-                        alberghiera.
+                        Ti offiramo la possibilità di seguire l’iter dei lavori
+                        mentre l’idea diventa realtà e vedere, così, realizzato
+                        secondo i suoi desideri il proprio bar, ristorante,
+                        pasticceria, gelateria, attività alberghiera che vuoi
+                        avviare.
                       </p>
                     </div>
                   </div>
@@ -878,7 +873,7 @@ export default function Servizi({groups}) {
             </div>
           </section>
 
-          <section>
+          {/* <section>
             <Grid className="mb-24 lg:mb-64">
               <div className="col-span-full lg:col-span-6 lg:col-start-7">
                 <div className="mb-12 lg:mb-0">
@@ -963,7 +958,7 @@ export default function Servizi({groups}) {
 
           <section className="mb-24 lg:mb-48">
             <MepaSection />
-          </section>
+          </section> */}
 
           <section className="mb-24 lg:mb-48" id="contatti">
             <ContactForm groups={groups} />
