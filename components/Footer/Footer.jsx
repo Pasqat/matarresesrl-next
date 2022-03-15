@@ -1,3 +1,5 @@
+import * as React from 'react'
+
 import Link from 'next/link'
 import Image from 'next/image'
 import logoEccelsa from '../../public/img/logos/Eccelsa-RGB_400x400.png'
@@ -6,7 +8,7 @@ import logoAliGroup from '../../public/img/logos/Ali_Group_logo.png'
 
 import {H4, Paragraph} from '../typography'
 import {Grid} from '../grid'
-import {Field} from '../form-element'
+import {Input} from '../form-element'
 
 import {FacebookIcon} from '../icons/facebook-icon'
 import {LinkedInIcon} from '../icons/linkedin-icon'
@@ -17,28 +19,68 @@ import {BadgeCheckedIcon} from '../icons/badge-checked-icon'
 import {MailIcon} from '../icons/mail-icon'
 
 export default function Footer() {
+  const [email, setEmail] = React.useState('')
+
+  const handleChange = e => {
+    const {value} = e.target
+    setEmail(value)
+  }
+
+  async function submitNewsletter(event) {
+    event.preventDefault()
+
+    if (email === '') {
+      return null
+    }
+
+    const resSubscription = await fetch('/api/subscribe', {
+      body: JSON.stringify({
+        email: email,
+        groupId: 107688379,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+    })
+
+    const {message, error} = await resSubscription.json()
+
+    if (error) {
+      console.log(error)
+    }
+
+    if (message) {
+      console.log(message)
+    }
+
+    setEmail('')
+  }
+
   return (
     <footer className="relative text-gray-600 bg-gray-100">
-      <div className="bg-yellow-600 mx-10vw">
-        <div className="flex justify-between items-center mx-auto max-w-7xl">
-          <Paragraph>Iscriviti alla Newsletter</Paragraph>
-          <Field
+      <div className="mx-10vw pt-4">
+        <form
+          className="flex flex-wrap justify-end items-center mx-auto max-w-7xl"
+          onSubmit={submitNewsletter}
+        >
+          <Paragraph className="md:mr-14">
+            Iscriviti alla nostra newsletter
+          </Paragraph>
+          <Input
             name="email"
-            // label="Email"
             placeholder="email"
             autoComplete="email"
-            // error={notification.isError ? notification.text : null}
             required
-            // disabled={formButtonDisabled}
-            // value={email}
-            // onChange={handleChange}
-            className="col-span-full lg:col-span-6"
+            value={email}
+            onChange={handleChange}
+            className="max-w-lg"
             // featured={featured}
             featured
           />
-        </div>
+        </form>
       </div>
-      <Grid className="py-24">
+      <Grid className="py-14">
         <div className="mx-auto text-center col-span-full lg:col-span-3">
           <Link href="/">
             <a className="items-center justify-center pb-2">
