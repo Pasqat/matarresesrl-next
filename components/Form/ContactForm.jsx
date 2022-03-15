@@ -15,10 +15,11 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
   const [form, setForm] = useState({
     name: '',
     email: '',
+    tel: '',
     formContent: '',
     newsletterGroupId: 107688379,
   })
-  const {name, email, formContent, newsletterGroupId} = form
+  const {name, email, tel, formContent, newsletterGroupId} = form
 
   const [isCheckedTerms, setIsCheckedTerms] = useState(false)
   const [isCheckedNewsletter, setIsCheckedNewsletter] = useState(false)

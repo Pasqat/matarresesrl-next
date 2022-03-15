@@ -1,16 +1,15 @@
 import {useState, useEffect, useRef} from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
-import Image from 'next/image'
 import clsx from 'clsx'
 
 import ContactForm from '../../components/Form/ContactForm'
 import Layout from '../../components/Layout'
-import {H2, H3, H6, Paragraph} from '../../components/typography'
+import {H2, H3, Paragraph} from '../../components/typography'
 import {HeroSection} from '../../components/sections/hero-section'
 import {FeatureCard} from '../../components/feature-card'
 import {Grid} from '../../components/grid'
-import {MepaSection} from '../../components/sections/mepa-section'
+// import {MepaSection} from '../../components/sections/mepa-section'
 
 import {BriefCaseIcon} from '../../components/icons/briefcase-icon'
 
