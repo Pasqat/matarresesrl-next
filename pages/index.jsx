@@ -14,6 +14,7 @@ import {MepaSection} from '../components/sections/mepa-section'
 
 import {logos} from '../data/partner-logo'
 import {H2, H3, H5} from '../components/typography'
+import {Grid} from '../components/grid'
 
 import testimonials from '../data/testimonials'
 import {getGroups} from '../lib/newsletter'
@@ -39,7 +40,52 @@ export default function Home({groups}) {
             noButton
           />
 
-          <section className="pb-20 -mt-24">
+          <section className="relative -mt-24">
+            <Grid rowGap className="mb-24 lg:mb-48">
+              <div className="col-span-full lg:col-span-4">
+                <CardSquareImg
+                  imgSrc="/img/servizio-completo1-150x150.jpg"
+                  title="Dall'idea al progetto reale"
+                  className="md:mt-5"
+                  description={`Aprire un'attività, rennovare un locale,
+                      avere una guida per migliorare il proprio lavoro: te seguiamo ad ogni passo per realizzare la tua idea.`}
+                  urlText="Scopri i servizi"
+                  url="/servizi"
+                >
+                  <LinkButton className="mt-4" href="/servizi" withArrow>
+                    Scopri i servizi
+                  </LinkButton>
+                </CardSquareImg>
+              </div>
+              <div className="col-span-full lg:col-span-4">
+                <CardSquareImg
+                  imgSrc="/img/prodotti-qualita-150x150.jpg"
+                  title="Marchi e attrezzature di qualità"
+                  className="md:-mt-10"
+                  description={`
+                      Selezioniamo i migliori marchi ho.re.ca, studiamo le ultime tecnologie portando innovazione in cucina ed equilibrio negli arredi.
+                    `}
+                  urlText="Guarda i prodotti"
+                  url="/prodotti"
+                ></CardSquareImg>
+              </div>
+              <div className="col-span-full lg:col-span-4">
+                <CardSquareImg
+                  imgSrc="/img/info-e-supporto-150x150.jpg"
+                  title="Supporto pre e post intervento"
+                  description={`
+                      Promuoviamo la cultura enogastronomica, la professionalità, e l'ottimizzazione del lavoro.
+                      Aiutiamo le idee a diventare progetti reali, assicurando il corretto ciclo di vita delle attrezzature
+                      attraverso il supporto post vendita.
+                    `}
+                  url="/contatti"
+                  urlText="Vieni a conoscerci"
+                ></CardSquareImg>
+              </div>
+            </Grid>
+          </section>
+
+          <section className="pb-20">
             <div className="container px-4 mx-auto">
               <div as="div" className="flex flex-wrap" show={true}>
                 <div className="md:w-4/12">

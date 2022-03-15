@@ -1,4 +1,3 @@
-import {Grid} from '../grid'
 import {ArrowLink} from '../arrow-button'
 import {H3} from '../typography'
 import Image from 'next/image'
@@ -14,12 +13,9 @@ function CardSquareImg({
   urlText,
 }) {
   return (
-    <div className="px-8 w-full h-full">
-      <div className="bg-gray-100 rounded-lg lg:bg-trasparent h-full">
-        <Grid
-          nested
-          className="group px-6 pb-6 pt-14 rounded-lg md:pb-12 lg:bg-gray-100"
-        >
+    <div className="relative">
+      <div className="bg-secondary rounded-lg lg:bg-trasparent">
+        <div className="group px-6 pb-6 pt-14 rounded-lg md:pb-12 lg:bg-gray-100">
           <div className="lg:flex lg:flex-col justify-between col-span-full">
             <div>
               {/* TODO: use higher resolution image. Find them in ../uploads/2015/03 */}
@@ -50,7 +46,7 @@ function CardSquareImg({
               </div>
             ) : null}
           </div>
-        </Grid>
+        </div>
       </div>
     </div>
   )
