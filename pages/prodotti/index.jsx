@@ -209,23 +209,25 @@ export default function ProductsHome({groups}) {
             </Grid>
           </section>
 
-          <div>CTA</div>
-          <div>Visita il nostro showroom</div>
-          <button>click</button>
+          <section>
+            <div>CTA</div>
+            <div>Visita il nostro showroom</div>
+            <button>click</button>
+          </section>
 
           <HeroSection
-            title="Lorem Ipsum Dolor sit"
-            subtitle="Bla bla bla"
+            title="Trattamento dell'aria"
+            subtitle="Gestiamo il microclima di cucine professionali, locali commerciali, laboratori alimentari e laboratori industriali"
             image="/img/climatizzazione-prodotti.jpg"
             imageSize="large"
           />
           <section className="relative" id="trattamento-aria">
             <Grid className="mb-24 lg:mb-48">
               <div className="col-span-full">
-                <H2 className="lg:mt-6 mb-3">{`Trattamento dell'aria`}</H2>
-                <H2 as="p" variant="secondary" className="mb-14">
+                <H2 className="mb-14">{`Lavora in un ambiente sano e confortevole`}</H2>
+                {/* <H2 as="p" variant="secondary" className="mb-14">
                   {`Lorem ipsum dolor sit amet`}
-                </H2>
+                </H2> */}
               </div>
 
               <div className="col-span-full">
@@ -233,24 +235,17 @@ export default function ProductsHome({groups}) {
                   <div className="col-span-full lg:col-span-6">
                     <FeatureCard
                       title="Aspirazione"
-                      description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Phasellus vehicula quam ipsum, at aliquam tellus mollis
-                    varius. Integer nisi urna, vulputate non risus ac, imperdiet
-                    vestibulum dolor. Proin rutrum nunc id pellentesque semper."
-                      url="/prodotti/macchinari-agroalimentare"
-                      urlText="Scopri di più"
+                      description="Riduci l'emissione di fumi e odori in cucina con un impianto di trattamento aria nel rispetto dei più alti stardard qualitativi."
+                      // urlText="Scopri di più"
                       icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
                   <div className="col-span-full lg:col-span-6">
                     <FeatureCard
                       title="Climatizzazione"
-                      description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Phasellus vehicula quam ipsum, at aliquam tellus mollis
-                    varius. Integer nisi urna, vulputate non risus ac, imperdiet
-                    vestibulum dolor. Proin rutrum nunc id pellentesque semper."
-                      url="/prodotti/refrigerazione"
-                      urlText="Scopri di più"
+                      description="Impianti di climatizzazione estivi e invernali a fluido ed espansione diretta di qualsiasi dimensione, per ogni ambiente commerciale."
+                      // url="/prodotti/refrigerazione"
+                      // urlText="Scopri di più"
                       icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
@@ -259,12 +254,18 @@ export default function ProductsHome({groups}) {
             </Grid>
           </section>
 
+          <section>
+            <div>CTA</div>
+            <div>Parla con un consulente</div>
+            <button>click</button>
+          </section>
+
           <section className="relative mb-24 lg:mb-48 bg-gray-800" id="igiene">
             <Grid className="py-24">
               <div className="col-span-full">
-                <H2 className="lg:mt-6 mb-3 text-gray-100">{`Negli ultimi anni l'igiene ha assunto sempre più importanza`}</H2>
+                <H2 className="lg:mt-6 mb-3 text-gray-100">{`Igiene e sanificazione`}</H2>
                 <H2 as="p" className="mb-14 text-gray-300">
-                  {`Possiamo aiutarti a mantenere i tuoi ambienti puliti ed igenizzati`}
+                  {`Possiamo aiutarti a mantenere i tuoi ambienti puliti ed igienizzati`}
                 </H2>
               </div>
 
@@ -273,30 +274,27 @@ export default function ProductsHome({groups}) {
                   <div className="col-span-full lg:col-span-4">
                     <FeatureCard
                       title="Sanificazione"
-                      description="Aprire un'attività, rinnovare un locale, avere una
-                      guida per migliorare il proprio lavoro: Matarrese srl è la
-                      soluzione adatta alle."
-                      url="/prodotti/cottura"
-                      urlText="Scopri di più"
+                      description="Per i tuoi ambienti di lavoro scegli una sanificazione ambientale totale, sia dell'aria che delle superfici."
+                      // url="/prodotti/cottura"
+                      // urlText="Scopri di più"
                       icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
                   <div className="col-span-full lg:col-span-4">
                     <FeatureCard
                       title="Lavaggio"
-                      description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                      url="/prodotti/attrezzature"
-                      urlText="Scopri di più"
+                      description="Soluzioni di lavaggio dal piccolo bar sino alla ristorazione collettiva. Macchine affidabili e tecnologiche, lavabicchieri, lavaoggetti, lavavassoi di ogni forma e dimensione."
+                      // url="/prodotti/attrezzature"
+                      // urlText="Scopri di più"
                       icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
                   <div className="col-span-full lg:col-span-4">
                     <FeatureCard
                       title="Lavanderia"
-                      description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vehicula quam ipsum, at aliquam tellus mollis
-                    varius."
-                      url="/prodotti/macchinari-agroalimentare"
-                      urlText="Scopri di più"
+                      description="Allestiamo lavanderie professionali per hotel, residence, ristoranti, case di riposo, cliniche e ovunque si debba offrire un trattamento dei tessuti."
+                      // url="/prodotti/macchinari-agroalimentare"
+                      // urlText="Scopri di più"
                       icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
