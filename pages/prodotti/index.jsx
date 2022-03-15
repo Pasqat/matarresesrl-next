@@ -85,8 +85,8 @@ export default function ProductsHome({groups}) {
                       Estro, creatività e passione espressi attraverso soluzioni
                       modulari e blocchi cottura per l'ottimizzazione del lavoro
                       e degli spazi."
-                      url="/prodotti/cottura"
-                      urlText="Scopri di più"
+                      // url="/prodotti/cottura"
+                      // urlText="Scopri di più"
                       icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
@@ -97,8 +97,8 @@ export default function ProductsHome({groups}) {
                       tra i migliori marchi, sia per la preparazione dinamica
                       (tritacarne, affettatrici, utensili, ecc) che per la preparazione statica
                       (tavoli, lavelli, taglieri, ecc.) dei piatti"
-                      url="/prodotti/attrezzature"
-                      urlText="Scopri di più"
+                      // url="/prodotti/attrezzature"
+                      // urlText="Scopri di più"
                       icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
@@ -108,7 +108,7 @@ export default function ProductsHome({groups}) {
                       description="Dalla progettazione alla realizzazione di laboratori de trasformazione alimenti per
                       le materie prime in tavola. Facilitiamo l'efficientamento del lavoro attraverso macchinare e
                       soluzioni tecnologicamente avanzate."
-                      urlText="Scopri di più"
+                      // urlText="Scopri di più"
                       icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
@@ -118,8 +118,8 @@ export default function ProductsHome({groups}) {
                       description="La sicurezza alimentare passa dalla conservazione. Soluzioni altamente innovative per
                       refrigerare a temperature differenziate si cominano perfettamente con il design di soluzioni espositive
                       refrigerate."
-                      url="/prodotti/refrigerazione"
-                      urlText="Scopri di più"
+                      // url="/prodotti/refrigerazione"
+                      // urlText="Scopri di più"
                       icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
@@ -197,7 +197,7 @@ export default function ProductsHome({groups}) {
                   </div>
                   <div className="col-span-full lg:col-span-4">
                     <FeatureCard
-                      title="Forniture alberghiere"
+                      title="Dehors"
                       description="Soluzioni d'arredo pensate per gli spazi esterni del tuo ristornate, bar, pasticceria, pizzeria o gastronomia d'asporto."
                       // url="/prodotti/macchinari-agroalimentare"
                       // urlText="Scopri di più"

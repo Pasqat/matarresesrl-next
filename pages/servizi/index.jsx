@@ -23,7 +23,7 @@ export default function Servizi({groups}) {
   function calculateScrollDistance() {
     const {offsetTop, offsetHeight} = divProgettazione.current
     const offsetBottom = offsetTop + offsetHeight
-    // need to be rafactored. Not dynamic.
+    // TODO: need to be rafactored. Not dynamic.
     const scrollPosition = Math.floor(
       ((window.scrollY - offsetTop * 0.8) / offsetBottom) * 100,
     )
