@@ -26,7 +26,7 @@ export default function CookiePolicy() {
       <Layout>
         <Container>
           <Header>Tipologie ed utilizzo dei Cookies</Header>
-          <main className="container pb-20 mx-auto text-justify text-gray-900">
+          <main className="container mx-auto pb-20 text-justify text-gray-900">
             <div className="flex flex-col space-y-14">
               <section>
                 <H3 className="pb-3">Utilizzo dei Cookie</H3>

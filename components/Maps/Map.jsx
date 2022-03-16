@@ -101,7 +101,7 @@ function MapExample() {
   }, [])
   return (
     <>
-      <div className="absolute inset-0 w-full h-full rounded">
+      <div className="absolute inset-0 h-full w-full rounded">
         <div className="h-full rounded" ref={mapRef} />
       </div>
     </>

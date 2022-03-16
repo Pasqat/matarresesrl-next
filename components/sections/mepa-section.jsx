@@ -10,14 +10,14 @@ import logoMEF from '../../public/img/logos/Logo_mef.webp'
 function MepaSection() {
   return (
     <Grid featured>
-      <div className="flex flex-col col-span-full items-stretch lg:col-span-5 lg:items-start lg:mb-0">
+      <div className="col-span-full flex flex-col items-stretch lg:col-span-5 lg:mb-0 lg:items-start">
         <H2 className="text-center lg:text-right">
           Siamo presenti anche su Mepa: Mercato Elettronico della Pubblica
           Amministrazione
         </H2>
       </div>
       <div className="col-span-full lg:col-span-5 lg:col-start-8 lg:mr-12">
-        <div className="flex flex-col justify-center items-center gap-12">
+        <div className="flex flex-col items-center justify-center gap-12">
           <div className="">
             <Image
               src={logoAcquistinrete}

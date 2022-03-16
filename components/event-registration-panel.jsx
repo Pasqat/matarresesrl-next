@@ -9,10 +9,10 @@ function RegistrationPanel({event}) {
   return (
     <div
       id="register"
-      className="bg-secondary flex flex-col items-stretch pb-10 pt-12 px-10 w-full rounded-lg lg:flex-row-reverse lg:items-center lg:justify-end lg:py-8"
+      className="bg-secondary flex w-full flex-col items-stretch rounded-lg px-10 pb-10 pt-12 lg:flex-row-reverse lg:items-center lg:justify-end lg:py-8"
     >
       <div className="mb-10 lg:mb-0 lg:ml-16">
-        <h5 className="text-black text-2xl font-medium">{event.title}</h5>
+        <h5 className="text-2xl font-medium text-black">{event.title}</h5>
         {startDate === endDate ? (
           <p>{startDate}</p>
         ) : (

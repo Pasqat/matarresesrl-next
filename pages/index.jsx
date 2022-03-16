@@ -86,9 +86,9 @@ export default function Home({groups}) {
           </section>
 
           <section className="pb-20">
-            <div className="container px-4 mx-auto">
-              <div className="flex flex-wrap items-center mt-32">
-                <div className="px-4 mr-auto ml-auto w-full md:w-5/12">
+            <div className="container mx-auto px-4">
+              <div className="mt-32 flex flex-wrap items-center">
+                <div className="mr-auto ml-auto w-full px-4 md:w-5/12">
                   {/* <div className="inline-flex justify-center items-center p-3 mb-6 w-16 h-16 text-center text-gray-500 bg-white rounded-full shadow-lg"> */}
                   {/*   <HeartIcon className="text-xl text-yellow-500" /> */}
                   {/* </div> */}
@@ -124,16 +124,16 @@ export default function Home({groups}) {
           </section>
 
           <section className="mb-24 lg:mb-48">
-            <div className="container px-4 mx-auto">
+            <div className="container mx-auto px-4">
               <div className="flex flex-wrap items-center">
-                <div className="px-4 mr-auto ml-auto w-full md:w-5/12">
+                <div className="mr-auto ml-auto w-full px-4 md:w-5/12">
                   <img
                     alt="attrezzature ristorazione nello showroom"
                     className="max-w-full rounded-lg shadow-lg"
                     src="/img/attrezzature-esposizione.jpg"
                   />
                 </div>
-                <div className="px-4 mr-auto ml-auto w-full md:w-5/12">
+                <div className="mr-auto ml-auto w-full px-4 md:w-5/12">
                   <div className="md:pr-12">
                     {/* <div className="inline-flex justify-center items-center p-3 mb-6 w-16 h-16 text-center text-gray-500 bg-gray-200 rounded-full shadow-lg"> */}
                     {/*   <ShoppingCartIcon className="text-xl" /> */}
@@ -151,7 +151,7 @@ export default function Home({groups}) {
                       <li className="py-2">
                         <div className="flex items-center">
                           <div>
-                            <span className="inline-block py-1 px-2 mr-3 text-xs font-semibold text-gray-500 uppercase bg-gray-100 rounded-full">
+                            <span className="mr-3 inline-block rounded-full bg-gray-100 py-1 px-2 text-xs font-semibold uppercase text-gray-500">
                               {/* <i className="fas fa-blender"></i> */}
                             </span>
                           </div>
@@ -163,7 +163,7 @@ export default function Home({groups}) {
                       <li className="py-2">
                         <div className="flex items-center">
                           <div>
-                            <span className="inline-block py-1 px-2 mr-3 text-xs font-semibold text-gray-500 uppercase bg-gray-100 rounded-full">
+                            <span className="mr-3 inline-block rounded-full bg-gray-100 py-1 px-2 text-xs font-semibold uppercase text-gray-500">
                               {/* <i className="fas fa-chair"></i> */}
                             </span>
                           </div>
@@ -175,7 +175,7 @@ export default function Home({groups}) {
                       <li className="py-2">
                         <div className="flex items-center">
                           <div>
-                            <span className="inline-block py-1 px-2 mr-3 text-xs font-semibold text-gray-500 uppercase bg-gray-100 rounded-full">
+                            <span className="mr-3 inline-block rounded-full bg-gray-100 py-1 px-2 text-xs font-semibold uppercase text-gray-500">
                               {/* <i className="fas fa-utensils"></i> */}
                             </span>
                           </div>
@@ -187,7 +187,7 @@ export default function Home({groups}) {
                       <li className="py-2">
                         <div className="flex items-center">
                           <div>
-                            <span className="inline-block py-1 px-2 mr-3 text-xs font-semibold text-gray-500 uppercase bg-gray-100 rounded-full">
+                            <span className="mr-3 inline-block rounded-full bg-gray-100 py-1 px-2 text-xs font-semibold uppercase text-gray-500">
                               {/* <i className="fas fa-concierge-bell"></i> */}
                             </span>
                           </div>
@@ -199,7 +199,7 @@ export default function Home({groups}) {
                       <li className="py-2">
                         <div className="flex items-center">
                           <div>
-                            <span className="inline-block py-1 px-2 mr-3 text-xs font-semibold text-gray-500 uppercase bg-gray-100 rounded-full">
+                            <span className="mr-3 inline-block rounded-full bg-gray-100 py-1 px-2 text-xs font-semibold uppercase text-gray-500">
                               {/* <i className="fab fa-html5"></i> */}
                             </span>
                           </div>
@@ -219,7 +219,7 @@ export default function Home({groups}) {
             <TestimonialSection testimonials={testimonials} />
           </section>
 
-          <section className="mb-24 lg:mb-48 max-w-8xl mx-auto">
+          <section className="mx-auto mb-24 max-w-8xl lg:mb-48">
             <MepaSection />
           </section>
 
@@ -228,15 +228,15 @@ export default function Home({groups}) {
           </section>
           {/* LOGO SECTION */}
           <section className="relative mb-24 lg:mb-48">
-            <div className="container px-4 mx-auto mb-12">
+            <div className="container mx-auto mb-12 px-4">
               <H2 className="mb-8 text-center" variant="secondary">
                 I Nostri partner
               </H2>
-              <div className="grid grid-cols-2 2xl:grid-cols-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+              <div className="2xl:grid-cols-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                 {logos.map(logo => {
                   return logo.href ? (
                     <Link key={logo.name} href={logo.href}>
-                      <a className="text-center hover:drop-shadow-md cursor-pointer">
+                      <a className="cursor-pointer text-center hover:drop-shadow-md">
                         <Image
                           width={180}
                           height={95}

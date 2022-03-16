@@ -57,18 +57,18 @@ export default function Events({event}) {
               `url(${event.featuredImage.node.sourceUrl})`
             }
           />
-          <section className="relative pt-16 pb-24 w-full text-gray-800 bg-gray-100">
-            <div className="container px-4 mx-auto">
-              <div className="lg:flex relative lg:flex-row">
-                <div className="flex relative flex-col -mt-80 lg:-mt-64 mb-6 w-full min-w-0 break-words bg-white shadow-lg">
+          <section className="relative w-full bg-gray-100 pt-16 pb-24 text-gray-800">
+            <div className="container mx-auto px-4">
+              <div className="relative lg:flex lg:flex-row">
+                <div className="relative -mt-80 mb-6 flex w-full min-w-0 flex-col break-words bg-white shadow-lg lg:-mt-64">
                   <div className="px-6">
-                    <div className="flex flex-wrap justify-center mt-8">
-                      <div className="flex justify-center items-center">
+                    <div className="mt-8 flex flex-wrap justify-center">
+                      <div className="flex items-center justify-center">
                         <div className="mb-2 text-left text-gray-800">
                           {formatDate(event.startDate) ===
                           formatDate(event.endDate) ? (
                             <>
-                              <span className="block text-xl font-bold tracking-wide text-gray-600 uppercase">
+                              <span className="block text-xl font-bold uppercase tracking-wide text-gray-600">
                                 <Date dateString={event.startDate} />
                               </span>
                               <span className="block text-lg font-bold text-yellow-500">
@@ -79,12 +79,12 @@ export default function Events({event}) {
                           ) : (
                             <>
                               dal{' '}
-                              <span className="text-xl font-bold tracking-wide text-gray-600 uppercase">
+                              <span className="text-xl font-bold uppercase tracking-wide text-gray-600">
                                 <Date dateString={event.startDate} />
                               </span>
                               <br />
                               al{' '}
-                              <span className="text-xl font-bold tracking-wide text-gray-600 uppercase">
+                              <span className="text-xl font-bold uppercase tracking-wide text-gray-600">
                                 <Date dateString={event.startDate} />
                               </span>
                               <span className="block text-lg font-bold text-yellow-500">
@@ -95,7 +95,7 @@ export default function Events({event}) {
                           )}
                         </div>
                       </div>
-                      <div className="self-center px-4 w-4/12 text-right">
+                      <div className="w-4/12 self-center px-4 text-right">
                         <FormModal
                           buttonText="Partecipa"
                           buttonClassName="px-4 py-2 mb-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-gradient-to-tl from-primary to-secondary rounded shadow outline-none active:bg-yellow-500 hover:shadow-md focus:outline-none sm:mr-2"
@@ -138,9 +138,9 @@ export default function Events({event}) {
                       )} */}
                     </div>
 
-                    <div className="py-10 mt-10 border-t border-gray-200">
+                    <div className="mt-10 border-t border-gray-200 py-10">
                       <div className="flex flex-wrap justify-center">
-                        <div className="px-4 w-full lg:w-9/12">
+                        <div className="w-full px-4 lg:w-9/12">
                           <EventBody content={event.content} />
                         </div>
                       </div>
@@ -151,7 +151,7 @@ export default function Events({event}) {
               </div>
               <div className="flex justify-center">
                 <Link href="/eventi">
-                  <a className="p-4 mt-10 text-center uppercase bg-white rounded shadow-lg hover:shadow-sm">
+                  <a className="mt-10 rounded bg-white p-4 text-center uppercase shadow-lg hover:shadow-sm">
                     Eventi
                   </a>
                 </Link>

@@ -9,7 +9,7 @@ function HeaderSection({ctaUrl, cta, title, subTitle, className, as}) {
     <Grid as={as}>
       <div
         className={clsx(
-          'flex flex-col col-span-full space-y-10 lg:flex-row lg:items-end lg:justify-between lg:space-y-0',
+          'col-span-full flex flex-col space-y-10 lg:flex-row lg:items-end lg:justify-between lg:space-y-0',
           className,
         )}
       >

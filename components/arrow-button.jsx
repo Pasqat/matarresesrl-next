@@ -83,7 +83,7 @@ function ArrowButtonContent({children, direction = 'right', disabled}) {
         <span className="mr-8 text-xl font-medium">{children}</span>
       ) : null}
 
-      <div className="inline-flex relative flex-none justify-center items-center p-1 w-14 h-14">
+      <div className="relative inline-flex h-14 w-14 flex-none items-center justify-center p-1">
         <div className="absolute text-gray-200">
           <svg width="60" height="60">
             <circle

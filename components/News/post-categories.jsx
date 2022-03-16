@@ -22,7 +22,7 @@ export default function Categories({categories}) {
             key={category.node.id}
             className={clsx(
               category.node.id && `cursor-pointer ${color}`,
-              'ml-1 text-gray-500 cursor-pointer',
+              'ml-1 cursor-pointer text-gray-500',
             )}
           >
             {category.node.name.toUpperCase()}

@@ -17,22 +17,22 @@ function CardBigImg({
   const polygonColor = bgColor.replace('bg', 'text')
 
   return (
-    <div className="px-4 mt-8 mr-auto ml-auto w-full md:w-4/12">
+    <div className="mt-8 mr-auto ml-auto w-full px-4 md:w-4/12">
       <div
-        className={`relative flex flex-col w-full min-w-0 mb-6 break-words rounded-lg ${bgColor}`}
+        className={`relative mb-6 flex w-full min-w-0 flex-col break-words rounded-lg ${bgColor}`}
       >
         <img
           alt={imgAlt ?? title}
           src={imgSrc}
-          className="w-full align-middle rounded-t-lg"
+          className="w-full rounded-t-lg align-middle"
         />
-        <blockquote className="relative p-8 mb-4">
+        <blockquote className="relative mb-4 p-8">
           {!noSlope && (
             <svg
               preserveAspectRatio="none"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 583 95"
-              className="block absolute left-0 w-full h-[95px] top-[-94px]"
+              className="absolute left-0 top-[-94px] block h-[95px] w-full"
             >
               <polygon
                 points="-30,95 583,95 583,65"

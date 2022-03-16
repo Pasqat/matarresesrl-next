@@ -14,9 +14,9 @@ function ButtonInner({children, variant = 'primary', size}) {
     <>
       <div
         className={clsx(
-          'focus-ring ring-yellow-600 absolute inset-0 rounded-full opacity-100 disabled:opacity-50 transition',
+          'focus-ring absolute inset-0 rounded-full opacity-100 ring-yellow-600 transition disabled:opacity-50',
           {
-            'border-2 group-hover:border-transparent group-focus:border-transparent':
+            'group-hover:border-transparent group-focus:border-transparent border-2':
               variant === 'secondary' || variant === 'danger',
             danger: variant === 'danger',
             'bg-yellow-500': variant === 'primary',
@@ -25,14 +25,14 @@ function ButtonInner({children, variant = 'primary', size}) {
       />
       <div
         className={clsx(
-          'relative flex items-center justify-center w-full h-full whitespace-nowrap',
+          'relative flex h-full w-full items-center justify-center whitespace-nowrap',
           {
             'text-primary': variant === 'secondary',
-            'shadow-md text-white rounded-full text-lg': variant === 'primary',
+            'rounded-full text-lg text-white shadow-md': variant === 'primary',
             'text-red-500': variant === 'danger',
-            'px-11 py-6 space-x-5 text-2xl': size === 'large',
-            'px-4 py-2 space-x-3 text-lg': size === 'medium',
-            'px-2 py-1 space-x-1': size === 'small',
+            'space-x-5 px-11 py-6 text-2xl': size === 'large',
+            'space-x-3 px-4 py-2 text-lg': size === 'medium',
+            'space-x-1 px-2 py-1': size === 'small',
           },
         )}
       >
@@ -80,7 +80,7 @@ function LinkButton({
         {children}
         {withArrow && (
           <svg
-            className="ml-2 w-4 h-4 animate-bounceX"
+            className="ml-2 h-4 w-4 animate-bounceX"
             viewBox="0 0 24 24"
             stroke="currentColor"
             strokeWidth="2"

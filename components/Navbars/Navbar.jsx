@@ -30,8 +30,8 @@ export default function Navbar({isTransparent}) {
       {({open}) => (
         <>
           <div className={clsx('sm:px-6', open && 'bg-gray-900')}>
-            <nav className="flex mx-10vw h-16">
-              <div className="flex flex-1 justify-between md:justify-between items-center mx-auto max-w-8xl">
+            <nav className="mx-10vw flex h-16">
+              <div className="mx-auto flex max-w-8xl flex-1 items-center justify-between md:justify-between">
                 <div className="inline-flex items-center">
                   <Link href="/">
                     <a>
@@ -44,16 +44,16 @@ export default function Navbar({isTransparent}) {
                     </a>
                   </Link>
                 </div>
-                <div className="hidden lg:flex flex-wrap justify-between items-center w-full">
-                  <div className="flex m-auto space-x-1 xl:space-x-4">
+                <div className="hidden w-full flex-wrap items-center justify-between lg:flex">
+                  <div className="m-auto flex space-x-1 xl:space-x-4">
                     {navigation.map(item => (
                       <Link key={item.name} href={item.href}>
                         <a
                           className={clsx(
-                            'py-2 px-3 text-sm md:text-base font-medium text-gray-100 rounded-md',
+                            'rounded-md py-2 px-3 text-sm font-medium text-gray-100 md:text-base',
                             item.current
                               ? 'hover:first-letter:text-yellow-500'
-                              : 'hover:first-letter:text-yellow-500 hover:no-underline',
+                              : 'hover:no-underline hover:first-letter:text-yellow-500',
                           )}
                           aria-current={item.current ? 'page' : undefined}
                         >
@@ -62,7 +62,7 @@ export default function Navbar({isTransparent}) {
                       </Link>
                     ))}
                   </div>
-                  <div className="hidden lg:flex flex-wrap items-center space-x-3 xl:space-x-4">
+                  <div className="hidden flex-wrap items-center space-x-3 lg:flex xl:space-x-4">
                     <a
                       href="https://www.facebook.com/matarresesrl"
                       target="_blank"
@@ -91,19 +91,19 @@ export default function Navbar({isTransparent}) {
                     </a>
                     <Link href="/contatti" passHref>
                       <ButtonLink size="small">
-                        <ChatIcon className="inline-block mr-1 w-5 h-5" />
+                        <ChatIcon className="mr-1 inline-block h-5 w-5" />
                         Contatti
                       </ButtonLink>
                     </Link>
                   </div>
                 </div>
                 {/* Mobile menu button*/}
-                <Disclosure.Button className="lg:hidden items-end p-2 text-gray-100 hover:text-white hover:bg-gray-700 rounded-full focus:ring-2 focus:ring-inset focus:ring-yellow-500 focus:outline-none">
+                <Disclosure.Button className="items-end rounded-full p-2 text-gray-100 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500 lg:hidden">
                   <span className="sr-only">Apri il menù principale</span>
                   {open ? (
-                    <XIcon className="block w-6 h-6" aria-hidden="true" />
+                    <XIcon className="block h-6 w-6" aria-hidden="true" />
                   ) : (
-                    <MenuIcon className="block w-6 h-6" aria-hidden="true" />
+                    <MenuIcon className="block h-6 w-6" aria-hidden="true" />
                   )}
                 </Disclosure.Button>
               </div>
@@ -111,16 +111,16 @@ export default function Navbar({isTransparent}) {
           </div>
 
           <Disclosure.Panel className="lg:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-gray-900">
+            <div className="space-y-1 bg-gray-900 px-2 pt-2 pb-3">
               {navigation.map(item => (
                 <a
                   key={item.name}
                   href={item.href}
                   className={clsx(
                     item.current
-                      ? 'text-white bg-gray-900'
-                      : 'text-gray-300 hover:text-white hover:bg-gray-700',
-                    'block py-2 px-3 text-base font-medium rounded-md',
+                      ? 'bg-gray-900 text-white'
+                      : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                    'block rounded-md py-2 px-3 text-base font-medium',
                   )}
                   aria-current={item.current ? 'page' : undefined}
                 >
@@ -131,10 +131,10 @@ export default function Navbar({isTransparent}) {
                 <div></div>
                 <Link href="/contatti">
                   <a
-                    className="flex items-center py-5 text-sm font-semibold text-gray-200 uppercase hover:bg-opacity-70 hover:shadow-md"
+                    className="flex items-center py-5 text-sm font-semibold uppercase text-gray-200 hover:bg-opacity-70 hover:shadow-md"
                     aria-current={undefined}
                   >
-                    <ChatIcon className="inline-block mr-1 w-5 h-5" />
+                    <ChatIcon className="mr-1 inline-block h-5 w-5" />
                     Contattaci
                   </a>
                 </Link>

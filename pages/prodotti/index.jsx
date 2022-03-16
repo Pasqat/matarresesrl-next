@@ -43,7 +43,7 @@ export default function ProductsHome({groups}) {
           <section className="relative" id="lavorazione">
             <Grid className="mb-24 lg:mb-48">
               <div className="col-span-full lg:col-span-6 lg:col-start-1">
-                <div className="mb-12 lg:mb-0 aspect-w-4 aspect-h-6">
+                <div className="aspect-w-4 aspect-h-6 mb-12 lg:mb-0">
                   <Image
                     alt="prodotti per la cucina professionale"
                     className="max-w-full rounded-lg shadow-lg"
@@ -157,7 +157,7 @@ export default function ProductsHome({groups}) {
                 per una mise en place ed un arredamento che rispecchia il tuo stile.`}</Paragraph>
               </div>
               <div className="col-span-full lg:col-span-5 lg:col-start-8 lg:row-start-1">
-                <div className="mb-12 lg:mb-0 aspect-w-4 aspect-h-6">
+                <div className="aspect-w-4 aspect-h-6 mb-12 lg:mb-0">
                   <Image
                     alt="prodotti per la cucina professionale"
                     className="max-w-full rounded-lg shadow-lg"
@@ -265,10 +265,10 @@ export default function ProductsHome({groups}) {
             </div>
           </section>
 
-          <section className="relative mb-24 lg:mb-48 bg-gray-800" id="igiene">
+          <section className="relative mb-24 bg-gray-800 lg:mb-48" id="igiene">
             <Grid className="py-24">
               <div className="col-span-full">
-                <H2 className="lg:mt-6 mb-3 text-gray-100">{`Igiene e sanificazione`}</H2>
+                <H2 className="mb-3 text-gray-100 lg:mt-6">{`Igiene e sanificazione`}</H2>
                 <H2 as="p" className="mb-14 text-gray-300">
                   {`Possiamo aiutarti a mantenere i tuoi ambienti puliti ed igienizzati`}
                 </H2>

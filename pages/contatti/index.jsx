@@ -22,12 +22,12 @@ export default function Contatti({groups}) {
         <title>Cantatti | Matarrese srl</title>
       </Head>
       <Layout>
-        <section className="mx-10vw mb-24 lg:mb-48 text-gray-600">
-          <div className="max-w-7xl mx-auto">
+        <section className="mx-10vw mb-24 text-gray-600 lg:mb-48">
+          <div className="mx-auto max-w-7xl">
             <Header>
               Fatti ispirare dalle nostre soluzioni. Visita il nostro showroom!
             </Header>
-            <div className="flex overflow-hidden relative justify-start items-end mb-24 lg:mb-48 bg-gray-300 rounded-lg min-h-[25rem] md:min-h-[30rem]">
+            <div className="relative mb-24 flex min-h-[25rem] items-end justify-start overflow-hidden rounded-lg bg-gray-300 md:min-h-[30rem] lg:mb-48">
               <Map />
               {/*
               <iframe
@@ -50,16 +50,16 @@ export default function Contatti({groups}) {
                 leave="ease-in duration-200"
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
-                className="flex relative flex-wrap py-6 m-8 w-full bg-white rounded shadow-md"
+                className="relative m-8 flex w-full flex-wrap rounded bg-white py-6 shadow-md"
               >
                 <div
                   className={clsx(
                     {hidden: !isOpen},
-                    'flex relative flex-wrap py-6 w-full bg-white rounded shadow-md',
+                    'relative flex w-full flex-wrap rounded bg-white py-6 shadow-md',
                   )}
                 >
                   <XIcon
-                    className="absolute top-2 right-2 ml-auto w-5 h-5 cursor-pointer"
+                    className="absolute top-2 right-2 ml-auto h-5 w-5 cursor-pointer"
                     onClick={() => setIsOpen(!isOpen)}
                   />
                   <div className="flex flex-col justify-between px-6 lg:w-1/2">
@@ -83,7 +83,7 @@ export default function Contatti({groups}) {
                       </a>
                     </div>
                   </div>
-                  <div className="flex flex-col justify-between px-6 mt-4 lg:mt-0 lg:w-1/2">
+                  <div className="mt-4 flex flex-col justify-between px-6 lg:mt-0 lg:w-1/2">
                     <div>
                       <H6 as="h2" variant="secondary">
                         Telefono
@@ -107,7 +107,7 @@ export default function Contatti({groups}) {
                 onClick={() => setIsOpen(!isOpen)}
                 className={clsx(
                   isOpen && 'hidden',
-                  'flex absolute justify-center items-center m-8 w-10 h-10 text-2xl font-bold text-white bg-yellow-500 rounded-full ring-8 ring-black ring-opacity-50 shadow-md hover:shadow-lg cursor-pointer',
+                  'absolute m-8 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-yellow-500 text-2xl font-bold text-white shadow-md ring-8 ring-black ring-opacity-50 hover:shadow-lg',
                 )}
               >
                 +

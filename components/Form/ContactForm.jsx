@@ -187,12 +187,12 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
           type="textarea"
           featured={featured}
         />
-        <div className="grid relative grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-x-4 lg:gap-x-6 mt-5 text-gray-600">
-          <div className="col-span-full lg:col-span-6 mb-2 text-lg">
-            <label className="inline-flex items-center mb-2 w-full leading-tight">
+        <div className="relative mt-5 grid grid-cols-4 gap-x-4 text-gray-600 md:grid-cols-8 lg:grid-cols-12 lg:gap-x-6">
+          <div className="col-span-full mb-2 text-lg lg:col-span-6">
+            <label className="mb-2 inline-flex w-full items-center leading-tight">
               <input
                 type="checkbox"
-                className="text-yellow-600 checked:bg-yellow-500 border-2 border-gray-400 border-solid cursor-pointer"
+                className="cursor-pointer border-2 border-solid border-gray-400 text-yellow-600 checked:bg-yellow-500"
                 name="newsletter"
                 checked={isCheckedNewsletter}
                 onChange={() => setIsCheckedNewsletter(!isCheckedNewsletter)}
@@ -202,12 +202,12 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
               </span>
             </label>
             {isCheckedNewsletter ? (
-              <div className="flex items-center my-2 lg:my-6 ml-4">
+              <div className="my-2 ml-4 flex items-center lg:my-6">
                 <select
                   value={newsletterGroupId}
                   name="newsletterGroupId"
                   onChange={handleChange}
-                  className="py-4 px-2 lg:px-8 w-full lg:w-auto text-lg font-medium disabled:text-gray-400 bg-white rounded-lg"
+                  className="w-full rounded-lg bg-white py-4 px-2 text-lg font-medium disabled:text-gray-400 lg:w-auto lg:px-8"
                 >
                   {groups.map(group => {
                     return (
@@ -225,10 +225,10 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
             ) : null}
           </div>
           <div className="col-span-full lg:col-span-6">
-            <label className="inline-flex items-center w-full flex-end">
+            <label className="flex-end inline-flex w-full items-center">
               <input
                 type="checkbox"
-                className="text-yellow-500 checked:bg-yellow-500 border-2 border-gray-400 border-solid cursor-pointer"
+                className="cursor-pointer border-2 border-solid border-gray-400 text-yellow-500 checked:bg-yellow-500"
                 name="conditions"
                 checked={isCheckedTerms}
                 onChange={() => setIsCheckedTerms(!isCheckedTerms)}
@@ -256,7 +256,7 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
           {formButtonDisabled ? (
             <div className="flex justify-end">
               <CheckIcon />
-              <p className="text-lg text-secondary">
+              <p className="text-secondary text-lg">
                 {!notification.text
                   ? `Grazie, ti ricontatteremo al più presto`
                   : notification.text}

@@ -4,7 +4,6 @@ import {H2} from '../typography'
 import {Grid} from '../grid'
 import {ArrowButton} from '../arrow-button'
 import IconStar from '../icons/star-icon'
-import {clearConfigCache} from 'prettier'
 
 // function TestimonialSection({testimonials, className, nested}) {
 function TestimonialSection({testimonials, className, nested}) {
@@ -13,7 +12,7 @@ function TestimonialSection({testimonials, className, nested}) {
 
   return (
     <Grid className={className} nested={nested}>
-      <div className="flex flex-col col-span-full mb-20 space-y-10 lg:flex-row lg:items-end lg:justify-between lg:space-y-0">
+      <div className="col-span-full mb-20 flex flex-col space-y-10 lg:flex-row lg:items-end lg:justify-between lg:space-y-0">
         <div className="space-y-2 lg:space-y-0">
           {/* <H2>{`Non prendete per vera solo la nostra parola`}</H2> */}
           {/* <H2 variant="secondary" as="p"> */}
@@ -23,7 +22,7 @@ function TestimonialSection({testimonials, className, nested}) {
         </div>
 
         {testimonials.length > 3 ? (
-          <div className="col-span-2 col-start-11 items-end justify-end mb-16 space-x-3">
+          <div className="col-span-2 col-start-11 mb-16 items-end justify-end space-x-3">
             <ArrowButton direction="left" onClick={() => setPage(p => p - 1)} />
             <ArrowButton
               direction="right"
@@ -47,7 +46,7 @@ function TestimonialSection({testimonials, className, nested}) {
           <div
             key={testimonialIndex}
             className={clsx(
-              'bg-secondary flex flex-col col-span-4 justify-between mb-8 p-16 rounded-lg lg:mb-0',
+              'bg-secondary col-span-4 mb-8 flex flex-col justify-between rounded-lg p-16 lg:mb-0',
               {
                 'hidden lg:flex': index >= 2,
               },
@@ -57,7 +56,7 @@ function TestimonialSection({testimonials, className, nested}) {
               “{testimonial.content}”
             </p>
             <div className="flex items-center justify-between">
-              <div className="flex mr-8 w-16">
+              <div className="mr-8 flex w-16">
                 <IconStar number={testimonial.stars} />
               </div>
               <div>

@@ -9,10 +9,10 @@ function Category({category, selected, onClick, disabled}) {
       checked={selected}
       onChange={onClick}
       className={clsx(
-        'relative block mb-4 mr-4 px-6 py-3 w-auto h-auto rounded-full cursor-pointer transition',
+        'relative mb-4 mr-4 block h-auto w-auto cursor-pointer rounded-full px-6 py-3 transition',
         {
           'text-primary bg-secondary': !selected,
-          'text-white bg-inverse': selected,
+          'bg-inverse text-white': selected,
           'focus-ring opacity-100': !disabled,
           'opacity-25': disabled,
         },

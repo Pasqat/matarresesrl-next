@@ -58,10 +58,10 @@ export default function Footer() {
   }
 
   return (
-    <footer className="relative text-gray-600 bg-gray-100">
+    <footer className="relative bg-gray-100 text-gray-600">
       <div className="mx-10vw pt-4">
         <form
-          className="flex flex-wrap justify-end items-center mx-auto max-w-7xl"
+          className="mx-auto flex max-w-7xl flex-wrap items-center justify-end"
           onSubmit={submitNewsletter}
         >
           <Paragraph className="md:mr-14">
@@ -81,7 +81,7 @@ export default function Footer() {
         </form>
       </div>
       <Grid className="py-14">
-        <div className="mx-auto text-center col-span-full lg:col-span-3">
+        <div className="col-span-full mx-auto text-center lg:col-span-3">
           <Link href="/">
             <a className="items-center justify-center pb-2">
               <Image
@@ -98,7 +98,7 @@ export default function Footer() {
               target="_blank"
               rel="noreferrer"
             >
-              <button className="w-10 h-10 mr-2 font-normal" type="button">
+              <button className="mr-2 h-10 w-10 font-normal" type="button">
                 <FacebookIcon size="30" />
               </button>
             </a>
@@ -107,7 +107,7 @@ export default function Footer() {
               rel="noreferrer"
               target="_blank"
             >
-              <button className="w-10 h-10 mr-2 font-normal" type="button">
+              <button className="mr-2 h-10 w-10 font-normal" type="button">
                 <LinkedInIcon size="30" />
               </button>
             </a>
@@ -116,18 +116,18 @@ export default function Footer() {
               href="https://www.instagram.com/matarrese.srl/"
               target="_blank"
             >
-              <button className="w-10 h-10 mr-2 font-normal" type="button">
+              <button className="mr-2 h-10 w-10 font-normal" type="button">
                 <InstagramIcon size="30" />
               </button>
             </a>
           </div>
-          <div className="flex flex-wrap justify-between my-16">
+          <div className="my-16 flex flex-wrap justify-between">
             <a
               rel="noreferrer"
               href="https://www.istitutoeccelsa.it"
               target="_blank"
             >
-              <div className="relative w-16 h-20">
+              <div className="relative h-20 w-16">
                 <Image
                   placeholder="blur"
                   layout="fill"
@@ -138,7 +138,7 @@ export default function Footer() {
               </div>
             </a>
             <a rel="noreferrer" href="https://www.qucino.it/" target="_blank">
-              <div className="relative w-24 h-20">
+              <div className="relative h-20 w-24">
                 <Image
                   layout="fill"
                   objectFit="contain"
@@ -149,7 +149,7 @@ export default function Footer() {
               </div>
             </a>
             <a rel="noreferrer" href="https://www.aligroup.it/" target="_blank">
-              <div className="relative w-16 h-16">
+              <div className="relative h-16 w-16">
                 <Image
                   layout="fill"
                   objectFit="contain"
@@ -161,7 +161,7 @@ export default function Footer() {
             </a>
           </div>
         </div>
-        <div className="pl-4 col-span-full lg:col-span-3">
+        <div className="col-span-full pl-4 lg:col-span-3">
           <H4 variant="secondary">Links</H4>
           <nav className="mb-10 list-none">
             <ul>
@@ -202,17 +202,17 @@ export default function Footer() {
             </ul>
           </nav>
         </div>
-        <div className="w-full pl-4 col-span-full lg:col-span-3">
+        <div className="col-span-full w-full pl-4 lg:col-span-3">
           <H4 variant="secondary">Contatti</H4>
-          <nav className="mb-10 text-sm list-none">
+          <nav className="mb-10 list-none text-sm">
             <ul>
-              <li className="flex mb-2">
+              <li className="mb-2 flex">
                 <MapIcon />
                 <span className="ml-2 text-gray-600 hover:text-gray-800">
                   Contrada popoleto n.c. 70011 Alberobello (BA)
                 </span>
               </li>
-              <li className="flex mb-2">
+              <li className="mb-2 flex">
                 <PhoneIcon />
                 <a
                   className="ml-2 text-gray-600 hover:text-gray-800"
@@ -221,7 +221,7 @@ export default function Footer() {
                   +39 080 4323431
                 </a>
               </li>
-              <li className="flex mb-2">
+              <li className="mb-2 flex">
                 <MailIcon size="20" />
                 <a
                   className="ml-2 text-gray-600 hover:text-gray-800"
@@ -230,7 +230,7 @@ export default function Footer() {
                   matarrese@matarrese.it
                 </a>
               </li>
-              <li className="flex mb-2">
+              <li className="mb-2 flex">
                 <BadgeCheckedIcon />
                 <span className="ml-2 text-gray-600 hover:text-gray-800">
                   P.IVA 04356890725
@@ -239,7 +239,7 @@ export default function Footer() {
             </ul>
           </nav>
         </div>
-        <div className="pl-4 col-span-full lg:col-span-3">
+        <div className="col-span-full pl-4 lg:col-span-3">
           <H4 as="h2" variant="secondary">
             Orari
           </H4>
@@ -259,7 +259,7 @@ export default function Footer() {
           <div className="text-sm text-gray-600">
             <p>
               Assistenza tecnica:{' '}
-              <a href="tel:00300804323651" className="underline cursor-pointer">
+              <a href="tel:00300804323651" className="cursor-pointer underline">
                 +39 080 4323651
               </a>
             </p>
@@ -274,25 +274,25 @@ export default function Footer() {
           </div>
         </div>
       </Grid>
-      <div className="bg-gray-100 mx-10vw">
-        <div className="flex flex-col flex-wrap items-center justify-between px-5 py-4 mx-auto md:flex-row max-w-7xl">
-          <p className="text-sm text-center text-gray-500 sm:text-left">
+      <div className="mx-10vw bg-gray-100">
+        <div className="mx-auto flex max-w-7xl flex-col flex-wrap items-center justify-between px-5 py-4 md:flex-row">
+          <p className="sm:text-left text-center text-sm text-gray-500">
             Copyright © {new Date().getFullYear()} Matarrese srl{' '}
           </p>
-          <div className="inline-flex justify-center mt-2 sm:justify-start sm:mt-0 sm:ml-auto">
-            <p className="text-sm text-center text-gray-500">
+          <div className="sm:justify-start sm:mt-0 sm:ml-auto mt-2 inline-flex justify-center">
+            <p className="text-center text-sm text-gray-500">
               by <span className="font-semibold">Pasquale Matarrese</span>
             </p>
             <a
               href="https://www.facebook.com/pasqat"
-              className="ml-3 text-gray-500 cursor-pointer hover:text-yellow-500"
+              className="ml-3 cursor-pointer text-gray-500 hover:text-yellow-500"
             >
               <svg
                 fill="currentColor"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
-                className="w-5 h-5"
+                className="h-5 w-5"
                 viewBox="0 0 24 24"
               >
                 <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
@@ -307,7 +307,7 @@ export default function Footer() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
-                className="w-5 h-5"
+                className="h-5 w-5"
                 viewBox="0 0 24 24"
               >
                 <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
@@ -323,7 +323,7 @@ export default function Footer() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="0"
-                className="w-5 h-5"
+                className="h-5 w-5"
                 viewBox="0 0 24 24"
               >
                 <path
@@ -344,7 +344,7 @@ export default function Footer() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="0"
-                className="w-5 h-5"
+                className="h-5 w-5"
                 viewBox="0 0 24 24"
               >
                 <path

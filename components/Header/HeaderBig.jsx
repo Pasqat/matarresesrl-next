@@ -27,22 +27,22 @@ function HeaderBig({
   }
 
   return (
-    <div className="h-[500px] relative flex content-center items-center justify-center pb-32 pt-16">
+    <div className="relative flex h-[500px] content-center items-center justify-center pb-32 pt-16">
       <div
-        className="absolute top-0 w-full h-full bg-cover bg-center"
+        className="absolute top-0 h-full w-full bg-cover bg-center"
         style={{
           backgroundImage: backgroundImgSrc || 'url(/img/homeBackground.jpg)',
         }}
       >
         <span
           id="blackOverlay"
-          className={`absolute w-full h-full ${overlay}`}
+          className={`absolute h-full w-full ${overlay}`}
         />
       </div>
       {title && (
-        <div className="max-w-8xl mx-auto z-20">
+        <div className="z-20 mx-auto max-w-8xl">
           <div className="flex flex-wrap items-center">
-            <div className="ml-auto mr-auto px-4 w-full text-center lg:w-6/12">
+            <div className="ml-auto mr-auto w-full px-4 text-center lg:w-6/12">
               <motion.div
                 initial="initial"
                 animate="visible"
@@ -57,7 +57,7 @@ function HeaderBig({
                 </motion.div>
                 {subtitle ? (
                   <motion.div variants={childVariants}>
-                    <p className="mt-4 text-white leading-tight text-3xl md:text-4xl">
+                    <p className="mt-4 text-3xl leading-tight text-white md:text-4xl">
                       {subtitle}
                     </p>
                   </motion.div>

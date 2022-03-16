@@ -8,7 +8,7 @@ export default function SocialShareBar({route, title}) {
       <div className="text-primtary mt-8 text-center text-2xl lg:hidden">
         Ti è piacuto l&apos;articolo? Condividilo sui social
       </div>
-      <div className="sticky z-3 top-28 flex flex-row items-center justify-center mt-8 h-full lg:flex-col lg:ml-10 lg:mt-0">
+      <div className="sticky top-28 z-3 mt-8 flex h-full flex-row items-center justify-center lg:ml-10 lg:mt-0 lg:flex-col">
         <SocialShareButton
           href={`https://www.facebook.com/sharer/sharer.php?u=${domainUrl}${route}`}
           icon="fab fa-facebook"

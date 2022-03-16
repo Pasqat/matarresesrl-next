@@ -33,8 +33,8 @@ export default function CoverImage({
       )}
     </div>
   ) : (
-    <div className="pb-[50%] relative flex items-center justify-center w-full text-center bg-gradient-to-tl shadow-md from-red-600 to-yellow-400 overflow-hidden">
-      <div className="bottom-[30%] absolute z-0 text-gray-100 font-serif text-4xl font-extrabold leading-tight opacity-30 select-none scale-150">
+    <div className="relative flex w-full items-center justify-center overflow-hidden bg-gradient-to-tl from-red-600 to-yellow-400 pb-[50%] text-center shadow-md">
+      <div className="absolute bottom-[30%] z-0 scale-150 select-none font-serif text-4xl font-extrabold leading-tight text-gray-100 opacity-30">
         {placeholderText}
       </div>
     </div>

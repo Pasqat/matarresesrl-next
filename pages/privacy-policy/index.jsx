@@ -26,11 +26,11 @@ export default function PrivacyPolicy() {
       <Layout>
         <Container>
           <Header>Trattamento dei dati - privacy policy</Header>
-          <main className="container pb-20 mx-auto text-justify text-gray-900">
+          <main className="container mx-auto pb-20 text-justify text-gray-900">
             <H2 className="text-center" variant="secondary">
               Privacy policy sito web
             </H2>
-            <p className="py-4 text-sm italic text-center">
+            <p className="py-4 text-center text-sm italic">
               Versione 1.0 del 01/01/2019
             </p>
             <div className="mb-14 md:columns-2">
@@ -183,7 +183,7 @@ export default function PrivacyPolicy() {
                   giuridica del trattamento.
                 </H3>
                 <div className="md:columns-2">
-                  <ol className="pl-6 list-alpha">
+                  <ol className="list-alpha pl-6">
                     <li className="pb-2">
                       <span className="font-bold text-gray-700">
                         Dati di navigazione.
@@ -225,7 +225,7 @@ export default function PrivacyPolicy() {
                       Il Sito Web utilizza cookies tecnici (cookies di
                       navigazione, analytics, di funzionalità); le tipologie di
                       cookies utilizzati sono:
-                      <ul className="py-4 pl-8 list-disc">
+                      <ul className="list-disc py-4 pl-8">
                         <li>Cookies di prima parte;</li>
                         <li>Cookies di terzi;</li>
                         <li>Cookies di sessione; </li>
@@ -275,7 +275,7 @@ export default function PrivacyPolicy() {
                 </H3>
                 <div className="md:columns-2">
                   <em>Dati di navigazione</em>, i cui destinatari sono:
-                  <ul className="py-4 pl-6 list-disc">
+                  <ul className="list-disc py-4 pl-6">
                     <li>
                       dipendenti/collaboratori/addetti di{' '}
                       <strong>Marattese s.r.l.</strong>,
@@ -290,7 +290,7 @@ export default function PrivacyPolicy() {
                   </ul>
                   <em>Dati forniti volontariamente dall’utente</em>, i cui
                   destinatari sono:
-                  <ul className="py-4 pl-6 list-disc">
+                  <ul className="list-disc py-4 pl-6">
                     <li>
                       dipendenti/collaboratori/addetti di{' '}
                       <strong>Marattese s.r.l.</strong>;

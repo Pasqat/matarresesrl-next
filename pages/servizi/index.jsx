@@ -151,16 +151,16 @@ export default function Servizi({groups}) {
               {/* <H2 as="p" variant="secondary" className="mb-14">
                 {`Grandi idee per prodotti di successo`}
               </H2> */}
-              <div className="flex justify-between items-start">
+              <div className="flex items-start justify-between">
                 {/* NOTE: I really need to find a better way to calculate progress of the position and coloring icons */}
-                <div className="hidden lg:block sticky top-32 md:col-span-4 w-full">
+                <div className="sticky top-32 hidden w-full md:col-span-4 lg:block">
                   <div className="lg:pr-16">
                     <div className="flex">
-                      <div className="flex flex-col items-center mr-4">
+                      <div className="mr-4 flex flex-col items-center">
                         <div>
                           <div
                             className={clsx(
-                              'flex justify-center items-center w-10 h-10 rounded-full border',
+                              'flex h-10 w-10 items-center justify-center rounded-full border',
                               positionReached(0) && 'bg-yellow-500',
                             )}
                           >
@@ -193,7 +193,7 @@ export default function Servizi({groups}) {
                             </svg>
                           </div>
                         </div>
-                        <div className="w-px h-full bg-gray-300" />
+                        <div className="h-full w-px bg-gray-300" />
                       </div>
                       <div className="pt-1 pb-8">
                         <Link href="#consulenza-tecnica">
@@ -204,12 +204,12 @@ export default function Servizi({groups}) {
                       </div>
                     </div>
                     <div className="flex">
-                      <div className="flex flex-col items-center mr-4">
+                      <div className="mr-4 flex flex-col items-center">
                         <div>
                           <div
                             className={clsx(
                               positionReached(18) && 'bg-yellow-500',
-                              'flex justify-center items-center w-10 h-10 rounded-full border',
+                              'flex h-10 w-10 items-center justify-center rounded-full border',
                             )}
                           >
                             <svg
@@ -241,7 +241,7 @@ export default function Servizi({groups}) {
                             </svg>
                           </div>
                         </div>
-                        <div className="w-px h-full bg-gray-300" />
+                        <div className="h-full w-px bg-gray-300" />
                       </div>
                       <div className="pt-1 pb-8">
                         <Link href="#il-progetto">
@@ -253,12 +253,12 @@ export default function Servizi({groups}) {
                       </div>
                     </div>
                     <div className="flex">
-                      <div className="flex flex-col items-center mr-4">
+                      <div className="mr-4 flex flex-col items-center">
                         <div>
                           <div
                             className={clsx(
                               positionReached(33) && 'bg-yellow-500',
-                              'flex justify-center items-center w-10 h-10 rounded-full border',
+                              'flex h-10 w-10 items-center justify-center rounded-full border',
                             )}
                           >
                             <svg
@@ -290,7 +290,7 @@ export default function Servizi({groups}) {
                             </svg>
                           </div>
                         </div>
-                        <div className="w-px h-full bg-gray-300" />
+                        <div className="h-full w-px bg-gray-300" />
                       </div>
                       <div className="pt-1 pb-8">
                         <Link href="#iter-operativo">
@@ -301,12 +301,12 @@ export default function Servizi({groups}) {
                       </div>
                     </div>
                     <div className="flex">
-                      <div className="flex flex-col items-center mr-4">
+                      <div className="mr-4 flex flex-col items-center">
                         <div>
                           <div
                             className={clsx(
                               positionReached(45) && 'bg-yellow-500',
-                              'flex justify-center items-center w-10 h-10 rounded-full border',
+                              'flex h-10 w-10 items-center justify-center rounded-full border',
                             )}
                           >
                             <svg
@@ -338,7 +338,7 @@ export default function Servizi({groups}) {
                             </svg>
                           </div>
                         </div>
-                        <div className="w-px h-full bg-gray-300" />
+                        <div className="h-full w-px bg-gray-300" />
                       </div>
                       <div className="pt-1 pb-8">
                         <Link href="#arredi-su-misura">
@@ -349,12 +349,12 @@ export default function Servizi({groups}) {
                       </div>
                     </div>
                     <div className="flex">
-                      <div className="flex flex-col items-center mr-4">
+                      <div className="mr-4 flex flex-col items-center">
                         <div>
                           <div
                             className={clsx(
                               positionReached(54) && 'bg-yellow-500',
-                              'flex justify-center items-center w-10 h-10 rounded-full border',
+                              'flex h-10 w-10 items-center justify-center rounded-full border',
                             )}
                           >
                             <svg
@@ -386,7 +386,7 @@ export default function Servizi({groups}) {
                             </svg>
                           </div>
                         </div>
-                        <div className="w-px h-full bg-gray-300" />
+                        <div className="h-full w-px bg-gray-300" />
                       </div>
                       <div className="pt-1 pb-8">
                         <Link href="#coordinamento-lavori">
@@ -397,12 +397,12 @@ export default function Servizi({groups}) {
                       </div>
                     </div>
                     <div className="flex">
-                      <div className="flex flex-col items-center mr-4">
+                      <div className="mr-4 flex flex-col items-center">
                         <div>
                           <div
                             className={clsx(
                               positionReached(60) && 'bg-yellow-500',
-                              'flex justify-center items-center w-10 h-10 rounded-full border',
+                              'flex h-10 w-10 items-center justify-center rounded-full border',
                             )}
                           >
                             <svg
@@ -434,7 +434,7 @@ export default function Servizi({groups}) {
                             </svg>
                           </div>
                         </div>
-                        <div className="w-px h-full bg-gray-300" />
+                        <div className="h-full w-px bg-gray-300" />
                       </div>
                       <div className="pt-1 pb-8">
                         <Link href="#collaudo">
@@ -443,12 +443,12 @@ export default function Servizi({groups}) {
                       </div>
                     </div>
                     <div className="flex">
-                      <div className="flex flex-col items-center mr-4">
+                      <div className="mr-4 flex flex-col items-center">
                         <div>
                           <div
                             className={clsx(
                               positionReached(64) && 'bg-green-500',
-                              'flex justify-center items-center w-10 h-10 rounded-full border',
+                              'flex h-10 w-10 items-center justify-center rounded-full border',
                             )}
                           >
                             <svg
@@ -485,11 +485,11 @@ export default function Servizi({groups}) {
 
                 <div className="md:col-span-8" ref={divProgettazione}>
                   <div className="flex">
-                    <div className="flex lg:hidden flex-col items-center mr-4">
+                    <div className="mr-4 flex flex-col items-center lg:hidden">
                       <div>
                         <div
                           className={clsx(
-                            'flex justify-center items-center w-10 h-10 rounded-full border',
+                            'flex h-10 w-10 items-center justify-center rounded-full border',
                             positionReached(0) && 'bg-yellow-500',
                           )}
                         >
@@ -522,9 +522,9 @@ export default function Servizi({groups}) {
                           </svg>
                         </div>
                       </div>
-                      <div className="w-px h-full bg-gray-300" />
+                      <div className="h-full w-px bg-gray-300" />
                     </div>
-                    <div className="p-12 mb-8 lg:mb-16 text-lg rounded-lg bg-secondary">
+                    <div className="bg-secondary mb-8 rounded-lg p-12 text-lg lg:mb-16">
                       <H3 id="consulenza-tecnica">Consulenza tecnica</H3>
                       <Paragraph className="mt-4 leading-relaxed text-gray-500">
                         Ascoltiamo le idee del cliente per trasformarle in{' '}
@@ -549,12 +549,12 @@ export default function Servizi({groups}) {
                     </div>
                   </div>
                   <div className="flex">
-                    <div className="flex lg:hidden flex-col items-center mr-4">
+                    <div className="mr-4 flex flex-col items-center lg:hidden">
                       <div>
                         <div
                           className={clsx(
                             positionReached(18) && 'bg-yellow-500',
-                            'flex justify-center items-center w-10 h-10 rounded-full border',
+                            'flex h-10 w-10 items-center justify-center rounded-full border',
                           )}
                         >
                           <svg
@@ -586,9 +586,9 @@ export default function Servizi({groups}) {
                           </svg>
                         </div>
                       </div>
-                      <div className="w-px h-full bg-gray-300" />
+                      <div className="h-full w-px bg-gray-300" />
                     </div>
-                    <div className="p-12 mb-8 lg:mb-16 text-lg rounded-lg bg-secondary">
+                    <div className="bg-secondary mb-8 rounded-lg p-12 text-lg lg:mb-16">
                       <H3 id="il-progetto">Il progetto</H3>
                       <p className="mt-4 leading-relaxed text-gray-500">
                         Realizziamo disegni, calcoli e relazioni che determinano
@@ -611,12 +611,12 @@ export default function Servizi({groups}) {
                     </div>
                   </div>
                   <div className="flex">
-                    <div className="flex lg:hidden flex-col items-center mr-4">
+                    <div className="mr-4 flex flex-col items-center lg:hidden">
                       <div>
                         <div
                           className={clsx(
                             positionReached(33) && 'bg-yellow-500',
-                            'flex justify-center items-center w-10 h-10 rounded-full border',
+                            'flex h-10 w-10 items-center justify-center rounded-full border',
                           )}
                         >
                           <svg
@@ -648,16 +648,16 @@ export default function Servizi({groups}) {
                           </svg>
                         </div>
                       </div>
-                      <div className="w-px h-full bg-gray-300" />
+                      <div className="h-full w-px bg-gray-300" />
                     </div>
-                    <div className="p-12 mb-8 lg:mb-16 text-lg rounded-lg bg-secondary">
+                    <div className="bg-secondary mb-8 rounded-lg p-12 text-lg lg:mb-16">
                       <H3 id="iter-operativo">Iter Operativo</H3>
                       <p className="mt-4 leading-relaxed text-gray-500">
                         L’iter operativo da seguire per aprire un ristorante, un
                         bar, una gelateria, una pasticceria o qualsiasi altra
                         attività di ristorazione prevede:
                       </p>
-                      <ol className="ml-2 list-decimal list-inside text-gray-500">
+                      <ol className="ml-2 list-inside list-decimal text-gray-500">
                         <li>Pianta dettagliata del locale o sopralluogo</li>
                         <li>Verifica della destinazione d’uso del locale</li>
                         <li>
@@ -671,12 +671,12 @@ export default function Servizi({groups}) {
                     </div>
                   </div>
                   <div className="flex">
-                    <div className="flex lg:hidden flex-col items-center mr-4">
+                    <div className="mr-4 flex flex-col items-center lg:hidden">
                       <div>
                         <div
                           className={clsx(
                             positionReached(45) && 'bg-yellow-500',
-                            'flex justify-center items-center w-10 h-10 rounded-full border',
+                            'flex h-10 w-10 items-center justify-center rounded-full border',
                           )}
                         >
                           <svg
@@ -708,9 +708,9 @@ export default function Servizi({groups}) {
                           </svg>
                         </div>
                       </div>
-                      <div className="w-px h-full bg-gray-300" />
+                      <div className="h-full w-px bg-gray-300" />
                     </div>
-                    <div className="p-12 mb-8 lg:mb-16 text-lg rounded-lg bg-secondary">
+                    <div className="bg-secondary mb-8 rounded-lg p-12 text-lg lg:mb-16">
                       <H3 id="arredi-su-misura">
                         Realizzazione Arredi su misura
                       </H3>
@@ -733,12 +733,12 @@ export default function Servizi({groups}) {
                     </div>
                   </div>
                   <div className="flex">
-                    <div className="flex lg:hidden flex-col items-center mr-4">
+                    <div className="mr-4 flex flex-col items-center lg:hidden">
                       <div>
                         <div
                           className={clsx(
                             positionReached(54) && 'bg-yellow-500',
-                            'flex justify-center items-center w-10 h-10 rounded-full border',
+                            'flex h-10 w-10 items-center justify-center rounded-full border',
                           )}
                         >
                           <svg
@@ -770,9 +770,9 @@ export default function Servizi({groups}) {
                           </svg>
                         </div>
                       </div>
-                      <div className="w-px h-full bg-gray-300" />
+                      <div className="h-full w-px bg-gray-300" />
                     </div>
-                    <div className="p-12 mb-8 lg:mb-16 text-lg rounded-lg bg-secondary">
+                    <div className="bg-secondary mb-8 rounded-lg p-12 text-lg lg:mb-16">
                       <H3 id="coordinamento-lavori">Coordinamento lavori</H3>
                       <p className="mt-4 leading-relaxed text-gray-500">
                         La realizzazione di un progetto è seguita costantemente
@@ -784,12 +784,12 @@ export default function Servizi({groups}) {
                     </div>
                   </div>
                   <div className="flex">
-                    <div className="flex lg:hidden flex-col items-center mr-4">
+                    <div className="mr-4 flex flex-col items-center lg:hidden">
                       <div>
                         <div
                           className={clsx(
                             positionReached(60) && 'bg-yellow-500',
-                            'flex justify-center items-center w-10 h-10 rounded-full border',
+                            'flex h-10 w-10 items-center justify-center rounded-full border',
                           )}
                         >
                           <svg
@@ -821,9 +821,9 @@ export default function Servizi({groups}) {
                           </svg>
                         </div>
                       </div>
-                      <div className="w-px h-full bg-gray-300" />
+                      <div className="h-full w-px bg-gray-300" />
                     </div>
-                    <div className="p-12 mb-8 lg:mb-16 text-lg rounded-lg bg-secondary">
+                    <div className="bg-secondary mb-8 rounded-lg p-12 text-lg lg:mb-16">
                       <H3 id="collaudo">Collaudo</H3>
                       <p className="mt-4 leading-relaxed text-gray-500">
                         L’arredo viene consegnato e collocato nella sua
@@ -833,12 +833,12 @@ export default function Servizi({groups}) {
                     </div>
                   </div>
                   <div className="flex lg:hidden">
-                    <div className="flex flex-col items-center mr-4">
+                    <div className="mr-4 flex flex-col items-center">
                       <div>
                         <div
                           className={clsx(
                             positionReached(64) && 'bg-green-500',
-                            'flex justify-center items-center w-10 h-10 rounded-full border',
+                            'flex h-10 w-10 items-center justify-center rounded-full border',
                           )}
                         >
                           <svg

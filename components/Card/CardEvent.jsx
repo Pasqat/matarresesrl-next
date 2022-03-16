@@ -19,7 +19,7 @@ export default function CardEvent({event}) {
 
   return (
     <Link href={`/eventi/${event.slug}`}>
-      <a className="focus-ring flex flex-col p-12 pr-16 w-full h-full bg-gray-100 rounded-lg">
+      <a className="focus-ring flex h-full w-full flex-col rounded-lg bg-gray-100 p-12 pr-16">
         {/* {event.featuredImage ? ( */}
         {/*   <CoverImage */}
         {/*     title={event.title} */}
@@ -55,7 +55,7 @@ export default function CardEvent({event}) {
 
         <Spacer size="2xs" />
 
-        <H6 as="div" className="flex flex-wrap gap-2 items-center">
+        <H6 as="div" className="flex flex-wrap items-center gap-2">
           {startDate === endDate ? (
             <p>{startDate}</p>
           ) : (

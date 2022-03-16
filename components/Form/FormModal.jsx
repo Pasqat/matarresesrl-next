@@ -158,11 +158,11 @@ export default function FormModal({
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
-          className="z-[51] fixed inset-0 overflow-y-auto"
+          className="fixed inset-0 z-[51] overflow-y-auto"
           onClose={closeModal}
         >
-          <div className="bg-gray-900 absolute w-full h-full opacity-90 inset-0 -z-2" />
-          <div className="px-4 min-h-screen text-center">
+          <div className="absolute inset-0 -z-2 h-full w-full bg-gray-900 opacity-90" />
+          <div className="min-h-screen px-4 text-center">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -177,7 +177,7 @@ export default function FormModal({
 
             {/* This element is to trick the browser into centering the modal contents. */}
             <span
-              className="inline-block align-middle h-screen"
+              className="inline-block h-screen align-middle"
               aria-hidden="true"
             >
               &#8203;
@@ -191,18 +191,18 @@ export default function FormModal({
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="inline-block align-middle my-8 p-10 w-full max-w-md text-left bg-white rounded-2xl shadow-xl overflow-hidden transition-all">
+              <div className="my-8 inline-block w-full max-w-md overflow-hidden rounded-2xl bg-white p-10 text-left align-middle shadow-xl transition-all">
                 {type === 'contacts' ? (
                   <>
                     <Dialog.Title
                       as="h3"
-                      className="leading-tigth text-gray-900 text-lg font-medium"
+                      className="leading-tigth text-lg font-medium text-gray-900"
                     >
                       Hai un&apos;idea che vorresti realizzare, o hai bisogno di
                       informazioni?
                     </Dialog.Title>
                     <div className="mt-2">
-                      <p className="text-gray-500 text-sm">
+                      <p className="text-sm text-gray-500">
                         Completa questo modulo, un nostro consulente ti
                         contatterà
                       </p>
@@ -211,27 +211,27 @@ export default function FormModal({
                 ) : (
                   <Dialog.Title
                     as="h3"
-                    className="text-gray-900 text-lg font-medium leading-6"
+                    className="text-lg font-medium leading-6 text-gray-900"
                   >
                     {title}
                   </Dialog.Title>
                 )}
 
                 <form
-                  className="flex-auto mt-8 space-y-8"
+                  className="mt-8 flex-auto space-y-8"
                   onSubmit={submitContactForm}
                 >
-                  <div className="relative grid gap-2 grid-cols-2 w-full">
+                  <div className="relative grid w-full grid-cols-2 gap-2">
                     <div className="w-full">
                       <label
-                        className="block mb-2 text-gray-600 text-xs font-bold uppercase"
+                        className="mb-2 block text-xs font-bold uppercase text-gray-600"
                         htmlFor="name"
                       >
                         Nome
                       </label>
                       <input
                         type="text"
-                        className="placeholder-gray-300 px-3 py-3 w-full text-gray-600 text-sm bg-white border-0 rounded focus:outline-none shadow transition-all duration-150 ease-linear focus:ring"
+                        className="w-full rounded border-0 bg-white px-3 py-3 text-sm text-gray-600 placeholder-gray-300 shadow transition-all duration-150 ease-linear focus:outline-none focus:ring"
                         placeholder="Nome"
                         name="name"
                         value={name}
@@ -240,14 +240,14 @@ export default function FormModal({
                     </div>
                     <div className="w-full">
                       <label
-                        className="block mb-2 text-gray-600 text-xs font-bold uppercase"
+                        className="mb-2 block text-xs font-bold uppercase text-gray-600"
                         htmlFor="surname"
                       >
                         Cognome
                       </label>
                       <input
                         type="text"
-                        className="placeholder-gray-300 px-3 py-3 w-full text-gray-600 text-sm bg-white border-0 rounded focus:outline-none shadow transition-all duration-150 ease-linear focus:ring"
+                        className="w-full rounded border-0 bg-white px-3 py-3 text-sm text-gray-600 placeholder-gray-300 shadow transition-all duration-150 ease-linear focus:outline-none focus:ring"
                         placeholder="Cognome"
                         name="surname"
                         value={surname}
@@ -257,14 +257,14 @@ export default function FormModal({
                   </div>
                   <div className="relative w-full">
                     <label
-                      className="block mb-2 text-gray-600 text-xs font-bold uppercase"
+                      className="mb-2 block text-xs font-bold uppercase text-gray-600"
                       htmlFor="email"
                     >
                       Email
                     </label>
                     <input
                       type="email"
-                      className="placeholder-gray-300 px-3 py-3 w-full text-gray-600 text-sm bg-white border-0 rounded focus:outline-none shadow transition-all duration-150 ease-linear focus:ring"
+                      className="w-full rounded border-0 bg-white px-3 py-3 text-sm text-gray-600 placeholder-gray-300 shadow transition-all duration-150 ease-linear focus:outline-none focus:ring"
                       placeholder="Email"
                       name="mail"
                       value={mail}
@@ -273,14 +273,14 @@ export default function FormModal({
                   </div>
                   <div className="relative w-full">
                     <label
-                      className="block mb-2 text-gray-600 text-xs font-bold uppercase"
+                      className="mb-2 block text-xs font-bold uppercase text-gray-600"
                       htmlFor="tel"
                     >
                       Telefono
                     </label>
                     <input
                       type="tel"
-                      className="placeholder-gray-300 px-3 py-3 w-full text-gray-600 text-sm bg-white border-0 rounded focus:outline-none shadow transition-all duration-150 ease-linear focus:ring"
+                      className="w-full rounded border-0 bg-white px-3 py-3 text-sm text-gray-600 placeholder-gray-300 shadow transition-all duration-150 ease-linear focus:outline-none focus:ring"
                       placeholder="Telefono"
                       name="tel"
                       value={tel}
@@ -290,7 +290,7 @@ export default function FormModal({
                   {type === 'reservation' ? (
                     <div className="relative w-full">
                       <label
-                        className="block mb-2 text-gray-600 text-xs font-bold uppercase"
+                        className="mb-2 block text-xs font-bold uppercase text-gray-600"
                         htmlFor="messaggio"
                       >
                         Numero Partecipanti
@@ -298,7 +298,7 @@ export default function FormModal({
                       <input
                         type="number"
                         min="1"
-                        className="placeholder-gray-300 px-3 py-3 w-full text-gray-600 text-sm bg-white border-0 rounded focus:outline-none shadow transition-all duration-150 ease-linear focus:ring"
+                        className="w-full rounded border-0 bg-white px-3 py-3 text-sm text-gray-600 placeholder-gray-300 shadow transition-all duration-150 ease-linear focus:outline-none focus:ring"
                         placeholder="Numero partecipanti"
                         name="participants"
                         value={participants}
@@ -308,7 +308,7 @@ export default function FormModal({
                   ) : (
                     <div className="relative w-full">
                       <label
-                        className="block mb-2 text-gray-600 text-xs font-bold uppercase"
+                        className="mb-2 block text-xs font-bold uppercase text-gray-600"
                         htmlFor="messaggio"
                       >
                         Message
@@ -316,7 +316,7 @@ export default function FormModal({
                       <textarea
                         rows="4"
                         cols="80"
-                        className="placeholder-gray-300 px-3 py-3 w-full text-gray-600 text-sm bg-white border-0 rounded focus:outline-none shadow focus:ring"
+                        className="w-full rounded border-0 bg-white px-3 py-3 text-sm text-gray-600 placeholder-gray-300 shadow focus:outline-none focus:ring"
                         placeholder="Scrivi la tua richiesta..."
                         name="formContent"
                         value={formContent}
@@ -328,7 +328,7 @@ export default function FormModal({
                     <label className="inline-flex items-center">
                       <input
                         type="checkbox"
-                        className="form-checkbox text-yellow-500 border-2 border-solid border-gray-400 cursor-pointer"
+                        className="form-checkbox cursor-pointer border-2 border-solid border-gray-400 text-yellow-500"
                         name="conditions"
                         checked={isChecked}
                         onChange={() => setIsChecked(!isChecked)}
@@ -343,11 +343,11 @@ export default function FormModal({
                       </span>
                     </label>
                   </div>
-                  <div className="flex flex-wrap justify-between mt-6 text-center">
+                  <div className="mt-6 flex flex-wrap justify-between text-center">
                     <div className="mt-4">
                       <button
                         type="button"
-                        className="inline-flex justify-center px-4 py-2 text-red-600 text-sm bg-transparent border border-red-600 rounded-sm focus:outline-none shadow-md focus-visible:ring-2 hover:ring-2 focus-visible:ring-blue-500 hover:ring-red-400 focus-visible:ring-offset-2 hover:ring-offset-2"
+                        className="bg-transparent focus-visible:ring-blue-500 inline-flex justify-center rounded-sm border border-red-600 px-4 py-2 text-sm text-red-600 shadow-md hover:ring-2 hover:ring-red-400 hover:ring-offset-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
                         onClick={closeModal}
                       >
                         Chiudi
@@ -355,7 +355,7 @@ export default function FormModal({
                     </div>
                     <div className="mt-4">
                       <button
-                        className="inline-flex px-4 py-2 text-white text-sm font-bold active:bg-gray-600 bg-green-500 disabled:bg-green-600 hover:bg-opacity-90 border border-transparent rounded-sm focus:outline-none shadow-md disabled:opacity-50 disabled:pointer-events-none hover:ring-2 focus-visible:ring-2 focus-visible:ring-blue-500 hover:ring-green-400 hover:ring-offset-2 focus-visible:ring-offset-2"
+                        className="border-transparent focus-visible:ring-blue-500 hover:ring-green-400 inline-flex rounded-sm border bg-green-500 px-4 py-2 text-sm font-bold text-white shadow-md hover:bg-opacity-90 hover:ring-2 hover:ring-offset-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:bg-gray-600 disabled:pointer-events-none disabled:bg-green-600 disabled:opacity-50"
                         type="submit"
                         disabled={formButtonDisabled}
                       >

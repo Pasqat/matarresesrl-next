@@ -61,12 +61,12 @@ const Field = React.forwardRef(function Field(
 
   return (
     <div className={clsx('mb-8', className)}>
-      <div className="flex gap-2 justify-between items-baseline mb-4">
+      <div className="mb-4 flex items-baseline justify-between gap-2">
         <Label htmlFor={inputId}>{label}</Label>
         {error ? (
           <InputError id={errorId}>{error}</InputError>
         ) : description ? (
-          <div id={descriptionId} className="text-lg text-primary">
+          <div id={descriptionId} className="text-primary text-lg">
             {description}
           </div>
         ) : null}
@@ -91,7 +91,7 @@ const Field = React.forwardRef(function Field(
 
 function ButtonGroup({children}) {
   return (
-    <div className="flex flex-col md:flex-row space-y-4 md:space-y-6 md:space-x-4">
+    <div className="flex flex-col space-y-4 md:flex-row md:space-y-6 md:space-x-4">
       {children}
     </div>
   )
@@ -99,14 +99,14 @@ function ButtonGroup({children}) {
 
 function NotificationPanel({children, id, isError}) {
   return (
-    <div role="alert" className="relative py-8 px-11 mt-8" id={id}>
+    <div role="alert" className="relative mt-8 py-8 px-11" id={id}>
       <div
         className={clsx('absolute inset-0 rounded-lg opacity-25', {
           'bg-green-500': !isError,
           'bg-red-500': isError,
         })}
       />
-      <div className="relative text-lg font-medium text-primary">
+      <div className="text-primary relative text-lg font-medium">
         {children}
       </div>
     </div>

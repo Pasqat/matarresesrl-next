@@ -174,7 +174,7 @@ export default function News() {
                     return (
                       <Link key={id} href={`/realizzazioni/${slug}`}>
                         <a className="group">
-                          <div className="relative w-full h-full bg-blend-multiply">
+                          <div className="relative h-full w-full bg-blend-multiply">
                             <Image
                               objectFit="cover"
                               width="800"
@@ -185,7 +185,7 @@ export default function News() {
                             />
                             <H3
                               as="p"
-                              className="hidden group-hover:block absolute top-1/2 left-1/2 text-center text-yellow-500 -translate-x-1/2 -translate-y-1/2"
+                              className="absolute top-1/2 left-1/2 hidden -translate-x-1/2 -translate-y-1/2 text-center text-yellow-500 group-hover:block"
                             >
                               {title}
                             </H3>
@@ -195,7 +195,7 @@ export default function News() {
                     )
                   })}
                 </div>
-                <div className="flex justify-between items-center pt-16 pb-24 m-auto md:w-5/12">
+                <div className="m-auto flex items-center justify-between pt-16 pb-24 md:w-5/12">
                   <ArrowButton
                     direction="left"
                     onClick={() => {

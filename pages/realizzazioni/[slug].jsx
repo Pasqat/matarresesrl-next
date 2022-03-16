@@ -42,10 +42,10 @@ export default function Project({project}) {
               `url(${project.featuredImage.node.sourceUrl})`
             }
           />
-          <section className="relative pt-16 pb-24 w-full text-gray-800 bg-gray-100">
-            <div className="container px-4 mx-auto">
-              <div className="lg:flex relative lg:flex-row">
-                <div className="flex relative flex-col -mt-64 mb-6 w-full min-w-0 break-words bg-white shadow-lg">
+          <section className="relative w-full bg-gray-100 pt-16 pb-24 text-gray-800">
+            <div className="container mx-auto px-4">
+              <div className="relative lg:flex lg:flex-row">
+                <div className="relative -mt-64 mb-6 flex w-full min-w-0 flex-col break-words bg-white shadow-lg">
                   <div className="px-6">
                     {/* <div className="mt-8 flex flex-wrap justify-center"> */}
                     {/*   <div className="flex items-center justify-center"> */}
@@ -71,16 +71,16 @@ export default function Project({project}) {
                       <H3 className="mb-2" variant="secondary">
                         {project.title}
                       </H3>
-                      <div className="mt-0 mb-2 text-sm font-bold leading-normal text-gray-400 uppercase">
+                      <div className="mt-0 mb-2 text-sm font-bold uppercase leading-normal text-gray-400">
                         {project.portfolioCategories.edges.map(({node}) => (
                           <div key={node.id}>{node.name}</div>
                         ))}
                       </div>
                     </div>
 
-                    <div className="py-10 mt-10 text-center border-t border-gray-200">
+                    <div className="mt-10 border-t border-gray-200 py-10 text-center">
                       <div className="flex flex-wrap justify-center">
-                        <div className="px-4 w-full lg:w-9/12">
+                        <div className="w-full px-4 lg:w-9/12">
                           <EventBody content={project.content} />
                         </div>
                       </div>
@@ -91,7 +91,7 @@ export default function Project({project}) {
               </div>
               <div className="flex justify-center ">
                 <Link href="/realizzazioni">
-                  <a className="p-4 mt-10 text-center uppercase bg-white rounded shadow-lg hover:shadow-sm">
+                  <a className="mt-10 rounded bg-white p-4 text-center uppercase shadow-lg hover:shadow-sm">
                     Realizzazioni
                   </a>
                 </Link>

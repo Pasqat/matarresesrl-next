@@ -13,7 +13,7 @@ function ArticleCard({article: {slug, title, date, featuredImage}, domain}) {
       <Link href={`/news/${slug}`}>
         <a className="group peer relative block w-full focus:outline-none">
           {featuredImage?.node?.sourceUrl ? (
-            <div className="aspect-w-4 aspect-h-3 focus-ring lg:aspect-h-5 lg:aspect-w-4 rounded-lg">
+            <div className="focus-ring aspect-w-4 aspect-h-3 rounded-lg lg:aspect-h-5 lg:aspect-w-4">
               <Image
                 className="rounded-lg"
                 objectFit="cover"
@@ -23,13 +23,13 @@ function ArticleCard({article: {slug, title, date, featuredImage}, domain}) {
               />
             </div>
           ) : (
-            <div className="focus-ring aspect-w-4 aspect-h-3 lg:aspect-h-5 lg:aspect-w-4 relative flex items-center justify-center w-full text-center bg-gradient-to-tl rounded-lg from-red-600 to-yellow-400 overflow-hidden">
-              <div className="bottom-[30%] absolute z-0 text-gray-100 font-serif text-4xl font-extrabold leading-tight opacity-30 select-none scale-150">
+            <div className="focus-ring aspect-w-4 aspect-h-3 relative flex w-full items-center justify-center overflow-hidden rounded-lg bg-gradient-to-tl from-red-600 to-yellow-400 text-center lg:aspect-h-5 lg:aspect-w-4">
+              <div className="absolute bottom-[30%] z-0 scale-150 select-none font-serif text-4xl font-extrabold leading-tight text-gray-100 opacity-30">
                 {title}
               </div>
             </div>
           )}
-          <div className="mt-8 text-gray-500 text-xl font-medium">
+          <div className="mt-8 text-xl font-medium text-gray-500">
             {formatDate(date)}
           </div>
           <H4
@@ -42,7 +42,7 @@ function ArticleCard({article: {slug, title, date, featuredImage}, domain}) {
       {domain ? (
         <ClipboardCopyButton
           value={permalink}
-          className="absolute z-10 left-6 top-6"
+          className="absolute left-6 top-6 z-10"
         />
       ) : null}
     </div>

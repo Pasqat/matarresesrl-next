@@ -25,11 +25,11 @@ export const ScrollToTop = () => {
   return (
     isVisible && (
       <div
-        className="fixed w-8 h-8 bg-yellow-500 z-20 rounded-full cursor-pointer bottom-10 right-4 items-center flex justify-center group"
+        className="group fixed bottom-10 right-4 z-20 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-yellow-500"
         onClick={scrollToTop}
       >
         <svg
-          className="w-4 h-4 text-white group-hover:-translate-y-1 transition ease-in-out"
+          className="h-4 w-4 text-white transition ease-in-out group-hover:-translate-y-1"
           viewBox="0 0 10 20"
           fill="none"
           strokeLinecap="round"
