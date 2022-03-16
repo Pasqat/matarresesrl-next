@@ -161,9 +161,10 @@ export default function FormModal({
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
-          className="z-[51] fixed inset-0 bg-yellow-500 bg-opacity-80 overflow-y-auto"
+          className="z-[51] fixed inset-0 overflow-y-auto"
           onClose={closeModal}
         >
+          <div className="bg-gray-900 absolute w-full h-full opacity-90 inset-0 -z-2" />
           <div className="px-4 min-h-screen text-center">
             <Transition.Child
               as={Fragment}
