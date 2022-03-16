@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import ContactForm from '../../components/Form/ContactForm'
 import Layout from '../../components/Layout'
@@ -19,6 +20,7 @@ import arredoSuMisura from '../../public/img/arredo-su-misura-prodotti.jpg'
 
 import {getGroups} from '../../lib/newsletter'
 import FormModal from '../../components/Form/FormModal'
+import {Button} from '../../components/button'
 
 export default function ProductsHome({groups}) {
   return (
@@ -212,7 +214,9 @@ export default function ProductsHome({groups}) {
 
           <section className="mb-14">
             <div className="mx-auto text-center">
-              <FormModal buttonText="Visita il nostro showroom" size="large" />
+              <Link href="/contatti" passHref>
+                <Button size="large">Visita il nostro showroom</Button>
+              </Link>
             </div>
           </section>
 
@@ -255,7 +259,7 @@ export default function ProductsHome({groups}) {
             </Grid>
           </section>
 
-          <section className="mb-14">
+          <section className="mb-24 lg:mb-48">
             <div className="mx-auto text-center">
               <FormModal buttonText="Parla con un consulente" size="large" />
             </div>
