@@ -109,10 +109,7 @@ export default function Home({groups}) {
                     consulenza professionale e nell’assistenza tecnica post
                     vendita.
                   </p>
-                  <FormModal
-                    buttonText="Realizza i tuoi progetti"
-                    buttonClassName="hover:shadow-none bg-gradient-tl-yellow shadow-md text-white rounded text-lg py-2 px-4 "
-                  />
+                  <FormModal buttonText="Realizza i tuoi progetti" />
                 </div>
 
                 <CardBigImg

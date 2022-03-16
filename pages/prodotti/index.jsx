@@ -18,6 +18,7 @@ import arredoSuMisura from '../../public/img/arredo-su-misura-prodotti.jpg'
 // image="/img/climatizzazione-prodotti.jpg"
 
 import {getGroups} from '../../lib/newsletter'
+import FormModal from '../../components/Form/FormModal'
 
 export default function ProductsHome({groups}) {
   return (
@@ -129,7 +130,7 @@ export default function ProductsHome({groups}) {
           </section>
 
           <section className="relative" id="accoglienza">
-            <Grid className="mb-24 lg:mb-48">
+            <Grid className="mb-14 lg:mb-24">
               <div className="col-span-full lg:col-span-6 lg:col-start-1">
                 <H2 id="perche-comprare-da-noi" className="mb-10">
                   {`Tutto per l'accoglienza`}
@@ -209,10 +210,10 @@ export default function ProductsHome({groups}) {
             </Grid>
           </section>
 
-          <section>
-            <div>CTA</div>
-            <div>Visita il nostro showroom</div>
-            <button>click</button>
+          <section className="mb-14">
+            <div className="mx-auto text-center">
+              <FormModal buttonText="Visita il nostro showroom" size="large" />
+            </div>
           </section>
 
           <HeroSection
@@ -222,7 +223,7 @@ export default function ProductsHome({groups}) {
             imageSize="large"
           />
           <section className="relative" id="trattamento-aria">
-            <Grid className="mb-24 lg:mb-48">
+            <Grid className="mb-14 lg:mb-24">
               <div className="col-span-full">
                 <H2 className="mb-14">{`Lavora in un ambiente sano e confortevole`}</H2>
                 {/* <H2 as="p" variant="secondary" className="mb-14">
@@ -254,10 +255,10 @@ export default function ProductsHome({groups}) {
             </Grid>
           </section>
 
-          <section>
-            <div>CTA</div>
-            <div>Parla con un consulente</div>
-            <button>click</button>
+          <section className="mb-14">
+            <div className="mx-auto text-center">
+              <FormModal buttonText="Parla con un consulente" size="large" />
+            </div>
           </section>
 
           <section className="relative mb-24 lg:mb-48 bg-gray-800" id="igiene">

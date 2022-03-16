@@ -9,18 +9,15 @@ import {Button} from '../../components/button'
 
 /**
  * @param buttonText default "Contattaci"
- *
- * @param {string} buttonClassName default: "px-4 py-2 text-sm text-white bg-yellow-600 hover:bg-yellow-500"
- * if it is falsy the button will have a `ChatIcon` and will be centered in a div
- *
  * @param {string} type "contacts" | "reservation"
- *
  * @param {'stirng'} title usefull to pass event title to the email subject
  */
+
 export default function FormModal({
   buttonText = 'Contattaci',
   type = 'contacts',
   title = null,
+  size = 'medium',
 }) {
   let [isOpen, setIsOpen] = useState(false)
   const [form, setForm] = useState({
@@ -155,7 +152,7 @@ export default function FormModal({
   }
   return (
     <>
-      <Button size="medium" onClick={openModal}>
+      <Button size={size} onClick={openModal}>
         {buttonText}
       </Button>
       <Transition appear show={isOpen} as={Fragment}>

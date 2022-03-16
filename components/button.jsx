@@ -30,8 +30,8 @@ function ButtonInner({children, variant = 'primary', size}) {
             'text-primary': variant === 'secondary',
             'shadow-md text-white rounded-full text-lg': variant === 'primary',
             'text-red-500': variant === 'danger',
-            'px-11 py-6 space-x-5': size === 'large',
-            'px-4 py-2 space-x-3': size === 'medium',
+            'px-11 py-6 space-x-5 text-2xl': size === 'large',
+            'px-4 py-2 space-x-3 text-lg': size === 'medium',
             'px-2 py-1 space-x-1': size === 'small',
           },
         )}
