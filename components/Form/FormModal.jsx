@@ -161,7 +161,7 @@ export default function FormModal({
           className="fixed inset-0 z-[51] overflow-y-auto"
           onClose={closeModal}
         >
-          <div className="absolute inset-0 -z-2 h-full w-full bg-gray-900 opacity-90" />
+          <div className="absolute inset-0 -z-2 h-full w-full bg-black opacity-95" />
           <div className="min-h-screen px-4 text-center">
             <Transition.Child
               as={Fragment}
