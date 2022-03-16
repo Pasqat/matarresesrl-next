@@ -87,49 +87,6 @@ export default function Home({groups}) {
 
           <section className="pb-20">
             <div className="container px-4 mx-auto">
-              <div as="div" className="flex flex-wrap" show={true}>
-                <div className="md:w-4/12">
-                  <CardSquareImg
-                    imgSrc="/img/servizio-completo1-150x150.jpg"
-                    title="Dall'idea al progetto reale"
-                    className="md:mt-5"
-                    description={`Aprire un'attività, rennovare un locale,
-                      avere una guida per migliorare il proprio lavoro: te seguiamo ad ogni passo per realizzare la tua idea.`}
-                    urlText="Scopri i servizi"
-                    url="/servizi"
-                  >
-                    <LinkButton className="mt-4" href="/servizi" withArrow>
-                      Scopri i servizi
-                    </LinkButton>
-                  </CardSquareImg>
-                </div>
-                <div className="md:w-4/12">
-                  <CardSquareImg
-                    imgSrc="/img/prodotti-qualita-150x150.jpg"
-                    title="Marchi e attrezzature di qualità"
-                    className="md:-mt-10"
-                    description={`
-                      Selezioniamo i migliori marchi ho.re.ca, studiamo le ultime tecnologie portando innovazione in cucina ed equilibrio negli arredi.
-                    `}
-                    urlText="Guarda i prodotti"
-                    url="/prodotti"
-                  ></CardSquareImg>
-                </div>
-                <div className="md:w-4/12">
-                  <CardSquareImg
-                    imgSrc="/img/info-e-supporto-150x150.jpg"
-                    title="Supporto pre e post intervento"
-                    description={`
-                      Promuoviamo la cultura enogastronomica, la professionalità, e l'ottimizzazione del lavoro.
-                      Aiutiamo le idee a diventare progetti reali, assicurando il corretto ciclo di vita delle attrezzature
-                      attraverso il supporto post vendita.
-                    `}
-                    url="/contatti"
-                    urlText="Vieni a conoscerci"
-                  ></CardSquareImg>
-                </div>
-              </div>
-
               <div className="flex flex-wrap items-center mt-32">
                 <div className="px-4 mr-auto ml-auto w-full md:w-5/12">
                   {/* <div className="inline-flex justify-center items-center p-3 mb-6 w-16 h-16 text-center text-gray-500 bg-white rounded-full shadow-lg"> */}
@@ -265,7 +222,7 @@ export default function Home({groups}) {
             <TestimonialSection testimonials={testimonials} />
           </section>
 
-          <section className="mb-24 lg:mb-48">
+          <section className="mb-24 lg:mb-48 max-w-8xl mx-auto">
             <MepaSection />
           </section>
 

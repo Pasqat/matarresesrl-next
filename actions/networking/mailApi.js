@@ -4,7 +4,7 @@ const recipientMail = () => {
   return process.env.NEXT_PUBLIC_SEND_MAIL_TO
 }
 
-export const sendContactMail = async (
+export const sendContactMail = async ({
   name,
   surname,
   senderMail,
@@ -12,7 +12,7 @@ export const sendContactMail = async (
   formContent,
   participants,
   title,
-) => {
+}) => {
   const data = {
     recipientMail: recipientMail(),
     name,

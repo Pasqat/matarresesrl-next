@@ -68,7 +68,12 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
       })
     }
 
-    const res = await sendContactMail(name, email, formContent)
+    const res = await sendContactMail({
+      name,
+      senderMail: email,
+      tel,
+      formContent,
+    })
     if (res.status < 300) {
       setFormButtonDisabled(true)
       setNotification({
@@ -76,7 +81,7 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
         text: 'Grazie, ti ricontatteremo al più presto',
         isError: false,
       })
-      setForm({...form, name: '', email: '', formContent: ''})
+      setForm({...form, name: '', email: '', tel: '', formContent: ''})
       setIsCheckedTerms(false)
     } else {
       setNotification({

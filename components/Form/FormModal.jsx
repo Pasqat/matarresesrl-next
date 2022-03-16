@@ -116,15 +116,15 @@ export default function FormModal({
       })
     }
 
-    const res = await sendContactMail(
+    const res = await sendContactMail({
       name,
       surname,
-      mail,
+      senderMail: mail,
       tel,
       formContent,
       participants,
       title,
-    )
+    })
     if (res.status < 300) {
       setFormButtonDisabled(true)
       setNotification({

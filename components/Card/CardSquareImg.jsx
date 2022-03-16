@@ -18,7 +18,7 @@ function CardSquareImg({
         <div className="group px-6 pb-6 pt-14 rounded-lg md:pb-12 lg:bg-gray-100">
           <div className="lg:flex lg:flex-col justify-between col-span-full">
             <div>
-              {/* TODO: use higher resolution image. Find them in ../uploads/2015/03 */}
+              {/* TODO: HiRes img from Angela */}
               <div className="relative h-32 w-full shadow-md">
                 <Image
                   objectFit="cover"
