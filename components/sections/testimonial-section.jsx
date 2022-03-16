@@ -4,14 +4,15 @@ import {H2} from '../typography'
 import {Grid} from '../grid'
 import {ArrowButton} from '../arrow-button'
 import IconStar from '../icons/star-icon'
+import {clearConfigCache} from 'prettier'
 
 // function TestimonialSection({testimonials, className, nested}) {
-function TestimonialSection({testimonials}) {
+function TestimonialSection({testimonials, className, nested}) {
   // FIXME: scrolling is bugged after some click
   const [page, setPage] = React.useState(0)
 
   return (
-    <Grid>
+    <Grid className={className} nested={nested}>
       <div className="flex flex-col col-span-full mb-20 space-y-10 lg:flex-row lg:items-end lg:justify-between lg:space-y-0">
         <div className="space-y-2 lg:space-y-0">
           {/* <H2>{`Non prendete per vera solo la nostra parola`}</H2> */}
@@ -23,8 +24,11 @@ function TestimonialSection({testimonials}) {
 
         {testimonials.length > 3 ? (
           <div className="col-span-2 col-start-11 items-end justify-end mb-16 space-x-3">
-            <ArrowButton direction="left" onClick={() => setPage(page - 1)} />
-            <ArrowButton direction="right" onClick={() => setPage(page + 1)} />
+            <ArrowButton direction="left" onClick={() => setPage(p => p - 1)} />
+            <ArrowButton
+              direction="right"
+              onClick={() => setPage(p => p + 1)}
+            />
           </div>
         ) : null}
       </div>
@@ -33,7 +37,11 @@ function TestimonialSection({testimonials}) {
         length: testimonials.length > 3 ? 3 : testimonials.length,
       }).map((_, index) => {
         const testimonialIndex = (page * 3 + index) % testimonials.length
-        const testimonial = testimonials[testimonialIndex]
+        const testimonial = testimonials[Math.abs(testimonialIndex)]
+        console.log('index', index)
+        console.log('testimonialIndex', testimonialIndex)
+        console.log('testimonial', testimonial)
+
         if (!testimonial) return null
         return (
           <div
@@ -45,7 +53,7 @@ function TestimonialSection({testimonials}) {
               },
             )}
           >
-            <p className="text-primary mb-14 text-base">
+            <p className="text-primary mb-14 text-lg">
               “{testimonial.content}”
             </p>
             <div className="flex items-center justify-between">
