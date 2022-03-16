@@ -64,7 +64,7 @@ export default function Footer() {
           className="mx-auto flex max-w-7xl flex-wrap items-center justify-end"
           onSubmit={submitNewsletter}
         >
-          <Paragraph className="md:mr-14">
+          <Paragraph className="font-medium md:mr-14">
             Iscriviti alla nostra newsletter
           </Paragraph>
           <Input
