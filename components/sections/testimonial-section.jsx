@@ -37,9 +37,6 @@ function TestimonialSection({testimonials, className, nested}) {
       }).map((_, index) => {
         const testimonialIndex = (page * 3 + index) % testimonials.length
         const testimonial = testimonials[Math.abs(testimonialIndex)]
-        console.log('index', index)
-        console.log('testimonialIndex', testimonialIndex)
-        console.log('testimonial', testimonial)
 
         if (!testimonial) return null
         return (
