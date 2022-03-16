@@ -162,7 +162,9 @@ export default function Footer() {
           </div>
         </div>
         <div className="col-span-full pl-4 lg:col-span-3">
-          <H4 variant="secondary">Links</H4>
+          <H4 as="p" variant="secondary">
+            Links
+          </H4>
           <nav className="mb-10 list-none">
             <ul>
               <li>
@@ -203,7 +205,9 @@ export default function Footer() {
           </nav>
         </div>
         <div className="col-span-full w-full pl-4 lg:col-span-3">
-          <H4 variant="secondary">Contatti</H4>
+          <H4 as="p" variant="secondary">
+            Contatti
+          </H4>
           <nav className="mb-10 list-none text-sm">
             <ul>
               <li className="mb-2 flex">
@@ -240,7 +244,7 @@ export default function Footer() {
           </nav>
         </div>
         <div className="col-span-full pl-4 lg:col-span-3">
-          <H4 as="h2" variant="secondary">
+          <H4 as="p" variant="secondary">
             Orari
           </H4>
           <div className="mb-10 text-sm text-gray-600">
