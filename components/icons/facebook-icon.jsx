@@ -15,7 +15,7 @@ function FacebookIcon({size = 24, title = 'Fackebook'}) {
       <path
         stroke="none"
         fill="none"
-        stokeWidth={3.5}
+        strokeWidth={3.5}
         strokeLinecap="round"
         strokeLinejoin="round"
         d="M19,3H5C3.897,3,3,3.897,3,5v14c0,1.103,0.897,2,2,2h14c1.103,0,2-0.897,2-2V5C21,3.897,20.103,3,19,3z M5,19V5h14l0.001,14H5z"
