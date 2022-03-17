@@ -40,13 +40,12 @@ export default function Home({groups}) {
             noButton
           />
 
-          <section className="relative -mt-24">
+          <section className="relative -mt-14">
             <Grid rowGap className="mb-24 lg:mb-48">
               <div className="col-span-full lg:col-span-4">
                 <CardSquareImg
                   imgSrc="/img/servizio-completo1-150x150.jpg"
                   title="Dall'idea al progetto reale"
-                  className="md:mt-5"
                   description={`Aprire un'attività, rennovare un locale,
                       avere una guida per migliorare il proprio lavoro: te seguiamo ad ogni passo per realizzare la tua idea.`}
                   urlText="Scopri i servizi"
@@ -57,11 +56,10 @@ export default function Home({groups}) {
                   </LinkButton>
                 </CardSquareImg>
               </div>
-              <div className="col-span-full lg:col-span-4">
+              <div className="col-span-full mb-8 -mt-8 lg:col-span-4">
                 <CardSquareImg
                   imgSrc="/img/prodotti-qualita-150x150.jpg"
                   title="Marchi e attrezzature di qualità"
-                  className="md:-mt-10"
                   description={`
                       Selezioniamo i migliori marchi ho.re.ca, studiamo le ultime tecnologie portando innovazione in cucina ed equilibrio negli arredi.
                     `}
