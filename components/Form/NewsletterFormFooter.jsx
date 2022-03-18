@@ -1,13 +1,9 @@
 import {useEffect, useRef, useState} from 'react'
 import Link from 'next/link'
 
-import {H2} from '../typography'
+import {Paragraph} from '../typography'
 
-import {NotificationPanel, Field, Label} from '../form-element'
-import {Grid} from '../grid'
-import {Spacer} from '../spacer'
-import {ArrowButton} from '../arrow-button'
-import {CheckIcon} from '../icons/check-icon'
+import {Field} from '../form-element'
 import clsx from 'clsx'
 
 export default function NewsletterForm({
@@ -15,8 +11,6 @@ export default function NewsletterForm({
   featured,
   groups,
   title = 'Iscriviti alla nostra newsletter',
-  subtitle = '',
-  nested,
 }) {
   const [form, setForm] = useState({
     email: '',
@@ -25,7 +19,6 @@ export default function NewsletterForm({
   const {email, newsletterGroupId} = form
 
   const [isCheckedTerms, setIsCheckedTerms] = useState(false)
-  const [formButtonDisabled, setFormButtonDisabled] = useState(false)
   const [notification, setNotification] = useState({
     text: '',
     isError: false,
@@ -57,7 +50,7 @@ export default function NewsletterForm({
     if (email === '') {
       return setNotification({
         ...notification,
-        text: 'Per favore inserisci la tua mail',
+        text: 'Non dimenticare la mail',
         isError: true,
       })
     }
@@ -65,7 +58,7 @@ export default function NewsletterForm({
     if (isCheckedTerms === false) {
       return setNotification({
         ...notification,
-        text: 'Non dimenticare di accettare i termini e le condizioni',
+        text: 'Accetta i termini e le condizioni',
         isError: true,
       })
     }
@@ -99,37 +92,34 @@ export default function NewsletterForm({
         text: message,
         isError: false,
       })
-      setFormButtonDisabled(true)
     }
   }
 
   return (
-    <Grid nested={nested} featured={featured}>
-      <form className="col-span-full space-y-4" onSubmit={submitContactForm}>
-        <H2 as="h4">{title}</H2>
-        <H2 as="p" variant="secondary">
-          {subtitle}
-        </H2>
-        <Spacer size="3xs" />
-        <Grid nested>
+    <div className="mx-10vw">
+      <form
+        className="col-span-full mx-auto max-w-7xl "
+        onSubmit={submitContactForm}
+      >
+        <div className="grid w-full grid-cols-4 gap-x-4 md:grid-cols-8 lg:grid-cols-12">
+          <Paragraph className="col-span-full flex items-center lg:col-span-4">
+            {title}
+          </Paragraph>
           <Field
             name="email"
-            label="Email"
+            // label="Email"
             autoComplete="email"
-            // error={notification.isError ? notification.text : null}
+            error={notification.isError ? notification.text : null}
             required
-            disabled={formButtonDisabled}
             value={email}
             onChange={handleChange}
-            className="col-span-full lg:col-span-6"
+            className="col-span-full lg:col-span-4"
             featured={featured}
+            placeholder="e-mail"
           />
-          <div className="col-span-full mb-8 lg:col-span-6">
+          <div className="col-span-full mb-8 lg:col-span-4">
             <div className="mb-4 flex items-baseline justify-between gap-2">
-              <Label htmlFor="industry">Settore</Label>
-              {/* {notification.isError ? (
-                <InputError id="industry-error">{notification.text}</InputError>
-              ) : null} */}
+              {/* <Label htmlFor="industry">Settore</Label> */}
             </div>
             <select
               id="industry"
@@ -153,9 +143,9 @@ export default function NewsletterForm({
               })}
             </select>
           </div>
-        </Grid>
-        <div className="col-span-full text-base">
-          <label className="flex-end inline-flex w-full items-center">
+        </div>
+        <div className="flex-end col-span-full ml-auto">
+          <label className="flex w-full items-center justify-end">
             <input
               type="checkbox"
               className="cursor-pointer border-2 border-solid border-gray-400 text-yellow-500 checked:bg-yellow-500"
@@ -174,13 +164,7 @@ export default function NewsletterForm({
           </label>
         </div>
 
-        {notification.isError ? (
-          <NotificationPanel isError={notification.isError}>
-            {notification.text}
-          </NotificationPanel>
-        ) : null}
-
-        <div className="text-right">
+        {/* <div className="text-right">
           {formButtonDisabled ? (
             <div className="flex justify-end">
               <CheckIcon />
@@ -195,8 +179,8 @@ export default function NewsletterForm({
               Invia
             </ArrowButton>
           )}
-        </div>
+        </div> */}
       </form>
-    </Grid>
+    </div>
   )
 }

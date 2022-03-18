@@ -6,9 +6,9 @@ import logoEccelsa from '../../public/img/logos/Eccelsa-RGB_400x400.png'
 import logoQucino from '../../public/img/logos/MARCHIO-QUCINO150.png'
 import logoAliGroup from '../../public/img/logos/Ali_Group_logo.png'
 
-import {H4, Paragraph} from '../typography'
+import {H4} from '../typography'
 import {Grid} from '../grid'
-import {Input} from '../form-element'
+import NewsletterFormFooter from '../Form/NewsletterFormFooter'
 
 import {FacebookIcon} from '../icons/facebook-icon'
 import {LinkedInIcon} from '../icons/linkedin-icon'
@@ -18,67 +18,106 @@ import {PhoneIcon} from '../icons/phone-icon'
 import {BadgeCheckedIcon} from '../icons/badge-checked-icon'
 import {MailIcon} from '../icons/mail-icon'
 
+const groups = [
+  {
+    id: 107688379,
+    name: 'Altro',
+  },
+  {
+    id: 109876460,
+    name: 'Ristorante',
+  },
+  {
+    id: 109876550,
+    name: 'Gastronomia',
+  },
+  {
+    id: 109876553,
+    name: 'Pizzeria',
+  },
+  {
+    id: 109876565,
+    name: 'Pasticceria',
+  },
+  {
+    id: 109876613,
+    name: 'Gelateria',
+  },
+  {
+    id: 109876649,
+    name: 'Hotel - Sala Ricevimenti - B&B',
+  },
+  {
+    id: 109876664,
+    name: 'Enti-PA',
+  },
+  {
+    id: 109876682,
+    name: 'Supermercati ed Alimentari',
+  },
+  {
+    id: 109876694,
+    name: 'Villaggio Turistico',
+  },
+  {
+    id: 109877168,
+    name: 'Macelleria',
+  },
+  {
+    id: 109877180,
+    name: 'Panificio',
+  },
+  {
+    id: 109877183,
+    name: 'Bar',
+  },
+  {
+    id: 109877186,
+    name: 'Agriturismo',
+  },
+  {
+    id: 109877192,
+    name: 'Caseificio',
+  },
+  {
+    id: 109877201,
+    name: 'Pub',
+  },
+  {
+    id: 109877216,
+    name: 'Vineria',
+  },
+  {
+    id: 109877219,
+    name: 'Pescheria',
+  },
+  {
+    id: 109877231,
+    name: 'Pastificio',
+  },
+  {
+    id: 109877234,
+    name: 'Industrie',
+  },
+  {
+    id: 109877246,
+    name: 'No food',
+  },
+  {
+    id: 109877249,
+    name: 'Braceria',
+  },
+  {
+    id: 109877258,
+    name: 'Privato',
+  },
+]
+
 export default function Footer() {
-  const [email, setEmail] = React.useState('')
-
-  const handleChange = e => {
-    const {value} = e.target
-    setEmail(value)
-  }
-
-  async function submitNewsletter(event) {
-    event.preventDefault()
-
-    if (email === '') {
-      return null
-    }
-
-    const resSubscription = await fetch('/api/subscribe', {
-      body: JSON.stringify({
-        email: email,
-        groupId: 107688379,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-    })
-
-    const {message, error} = await resSubscription.json()
-
-    if (error) {
-      console.log(error)
-    }
-
-    if (message) {
-      console.log(message)
-    }
-
-    setEmail('')
-  }
-
   return (
     <footer className="relative bg-gray-100 text-gray-600">
-      <div className="mx-10vw pt-4">
-        <form
-          className="mx-auto flex max-w-7xl flex-wrap items-center justify-end"
-          onSubmit={submitNewsletter}
-        >
-          <Paragraph className="font-medium md:mr-14">
-            Iscriviti alla nostra newsletter
-          </Paragraph>
-          <Input
-            name="email"
-            placeholder="email"
-            autoComplete="email"
-            required
-            value={email}
-            onChange={handleChange}
-            className="max-w-lg"
-            // featured={featured}
-            featured
-          />
-        </form>
+      <div className="py-8">
+        <NewsletterFormFooter featured groups={groups} />
       </div>
       <Grid className="py-14">
         <div className="col-span-full mx-auto text-center lg:col-span-3">
