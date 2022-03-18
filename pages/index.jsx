@@ -10,7 +10,6 @@ import FormModal from '../components/Form/FormModal'
 import Layout from '../components/Layout'
 import {LinkButton} from '../components/button'
 import {TestimonialSection} from '../components/sections/testimonial-section'
-import {MepaSection} from '../components/sections/mepa-section'
 
 import {logos} from '../data/partner-logo'
 import {H2, H3, H5} from '../components/typography'
