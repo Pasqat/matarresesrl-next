@@ -49,6 +49,7 @@ const Field = React.forwardRef(function Field(
     className,
     description,
     id,
+    required,
     featured,
     ...props
   },
@@ -78,7 +79,7 @@ const Field = React.forwardRef(function Field(
         name={name}
         id={inputId}
         autoComplete={name}
-        required
+        required={required}
         defaultValue={defaultValue}
         featured={featured}
         aria-describedby={

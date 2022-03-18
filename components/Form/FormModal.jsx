@@ -291,7 +291,7 @@ export default function FormModal({
                     <div className="relative w-full">
                       <label
                         className="mb-2 block text-xs font-bold uppercase text-gray-600"
-                        htmlFor="messaggio"
+                        htmlFor="participants"
                       >
                         Numero Partecipanti
                       </label>
@@ -311,7 +311,7 @@ export default function FormModal({
                         className="mb-2 block text-xs font-bold uppercase text-gray-600"
                         htmlFor="messaggio"
                       >
-                        Message
+                        Messaggio
                       </label>
                       <textarea
                         rows="4"
@@ -347,7 +347,7 @@ export default function FormModal({
                     <div className="mt-4">
                       <button
                         type="button"
-                        className="bg-transparent focus-visible:ring-blue-500 inline-flex justify-center rounded-sm border border-red-600 px-4 py-2 text-sm text-red-600 shadow-md hover:ring-2 hover:ring-red-400 hover:ring-offset-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+                        className="bg-transparent focus-visible:ring-blue-500 inline-flex cursor-pointer justify-center rounded-sm border border-red-600 px-4 py-2 text-sm text-red-600 shadow-md hover:ring-2 hover:ring-red-400 hover:ring-offset-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
                         onClick={closeModal}
                       >
                         Chiudi
@@ -355,7 +355,7 @@ export default function FormModal({
                     </div>
                     <div className="mt-4">
                       <button
-                        className="border-transparent focus-visible:ring-blue-500 hover:ring-green-400 inline-flex rounded-sm border bg-green-500 px-4 py-2 text-sm font-bold text-white shadow-md hover:bg-opacity-90 hover:ring-2 hover:ring-offset-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:bg-gray-600 disabled:pointer-events-none disabled:bg-green-600 disabled:opacity-50"
+                        className="border-transparent inline-flex cursor-pointer rounded-sm border bg-yellow-500 px-4 py-2 text-sm font-bold text-white shadow-md hover:bg-opacity-90 hover:ring-2 hover:ring-yellow-400 hover:ring-offset-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 focus-visible:ring-offset-2 active:bg-gray-600 disabled:pointer-events-none disabled:bg-green-600 disabled:opacity-50"
                         type="submit"
                         disabled={formButtonDisabled}
                       >

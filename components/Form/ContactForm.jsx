@@ -16,10 +16,11 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
     name: '',
     email: '',
     tel: '',
+    company: '',
     formContent: '',
     newsletterGroupId: 107688379,
   })
-  const {name, email, tel, formContent, newsletterGroupId} = form
+  const {name, email, tel, formContent, company, newsletterGroupId} = form
 
   const [isCheckedTerms, setIsCheckedTerms] = useState(false)
   const [isCheckedNewsletter, setIsCheckedNewsletter] = useState(false)
@@ -72,6 +73,7 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
       name,
       senderMail: email,
       tel,
+      company,
       formContent,
     })
     if (res.status < 300) {
@@ -81,7 +83,14 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
         text: 'Grazie, ti ricontatteremo al più presto',
         isError: false,
       })
-      setForm({...form, name: '', email: '', tel: '', formContent: ''})
+      setForm({
+        ...form,
+        name: '',
+        email: '',
+        tel: '',
+        company: '',
+        formContent: '',
+      })
       setIsCheckedTerms(false)
     } else {
       setNotification({
@@ -98,6 +107,7 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
           email: email,
           groupId: newsletterGroupId,
           name: name,
+          company: company,
         }),
         headers: {
           'Content-Type': 'application/json',
@@ -142,7 +152,7 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
         <Grid nested>
           <Field
             name="name"
-            label="Nome"
+            label="Nome*"
             // error={notification.isError ? notification.text : null}
             autoComplete="given-name"
             required
@@ -154,7 +164,7 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
           />
           <Field
             name="email"
-            label="Email"
+            label="Email*"
             autoComplete="email"
             // error={notification.isError ? notification.text : null}
             required
@@ -171,6 +181,17 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
             // error={notification.isError ? notification.text : null}
             disabled={formButtonDisabled}
             value={tel}
+            onChange={handleChange}
+            className="col-span-full lg:col-span-6"
+            featured={featured}
+          />
+          <Field
+            name="company"
+            label="Denominazione Aziendale"
+            autoComplete="company"
+            // error={notification.isError ? notification.text : null}
+            disabled={formButtonDisabled}
+            value={company}
             onChange={handleChange}
             className="col-span-full lg:col-span-6"
             featured={featured}

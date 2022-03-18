@@ -80,60 +80,53 @@ export default function Servizi({groups}) {
 
               <div className="col-span-full">
                 <Grid rowGap nested>
-                  <div className="col-span-full lg:col-span-3">
+                  <div className="col-span-full lg:col-span-4">
                     <FeatureCard
                       title="Consulenza commerciale"
                       description="I nostri esperti ti guidano nella scelta delle migliori soluzioni Ho.Re.Ca disponibili sul mercato."
-                      icon={<BriefCaseIcon size={48} />}
+                      // icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
-                  <div className="col-span-full lg:col-span-3">
+                  <div className="col-span-full lg:col-span-4">
                     <FeatureCard
                       title="Progettazione tecnica attività commerciali"
                       description="Ascoltiamo le tue idee e condividiamo la loro progettazione in anteprima."
-                      icon={<BriefCaseIcon size={48} />}
+                      // icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
-                  <div className="col-span-full lg:col-span-3">
+                  <div className="col-span-full lg:col-span-4">
                     <FeatureCard
                       title="Realizzazine arredi su misura"
                       description="Adattiamo gli arredi e scegliamo le attrezzature migliori per i tuoi ambienti."
-                      icon={<BriefCaseIcon size={48} />}
+                      // icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
-                  <div className="col-span-full lg:col-span-3">
+                  <div className="col-span-full lg:col-span-4">
                     <FeatureCard
                       title="Progettazione cucine professionali"
                       description="Organizziamo gli spazi della tua cucina per garantire l'ottimizzazione del lavoro e dei tempi di preparazione."
-                      icon={<BriefCaseIcon size={48} />}
+                      // icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
-                  <div className="col-span-full lg:col-span-3">
+                  <div className="col-span-full lg:col-span-4">
                     <FeatureCard
                       title="Formazione"
                       description="Offiramo soluzioni di formazione finanziata per la tua crescita professionale e quella dei tuoi collaboratori."
-                      icon={<BriefCaseIcon size={48} />}
+                      // icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
-                  <div className="col-span-full lg:col-span-3">
+                  <div className="col-span-full lg:col-span-4">
                     <FeatureCard
                       title="Assistenza tecnica e manutenzione"
                       description="Garantiamo assistenza tecnica qualificata e manutenzione delle attrezzature che scegli per la tua attività."
-                      icon={<BriefCaseIcon size={48} />}
+                      // icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
-                  <div className="col-span-full lg:col-span-3">
+                  <div className="col-span-full lg:col-span-4">
                     <FeatureCard
-                      title="Progettazione impianti di climatizzazione"
-                      description="Caldo o freddo impostiamo la temperatura giusta all'interno della tua attività per il comfort tuo e dei tuoi clienti."
-                      icon={<BriefCaseIcon size={48} />}
-                    />
-                  </div>
-                  <div className="col-span-full lg:col-span-3">
-                    <FeatureCard
-                      title="Progettazione impianti di aspirazione"
-                      description="Non sottovalutiamo la qualità dell'aria negli ambienti di lavoro e ti proponiamo le soluzioni più innovative."
-                      icon={<BriefCaseIcon size={48} />}
+                      title="Consulenza su nuove tecnologie"
+                      description="Da partner di progetti di Ricerca e Sviluppo studiamo le innovazioni in cucina, condividiamo e diffondiamo le nostre conoscenze."
+                      // icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
                 </Grid>

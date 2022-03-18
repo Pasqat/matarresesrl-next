@@ -32,6 +32,7 @@ const sendMail = async (req, res) => {
     tel,
     participants,
     formContent,
+    company,
     recipientMail,
     title,
   } = req.body
@@ -60,7 +61,7 @@ const sendMail = async (req, res) => {
     senderMail,
     name: `${name} ${surname}`,
     title,
-    text: `email: ${senderMail}\ntel: ${tel}\n${content}`,
+    text: `Nome: ${name} ${surname}\nDenominazione azienda: ${company}\nEmail: ${senderMail}\ntel: ${tel}\n${content}`,
     recipientMail,
   })
   res.send(mailerRes)

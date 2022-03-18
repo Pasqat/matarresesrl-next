@@ -10,6 +10,7 @@ export const sendContactMail = async ({
   senderMail,
   tel,
   formContent,
+  company,
   participants,
   title,
 }) => {
@@ -19,6 +20,7 @@ export const sendContactMail = async ({
     surname,
     senderMail,
     tel,
+    company,
     formContent,
     participants,
     title,

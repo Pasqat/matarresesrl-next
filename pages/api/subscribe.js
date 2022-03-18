@@ -1,7 +1,7 @@
 const API_KEY = process.env.MAILERLITE_API_KEY
 
 export default async (req, res) => {
-  const {email, name, groupId} = req.body
+  const {email, name, groupId, company} = req.body
 
   // see mailerlite docs for more info
   const options = {
@@ -15,7 +15,7 @@ export default async (req, res) => {
     body: JSON.stringify({
       email: email,
       name: name,
-      // fields: {company: 'string', city: 'string'},
+      fields: {company: company},
       resubscribe: true,
       autoresponders: true,
       type: null,
