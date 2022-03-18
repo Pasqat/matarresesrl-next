@@ -5,9 +5,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
 import {ButtonLink} from '../button'
-import {LinkedInIcon} from '../icons/linkedin-icon'
-import {InstagramIcon} from '../icons/instagram-icon'
-import {FacebookIcon} from '../icons/facebook-icon'
 
 let navigation = [
   {name: 'Home', href: '/', current: false},
@@ -64,32 +61,6 @@ export default function Navbar({isTransparent}) {
                     ))}
                   </div>
                   <div className="hidden flex-wrap items-center space-x-3 lg:flex xl:space-x-4">
-                    {/* <a
-                      href="https://www.facebook.com/matarresesrl"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-gray-100"
-                    >
-                      <FacebookIcon />
-                    </a>
-
-                    <a
-                      href="https://www.linkedin.com/company/matarrese-srl/"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-gray-100"
-                    >
-                      <LinkedInIcon />
-                    </a>
-
-                    <a
-                      href="https://www.instagram.com/matarrese.srl/"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-gray-100"
-                    >
-                      <InstagramIcon />
-                    </a> */}
                     <Link href="/contatti" passHref>
                       <ButtonLink size="small" className="no-underline">
                         <ChatIcon className="mr-1 inline-block h-5 w-5" />
