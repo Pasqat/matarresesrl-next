@@ -186,7 +186,7 @@ export default function ProductsHome({groups}) {
                       description="Sedie, tavolini e decorazioni per interno o esterno, tutti scelti per il settore Ho.Re.Ca."
                       // url="/prodotti/cottura"
                       // urlText="Scopri di più"
-                      icon={<BriefCaseIcon size={48} />}
+                      // icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
                   <div className="col-span-full lg:col-span-4">
@@ -195,7 +195,7 @@ export default function ProductsHome({groups}) {
                       description="Qualunque sia il tuo stile di arredo, noi lo realizziamo su misura dei tuoi spazi."
                       // url="/prodotti/attrezzature"
                       // urlText="Scopri di più"
-                      icon={<BriefCaseIcon size={48} />}
+                      // icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
                   <div className="col-span-full lg:col-span-4">
@@ -204,7 +204,7 @@ export default function ProductsHome({groups}) {
                       description="Soluzioni d'arredo pensate per gli spazi esterni del tuo ristornate, bar, pasticceria, pizzeria o gastronomia d'asporto."
                       // url="/prodotti/macchinari-agroalimentare"
                       // urlText="Scopri di più"
-                      icon={<BriefCaseIcon size={48} />}
+                      // icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
                 </Grid>
@@ -242,7 +242,7 @@ export default function ProductsHome({groups}) {
                       title="Aspirazione"
                       description="Riduci l'emissione di fumi e odori in cucina con un impianto di trattamento aria nel rispetto dei più alti stardard qualitativi."
                       // urlText="Scopri di più"
-                      icon={<BriefCaseIcon size={48} />}
+                      // icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
                   <div className="col-span-full lg:col-span-6">
@@ -251,7 +251,7 @@ export default function ProductsHome({groups}) {
                       description="Impianti di climatizzazione estivi e invernali a fluido ed espansione diretta di qualsiasi dimensione, per ogni ambiente commerciale."
                       // url="/prodotti/refrigerazione"
                       // urlText="Scopri di più"
-                      icon={<BriefCaseIcon size={48} />}
+                      // icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
                 </Grid>
@@ -282,7 +282,7 @@ export default function ProductsHome({groups}) {
                       description="Per i tuoi ambienti di lavoro scegli una sanificazione ambientale totale, sia dell'aria che delle superfici."
                       // url="/prodotti/cottura"
                       // urlText="Scopri di più"
-                      icon={<BriefCaseIcon size={48} />}
+                      // icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
                   <div className="col-span-full lg:col-span-4">
@@ -291,7 +291,7 @@ export default function ProductsHome({groups}) {
                       description="Soluzioni di lavaggio dal piccolo bar sino alla ristorazione collettiva. Macchine affidabili e tecnologiche, lavabicchieri, lavaoggetti, lavavassoi di ogni forma e dimensione."
                       // url="/prodotti/attrezzature"
                       // urlText="Scopri di più"
-                      icon={<BriefCaseIcon size={48} />}
+                      // icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
                   <div className="col-span-full lg:col-span-4">
@@ -300,7 +300,7 @@ export default function ProductsHome({groups}) {
                       description="Allestiamo lavanderie professionali per hotel, residence, ristoranti, case di riposo, cliniche e ovunque si debba offrire un trattamento dei tessuti."
                       // url="/prodotti/macchinari-agroalimentare"
                       // urlText="Scopri di più"
-                      icon={<BriefCaseIcon size={48} />}
+                      // icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
                 </Grid>

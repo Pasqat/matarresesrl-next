@@ -9,9 +9,7 @@ import {H2, H3, Paragraph} from '../../components/typography'
 import {HeroSection} from '../../components/sections/hero-section'
 import {FeatureCard} from '../../components/feature-card'
 import {Grid} from '../../components/grid'
-// import {MepaSection} from '../../components/sections/mepa-section'
-
-import {BriefCaseIcon} from '../../components/icons/briefcase-icon'
+import {MepaSection} from '../../components/sections/mepa-section'
 
 import {getGroups} from '../../lib/newsletter'
 
@@ -951,6 +949,9 @@ export default function Servizi({groups}) {
           <section className="mb-24 lg:mb-48">
             <MepaSection />
           </section> */}
+          <section className="mx-auto mb-24 max-w-8xl lg:mb-48">
+            <MepaSection />
+          </section>
 
           <section className="mb-24 lg:mb-48" id="contatti">
             <ContactForm groups={groups} />

@@ -217,10 +217,6 @@ export default function Home({groups}) {
             <TestimonialSection testimonials={testimonials} />
           </section>
 
-          <section className="mx-auto mb-24 max-w-8xl lg:mb-48">
-            <MepaSection />
-          </section>
-
           <section className="mb-24 lg:mb-48" id="#contatti">
             <ContactForm groups={groups} />
           </section>
@@ -228,7 +224,7 @@ export default function Home({groups}) {
           <section className="relative mb-24 lg:mb-48">
             <div className="container mx-auto mb-12 px-4">
               <H2 className="mb-8 text-center" variant="secondary">
-                I Nostri partner
+                I nostri partner
               </H2>
               <div className="2xl:grid-cols-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                 {logos.map(logo => {

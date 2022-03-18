@@ -14,6 +14,7 @@ let navigation = [
   {name: 'Prodotti', href: '/prodotti', current: false},
   {name: 'Servizi', href: '/servizi', current: false},
   {name: 'Eventi', href: '/eventi', current: false},
+  {name: 'Realizzazioni', href: '/realizzazioni', current: false},
   {name: 'News', href: '/news', current: false},
 ]
 
@@ -63,7 +64,7 @@ export default function Navbar({isTransparent}) {
                     ))}
                   </div>
                   <div className="hidden flex-wrap items-center space-x-3 lg:flex xl:space-x-4">
-                    <a
+                    {/* <a
                       href="https://www.facebook.com/matarresesrl"
                       target="_blank"
                       rel="noreferrer"
@@ -88,9 +89,9 @@ export default function Navbar({isTransparent}) {
                       className="text-gray-100"
                     >
                       <InstagramIcon />
-                    </a>
+                    </a> */}
                     <Link href="/contatti" passHref>
-                      <ButtonLink size="small">
+                      <ButtonLink size="small" className="no-underline">
                         <ChatIcon className="mr-1 inline-block h-5 w-5" />
                         Contatti
                       </ButtonLink>
