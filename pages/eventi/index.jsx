@@ -2,7 +2,7 @@ import * as React from 'react'
 import Head from 'next/head'
 
 import {getEvents} from '../../lib/query/event'
-// import {getMonth} from '../../actions/utils/formatDate'
+import {getGroups} from '../../lib/newsletter'
 
 import Layout from '../../components/Layout'
 import {HeroSection} from '../../components/sections/hero-section'
@@ -10,11 +10,12 @@ import {RegistrationPanel} from '../../components/event-registration-panel'
 import {Spacer} from '../../components/spacer'
 import CardEvent from '../../components/Card/CardEvent'
 
-import {H3, H6, Paragraph} from '../../components/typography'
+import {H3} from '../../components/typography'
 import {Grid} from '../../components/grid'
 import {FeatureCard} from '../../components/feature-card'
+import NewsletterForm from '../../components/Form/NewsletterForm'
 
-export default function Events({data}) {
+export default function Events({data, groups}) {
   // DELETE: this is just for testing
   // const fetchGroups = async (e) => {
   //   const res = await fetch('/api/subscribe', {
@@ -57,23 +58,46 @@ export default function Events({data}) {
             image="/img/plan.svg"
           />
           {data.length ? (
-            <Grid>
-              {data.map((event, index) =>
-                event.featured ? (
-                  <>
-                    <H3 className="col-span-full">In primo piano</H3>
-                    <div className="col-span-full mt-6">
-                      <React.Fragment key={event.id}>
-                        <RegistrationPanel event={event} />
-                        {index === data.length - 1 ? null : (
-                          <Spacer size="2xs" />
-                        )}
-                      </React.Fragment>
-                    </div>
-                  </>
-                ) : null,
-              )}
-            </Grid>
+            <>
+              <Grid>
+                {data.map((event, index) =>
+                  event.featured ? (
+                    <>
+                      <H3 className="col-span-full">In primo piano</H3>
+                      <div className="col-span-full mt-6">
+                        <React.Fragment key={event.id}>
+                          <RegistrationPanel event={event} />
+                          {index === data.length - 1 ? null : (
+                            <Spacer size="2xs" />
+                          )}
+                        </React.Fragment>
+                      </div>
+                    </>
+                  ) : null,
+                )}
+              </Grid>
+
+              <Spacer size="xs" />
+
+              <Grid>
+                <H3 as="h2" className="col-span-full mb-6">
+                  Tutti gli eventi
+                </H3>
+
+                <div className="col-span-full">
+                  <Grid nested rowGap>
+                    {data.map(event => (
+                      <div
+                        key={event.slug}
+                        className="col-span-full md:col-span-4"
+                      >
+                        <CardEvent event={event} />
+                      </div>
+                    ))}
+                  </Grid>
+                </div>
+              </Grid>
+            </>
           ) : (
             <Grid>
               <H3 as="p" className="col-span-full">
@@ -82,23 +106,20 @@ export default function Events({data}) {
             </Grid>
           )}
 
-          <Spacer size="xs" />
+          <Spacer size="base" />
 
-          <Grid>
-            <Paragraph className="col-span-full text-2xl font-medium">
-              Iscriviti alla nostra newsletter per essere informato sui nostri
-              prossimi eventi.
-            </Paragraph>
-          </Grid>
+          <NewsletterForm
+            groups={groups}
+            title="Iscriviti alla nostra newsletter per essere informato sui nostri prossimi eventi."
+          />
 
-          <Spacer size="xs" />
+          <Spacer size="base" />
 
           <Grid rowGap>
             <div className="col-span-full lg:col-span-6">
               <FeatureCard
-                title="Sei un’azienda e vuoi presentare un tuo prodotto o un’attrezzatura nei nostri laboratori?
-                    Disponiamo di ampi laboratori attrezzati per realizzare eventi formativi, informativi e commerciali per il settore food.
-                  "
+                title="Sei un’azienda e vuoi presentare un tuo prodotto o un’attrezzatura nei nostri laboratori?"
+                description="Disponiamo di ampi laboratori attrezzati per realizzare eventi formativi, informativi e commerciali per il settore food."
                 urlText="Contattaci"
                 url="/contatti"
               />
@@ -106,37 +127,13 @@ export default function Events({data}) {
             <div className="col-span-full lg:col-span-6">
               {/* TODO: use formModal for this */}
               <FeatureCard
-                title="Vuoi venire a toccare con mano attrezzature innovative?
-                       Scegli tu il giorno e l’ora, noi organizzeremo una demo personalizzata per mostrarti il funzionamento delle attrezzature ho.re.ca. che desideri conoscere.
-                      "
+                title="Vuoi venire a toccare con mano attrezzature innovative?"
+                description="Scegli tu il giorno e l’ora, noi organizzeremo una demo personalizzata per mostrarti il funzionamento delle attrezzature ho.re.ca. che desideri conoscere."
                 url="/contatti"
                 urlText="Richiedi una demo personalizzata"
               />
             </div>
           </Grid>
-
-          <Spacer size="base" />
-
-          {data.length ? (
-            <Grid className="mb-64">
-              <H6 as="h2" className="col-span-full mb-6">
-                Tutti gli eventi
-              </H6>
-
-              <div className="col-span-full">
-                <Grid nested rowGap>
-                  {data.map(event => (
-                    <div
-                      key={event.slug}
-                      className="col-span-full md:col-span-4"
-                    >
-                      <CardEvent event={event} />
-                    </div>
-                  ))}
-                </Grid>
-              </div>
-            </Grid>
-          ) : null}
         </div>
       </Layout>
     </>
@@ -145,10 +142,12 @@ export default function Events({data}) {
 
 export async function getStaticProps() {
   const data = await getEvents()
+  const groups = await getGroups()
 
   return {
     props: {
       data,
+      groups,
     },
   }
 }
