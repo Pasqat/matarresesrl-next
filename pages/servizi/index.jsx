@@ -62,7 +62,7 @@ export default function Servizi({groups}) {
             //   </div>
             // }
             arrowUrl="#panoramica"
-            image="/img/blogging.svg"
+            image="/img/progettazione-e-design-800x800.jpg"
             imageSize="large"
           />
         </div>

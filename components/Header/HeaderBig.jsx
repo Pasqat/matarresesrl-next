@@ -53,7 +53,7 @@ function HeaderBig({
                 className="flex flex-auto flex-col"
               >
                 <motion.div variants={childVariants}>
-                  <H1 variant="accent">{title}</H1>
+                  <H1 variant="white">{title}</H1>
                 </motion.div>
                 {subtitle ? (
                   <motion.div variants={childVariants}>

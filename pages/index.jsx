@@ -34,8 +34,8 @@ export default function Home({groups}) {
       <Layout navbarTransparent>
         <main>
           <HeaderBig
-            title="Specialisti della Ristorazione"
-            subtitle="Dal design dell'arredo alla formazione del personale per realizzare i tuoi progetti"
+            // title="Specialisti della Ristorazione"
+            title="Dal design dell'arredo alla formazione del personale per realizzare i tuoi progetti"
             noButton
           />
 
@@ -43,7 +43,7 @@ export default function Home({groups}) {
             <Grid rowGap className="mb-24 lg:mb-48">
               <div className="col-span-full lg:col-span-4">
                 <CardSquareImg
-                  imgSrc="/img/servizio-completo1-150x150.jpg"
+                  imgSrc="/img/home-box-arredo.jpg"
                   title="Dall'idea al progetto reale"
                   description={`Aprire un'attività, rennovare un locale,
                       avere una guida per migliorare il proprio lavoro: te seguiamo ad ogni passo per realizzare la tua idea.`}
@@ -55,9 +55,9 @@ export default function Home({groups}) {
                   </LinkButton>
                 </CardSquareImg>
               </div>
-              <div className="col-span-full mb-8 -mt-8 lg:col-span-4">
+              <div className="col-span-full lg:col-span-4">
                 <CardSquareImg
-                  imgSrc="/img/prodotti-qualita-150x150.jpg"
+                  imgSrc="/img/home-box-marchi.jpg"
                   title="Marchi e attrezzature di qualità"
                   description={`
                       Selezioniamo i migliori marchi ho.re.ca, studiamo le ultime tecnologie portando innovazione in cucina ed equilibrio negli arredi.
@@ -68,7 +68,7 @@ export default function Home({groups}) {
               </div>
               <div className="col-span-full lg:col-span-4">
                 <CardSquareImg
-                  imgSrc="/img/info-e-supporto-150x150.jpg"
+                  imgSrc="/img/home-box-supporto.jpg"
                   title="Supporto pre e post intervento"
                   description={`
                       Promuoviamo la cultura enogastronomica, la professionalità, e l'ottimizzazione del lavoro.

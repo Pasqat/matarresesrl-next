@@ -14,6 +14,7 @@ const titleColors = {
   primary: 'text-gray-900',
   secondary: 'text-gray-600',
   accent: 'text-yellow-500',
+  white: 'text-white',
 }
 
 function Title({variant = 'primary', size, as, className, ...rest}) {
