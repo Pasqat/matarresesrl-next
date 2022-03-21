@@ -12,6 +12,10 @@ import {TestimonialSection} from '../../components/sections/testimonial-section'
 import {HeroSection} from '../../components/sections/hero-section'
 
 import {BriefCaseIcon} from '../../components/icons/briefcase-icon'
+import IconCucineProfessionali from '../../public/img/icons/icon-cucine-professionali.png'
+import IconMacchineAgro from '../../public/img/icons/icon-macchine-agroalimentare.png'
+import IconProdotti from '../../public/img/icons/icon-prodotti.png'
+import IconRefrigerazione from '../../public/img/icons/icon-regrigerazione.png'
 
 import testimonials from '../../data/testimonials'
 import cotturaProdotti from '../../public/img/cottura-prodotti.png'
@@ -90,7 +94,14 @@ export default function ProductsHome({groups}) {
                       e degli spazi."
                       // url="/prodotti/cottura"
                       // urlText="Scopri di più"
-                      icon={<BriefCaseIcon size={48} />}
+                      icon={
+                        <Image
+                          src={IconCucineProfessionali}
+                          alt="icona cottura"
+                          layout="intrinsic"
+                          placeholder="blur"
+                        />
+                      }
                     />
                   </div>
                   <div className="col-span-full lg:col-span-6">
@@ -102,7 +113,14 @@ export default function ProductsHome({groups}) {
                       (tavoli, lavelli, taglieri, ecc.) dei piatti"
                       // url="/prodotti/attrezzature"
                       // urlText="Scopri di più"
-                      icon={<BriefCaseIcon size={48} />}
+                      icon={
+                        <Image
+                          src={IconProdotti}
+                          alt="icona attrezzature"
+                          layout="intrinsic"
+                          placeholder="blur"
+                        />
+                      }
                     />
                   </div>
                   <div className="col-span-full lg:col-span-6">
@@ -112,7 +130,14 @@ export default function ProductsHome({groups}) {
                       le materie prime in tavola. Facilitiamo l'efficientamento del lavoro attraverso macchinare e
                       soluzioni tecnologicamente avanzate."
                       // urlText="Scopri di più"
-                      icon={<BriefCaseIcon size={48} />}
+                      icon={
+                        <Image
+                          src={IconMacchineAgro}
+                          alt="icona macchine agroalimentari"
+                          layout="intrinsic"
+                          placeholder="blur"
+                        />
+                      }
                     />
                   </div>
                   <div className="col-span-full lg:col-span-6">
@@ -123,7 +148,14 @@ export default function ProductsHome({groups}) {
                       refrigerate."
                       // url="/prodotti/refrigerazione"
                       // urlText="Scopri di più"
-                      icon={<BriefCaseIcon size={48} />}
+                      icon={
+                        <Image
+                          src={IconRefrigerazione}
+                          alt="icona refrigerazione"
+                          layout="intrinsic"
+                          placeholder="blur"
+                        />
+                      }
                     />
                   </div>
                 </Grid>
