@@ -202,7 +202,7 @@ export default function News({data}) {
           }
         /> */}
         {!isSearching ? (
-          <div className="my-10">
+          <div className="my-20">
             <FeaturedSection
               subTitle={formatDate(data.posts[0].date)}
               title={data.posts[0].title}
