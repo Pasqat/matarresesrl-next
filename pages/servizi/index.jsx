@@ -122,6 +122,20 @@ export default function Servizi({groups}) {
                   </div>
                   <div className="col-span-full lg:col-span-4">
                     <FeatureCard
+                      title="Progettazione impianti di climatizzazione"
+                      description="Caldo o freddo impostiamo la temperatura giusta all'interno della tua attività per il comfort tuo e dei tuoi clienti"
+                      // icon={<BriefCaseIcon size={48} />}
+                    />
+                  </div>
+                  <div className="col-span-full lg:col-span-4">
+                    <FeatureCard
+                      title="Progettazione impianti aspirazione"
+                      description="Non sottovalutiamo la qualità negli ambienti di lavoro e ti proponiamo le soluzioni più innovative"
+                      // icon={<BriefCaseIcon size={48} />}
+                    />
+                  </div>
+                  <div className="col-span-full lg:col-span-4">
+                    <FeatureCard
                       title="Consulenza su nuove tecnologie"
                       description="Da partner di progetti di Ricerca e Sviluppo studiamo le innovazioni in cucina, condividiamo e diffondiamo le nostre conoscenze."
                       // icon={<BriefCaseIcon size={48} />}
