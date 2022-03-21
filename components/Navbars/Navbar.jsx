@@ -1,5 +1,5 @@
 import {Disclosure} from '@headlessui/react'
-import {MenuIcon, XIcon, ChatIcon} from '@heroicons/react/outline'
+import {MenuIcon, XIcon, UserGroupIcon} from '@heroicons/react/outline'
 import Image from 'next/image'
 
 import Link from 'next/link'
@@ -63,7 +63,7 @@ export default function Navbar({isTransparent}) {
                   <div className="hidden flex-wrap items-center space-x-3 lg:flex xl:space-x-4">
                     <Link href="/contatti" passHref>
                       <ButtonLink size="small" className="no-underline">
-                        <ChatIcon className="mr-1 inline-block h-5 w-5" />
+                        <UserGroupIcon className="mr-1 inline-block h-5 w-5" />
                         Contatti
                       </ButtonLink>
                     </Link>
@@ -106,7 +106,7 @@ export default function Navbar({isTransparent}) {
                     className="flex items-center py-5 text-sm font-semibold uppercase text-gray-200 hover:bg-opacity-70 hover:shadow-md"
                     aria-current={undefined}
                   >
-                    <ChatIcon className="mr-1 inline-block h-5 w-5" />
+                    <UserGroupIcon className="mr-1 inline-block h-5 w-5" />
                     Contattaci
                   </a>
                 </Link>

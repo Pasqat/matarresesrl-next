@@ -4,10 +4,9 @@ import {useRouter} from 'next/dist/client/router'
 import clsx from 'clsx'
 
 import Layout from '../../components/Layout'
-import {HeroSection} from '../../components/sections/hero-section'
 import {SearchIcon} from '../../components/icons/search-icon'
 import {Grid} from '../../components/grid'
-import {H6, H3} from '../../components/typography'
+import {H5, H3} from '../../components/typography'
 import {Category} from '../../components/category'
 import {FeaturedSection} from '../../components/sections/featured-section'
 import {ArticleCard} from '../../components/article-card'
@@ -128,7 +127,7 @@ export default function News({data}) {
       </Head>
 
       <Layout>
-        <HeroSection
+        {/* <HeroSection
           title="Tieniti aggiornato sul mondo della ristorazione."
           subtitle="Trova gli ultimi articoli qui."
           image="/img/news.svg"
@@ -201,14 +200,30 @@ export default function News({data}) {
               </form>
             </div>
           }
-        />
+        /> */}
+        {!isSearching ? (
+          <div className="my-10">
+            <FeaturedSection
+              subTitle={formatDate(data.posts[0].date)}
+              title={data.posts[0].title}
+              imageUrl={data.posts[0].featuredImage.node.sourceUrl}
+              img={data.img}
+              svg={data.svg}
+              impageAlt={data.posts[0].featuredImage.node.altText}
+              caption="In evidenza"
+              cta="Leggi tutto"
+              slug={`news/${data.posts[0].slug}`}
+              permalink={`${data.domain}/news/${data.posts[0].slug}`}
+            />
+          </div>
+        ) : null}
 
-        <Grid className="mb-14">
+        <Grid className="my-14">
           {data.categories && data.categories.length > 0 ? (
             <>
-              <H6 as="div" className="col-span-full mb-6">
+              <H5 as="div" className="col-span-full mb-6">
                 Filtra per categoria
-              </H6>
+              </H5>
               <div className="col-span-full -mr-4 -mb-4 flex flex-wrap lg:col-span-10">
                 {data.categories.map(category => {
                   const selected = regularQuery.includes(category)
@@ -228,22 +243,73 @@ export default function News({data}) {
           ) : null}
         </Grid>
 
-        {!isSearching ? (
-          <div className="mb-10">
-            <FeaturedSection
-              subTitle={formatDate(data.posts[0].date)}
-              title={data.posts[0].title}
-              imageUrl={data.posts[0].featuredImage.node.sourceUrl}
-              img={data.img}
-              svg={data.svg}
-              impageAlt={data.posts[0].featuredImage.node.altText}
-              caption="In evidenza"
-              cta="Leggi tutto"
-              slug={`news/${data.posts[0].slug}`}
-              permalink={`${data.domain}/news/${data.posts[0].slug}`}
-            />
-          </div>
-        ) : null}
+        <div className="mx-auto mb-14 max-w-7xl">
+          <form
+            // this two are for Remix
+            // action="/news" // what is this for?
+            // method="GET" // what is this for?
+            onSubmit={e => e.preventDefault()} //here I can call something like fetchMore?
+          >
+            <div className="relative">
+              <button
+                title={query === '' ? 'Cerca' : 'Pulisci ricerca'}
+                type="button"
+                onClick={() => {
+                  setQuery('')
+                  ignoreInputKeyUp.current = true
+                  searchInputRef.current?.focus()
+                }}
+                onKeyDown={() => {
+                  ignoreInputKeyUp.current = true
+                }}
+                onKeyUp={() => {
+                  ignoreInputKeyUp.current = false
+                }}
+                className={clsx(
+                  'absolute top-0 left-6 flex h-full items-center justify-center border-none bg-trasparent p-0 text-gray-500',
+                  {
+                    'cursor-pointer': query !== '',
+                    'cursor-default': query === '',
+                  },
+                )}
+              >
+                <SearchIcon />
+              </button>
+              <input
+                ref={searchInputRef}
+                type="search"
+                value={queryValue}
+                onChange={event => {
+                  return setQuery(event.currentTarget.value.toLowerCase())
+                }}
+                onKeyUp={e => {
+                  if (!ignoreInputKeyUp.current && e.key === 'Enter') {
+                    resultsRef.current
+                      ?.querySelector('a')
+                      ?.focus({preventScroll: true})
+                    resultsRef.current?.scrollIntoView({
+                      behavior: 'smooth',
+                    })
+                    router.push(
+                      {
+                        query: {q: e.target.value.toLocaleLowerCase()},
+                      },
+                      '',
+                      {scroll: false},
+                    )
+                  }
+                  ignoreInputKeyUp.current = false
+                }}
+                name="q"
+                placeholder="cerca"
+                className="text-primary bg-primary border-secondary focus:bg-secondary w-full rounded-full border py-6 pr-6 pl-14 text-lg font-medium hover:border-yellow-500 focus:border-yellow-500 focus:outline-none md:pr-24"
+              />
+              <div className="absolute top-0 right-6 hidden h-full w-14 items-center justify-between text-lg font-medium text-gray-500 md:flex">
+                {isSearching ? matchingPosts.length : null}
+              </div>
+            </div>
+          </form>
+        </div>
 
         <Grid className="mb-64" ref={resultsRef}>
           {posts.length === 0 ? (
