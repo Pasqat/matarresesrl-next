@@ -11,7 +11,6 @@ import {H2, H6, Paragraph} from '../../components/typography'
 import {TestimonialSection} from '../../components/sections/testimonial-section'
 import {HeroSection} from '../../components/sections/hero-section'
 
-import {BriefCaseIcon} from '../../components/icons/briefcase-icon'
 import IconCucineProfessionali from '../../public/img/icons/icon-cucine-professionali.png'
 import IconMacchineAgro from '../../public/img/icons/icon-macchine-agroalimentare.png'
 import IconProdotti from '../../public/img/icons/icon-prodotti.png'
