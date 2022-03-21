@@ -10,6 +10,7 @@ import FormModal from '../components/Form/FormModal'
 import Layout from '../components/Layout'
 import {LinkButton} from '../components/button'
 import {TestimonialSection} from '../components/sections/testimonial-section'
+import {AssogiSection} from '../components/sections/assogi-section'
 
 import {logos} from '../data/partner-logo'
 import {H2, H3, H5} from '../components/typography'
@@ -214,6 +215,10 @@ export default function Home({groups}) {
 
           <section className="mb-24 lg:mb-48">
             <TestimonialSection testimonials={testimonials} />
+          </section>
+
+          <section className="mb-24 lg:mb-48">
+            <AssogiSection />
           </section>
 
           <section className="mb-24 lg:mb-48" id="#contatti">
