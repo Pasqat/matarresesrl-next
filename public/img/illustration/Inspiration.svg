@@ -6,14 +6,14 @@
 	.st0{fill:#404B7C;}
 	.st1{fill:#ECBDBB;}
 	.st2{fill:none;stroke:#404B7C;stroke-width:1.0401611;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st3{fill:#F68D88;}
+	.st3{fill:#DE7C00;}
 	.st4{fill:#9AB3DA;}
 	.st5{fill:none;stroke:#ECBDBB;stroke-width:1.096442;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 	.st6{fill:none;stroke:#D4E6FC;stroke-width:1.0433227;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st7{fill:none;stroke:#F68D88;stroke-width:1.0401611;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st7{fill:none;stroke:#DE7C00;stroke-width:1.0401611;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 	.st8{fill:none;stroke:#404B7C;stroke-width:1.0361407;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 	.st9{fill:#FFFFFF;}
-	.st10{fill:#FFABAB;}
+	.st10{fill:#DE7C00;}
 	.st11{fill:none;stroke:#ECBDBB;stroke-width:1.0433227;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 	.st12{fill:#B0C8EA;}
 	.st13{fill:none;stroke:#9AB3DA;stroke-width:1.0361407;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
@@ -103,7 +103,7 @@
 				c1.0065308,7.9732056-0.6912231,16.0536194-4.8215027,22.9475403"/>
 			<path class="st6" d="M459.2524719,279.7740173l-1.7591248,22.9439087
 				c-0.1454468,1.8969727-1.3263245,3.5586548-3.0699463,4.3198242l-3.1893311,1.392334l-0.0006714-31.3775024"/>
-			
+
 				<ellipse transform="matrix(0.1969248 -0.9804186 0.9804186 0.1969248 -12.6925583 750.3834229)" class="st6" cx="451.6991577" cy="382.9394531" rx="12.8340979" ry="8.1868172"/>
 			<path class="st6" d="M423.402771,448.8587952l17.9192505-67.7091064l-28.7713623-75.0739136
 				c-0.7596741-2.4007874-0.8578796-4.9620361-0.2842712-7.4139404l4.5628357-22.6971436"/>
@@ -133,7 +133,7 @@
 </g>
 <g id="WOMAN_1_NECK_1_">
 	<g>
-		<polygon class="st1" points="432.0159607,139.7714539 432.5875854,143.9559479 434.7121582,159.3673706 442.1428528,163.4763641 
+		<polygon class="st1" points="432.0159607,139.7714539 432.5875854,143.9559479 434.7121582,159.3673706 442.1428528,163.4763641
 			445.7234192,158.7310944 443.0919189,149.1003113 441.6252136,143.7402496 		"/>
 		<path class="st0" d="M432.0159607,139.7714539l0.5716248,4.184494c3.612854,4.2276154,8.4121094,5.0148773,10.5043335,5.1443634
 			l-1.4667053-5.3600616L432.0159607,139.7714539z"/>
@@ -596,7 +596,7 @@
 				<line class="st19" x1="315.2055054" y1="320.4622803" x2="320.9555359" y2="322.743103"/>
 			</g>
 			<g>
-				<polygon class="st9" points="300.2142029,347.0767517 308.5425415,340.973877 296.5079651,321.7494812 287.9376526,327.2452393 
+				<polygon class="st9" points="300.2142029,347.0767517 308.5425415,340.973877 296.5079651,321.7494812 287.9376526,327.2452393
 									"/>
 			</g>
 			<path class="st4" d="M257.1488342,367.6028748l5.6256409,11.5352478
@@ -802,12 +802,12 @@
 				c0,0-0.2406311-0.682663-0.7348022-0.6359863c-0.8547058,0.0807343-0.4473267,2.2949371-0.4473267,2.2949371
 				S310.7438049,243.0236359,312.6928711,244.0379486z"/>
 			<g>
-				
+
 					<ellipse transform="matrix(0.049991 -0.9987497 0.9987497 0.049991 35.5057335 536.1559448)" class="st0" cx="299.5847168" cy="249.4142761" rx="1.987475" ry="1.6075166"/>
 				<circle class="st9" cx="299.9739075" cy="248.7277679" r="0.4274533"/>
 			</g>
 			<g>
-				
+
 					<ellipse transform="matrix(0.049991 -0.9987497 0.9987497 0.049991 44.0180092 546.0517578)" class="st0" cx="309.0426025" cy="249.8876801" rx="1.987475" ry="1.6075166"/>
 				<circle class="st9" cx="309.4317932" cy="249.2011719" r="0.4274533"/>
 			</g>
