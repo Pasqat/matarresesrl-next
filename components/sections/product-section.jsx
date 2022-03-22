@@ -44,8 +44,8 @@ function ListMenu() {
 export default function ProductSection() {
   return (
     <HeroSection
-      title="Prodotti"
-      subtitle="Tecnologia e innovazione irrinunciabili in cucina"
+      subtitle="Prodotti"
+      title="Tecnologie e innovazione irrinunciabili in cucina"
       image="/img/pastorizzatore-prodotti.jpg"
       action={ListMenu()}
     />

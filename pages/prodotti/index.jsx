@@ -29,11 +29,12 @@ export default function ProductsHome({groups}) {
   return (
     <>
       <Head>
-        <title>Matarrese srl | Prodotti</title>
+        <title>Attrezzature horeca e forniture alberghiere</title>
         <link rel="canonical" href="https://www.matarrese.it/" />
+        <meta name="author" content="Matarrese srl" />
         <meta
           name="description"
-          content="Traduttori di Idee, creatori di Spazi"
+          content="Cucine industriali, cucine professionali, arredamento per bar e ristoranti, impianti di aspirazione, attrezzature ristorazione e hotellerie"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>

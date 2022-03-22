@@ -76,19 +76,19 @@ function HeroSection({
             visible: {opacity: 1, transition: {staggerChildren: 0.2}},
           }}
         >
-          <motion.div variants={childVariants}>
-            <H2 as="h2" variant="accent">
-              {title}
-            </H2>
-          </motion.div>
-
           {subtitle ? (
             <motion.div variants={childVariants}>
-              <H2 as="p" variant="secondary" className="mt-3">
+              <H2 as="p" variant="accent" className="mt-3">
                 {subtitle}
               </H2>
             </motion.div>
           ) : null}
+
+          <motion.div variants={childVariants}>
+            {/* <H2 as="h2" variant="accent"> */}
+            <H2 as="h2">{title}</H2>
+          </motion.div>
+
           {action ? (
             <motion.div
               variants={childVariants}

@@ -114,13 +114,17 @@ export default function News() {
   return (
     <div>
       <Head>
-        <title>Realizzazioni | Matarrese srl</title>
+        <title>Prohettazione spazi e cucine</title>
         <link rel="canonical" href="https://www.matarrese.it/realizzazioni/" />
         <meta
           name="robots"
           content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
         />
-        <meta name="description" content="Alcune delle nostre realizzazioni" />
+        <meta name="author" content="Matarrese srl" />
+        <meta
+          name="description"
+          content="Allestimento bar, ristoranti e gastronomia. Arredamento su misura, progettazione tecnica, supporto e manutenzione attrezzature per ristorazione."
+        />
         <meta property="og:title" content="News" />
         <meta
           property="og:description"

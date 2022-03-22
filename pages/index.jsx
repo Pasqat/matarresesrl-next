@@ -23,11 +23,12 @@ export default function Home({groups}) {
   return (
     <div>
       <Head>
-        <title>Matarrese srl | Home</title>
+        <title>Matarrese srl, Traduttori di idee, Creatori di spazi</title>
         <link rel="canonical" href="https://www.matarrese.it/" />
+        <meta name="author" content="Matarrese srl" />
         <meta
           name="description"
-          content="Traduttori di Idee, creatori di Spazi"
+          content="Allestimento ristoranti, locali commerciali, pizzerie, bar, macellerie, pescherie. Accessori cucine professionali, attrezzatura gastronomia."
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -72,7 +73,6 @@ export default function Home({groups}) {
                   imgSrc="/img/home-box-supporto.jpg"
                   title="Supporto pre e post intervento"
                   description={`
-                      Promuoviamo la cultura enogastronomica, la professionalità, e l'ottimizzazione del lavoro.
                       Aiutiamo le idee a diventare progetti reali, assicurando il corretto ciclo di vita delle attrezzature
                       attraverso il supporto post vendita.
                     `}

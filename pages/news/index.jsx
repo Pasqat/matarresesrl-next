@@ -107,15 +107,16 @@ export default function News({data}) {
   return (
     <div>
       <Head>
-        <title>News | Matarrese srl</title>
+        <title>Novità e aggiornamenti ho.re.ca.</title>
         <link rel="canonical" href="https://www.matarrese.it/news/" />
         <meta
           name="robots"
           content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
         />
+        <meta name="author" content="Matarrese srl" />
         <meta
           name="description"
-          content="Approfondimenti sul mondo della ristorazione, horeca, pasticcerie, gelaterie, pizzerie e tanto altro"
+          content="Aggiornamenti e approfondimenti sulle innovazioni e tecnologie in cucina. Novità sul mondo della ristorazione e sulle aziende pugliesi"
         />
         <meta property="og:title" content="News" />
         <meta

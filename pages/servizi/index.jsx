@@ -41,11 +41,12 @@ export default function Servizi({groups}) {
   return (
     <div>
       <Head>
-        <title>Matarrese srl | Servizi</title>
+        <title>Servizi per le attività horeca</title>
         <link rel="canonical" href="https://www.matarrese.it/" />
+        <meta name="author" content="Matarrese srl" />
         <meta
           name="description"
-          content="I servizi offerti dalla Matarrese srl. Progettazione tecnica, assistenza, manutenzione, formazione"
+          content="Progettazione tecnica, realizzazione arredi, impianti di climatizzazione, attrezzature ristorazione, assistenza tecnica, formazione"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -53,8 +54,8 @@ export default function Servizi({groups}) {
       <Layout>
         <div className="mb-24 lg:mb-48">
           <HeroSection
-            title="Servizi"
-            subtitle="La nostra esperienza a tua disposizione"
+            title="Esperienza e professionalità per l'ho.re.ca."
+            subtitle="Servizi"
             // action={
             //   <div className="text-xl">
             //     Comprendiamo le esigenze più disparate dei nostri clienti e

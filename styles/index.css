@@ -181,7 +181,7 @@ strong {
   }
 
   .content > figure > ul {
-    @apply list-none flex flex-wrap p-0;
+    @apply list-none flex p-0;
   }
 
   .content > figure > ul  figure {
@@ -234,7 +234,7 @@ strong {
   }
 
   .content .blocks-gallery-grid, .wp-block-gallery {
-    @apply flex p-0;
+    @apply md:flex p-0 flex-col;
   }
 
   .content .blocks-gallery-item > figure {
@@ -244,6 +244,12 @@ strong {
   .content .blocks-gallery-item figure >figcaption {
     @apply absolute bottom-0 w-full max-h-full text-center m-0;
   }
+
+  /* @media(max-width: 768px) {
+    .content .blocks-gallery-grid, .wp-block-gallery {
+      @apply flex-col flex-wrap
+    }
+  } */
 }
 
 /* Wrapping */

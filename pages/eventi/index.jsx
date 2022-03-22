@@ -31,15 +31,16 @@ export default function Events({data, groups}) {
   return (
     <>
       <Head>
-        <title>I Prossimi Eventi | Matarrese srl</title>
+        <title>Eventi per l&apos;ho.re.ca | Matarrese srl</title>
         <link rel="canonical" href="https://www.matarrese.it/eventi/" />
+        <meta name="author" content="Matarrese srl" />
         <meta
           name="robots"
           content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
         />
         <meta
           name="description"
-          content="I prossimi eventi che si terranno a cura di Matarrese srl. Approfondimenti, master class, demo ed altro"
+          content="Laboratori di cucina attrezzati, formazione professionale in cucina, show cooking e dimostrazione attrezzature per la ristorazione"
         />
         <meta property="og:title" content="Eventi" />
         <meta
@@ -52,8 +53,8 @@ export default function Events({data, groups}) {
       <Layout>
         <div className="mb-24">
           <HeroSection
-            title="Incontriamoci in cucina"
-            subtitle="Partecipa agli eventi nei nostri laboratori"
+            subtitle="Incontriamoci in cucina"
+            title="Eventi formativi e dimostrativi per la ristorazione"
             imageSize="large"
             image="/img/plan.svg"
           />
