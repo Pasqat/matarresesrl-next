@@ -8,7 +8,7 @@ function getClassName({className}) {
     className,
   )
 }
-// hover:shadow-none bg-gradient-tl-yellow shadow-md text-white rounded text-lg py-2 px-4
+
 function ButtonInner({children, variant = 'primary', size}) {
   return (
     <>
@@ -30,7 +30,7 @@ function ButtonInner({children, variant = 'primary', size}) {
             'text-primary': variant === 'secondary',
             'rounded-full text-lg text-white shadow-md': variant === 'primary',
             'text-red-500': variant === 'danger',
-            'space-x-5 px-11 py-6 text-2xl': size === 'large',
+            'space-x-5 px-20 py-6 text-3xl': size === 'large',
             'space-x-3 px-4 py-2 text-lg': size === 'medium',
             'space-x-1 px-2 py-1': size === 'small',
           },

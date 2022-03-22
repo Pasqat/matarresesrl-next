@@ -11,8 +11,9 @@ import Layout from '../components/Layout'
 import {LinkButton} from '../components/button'
 import {TestimonialSection} from '../components/sections/testimonial-section'
 import {AssogiSection} from '../components/sections/assogi-section'
+import {LogoSection} from '../components/sections/logo-section'
 
-import {logos} from '../data/partner-logo'
+// import {logos} from '../data/partner-logo'
 import {H2, H3, H5} from '../components/typography'
 import {Grid} from '../components/grid'
 
@@ -224,39 +225,8 @@ export default function Home({groups}) {
           <section className="mb-24 lg:mb-48" id="#contatti">
             <ContactForm groups={groups} />
           </section>
-          {/* LOGO SECTION */}
           <section className="relative mb-24 lg:mb-48">
-            <div className="container mx-auto mb-12 px-4">
-              <H2 className="mb-8 text-center" variant="secondary">
-                I nostri partner
-              </H2>
-              <div className="2xl:grid-cols-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
-                {logos.map(logo => {
-                  return logo.href ? (
-                    <Link key={logo.name} href={logo.href}>
-                      <a className="cursor-pointer text-center hover:drop-shadow-md">
-                        <Image
-                          width={180}
-                          height={95}
-                          objectFit="contain"
-                          src={logo.url}
-                          alt={`${logo.name} logo`}
-                        />
-                      </a>
-                    </Link>
-                  ) : (
-                    <Image
-                      key={logo.name}
-                      width={180}
-                      height={95}
-                      objectFit="contain"
-                      src={logo.url}
-                      alt={`${logo.name} logo`}
-                    />
-                  )
-                })}
-              </div>
-            </div>
+            <LogoSection />
           </section>
         </main>
       </Layout>

@@ -36,7 +36,7 @@ export default function ProductsHome({groups}) {
           name="description"
           content="Cucine industriali, cucine professionali, arredamento per bar e ristoranti, impianti di aspirazione, attrezzature ristorazione e hotellerie"
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/public/img/favicon/favicon.ico" />
       </Head>
 
       <Layout>

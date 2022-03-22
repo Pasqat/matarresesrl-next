@@ -18,6 +18,7 @@ export default function FormModal({
   type = 'contacts',
   title = null,
   size = 'medium',
+  variant = 'primary',
 }) {
   let [isOpen, setIsOpen] = useState(false)
   const [form, setForm] = useState({
@@ -152,7 +153,7 @@ export default function FormModal({
   }
   return (
     <>
-      <Button size={size} onClick={openModal}>
+      <Button variant={variant} size={size} onClick={openModal}>
         {buttonText}
       </Button>
       <Transition appear show={isOpen} as={Fragment}>

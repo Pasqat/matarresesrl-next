@@ -13,12 +13,14 @@ function HeroSection({
   arrowUrl,
   arrowLabel,
   image,
+  illustration,
   // imageProps,
   // imageBuilder,
   imageSize = 'medium',
   as = 'header',
 }) {
   const hasImage = Boolean(image)
+  const hasIllustration = Boolean(illustration)
   const shouldReduceMotion = useReducedMotion()
 
   const childVariants = {
@@ -58,12 +60,18 @@ function HeroSection({
         </div>
       ) : null}
 
+      {illustration ? (
+        <div className="col-span-full mb-12 lg:col-span-6 lg:col-start-6 lg:mb-0">
+          {illustration}
+        </div>
+      ) : null}
+
       <div
         className={clsx(
           'col-span-full pt-6 lg:col-start-1 lg:row-start-1 lg:flex lg:h-full lg:flex-col',
           {
-            'lg:col-span-5': hasImage,
-            'lg:col-span-7': !hasImage,
+            'lg:col-span-5': hasImage || hasIllustration,
+            'lg:col-span-7': !hasImage && !hasIllustration,
           },
         )}
       >

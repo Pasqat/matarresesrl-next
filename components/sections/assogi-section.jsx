@@ -15,7 +15,7 @@ function AssogiSection() {
         <div className="my-auto">
           <Image
             src={logoAssogi}
-            alt="logo acquistinrete"
+            alt="logo Assogi"
             layout="intrinsic"
             placeholder="blur"
           />
