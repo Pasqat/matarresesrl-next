@@ -1,6 +1,4 @@
 import Head from 'next/head'
-import Link from 'next/link'
-import Image from 'next/image'
 
 import HeaderBig from '../components/Header/HeaderBig'
 import CardSquareImg from '../components/Card/CardSquareImg'
@@ -13,8 +11,7 @@ import {TestimonialSection} from '../components/sections/testimonial-section'
 import {AssogiSection} from '../components/sections/assogi-section'
 import {LogoSection} from '../components/sections/logo-section'
 
-// import {logos} from '../data/partner-logo'
-import {H2, H3, H5} from '../components/typography'
+import {H3, H5} from '../components/typography'
 import {Grid} from '../components/grid'
 
 import testimonials from '../data/testimonials'
