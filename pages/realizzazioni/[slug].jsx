@@ -23,8 +23,6 @@ export default function Project({project}) {
     return <p>hmm...sembra ci sia un errore</p>
   }
 
-  console.log(project.galleria)
-
   return (
     <Layout navbarTransparent>
       {router.isFallback ? (
