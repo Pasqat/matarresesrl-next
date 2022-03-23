@@ -49,26 +49,6 @@ export default function Project({project}) {
               <div className="relative lg:flex lg:flex-row">
                 <div className="relative -mt-64 mb-6 flex w-full min-w-0 flex-col break-words bg-white shadow-lg">
                   <div className="px-6">
-                    {/* <div className="mt-8 flex flex-wrap justify-center"> */}
-                    {/*   <div className="flex items-center justify-center"> */}
-                    {/*     <div className="mb-2 text-left text-gray-800"> */}
-                    {/*       <span className="block text-xl font-bold tracking-wide text-gray-600 uppercase"> */}
-                    {/*         data */}
-                    {/*       </span> */}
-                    {/*       <span className="block text-lg font-bold text-yellow-500"> */}
-                    {/*         ora */}
-                    {/*       </span> */}
-                    {/*     </div> */}
-                    {/*   </div> */}
-                    {/*   <div className="px-4 w-4/12 text-right self-center"> */}
-                    {/*     <FormModal */}
-                    {/*       buttonText="Partecipa" */}
-                    {/*       buttonClassName="px-4 py-2 mb-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-gradient-to-tl from-red-600 to-yellow-400 rounded shadow outline-none active:bg-yellow-500 hover:shadow-md focus:outline-none sm:mr-2" */}
-                    {/*       type="reservation" */}
-                    {/*       title={project.title} */}
-                    {/*     /> */}
-                    {/*   </div> */}
-                    {/* </div> */}
                     <div className="mt-12 text-center">
                       <H1 className="mb-2" variant="secondary">
                         {project.title}
