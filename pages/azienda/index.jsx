@@ -7,11 +7,16 @@ import Layout from '../../components/Layout'
 import {Grid} from '../../components/grid'
 import {H2, H3, Paragraph} from '../../components/typography'
 import {HeroSection} from '../../components/sections/hero-section'
+import {Spacer} from '../../components/spacer'
 
 import {LogoSection} from '../../components/sections/logo-section'
 import logoAssogi from '../../public/img/logos/Assogi_logo-300x119.png'
 
 import lottiejson from '../../public/img/illustration/Inspiration.json'
+import {FeatureCard} from '../../components/feature-card'
+
+import VitoMatarreseProfileImage from '../../public/img/vito_matarrese.webp'
+import DomenicoMatarreseProfileImage from '../../public/img/domenico_matarrese.webp'
 
 export default function AboutUs() {
   return (
@@ -28,7 +33,7 @@ export default function AboutUs() {
       </Head>
 
       <Layout>
-        <div className="mb-24 lg:mb-48">
+        <div className="mb-24">
           <HeroSection
             title="Un partner affidabile per la tua attività"
             subtitle="Chi siamo"
@@ -53,7 +58,66 @@ export default function AboutUs() {
           />
         </div>
 
-        <section className="mb-24 lg:mb-48" id="team">
+        <section className="pt-24" id="team">
+          <Grid>
+            <div className="col-span-full lg:col-span-6">
+              <FeatureCard
+                icon={
+                  <Image
+                    src={VitoMatarreseProfileImage}
+                    alt="fotografia di Vito Matarrese, socio fondatore e direttore"
+                    layout="intrinsic"
+                    placeholder="blur"
+                  />
+                }
+                title="Vito Matarrese"
+                description={
+                  <>
+                    <p className="text-gray-400">Socio fondatore, Direzione</p>
+                    <br />
+                    <p>
+                      Vito, da sempre incuriosito dalle tecnologie innovative,
+                      studia i grandi impianti della ristorazione professionale
+                      per scegliere le soluzioni migliori e tecnologicamente
+                      all’avanguardia.`
+                    </p>
+                  </>
+                }
+                url="mailto:vito.matarrese@matarrese.it"
+                urlText="contatta"
+              />
+            </div>
+            <div className="col-span-full lg:col-span-6">
+              <FeatureCard
+                icon={
+                  <Image
+                    src={DomenicoMatarreseProfileImage}
+                    alt="fotografia di Domenico Matarrese"
+                    layout="intrinsic"
+                    placeholder="blur"
+                  />
+                }
+                title="Domenico Matarrese"
+                description={
+                  <>
+                    <p className="text-gray-400">Socio fondatore</p>
+                    <br />
+                    <p>
+                      Domenico opera con dimestichezza e passione nel campo
+                      della refrigerazione industriale e della climatizzazione,
+                      trovando soluzioni ottimali nel pieno rispetto
+                      dell&apos;uomo e del suo ambiente.
+                    </p>
+                  </>
+                }
+              />
+            </div>
+          </Grid>
+        </section>
+
+        <Spacer size="base" />
+
+        <section>
           <Grid>
             <H2 as="p" className="col-span-6">
               Hai un progetto da realizzare?
@@ -66,6 +130,8 @@ export default function AboutUs() {
             />
           </Grid>
         </section>
+
+        <Spacer size="base" />
 
         <section className="mb-24 lg:mb-48">
           <Grid featured>

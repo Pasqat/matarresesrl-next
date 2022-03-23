@@ -8,7 +8,9 @@ function FeatureCard({title, description, icon, url, urlText}) {
       <div className="text-primary mb-4 flex flex-none items-end text-xl font-medium">
         {title}
       </div>
-      <p className="text-secondary max-w-sm flex-auto text-xl">{description}</p>
+      <div className="text-secondary max-w-sm flex-auto text-xl">
+        {description}
+      </div>
       {url && (
         <LinkButton
           href={url}
