@@ -1,115 +1,105 @@
+import * as React from 'react'
 import Head from 'next/head'
-import {useQuery, gql} from '@apollo/client'
 
 import Layout from '../../components/Layout'
-import Container from '../../components/Container'
-import Header from '../../components/Header/Header'
-import {useEffect} from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-import {H3} from '../../components/typography'
 
-import {ArrowButton} from '../../components/arrow-button'
+import {filterPosts} from '../../actions/utils/blog'
+import {getProjects} from '../../lib/query/project'
+import {getPlaiceholder} from 'plaiceholder'
+import {useRouter} from 'next/router'
+import {Category} from '../../components/category'
+import {Grid} from '../../components/grid'
+import {H5, H3} from '../../components/typography'
+import clsx from 'clsx'
+import {PlusIcon, SearchIcon} from '@heroicons/react/outline'
+import {ArticleCard} from '../../components/article-card'
+import {Button} from '../../components/button'
 
-const BATCH_SIZE = 9
+const PAGE_SIZE = 12
+const initialIndexToShow = PAGE_SIZE
 
-const GET_PAGINATED_POSTS = gql`
-  query GET_PAGINATED_POSTS(
-    $first: Int
-    $last: Int
-    $after: String
-    $before: String # NOTE: can't find a way to filter by category  $portfolioCategoryId: Int
-  ) {
-    projects(
-      first: $first
-      last: $last
-      after: $after
-      before: $before # where: {portfolioCategoryId: $portfolioCategoryId}
-    ) {
-      pageInfo {
-        hasNextPage
-        hasPreviousPage
-        startCursor
-        endCursor
-      }
-      edges {
-        node {
-          title
-          slug
-          projectId
-          id
-          featuredImage {
-            node {
-              sourceUrl(size: MEDIUM_LARGE)
-            }
-          }
-          excerpt
-          date
-        }
-      }
-    }
-    # portfolioCategories {
-    #    nodes {
-    #      slug
-    #      name
-    #      id
-    #      databaseId
-    #      portfolioCategoryId
-    #    }
-    #  }
-  }
-`
+// this really is not needed, or maybe only the part `(\s|$)?
+const specialQueryRegex = /(?<not>!)?leader:(?<team>\w+)(\s|$)?/g
 
-// Function to update the query with the new results
-const updateQuery = (previousResult, {fetchMoreResult}) => {
-  return fetchMoreResult.projects.edges.length
-    ? fetchMoreResult
-    : previousResult
-}
+export default function Realizzazioni({data}) {
+  const router = useRouter()
 
-export default function News() {
-  // const [category, setCategory] = useState(null)
+  const searchParams =
+    typeof router.query.q === Array ? router.query.q.join('+') : router.query.q
+  const searchInputRef = React.useRef(null)
 
-  const {data, loading, error, fetchMore} = useQuery(GET_PAGINATED_POSTS, {
-    variables: {
-      first: BATCH_SIZE,
-      last: null,
-      after: null,
-      before: null,
-      // portfolioCategoryId: category,
-    },
-    notifyOnNetworkStatusChange: true,
+  const resultsRef = React.useRef(null)
+
+  /**
+   * This is here to make sure that a user doesn't hit "enter" on the search
+   * button, which focuses the input and then keyup the enter on the input
+   * which will trigger the scroll down. We should *only* scroll when the
+   * "enter" keypress and keyup happen on the input.
+   */
+  const ignoreInputKeyUp = React.useRef(false)
+
+  const [queryValue, setQuery] = React.useState(() => {
+    return searchParams ?? ''
   })
 
-  useEffect(() => {
-    fetchMore({
-      variables: {
-        first: BATCH_SIZE,
-        after: null,
-        last: null,
-        before: null,
-        // categoryId: null
-      },
+  const query = queryValue.trim()
+
+  const {projects: allPosts} = data
+
+  const regularQuery = query.replace(specialQueryRegex, '').trim()
+
+  const matchingPosts = React.useMemo(() => {
+    return filterPosts(allPosts, regularQuery)
+  }, [allPosts, regularQuery])
+
+  const [indexToShow, setIndexToShow] = React.useState(initialIndexToShow)
+  // when the query changes, we want to reset the index
+  React.useEffect(() => {
+    setIndexToShow(initialIndexToShow)
+  }, [query])
+
+  function toggleCategory(category) {
+    setQuery(q => {
+      // create a regexp so that we can replace multiple occurrences (`this that this`)
+      const expression = new RegExp(category, 'ig')
+
+      const newQuery = expression.test(q)
+        ? q.replace(expression, '')
+        : `${q} ${category}`
+
+      router.push(
+        {query: {q: newQuery.toLowerCase().replace(/\s+/g, ' ').trim()}},
+        '',
+        {
+          scroll: false,
+        },
+      )
+      // trim and remove subsequent spaces (`this   that` => `this that`)
+      return newQuery.replace(/\s+/g, ' ').trim()
     })
-  }, [fetchMore])
-
-  //   function selectCategory(categoryId) {
-  //     setCategory(categoryId)
-  //   }
-
-  //   const categeriesList = data?.categories.nodes.filter(category => category.count > 0)
-  // TODO: make a proper error notification/page system
-  if (error) {
-    return (
-      <div>
-        <p className="text-lg">
-          Ci dispiace, ma sembra che qualcosa sia andato storto. Prova a
-          ricaricare la pagina.
-        </p>
-        <p>{JSON.stringify(error)}</p>
-      </div>
-    )
   }
+
+  const isSearching = query.length > 0
+
+  const posts = isSearching
+    ? matchingPosts.slice(0, indexToShow)
+    : matchingPosts
+        .filter(p => p.slug !== data?.projects[0].slug)
+        .slice(0, indexToShow)
+
+  const hasMorePosts = isSearching
+    ? indexToShow < matchingPosts.length
+    : indexToShow < matchingPosts.length - 1
+
+  const visibleCategories = isSearching
+    ? new Set(
+        matchingPosts
+          .flatMap(post => {
+            return post.categories
+          })
+          .filter(Boolean),
+      )
+    : new Set(data.categories)
 
   return (
     <div>
@@ -138,128 +128,149 @@ export default function News() {
       </Head>
 
       <Layout>
-        <div className="bg-gray-100">
-          <Container>
-            <Header>Alcune delle nostre realizzazioni</Header>
-            {/* <CategoriesList categories={categeriesList} onClick={selectCategory} currentCategory={category} /> */}
-            <hr />
-            {loading ? (
-              <div className="absolute top-1/2 left-1/2">
-                <svg
-                  width="141"
-                  height="144"
-                  viewBox="0 0 141 144"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="animate-ping"
-                >
-                  <path
-                    d="M24.4614 2.53423C24.4614 2.53423 65 117.534 70 118.034C75 118.534 116.442 2.53423 116.442 2.53423C116.442 2.53423 129 0.533933 140.5 2.53423C140.5 5.03423 140.5 143.534 140.5 143.534H121.949V88.6256L123.688 29.3591C123.688 29.3591 88 129.5 77.5048 143.534H63.3019C53.5 131 17.215 29.6496 17.215 29.6496L19.0507 88.6256V143.534H0.5V2.53423C10.5 -0.966122 24.4614 2.53423 24.4614 2.53423Z"
-                    fill="url(#paint0_linear)"
-                  />
-                  <defs>
-                    <linearGradient
-                      id="paint0_linear"
-                      x1="-3"
-                      y1="3"
-                      x2="139"
-                      y2="146.5"
-                      gradientUnits="userSpaceOnUse"
-                    ></linearGradient>
-                  </defs>
-                </svg>
-              </div>
-            ) : (
-              <section>
-                <div className="grid grid-cols-3 grid-rows-3">
-                  {data?.projects?.edges.map(edge => {
-                    const {featuredImage, id, slug, title} = edge.node
+        <Grid className="my-14">
+          {data.categories && data.categories.length > 0 ? (
+            <>
+              <H5 as="div" className="col-span-full mb-6">
+                Filtra per settore
+              </H5>
+              <div className="col-span-full -mr-4 -mb-4 flex flex-wrap lg:col-span-10">
+                {data.categories.map(category => {
+                  const selected = regularQuery.includes(category)
 
-                    return (
-                      <Link key={id} href={`/realizzazioni/${slug}`}>
-                        <a className="group">
-                          <div className="relative h-full w-full bg-blend-multiply">
-                            <Image
-                              objectFit="cover"
-                              width="800"
-                              height="800"
-                              src={featuredImage?.node?.sourceUrl}
-                              alt={title ? title : ''}
-                              className="group-hover:opacity-20"
-                            />
-                            <H3
-                              as="p"
-                              className="absolute top-1/2 left-1/2 hidden -translate-x-1/2 -translate-y-1/2 text-center text-yellow-500 group-hover:block"
-                            >
-                              {title}
-                            </H3>
-                          </div>
-                        </a>
-                      </Link>
+                  return (
+                    <Category
+                      key={category}
+                      category={category}
+                      selected={selected}
+                      onClick={() => toggleCategory(category)}
+                      disabled={!visibleCategories.has(category) && !selected}
+                    />
+                  )
+                })}
+              </div>
+            </>
+          ) : null}
+        </Grid>
+
+        <div className="mx-auto mb-14 max-w-7xl">
+          <form onSubmit={e => e.preventDefault()}>
+            <div className="relative">
+              <button
+                title={query === '' ? 'Cerca' : 'Pulisci ricerca'}
+                type="button"
+                onClick={() => {
+                  setQuery('')
+                  ignoreInputKeyUp.current = true
+                  searchInputRef.current?.focus()
+                }}
+                onKeyDown={() => {
+                  ignoreInputKeyUp.current = true
+                }}
+                onKeyUp={() => {
+                  ignoreInputKeyUp.current = false
+                }}
+                className={clsx(
+                  'absolute top-0 left-6 flex h-full items-center justify-center border-none bg-trasparent p-0 text-gray-500',
+                  {
+                    'cursor-pointer': query !== '',
+                    'cursor-default': query === '',
+                  },
+                )}
+              >
+                <SearchIcon />
+              </button>
+              <input
+                ref={searchInputRef}
+                type="search"
+                value={queryValue}
+                onChange={event => {
+                  return setQuery(event.currentTarget.value.toLocaleLowerCase())
+                }}
+                onKeyUp={e => {
+                  if (!ignoreInputKeyUp.current && e.key === 'Enter') {
+                    resultsRef.current
+                      ?.querySelector('a')
+                      ?.focus({preventScroll: true})
+                    resultsRef.current?.scrollIntoView({
+                      behavior: 'smooth',
+                    })
+                    router.push(
+                      {
+                        query: {q: e.target.value.toLocaleLowerCase()},
+                      },
+                      '',
+                      {scroll: false},
                     )
-                  })}
-                </div>
-                <div className="m-auto flex items-center justify-between pt-16 pb-24 md:w-5/12">
-                  <ArrowButton
-                    direction="left"
-                    onClick={() => {
-                      fetchMore({
-                        variables: {
-                          first: null,
-                          after: null,
-                          last: BATCH_SIZE,
-                          before: data?.projects.pageInfo.startCursor || null,
-                        },
-                        updateQuery,
-                      })
-                    }}
-                    disabled={!data?.projects.pageInfo.hasPreviousPage}
-                  ></ArrowButton>
-                  {/* <button */}
-                  {/*   className="w-10 h-10 bg-white rounded shadow disabled:opacity-25 disabled:pointer-events-none" */}
-                  {/*   disabled={!data?.projects.pageInfo.hasPreviousPage} */}
-                  {/*   onClick={} */}
-                  {/* > */}
-                  {/*   <ChevronLeftIcon/> */}
-                  {/* </button> */}
-                  <ArrowButton
-                    // direction="left"
-                    onClick={() => {
-                      fetchMore({
-                        variables: {
-                          first: BATCH_SIZE,
-                          after: data?.projects.pageInfo.endCursor || null,
-                          last: null,
-                          before: null,
-                        },
-                        updateQuery,
-                      })
-                    }}
-                    disabled={!data?.projects.pageInfo.hasNextPage}
-                  ></ArrowButton>
-                  {/* <button */}
-                  {/*   className="w-10 h-10 bg-white rounded shadow disabled:opacity-25 disabled:pointer-events-none" */}
-                  {/*   disabled={!data?.projects.pageInfo.hasNextPage} */}
-                  {/*   onClick={() => { */}
-                  {/*     fetchMore({ */}
-                  {/*       variables: { */}
-                  {/*         first: BATCH_SIZE, */}
-                  {/*         after: data?.projects.pageInfo.endCursor || null, */}
-                  {/*         last: null, */}
-                  {/*         before: null, */}
-                  {/*       }, */}
-                  {/*       updateQuery, */}
-                  {/*     }) */}
-                  {/*   }} */}
-                  {/* > */}
-                  {/*   <i className="fas fa-arrow-right" /> */}
-                  {/* </button> */}
-                </div>
-              </section>
-            )}
-          </Container>
+                  }
+                  ignoreInputKeyUp.current = false
+                }}
+                name="q"
+                placeholder="cerca"
+                className="text-primary bg-primary border-secondary focus:bg-secondary w-full rounded-full border py-6 pr-6 pl-14 text-lg font-medium hover:border-yellow-500 focus:border-yellow-500 focus:outline-none md:pr-24"
+              />
+              <div className="absolute top-0 right-6 hidden h-full w-14 items-center justify-between text-lg font-medium text-gray-500 md:flex">
+                {isSearching ? matchingPosts.length : null}
+              </div>
+            </div>
+          </form>
         </div>
+
+        <Grid className="mb-64" ref={resultsRef}>
+          {posts.length === 0 ? (
+            <div className="col-span-full flex flex-col items-center">
+              {/* // TODO: add a beautiful placeholder img */}
+              <H3 as="p" variant="secondary" className="mt-24 max-w-lg">
+                {`Purtroppo non è stato trovato nulla con i tuoi criteri di ricerca`}
+              </H3>
+            </div>
+          ) : (
+            posts.map(article => (
+              <div key={article.slug} className="col-span-4 mb-10">
+                <ArticleCard isProject article={article} domain={data.domain} />
+              </div>
+            ))
+          )}
+        </Grid>
+
+        {hasMorePosts ? (
+          <div className="mb-64 flex w-full justify-center">
+            <Button
+              variant="secondary"
+              onClick={() => setIndexToShow(i => i + PAGE_SIZE)}
+            >
+              <span>Mostra altri realizzazioni</span> <PlusIcon />
+            </Button>
+          </div>
+        ) : null}
       </Layout>
     </div>
   )
+}
+
+export async function getStaticProps() {
+  const data = await getProjects()
+  const categories = data.categories
+    .filter(category => category.count > 0)
+    .map(c => c.name)
+
+  const {img, svg} = await getPlaiceholder(
+    data.projects[0].featuredImage.node.sourceUrl,
+    {size: 64},
+  )
+
+  const domain = process.env.NEXT_PUBLIC_WP_API_URL
+
+  return {
+    props: {
+      data: {
+        categories,
+        projects: data.projects,
+        img,
+        svg,
+        domain,
+      },
+    },
+    revalidate: 60 * 60 * 24,
+  }
 }
