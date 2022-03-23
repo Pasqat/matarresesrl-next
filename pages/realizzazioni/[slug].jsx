@@ -10,7 +10,7 @@ import SocialShareBar from '../../components/SocialShareBar/SocialShareBar'
 import {ButtonLink} from '../../components/button'
 
 import {getProject, getAllProjectsWithSlug} from '../../lib/query/project'
-import {H2, H3} from '../../components/typography'
+import {H2, H1} from '../../components/typography'
 import {Spacer} from '../../components/spacer'
 
 export default function Project({project}) {
@@ -70,9 +70,9 @@ export default function Project({project}) {
                     {/*   </div> */}
                     {/* </div> */}
                     <div className="mt-12 text-center">
-                      <H3 className="mb-2" variant="secondary">
+                      <H1 className="mb-2" variant="secondary">
                         {project.title}
-                      </H3>
+                      </H1>
                       <div className="mt-0 mb-2 text-sm font-bold uppercase leading-normal text-gray-400">
                         {project.portfolioCategories.edges.map(({node}) => (
                           <div key={node.id}>{node.name}</div>
