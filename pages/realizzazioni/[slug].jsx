@@ -12,6 +12,8 @@ import {ButtonLink} from '../../components/button'
 import {getProject, getAllProjectsWithSlug} from '../../lib/query/project'
 import {H2, H1} from '../../components/typography'
 import {Spacer} from '../../components/spacer'
+import Image from 'next/image'
+import {Grid} from '../../components/grid'
 
 export default function Project({project}) {
   const router = useRouter()
@@ -20,6 +22,8 @@ export default function Project({project}) {
   if (!router.isFallback && !project.slug) {
     return <p>hmm...sembra ci sia un errore</p>
   }
+
+  console.log(project.galleria)
 
   return (
     <Layout navbarTransparent>
@@ -37,7 +41,7 @@ export default function Project({project}) {
         <>
           <HeaderBig
             noButton
-            overlay="bg-gradient-to-br from-primary to-secondary opacity-80"
+            overlay="bg-gradient-to-tl from-secondary via-primary to-black opacity-80"
             slopeSectionColor="text-gray-100"
             backgroundImgSrc={
               project.featuredImage &&
@@ -69,6 +73,26 @@ export default function Project({project}) {
                       <div className="flex flex-wrap justify-center">
                         <div className="w-full px-4 lg:w-9/12">
                           <EventBody content={project.content} />
+                          {project.galleria.every(n => n !== null) ? (
+                            <Grid
+                              nested
+                              className="mt-8 gap-2 lg:mt-24 lg:gap-4"
+                            >
+                              {project.galleria.map(image => (
+                                <div
+                                  key={image.id}
+                                  className="relative col-span-4 h-32 lg:h-64"
+                                >
+                                  <Image
+                                    src={image.sourceUrl}
+                                    layout="fill"
+                                    objectFit="cover"
+                                    objectPosition="center"
+                                  />
+                                </div>
+                              ))}
+                            </Grid>
+                          ) : null}
                         </div>
                       </div>
                     </div>
@@ -99,7 +123,7 @@ export async function getStaticProps({params}) {
 
   return {
     props: {
-      project: data.project,
+      project: data,
     },
   }
 }

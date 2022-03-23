@@ -60,7 +60,7 @@ export default function Events({event}) {
           <section className="relative w-full bg-gray-100 pt-16 pb-24 text-gray-800">
             <div className="container mx-auto px-4">
               <div className="relative lg:flex lg:flex-row">
-                <div className="relative -mt-80 mb-6 flex w-full min-w-0 flex-col break-words bg-white shadow-lg lg:-mt-64">
+                <div className="relative -mt-96 mb-6 flex w-full min-w-0 flex-col break-words bg-white shadow-lg">
                   <div className="px-6">
                     <div className="mt-8 flex flex-wrap justify-center">
                       <div className="flex items-center justify-center">
