@@ -7,9 +7,11 @@ import Header from '../../components/Header/Header'
 import EventBody from '../../components/Events/event-body'
 import HeaderBig from '../../components/Header/HeaderBig'
 import SocialShareBar from '../../components/SocialShareBar/SocialShareBar'
+import {ButtonLink} from '../../components/button'
 
 import {getProject, getAllProjectsWithSlug} from '../../lib/query/project'
 import {H2, H3} from '../../components/typography'
+import {Spacer} from '../../components/spacer'
 
 export default function Project({project}) {
   const router = useRouter()
@@ -89,11 +91,14 @@ export default function Project({project}) {
                 </div>
                 <SocialShareBar route={router.asPath} title={project.title} />
               </div>
+
+              <Spacer size="xs" />
+
               <div className="flex justify-center ">
-                <Link href="/realizzazioni">
-                  <a className="mt-10 rounded bg-white p-4 text-center uppercase shadow-lg hover:shadow-sm">
-                    Realizzazioni
-                  </a>
+                <Link href="/realizzazioni" passHref>
+                  <ButtonLink size="large">
+                    Guarda le altre realizzazioni
+                  </ButtonLink>
                 </Link>
               </div>
             </div>
