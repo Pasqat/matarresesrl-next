@@ -47,7 +47,7 @@ export default function Project({project}) {
           <section className="relative w-full bg-gray-100 pt-16 pb-24 text-gray-800">
             <div className="container mx-auto px-4">
               <div className="relative lg:flex lg:flex-row">
-                <div className="relative -mt-64 mb-6 flex w-full min-w-0 flex-col break-words bg-white shadow-lg">
+                <div className="relative -mt-96 mb-6 flex w-full min-w-0 flex-col break-words bg-white shadow-lg">
                   <div className="px-6">
                     <div className="mt-12 text-center">
                       <H1 className="mb-2" variant="secondary">
@@ -55,6 +55,11 @@ export default function Project({project}) {
                       </H1>
                       <div className="mt-0 mb-2 text-sm font-bold uppercase leading-normal text-gray-400">
                         {project.portfolioCategories.edges.map(({node}) => (
+                          <div key={node.id}>{node.name}</div>
+                        ))}
+                      </div>
+                      <div>
+                        {project.portfolioTags.edges.map(({node}) => (
                           <div key={node.id}>{node.name}</div>
                         ))}
                       </div>
@@ -76,7 +81,7 @@ export default function Project({project}) {
 
               <div className="flex justify-center ">
                 <Link href="/realizzazioni" passHref>
-                  <ButtonLink size="large">
+                  <ButtonLink size="medium">
                     Guarda le altre realizzazioni
                   </ButtonLink>
                 </Link>
