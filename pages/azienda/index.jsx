@@ -59,7 +59,7 @@ export default function AboutUs() {
         </div>
 
         <section className="pt-24" id="team">
-          <Grid className="gap-4">
+          <Grid rowGap>
             <div className="col-span-full lg:col-span-6">
               <FeatureCard
                 icon={

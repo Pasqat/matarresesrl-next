@@ -131,9 +131,9 @@ export default function Home({groups}) {
           </section>
 
           <section className="mb-24 lg:mb-48">
-            <div className="container mx-auto px-4">
+            <div className="mx-auto px-4">
               <div className="flex flex-wrap items-center">
-                <div className="mr-auto ml-auto w-full px-4 md:w-5/12">
+                <div className="mx-auto w-full py-8 lg:w-5/12">
                   <Image
                     src={imgHomeAttrezzature}
                     layout="intrinsic"
@@ -144,8 +144,8 @@ export default function Home({groups}) {
                     placeholder="blur"
                   />
                 </div>
-                <div className="mr-auto ml-auto w-full px-4 md:w-5/12">
-                  <div className="md:pr-12">
+                <div className="mx-auto w-full px-4 lg:w-5/12">
+                  <div>
                     {/* <div className="inline-flex justify-center items-center p-3 mb-6 w-16 h-16 text-center text-gray-500 bg-gray-200 rounded-full shadow-lg"> */}
                     {/*   <ShoppingCartIcon className="text-xl" /> */}
                     {/* </div> */}
