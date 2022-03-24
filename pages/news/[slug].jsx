@@ -19,6 +19,8 @@ export default function Post({postData, posts, img, svg}) {
   const router = useRouter()
   const morePosts = posts?.edges
 
+  console.log(postData)
+
   if (!router.isFallback && !postData.slug) {
     console.log('sdeng 💣️')
     return <p>hmm...sembra ci sia un errore</p>
@@ -44,6 +46,46 @@ export default function Post({postData, posts, img, svg}) {
                 property="og:image"
                 content={postData.featuredImage?.node?.sourceUrl}
               />
+              <link rel="canonical" href={postData.seo.cononical} />
+              <meta
+                name="robots"
+                content={`${postData.seo.metaRobotsNoindex}, ${postData.seo.metaRobotsNoFollow}, max-image-preview:large, max-snippet:-1, max-video-preview:-1`}
+              />
+              <meta name="author" content="Matarrese srl" />
+              <meta name="description" content={postData.seo.metaDesc} />
+              <meta property="og:title" content={postData.seo.opengraphTitle} />
+              <meta
+                property="og:description"
+                content={postData.seo.opengraphDescription}
+              />
+              <meta property="og:url" content={postData.seo.opengraphUrl} />
+              <meta property="og:type" content={postData.seo.opengraphType} />
+              <meta property="og:locale" content="it_IT" />
+              <meta property="og:site_name" content="Matarrese srl" />
+              <meta
+                property="article:publisher"
+                content={postData.seo.opengraphPublisher}
+              />
+              <meta
+                property="article:published_time"
+                content={postData.seo.opengraphPublishedTime}
+              />
+              <meta
+                property="article:modified_time"
+                content={postData.seo.opengraphModifiedTime}
+              />
+              <meta
+                property="og:image"
+                content={postData.seo.opengraphImage.sourceUrl}
+              />
+              {/* <meta property="og:image:width" content="2000">
+                  <meta property="og:image:height" content="1000">
+                  <meta property="og:image:type" content="image/jpeg"> */}
+              <meta name="twitter:card" content="summary_large_image" />
+              {/* <meta name="twitter:label1" content="Scritto da"> */}
+              {/* <meta name="twitter:data1" content="Miriana"> */}
+              {/* <meta name="twitter:label2" content="Tempo di lettura stimato"> */}
+              {/* <meta name="twitter:data2" content="4 minuti"></meta> */}
             </Head>
             <div className="mx-auto max-w-7xl py-4 md:py-16 md:px-5">
               <main className="md:mb-24">
