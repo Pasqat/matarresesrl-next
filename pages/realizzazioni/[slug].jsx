@@ -14,6 +14,7 @@ import {H2, H1} from '../../components/typography'
 import {Spacer} from '../../components/spacer'
 import Image from 'next/image'
 import {Grid} from '../../components/grid'
+import {SeoDataSection} from '../../components/sections/seodata-section'
 
 export default function Project({project}) {
   const router = useRouter()
@@ -37,6 +38,7 @@ export default function Project({project}) {
         </>
       ) : (
         <>
+          <Head>{SeoDataSection({seoData: project.seo})}</Head>
           <HeaderBig
             noButton
             overlay="bg-gradient-to-tl from-secondary via-primary to-black opacity-80"

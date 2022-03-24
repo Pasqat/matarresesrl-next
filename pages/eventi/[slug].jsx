@@ -13,6 +13,7 @@ import {H2, H3} from '../../components/typography'
 
 import {getAllEventsWithSlug, getEvent} from '../../lib/query/event'
 import {formatDate, getHour} from '../../actions/utils/formatDate'
+import {SeoDataSection} from '../../components/sections/seodata-section'
 
 export default function Events({event}) {
   const router = useRouter()
@@ -48,6 +49,7 @@ export default function Events({event}) {
         </>
       ) : (
         <>
+          <Head>{SeoDataSection({seoData: event.seo})}</Head>
           <HeaderBig
             noButton
             overlay="bg-gradient-to-tl from-secondary via-primary to-black opacity-80"
