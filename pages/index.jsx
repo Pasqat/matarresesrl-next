@@ -116,6 +116,7 @@ export default function Home({groups}) {
                     objectPosition="center"
                     alt="attrezzature ristorazione nello showroom"
                     className="rounded-lg shadow-sm"
+                    placeholder="blur"
                   />
                 </div>
                 {/* <CardBigImg
@@ -140,6 +141,7 @@ export default function Home({groups}) {
                     objectPosition="center"
                     alt="attrezzature ristorazione nello showroom"
                     className="rounded-lg shadow-sm"
+                    placeholder="blur"
                   />
                 </div>
                 <div className="mr-auto ml-auto w-full px-4 md:w-5/12">

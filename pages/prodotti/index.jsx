@@ -126,7 +126,7 @@ export default function ProductsHome({groups}) {
                   <div className="col-span-full lg:col-span-6">
                     <FeatureCard
                       title="Macchinari per l'agroalimentare"
-                      description="Dalla progettazione alla realizzazione di laboratori de trasformazione alimenti per
+                      description="Dalla progettazione alla realizzazione di laboratori di trasformazione alimenti per
                       le materie prime in tavola. Facilitiamo l'efficientamento del lavoro attraverso macchinare e
                       soluzioni tecnologicamente avanzate."
                       // urlText="Scopri di più"
