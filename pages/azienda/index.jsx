@@ -117,8 +117,8 @@ export default function AboutUs() {
 
         <Spacer size="base" />
 
-        <section>
-          <Grid>
+        <section className="mx-10vw">
+          <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-4 lg:justify-between">
             <H2 as="p" className="col-span-6">
               Hai un progetto da realizzare?
             </H2>
@@ -128,7 +128,7 @@ export default function AboutUs() {
               className="col-span-6"
               size="large"
             />
-          </Grid>
+          </div>
         </section>
 
         <Spacer size="base" />
