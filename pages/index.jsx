@@ -131,99 +131,94 @@ export default function Home({groups}) {
           </section>
 
           <section className="mb-24 lg:mb-48">
-            <div className="mx-auto px-4">
-              <div className="flex flex-wrap items-center">
-                <div className="mx-auto w-full py-8 lg:w-5/12">
-                  <Image
-                    src={imgHomeAttrezzature}
-                    layout="intrinsic"
-                    objectFit="cover"
-                    objectPosition="center"
-                    alt="attrezzature ristorazione nello showroom"
-                    className="rounded-lg shadow-sm"
-                    placeholder="blur"
-                  />
-                </div>
-                <div className="mx-auto w-full px-4 lg:w-5/12">
-                  <div>
-                    {/* <div className="inline-flex justify-center items-center p-3 mb-6 w-16 h-16 text-center text-gray-500 bg-gray-200 rounded-full shadow-lg"> */}
-                    {/*   <ShoppingCartIcon className="text-xl" /> */}
-                    {/* </div> */}
-                    <H3 variant="secondary">
-                      Tutto per creare i tuoi spazi professionali
-                    </H3>
-                    <p className="mt-4 text-lg leading-relaxed text-gray-500">
-                      In una struttura aziendale di <strong>5000 mq</strong>{' '}
-                      uniamo il laboratorio di produzione di arredi su misura,
-                      l’officina e magazzino ricambi, il laboratorio di
-                      formazione e un ampio showroom in cui potrai trovare:
-                    </p>
-                    <ul className="mt-6 list-none">
-                      <li className="py-2">
-                        <div className="flex items-center">
-                          <div>
-                            <span className="mr-3 inline-block rounded-full bg-gray-100 py-1 px-2 text-xs font-semibold uppercase text-gray-500">
-                              {/* <i className="fas fa-blender"></i> */}
-                            </span>
-                          </div>
-                          <div>
-                            <H5 as="h4">Attrezzature per ristorazione</H5>
-                          </div>
+            <Grid rowGap>
+              <div className="col-span-full mr-8 text-center lg:col-span-6">
+                <Image
+                  src={imgHomeAttrezzature}
+                  layout="intrinsic"
+                  objectFit="cover"
+                  objectPosition="center"
+                  alt="attrezzature ristorazione nello showroom"
+                  className="rounded-lg shadow-sm"
+                  placeholder="blur"
+                />
+              </div>
+              <div className="col-span-full lg:col-span-6">
+                <div>
+                  <H3 variant="secondary">
+                    Tutto per creare i tuoi spazi professionali
+                  </H3>
+                  <p className="mt-4 text-lg leading-relaxed text-gray-500">
+                    In una struttura aziendale di <strong>5000 mq</strong>{' '}
+                    uniamo il laboratorio di produzione di arredi su misura,
+                    l’officina e magazzino ricambi, il laboratorio di formazione
+                    e un ampio showroom in cui potrai trovare:
+                  </p>
+                  <ul className="mt-6 list-none">
+                    <li className="py-2">
+                      <div className="flex items-center">
+                        <div>
+                          <span className="mr-3 inline-block rounded-full bg-gray-100 py-1 px-2 text-xs font-semibold uppercase text-gray-500">
+                            {/* <i className="fas fa-blender"></i> */}
+                          </span>
                         </div>
-                      </li>
-                      <li className="py-2">
-                        <div className="flex items-center">
-                          <div>
-                            <span className="mr-3 inline-block rounded-full bg-gray-100 py-1 px-2 text-xs font-semibold uppercase text-gray-500">
-                              {/* <i className="fas fa-chair"></i> */}
-                            </span>
-                          </div>
-                          <div>
-                            <H5 as="h4">Arredamenti</H5>
-                          </div>
+                        <div>
+                          <H5 as="h4">Attrezzature per ristorazione</H5>
                         </div>
-                      </li>
-                      <li className="py-2">
-                        <div className="flex items-center">
-                          <div>
-                            <span className="mr-3 inline-block rounded-full bg-gray-100 py-1 px-2 text-xs font-semibold uppercase text-gray-500">
-                              {/* <i className="fas fa-utensils"></i> */}
-                            </span>
-                          </div>
-                          <div>
-                            <H5 as="h4">Utensili per cucine professionali</H5>
-                          </div>
+                      </div>
+                    </li>
+                    <li className="py-2">
+                      <div className="flex items-center">
+                        <div>
+                          <span className="mr-3 inline-block rounded-full bg-gray-100 py-1 px-2 text-xs font-semibold uppercase text-gray-500">
+                            {/* <i className="fas fa-chair"></i> */}
+                          </span>
                         </div>
-                      </li>
-                      <li className="py-2">
-                        <div className="flex items-center">
-                          <div>
-                            <span className="mr-3 inline-block rounded-full bg-gray-100 py-1 px-2 text-xs font-semibold uppercase text-gray-500">
-                              {/* <i className="fas fa-concierge-bell"></i> */}
-                            </span>
-                          </div>
-                          <div>
-                            <H5 as="h4">Hotellerie</H5>
-                          </div>
+                        <div>
+                          <H5 as="h4">Arredamenti</H5>
                         </div>
-                      </li>
-                      <li className="py-2">
-                        <div className="flex items-center">
-                          <div>
-                            <span className="mr-3 inline-block rounded-full bg-gray-100 py-1 px-2 text-xs font-semibold uppercase text-gray-500">
-                              {/* <i className="fab fa-html5"></i> */}
-                            </span>
-                          </div>
-                          <div>
-                            <H5 as="h4">...e tanto altro</H5>
-                          </div>
+                      </div>
+                    </li>
+                    <li className="py-2">
+                      <div className="flex items-center">
+                        <div>
+                          <span className="mr-3 inline-block rounded-full bg-gray-100 py-1 px-2 text-xs font-semibold uppercase text-gray-500">
+                            {/* <i className="fas fa-utensils"></i> */}
+                          </span>
                         </div>
-                      </li>
-                    </ul>
-                  </div>
+                        <div>
+                          <H5 as="h4">Utensili per cucine professionali</H5>
+                        </div>
+                      </div>
+                    </li>
+                    <li className="py-2">
+                      <div className="flex items-center">
+                        <div>
+                          <span className="mr-3 inline-block rounded-full bg-gray-100 py-1 px-2 text-xs font-semibold uppercase text-gray-500">
+                            {/* <i className="fas fa-concierge-bell"></i> */}
+                          </span>
+                        </div>
+                        <div>
+                          <H5 as="h4">Hotellerie</H5>
+                        </div>
+                      </div>
+                    </li>
+                    <li className="py-2">
+                      <div className="flex items-center">
+                        <div>
+                          <span className="mr-3 inline-block rounded-full bg-gray-100 py-1 px-2 text-xs font-semibold uppercase text-gray-500">
+                            {/* <i className="fab fa-html5"></i> */}
+                          </span>
+                        </div>
+                        <div>
+                          <H5 as="h4">...e tanto altro</H5>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
                 </div>
               </div>
-            </div>
+            </Grid>
           </section>
 
           <section className="mb-24 lg:mb-48">
