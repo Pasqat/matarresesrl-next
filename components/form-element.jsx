@@ -16,7 +16,7 @@ const Input = React.forwardRef(function Input(
   ref,
 ) {
   const className = clsx(
-    'py-8 px-11 w-full text-lg font-medium placeholder-gray-500 text-black disabled:text-gray-400 disabled:bg-gray-100 bg-white rounded-lg caret-yellow-500 focus-ring',
+    'py-8 px-11 w-full text-lg font-medium placeholder-gray-500 text-black disabled:text-gray-400 disabled:bg-gray-100 rounded-lg caret-yellow-500 focus-ring',
     featured ? 'bg-white' : 'bg-gray-100',
     props.className,
   )
