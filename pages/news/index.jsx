@@ -260,6 +260,7 @@ export default function News({data}) {
             <Button
               variant="secondary"
               onClick={() => setIndexToShow(i => i + PAGE_SIZE)}
+              size="medium"
             >
               <span>Mostra altri articoli</span> <PlusIcon />
             </Button>
