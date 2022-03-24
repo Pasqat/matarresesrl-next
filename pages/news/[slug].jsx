@@ -2,19 +2,19 @@ import {useRouter} from 'next/router'
 import Head from 'next/head'
 import {getPlaiceholder} from 'plaiceholder'
 
-import Date from '../../components/Date'
-import Layout from '../../components/Layout'
-import {BlogSection} from '../../components/sections/blog-section'
-import PostBody from '../../components/News/post-body'
-import Categories from '../../components/News/post-categories'
-import SocialShareBar from '../../components/SocialShareBar/SocialShareBar'
-import {BlurringImage} from '../../components/blurringImage'
-import {Spacer} from '../../components/spacer'
+import Date from '../../../components/Date'
+import Layout from '../../../components/Layout'
+import {BlogSection} from '../../../components/sections/blog-section'
+import PostBody from '../../../components/News/post-body'
+import Categories from '../../../components/News/post-categories'
+import SocialShareBar from '../../../components/SocialShareBar/SocialShareBar'
+import {BlurringImage} from '../../../components/blurringImage'
+import {Spacer} from '../../../components/spacer'
 
-import {H1} from '../../components/typography'
+import {H1} from '../../../components/typography'
 
-import {getAllPostsWithSlug, getPostAndMorePosts} from '../../lib/query/post'
-import {SeoDataSection} from '../../components/sections/seodata-section'
+import {getAllPostsWithSlug, getPostAndMorePosts} from '../../../lib/query/post'
+import {SeoDataSection} from '../../../components/sections/seodata-section'
 
 export default function Post({postData, posts, img, svg}) {
   const router = useRouter()

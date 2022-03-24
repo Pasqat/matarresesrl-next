@@ -1,19 +1,19 @@
 import * as React from 'react'
 import Head from 'next/head'
-
-import Layout from '../../components/Layout'
-
-import {filterPosts} from '../../actions/utils/blog'
-import {getProjects} from '../../lib/query/project'
-import {getPlaiceholder} from 'plaiceholder'
 import {useRouter} from 'next/router'
-import {Category} from '../../components/category'
-import {Grid} from '../../components/grid'
-import {H5, H3} from '../../components/typography'
 import clsx from 'clsx'
+import {getPlaiceholder} from 'plaiceholder'
 import {PlusIcon, SearchIcon} from '@heroicons/react/outline'
-import {ArticleCard} from '../../components/article-card'
-import {Button} from '../../components/button'
+
+import Layout from '../../../components/Layout'
+
+import {filterPosts} from '../../../actions/utils/blog'
+import {getProjects} from '../../../lib/query/project'
+import {Category} from '../../../components/category'
+import {Grid} from '../../../components/grid'
+import {H5, H3} from '../../../components/typography'
+import {ArticleCard} from '../../../components/article-card'
+import {Button} from '../../../components/button'
 
 const PAGE_SIZE = 12
 const initialIndexToShow = PAGE_SIZE
@@ -101,7 +101,10 @@ export default function Realizzazioni({data}) {
     <div>
       <Head>
         <title>Prohettazione spazi e cucine</title>
-        <link rel="canonical" href="https://www.matarrese.it/realizzazioni/" />
+        <link
+          rel="canonical"
+          href="https://www.matarrese.it/news/realizzazioni/"
+        />
         <meta
           name="robots"
           content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
@@ -118,7 +121,7 @@ export default function Realizzazioni({data}) {
         />
         <meta
           property="og:url"
-          content="https://www.matarrese.it/realizzazioni"
+          content="https://www.matarrese.it/news/realizzazioni"
         />
         <meta property="og:type" content="blog" />
       </Head>

@@ -222,7 +222,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/realizzazioni">
+                <Link href="/news/realizzazioni">
                   <a className="text-gray-600 hover:text-gray-800">
                     Realizzazioni
                   </a>
