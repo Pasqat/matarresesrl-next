@@ -118,7 +118,7 @@ export default function AboutUs() {
         <Spacer size="base" />
 
         <section className="mx-10vw">
-          <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-4 lg:justify-between">
+          <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-12 text-center md:gap-4 lg:justify-between lg:text-right">
             <H2 as="p" className="col-span-6">
               Hai un progetto da realizzare?
             </H2>
