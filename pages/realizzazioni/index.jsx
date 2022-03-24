@@ -81,11 +81,7 @@ export default function Realizzazioni({data}) {
 
   const isSearching = query.length > 0
 
-  const posts = isSearching
-    ? matchingPosts.slice(0, indexToShow)
-    : matchingPosts
-        .filter(p => p.slug !== data?.projects[0].slug)
-        .slice(0, indexToShow)
+  const posts = matchingPosts.slice(0, indexToShow)
 
   const hasMorePosts = isSearching
     ? indexToShow < matchingPosts.length
@@ -216,7 +212,7 @@ export default function Realizzazioni({data}) {
           </form>
         </div>
 
-        <Grid className="mb-64" ref={resultsRef}>
+        <Grid className="mb-14 lg:mb-24" ref={resultsRef}>
           {posts.length === 0 ? (
             <div className="col-span-full flex flex-col items-center">
               {/* // TODO: add a beautiful placeholder img */}

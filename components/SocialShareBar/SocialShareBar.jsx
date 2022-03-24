@@ -32,7 +32,7 @@ export default function SocialShareBar({route, title}) {
           tooltip="su LinkedIn"
         />
         <SocialShareButton
-          href={`mailto:?subject=${title}&body=Ciao, ho pensato potesse interessarti: ${domainUrl}${route}`}
+          href={`mailto:?subject=${title}&body=Ciao, ho pensato che ti interesserà: ${domainUrl}${route}`}
           // icon="fas fa-envelope"
           icon={<MailIcon size="50" />}
           tooltip="via mail"
