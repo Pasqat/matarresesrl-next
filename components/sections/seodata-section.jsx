@@ -4,7 +4,7 @@ function SeoDataSection({seoData}) {
   return (
     <>
       <title>{seoData.title} | Matarrese srl</title>
-      <meta property="og:image" content={seoData.opengraphImage.sourceUrl} />
+      <meta property="og:image" content={seoData.opengraphImage?.sourceUrl} />
       <link rel="canonical" href={seoData.canonical} />
       <meta
         name="robots"
@@ -27,7 +27,7 @@ function SeoDataSection({seoData}) {
         property="article:modified_time"
         content={seoData.opengraphModifiedTime}
       />
-      <meta property="og:image" content={seoData.opengraphImage.sourceUrl} />
+      <meta property="og:image" content={seoData.opengraphImage?.sourceUrl} />
       <meta name="twitter:card" content="summary_large_image" />
       {/* <meta property="og:image:width" content="2000">
                   <meta property="og:image:height" content="1000">
