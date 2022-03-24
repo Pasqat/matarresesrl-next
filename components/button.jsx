@@ -45,7 +45,7 @@ function ButtonInner({children, variant = 'primary', size}) {
 function Button({
   children,
   variant = 'primary',
-  size = 'large',
+  size = 'medium',
   className,
   ...buttonProps
 }) {
