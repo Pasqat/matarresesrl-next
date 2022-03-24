@@ -67,14 +67,13 @@ export default function Project({project}) {
                       </div>
                     </div>
 
-                    <div className="mt-10 border-t border-gray-200 py-10 text-center">
+                    <div className="mt-10 border-t border-gray-200 py-10">
                       <div className="flex flex-wrap justify-center">
                         <div className="w-full px-4 lg:w-9/12">
-                          <EventBody content={project.content} />
                           {project.galleria.every(n => n !== null) ? (
                             <Grid
                               nested
-                              className="mt-8 gap-2 lg:mt-24 lg:gap-4"
+                              className="mb-8 gap-2 lg:mb-24 lg:gap-4"
                             >
                               {project.galleria.map(image => (
                                 <div
@@ -91,6 +90,9 @@ export default function Project({project}) {
                               ))}
                             </Grid>
                           ) : null}
+                          <div className="mb-14 lg:mb-24">
+                            <EventBody content={project.content} />
+                          </div>
                         </div>
                       </div>
                     </div>

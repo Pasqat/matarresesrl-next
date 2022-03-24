@@ -238,6 +238,7 @@ export default function Realizzazioni({data}) {
             <Button
               variant="secondary"
               onClick={() => setIndexToShow(i => i + PAGE_SIZE)}
+              size="medium"
             >
               <span>Mostra altri realizzazioni</span> <PlusIcon />
             </Button>
