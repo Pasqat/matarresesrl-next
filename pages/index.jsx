@@ -1,8 +1,8 @@
 import Head from 'next/head'
+import Image from 'next/image'
 
 import HeaderBig from '../components/Header/HeaderBig'
 import CardSquareImg from '../components/Card/CardSquareImg'
-import CardBigImg from '../components/Card/CardBigImg'
 import ContactForm from '../components/Form/ContactForm'
 import FormModal from '../components/Form/FormModal'
 import Layout from '../components/Layout'
@@ -16,6 +16,9 @@ import {Grid} from '../components/grid'
 
 import testimonials from '../data/testimonials'
 import {getGroups} from '../lib/newsletter'
+
+import imgHomeAttrezzature from '../public/img/home-attrezzature.jpg'
+import imgHomePartnerOperatori from '../public/img/home-partner-operatori.jpg'
 
 export default function Home({groups}) {
   return (
@@ -81,13 +84,10 @@ export default function Home({groups}) {
             </Grid>
           </section>
 
-          <section className="pb-20">
+          <section className="mb-24 lg:mb-48">
             <div className="container mx-auto px-4">
               <div className="mt-32 flex flex-wrap items-center">
                 <div className="mr-auto ml-auto w-full px-4 md:w-5/12">
-                  {/* <div className="inline-flex justify-center items-center p-3 mb-6 w-16 h-16 text-center text-gray-500 bg-white rounded-full shadow-lg"> */}
-                  {/*   <HeartIcon className="text-xl text-yellow-500" /> */}
-                  {/* </div> */}
                   <H3 className="mb-2" variant="secondary">
                     Da 40 anni partner degli operatori ho.re.ca
                   </H3>
@@ -108,13 +108,23 @@ export default function Home({groups}) {
                   <FormModal buttonText="Realizza i tuoi progetti" />
                 </div>
 
-                <CardBigImg
+                <div className="mr-auto ml-auto w-full px-4 md:w-5/12">
+                  <Image
+                    src={imgHomePartnerOperatori}
+                    layout="intrinsic"
+                    objectFit="cover"
+                    objectPosition="center"
+                    alt="attrezzature ristorazione nello showroom"
+                    className="rounded-lg shadow-sm"
+                  />
+                </div>
+                {/* <CardBigImg
                   title="Vicini al Cliente"
                   content="Dalla progettazione alla realizzazione,
                   i nostri esperti seguono il cliente per trasformare le idee in realtà"
                   imgSrc="/img/vicini-al-cliente.jpg"
                   noSlope
-                />
+                /> */}
               </div>
             </div>
           </section>
@@ -123,10 +133,13 @@ export default function Home({groups}) {
             <div className="container mx-auto px-4">
               <div className="flex flex-wrap items-center">
                 <div className="mr-auto ml-auto w-full px-4 md:w-5/12">
-                  <img
+                  <Image
+                    src={imgHomeAttrezzature}
+                    layout="intrinsic"
+                    objectFit="cover"
+                    objectPosition="center"
                     alt="attrezzature ristorazione nello showroom"
-                    className="max-w-full rounded-lg shadow-lg"
-                    src="/img/attrezzature-esposizione.jpg"
+                    className="rounded-lg shadow-sm"
                   />
                 </div>
                 <div className="mr-auto ml-auto w-full px-4 md:w-5/12">
