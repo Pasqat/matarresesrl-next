@@ -8,11 +8,11 @@ import logoAssogi from '../../public/img/logos/Assogi_logo-300x119.png'
 function AssogiSection() {
   return (
     <Grid featured>
-      <div className="col-span-full flex flex-col items-stretch lg:col-span-5 lg:mb-0 lg:items-start">
+      <div className="col-span-full mb-14 flex flex-col-reverse gap-8 lg:col-span-5 lg:mb-0 lg:flex-col">
         <H2 className="">
           Matarrese è fiera di far parte di un prestigioso consorzio: Assogi
         </H2>
-        <div className="my-auto">
+        <div>
           <Image
             src={logoAssogi}
             alt="logo Assogi"

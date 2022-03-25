@@ -24,6 +24,11 @@ function filterPosts(posts, searchString) {
         threshold: matchSorterRankings.CONTAINS,
         maxRanking: matchSorterRankings.CONTAINS,
       },
+      {
+        key: 'tags',
+        threshold: matchSorterRankings.CONTAINS,
+        maxRanking: matchSorterRankings.CONTAINS,
+      },
     ],
   }
 

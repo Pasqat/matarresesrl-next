@@ -253,6 +253,7 @@ export async function getStaticProps() {
   const categories = data.categories
     .filter(category => category.count > 0)
     .map(c => c.name)
+  const tags = data.tags.filter(tags => tags.count > 0).map(t => t.name)
 
   const {img, svg} = await getPlaiceholder(
     data.projects[0].featuredImage.node.sourceUrl,
@@ -264,6 +265,7 @@ export async function getStaticProps() {
   return {
     props: {
       data: {
+        tags,
         categories,
         projects: data.projects,
         img,
