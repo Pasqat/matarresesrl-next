@@ -19,6 +19,7 @@ import {SeoDataSection} from '../../components/sections/seodata-section'
 export default function Post({postData, posts, img, svg}) {
   const router = useRouter()
   const morePosts = posts?.edges
+  const tags = postData?.tags?.nodes.flatMap(t => t.name)
 
   if (!router.isFallback && !postData.slug) {
     console.log('sdeng 💣️')
@@ -73,6 +74,12 @@ export default function Post({postData, posts, img, svg}) {
                       {postData.title}
                     </H1>
                     <PostBody content={postData.content} />
+                    <div className="mx-auto flex max-w-3xl gap-4 text-gray-400">
+                      <div className="text-medium">tags:</div>
+                      {tags.map(t => (
+                        <div key={`tag-${t}`}>{t}</div>
+                      ))}
+                    </div>
                   </div>
 
                   <SocialShareBar
