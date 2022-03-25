@@ -9,8 +9,8 @@ import logoMEF from '../../public/img/logos/Logo_mef.webp'
 
 function MepaSection() {
   return (
-    <Grid featured>
-      <div className="col-span-full flex flex-col items-stretch lg:col-span-5 lg:mb-0 lg:items-start">
+    <Grid featured rowGap>
+      <div className="col-span-full mb-8 lg:col-span-5 lg:mb-0 lg:items-start">
         <H2 className="text-center lg:text-right">
           Siamo presenti anche su Mepa: Mercato Elettronico della Pubblica
           Amministrazione

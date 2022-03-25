@@ -1,25 +1,23 @@
 import * as React from 'react'
 
-function FacebookIcon({size = 24, title = 'Fackebook'}) {
+function FacebookIcon({size = 20, title = 'Fackebook'}) {
   return (
-    <svg width={size} height={size} fill="none" viewBox="0 0 24 24">
+    <svg width={size} height={size} fill="none" viewBox="2 2 24 24">
       <title>{title}</title>
-      <path
+      <g
+        fill="none"
         stroke="currentColor"
-        strokeWidth={1.5}
         strokeLinecap="round"
         strokeLinejoin="round"
-        fill="none"
-        d="M11.621,21v-5.961H9.278v-2.725h2.343v-2.005c0-2.324,1.421-3.591,3.495-3.591c0.699-0.002,1.397,0.034,2.092,0.105v2.43h-1.428c-1.13,0-1.35,0.534-1.35,1.322v1.735h2.7l-0.351,2.725h-2.365V21H11.621z"
-      />
-      <path
-        stroke="none"
-        fill="none"
-        strokeWidth={3.5}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M19,3H5C3.897,3,3,3.897,3,5v14c0,1.103,0.897,2,2,2h14c1.103,0,2-0.897,2-2V5C21,3.897,20.103,3,19,3z M5,19V5h14l0.001,14H5z"
-      />
+        strokeWidth={1.7}
+      >
+        <path d="M21 8v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5Z"></path>
+        <path d="M11 21v-9c0-2.188.5-4 4-4m-6 5h6"></path>
+      </g>
+      {/* <path
+        fill="currentColor"
+        d="M7 5c-1.094 0-2 .906-2 2v18c0 1.094.906 2 2 2h18c1.094 0 2-.906 2-2V7c0-1.094-.906-2-2-2zm0 2h18v18h-5.188v-6.75h2.594l.375-3h-2.968v-1.938c0-.874.214-1.468 1.468-1.468h1.625V9.125c-.277-.035-1.238-.094-2.343-.094c-2.305 0-3.875 1.387-3.875 3.969v2.25h-2.625v3h2.624V25H7z"
+      ></path> */}
     </svg>
   )
 }
