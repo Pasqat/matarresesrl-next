@@ -45,6 +45,13 @@ export default function News({data}) {
     return searchParams ?? ''
   })
 
+  // This is a failed try to have the search when landing with a query
+  // e.g. expamle.com/news?q=eventi
+  // React.useLayoutEffect(() => {
+  //   console.log(router.query.q)
+  //   router.query.q ? setQuery(router.query.q) : ''
+  // }, [router.query.q])
+
   const query = queryValue.trim()
 
   const {posts: allPosts} = data

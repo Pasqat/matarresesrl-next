@@ -229,7 +229,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/assogi">
+                <Link href="/#assogi">
                   <a className="text-gray-600 hover:text-gray-800">Assogi</a>
                 </Link>
               </li>

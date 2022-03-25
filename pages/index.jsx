@@ -223,11 +223,11 @@ export default function Home({groups}) {
             <TestimonialSection testimonials={testimonials} />
           </section>
 
-          <section className="mb-24 lg:mb-48">
+          <section className="mb-24 lg:mb-48" id="assogi">
             <AssogiSection />
           </section>
 
-          <section className="mb-24 lg:mb-48" id="#contatti">
+          <section className="mb-24 lg:mb-48" id="contatti">
             <ContactForm groups={groups} />
           </section>
           <section className="relative mb-24 lg:mb-48">
