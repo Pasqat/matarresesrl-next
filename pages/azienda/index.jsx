@@ -17,6 +17,9 @@ import {FeatureCard} from '../../components/feature-card'
 
 import VitoMatarreseProfileImage from '../../public/img/vito_matarrese.webp'
 import DomenicoMatarreseProfileImage from '../../public/img/domenico_matarrese.webp'
+import {ProjectSection} from '../../components/sections/prqjects-section'
+
+import projects from '../../data/projects'
 
 export default function AboutUs() {
   return (
@@ -117,18 +120,11 @@ export default function AboutUs() {
 
         <Spacer size="base" />
 
-        <section className="mx-10vw">
-          <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-12 text-center md:gap-4 lg:justify-between lg:text-right">
-            <H2 as="p" className="col-span-6">
-              Hai un progetto da realizzare?
-            </H2>
-            <FormModal
-              title="Ho un progetto da realizzare"
-              buttonText="Scrivici"
-              className="col-span-6"
-              size="large"
-            />
-          </div>
+        <section>
+          <ProjectSection
+            projects={projects.slice(2, 4)}
+            title="Le nostre realizzazioni"
+          />
         </section>
 
         <Spacer size="base" />

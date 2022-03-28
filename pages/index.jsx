@@ -9,16 +9,19 @@ import Layout from '../components/Layout'
 import {LinkButton} from '../components/button'
 import {TestimonialSection} from '../components/sections/testimonial-section'
 import {AssogiSection} from '../components/sections/assogi-section'
+import {ProjectSection} from '../components/sections/prqjects-section'
 import {LogoSection} from '../components/sections/logo-section'
 
 import {H3, H5} from '../components/typography'
 import {Grid} from '../components/grid'
 
 import testimonials from '../data/testimonials'
+import projects from '../data/projects'
 import {getGroups} from '../lib/newsletter'
 
 import imgHomeAttrezzature from '../public/img/home-attrezzature.jpg'
 import imgHomePartnerOperatori from '../public/img/home-partner-operatori.jpg'
+import {Spacer} from '../components/spacer'
 
 export default function Home({groups}) {
   return (
@@ -104,7 +107,6 @@ export default function Home({groups}) {
                   consulenza professionale e nell’assistenza tecnica post
                   vendita.
                 </p>
-                <FormModal buttonText="Realizza i tuoi progetti" />
               </div>
 
               <div className="col-span-full ml-8 text-center lg:col-span-6">
@@ -127,6 +129,15 @@ export default function Home({groups}) {
                 /> */}
             </Grid>
           </section>
+
+          <section>
+            <ProjectSection
+              projects={projects.slice(0, 2)}
+              title="Le nostre realizzazioni"
+            />
+          </section>
+
+          <Spacer size="base" />
 
           <section className="mb-24 lg:mb-48">
             <Grid rowGap>
