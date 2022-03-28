@@ -2,10 +2,9 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Lottie from 'react-lottie-player'
 
-import FormModal from '../../components/Form/FormModal'
 import Layout from '../../components/Layout'
 import {Grid} from '../../components/grid'
-import {H2, H3, Paragraph} from '../../components/typography'
+import {H3, Paragraph} from '../../components/typography'
 import {HeroSection} from '../../components/sections/hero-section'
 import {Spacer} from '../../components/spacer'
 
