@@ -108,7 +108,7 @@ export default function Home({groups}) {
                 </p>
               </div>
 
-              <div className="col-span-full ml-8 text-center lg:col-span-6">
+              <div className="col-span-full text-center lg:col-span-6 lg:ml-8">
                 <Image
                   src={imgHomePartnerOperatori}
                   layout="intrinsic"

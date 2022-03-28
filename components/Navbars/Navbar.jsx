@@ -12,6 +12,7 @@ let navigation = [
   {name: 'Servizi', href: '/servizi', current: false},
   {name: 'Eventi', href: '/eventi', current: false},
   {name: 'Realizzazioni', href: '/news/realizzazioni', current: false},
+  {name: 'Chi siamo', href: '/azienda', current: false},
   {name: 'News', href: '/news', current: false},
 ]
 
@@ -52,6 +53,7 @@ export default function Navbar({isTransparent}) {
                             item.current
                               ? 'hover:first-letter:text-yellow-500'
                               : 'hover:no-underline hover:first-letter:text-yellow-500',
+                            {hidden: item.name === 'Chi siamo'},
                           )}
                           aria-current={item.current ? 'page' : undefined}
                         >
