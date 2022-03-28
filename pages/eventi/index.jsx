@@ -61,21 +61,19 @@ export default function Events({data, groups}) {
           {data.length ? (
             <>
               <Grid>
-                {data.map((event, index) =>
-                  event.featured ? (
-                    <>
-                      <H3 className="col-span-full">In primo piano</H3>
-                      <div className="col-span-full mt-6">
-                        <React.Fragment key={event.id}>
-                          <RegistrationPanel event={event} />
-                          {index === data.length - 1 ? null : (
-                            <Spacer size="2xs" />
-                          )}
-                        </React.Fragment>
-                      </div>
-                    </>
-                  ) : null,
-                )}
+                <H3 className="col-span-full">In primo piano</H3>
+                <div className="col-span-full mt-6">
+                  {data.map((event, index) =>
+                    event.featured ? (
+                      <React.Fragment key={`${event.id}-featured`}>
+                        <RegistrationPanel event={event} />
+                        {index === data.length - 1 ? null : (
+                          <Spacer size="2xs" />
+                        )}
+                      </React.Fragment>
+                    ) : null,
+                  )}
+                </div>
               </Grid>
 
               <Spacer size="xs" />
@@ -89,7 +87,7 @@ export default function Events({data, groups}) {
                   <Grid nested rowGap>
                     {data.map(event => (
                       <div
-                        key={event.slug}
+                        key={event.id}
                         className="col-span-full md:col-span-4"
                       >
                         <CardEvent event={event} />

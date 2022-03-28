@@ -5,7 +5,7 @@ import {Grid} from '../grid'
 import {ArticleCard} from '../article-card'
 import {Spacer} from '../spacer'
 import {HeaderSection} from './header-section'
-import {H4, H2} from '../typography'
+import {H4, H3} from '../typography'
 import clsx from 'clsx'
 import Image from 'next/image'
 
@@ -65,15 +65,15 @@ function ProjectSection({
         </div>
       </Grid>
       <Spacer size="2xs" />
-      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-12 text-center md:gap-4 lg:justify-between lg:text-right">
-        <H2 as="p" className="col-span-6">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-12 text-center md:gap-4 lg:justify-end lg:text-right">
+        <H3 as="p" className="col-span-6">
           Hai un progetto da realizzare?
-        </H2>
+        </H3>
         <FormModal
           title="Ho un progetto da realizzare"
           buttonText="Scrivici"
           className="col-span-6"
-          size="large"
+          size="medium"
         />
       </div>
     </>
