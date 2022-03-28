@@ -237,6 +237,7 @@ export default function FormModal({
                         name="name"
                         value={name}
                         onChange={handleChange}
+                        required
                       />
                     </div>
                     <div className="w-full">
@@ -270,6 +271,7 @@ export default function FormModal({
                       name="mail"
                       value={mail}
                       onChange={handleChange}
+                      required
                     />
                   </div>
                   <div className="relative w-full">
@@ -307,7 +309,11 @@ export default function FormModal({
                       />
                     </div>
                   ) : (
-                    <div className="relative w-full">
+                    <div
+                      className={clsx('relative w-full', {
+                        hidden: !name || !mail,
+                      })}
+                    >
                       <label
                         className="mb-2 block text-xs font-bold uppercase text-gray-600"
                         htmlFor="messaggio"
