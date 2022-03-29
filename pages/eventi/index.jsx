@@ -56,7 +56,7 @@ export default function Events({data, groups}) {
             subtitle="Incontriamoci in cucina"
             title="Eventi formativi e dimostrativi per la ristorazione"
             imageSize="large"
-            image="/img/plan.svg"
+            image="/img/header_eventi.jpg"
           />
           {data.length ? (
             <>
