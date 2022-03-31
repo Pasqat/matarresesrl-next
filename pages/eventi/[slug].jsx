@@ -55,8 +55,7 @@ export default function Events({event}) {
             overlay="bg-gradient-to-tl from-secondary via-primary to-black opacity-80"
             slopeSectionColor="text-gray-100"
             backgroundImgSrc={
-              event.featuredImage &&
-              `url(${event.featuredImage.node.sourceUrl})`
+              event.featuredImage && event.featuredImage.node.sourceUrl
             }
           />
           <section className="relative w-full bg-gray-100 pt-16 pb-24 text-gray-800">

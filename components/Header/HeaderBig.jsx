@@ -1,7 +1,9 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import {ButtonLink} from '../button'
 import {motion, useReducedMotion} from 'framer-motion'
 import {H1} from '../typography'
+import background from '../../public/img/homeBackground.jpg'
 
 /**
  * @param backgroundImgSrc - 'url(/img/homeBackground.jpg)'
@@ -28,12 +30,13 @@ function HeaderBig({
 
   return (
     <div className="relative flex h-[500px] content-center items-center justify-center pb-32 pt-16">
-      <div
-        className="absolute top-0 h-full w-full bg-cover bg-center"
-        style={{
-          backgroundImage: backgroundImgSrc || 'url(/img/homeBackground.jpg)',
-        }}
-      >
+      <div className="absolute top-0 h-full w-full">
+        <Image
+          src={backgroundImgSrc || background}
+          layout="fill"
+          objectFit="cover"
+          objectPosition="center"
+        />
         <span
           id="blackOverlay"
           className={`absolute h-full w-full ${overlay}`}

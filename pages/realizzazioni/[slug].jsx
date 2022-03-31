@@ -44,8 +44,7 @@ export default function Project({project}) {
             overlay="bg-gradient-to-tl from-secondary via-primary to-black opacity-80"
             slopeSectionColor="text-gray-100"
             backgroundImgSrc={
-              project.featuredImage &&
-              `url(${project.featuredImage.node.sourceUrl})`
+              project.featuredImage && project.featuredImage.node.sourceUrl
             }
           />
           <section className="relative w-full bg-gray-100 pt-16 pb-24 text-gray-800">

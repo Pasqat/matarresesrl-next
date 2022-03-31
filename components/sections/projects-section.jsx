@@ -29,17 +29,14 @@ function ProjectSection({
       />
       <Spacer size="2xs" />
       <Grid className="gap-y-6">
-        {projects.slice(0, 2).map((project, idx) => {
-          console.log(project)
-          return (
-            <div
-              key={project.slug}
-              className={clsx('col-span-4', {'hidden lg:block': idx >= 1})}
-            >
-              <ArticleCard article={project} isProject placeholder="blur" />
-            </div>
-          )
-        })}
+        {projects.slice(0, 2).map((project, idx) => (
+          <div
+            key={project.slug}
+            className={clsx('col-span-4', {'hidden lg:block': idx >= 1})}
+          >
+            <ArticleCard article={project} isProject placeholder="blur" />
+          </div>
+        ))}
         {/* NOTE: the cta */}
         <div key="cta" className="col-span-4">
           <div className="relative w-full">
