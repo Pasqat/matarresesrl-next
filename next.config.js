@@ -25,14 +25,15 @@ module.exports = {
       {
         source: '/assogi',
         destination: '/#assogi',
+        permanent: true,
       },
       {
         source: '/ottieni-il-catalogo-macelleria/',
         destination: '/contatti',
-        premanent: true,
+        permanent: true,
       },
       {
-        source: 'grazie-scarica-il-catalogo/',
+        source: '/grazie-scarica-il-catalogo/',
         destination: '/contatti',
         permanent: true,
       },
