@@ -1,9 +1,16 @@
+import pantaleo from '../public/img/pantaleo-agrobistrot3.webp'
 const projects = [
   {
-    title: 'test',
-    slug: 'test',
-    date: '2018',
-    featuredImage: '#',
+    title: 'Agrobistrot Pantaleo',
+    slug: 'agrobistrot-pantaleo',
+    date: '2022',
+    featuredImage: {
+      node: {
+        altText: 'cucine agrobistrot Pantaleo realizzate da Matarrese srl',
+        // sourceUrl: '/../public/img/pantaleo-agrobistrot3.webp',
+        sourceUrl: pantaleo,
+      },
+    },
     category: 'pasticcerie',
   },
   {

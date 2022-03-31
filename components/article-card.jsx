@@ -9,6 +9,7 @@ function ArticleCard({
   isProject,
   article: {slug, title, date, featuredImage},
   domain,
+  placeholder,
 }) {
   const permalink = isProject
     ? `${domain}/realizzazioni/${slug}`
@@ -26,6 +27,7 @@ function ArticleCard({
                 alt={featuredImage?.node.altText}
                 src={featuredImage?.node.sourceUrl}
                 layout="fill"
+                placeholder={placeholder ?? null}
               />
             </div>
           ) : (
