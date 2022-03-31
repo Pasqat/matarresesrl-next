@@ -8,7 +8,7 @@ import Layout from '../components/Layout'
 import {LinkButton} from '../components/button'
 import {TestimonialSection} from '../components/sections/testimonial-section'
 import {AssogiSection} from '../components/sections/assogi-section'
-import {ProjectSection} from '../components/sections/prqjects-section'
+import {ProjectSection} from '../components/sections/projects-section'
 import {LogoSection} from '../components/sections/logo-section'
 
 import {H3, H5} from '../components/typography'

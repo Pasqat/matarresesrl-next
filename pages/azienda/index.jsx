@@ -16,7 +16,7 @@ import {FeatureCard} from '../../components/feature-card'
 
 import VitoMatarreseProfileImage from '../../public/img/vito_matarrese.webp'
 import DomenicoMatarreseProfileImage from '../../public/img/domenico_matarrese.webp'
-import {ProjectSection} from '../../components/sections/prqjects-section'
+import {ProjectSection} from '../../components/sections/projects-section'
 
 import projects from '../../data/projects'
 
