@@ -100,7 +100,7 @@ export default function Realizzazioni({data}) {
   return (
     <div>
       <Head>
-        <title>Prohettazione spazi e cucine</title>
+        <title>Progettazione spazi e cucine</title>
         <link rel="canonical" href="https://www.matarrese.it/realizzazioni/" />
         <meta
           name="robots"
