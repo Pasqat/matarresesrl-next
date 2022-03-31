@@ -3,7 +3,7 @@ import Image from 'next/image'
 import {ButtonLink} from '../button'
 import {motion, useReducedMotion} from 'framer-motion'
 import {H1} from '../typography'
-import background from '../../public/img/homeBackground.jpg'
+import background from '../../public/img/homeBackground.webp'
 
 /**
  * @param backgroundImgSrc - 'url(/img/homeBackground.jpg)'
