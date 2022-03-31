@@ -1,4 +1,8 @@
 import pantaleo from '../public/img/pantaleo-agrobistrot3.webp'
+import pasticceriaNoiDue from '../public/img/posticceria-noi-due.webp'
+import dettagliDiMare from '../public/img/DETTAGLI-DI-MARE-9.webp'
+import barPupiEPupe from '../public/img/pupepupi1.webp'
+
 const projects = [
   {
     title: 'Agrobistrot Pantaleo',
@@ -11,27 +15,42 @@ const projects = [
         sourceUrl: pantaleo,
       },
     },
-    category: 'pasticcerie',
-  },
-  {
-    title: 'test1',
-    slug: 'test1',
-    date: '2020',
-    featuredImage: '#',
     category: 'ristaranti',
   },
   {
-    title: 'test3',
-    slug: 'test3',
-    date: '2016',
-    featuredImage: '#',
+    title: 'Pasticceria noi due',
+    slug: 'pasticceria-noi-due',
+    date: '2018',
+    featuredImage: {
+      node: {
+        altText: 'pasticceria noi due realizzata da Matarrese srl',
+        sourceUrl: pasticceriaNoiDue,
+      },
+    },
+    category: 'pasticcerie',
+  },
+  {
+    title: 'Dettagli di mare',
+    slug: 'ristorante-dettagli-di-mare',
+    date: '2011',
+    featuredImage: {
+      node: {
+        altText: 'ristorante Dettagli di  mare realizzato da Matarrese srl',
+        sourceUrl: dettagliDiMare,
+      },
+    },
     category: 'gelaterie',
   },
   {
-    title: 'test4',
-    slug: 'test4',
-    date: '2019',
-    featuredImage: '#',
+    title: 'Pupi e pupe',
+    slug: 'pupi-e-pupe',
+    date: '2010',
+    featuredImage: {
+      node: {
+        altText: 'bar Pupi e pupe realizzato da Matarrese srl',
+        sourceUrl: barPupiEPupe,
+      },
+    },
     category: 'bar',
   },
 ]
