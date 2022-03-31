@@ -3,18 +3,18 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 
-import Layout from '../../../components/Layout'
-import Header from '../../../components/Header/Header'
-import EventBody from '../../../components/Events/event-body'
-import HeaderBig from '../../../components/Header/HeaderBig'
-import SocialShareBar from '../../../components/SocialShareBar/SocialShareBar'
-import {ButtonLink} from '../../../components/button'
+import Layout from '../../components/Layout'
+import Header from '../../components/Header/Header'
+import EventBody from '../../components/Events/event-body'
+import HeaderBig from '../../components/Header/HeaderBig'
+import SocialShareBar from '../../components/SocialShareBar/SocialShareBar'
+import {ButtonLink} from '../../components/button'
 
-import {getProject, getAllProjectsWithSlug} from '../../../lib/query/project'
-import {H2, H1} from '../../../components/typography'
-import {Spacer} from '../../../components/spacer'
-import {Grid} from '../../../components/grid'
-import {SeoDataSection} from '../../../components/sections/seodata-section'
+import {getProject, getAllProjectsWithSlug} from '../../lib/query/project'
+import {H2, H1} from '../../components/typography'
+import {Spacer} from '../../components/spacer'
+import {Grid} from '../../components/grid'
+import {SeoDataSection} from '../../components/sections/seodata-section'
 
 export default function Project({project}) {
   const router = useRouter()
@@ -28,7 +28,7 @@ export default function Project({project}) {
     <Layout navbarTransparent>
       {router.isFallback ? (
         <>
-          <Header href="/news/realizzazioni">Realizzazioni</Header>
+          <Header href="/realizzazioni">Realizzazioni</Header>
           <Head>
             <title>Matarrese srl | Realizzazioni</title>
           </Head>
@@ -106,7 +106,7 @@ export default function Project({project}) {
               <Spacer size="xs" />
 
               <div className="flex justify-center ">
-                <Link href="/news/realizzazioni" passHref>
+                <Link href="/realizzazioni" passHref>
                   <ButtonLink size="medium">
                     Guarda le altre realizzazioni
                   </ButtonLink>
@@ -136,8 +136,7 @@ export async function getStaticPaths() {
 
   return {
     paths:
-      allProjects.edges.map(({node}) => `/news/realizzazioni/${node.slug}`) ||
-      [],
+      allProjects.edges.map(({node}) => `/realizzazioni/${node.slug}`) || [],
     fallback: true,
   }
 }

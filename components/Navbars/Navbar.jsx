@@ -11,7 +11,7 @@ let navigation = [
   {name: 'Prodotti', href: '/prodotti', current: false},
   {name: 'Servizi', href: '/servizi', current: false},
   {name: 'Eventi', href: '/eventi', current: false},
-  {name: 'Realizzazioni', href: '/news/realizzazioni', current: false},
+  {name: 'Realizzazioni', href: '/realizzazioni', current: false},
   {name: 'Chi siamo', href: '/azienda', current: false},
   {name: 'News', href: '/news', current: false},
 ]

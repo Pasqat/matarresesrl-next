@@ -11,12 +11,12 @@ function ArticleCard({
   domain,
 }) {
   const permalink = isProject
-    ? `${domain}/news/realizzazioni/${slug}`
+    ? `${domain}/realizzazioni/${slug}`
     : `${domain}/news/${slug}`
 
   return (
     <div className="relative w-full">
-      <Link href={isProject ? `/news/realizzazioni/${slug}` : `/news/${slug}`}>
+      <Link href={isProject ? `/realizzazioni/${slug}` : `/news/${slug}`}>
         <a className="group peer relative block w-full focus:outline-none">
           {featuredImage?.node?.sourceUrl ? (
             <div className="focus-ring aspect-w-4 aspect-h-3 rounded-lg lg:aspect-h-5 lg:aspect-w-4">

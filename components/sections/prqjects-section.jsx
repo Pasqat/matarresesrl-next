@@ -40,7 +40,7 @@ function ProjectSection({
         {/* NOTE: the cta */}
         <div key="cta" className="col-span-4">
           <div className="relative w-full">
-            <Link href="/news/realizzazioni">
+            <Link href="/realizzazioni">
               <a className="group peer relative block w-full focus:outline-none">
                 <div className="focus-ring aspect-w-4 aspect-h-3 rounded-lg lg:aspect-h-5 lg:aspect-w-4">
                   <Image
