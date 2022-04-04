@@ -1,5 +1,4 @@
 import {matchSorter, rankings as matchSorterRankings} from 'match-sorter'
-import {VALID_LOADERS} from 'next/dist/server/image-config'
 
 function filterPosts(posts, searchString) {
   if (!searchString) return posts
