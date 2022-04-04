@@ -252,10 +252,10 @@ export async function getStaticProps() {
     .map(c => c.name)
   const tags = data.tags.filter(tags => tags.count > 0).map(t => t.name)
 
-  const {img, svg} = await getPlaiceholder(
-    data.projects[0].featuredImage.node.sourceUrl,
-    {size: 64},
-  )
+  // const {img, svg} = await getPlaiceholder(
+  //   data.projects[0].featuredImage.node.sourceUrl,
+  //   {size: 64},
+  // )
 
   const domain = process.env.NEXT_PUBLIC_WP_API_URL
 
@@ -265,7 +265,6 @@ export async function getStaticProps() {
   console.log('---'.repeat(4))
   console.log('domain -> ', domain)
   console.log('---'.repeat(4))
-  console.log('{img, svg} -> ', img, svg)
 
   return {
     props: {
@@ -273,8 +272,8 @@ export async function getStaticProps() {
         tags,
         categories,
         projects: data.projects,
-        img,
-        svg,
+        // img,
+        // svg,
         domain,
       },
     },
