@@ -290,7 +290,7 @@ export async function getStaticProps() {
     {size: 64},
   )
 
-  const domain = process.env.NEXT_PUBLIC_WP_API_URL
+  const domain = process.env.NEXT_PUBLIC_DOMAIN
 
   return {
     props: {

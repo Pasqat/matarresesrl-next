@@ -259,12 +259,12 @@ export async function getStaticProps() {
 
   const domain = process.env.NEXT_PUBLIC_WP_API_URL
 
-  console.log('data -> ', data)
-  console.log('---'.repeat(4))
-  console.log('categories -> ', categories)
-  console.log('---'.repeat(4))
-  console.log('domain -> ', domain)
-  console.log('---'.repeat(4))
+  // console.log('data -> ', data)
+  // console.log('---'.repeat(4))
+  // console.log('categories -> ', categories)
+  // console.log('---'.repeat(4))
+  // console.log('domain -> ', domain)
+  // console.log('---'.repeat(4))
 
   return {
     props: {
