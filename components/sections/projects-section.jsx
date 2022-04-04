@@ -9,7 +9,7 @@ import {H4, H3} from '../typography'
 import clsx from 'clsx'
 import Image from 'next/image'
 
-import projectCta from '../../public/img/progetto_cta.webp'
+import projectCta from '../../public/img/Piazza-Grande_61.webp'
 import FormModal from '../Form/FormModal'
 
 function ProjectSection({
