@@ -126,7 +126,7 @@ export async function getStaticProps({params}) {
     props: {
       project: data,
     },
-    revalidate: 60,
+    revalidate: 60 * 60 * 24,
   }
 }
 
