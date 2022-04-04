@@ -247,7 +247,7 @@ export default function ProductsHome({groups}) {
           <section className="mb-14">
             <div className="mx-auto text-center">
               <Link href="/contatti" passHref>
-                <Button size="large">Visita il nostro showroom</Button>
+                <Button size="medium">Visita il nostro showroom</Button>
               </Link>
             </div>
           </section>
@@ -293,7 +293,7 @@ export default function ProductsHome({groups}) {
 
           <section className="mb-24 lg:mb-48">
             <div className="mx-auto text-center">
-              <FormModal buttonText="Parla con un consulente" size="large" />
+              <FormModal buttonText="Parla con un consulente" size="medium" />
             </div>
           </section>
 
