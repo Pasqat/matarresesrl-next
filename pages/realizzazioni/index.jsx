@@ -2,8 +2,8 @@ import * as React from 'react'
 import Head from 'next/head'
 import {useRouter} from 'next/router'
 import clsx from 'clsx'
-// import {getPlaiceholder} from 'plaiceholder'
-import {PlusIcon, SearchIcon} from '@heroicons/react/outline'
+import {PlusIcon} from '../../components/icons/plus-icon'
+import {SearchIcon} from '../../components/icons/search-icon'
 
 import Layout from '../../components/Layout'
 
