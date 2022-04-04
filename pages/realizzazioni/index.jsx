@@ -2,7 +2,7 @@ import * as React from 'react'
 import Head from 'next/head'
 import {useRouter} from 'next/router'
 import clsx from 'clsx'
-import {getPlaiceholder} from 'plaiceholder'
+// import {getPlaiceholder} from 'plaiceholder'
 import {PlusIcon, SearchIcon} from '@heroicons/react/outline'
 
 import Layout from '../../components/Layout'
