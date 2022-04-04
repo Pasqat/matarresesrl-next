@@ -124,7 +124,7 @@ export default function Events({data, groups}) {
             <div className="col-span-full lg:col-span-6">
               {/* TODO: this is FeatureCard exact code, but to have the form
               modal I thought to paste it here and modify the relevant part*/}
-              {/* <div className="bg-secondary relative flex h-full w-full flex-col items-start rounded-lg px-8 py-12 lg:px-12">
+              <div className="bg-secondary relative flex h-full w-full flex-col items-start rounded-lg px-8 py-12 lg:px-12">
                 <div className="text-primary mb-4 flex flex-none items-end text-xl font-medium">
                   Vuoi venire a toccare con mano attrezzature innovative?
                 </div>
@@ -137,13 +137,13 @@ export default function Events({data, groups}) {
                   title="Richiedi una demo personalizzata"
                   buttonText="Richiedi una demo"
                 />
-              </div> */}
-              <FeatureCard
+              </div>
+              {/* <FeatureCard
                 title="Vuoi venire a toccare con mano attrezzature innovative?"
                 description="Scegli tu il giorno e l’ora, noi organizzeremo una demo personalizzata per mostrarti il funzionamento delle attrezzature ho.re.ca. che desideri conoscere."
                 url="/contatti"
                 urlText="Richiedi una demo personalizzata"
-              />
+              /> */}
             </div>
           </Grid>
         </div>

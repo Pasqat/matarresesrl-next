@@ -19,6 +19,7 @@ export default function FormModal({
   title = null,
   size = 'medium',
   variant = 'primary',
+  withButton,
 }) {
   let [isOpen, setIsOpen] = useState(false)
   const [form, setForm] = useState({
@@ -153,9 +154,30 @@ export default function FormModal({
   }
   return (
     <>
-      <Button variant={variant} size={size} onClick={openModal}>
-        {buttonText}
-      </Button>
+      {withButton ? (
+        <Button variant={variant} size={size} onClick={openModal}>
+          {buttonText}
+        </Button>
+      ) : (
+        <a
+          onClick={openModal}
+          className="text-accent group mt-4 inline-flex cursor-pointer items-center text-lg no-underline md:mb-2 lg:mb-0"
+        >
+          {buttonText}
+          <svg
+            className="ml-2 h-4 w-4 animate-bounceX"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth="2"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M5 12h14"></path>
+            <path d="M12 5l7 7-7 7"></path>
+          </svg>
+        </a>
+      )}
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
@@ -199,8 +221,8 @@ export default function FormModal({
                       as="h3"
                       className="leading-tigth text-lg font-medium text-gray-900"
                     >
-                      Hai un&apos;idea che vorresti realizzare, o hai bisogno di
-                      informazioni?
+                      {title ??
+                        'Hai un&apos;idea che vorresti realizzare, o hai bisogno di informazioni?'}
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">

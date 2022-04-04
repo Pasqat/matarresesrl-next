@@ -27,6 +27,7 @@ function RegistrationPanel({event}) {
         )}
       </div>
       <FormModal
+        withButton
         buttonText="Partecipa"
         type="reservation"
         title={event.title}
