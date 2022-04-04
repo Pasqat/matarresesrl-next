@@ -14,7 +14,6 @@ import {H3} from '../../components/typography'
 import {Grid} from '../../components/grid'
 import {FeatureCard} from '../../components/feature-card'
 import NewsletterForm from '../../components/Form/NewsletterForm'
-import FormModal from '../../components/Form/FormModal'
 
 export default function Events({data, groups}) {
   // DELETE: this is just for testing
