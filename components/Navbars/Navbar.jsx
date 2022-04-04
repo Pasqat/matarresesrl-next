@@ -1,6 +1,7 @@
 import {Disclosure} from '@headlessui/react'
 import {MenuIcon, XIcon, UserGroupIcon} from '@heroicons/react/outline'
 import Image from 'next/image'
+import Logo from '../../public/img/logo-matarrese-bianco-350.png'
 
 import Link from 'next/link'
 import clsx from 'clsx'
@@ -38,7 +39,9 @@ export default function Navbar({isTransparent}) {
                         width={263}
                         height={19}
                         alt="logo Matarrese srl"
-                        src="https://www.matarrese.it/wp-content/uploads/2015/09/logo-matarrese-bianco-350.png"
+                        // src="https://www.matarrese.it/wp-content/uploads/2015/09/logo-matarrese-bianco-350.png"
+                        src={Logo}
+                        placeholder="blur"
                       />
                     </a>
                   </Link>
