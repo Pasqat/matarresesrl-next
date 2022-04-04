@@ -293,7 +293,11 @@ export default function ProductsHome({groups}) {
 
           <section className="mb-12 lg:mb-24 xl:mb-48">
             <div className="mx-auto text-center">
-              <FormModal buttonText="Parla con un consulente" size="medium" />
+              <FormModal
+                buttonText="Parla con un consulente"
+                size="medium"
+                withButton
+              />
             </div>
           </section>
 

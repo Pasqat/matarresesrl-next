@@ -102,6 +102,7 @@ export default function Events({event}) {
                           buttonClassName="px-4 py-2 mb-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-gradient-to-tl from-primary to-secondary rounded shadow outline-none active:bg-yellow-500 hover:shadow-md focus:outline-none sm:mr-2"
                           type="reservation"
                           title={event.title}
+                          withButton
                         />
                       </div>
                     </div>

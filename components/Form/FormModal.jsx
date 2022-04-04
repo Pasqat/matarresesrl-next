@@ -5,7 +5,7 @@ import {Dialog, Transition} from '@headlessui/react'
 import clsx from 'clsx'
 
 import {sendContactMail} from '../../actions/networking/mailApi'
-import {Button} from '../../components/button'
+import {Button, LinkButton} from '../../components/button'
 
 /**
  * @param buttonText default "Contattaci"
@@ -19,6 +19,7 @@ export default function FormModal({
   title = null,
   size = 'medium',
   variant = 'primary',
+  withButton,
 }) {
   let [isOpen, setIsOpen] = useState(false)
   const [form, setForm] = useState({
@@ -153,9 +154,20 @@ export default function FormModal({
   }
   return (
     <>
-      <Button variant={variant} size={size} onClick={openModal}>
-        {buttonText}
-      </Button>
+      {withButton ? (
+        <Button variant={variant} size={size} onClick={openModal}>
+          {buttonText}
+        </Button>
+      ) : (
+        <LinkButton
+          variant={variant}
+          onClick={openModal}
+          withArrow
+          className="mt-4 text-lg"
+        >
+          {buttonText}
+        </LinkButton>
+      )}
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
@@ -199,8 +211,8 @@ export default function FormModal({
                       as="h3"
                       className="leading-tigth text-lg font-medium text-gray-900"
                     >
-                      Hai un&apos;idea che vorresti realizzare, o hai bisogno di
-                      informazioni?
+                      {title ??
+                        'Hai un&apos;idea che vorresti realizzare, o hai bisogno di informazioni?'}
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">

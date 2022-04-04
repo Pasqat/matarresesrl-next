@@ -75,6 +75,7 @@ function ProjectSection({
             buttonText="Scrivici"
             className="col-span-6"
             size="medium"
+            withButton
           />
         </div>
       </div>
