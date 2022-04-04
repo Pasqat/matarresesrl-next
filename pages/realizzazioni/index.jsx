@@ -212,10 +212,9 @@ export default function Realizzazioni({data}) {
           </form>
         </div>
 
-        <Grid className="mb-14 lg:mb-24" ref={resultsRef}>
+        <Grid className="mb-12 lg:mb-24 xl:mb-48" ref={resultsRef}>
           {posts.length === 0 ? (
             <div className="col-span-full flex flex-col items-center">
-              {/* // TODO: add a beautiful placeholder img */}
               <H3 as="p" variant="secondary" className="mt-24 max-w-lg">
                 {`Purtroppo non è stato trovato nulla con i tuoi criteri di ricerca`}
               </H3>
@@ -230,7 +229,7 @@ export default function Realizzazioni({data}) {
         </Grid>
 
         {hasMorePosts ? (
-          <div className="mb-64 flex w-full justify-center">
+          <div className="mb-24 flex w-full justify-center lg:mb-48 xl:mb-64">
             <Button
               variant="secondary"
               onClick={() => setIndexToShow(i => i + PAGE_SIZE)}
@@ -252,19 +251,7 @@ export async function getStaticProps() {
     .map(c => c.name)
   const tags = data.tags.filter(tags => tags.count > 0).map(t => t.name)
 
-  // const {img, svg} = await getPlaiceholder(
-  //   data.projects[0].featuredImage.node.sourceUrl,
-  //   {size: 64},
-  // )
-
   const domain = process.env.NEXT_PUBLIC_WP_API_URL
-
-  // console.log('data -> ', data)
-  // console.log('---'.repeat(4))
-  // console.log('categories -> ', categories)
-  // console.log('---'.repeat(4))
-  // console.log('domain -> ', domain)
-  // console.log('---'.repeat(4))
 
   return {
     props: {
@@ -272,8 +259,6 @@ export async function getStaticProps() {
         tags,
         categories,
         projects: data.projects,
-        // img,
-        // svg,
         domain,
       },
     },

@@ -40,12 +40,12 @@ export default function ProductsHome({groups}) {
       </Head>
 
       <Layout>
-        <div className="mb-24 lg:mb-48">
+        <div className="mb-12 lg:mb-24 xl:mb-48">
           <ProductSection />
         </div>
         <main>
           <section className="relative" id="lavorazione">
-            <Grid className="mb-24 lg:mb-48">
+            <Grid className="mb-12 lg:mb-24 xl:mb-48">
               <div className="col-span-full lg:col-span-6 lg:col-start-1">
                 <div className="aspect-w-4 aspect-h-6 mb-12 lg:mb-0">
                   <Image
@@ -75,7 +75,7 @@ export default function ProductsHome({groups}) {
               </div>
             </Grid>
 
-            <Grid className="mb-24 lg:mb-48">
+            <Grid className="mb-12 lg:mb-24 xl:mb-48">
               <div className="col-span-full">
                 <H2 className="mb-14">{`Prodotti per la lavorazione e conservazione degli alimenti`}</H2>
                 {/* <H2 as="p" variant="secondary" className="mb-14">
@@ -164,7 +164,7 @@ export default function ProductsHome({groups}) {
           </section>
 
           <section className="relative" id="accoglienza">
-            <Grid className="mb-14 lg:mb-24">
+            <Grid className="mb-12 lg:mb-24 xl:mb-48">
               <div className="col-span-full lg:col-span-6 lg:col-start-1">
                 <H2 id="perche-comprare-da-noi" className="mb-10">
                   {`Tutto per l'accoglienza`}
@@ -202,7 +202,7 @@ export default function ProductsHome({groups}) {
                 </div>
               </div>
             </Grid>
-            <Grid className="mb-24 lg:mb-48" rowGap>
+            <Grid className="mb-12 lg:mb-24 xl:mb-48" rowGap>
               <div className="col-span-full">
                 <H2 className="mb-14">{`Qualità e stile anche nei dettagli`}</H2>
                 {/* <H2 as="p" variant="secondary" className="mb-14">
@@ -244,7 +244,7 @@ export default function ProductsHome({groups}) {
             </Grid>
           </section>
 
-          <section className="mb-14">
+          <section className="mb-12 lg:mb-24 xl:mb-48">
             <div className="mx-auto text-center">
               <Link href="/contatti" passHref>
                 <Button size="medium">Visita il nostro showroom</Button>
@@ -259,7 +259,7 @@ export default function ProductsHome({groups}) {
             imageSize="large"
           />
           <section className="relative" id="trattamento-aria">
-            <Grid className="mb-14 lg:mb-24">
+            <Grid className="mb-12 lg:mb-24 xl:mb-48">
               <div className="col-span-full">
                 <H2 className="mb-14">{`Lavora in un ambiente sano e confortevole`}</H2>
                 {/* <H2 as="p" variant="secondary" className="mb-14">
@@ -291,13 +291,16 @@ export default function ProductsHome({groups}) {
             </Grid>
           </section>
 
-          <section className="mb-24 lg:mb-48">
+          <section className="mb-12 lg:mb-24 xl:mb-48">
             <div className="mx-auto text-center">
               <FormModal buttonText="Parla con un consulente" size="medium" />
             </div>
           </section>
 
-          <section className="relative mb-24 bg-gray-800 lg:mb-48" id="igiene">
+          <section
+            className="relative mb-12 bg-gray-800 lg:mb-24 xl:mb-48"
+            id="igiene"
+          >
             <Grid className="py-24">
               <div className="col-span-full">
                 <H2 className="mb-3 text-gray-100 lg:mt-6">{`Igiene e sanificazione`}</H2>
@@ -340,7 +343,7 @@ export default function ProductsHome({groups}) {
             </Grid>
           </section>
 
-          <div className="mb-24 lg:mb-48">
+          <div className="mb-12 lg:mb-24 xl:mb-48">
             {/* TODO: make an utility function to parse testimonials based on
             category or topic */}
             <TestimonialSection
@@ -348,7 +351,7 @@ export default function ProductsHome({groups}) {
               className="mb-24 lg:mb-64"
             />
           </div>
-          <section className="mb-24 lg:mb-48" id="contatti">
+          <section className="mb-12 lg:mb-24 xl:mb-48" id="contatti">
             <ContactForm featured groups={groups} />
           </section>
         </main>

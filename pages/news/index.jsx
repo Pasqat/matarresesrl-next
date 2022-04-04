@@ -245,7 +245,7 @@ export default function News({data}) {
           </form>
         </div>
 
-        <Grid className="mb-64" ref={resultsRef}>
+        <Grid className="mb-12 lg:mb-24 xl:mb-48" ref={resultsRef}>
           {posts.length === 0 ? (
             <div className="col-span-full flex flex-col items-center">
               {/* // TODO: add a beautiful placeholder img */}
@@ -263,7 +263,7 @@ export default function News({data}) {
         </Grid>
 
         {hasMorePosts ? (
-          <div className="mb-64 flex w-full justify-center">
+          <div className="mb-24 flex w-full justify-center lg:mb-48 xl:mb-64">
             <Button
               variant="secondary"
               onClick={() => setIndexToShow(i => i + PAGE_SIZE)}

@@ -142,13 +142,14 @@ module.exports = {
       },
       {
         source: '/news/portfolio_category/:slug',
-        // TODO: maybe `realizzazioni?q=:slug` doesn't work properly, pls check
+        // TODO: this is right, but at the moment the search with query parameters
+        // doesn't work
         destination: '/realizzazioni?q=:slug',
         permanent: true,
       },
       {
         source: '/news/portfolio_tag/:slug',
-        // TODO: maybe `realizzazioni?q=:slug` doesn't work properly, pls check
+        // NOTE: same as before
         destination: '/realizzazioni?q=:slug',
         permanent: true,
       },
@@ -161,7 +162,7 @@ module.exports = {
       // News
       {
         source: '/category/:slug',
-        // TODO: maybe `news?q=:slug` doesn't work properly, pls check
+        // NOTE: same as before
         destination: '/news?q=:slug',
         permanent: true,
       },

@@ -2,7 +2,7 @@ import * as React from 'react'
 import clsx from 'clsx'
 
 const fontSize = {
-  h1: 'leading-tight text-4xl md:text-5xl',
+  h1: 'leading-tight text-3xl sm:text-4xl md:text-5xl',
   H2: 'leading-tight text-3xl md:text-4xl',
   h3: 'font-medium text-2xl md:text-3xl',
   h4: 'font-medium text-xl md:text-2xl',

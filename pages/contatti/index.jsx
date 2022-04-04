@@ -22,12 +22,12 @@ export default function Contatti({groups}) {
         <title>Cantatti | Matarrese srl</title>
       </Head>
       <Layout>
-        <section className="mx-10vw mb-24 text-gray-600 lg:mb-48">
+        <section className="mx-10vw mb-12 text-gray-600 lg:mb-24 xl:mb-40">
           <div className="mx-auto max-w-7xl">
             <Header>
               Fatti ispirare dalle nostre soluzioni. Visita il nostro showroom!
             </Header>
-            <div className="relative mb-24 flex min-h-[25rem] items-end justify-start overflow-hidden rounded-lg bg-gray-300 md:min-h-[30rem] lg:mb-48">
+            <div className="relative mb-12 flex min-h-[25rem] items-end justify-start overflow-hidden rounded-lg bg-gray-300 md:min-h-[30rem] lg:mb-24 xl:mb-48">
               <Map />
               {/*
               <iframe
@@ -117,7 +117,6 @@ export default function Contatti({groups}) {
         </section>
         <section className="mb-24 lg:mb-48" id="contatti">
           <ContactForm groups={groups} />
-          {/* TODO: aggingungere termini e condizioni */}
         </section>
       </Layout>
     </>

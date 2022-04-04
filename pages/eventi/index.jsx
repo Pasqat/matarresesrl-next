@@ -14,6 +14,7 @@ import {H3} from '../../components/typography'
 import {Grid} from '../../components/grid'
 import {FeatureCard} from '../../components/feature-card'
 import NewsletterForm from '../../components/Form/NewsletterForm'
+import FormModal from '../../components/Form/FormModal'
 
 export default function Events({data, groups}) {
   // DELETE: this is just for testing
@@ -51,7 +52,7 @@ export default function Events({data, groups}) {
       </Head>
 
       <Layout>
-        <div className="mb-24">
+        <div className="mb-12 lg:mb-24 xl:mb-48">
           <HeroSection
             subtitle="Incontriamoci in cucina"
             title="Eventi formativi e dimostrativi per la ristorazione"
@@ -59,7 +60,7 @@ export default function Events({data, groups}) {
             image="/img/header_eventi.jpg"
           />
           {data.length ? (
-            <>
+            <section className="mb-12 lg:mb-24 xl:mb-48">
               <Grid>
                 <H3 className="col-span-full">In primo piano</H3>
                 <div className="col-span-full mt-6">
@@ -96,23 +97,21 @@ export default function Events({data, groups}) {
                   </Grid>
                 </div>
               </Grid>
-            </>
+            </section>
           ) : (
-            <Grid>
+            <Grid className="mb-12 lg:mb-24 xl:mb-48">
               <H3 as="p" className="col-span-full">
                 Non ci sono eventi disponibili al momento.
               </H3>
             </Grid>
           )}
 
-          <Spacer size="base" />
-
-          <NewsletterForm
-            groups={groups}
-            title="Iscriviti alla nostra newsletter per essere informato sui nostri prossimi eventi."
-          />
-
-          <Spacer size="base" />
+          <section className="mb-12 lg:mb-24 xl:mb-48">
+            <NewsletterForm
+              groups={groups}
+              title="Iscriviti alla nostra newsletter per essere informato sui nostri prossimi eventi."
+            />
+          </section>
 
           <Grid rowGap>
             <div className="col-span-full lg:col-span-6">
@@ -124,7 +123,22 @@ export default function Events({data, groups}) {
               />
             </div>
             <div className="col-span-full lg:col-span-6">
-              {/* TODO: use formModal for this */}
+              {/* TODO: this is FeatureCard exact code, but to have the form
+              modal I thought to paste it here and modify the relevant part*/}
+              {/* <div className="bg-secondary relative flex h-full w-full flex-col items-start rounded-lg px-8 py-12 lg:px-12">
+                <div className="text-primary mb-4 flex flex-none items-end text-xl font-medium">
+                  Vuoi venire a toccare con mano attrezzature innovative?
+                </div>
+                <div className="text-secondary max-w-sm flex-auto text-xl">
+                  Scegli tu il giorno e l&apos;ora, noi organizzeremo una demo
+                  personalizzata per mostrarti il funzionamento delle
+                  attrezzature ho.re.ca. che desideri conoscere.
+                </div>
+                <FormModal
+                  title="Richiedi una demo personalizzata"
+                  buttonText="Richiedi una demo"
+                />
+              </div> */}
               <FeatureCard
                 title="Vuoi venire a toccare con mano attrezzature innovative?"
                 description="Scegli tu il giorno e l’ora, noi organizzeremo una demo personalizzata per mostrarti il funzionamento delle attrezzature ho.re.ca. che desideri conoscere."

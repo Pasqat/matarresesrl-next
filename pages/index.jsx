@@ -45,7 +45,7 @@ export default function Home({groups}) {
           />
 
           <section className="relative -mt-14">
-            <Grid rowGap className="mb-24 lg:mb-48">
+            <Grid rowGap className="mb-12 lg:mb-24 xl:mb-48">
               <div className="col-span-full lg:col-span-4">
                 <CardSquareImg
                   imgSrc="/img/home-box-arredo.jpg"
@@ -86,7 +86,7 @@ export default function Home({groups}) {
             </Grid>
           </section>
 
-          <section className="mb-24 lg:mb-48">
+          <section className="mb-12 lg:mb-24 xl:mb-48">
             <Grid rowGap>
               <div className="col-span-full lg:col-span-6">
                 <H3 className="mb-2" variant="secondary">
@@ -138,7 +138,7 @@ export default function Home({groups}) {
 
           <Spacer size="base" />
 
-          <section className="mb-24 lg:mb-48">
+          <section className="mb-12 lg:mb-24 xl:mb-48">
             <Grid rowGap>
               <div className="col-span-full mr-8 text-center lg:col-span-6">
                 <Image
@@ -229,18 +229,18 @@ export default function Home({groups}) {
             </Grid>
           </section>
 
-          <section className="mb-24 lg:mb-48">
+          <section className="mb-12 lg:mb-24 xl:mb-48">
             <TestimonialSection testimonials={testimonials} />
           </section>
 
-          <section className="mb-24 lg:mb-48" id="assogi">
+          <section className="mb-12 lg:mb-24 xl:mb-48" id="assogi">
             <AssogiSection />
           </section>
 
-          <section className="mb-24 lg:mb-48" id="contatti">
+          <section className="mb-12 lg:mb-24 xl:mb-48" id="contatti">
             <ContactForm groups={groups} />
           </section>
-          <section className="relative mb-24 lg:mb-48">
+          <section className="relative mb-12 lg:mb-24 xl:mb-48">
             <LogoSection />
           </section>
         </main>

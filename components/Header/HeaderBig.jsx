@@ -43,9 +43,9 @@ function HeaderBig({
         />
       </div>
       {title && (
-        <div className="z-20 mx-auto max-w-8xl">
-          <div className="flex flex-wrap items-center">
-            <div className="ml-auto mr-auto w-full px-4 text-center lg:w-6/12">
+        <div className="z-20 mx-10vw">
+          <div className="flex max-w-7xl flex-wrap items-center">
+            <div className="ml-auto mr-auto w-full px-4 text-center">
               <motion.div
                 initial="initial"
                 animate="visible"

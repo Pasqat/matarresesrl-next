@@ -11,7 +11,7 @@ const Grid = React.forwardRef(function Grid(
       className={clsx('relative', {
         'mx-10vw': !nested,
         'w-full': nested,
-        'py-10 md:py-24 lg:pb-40 lg:pt-36': featured,
+        'py-10 lg:py-20 xl:pb-40 xl:pt-36': featured,
       })}
     >
       {featured ? (

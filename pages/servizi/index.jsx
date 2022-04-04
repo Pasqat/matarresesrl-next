@@ -52,7 +52,7 @@ export default function Servizi({groups}) {
       </Head>
 
       <Layout>
-        <div className="mb-24 lg:mb-48">
+        <div className="mb-12 lg:mb-24 xl:mb-48">
           <HeroSection
             title="Esperienza e professionalità per l'ho.re.ca."
             subtitle="Servizi"
@@ -69,7 +69,7 @@ export default function Servizi({groups}) {
         </div>
         <main>
           <section id="panoramica">
-            <Grid className="mb-24 lg:mb-48">
+            <Grid className="mb-12 lg:mb-24 xl:mb-48">
               <div className="col-span-full">
                 <H2 className="mb-14">{`Alcuni dei nostri servizi`}</H2>
                 {/* <H2 as="p" variant="secondary" className="mb-14">
@@ -147,7 +147,7 @@ export default function Servizi({groups}) {
             </Grid>
           </section>
 
-          <section className="mx-10vw mb-24 lg:mb-48">
+          <section className="mx-10vw mb-12 lg:mb-24 xl:mb-48">
             <div className="mx-auto max-w-7xl">
               <H2 className="mb-14">
                 {`
@@ -964,11 +964,11 @@ export default function Servizi({groups}) {
           <section className="mb-24 lg:mb-48">
             <MepaSection />
           </section> */}
-          <section className="mx-auto mb-24 max-w-8xl lg:mb-48">
+          <section className="mx-auto mb-12 max-w-8xl lg:mb-24 xl:mb-48">
             <MepaSection />
           </section>
 
-          <section className="mb-24 lg:mb-48" id="contatti">
+          <section className="mb-12 lg:mb-24 xl:mb-48" id="contatti">
             <ContactForm groups={groups} />
           </section>
         </main>
