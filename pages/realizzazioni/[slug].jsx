@@ -38,7 +38,12 @@ export default function Project({project}) {
         </>
       ) : (
         <>
-          <Head>{SeoDataSection({seoData: project.seo})}</Head>
+          <Head>
+            {SeoDataSection({
+              seoData: project.seo,
+              slug: `realizzazioni/${project.slug}`,
+            })}
+          </Head>
           <HeaderBig
             noButton
             overlay="bg-gradient-to-tl from-secondary via-primary to-black opacity-80"

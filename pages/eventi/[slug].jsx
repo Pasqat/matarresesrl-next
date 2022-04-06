@@ -49,7 +49,9 @@ export default function Events({event}) {
         </>
       ) : (
         <>
-          <Head>{SeoDataSection({seoData: event.seo})}</Head>
+          <Head>
+            {SeoDataSection({seoData: event.seo, slug: `eventi/${event.slug}`})}
+          </Head>
           <HeaderBig
             noButton
             overlay="bg-gradient-to-tl from-secondary via-primary to-black opacity-80"
