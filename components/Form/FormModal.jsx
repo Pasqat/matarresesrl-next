@@ -1,5 +1,6 @@
 import {Fragment, useEffect, useState} from 'react'
 import Link from 'next/link'
+import * as fbq from '../../lib/fpixel'
 
 import {Dialog, Transition} from '@headlessui/react'
 import clsx from 'clsx'
@@ -126,6 +127,14 @@ export default function FormModal({
     })
     if (res.status < 300) {
       setFormButtonDisabled(true)
+      if (type === 'reservation') {
+        fbq.event('CompleteRegistation', {
+          content_name: title,
+          value: participants,
+        })
+      } else {
+        fbq.event('Contact')
+      }
       setNotification({
         ...notification,
         text: 'Grazie, ti ricontatteremo al più presto',
