@@ -31,10 +31,6 @@ function MyApp({Component, pageProps}) {
 
   return (
     <ApolloProvider client={client}>
-      {/* <Script
-        strategy="afterInteractive"
-        src="https://www.googletagmanager.com/gtag/js?id=G-00G4B92CP8"
-      /> */}
       {/* Global Site Code Pixel - Facebook Pixel */}
       <Script
         id="fb-pixel"
@@ -68,15 +64,6 @@ function MyApp({Component, pageProps}) {
             f.parentNode.insertBefore(j, f)
           })(window, document, 'script', 'dataLayer', ${GTM_ID})`,
         }}
-        // dangerouslySetInnerHTML={{
-        //   __html: `
-        //       window.dataLayer = window.dataLayer || [];
-        //       function gtag(){dataLayer.push(arguments);}
-        //       gtag('js', new Date());
-        //  Check if the gtag('config', ...) is right;
-        //       gtag('config', 'GTM-5M9RQ4B');
-        //     `,
-        // }}
       />
       <Component {...pageProps} />
       <ScrollToTop />

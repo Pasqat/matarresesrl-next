@@ -79,7 +79,7 @@ export default function Meta() {
         href="/img/favicon/favicon-16x16.png"
       />
 
-      <link rel="shortcut icon" href="/favicon/favicon.ico" />
+      <link rel="shortcut icon" href="/img/favicon/favicon.ico" />
       <meta name="msapplication-TileColor" content="#e0851f" />
       <meta
         name="msapplication-config"
