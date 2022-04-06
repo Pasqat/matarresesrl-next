@@ -1,33 +1,33 @@
 import '../styles/globals.css'
 import '../styles/index.css'
 import {ApolloProvider} from '@apollo/client'
-import Script from 'next/script'
-import {useEffect} from 'react'
-import {useRouter} from 'next/router'
-import * as fbq from '../lib/fpixel'
-import {GTM_ID, pageview} from '../lib/gtm'
+// import Script from 'next/script'
+// import {useEffect} from 'react'
+// import {useRouter} from 'next/router'
+// import * as fbq from '../lib/fpixel'
+// import {GTM_ID, pageview} from '../lib/gtm'
 
 import ScrollToTop from '../components/ScrollToTop'
 
 import client from '../lib/apolloClient'
 
 function MyApp({Component, pageProps}) {
-  const router = useRouter()
+  // const router = useRouter()
 
-  useEffect(() => {
-    // this pageviewonly triggers th first time (it's important for Pixel to have real information)
-    fbq.pageview()
+  // useEffect(() => {
+  //   // this pageviewonly triggers th first time (it's important for Pixel to have real information)
+  //   fbq.pageview()
 
-    const handleRouteChange = () => {
-      fbq.pageview()
-      pageview()
-    }
+  //   const handleRouteChange = () => {
+  //     fbq.pageview()
+  //     pageview()
+  //   }
 
-    router.events.on('routeChangeComplete', handleRouteChange)
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
-    }
-  }, [router.events])
+  //   router.events.on('routeChangeComplete', handleRouteChange)
+  //   return () => {
+  //     router.events.off('routeChangeComplete', handleRouteChange)
+  //   }
+  // }, [router.events])
 
   return (
     <ApolloProvider client={client}>
@@ -49,7 +49,7 @@ function MyApp({Component, pageProps}) {
           `,
         }}
       /> */}
-      <Script
+      {/* <Script
         id="tag-manager"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
@@ -64,7 +64,7 @@ function MyApp({Component, pageProps}) {
             f.parentNode.insertBefore(j, f)
           })(window, document, 'script', 'dataLayer', ${GTM_ID})`,
         }}
-      />
+      /> */}
       <Component {...pageProps} />
       <ScrollToTop />
     </ApolloProvider>
