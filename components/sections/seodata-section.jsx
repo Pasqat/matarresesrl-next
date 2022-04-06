@@ -1,11 +1,13 @@
 import * as React from 'react'
 
-function SeoDataSection({seoData}) {
+const domain = process.env.NEXT_PUBLIC_DOMAIN
+
+function SeoDataSection({seoData, slug}) {
   return (
     <>
       <title>{seoData.title} | Matarrese srl</title>
       <meta property="og:image" content={seoData.opengraphImage?.sourceUrl} />
-      <link rel="canonical" href={seoData.canonical} />
+      <link rel="canonical" href={`https://${domain}/${slug}`} />
       <meta
         name="robots"
         content={`${seoData.metaRobotsNoindex}, ${seoData.metaRobotsNoFollow}, max-image-preview:large, max-snippet:-1, max-video-preview:-1`}
@@ -14,7 +16,7 @@ function SeoDataSection({seoData}) {
       <meta name="description" content={seoData.metaDesc} />
       <meta property="og:title" content={seoData.opengraphTitle} />
       <meta property="og:description" content={seoData.opengraphDescription} />
-      <meta property="og:url" content={seoData.opengraphUrl} />
+      <meta property="og:url" content={`https://${domain}/${slug}`} />
       <meta property="og:type" content={seoData.opengraphType} />
       <meta property="og:locale" content="it_IT" />
       <meta property="og:site_name" content="Matarrese srl" />

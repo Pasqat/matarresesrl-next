@@ -40,7 +40,12 @@ export default function Post({postData, posts, img, svg}) {
       ) : (
         <>
           <article className="bg-gray-100">
-            <Head>{SeoDataSection({seoData: postData.seo})}</Head>
+            <Head>
+              {SeoDataSection({
+                seoData: postData.seo,
+                slug: `news/${postData.slug}`,
+              })}
+            </Head>
             <div className="mx-auto max-w-7xl py-4 md:py-16 md:px-5">
               <main className="md:mb-24">
                 <div className="sm:mx-0 mb-8 md:mb-16">

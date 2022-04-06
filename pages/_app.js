@@ -32,7 +32,7 @@ function MyApp({Component, pageProps}) {
   return (
     <ApolloProvider client={client}>
       {/* Global Site Code Pixel - Facebook Pixel */}
-      <Script
+      {/* <Script
         id="fb-pixel"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
@@ -48,7 +48,7 @@ function MyApp({Component, pageProps}) {
             fbq('init', ${fbq.FB_PIXEL_ID});
           `,
         }}
-      />
+      /> */}
       <Script
         id="tag-manager"
         strategy="afterInteractive"
