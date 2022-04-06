@@ -4,6 +4,7 @@ import {useRouter} from 'next/router'
 import clsx from 'clsx'
 import {PlusIcon} from '../../components/icons/plus-icon'
 import {SearchIcon} from '../../components/icons/search-icon'
+import * as fbq from '../../lib/fpixel'
 
 import Layout from '../../components/Layout'
 
@@ -190,6 +191,10 @@ export default function Realizzazioni({data}) {
                       ?.focus({preventScroll: true})
                     resultsRef.current?.scrollIntoView({
                       behavior: 'smooth',
+                    })
+                    fbq.event('Search', {
+                      content_category: 'realizzazioni',
+                      search_string: query,
                     })
                     router.push(
                       {

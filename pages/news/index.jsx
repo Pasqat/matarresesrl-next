@@ -2,6 +2,7 @@ import * as React from 'react'
 import Head from 'next/head'
 import {useRouter} from 'next/dist/client/router'
 import clsx from 'clsx'
+import * as fbq from '../../lib/fpixel'
 
 import Layout from '../../components/Layout'
 import {SearchIcon} from '../../components/icons/search-icon'
@@ -224,6 +225,7 @@ export default function News({data}) {
                     resultsRef.current?.scrollIntoView({
                       behavior: 'smooth',
                     })
+
                     router.push(
                       {
                         query: {q: e.target.value.toLocaleLowerCase()},
@@ -231,6 +233,10 @@ export default function News({data}) {
                       '',
                       {scroll: false},
                     )
+                    fbq.event('Search', {
+                      content_category: 'news',
+                      search_string: query,
+                    })
                   }
                   ignoreInputKeyUp.current = false
                 }}

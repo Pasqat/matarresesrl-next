@@ -1,5 +1,6 @@
 import {useEffect, useRef, useState} from 'react'
 import Link from 'next/link'
+import * as fbq from '../../lib/fpixel'
 
 import {H2} from '../typography'
 
@@ -83,6 +84,7 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
         text: 'Grazie, ti ricontatteremo al più presto',
         isError: false,
       })
+      fbq.event('Contact')
       setForm({
         ...form,
         name: '',
