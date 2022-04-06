@@ -5,6 +5,7 @@ import Script from 'next/script'
 import {useEffect} from 'react'
 import {useRouter} from 'next/router'
 import * as fbq from '../lib/fpixel'
+import {GTM_ID, pageview} from '../lib/gtm'
 
 import ScrollToTop from '../components/ScrollToTop'
 
@@ -19,6 +20,7 @@ function MyApp({Component, pageProps}) {
 
     const handleRouteChange = () => {
       fbq.pageview()
+      pageview()
     }
 
     router.events.on('routeChangeComplete', handleRouteChange)
@@ -64,7 +66,7 @@ function MyApp({Component, pageProps}) {
             j.async = true
             j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl
             f.parentNode.insertBefore(j, f)
-          })(window, document, 'script', 'dataLayer', 'GTM-5M9RQ4B')`,
+          })(window, document, 'script', 'dataLayer', ${GTM_ID})`,
         }}
         // dangerouslySetInnerHTML={{
         //   __html: `
