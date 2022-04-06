@@ -112,38 +112,49 @@ export default function Events({event}) {
                       </H3>
                       {/* FIXME: with the latest version of the event calendar WP
                         ql-event can't fetch venue and organization */}
-                      {/* {event.venue && (
-                        <div className="mb-2 mt-0 text-gray-400 text-sm font-bold leading-normal uppercase">
-                          <i className="fas fa-map-marker-alt mr-2 text-gray-400 text-lg"></i>{' '}
-                          <a
-                            href={`https://maps.google.com/?q=${addressToMapsLink(
-                              event.venue.title,
-                              event.venue.city,
-                              event.venue.address,
-                            )}`}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            {event.venue.title} - {event.venue.address},{' '}
-                            {event.venue.city}
-                          </a>
-                        </div>
-                      )}
-                      {event.organizers && (
-                        <div className="mb-2 mt-10 text-gray-600">
-                          <i className="fas fa-briefcase mr-2 text-gray-400 text-lg"></i>
-                          Organizzato da:{' '}
-                          <a href={event.organizers?.nodes[0].link}>
-                            {event.organizers?.nodes[0].title}
-                          </a>
-                        </div>
-                      )} */}
+                      {/*  {event.venue && ( */}
+                      {/*   <div className="mb-2 mt-0 text-gray-400 text-sm font-bold leading-normal uppercase"> */}
+                      {/*     <i className="fas fa-map-marker-alt mr-2 text-gray-400 text-lg"></i>{' '} */}
+                      {/*     <a */}
+                      {/*       href={`https://maps.google.com/?q=${addressToMapsLink( */}
+                      {/*         event.venue.title, */}
+                      {/*         event.venue.city, */}
+                      {/*         event.venue.address, */}
+                      {/*       )}`} */}
+                      {/*       target="_blank" */}
+                      {/*       rel="noreferrer" */}
+                      {/*     > */}
+                      {/*       {event.venue.title} - {event.venue.address},{' '} */}
+                      {/*       {event.venue.city} */}
+                      {/*     </a> */}
+                      {/*   </div> */}
+                      {/* )} */}
+                      {/* {event.organizers && ( */}
+                      {/*   <div className="mb-2 mt-10 text-gray-600"> */}
+                      {/*     <i className="fas fa-briefcase mr-2 text-gray-400 text-lg"></i> */}
+                      {/*     Organizzato da:{' '} */}
+                      {/*     <a href={event.organizers?.nodes[0].link}> */}
+                      {/*       {event.organizers?.nodes[0].title} */}
+                      {/*     </a> */}
+                      {/*   </div> */}
+                      {/* )}  */}
                     </div>
 
                     <div className="mt-10 border-t border-gray-200 py-10">
                       <div className="flex flex-wrap justify-center">
                         <div className="w-full px-4 lg:w-9/12">
                           <EventBody content={event.content} />
+                          <div className="flex justify-between">
+                            Prenota subito il tuo posto all&apos;evento. Clicca
+                            su &ldquo;Partecipa&rdquo;
+                            <FormModal
+                              buttonText="Partecipa"
+                              buttonClassName="px-4 py-2 mb-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-gradient-to-tl from-primary to-secondary rounded shadow outline-none active:bg-yellow-500 hover:shadow-md focus:outline-none sm:mr-2"
+                              type="reservation"
+                              title={event.title}
+                              withButton
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>

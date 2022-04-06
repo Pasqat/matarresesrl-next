@@ -64,9 +64,9 @@ export const logos = [
     url: '/img/logos/scotsman1.png',
     href: null,
   },
-  {
-    name: 'Moretti forni',
-    url: '/img/logos/moretti_forni_bw.png',
-    href: null,
-  },
+  // {
+  //   name: 'Moretti forni',
+  //   url: '/img/logos/moretti_forni_bw.png',
+  //   href: null,
+  // },
 ]
