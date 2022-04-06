@@ -68,23 +68,6 @@ function MyApp({Component, pageProps}) {
             f.parentNode.insertBefore(j, f)
           })(window, document, 'script', 'dataLayer', ${GTM_ID})`,
         }}
-        // dangerouslySetInnerHTML={{
-        //   __html: `
-        //       window.dataLayer = window.dataLayer || [];
-        //       function gtag(){dataLayer.push(arguments);}
-        //       gtag('js', new Date());
-        //  Check if the gtag('config', ...) is right;
-        //       gtag('config', 'GTM-5M9RQ4B');
-        //     `,
-        // }}
-        dangerouslySetInnerHTML={{
-          __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'GTM-5M9RQ4B');
-            `,
-        }}
       />
       <Component {...pageProps} />
       <ScrollToTop />
