@@ -18,7 +18,7 @@ function MyApp({Component, pageProps}) {
         id="tag-manager"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
-          __html: (function (w, d, s, l, i) {
+          __html: `(function (w, d, s, l, i) {
             w[l] = w[l] || []
             w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'})
             var f = d.getElementsByTagName(s)[0],
@@ -27,14 +27,15 @@ function MyApp({Component, pageProps}) {
             j.async = true
             j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl
             f.parentNode.insertBefore(j, f)
-          })(window, document, 'script', 'dataLayer', 'GTM-5M9RQ4B'),
+          })(window, document, 'script', 'dataLayer', 'GTM-5M9RQ4B')`,
         }}
         // dangerouslySetInnerHTML={{
         //   __html: `
         //       window.dataLayer = window.dataLayer || [];
         //       function gtag(){dataLayer.push(arguments);}
         //       gtag('js', new Date());
-        //       gtag('config', 'G-00G4B92CP8');
+        //  Check if the gtag('config', ...) is right;
+        //       gtag('config', 'GTM-5M9RQ4B');
         //     `,
         // }}
       />
