@@ -183,6 +183,7 @@ export default function FormModal({
           as="div"
           className="fixed inset-0 z-[51] overflow-y-auto"
           onClose={closeModal}
+          // onClose={() => null}
         >
           <div className="absolute inset-0 -z-2 h-full w-full bg-black opacity-95" />
           <div className="min-h-screen px-4 text-center">
@@ -353,7 +354,7 @@ export default function FormModal({
                       />
                     </div>
                   )}
-                  <div className="mt-5 text-right text-gray-600">
+                  <div className="relative mt-5 text-right text-gray-600">
                     <label className="inline-flex items-center">
                       <input
                         type="checkbox"
@@ -372,7 +373,7 @@ export default function FormModal({
                       </span>
                     </label>
                   </div>
-                  <div className="mt-6 flex flex-wrap justify-between text-center">
+                  <div className="relative mt-6 flex flex-wrap justify-between text-center">
                     <div className="mt-4">
                       <button
                         type="button"
