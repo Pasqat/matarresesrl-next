@@ -240,12 +240,6 @@ strong {
     @apply md:flex p-0 flex-col;
   }
 
-  .wp-block-gallery {
-    @apply grid bg-yellow-500;
-  }
-  .wp-block-image {
-    @apply col-span-4;
-  }
 
   .content .blocks-gallery-item > figure {
     @apply flex items-end justify-start;
@@ -255,6 +249,10 @@ strong {
     @apply absolute bottom-0 w-full max-h-full text-center m-0;
   }
 }
+
+  .wp-block-gallery {
+    @apply relative w-full grid grid-cols-1 gap-x-2 md:grid-cols-3;
+  }
 
 /* Wrapping */
 .Tooltip-Wrapper {
