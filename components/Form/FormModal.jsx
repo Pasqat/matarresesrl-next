@@ -128,7 +128,7 @@ export default function FormModal({
     if (res.status < 300) {
       setFormButtonDisabled(true)
       if (type === 'reservation') {
-        fbq.event('CompleteRegistation', {
+        fbq.event('CompleteRegistration', {
           content_name: title,
           value: participants,
         })
