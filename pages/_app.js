@@ -87,7 +87,10 @@ function MyApp({Component, pageProps}) {
         }}
       >
         Questo sito web utilizza alcuni cookie per poter miglorare
-        l&apos;esperinza dell&apos;utente.
+        l&apos;esperinza dell&apos;utente.{' '}
+        <a href="/cookie-policy" target="_blank" className="text-xs text-white">
+          Qui le info sui cookies utilizzati
+        </a>
       </CookieConsent>
     </ApolloProvider>
   )
