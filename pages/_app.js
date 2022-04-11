@@ -2,6 +2,7 @@ import '../styles/globals.css'
 import '../styles/index.css'
 import {ApolloProvider} from '@apollo/client'
 import Script from 'next/script'
+import Link from 'next/link'
 import {useEffect, useState} from 'react'
 import {useRouter} from 'next/router'
 import * as fbq from '../lib/fpixel'
@@ -87,7 +88,10 @@ function MyApp({Component, pageProps}) {
         }}
       >
         Questo sito web utilizza alcuni cookie per poter miglorare
-        l&apos;esperinza dell&apos;utente.
+        l&apos;esperinza dell&apos;utente.{' '}
+        <a href="/cookie-policy" target="_blank" className="text-xs text-white">
+          Qui le info sui cookies utilizzati
+        </a>
       </CookieConsent>
     </ApolloProvider>
   )
