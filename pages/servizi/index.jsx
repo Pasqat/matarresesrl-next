@@ -10,8 +10,10 @@ import {HeroSection} from '../../components/sections/hero-section'
 import {FeatureCard} from '../../components/feature-card'
 import {Grid} from '../../components/grid'
 import {MepaSection} from '../../components/sections/mepa-section'
+import FormModal from '../../components/Form/FormModal'
 
 import {getGroups} from '../../lib/newsletter'
+import {Spacer} from '../../components/spacer'
 
 export default function Servizi({groups}) {
   const [position, setPosition] = useState(0)
@@ -145,6 +147,20 @@ export default function Servizi({groups}) {
                 </Grid>
               </div>
             </Grid>
+          </section>
+
+          <section className="mx-10vw mb-12 lg:mb-24 xl:mb-48">
+            <div className="mx-auto max-w-7xl">
+              <H2 as="p">
+                {`Ti offriamo la possibilità di vedere in funzione le attrezzature ho.re.ca. che desideri conoscere`}
+              </H2>
+              <Spacer size="2xs" />
+              <FormModal
+                buttonText="Richiedi una demo personalizzata"
+                withButton
+                title="Richiedi una demo personalizzata"
+              />
+            </div>
           </section>
 
           <section className="mx-10vw mb-12 lg:mb-24 xl:mb-48">
