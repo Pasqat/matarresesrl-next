@@ -36,6 +36,7 @@ function HeaderBig({
           layout="fill"
           objectFit="cover"
           objectPosition="center"
+          alt="Cucina realizzata da Matarrese srl"
         />
         <span
           id="blackOverlay"

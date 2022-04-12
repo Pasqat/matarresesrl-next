@@ -20,11 +20,15 @@ function TestimonialSection({testimonials, className, nested}) {
           {/* </H2> */}
           <H2>{`Cosa dicono i nostri clienti`}</H2>
         </div>
-
         {testimonials.length > 3 ? (
           <div className="col-span-2 col-start-11 mb-16 items-end justify-end space-x-3">
-            <ArrowButton direction="left" onClick={() => setPage(p => p - 1)} />
             <ArrowButton
+              aria-label="testimonianze precedenti"
+              direction="left"
+              onClick={() => setPage(p => p - 1)}
+            />
+            <ArrowButton
+              aria-label="testimonianze successive"
               direction="right"
               onClick={() => setPage(p => p + 1)}
             />
