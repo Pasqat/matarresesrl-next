@@ -17,18 +17,6 @@ import NewsletterForm from '../../components/Form/NewsletterForm'
 import FormModal from '../../components/Form/FormModal'
 
 export default function Events({data, groups}) {
-  // DELETE: this is just for testing
-  // const fetchGroups = async (e) => {
-  //   const res = await fetch('/api/subscribe', {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //   })
-
-  //   console.log(res.data)
-  // }
-
   return (
     <>
       <Head>
@@ -59,13 +47,13 @@ export default function Events({data, groups}) {
             imageSize="large"
             image="/img/header_eventi.jpg"
           />
-          {data.length ? (
+          {data.futureEvent.length ? (
             <section className="mb-12 lg:mb-24 xl:mb-48">
               <Grid>
                 <H3 className="col-span-full">In primo piano</H3>
                 <div className="col-span-full mt-6">
-                  {data.map((event, index) =>
-                    event.featured ? (
+                  {data.futureEvent.map((event, index) =>
+                    event.isFeatured ? (
                       <React.Fragment key={`${event.id}-featured`}>
                         <RegistrationPanel event={event} />
                         {index === data.length - 1 ? null : (
@@ -86,7 +74,7 @@ export default function Events({data, groups}) {
 
                 <div className="col-span-full">
                   <Grid nested rowGap>
-                    {data.map(event => (
+                    {data.futureEvent.map(event => (
                       <div
                         key={event.id}
                         className="col-span-full md:col-span-4"
@@ -113,40 +101,47 @@ export default function Events({data, groups}) {
             />
           </section>
 
-          <Grid rowGap>
-            <div className="col-span-full lg:col-span-6">
-              <FeatureCard
-                title="Sei un’azienda e vuoi presentare un tuo prodotto o un’attrezzatura nei nostri laboratori?"
-                description="Disponiamo di ampi laboratori attrezzati per realizzare eventi formativi, informativi e commerciali per il settore food."
-                urlText="Contattaci"
-                url="/contatti"
-              />
-            </div>
-            <div className="col-span-full lg:col-span-6">
-              {/* TODO: this is FeatureCard exact code, but to have the form
-              modal I thought to paste it here and modify the relevant part*/}
-              <div className="bg-secondary relative flex h-full w-full flex-col items-start rounded-lg px-8 py-12 lg:px-12">
-                <div className="text-primary mb-4 flex flex-none items-end text-xl font-medium">
-                  Vuoi venire a toccare con mano attrezzature innovative?
-                </div>
-                <div className="text-secondary max-w-sm flex-auto text-xl">
-                  Scegli tu il giorno e l&apos;ora, noi organizzeremo una demo
-                  personalizzata per mostrarti il funzionamento delle
-                  attrezzature ho.re.ca. che desideri conoscere.
-                </div>
-                <FormModal
-                  title="Richiedi una demo personalizzata"
-                  buttonText="Richiedi una demo"
+          <section className="mb-12 lg:mb-24 xl:mb-48">
+            <Grid rowGap>
+              <div className="col-span-full lg:col-span-6">
+                <FeatureCard
+                  title="Sei un’azienda e vuoi presentare un tuo prodotto o un’attrezzatura nei nostri laboratori?"
+                  description="Disponiamo di ampi laboratori attrezzati per realizzare eventi formativi, informativi e commerciali per il settore food."
+                  urlText="Contattaci"
+                  url="/contatti"
                 />
               </div>
-              {/* <FeatureCard
-                title="Vuoi venire a toccare con mano attrezzature innovative?"
-                description="Scegli tu il giorno e l’ora, noi organizzeremo una demo personalizzata per mostrarti il funzionamento delle attrezzature ho.re.ca. che desideri conoscere."
-                url="/contatti"
-                urlText="Richiedi una demo personalizzata"
-              /> */}
-            </div>
-          </Grid>
+              <div className="col-span-full lg:col-span-6">
+                {/* TODO: this is FeatureCard exact code, but to have the form
+              modal I thought to paste it here and modify the relevant part*/}
+                <div className="bg-secondary relative flex h-full w-full flex-col items-start rounded-lg px-8 py-12 lg:px-12">
+                  <div className="text-primary mb-4 flex flex-none items-end text-xl font-medium">
+                    Vuoi venire a toccare con mano attrezzature innovative?
+                  </div>
+                  <div className="text-secondary max-w-sm flex-auto text-xl">
+                    Scegli tu il giorno e l&apos;ora, noi organizzeremo una demo
+                    personalizzata per mostrarti il funzionamento delle
+                    attrezzature ho.re.ca. che desideri conoscere.
+                  </div>
+                  <FormModal
+                    title="Richiedi una demo personalizzata"
+                    buttonText="Richiedi una demo"
+                  />
+                </div>
+              </div>
+            </Grid>
+          </section>
+
+          <section className="col-span-full">
+            <Grid rowGap>
+              <H3 className="col-span-full">Eventi conclusi</H3>
+              {data.pastEvent.map(event => (
+                <div key={event.id} className="col-span-full md:col-span-4">
+                  <CardEvent event={event} />
+                </div>
+              ))}
+            </Grid>
+          </section>
         </div>
       </Layout>
     </>

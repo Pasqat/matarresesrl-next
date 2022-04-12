@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: www.matarrese.it
+Host: https://matarrese.it
 
 # Sitemaps
-Sitemap: www.matarrese.it/sitemap.xml
+Sitemap: https://matarrese.it/sitemap.xml
