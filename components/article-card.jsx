@@ -38,15 +38,17 @@ function ArticleCard({
             </div>
           )}
           {!isProject ? (
-            <div className="mt-8 text-xl font-medium text-gray-500">
-              {formatDate(date)}
-            </div>
+            <>
+              <div className="mt-8 text-xl font-medium text-gray-500">
+                {formatDate(date)}
+              </div>
+              <H4
+                as="div"
+                className="mt-4"
+                dangerouslySetInnerHTML={{__html: title}}
+              />
+            </>
           ) : null}
-          <H4
-            as="div"
-            className="mt-4"
-            dangerouslySetInnerHTML={{__html: title}}
-          />
         </a>
       </Link>
       {domain ? (

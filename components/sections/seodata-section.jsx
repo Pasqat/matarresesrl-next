@@ -20,6 +20,7 @@ function SeoDataSection({seoData, slug}) {
       <meta property="og:type" content={seoData.opengraphType} />
       <meta property="og:locale" content="it_IT" />
       <meta property="og:site_name" content="Matarrese srl" />
+      <meta property="og:image" content={seoData.opengraphImage?.sourceUrl} />
       <meta property="article:publisher" content={seoData.opengraphPublisher} />
       <meta
         property="article:published_time"
@@ -29,7 +30,6 @@ function SeoDataSection({seoData, slug}) {
         property="article:modified_time"
         content={seoData.opengraphModifiedTime}
       />
-      <meta property="og:image" content={seoData.opengraphImage?.sourceUrl} />
       <meta name="twitter:card" content="summary_large_image" />
       {/* <meta property="og:image:width" content="2000">
                   <meta property="og:image:height" content="1000">
