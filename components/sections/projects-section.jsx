@@ -5,7 +5,7 @@ import {Grid} from '../grid'
 import {ArticleCard} from '../article-card'
 import {Spacer} from '../spacer'
 import {HeaderSection} from './header-section'
-import {H4, H3} from '../typography'
+import {H2, H3} from '../typography'
 import clsx from 'clsx'
 import Image from 'next/image'
 
@@ -40,8 +40,18 @@ function ProjectSection({
         {/* NOTE: the cta */}
         <div key="cta" className="col-span-4">
           <div className="relative w-full">
+            <div className="absolute z-2 h-full w-full rounded-lg bg-gradient-to-tl from-secondary via-primary to-gray-900 opacity-80" />
             <Link href="/realizzazioni">
               <a className="group peer relative block w-full focus:outline-none">
+                <div className="absolute z-2 flex h-full w-full items-center justify-center rounded-lg">
+                  <H2
+                    variant="white"
+                    as="div"
+                    className="top-0 z-2 p-4 text-center font-medium text-opacity-100"
+                  >
+                    Guarda le altre realizzazioni
+                  </H2>
+                </div>
                 <div className="focus-ring aspect-w-4 aspect-h-3 rounded-lg lg:aspect-h-5 lg:aspect-w-4">
                   <Image
                     className="rounded-lg"
@@ -52,13 +62,6 @@ function ProjectSection({
                     placeholder="blur"
                   />
                 </div>
-                <H4
-                  as="div"
-                  className="mt-4"
-                  // dangerouslySetInnerHTML={{__html: title}}
-                >
-                  Guarda le altre realizzazioni
-                </H4>
               </a>
             </Link>
           </div>
@@ -66,7 +69,7 @@ function ProjectSection({
       </Grid>
       <Spacer size="2xs" />
       <div className="mx-10vw">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-12 text-center md:gap-4 lg:justify-end lg:text-right">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-12 text-center md:gap-4">
           <H3 as="p" className="col-span-6">
             Hai un progetto da realizzare?
           </H3>
