@@ -117,8 +117,8 @@ export default function NewsletterForm({
             featured={featured}
             placeholder="e-mail"
           />
-          <div className="col-span-full mb-8 lg:col-span-4">
-            <div className="mb-4 flex items-baseline justify-between gap-2">
+          <div className="col-span-full mb-4 lg:col-span-4">
+            <div className="mb-2 flex items-baseline justify-between gap-2">
               {/* <Label htmlFor="industry">Settore</Label> */}
             </div>
             <select
@@ -127,7 +127,7 @@ export default function NewsletterForm({
               name="newsletterGroupId"
               onChange={handleChange}
               className={clsx(
-                'focus-ring w-full rounded-lg bg-white py-8 px-11 text-lg font-medium text-black placeholder-gray-500 caret-yellow-500 disabled:bg-gray-100 disabled:text-gray-400',
+                'focus-ring w-full rounded-lg bg-white py-5 px-8 text-lg font-medium text-black placeholder-gray-500 caret-yellow-500 disabled:bg-gray-100 disabled:text-gray-400',
                 featured ? 'bg-white' : 'bg-gray-100',
               )}
               aria-describedby={

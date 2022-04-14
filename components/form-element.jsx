@@ -16,13 +16,15 @@ const Input = React.forwardRef(function Input(
   ref,
 ) {
   const className = clsx(
-    'py-8 px-11 w-full text-lg font-medium placeholder-gray-500 text-black disabled:text-gray-400 disabled:bg-gray-100 rounded-lg caret-yellow-500 focus-ring',
+    'py-4 px-8 w-full text-lg font-medium placeholder-gray-500 text-black disabled:text-gray-400 disabled:bg-gray-100 rounded-lg caret-yellow-500 focus-ring',
     featured ? 'bg-white' : 'bg-gray-100',
     props.className,
   )
 
   if (props.type === 'textarea') {
-    return <textarea {...props} className={clsx('resize-y', className)} />
+    return (
+      <textarea {...props} className={clsx('h-full resize-y', className)} />
+    )
   }
 
   return <input {...props} className={className} ref={ref} />
@@ -61,8 +63,8 @@ const Field = React.forwardRef(function Field(
   const descriptionId = `${inputId}-description`
 
   return (
-    <div className={clsx('mb-8', className)}>
-      <div className="mb-4 flex items-baseline justify-between gap-2">
+    <div className={clsx('mb-4', className)}>
+      <div className="mb-2 flex items-baseline justify-between gap-2">
         <Label htmlFor={inputId}>{label}</Label>
         {error ? (
           <InputError id={errorId}>{error}</InputError>
