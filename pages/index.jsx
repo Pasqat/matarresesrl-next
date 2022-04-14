@@ -51,7 +51,7 @@ export default function Home({groups}) {
                   imgSrc="/img/home-box-arredo.jpg"
                   title="Dall'idea al progetto reale"
                   description={`Aprire un'attività, rennovare un locale,
-                      avere una guida per migliorare il proprio lavoro: te seguiamo ad ogni passo per realizzare la tua idea.`}
+                      avere una guida per migliorare il proprio lavoro: ti seguiamo ad ogni passo per realizzare la tua idea.`}
                   urlText="Scopri i servizi"
                   url="/servizi"
                 >

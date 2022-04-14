@@ -77,7 +77,11 @@ function MyApp({Component, pageProps}) {
       <ScrollToTop />
       <CookieConsent
         acceptOnScroll
-        onAccept={() => setIsCookieConsentAccept(true)}
+        onAccept={() => {
+          fbq.pageview()
+          pageview()
+          return setIsCookieConsentAccept(true)
+        }}
         location="bottom"
         buttonText="Accetto tutti i cookies"
         style={{background: '#2B373B', fontSize: '0.75rem'}}
