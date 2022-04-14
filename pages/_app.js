@@ -78,7 +78,8 @@ function MyApp({Component, pageProps}) {
       <CookieConsent
         acceptOnScroll
         onAccept={() => {
-          return setIsCookieConsentAccept(true)
+          setIsCookieConsentAccept(true)
+          return router.reload(window.location.pathname)
         }}
         location="bottom"
         buttonText="Accetto tutti i cookies"
