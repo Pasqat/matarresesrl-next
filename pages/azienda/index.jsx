@@ -4,18 +4,19 @@ import Lottie from 'react-lottie-player'
 
 import Layout from '../../components/Layout'
 import {Grid} from '../../components/grid'
-import {H3, Paragraph} from '../../components/typography'
+import {H2, H6, Paragraph} from '../../components/typography'
 import {HeroSection} from '../../components/sections/hero-section'
 import {Spacer} from '../../components/spacer'
 
 import {LogoSection} from '../../components/sections/logo-section'
-import logoAssogi from '../../public/img/logos/Assogi_logo-300x119.png'
+import {AssogiSection} from '../../components/sections/assogi-section'
 
 import lottiejson from '../../public/img/illustration/Inspiration.json'
 import {FeatureCard} from '../../components/feature-card'
 
 import VitoMatarreseProfileImage from '../../public/img/vito_matarrese.webp'
 import DomenicoMatarreseProfileImage from '../../public/img/domenico_matarrese.webp'
+import cotturaProdotti from '../../public/img/cottura-prodotti.png'
 import {ProjectSection} from '../../components/sections/projects-section'
 
 import projects from '../../data/projects'
@@ -35,7 +36,7 @@ export default function AboutUs() {
       </Head>
 
       <Layout>
-        <div className="mb-24">
+        <div className="mb-12 lg:mb-24">
           <HeroSection
             title="Un partner affidabile per la tua attività"
             subtitle="Chi siamo"
@@ -60,7 +61,7 @@ export default function AboutUs() {
           />
         </div>
 
-        <section className="pt-24" id="team">
+        <section className="-mt-24 pt-24" id="team">
           <Grid rowGap>
             <div className="col-span-full lg:col-span-6">
               <FeatureCard
@@ -128,30 +129,43 @@ export default function AboutUs() {
 
         <Spacer size="base" />
 
-        <section className="mb-24 lg:mb-48">
-          <Grid featured>
-            <div className="col-span-full my-auto mb-14 lg:col-span-3 lg:mr-8">
-              <Image
-                src={logoAssogi}
-                alt="logo Assogi"
-                layout="intrinsic"
-                placeholder="blur"
-              />
+        <section>
+          <Grid className="mb-12 lg:mb-24 xl:mb-48">
+            <div className="col-span-full lg:col-span-6 lg:col-start-1">
+              <div className="aspect-w-4 aspect-h-6 mb-12 lg:mb-0">
+                <Image
+                  alt="prodotti per la cucina professionale"
+                  className="max-w-full rounded-lg shadow-lg"
+                  src={cotturaProdotti}
+                  // width="1000"
+                  // height="1300"
+                  objectFit="cover"
+                  layout="fill"
+                  placeholder="blur"
+                />
+              </div>
             </div>
-            <H3
-              variant="secondary"
-              as="p"
-              className="col-span-full lg:col-span-9"
-            >
-              Dal 2010 facciamo parte del Consorzio ASSOGI, una rete nazionale
-              di professionisti dei grandi impianti per la ristorazione. La
-              forza di una squadra di aziende ed esperti al servizio degli
-              imprenditori e ristoratori italiani.
-            </H3>
+            <div className="col-span-full lg:col-span-5 lg:col-start-8 lg:row-start-1">
+              <H2 id="perche-comprare-da-noi" className="mb-10">
+                {`I nostri punti di forza`}
+              </H2>
+              <H6 as="h3" className="mb-4">
+                {`Qualità`}
+              </H6>
+              <Paragraph className="mb-12">{`Ci impegnamo nella selezione delle migliori attrezzature per la ristorazione prediligendo il Made in Italy. Offriamo ai nostri clienti gli stumenti più tecnologici e innovativi per creare esplosioni di colori e gusto in cucina`}</Paragraph>
+              <H6 as="h3" className="mb-4">{`Consulenza`}</H6>
+              <Paragraph className="mb-12">{`L'esperienza tecnica e l'ascolto delle diverse esigenze ci permette di trovare soluzioni su misura per realizzare progetti e idee che favoriscono l'efficienza e l'ottimizzazione del lavoro.`}</Paragraph>
+              <H6 as="h3" className="mb-4">{`Affidabilità`}</H6>
+              <Paragraph className="mb-12">{`Da quarant'anni operiamo al fianco dei professionisti della ristorazione, li seguiamo passo passo garantendo la sicurezza di potersi affidare ad un partner competente e qualificato.`}</Paragraph>
+            </div>
           </Grid>
         </section>
 
-        <section className="relative mb-24 lg:mb-48">
+        <section className="mb-12 lg:mb-24 xl:mb-48">
+          <AssogiSection />
+        </section>
+
+        <section className="relative mb-12 lg:mb-24 xl:mb-48">
           <LogoSection />
         </section>
       </Layout>

@@ -232,7 +232,7 @@ export default function FormModal({
                       className="leading-tigth text-lg font-medium text-gray-900"
                     >
                       {title ??
-                        'Hai un&apos;idea che vorresti realizzare, o hai bisogno di informazioni?'}
+                        `Hai un'idea che vorresti realizzare, o hai bisogno di informazioni?`}
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">

@@ -7,7 +7,6 @@ import ContactForm from '../components/Form/ContactForm'
 import Layout from '../components/Layout'
 import {LinkButton} from '../components/button'
 import {TestimonialSection} from '../components/sections/testimonial-section'
-import {AssogiSection} from '../components/sections/assogi-section'
 import {ProjectSection} from '../components/sections/projects-section'
 import {LogoSection} from '../components/sections/logo-section'
 
@@ -20,6 +19,7 @@ import {getGroups} from '../lib/newsletter'
 
 import imgHomeAttrezzature from '../public/img/home-attrezzature.jpg'
 import imgHomePartnerOperatori from '../public/img/home-partner-operatori.jpg'
+import logoAssogi from '../public/img/logos/Assogi_logo-300x119.png'
 import {Spacer} from '../components/spacer'
 
 export default function Home({groups}) {
@@ -234,7 +234,31 @@ export default function Home({groups}) {
           </section>
 
           <section className="mb-12 lg:mb-24 xl:mb-48" id="assogi">
-            <AssogiSection />
+            <Grid featured>
+              <a
+                href="https://www.assogi.it"
+                target="_blank"
+                className="col-span-full my-auto mb-14 lg:col-span-3 lg:mr-8"
+                rel="noreferrer"
+              >
+                <Image
+                  src={logoAssogi}
+                  alt="logo Assogi"
+                  layout="intrinsic"
+                  placeholder="blur"
+                />
+              </a>
+              <H3
+                variant="secondary"
+                as="p"
+                className="col-span-full lg:col-span-9"
+              >
+                Dal 2010 facciamo parte del Consorzio ASSOGI, una rete nazionale
+                di professionisti dei grandi impianti per la ristorazione. La
+                forza di una squadra di aziende ed esperti al servizio degli
+                imprenditori e ristoratori italiani.
+              </H3>
+            </Grid>
           </section>
 
           <section className="mb-12 lg:mb-24 xl:mb-48" id="contatti">

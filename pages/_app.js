@@ -76,14 +76,15 @@ function MyApp({Component, pageProps}) {
       <Component {...pageProps} />
       <ScrollToTop />
       <CookieConsent
+        acceptOnScroll
         onAccept={() => setIsCookieConsentAccept(true)}
         location="bottom"
         buttonText="Accetto tutti i cookies"
-        style={{background: '#2B373B'}}
+        style={{background: '#2B373B', fontSize: '0.75rem'}}
         buttonStyle={{
           background: '#DE7C00',
           color: '#fff',
-          fontSize: '16px',
+          // fontSize: '16px',
         }}
       >
         Questo sito web utilizza alcuni cookie per poter miglorare

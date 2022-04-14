@@ -9,7 +9,6 @@ import {Grid} from '../../components/grid'
 import {FeatureCard} from '../../components/feature-card'
 import {H2, H3, H6, Paragraph} from '../../components/typography'
 import {TestimonialSection} from '../../components/sections/testimonial-section'
-import {HeroSection} from '../../components/sections/hero-section'
 
 import IconCucineProfessionali from '../../public/img/icons/icon-cucine-professionali.png'
 import IconMacchineAgro from '../../public/img/icons/icon-macchine-agroalimentare.png'
@@ -17,9 +16,7 @@ import IconProdotti from '../../public/img/icons/icon-prodotti.png'
 import IconRefrigerazione from '../../public/img/icons/icon-regrigerazione.png'
 
 import testimonials from '../../data/testimonials'
-import cotturaProdotti from '../../public/img/cottura-prodotti.png'
 import arredoSuMisura from '../../public/img/arredo-su-misura-prodotti.jpg'
-// image="/img/climatizzazione-prodotti.jpg"
 
 import {getGroups} from '../../lib/newsletter'
 import FormModal from '../../components/Form/FormModal'
@@ -45,36 +42,6 @@ export default function ProductsHome({groups}) {
         </div>
         <main>
           <section className="relative">
-            <Grid className="mb-12 lg:mb-24 xl:mb-48">
-              <div className="col-span-full lg:col-span-6 lg:col-start-1">
-                <div className="aspect-w-4 aspect-h-6 mb-12 lg:mb-0">
-                  <Image
-                    alt="prodotti per la cucina professionale"
-                    className="max-w-full rounded-lg shadow-lg"
-                    src={cotturaProdotti}
-                    // width="1000"
-                    // height="1300"
-                    objectFit="cover"
-                    layout="fill"
-                    placeholder="blur"
-                  />
-                </div>
-              </div>
-              <div className="col-span-full lg:col-span-5 lg:col-start-8 lg:row-start-1">
-                <H2 id="perche-comprare-da-noi" className="mb-10">
-                  {`I nostri punti di forza`}
-                </H2>
-                <H6 as="h3" className="mb-4">
-                  {`Qualità`}
-                </H6>
-                <Paragraph className="mb-12">{`Ci impegnamo nella selezione delle migliori attrezzature per la ristorazione prediligendo il Made in Italy. Offriamo ai nostri clienti gli stumenti più tecnologici e innovativi per creare esplosioni di colori e gusto in cucina`}</Paragraph>
-                <H6 as="h3" className="mb-4">{`Consulenza`}</H6>
-                <Paragraph className="mb-12">{`L'esperienza tecnica e l'ascolto delle diverse esigenze ci permette di trovare soluzioni su misura per realizzare progetti e idee che favoriscono l'efficienza e l'ottimizzazione del lavoro.`}</Paragraph>
-                <H6 as="h3" className="mb-4">{`Affidabilità`}</H6>
-                <Paragraph className="mb-12">{`Da quarant'anni operiamo al fianco dei professionisti della ristorazione, li seguiamo passo passo garantendo la sicurezza di potersi affidare ad un partner competente e qualificato.`}</Paragraph>
-              </div>
-            </Grid>
-
             <Grid className="mb-12 lg:mb-24 xl:mb-48">
               {/* NOTE: `-mt-20 pt-20 for anchor link and sticky navbar` */}
               <div className="col-span-full -mt-20 pt-20" id="lavorazione">

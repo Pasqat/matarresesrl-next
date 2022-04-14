@@ -4,22 +4,35 @@ import Image from 'next/image'
 import {H2, Paragraph} from '../typography'
 import {Grid} from '../grid'
 import logoAssogi from '../../public/img/logos/Assogi_logo-300x119.png'
+import {LinkButton} from '../button'
 
 function AssogiSection() {
   return (
     <Grid featured>
       <div className="col-span-full mb-14 flex flex-col-reverse gap-8 lg:col-span-5 lg:mb-0 lg:flex-col">
-        <H2 className="">
-          Matarrese è fiera di far parte di un prestigioso consorzio: Assogi
+        <H2>
+          Matarrese è fiera di far parte di un prestigioso consorzio:{' '}
+          <LinkButton
+            href="https://www.assogi.it"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Assogi
+          </LinkButton>
         </H2>
-        <div>
+        <a
+          className="my-auto"
+          href="https://www.assogi.it"
+          target="_blank"
+          rel="noreferrer"
+        >
           <Image
             src={logoAssogi}
             alt="logo Assogi"
             layout="intrinsic"
             placeholder="blur"
           />
-        </div>
+        </a>
       </div>
       <div className="col-span-full lg:col-span-5 lg:col-start-8 lg:mr-12">
         <div className="flex flex-col items-center justify-center gap-12">

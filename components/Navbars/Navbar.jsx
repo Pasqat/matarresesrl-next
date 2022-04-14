@@ -8,9 +8,10 @@ import clsx from 'clsx'
 import {ButtonLink} from '../button'
 
 let navigation = [
-  {name: 'Home', href: '/', current: false},
+  // {name: 'Home', href: '/', current: false},
   {name: 'Prodotti', href: '/prodotti', current: false},
   {name: 'Servizi', href: '/servizi', current: false},
+  {name: 'Azienda', href: '/azienda', current: false},
   {name: 'Eventi', href: '/eventi', current: false},
   {name: 'Realizzazioni', href: '/realizzazioni', current: false},
   {name: 'Chi siamo', href: '/azienda', current: false},
