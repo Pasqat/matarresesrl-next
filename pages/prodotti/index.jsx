@@ -7,7 +7,7 @@ import Layout from '../../components/Layout'
 import ProductSection from '../../components/sections/product-section'
 import {Grid} from '../../components/grid'
 import {FeatureCard} from '../../components/feature-card'
-import {H2, H6, Paragraph} from '../../components/typography'
+import {H2, H3, H6, Paragraph} from '../../components/typography'
 import {TestimonialSection} from '../../components/sections/testimonial-section'
 import {HeroSection} from '../../components/sections/hero-section'
 
@@ -44,7 +44,7 @@ export default function ProductsHome({groups}) {
           <ProductSection />
         </div>
         <main>
-          <section className="relative" id="lavorazione">
+          <section className="relative">
             <Grid className="mb-12 lg:mb-24 xl:mb-48">
               <div className="col-span-full lg:col-span-6 lg:col-start-1">
                 <div className="aspect-w-4 aspect-h-6 mb-12 lg:mb-0">
@@ -76,11 +76,9 @@ export default function ProductsHome({groups}) {
             </Grid>
 
             <Grid className="mb-12 lg:mb-24 xl:mb-48">
-              <div className="col-span-full">
+              {/* NOTE: `-mt-20 pt-20 for anchor link and sticky navbar` */}
+              <div className="col-span-full -mt-20 pt-20" id="lavorazione">
                 <H2 className="mb-14">{`Prodotti per la lavorazione e conservazione degli alimenti`}</H2>
-                {/* <H2 as="p" variant="secondary" className="mb-14">
-                  {`Lorem ipsum dolor sit amet`}
-                </H2> */}
               </div>
 
               <div className="col-span-full">
@@ -163,7 +161,7 @@ export default function ProductsHome({groups}) {
             </Grid>
           </section>
 
-          <section className="relative" id="accoglienza">
+          <section className="relative -mt-20 pt-20" id="accoglienza">
             <Grid className="mb-12 lg:mb-24 xl:mb-48">
               <div className="col-span-full lg:col-span-6 lg:col-start-1">
                 <H2 id="perche-comprare-da-noi" className="mb-10">
@@ -252,19 +250,14 @@ export default function ProductsHome({groups}) {
             </div>
           </section>
 
-          <HeroSection
-            title="Trattamento dell'aria"
-            subtitle="Gestiamo il microclima di cucine professionali, locali commerciali, laboratori alimentari e laboratori industriali"
-            image="/img/climatizzazione-prodotti.jpg"
-            imageSize="large"
-          />
-          <section className="relative" id="trattamento-aria">
+          <section className="relative -mt-20 pt-20" id="trattamento-aria">
             <Grid className="mb-12 lg:mb-24 xl:mb-48">
               <div className="col-span-full">
-                <H2 className="mb-14">{`Lavora in un ambiente sano e confortevole`}</H2>
-                {/* <H2 as="p" variant="secondary" className="mb-14">
-                  {`Lorem ipsum dolor sit amet`}
-                </H2> */}
+                <H2>{`Lavora in un ambiente sano e confortevole`}</H2>
+                <H3 as="p" variant="secondary" className="mb-14">
+                  {`Gestiamo il microclima di cucine professionali, 
+                    locali commerciali, laboratori alimentari e laboratori industriali`}
+                </H3>
               </div>
 
               <div className="col-span-full">
@@ -272,7 +265,7 @@ export default function ProductsHome({groups}) {
                   <div className="col-span-full lg:col-span-6">
                     <FeatureCard
                       title="Aspirazione"
-                      description="Riduci l'emissione di fumi e odori in cucina con un impianto di trattamento aria nel rispetto dei più alti stardard qualitativi."
+                      description="Riduci l'emissione di fumi e odori in cucina con impianti di aspirazione, reintegro e depurazione nel rispetto dei più alti stardard qualitativi."
                       // urlText="Scopri di più"
                       // icon={<BriefCaseIcon size={48} />}
                     />
