@@ -78,8 +78,6 @@ function MyApp({Component, pageProps}) {
       <CookieConsent
         acceptOnScroll
         onAccept={() => {
-          fbq.pageview()
-          pageview()
           return setIsCookieConsentAccept(true)
         }}
         location="bottom"
