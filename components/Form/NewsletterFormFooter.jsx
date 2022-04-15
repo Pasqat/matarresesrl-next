@@ -127,7 +127,7 @@ export default function NewsletterForm({
               name="newsletterGroupId"
               onChange={handleChange}
               className={clsx(
-                'focus-ring w-full rounded-lg bg-white py-5 px-8 text-lg font-medium text-black placeholder-gray-500 caret-yellow-500 disabled:bg-gray-100 disabled:text-gray-400',
+                'focus-ring w-full rounded-lg bg-white py-[1.17rem] px-8 text-lg font-medium text-black placeholder-gray-500 caret-yellow-500 disabled:bg-gray-100 disabled:text-gray-400',
                 featured ? 'bg-white' : 'bg-gray-100',
               )}
               aria-describedby={
