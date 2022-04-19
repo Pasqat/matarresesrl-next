@@ -1,6 +1,7 @@
 import {useEffect, useRef, useState} from 'react'
 import Link from 'next/link'
 import * as fbq from '../../lib/fpixel'
+import {gtmEvent} from '../../lib/gtm'
 
 import {H2} from '../typography'
 
@@ -85,6 +86,7 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
         isError: false,
       })
       fbq.event('Contact')
+      gtmEvent('Contact')
       setForm({
         ...form,
         name: '',

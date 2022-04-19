@@ -18,24 +18,32 @@ export default function SocialShareBar({route, title}) {
           // icon="fab fa-facebook"
           icon={<FacebookIcon size="60" />}
           tooltip="su Facebook"
+          title={title}
+          social="Facebook"
         />
         <SocialShareButton
           href={`https://twitter.com/intent/tweet?text=${title}&url=${domainUrl}${route}`}
           // icon="fab fa-twitter"
           icon={<TwitterIcon size="50" />}
           tooltip="su Twitter"
+          title={title}
+          social="Twitter"
         />
         <SocialShareButton
           href={`https://www.linkedin.com/sharing/share-offsite/?url=${domainUrl}${route}`}
           // icon="fab fa-linkedin"
           icon={<LinkedInIcon size="56" />}
           tooltip="su LinkedIn"
+          title={title}
+          social="LinkedIn"
         />
         <SocialShareButton
           href={`mailto:?subject=${title}&body=Ciao, ho pensato che ti interesserà: ${domainUrl}${route}`}
           // icon="fas fa-envelope"
           icon={<MailIcon size="50" />}
           tooltip="via mail"
+          title={title}
+          social="Email"
         />
       </div>
     </>

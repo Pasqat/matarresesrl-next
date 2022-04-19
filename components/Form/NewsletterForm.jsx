@@ -1,5 +1,6 @@
 import {useEffect, useRef, useState} from 'react'
 import Link from 'next/link'
+import {gtmEvent} from '../../lib/gtm'
 
 import {H2} from '../typography'
 
@@ -83,6 +84,7 @@ export default function NewsletterForm({
     })
 
     const {message, error} = await resSubscription.json()
+    gtmEvent('subscription')
 
     if (error) {
       // 4. If there was an error, update the message in state.

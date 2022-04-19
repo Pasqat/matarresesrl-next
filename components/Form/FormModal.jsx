@@ -1,6 +1,7 @@
 import {Fragment, useEffect, useState} from 'react'
 import Link from 'next/link'
 import * as fbq from '../../lib/fpixel'
+import {gtmEvent} from '../../lib/gtm'
 
 import {Dialog, Transition} from '@headlessui/react'
 import clsx from 'clsx'
@@ -132,8 +133,13 @@ export default function FormModal({
           content_name: title,
           value: participants,
         })
+        gtmEvent('complete_registration', {
+          content_name: title,
+          value: participants,
+        })
       } else {
         fbq.event('Contact')
+        gtmEvent('Contact')
       }
       setNotification({
         ...notification,

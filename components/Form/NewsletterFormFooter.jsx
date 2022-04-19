@@ -1,5 +1,6 @@
 import {useEffect, useRef, useState} from 'react'
 import Link from 'next/link'
+import {gtmEvent} from '../../lib/gtm'
 
 import {Paragraph} from '../typography'
 
@@ -75,6 +76,7 @@ export default function NewsletterForm({
       method: 'POST',
     })
 
+    gtmEvent('subscription')
     const {message, error} = await resSubscription.json()
 
     if (error) {
