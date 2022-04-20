@@ -76,7 +76,7 @@ export default function NewsletterForm({
       method: 'POST',
     })
 
-    gtmEvent('subscription')
+    gtmEvent('new_subscriber', {formLocation: 'footer'})
     const {message, error} = await resSubscription.json()
 
     if (error) {

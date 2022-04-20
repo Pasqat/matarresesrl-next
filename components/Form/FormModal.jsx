@@ -139,7 +139,7 @@ export default function FormModal({
         })
       } else {
         fbq.event('Contact')
-        gtmEvent('Contact')
+        gtmEvent('contact', {formLocation: 'Modal form'})
       }
       setNotification({
         ...notification,

@@ -86,7 +86,7 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
         isError: false,
       })
       fbq.event('Contact')
-      gtmEvent('Contact')
+      gtmEvent('contact')
       setForm({
         ...form,
         name: '',
@@ -119,6 +119,7 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
         method: 'POST',
       })
 
+      gtmEvent('new_subscriber', {formLocation: 'Contact Form'})
       const {message, error} = await resSubscription.json()
 
       if (error) {

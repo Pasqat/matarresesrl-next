@@ -84,7 +84,7 @@ export default function NewsletterForm({
     })
 
     const {message, error} = await resSubscription.json()
-    gtmEvent('subscription')
+    gtmEvent('new_subscriber', {formLocation: 'page'})
 
     if (error) {
       // 4. If there was an error, update the message in state.
