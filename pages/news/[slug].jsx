@@ -122,7 +122,7 @@ export async function getStaticProps({params, preview = false, previewData}) {
         postData: data.post,
         posts: data.posts,
       },
-      revalidate: 60 * 60 * 24,
+      revalidate: 60 * 60,
     }
   }
 
