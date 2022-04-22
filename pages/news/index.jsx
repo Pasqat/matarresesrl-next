@@ -284,8 +284,8 @@ export default function News({data}) {
   )
 }
 
-export async function getStaticProps() {
-  const data = await getAllPosts()
+export async function getStaticProps({preview = false}) {
+  const data = await getAllPosts(preview)
   const categories = data.categories
     .filter(category => category.count > 0)
     .map(c => c.name)
@@ -308,6 +308,7 @@ export async function getStaticProps() {
         svg,
         domain,
       },
+      preview,
     },
     revalidate: 60 * 60 * 24,
   }

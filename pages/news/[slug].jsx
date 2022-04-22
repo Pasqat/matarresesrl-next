@@ -16,18 +16,18 @@ import {H1} from '../../components/typography'
 import {getAllPostsWithSlug, getPostAndMorePosts} from '../../lib/query/post'
 import {SeoDataSection} from '../../components/sections/seodata-section'
 
-export default function Post({postData, posts, img, svg}) {
+export default function Post({postData, posts, img, svg, preview}) {
   const router = useRouter()
   const morePosts = posts?.edges
   const tags = postData?.tags?.nodes.flatMap(t => t.name)
 
-  if (!router.isFallback && !postData.slug) {
-    console.log('sdeng 💣️')
-    return <p>hmm...sembra ci sia un errore</p>
-  }
-
+  // if (!router.isFallback && !postData.slug) {
+  //   console.log('sdeng 💣️')
+  //   return <p>hmm...sembra ci sia un errore</p>
+  // }
+  //
   return (
-    <Layout>
+    <Layout preview={preview}>
       {router.isFallback ? (
         <>
           <Head>
@@ -112,8 +112,8 @@ export default function Post({postData, posts, img, svg}) {
   )
 }
 
-export async function getStaticProps({params, preview = false}) {
-  const data = await getPostAndMorePosts(params.slug, preview)
+export async function getStaticProps({params, preview = false, previewData}) {
+  const data = await getPostAndMorePosts(params.slug, preview, previewData)
 
   if (!data?.post?.featuredImage?.node?.sourceUrl) {
     return {
