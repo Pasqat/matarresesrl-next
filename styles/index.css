@@ -251,9 +251,9 @@ strong {
   }
 }
 
-  /* .wp-block-gallery > ul { */
-  /*   @apply relative w-full grid grid-cols-1 gap-x-2 md:grid-cols-3; */
-  /* } */
+  .wp-block-gallery.has-nested-images {
+     @apply relative w-full grid grid-cols-1 gap-x-2 md:grid-cols-3;
+   }
 
 /* Wrapping */
 .Tooltip-Wrapper {
