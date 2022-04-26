@@ -2,7 +2,9 @@ import * as React from 'react'
 import Head from 'next/head'
 import {useRouter} from 'next/dist/client/router'
 import clsx from 'clsx'
+
 import * as fbq from '../../lib/fpixel'
+import {getGroups} from '../../lib/newsletter'
 
 import Layout from '../../components/Layout'
 import {SearchIcon} from '../../components/icons/search-icon'
@@ -13,11 +15,13 @@ import {FeaturedSection} from '../../components/sections/featured-section'
 import {ArticleCard} from '../../components/article-card'
 import {PlusIcon} from '../../components/icons/plus-icon'
 import {Button} from '../../components/button'
+import NewsletterForm from '../../components/Form/NewsletterForm'
 
 import {filterPosts} from '../../actions/utils/blog'
 import {formatDate} from '../../actions/utils/formatDate'
 import {getAllPosts} from '../../lib/query/post'
 import {getPlaiceholder} from 'plaiceholder'
+import {Spacer} from '../../components/spacer'
 
 const PAGE_SIZE = 12
 const initialIndexToShow = PAGE_SIZE
@@ -25,7 +29,7 @@ const initialIndexToShow = PAGE_SIZE
 // this really is not needed, or maybe only the part `(\s|$)?
 const specialQueryRegex = /(?<not>!)?leader:(?<team>\w+)(\s|$)?/g
 
-export default function News({data}) {
+export default function News({data, groups}) {
   const router = useRouter()
 
   const searchParams =
@@ -258,6 +262,12 @@ export default function News({data}) {
               <H3 as="p" variant="secondary" className="mt-24 max-w-lg">
                 {`Purtroppo non è stato trovato nulla con i tuoi criteri di ricerca`}
               </H3>
+              <Spacer size="base" />
+              <NewsletterForm
+                nested
+                groups={groups}
+                title="Iscriviti alla nostra newsletter per rimanere aggiornato sulle ultime novità."
+              />
             </div>
           ) : (
             posts.map(article => (
@@ -290,6 +300,7 @@ export async function getStaticProps({preview = false}) {
     .filter(category => category.count > 0)
     .map(c => c.name)
   const tags = data.tags.filter(tags => tags.count > 0).map(t => t.name)
+  const groups = await getGroups()
 
   const {img, svg} = await getPlaiceholder(
     data.posts[0].featuredImage.node.sourceUrl,
@@ -309,6 +320,7 @@ export async function getStaticProps({preview = false}) {
         domain,
       },
       preview,
+      groups,
     },
     revalidate: 60 * 60 * 24,
   }
