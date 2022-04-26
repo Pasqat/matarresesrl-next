@@ -21,7 +21,6 @@ export default function CoverImage({
       {...rest}
     />
   )
-  // TODO: Maybe creat and add a placeholder image when on coverImage
   return coverImage ? (
     <div className="sm:mx-0">
       {slug ? (

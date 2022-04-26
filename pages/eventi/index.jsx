@@ -112,7 +112,7 @@ export default function Events({data, groups}) {
                 />
               </div>
               <div className="col-span-full lg:col-span-6">
-                {/* TODO: this is FeatureCard exact code, but to have the form
+                {/* NOTE: this is FeatureCard exact code, but to have the form
               modal I thought to paste it here and modify the relevant part*/}
                 <div className="bg-secondary relative flex h-full w-full flex-col items-start rounded-lg px-8 py-12 lg:px-12">
                   <div className="text-primary mb-4 flex flex-none items-end text-xl font-medium">

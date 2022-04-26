@@ -258,7 +258,6 @@ export default function News({data, groups}) {
         <Grid className="mb-12 lg:mb-24 xl:mb-48" ref={resultsRef}>
           {posts.length === 0 ? (
             <div className="col-span-full flex flex-col items-center">
-              {/* // TODO: add a beautiful placeholder img */}
               <H3 as="p" variant="secondary" className="mt-24 max-w-lg">
                 {`Purtroppo non è stato trovato nulla con i tuoi criteri di ricerca`}
               </H3>
