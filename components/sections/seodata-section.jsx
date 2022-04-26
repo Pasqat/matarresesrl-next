@@ -6,7 +6,6 @@ function SeoDataSection({seoData, slug}) {
   return (
     <>
       <title>{seoData.title} | Matarrese srl</title>
-      <meta property="og:image" content={seoData.opengraphImage?.sourceUrl} />
       <link rel="canonical" href={`https://${domain}/${slug}`} />
       <meta
         name="robots"

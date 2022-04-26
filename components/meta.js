@@ -1,5 +1,10 @@
 import Head from 'next/head'
 
+const domain =
+  process.env.NODE_ENV !== 'development'
+    ? `https://${process.env.NEXT_PUBLIC_DOMAIN}`
+    : 'https://localhost:3000'
+
 export default function Meta() {
   return (
     <Head>
@@ -83,7 +88,7 @@ export default function Meta() {
       <meta name="msapplication-TileColor" content="#e0851f" />
       <meta
         name="msapplication-config"
-        content="/img/favicon/browserconfig.xml"
+        content={`${domain}/img/favicon/browserconfig.xml`}
       />
       <meta name="theme-color" content="#e0851f" />
       {/* <link rel="alternate" type="application/rss+xml" href="/feed.xml" /> */}
@@ -91,12 +96,10 @@ export default function Meta() {
         name="description"
         content={`Traduttori di idee, creatori di spazi`}
       />
-      {/*   TODO: what is og:image???     */}
-      {/* <meta property="og:image" content={HOME_OG_IMAGE_URL} /> */}
       <link rel="manifest" href="/img/favicon/manifest.json" />
       <meta
         name="msapplication-TileImage"
-        content="/img/favicon/ms-icon-144x144.png"
+        content={`${domain}/img/favicon/ms-icon-144x144.png"}`}
       />
       <meta property="og:site_name" content="Matarrese srl" />
       <meta property="og:locale" content="it_IT" />

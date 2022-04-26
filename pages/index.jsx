@@ -22,6 +22,11 @@ import imgHomePartnerOperatori from '../public/img/home-partner-operatori.jpg'
 import logoAssogi from '../public/img/logos/Assogi_logo-300x119.png'
 import {Spacer} from '../components/spacer'
 
+const domain =
+  process.env.NODE_ENV !== 'development'
+    ? `https://${process.env.NEXT_PUBLIC_DOMAIN}`
+    : 'https://localhost:3000'
+
 export default function Home({groups}) {
   return (
     <div>
@@ -33,7 +38,22 @@ export default function Home({groups}) {
           name="description"
           content="Allestimento ristoranti, locali commerciali, pizzerie, bar, macellerie, pescherie. Accessori cucine professionali, attrezzatura gastronomia."
         />
-        <link rel="icon" href="/favicon.ico" />
+        <meta
+          property="og:image"
+          content={`${domain}/img/piazza_grande_61.jgp`}
+        />
+        <meta
+          property="og:title"
+          content="Matarrese srl, Traduttori di idee, Creatori di spazi"
+        />
+        <meta
+          property="og:description"
+          content="Allestimento ristoranti, locali commerciali, pizzerie, bar, macellerie, pescherie. Accessori cucine professionali, attrezzatura gastronomia."
+        />
+        <meta property="og:url" content="https://matarrese.it" />
+        <meta property="og:locale" content="it_IT" />
+        <meta property="og:site_name" content="Matarrese srl" />
+        <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
       <Layout navbarTransparent>
