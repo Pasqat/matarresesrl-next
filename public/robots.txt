@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://matarrese.it
+
+# Sitemaps
+Sitemap: https://matarrese.it/sitemap.xml
