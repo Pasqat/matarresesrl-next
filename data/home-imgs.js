@@ -4,7 +4,7 @@ export const images = [
     copy: 'Arrediamo le tue idee',
   },
   {
-    src: '/img/matarrese_srl_home_02.jpg',
+    src: '/img/matarrese_srl_home_02.webp',
     copy: 'Progettiamo i tuoi spazi professionali',
   },
   {
