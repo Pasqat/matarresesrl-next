@@ -101,7 +101,7 @@ export default function AboutUs({lastTwoProjects}) {
                       Vito, da sempre incuriosito dalle tecnologie innovative,
                       studia i grandi impianti della ristorazione professionale
                       per scegliere le soluzioni migliori e tecnologicamente
-                      all’avanguardia.`
+                      all’avanguardia.
                     </p>
                   </>
                 }
