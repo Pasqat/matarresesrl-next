@@ -146,6 +146,7 @@ export async function getStaticProps({params, preview = false, previewData}) {
       img,
       svg,
     },
+    revalidate: 60 * 60,
   }
 }
 
