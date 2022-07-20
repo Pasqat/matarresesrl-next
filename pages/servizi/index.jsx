@@ -1003,6 +1003,39 @@ export default function Servizi({groups}) {
           <section className="mb-24 lg:mb-48">
             <MepaSection />
           </section> */}
+
+          <section
+            className="relative mb-12 bg-gray-800 lg:mb-24 xl:mb-48"
+            id="igiene"
+          >
+            <Grid className="py-24">
+              <div className="col-span-full">
+                <H2 className="mb-3 font-medium text-gray-100 lg:mt-6">{`Servizi e allestimenti per GDO`}</H2>
+                <H2 as="p" className="my-14 text-gray-300">
+                  Progettiamo le{' '}
+                  <span className="font-medium text-white">aree ristoro </span>
+                  dei grandi supermercati, librerie e negozi.{' '}
+                  <span className="font-medium text-white">Allestiamo </span>
+                  il bar,{' '}
+                  <span className="font-medium text-white">arrediamo </span>
+                  la sala,{' '}
+                  <span className="font-medium text-white">
+                    progettiamo e realizziamo
+                  </span>{' '}
+                  cucine per la grande distribuzione organizzata. Mettiamo il
+                  cliente al centro garantendo le{' '}
+                  <span className="font-medium text-white">
+                    attrezzature più innovative{' '}
+                  </span>
+                  e gli{' '}
+                  <span className="font-medium text-white">
+                    arredi più confortevoli.
+                  </span>{' '}
+                </H2>
+              </div>
+            </Grid>
+          </section>
+
           <section className="mx-auto mb-12 max-w-8xl lg:mb-24 xl:mb-48">
             <MepaSection />
           </section>
