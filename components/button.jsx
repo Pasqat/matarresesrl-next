@@ -97,6 +97,9 @@ function LinkButton({
   )
 }
 
+/**
+ * @param {string} size - large | medium | small
+ */
 const ButtonLink = React.forwardRef(function ButtonLink(
   {children, variant = 'primary', className, size, ...rest},
   ref,

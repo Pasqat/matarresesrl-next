@@ -33,6 +33,8 @@ function LogoSection() {
               objectFit="contain"
               src={logo.url}
               alt={`${logo.name} logo`}
+              placeholder="blur"
+              blurDataURL={logo.url}
             />
           )
         })}
