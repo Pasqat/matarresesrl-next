@@ -100,6 +100,11 @@ export const logos = [
     href: null,
   },
   {
+    name: 'Staff',
+    url: '/img/logos/staff.webp',
+    href: null,
+  },
+  {
     name: 'Wegrill',
     url: '/img/logos/wegrill.webp',
     href: null,
