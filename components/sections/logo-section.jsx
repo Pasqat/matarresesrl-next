@@ -34,7 +34,7 @@ function LogoSection() {
               src={logo.url}
               alt={`${logo.name} logo`}
               placeholder="blur"
-             blurDataURL={logo.url}
+              blurDataURL={logo.url}
             />
           )
         })}
