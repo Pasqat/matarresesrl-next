@@ -109,6 +109,21 @@ export default function Project({project}) {
 
               <Spacer size="xs" />
 
+              <section className="flex justify-center">
+                <div className="">
+                  <H2 as="p">{`Hai anche tu un progetto da realizzare?`}</H2>
+                  <Spacer size="2xs" />
+                  <div className="flex justify-center">
+                    <Link href="/contatti" passHref>
+                      <ButtonLink size="large">Contattaci!</ButtonLink>
+                    </Link>
+                  </div>
+                </div>
+              </section>
+              {/**
+
+              <Spacer size="xs" />
+
               <div className="flex justify-center ">
                 <Link href="/realizzazioni" passHref>
                   <ButtonLink size="medium">
@@ -116,6 +131,7 @@ export default function Project({project}) {
                   </ButtonLink>
                 </Link>
               </div>
+*/}
             </div>
           </section>
         </>
