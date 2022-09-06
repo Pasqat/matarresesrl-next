@@ -2,6 +2,7 @@ import {Fragment, useEffect, useState} from 'react'
 import Link from 'next/link'
 import * as fbq from '../../lib/fpixel'
 import {gtmEvent} from '../../lib/gtm'
+import {usePlausible} from 'next-plausible'
 
 import {Dialog, Transition} from '@headlessui/react'
 import clsx from 'clsx'
@@ -23,6 +24,8 @@ export default function FormModal({
   variant = 'primary',
   withButton,
 }) {
+  const plausible = usePlausible()
+
   let [isOpen, setIsOpen] = useState(false)
   const [form, setForm] = useState({
     name: '',
@@ -129,6 +132,9 @@ export default function FormModal({
     if (res.status < 300) {
       setFormButtonDisabled(true)
       if (type === 'reservation') {
+        plausible('Prenotazione', {
+          props: {title: title, partecipanti: participants},
+        })
         fbq.event('CompleteRegistration', {
           content_name: title,
           value: participants,
@@ -138,6 +144,7 @@ export default function FormModal({
           value: participants,
         })
       } else {
+        plausible('Contatti', {props: {form_location: 'Modal Form'}})
         fbq.event('Contact')
         gtmEvent('contact', {formLocation: 'Modal form'})
       }

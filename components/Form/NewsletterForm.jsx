@@ -1,6 +1,7 @@
 import {useEffect, useRef, useState} from 'react'
 import Link from 'next/link'
 import {gtmEvent} from '../../lib/gtm'
+import {usePlausible} from 'next-plausible'
 
 import {H2} from '../typography'
 
@@ -19,6 +20,8 @@ export default function NewsletterForm({
   subtitle = '',
   nested,
 }) {
+  const plausible = usePlausible()
+
   const [form, setForm] = useState({
     email: '',
     newsletterGroupId: 107688379,
@@ -85,6 +88,9 @@ export default function NewsletterForm({
 
     const {message, error} = await resSubscription.json()
     gtmEvent('new_subscriber', {formLocation: 'page'})
+    plausible('Iscrizione Newsletter', {
+      props: {form_location: 'page', groupId: newsletterGroupId},
+    })
 
     if (error) {
       // 4. If there was an error, update the message in state.

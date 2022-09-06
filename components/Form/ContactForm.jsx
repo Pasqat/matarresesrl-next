@@ -2,6 +2,7 @@ import {useEffect, useRef, useState} from 'react'
 import Link from 'next/link'
 import * as fbq from '../../lib/fpixel'
 import {gtmEvent} from '../../lib/gtm'
+import {usePlausible} from 'next-plausible'
 
 import {H2} from '../typography'
 
@@ -14,6 +15,7 @@ import {CheckIcon} from '../icons/check-icon'
 import {ChevronLeftIcon} from '../icons/chevron-left-icon'
 
 export default function ContactForm({hasAutoFocus, featured, groups}) {
+  const plausible = usePlausible()
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -87,6 +89,7 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
       })
       fbq.event('Contact')
       gtmEvent('contact')
+      plausible('Contatti', {props: {form_location: 'Contact Form'}})
       setForm({
         ...form,
         name: '',
@@ -119,6 +122,7 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
         method: 'POST',
       })
 
+      plausible('New subscriber', {props: {form_location: 'Contact Form'}})
       gtmEvent('new_subscriber', {formLocation: 'Contact Form'})
       const {message, error} = await resSubscription.json()
 
