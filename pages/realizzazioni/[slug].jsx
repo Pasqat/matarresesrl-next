@@ -1,4 +1,5 @@
 import {useRouter} from 'next/router'
+import {useState} from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -10,6 +11,10 @@ import HeaderBig from '../../components/Header/HeaderBig'
 import SocialShareBar from '../../components/SocialShareBar/SocialShareBar'
 import {ButtonLink} from '../../components/button'
 
+// TODO: for test
+import Lightbox from 'react-image-lightbox'
+import 'react-image-lightbox/style.css'
+
 import {getProject, getAllProjectsWithSlug} from '../../lib/query/project'
 import {H2, H1} from '../../components/typography'
 import {Spacer} from '../../components/spacer'
@@ -19,6 +24,14 @@ import {SeoDataSection} from '../../components/sections/seodata-section'
 export default function Project({project}) {
   const router = useRouter()
   // const moreEvents = events?.edges
+  // TODO: set with a proper lightbox
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [imgIndex, setImgIndex] = useState(0)
+
+  const setModal = i => {
+    setIsModalOpen(true)
+    setImgIndex(i)
+  }
 
   if (!router.isFallback && !project.slug) {
     return <p>hmm...sembra ci sia un errore</p>
@@ -81,10 +94,48 @@ export default function Project({project}) {
                               nested
                               className="mb-8 gap-2 lg:mb-24 lg:gap-4"
                             >
-                              {project.galleria.map(image => (
+                              {isModalOpen && (
+                                <Lightbox
+                                  nextLabel="Prossima immagine"
+                                  prevLabel="Immagine precedente"
+                                  closeLabel="Chiudi"
+                                  imageTitle={
+                                    project.galleria[imgIndex].altText
+                                  }
+                                  imageCaption={
+                                    project.galleria[imgIndex].caption
+                                  }
+                                  mainSrc={project.galleria[imgIndex].sourceUrl}
+                                  nextSrc={
+                                    project.galleria[
+                                      (imgIndex + 1) % project.galleria.length
+                                    ].sourceUrl
+                                  }
+                                  prevSrc={
+                                    project.galleria[
+                                      (imgIndex + project.galleria.length - 1) %
+                                        project.galleria.length
+                                    ].sourceUrl
+                                  }
+                                  onCloseRequest={() => setIsModalOpen(false)}
+                                  onMovePrevRequest={() =>
+                                    setImgIndex(
+                                      (imgIndex + project.galleria.length - 1) %
+                                        project.galleria.length,
+                                    )
+                                  }
+                                  onMoveNextRequest={() =>
+                                    setImgIndex(
+                                      (imgIndex + 1) % project.galleria.length,
+                                    )
+                                  }
+                                />
+                              )}
+                              {project.galleria.map((image, i) => (
                                 <div
                                   key={image.id}
-                                  className="relative col-span-4 h-32 lg:h-64"
+                                  className="relative col-span-4 h-32 cursor-pointer lg:h-64"
+                                  onClick={() => setModal(i)}
                                 >
                                   <Image
                                     src={image.sourceUrl}
