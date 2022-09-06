@@ -42,6 +42,12 @@ function MyApp({Component, pageProps}) {
       {isCookieConsentAccept ? (
         <>
           <Script
+            id="plausible"
+            strategy="afterInteractive"
+            data-domain="matarrese.it"
+            src="https://plausible.io/js/plausible.js"
+          ></Script>
+          <Script
             id="fb-pixel"
             strategy="afterInteractive"
             dangerouslySetInnerHTML={{
