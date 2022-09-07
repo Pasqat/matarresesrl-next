@@ -78,14 +78,20 @@ function MyApp({Component, pageProps}) {
         <Component {...pageProps} />
         <ScrollToTop />
         <CookieConsent
-          acceptOnScroll
-          onAccept={() => {
-            setIsCookieConsentAccept(true)
+          enableDeclineButton
+          onDecline={() => {
+            setIsCookieConsentAccept(false)
             return router.reload(window.location.pathname)
           }}
+          declineButtonText="Declino"
+          // acceptOnScroll
+          // onAccept={() => {
+          //   setIsCookieConsentAccept(true)
+          //   return router.reload(window.location.pathname)
+          // }}
           location="bottom"
           buttonText="Accetto tutti i cookies"
-          style={{background: '#2B373B', fontSize: '0.75rem'}}
+          style={{background: '#2B373B', fontSize: '1rem'}}
           buttonStyle={{
             background: '#DE7C00',
             color: '#fff',
