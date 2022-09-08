@@ -12,7 +12,7 @@ import SocialShareBar from '../../components/SocialShareBar/SocialShareBar'
 import {H2, H3, Paragraph} from '../../components/typography'
 
 import {getAllEventsWithSlug, getEvent} from '../../lib/query/event'
-import {formatDate, getHour} from '../../actions/utils/formatDate'
+import {formatDate, getHour, isFutureDate} from '../../actions/utils/formatDate'
 import {SeoDataSection} from '../../components/sections/seodata-section'
 
 export default function Events({event}) {
@@ -98,15 +98,17 @@ export default function Events({event}) {
                           )}
                         </div>
                       </div>
-                      <div className="w-4/12 self-center px-4 text-right">
-                        <FormModal
-                          buttonText="Partecipa"
-                          buttonClassName="px-4 py-2 mb-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-gradient-to-tl from-primary to-secondary rounded shadow outline-none active:bg-yellow-500 hover:shadow-md focus:outline-none sm:mr-2"
-                          type="reservation"
-                          title={event.title}
-                          withButton
-                        />
-                      </div>
+                      {isFutureDate(event.startDate) ? (
+                        <div className="w-4/12 self-center px-4 text-right">
+                          <FormModal
+                            buttonText="Partecipa"
+                            buttonClassName="px-4 py-2 mb-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-gradient-to-tl from-primary to-secondary rounded shadow outline-none active:bg-yellow-500 hover:shadow-md focus:outline-none sm:mr-2"
+                            type="reservation"
+                            title={event.title}
+                            withButton
+                          />
+                        </div>
+                      ) : null}
                     </div>
                     <div className="mt-12">
                       <H3 className="mb-2 text-center" variant="secondary">
@@ -146,19 +148,21 @@ export default function Events({event}) {
                       <div className="flex flex-wrap justify-center">
                         <div className="w-full px-4 lg:w-9/12">
                           <EventBody content={event.content} />
-                          <div className="flex items-center justify-end">
-                            <Paragraph className="mr-8 font-medium">
-                              Prenota subito il tuo posto all&apos;evento.
-                              Clicca su &ldquo;Partecipa&rdquo;
-                            </Paragraph>
-                            <FormModal
-                              buttonText="Partecipa"
-                              buttonClassName="px-4 py-2 mb-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-gradient-to-tl from-primary to-secondary rounded shadow outline-none active:bg-yellow-500 hover:shadow-md focus:outline-none sm:mr-2"
-                              type="reservation"
-                              title={event.title}
-                              withButton
-                            />
-                          </div>
+                          {isFutureDate(event.startDate) ? (
+                            <div className="flex items-center justify-end">
+                              <Paragraph className="mr-8 font-medium">
+                                Prenota subito il tuo posto all&apos;evento.
+                                Clicca su &ldquo;Partecipa&rdquo;
+                              </Paragraph>
+                              <FormModal
+                                buttonText="Partecipa"
+                                buttonClassName="px-4 py-2 mb-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-gradient-to-tl from-primary to-secondary rounded shadow outline-none active:bg-yellow-500 hover:shadow-md focus:outline-none sm:mr-2"
+                                type="reservation"
+                                title={event.title}
+                                withButton
+                              />
+                            </div>
+                          ) : null}
                         </div>
                       </div>
                     </div>

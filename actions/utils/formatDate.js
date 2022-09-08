@@ -1,4 +1,4 @@
-import {format} from 'date-fns'
+import {format, isFuture, parseISO} from 'date-fns'
 import {it} from 'date-fns/locale'
 
 export const formatDate = date => {
@@ -33,4 +33,8 @@ export const getHour = date => {
   const newDate = new Date(date)
 
   return format(newDate, 'HH:mm')
+}
+
+export const isFutureDate = date => {
+  return isFuture(parseISO(date))
 }
