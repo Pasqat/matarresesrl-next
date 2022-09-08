@@ -12,7 +12,7 @@ import SocialShareBar from '../../components/SocialShareBar/SocialShareBar'
 import {H2, H3, Paragraph} from '../../components/typography'
 
 import {getAllEventsWithSlug, getEvent} from '../../lib/query/event'
-import {formatDate, getHour, isFutureDate} from '../../actions/utils/formatDate'
+import {formatDate, getHour} from '../../actions/utils/formatDate'
 import {SeoDataSection} from '../../components/sections/seodata-section'
 
 export default function Events({event}) {
@@ -98,7 +98,7 @@ export default function Events({event}) {
                           )}
                         </div>
                       </div>
-                      {isFutureDate(event.startDate) ? (
+                      {!event.isPast ? (
                         <div className="w-4/12 self-center px-4 text-right">
                           <FormModal
                             buttonText="Partecipa"
@@ -148,7 +148,7 @@ export default function Events({event}) {
                       <div className="flex flex-wrap justify-center">
                         <div className="w-full px-4 lg:w-9/12">
                           <EventBody content={event.content} />
-                          {isFutureDate(event.startDate) ? (
+                          {!event.isPast ? (
                             <div className="flex items-center justify-end">
                               <Paragraph className="mr-8 font-medium">
                                 Prenota subito il tuo posto all&apos;evento.
