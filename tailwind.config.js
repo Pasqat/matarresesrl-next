@@ -50,9 +50,6 @@ module.exports = {
       secondary: 'var(--color-red-500)',
     }),
     extend: {
-      textShadow: {
-        '2xl': '0px 0px 30px rgb(0,0,0), 5px 5px 3px #000000',
-      },
       gridTemplateRows: {
         'max-content': 'max-content',
       },
@@ -293,6 +290,5 @@ module.exports = {
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
     require('autoprefixer'),
-    require('tailwindcss-textshadow'),
   ],
 }
