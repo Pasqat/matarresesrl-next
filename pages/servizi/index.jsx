@@ -18,6 +18,10 @@ import {Spacer} from '../../components/spacer'
 export default function Servizi({groups}) {
   const [position, setPosition] = useState(0)
   const divProgettazione = useRef(null)
+  // NOTE: Try to use multiple useRef, one for each box and than
+  // positionReached() should take the offsetTop of each ref
+  // could a component that integrate useRef be created?
+  // see https://stackoverflow.com/a/59450066
 
   function calculateScrollDistance() {
     const {offsetTop, offsetHeight} = divProgettazione.current
