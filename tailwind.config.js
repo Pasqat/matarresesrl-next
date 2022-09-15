@@ -30,7 +30,7 @@ module.exports = {
       },
       yellow: {
         400: 'var(--color-yellow-400)',
-        500: 'var(--color-yellow-500)',
+        500: 'rgb(var(--color-yellow-500) / <alpha-value>)',
         600: 'var(--color-yellow-600)',
       },
       red: {
