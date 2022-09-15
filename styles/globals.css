@@ -17,7 +17,7 @@
   --color-red-500: #ff4545;
   --color-red-600: #ff4545;
   --color-yellow-400: #ffd644;
-  --color-yellow-500: #DE7C00;
+  --color-yellow-500: 222 124 0;    /* #de7c00 */
 }
 
 :focus:not(:focus-visible) {

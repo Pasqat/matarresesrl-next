@@ -172,8 +172,6 @@ export const getServerSideProps = withSessionSsr(
       body: JSON.stringify({query, variables}),
     })
 
-    console.log(data)
-
     if (!data?.post?.featuredImage?.node?.mediaItemUrl) {
       return {
         props: {
