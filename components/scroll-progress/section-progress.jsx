@@ -6,7 +6,6 @@ export default function SectionProgress({sectionRef, lgHidden, endOfProgress}) {
   const [positionReached, setPositionReached] = useState(null)
 
   const getPosition = () => {
-
     console.log(sectionRef.current)
 
     const y =
@@ -41,8 +40,8 @@ export default function SectionProgress({sectionRef, lgHidden, endOfProgress}) {
       <div>
         <div
           className={clsx(
-            (positionReached && endOfProgress) && 'bg-green-500',
-            (positionReached && !endOfProgress) && 'bg-yellow-500',
+            positionReached && endOfProgress && 'bg-green-500',
+            positionReached && !endOfProgress && 'bg-yellow-500',
             'flex h-10 w-10 items-center justify-center rounded-full border',
           )}
         >
