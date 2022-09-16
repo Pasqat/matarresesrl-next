@@ -1,7 +1,7 @@
-import {useState, useEffect, useRef} from 'react'
+import {useRef} from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
-import clsx from 'clsx'
+// import clsx from 'clsx'
 
 import ContactForm from '../../components/Form/ContactForm'
 import Layout from '../../components/Layout'
@@ -11,39 +11,19 @@ import {FeatureCard} from '../../components/feature-card'
 import {Grid} from '../../components/grid'
 import {MepaSection} from '../../components/sections/mepa-section'
 import FormModal from '../../components/Form/FormModal'
+import SectionProgress from '../../components/scroll-progress/section-progress.jsx'
 
 import {getGroups} from '../../lib/newsletter'
 import {Spacer} from '../../components/spacer'
 
 export default function Servizi({groups}) {
-  const [position, setPosition] = useState(0)
-  const divProgettazione = useRef(null)
-  // NOTE: Try to use multiple useRef, one for each box and than
-  // positionReached() should take the offsetTop of each ref
-  // could a component that integrate useRef be created?
-  // see https://stackoverflow.com/a/59450066
-
-  function calculateScrollDistance() {
-    const {offsetTop, offsetHeight} = divProgettazione.current
-    // Calculate the position of bottom
-    const offsetBottom = offsetTop + offsetHeight
-    // TODO: need to be rafactored. Not dynamic.
-    const scrollPosition = Math.floor(
-      ((window.scrollY - offsetTop) / offsetBottom) * 100,
-    )
-
-    return setPosition(scrollPosition)
-  }
-
-  useEffect(() => {
-    window.addEventListener('scroll', calculateScrollDistance)
-
-    return () => window.removeEventListener('scroll', calculateScrollDistance)
-  })
-
-  function positionReached(p) {
-    return position > p
-  }
+  const section1 = useRef(null)
+  const section2 = useRef(null)
+  const section3 = useRef(null)
+  const section4 = useRef(null)
+  const section5 = useRef(null)
+  const section6 = useRef(null)
+  const section7 = useRef(null)
 
   return (
     <div>
@@ -201,49 +181,10 @@ export default function Servizi({groups}) {
                 {`Grandi idee per prodotti di successo`}
               </H2> */}
               <div className="flex items-start justify-between">
-                {/* NOTE: I really need to find a better way to calculate progress of the position and coloring icons */}
                 <div className="sticky top-32 hidden w-full md:col-span-4 lg:block">
                   <div className="lg:pr-16">
                     <div className="flex">
-                      <div className="mr-4 flex flex-col items-center">
-                        <div>
-                          <div
-                            className={clsx(
-                              'flex h-10 w-10 items-center justify-center rounded-full border',
-                              positionReached(0) && 'bg-yellow-500',
-                            )}
-                          >
-                            <svg
-                              className={clsx(
-                                'w-4',
-                                positionReached(0)
-                                  ? 'text-white'
-                                  : 'text-gray-500',
-                              )}
-                              stroke="currentColor"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              viewBox="0 0 24 24"
-                            >
-                              <line
-                                fill="none"
-                                strokeMiterlimit="10"
-                                x1="12"
-                                y1="2"
-                                x2="12"
-                                y2="22"
-                              />
-                              <polyline
-                                fill="none"
-                                strokeMiterlimit="10"
-                                points="19,15 12,22 5,15"
-                              />
-                            </svg>
-                          </div>
-                        </div>
-                        <div className="h-full w-px bg-gray-300" />
-                      </div>
+                      <SectionProgress sectionRef={section1} />
                       <div className="pt-1 pb-8">
                         <Link href="#consulenza-tecnica">
                           <a className="mb-2 text-lg font-bold">
@@ -253,45 +194,7 @@ export default function Servizi({groups}) {
                       </div>
                     </div>
                     <div className="flex">
-                      <div className="mr-4 flex flex-col items-center">
-                        <div>
-                          <div
-                            className={clsx(
-                              positionReached(18) && 'bg-yellow-500',
-                              'flex h-10 w-10 items-center justify-center rounded-full border',
-                            )}
-                          >
-                            <svg
-                              className={clsx(
-                                'w-4',
-                                positionReached(18)
-                                  ? 'text-white'
-                                  : 'text-gray-600',
-                              )}
-                              stroke="currentColor"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              viewBox="0 0 24 24"
-                            >
-                              <line
-                                fill="none"
-                                strokeMiterlimit="10"
-                                x1="12"
-                                y1="2"
-                                x2="12"
-                                y2="22"
-                              />
-                              <polyline
-                                fill="none"
-                                strokeMiterlimit="10"
-                                points="19,15 12,22 5,15"
-                              />
-                            </svg>
-                          </div>
-                        </div>
-                        <div className="h-full w-px bg-gray-300" />
-                      </div>
+                      <SectionProgress sectionRef={section2} />
                       <div className="pt-1 pb-8">
                         <Link href="#il-progetto">
                           <a className="mb-2 text-lg font-bold">Il progetto</a>
@@ -302,45 +205,7 @@ export default function Servizi({groups}) {
                       </div>
                     </div>
                     <div className="flex">
-                      <div className="mr-4 flex flex-col items-center">
-                        <div>
-                          <div
-                            className={clsx(
-                              positionReached(33) && 'bg-yellow-500',
-                              'flex h-10 w-10 items-center justify-center rounded-full border',
-                            )}
-                          >
-                            <svg
-                              className={clsx(
-                                'w-4',
-                                positionReached(33)
-                                  ? 'text-white'
-                                  : 'text-gray-600',
-                              )}
-                              stroke="currentColor"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              viewBox="0 0 24 24"
-                            >
-                              <line
-                                fill="none"
-                                strokeMiterlimit="10"
-                                x1="12"
-                                y1="2"
-                                x2="12"
-                                y2="22"
-                              />
-                              <polyline
-                                fill="none"
-                                strokeMiterlimit="10"
-                                points="19,15 12,22 5,15"
-                              />
-                            </svg>
-                          </div>
-                        </div>
-                        <div className="h-full w-px bg-gray-300" />
-                      </div>
+                      <SectionProgress sectionRef={section3} />
                       <div className="pt-1 pb-8">
                         <Link href="#iter-operativo">
                           <a className="mb-2 text-lg font-bold">
@@ -350,45 +215,7 @@ export default function Servizi({groups}) {
                       </div>
                     </div>
                     <div className="flex">
-                      <div className="mr-4 flex flex-col items-center">
-                        <div>
-                          <div
-                            className={clsx(
-                              positionReached(45) && 'bg-yellow-500',
-                              'flex h-10 w-10 items-center justify-center rounded-full border',
-                            )}
-                          >
-                            <svg
-                              className={clsx(
-                                'w-4',
-                                positionReached(45)
-                                  ? 'text-white'
-                                  : 'text-gray-600',
-                              )}
-                              stroke="currentColor"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              viewBox="0 0 24 24"
-                            >
-                              <line
-                                fill="none"
-                                strokeMiterlimit="10"
-                                x1="12"
-                                y1="2"
-                                x2="12"
-                                y2="22"
-                              />
-                              <polyline
-                                fill="none"
-                                strokeMiterlimit="10"
-                                points="19,15 12,22 5,15"
-                              />
-                            </svg>
-                          </div>
-                        </div>
-                        <div className="h-full w-px bg-gray-300" />
-                      </div>
+                      <SectionProgress sectionRef={section4} />
                       <div className="pt-1 pb-8">
                         <Link href="#arredi-su-misura">
                           <a className="mb-2 text-lg font-bold">
@@ -398,45 +225,7 @@ export default function Servizi({groups}) {
                       </div>
                     </div>
                     <div className="flex">
-                      <div className="mr-4 flex flex-col items-center">
-                        <div>
-                          <div
-                            className={clsx(
-                              positionReached(54) && 'bg-yellow-500',
-                              'flex h-10 w-10 items-center justify-center rounded-full border',
-                            )}
-                          >
-                            <svg
-                              className={clsx(
-                                'w-4',
-                                positionReached(54)
-                                  ? 'text-white'
-                                  : 'text-gray-600',
-                              )}
-                              stroke="currentColor"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              viewBox="0 0 24 24"
-                            >
-                              <line
-                                fill="none"
-                                strokeMiterlimit="10"
-                                x1="12"
-                                y1="2"
-                                x2="12"
-                                y2="22"
-                              />
-                              <polyline
-                                fill="none"
-                                strokeMiterlimit="10"
-                                points="19,15 12,22 5,15"
-                              />
-                            </svg>
-                          </div>
-                        </div>
-                        <div className="h-full w-px bg-gray-300" />
-                      </div>
+                      <SectionProgress sectionRef={section5} />
                       <div className="pt-1 pb-8">
                         <Link href="#coordinamento-lavori">
                           <a className="mb-2 text-lg font-bold">
@@ -446,45 +235,7 @@ export default function Servizi({groups}) {
                       </div>
                     </div>
                     <div className="flex">
-                      <div className="mr-4 flex flex-col items-center">
-                        <div>
-                          <div
-                            className={clsx(
-                              positionReached(60) && 'bg-yellow-500',
-                              'flex h-10 w-10 items-center justify-center rounded-full border',
-                            )}
-                          >
-                            <svg
-                              className={clsx(
-                                'w-4',
-                                positionReached(60)
-                                  ? 'text-white'
-                                  : 'text-gray-600',
-                              )}
-                              stroke="currentColor"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              viewBox="0 0 24 24"
-                            >
-                              <line
-                                fill="none"
-                                strokeMiterlimit="10"
-                                x1="12"
-                                y1="2"
-                                x2="12"
-                                y2="22"
-                              />
-                              <polyline
-                                fill="none"
-                                strokeMiterlimit="10"
-                                points="19,15 12,22 5,15"
-                              />
-                            </svg>
-                          </div>
-                        </div>
-                        <div className="h-full w-px bg-gray-300" />
-                      </div>
+                      <SectionProgress sectionRef={section6} />
                       <div className="pt-1 pb-8">
                         <Link href="#collaudo">
                           <a className="mb-2 text-lg font-bold">Collaudo</a>
@@ -492,36 +243,7 @@ export default function Servizi({groups}) {
                       </div>
                     </div>
                     <div className="flex">
-                      <div className="mr-4 flex flex-col items-center">
-                        <div>
-                          <div
-                            className={clsx(
-                              positionReached(64) && 'bg-green-500',
-                              'flex h-10 w-10 items-center justify-center rounded-full border',
-                            )}
-                          >
-                            <svg
-                              className={clsx(
-                                'w-4',
-                                positionReached(64)
-                                  ? 'text-white'
-                                  : 'text-gray-600',
-                              )}
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <polyline
-                                fill="none"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeMiterlimit="10"
-                                points="6,12 10,16 18,8"
-                              />
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
+                      <SectionProgress sectionRef={section6} endOfProgress />
                       <div className="pt-1">
                         <p className="mb-2 text-lg font-bold">
                           Congratulazioni!
@@ -531,50 +253,16 @@ export default function Servizi({groups}) {
                     </div>
                   </div>
                 </div>
-
-                <div className="md:col-span-8" ref={divProgettazione}>
+                <div className="md:col-span-8">
                   <div className="flex">
-                    <div className="mr-4 flex flex-col items-center lg:hidden">
-                      <div>
-                        <div
-                          className={clsx(
-                            'flex h-10 w-10 items-center justify-center rounded-full border',
-                            positionReached(0) && 'bg-yellow-500',
-                          )}
-                        >
-                          <svg
-                            className={clsx(
-                              'w-4',
-                              positionReached(0)
-                                ? 'text-white'
-                                : 'text-gray-500',
-                            )}
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            viewBox="0 0 24 24"
-                          >
-                            <line
-                              fill="none"
-                              strokeMiterlimit="10"
-                              x1="12"
-                              y1="2"
-                              x2="12"
-                              y2="22"
-                            />
-                            <polyline
-                              fill="none"
-                              strokeMiterlimit="10"
-                              points="19,15 12,22 5,15"
-                            />
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="h-full w-px bg-gray-300" />
-                    </div>
-                    <div className="bg-secondary mb-8 rounded-lg p-12 text-lg lg:mb-16">
-                      <H3 id="consulenza-tecnica">Consulenza tecnica</H3>
+                    <SectionProgress sectionRef={section1} lgHidden />
+                    <div
+                      ref={section1}
+                      className="bg-secondary mb-8 rounded-lg p-12 text-lg lg:mb-16"
+                    >
+                      <H3 className="-mt-20 pt-20" id="consulenza-tecnica">
+                        Consulenza tecnica
+                      </H3>
                       <Paragraph className="mt-4 leading-relaxed text-gray-500">
                         Ascoltiamo le idee del cliente per trasformarle in{' '}
                         <strong>progetti reali.</strong>
@@ -598,46 +286,11 @@ export default function Servizi({groups}) {
                     </div>
                   </div>
                   <div className="flex">
-                    <div className="mr-4 flex flex-col items-center lg:hidden">
-                      <div>
-                        <div
-                          className={clsx(
-                            positionReached(18) && 'bg-yellow-500',
-                            'flex h-10 w-10 items-center justify-center rounded-full border',
-                          )}
-                        >
-                          <svg
-                            className={clsx(
-                              'w-4',
-                              positionReached(18)
-                                ? 'text-white'
-                                : 'text-gray-600',
-                            )}
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            viewBox="0 0 24 24"
-                          >
-                            <line
-                              fill="none"
-                              strokeMiterlimit="10"
-                              x1="12"
-                              y1="2"
-                              x2="12"
-                              y2="22"
-                            />
-                            <polyline
-                              fill="none"
-                              strokeMiterlimit="10"
-                              points="19,15 12,22 5,15"
-                            />
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="h-full w-px bg-gray-300" />
-                    </div>
-                    <div className="bg-secondary mb-8 rounded-lg p-12 text-lg lg:mb-16">
+                    <SectionProgress sectionRef={section2} lgHidden />
+                    <div
+                      ref={section2}
+                      className="bg-secondary mb-8 rounded-lg p-12 text-lg lg:mb-16"
+                    >
                       <H3 id="il-progetto">Il progetto</H3>
                       <p className="mt-4 leading-relaxed text-gray-500">
                         Realizziamo disegni, calcoli e relazioni che determinano
@@ -660,46 +313,11 @@ export default function Servizi({groups}) {
                     </div>
                   </div>
                   <div className="flex">
-                    <div className="mr-4 flex flex-col items-center lg:hidden">
-                      <div>
-                        <div
-                          className={clsx(
-                            positionReached(33) && 'bg-yellow-500',
-                            'flex h-10 w-10 items-center justify-center rounded-full border',
-                          )}
-                        >
-                          <svg
-                            className={clsx(
-                              'w-4',
-                              positionReached(33)
-                                ? 'text-white'
-                                : 'text-gray-600',
-                            )}
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            viewBox="0 0 24 24"
-                          >
-                            <line
-                              fill="none"
-                              strokeMiterlimit="10"
-                              x1="12"
-                              y1="2"
-                              x2="12"
-                              y2="22"
-                            />
-                            <polyline
-                              fill="none"
-                              strokeMiterlimit="10"
-                              points="19,15 12,22 5,15"
-                            />
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="h-full w-px bg-gray-300" />
-                    </div>
-                    <div className="bg-secondary mb-8 rounded-lg p-12 text-lg lg:mb-16">
+                    <SectionProgress sectionRef={section3} lgHidden />
+                    <div
+                      ref={section3}
+                      className="bg-secondary mb-8 rounded-lg p-12 text-lg lg:mb-16"
+                    >
                       <H3 id="iter-operativo">Iter Operativo</H3>
                       <p className="mt-4 leading-relaxed text-gray-500">
                         L’iter operativo da seguire per aprire un ristorante, un
@@ -720,46 +338,11 @@ export default function Servizi({groups}) {
                     </div>
                   </div>
                   <div className="flex">
-                    <div className="mr-4 flex flex-col items-center lg:hidden">
-                      <div>
-                        <div
-                          className={clsx(
-                            positionReached(45) && 'bg-yellow-500',
-                            'flex h-10 w-10 items-center justify-center rounded-full border',
-                          )}
-                        >
-                          <svg
-                            className={clsx(
-                              'w-4',
-                              positionReached(45)
-                                ? 'text-white'
-                                : 'text-gray-600',
-                            )}
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            viewBox="0 0 24 24"
-                          >
-                            <line
-                              fill="none"
-                              strokeMiterlimit="10"
-                              x1="12"
-                              y1="2"
-                              x2="12"
-                              y2="22"
-                            />
-                            <polyline
-                              fill="none"
-                              strokeMiterlimit="10"
-                              points="19,15 12,22 5,15"
-                            />
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="h-full w-px bg-gray-300" />
-                    </div>
-                    <div className="bg-secondary mb-8 rounded-lg p-12 text-lg lg:mb-16">
+                    <SectionProgress sectionRef={section4} lgHidden />
+                    <div
+                      ref={section4}
+                      className="bg-secondary mb-8 rounded-lg p-12 text-lg lg:mb-16"
+                    >
                       <H3 id="arredi-su-misura">
                         Realizzazione Arredi su misura
                       </H3>
@@ -782,46 +365,11 @@ export default function Servizi({groups}) {
                     </div>
                   </div>
                   <div className="flex">
-                    <div className="mr-4 flex flex-col items-center lg:hidden">
-                      <div>
-                        <div
-                          className={clsx(
-                            positionReached(54) && 'bg-yellow-500',
-                            'flex h-10 w-10 items-center justify-center rounded-full border',
-                          )}
-                        >
-                          <svg
-                            className={clsx(
-                              'w-4',
-                              positionReached(54)
-                                ? 'text-white'
-                                : 'text-gray-600',
-                            )}
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            viewBox="0 0 24 24"
-                          >
-                            <line
-                              fill="none"
-                              strokeMiterlimit="10"
-                              x1="12"
-                              y1="2"
-                              x2="12"
-                              y2="22"
-                            />
-                            <polyline
-                              fill="none"
-                              strokeMiterlimit="10"
-                              points="19,15 12,22 5,15"
-                            />
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="h-full w-px bg-gray-300" />
-                    </div>
-                    <div className="bg-secondary mb-8 rounded-lg p-12 text-lg lg:mb-16">
+                    <SectionProgress sectionRef={section5} lgHidden />
+                    <div
+                      ref={section5}
+                      className="bg-secondary mb-8 rounded-lg p-12 text-lg lg:mb-16"
+                    >
                       <H3 id="coordinamento-lavori">Coordinamento lavori</H3>
                       <p className="mt-4 leading-relaxed text-gray-500">
                         La realizzazione di un progetto è seguita costantemente
@@ -833,46 +381,11 @@ export default function Servizi({groups}) {
                     </div>
                   </div>
                   <div className="flex">
-                    <div className="mr-4 flex flex-col items-center lg:hidden">
-                      <div>
-                        <div
-                          className={clsx(
-                            positionReached(60) && 'bg-yellow-500',
-                            'flex h-10 w-10 items-center justify-center rounded-full border',
-                          )}
-                        >
-                          <svg
-                            className={clsx(
-                              'w-4',
-                              positionReached(60)
-                                ? 'text-white'
-                                : 'text-gray-600',
-                            )}
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            viewBox="0 0 24 24"
-                          >
-                            <line
-                              fill="none"
-                              strokeMiterlimit="10"
-                              x1="12"
-                              y1="2"
-                              x2="12"
-                              y2="22"
-                            />
-                            <polyline
-                              fill="none"
-                              strokeMiterlimit="10"
-                              points="19,15 12,22 5,15"
-                            />
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="h-full w-px bg-gray-300" />
-                    </div>
-                    <div className="bg-secondary mb-8 rounded-lg p-12 text-lg lg:mb-16">
+                    <SectionProgress sectionRef={section6} lgHidden />
+                    <div
+                      ref={section6}
+                      className="bg-secondary mb-8 rounded-lg p-12 text-lg lg:mb-16"
+                    >
                       <H3 id="collaudo">Collaudo</H3>
                       <p className="mt-4 leading-relaxed text-gray-500">
                         L’arredo viene consegnato e collocato nella sua
@@ -882,37 +395,12 @@ export default function Servizi({groups}) {
                     </div>
                   </div>
                   <div className="flex lg:hidden">
-                    <div className="mr-4 flex flex-col items-center">
-                      <div>
-                        <div
-                          className={clsx(
-                            positionReached(64) && 'bg-green-500',
-                            'flex h-10 w-10 items-center justify-center rounded-full border',
-                          )}
-                        >
-                          <svg
-                            className={clsx(
-                              'w-4',
-                              positionReached(64)
-                                ? 'text-white'
-                                : 'text-gray-600',
-                            )}
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <polyline
-                              fill="none"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeMiterlimit="10"
-                              points="6,12 10,16 18,8"
-                            />
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="pt-1">
+                    <SectionProgress
+                      sectionRef={section6}
+                      lgHidden
+                      endOfProgress
+                    />
+                    <div ref={section7} className="pt-1">
                       <p className="text-2xl font-bold">Congratulazioni 🎉</p>
                     </div>
                   </div>
