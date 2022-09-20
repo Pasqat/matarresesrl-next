@@ -84,11 +84,11 @@ export const logos = [
     url: '/img/logos/robotcoupe.webp',
     href: null,
   },
-  {
-    name: 'Scotsman',
-    url: '/img/logos/scotsman1.png',
-    href: null,
-  },
+  // {
+  //   name: 'Scotsman',
+  //   url: '/img/logos/scotsman1.png',
+  //   href: null,
+  // },
   {
     name: 'Sirman',
     url: '/img/logos/sirman.webp',

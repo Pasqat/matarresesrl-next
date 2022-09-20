@@ -46,7 +46,7 @@ module.exports = {
     },
     gradientColorStops: theme => ({
       ...theme('colors'),
-      primary: 'var(--color-yellow-500)',
+      primary: 'rgb(var(--color-yellow-500))',
       secondary: 'var(--color-red-500)',
     }),
     extend: {
