@@ -2,10 +2,9 @@ import * as React from 'react'
 import Image from 'next/image'
 
 function BlurringImage({
-  svg: [Svg, svgProps, rectangles],
+  css,
   img,
   alt,
-  blurLevel = 5,
   height = undefined,
   width = undefined,
   ...otherProps
@@ -15,17 +14,12 @@ function BlurringImage({
   return (
     <>
       {hasPlaceholder ? (
-        <Svg
-          {...svgProps}
+        <div
+          className="absolute top-0 right-0 left-0 bottom-0 h-full w-full scale-150 blur-2xl"
           style={{
-            ...svgProps.style,
-            filter: `blur(${blurLevel}px)`,
+            ...css,
           }}
-        >
-          {rectangles.map(([Rect, rectProps]) => (
-            <Rect {...rectProps} key={`${rectProps.x} ${rectProps.y}`} />
-          ))}
-        </Svg>
+        />
       ) : null}
 
       <Image

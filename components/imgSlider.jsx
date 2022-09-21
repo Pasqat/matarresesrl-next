@@ -17,7 +17,7 @@ export const ImgSlider = () => {
   const withTitle = false
   const [width, setWidth] = useState(null)
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     setWidth(window.innerWidth)
 
     function handleResize() {

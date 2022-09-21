@@ -16,7 +16,7 @@ import {H1} from '../../components/typography'
 import {getAllPostsWithSlug, getPost, getMorePosts} from '../../lib/query/post'
 import {SeoDataSection} from '../../components/sections/seodata-section'
 
-export default function Post({postData, posts, img, svg, preview}) {
+export default function Post({postData, posts, img, css, preview}) {
   const router = useRouter()
 
   const tags = postData?.tags?.nodes.flatMap(t => t.name)
@@ -49,11 +49,11 @@ export default function Post({postData, posts, img, svg, preview}) {
             <div className="mx-auto max-w-7xl py-4 md:py-16 md:px-5">
               <main className="md:mb-24">
                 <div className="sm:mx-0 mb-8 md:mb-16">
-                  {img || svg ? (
-                    <div className="aspect-w-2 aspect-h-1 relative">
+                  {img || css ? (
+                    <div className="aspect-w-2 aspect-h-1 relative overflow-hidden">
                       <BlurringImage
                         img={img}
-                        svg={svg}
+                        css={css}
                         alt={`Immagine di copertina di ${postData.title}`}
                         objectFit="cover"
                         layout="fill"
@@ -133,9 +133,8 @@ export async function getStaticProps({params, preview = false, previewData}) {
     }
   }
 
-  const {img, svg} = await getPlaiceholder(
+  const {img, css} = await getPlaiceholder(
     data.post.featuredImage.node.mediaItemUrl,
-    {size: 64},
   )
 
   return {
@@ -144,7 +143,7 @@ export async function getStaticProps({params, preview = false, previewData}) {
       postData: data.post,
       posts: moreData.posts ?? null,
       img,
-      svg,
+      css,
     },
     revalidate: 60 * 60,
   }

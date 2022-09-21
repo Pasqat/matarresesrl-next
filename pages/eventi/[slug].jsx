@@ -115,7 +115,9 @@ export default function Events({event}) {
                         {event.title}
                       </H3>
                       {/* FIXME: with the latest version of the event calendar WP
-                        ql-event can't fetch venue and organization */}
+                          ql-event can't fetch venue and organization 
+                          seems like it's a problem other doesn't have
+                      */}
                       {/*  {event.venue && ( */}
                       {/*   <div className="mb-2 mt-0 text-gray-400 text-sm font-bold leading-normal uppercase"> */}
                       {/*     <i className="fas fa-map-marker-alt mr-2 text-gray-400 text-lg"></i>{' '} */}

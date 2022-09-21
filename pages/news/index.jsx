@@ -160,7 +160,7 @@ export default function News({data, groups}) {
               title={data.posts[0].title}
               imageUrl={data.posts[0].featuredImage.node.mediaItemUrl}
               img={data.img}
-              svg={data.svg}
+              css={data.css}
               impageAlt={data.posts[0].featuredImage.node.altText}
               caption="In evidenza"
               cta="Leggi tutto"
@@ -318,9 +318,9 @@ export async function getStaticProps({preview = false}) {
   const tags = data.tags.filter(tags => tags.count > 0).map(t => t.name)
   const groups = await getGroups()
 
-  const {img, svg} = await getPlaiceholder(
+  const {img, css} = await getPlaiceholder(
     data.posts[0].featuredImage.node.mediaItemUrl,
-    {size: 64},
+    // {size: 64},
   )
 
   return {
@@ -330,7 +330,8 @@ export async function getStaticProps({preview = false}) {
         tags,
         posts: data.posts,
         img,
-        svg,
+        // svg,
+        css,
       },
       preview,
       groups,

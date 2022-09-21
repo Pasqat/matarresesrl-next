@@ -17,7 +17,7 @@ function FeaturedSection({
   imageAlt = '',
   // imageUrl,
   img,
-  svg,
+  css,
   title = 'Post senza titolo',
   subTitle,
   permalink,
@@ -48,10 +48,10 @@ function FeaturedSection({
             </div>
           </div>
           <div className="relative col-span-full mt-12 lg:col-span-4 lg:col-start-8">
-            <div className="aspect-w-4 aspect-h-3 rounded-lg lg:aspect-h-5 lg:aspect-w-4">
+            <div className="aspect-w-4 aspect-h-3 overflow-hidden rounded-lg lg:aspect-h-5 lg:aspect-w-4">
               <BlurringImage
                 img={img}
-                svg={svg}
+                css={css}
                 className="rounded-lg"
                 objectFit="cover"
                 alt={imageAlt}
