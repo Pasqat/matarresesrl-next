@@ -17,6 +17,10 @@ import testimonials from '../data/testimonials'
 import {getGroups} from '../lib/newsletter'
 import {getLastTwoProjects} from '../lib/query/project'
 
+import imgHomeBoxArredo from '../public/img/home-box-arredo.jpg'
+import imgHomeBoxMarchi from '../public/img/home-box-marchi.jpg'
+import imgHomeBoxSupporto from '../public/img/home-box-supporto.jpg'
+
 import imgHomeAttrezzature from '../public/img/home-attrezzature.jpg'
 import imgHomePartnerOperatori from '../public/img/home-partner-operatori.jpg'
 import logoAssogi from '../public/img/logos/Assogi_logo-300x119.png'
@@ -55,7 +59,7 @@ export default function Home({groups, lastTwoProjects}) {
         <main>
           <ImgSlider />
           <section className="relative">
-            {/*
+            {/* NOTE: version with title overing the img
           <section className="relative pt-20" id="cta">
             <H1 className="mx-auto mb-8 max-w-6xl text-center lg:mb-12 xl:mb-24">
               Dal design dell&apos;arredo alla formazione del personale per
@@ -64,8 +68,9 @@ export default function Home({groups, lastTwoProjects}) {
         */}
             <Grid rowGap className="mb-12 lg:mb-24 xl:mb-48">
               <div className="col-span-full  lg:col-span-4">
+                {/* TODO: Use static import*/}
                 <CardSquareImg
-                  imgSrc="/img/home-box-arredo.jpg"
+                  imgSrc={imgHomeBoxArredo}
                   title="Dall'idea al progetto reale"
                   description={`Aprire un'attività, rinnovare un locale,
                       avere una guida per migliorare il proprio lavoro: ti seguiamo ad ogni passo per realizzare la tue idee.`}
@@ -79,7 +84,7 @@ export default function Home({groups, lastTwoProjects}) {
               </div>
               <div className="col-span-full lg:col-span-4">
                 <CardSquareImg
-                  imgSrc="/img/home-box-marchi.jpg"
+                  imgSrc={imgHomeBoxMarchi}
                   title="Marchi e attrezzature di qualità"
                   description={`
                       Selezioniamo i migliori marchi ho.re.ca, studiamo le ultime tecnologie portando innovazione in cucina ed equilibrio negli arredi.
@@ -90,7 +95,7 @@ export default function Home({groups, lastTwoProjects}) {
               </div>
               <div className="col-span-full lg:col-span-4">
                 <CardSquareImg
-                  imgSrc="/img/home-box-supporto.jpg"
+                  imgSrc={imgHomeBoxSupporto}
                   title="Supporto pre e post intervento"
                   description={`
                       Aiutiamo le idee a diventare progetti reali, assicurando il corretto ciclo di vita delle attrezzature

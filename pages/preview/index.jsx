@@ -39,7 +39,10 @@ export default function Post({postData, posts, img, svg, preview}) {
         </>
       ) : (
         <>
-          <Head>{/* TODO: set nofollow and the likes */}</Head>
+          <Head>
+            <title>Matarrese srl</title>
+            <meta name="robots" content="noindex, nofollow" />
+          </Head>
           <article className="bg-gray-100">
             <div className="mx-auto max-w-7xl py-4 md:py-16 md:px-5">
               <main className="md:mb-24">

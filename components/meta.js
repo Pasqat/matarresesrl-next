@@ -48,12 +48,6 @@ export default function Meta() {
         sizes="180x180"
         href="/img/favicon/apple-icon-180x180.png"
       />
-      {/* TODO: what is the safari-pinned-tab? */}
-      {/* <link
-        rel="mask-icon"
-        href="/favicon/safari-pinned-tab.svg"
-        color="#000000"
-      /> */}
       <link
         rel="icon"
         type="image/png"

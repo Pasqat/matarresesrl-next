@@ -23,6 +23,7 @@ function CardSquareImg({
               layout="fill"
               src={imgSrc}
               alt={imgAlt ?? title}
+              placeholder="blur"
             />
           </div>
         </div>

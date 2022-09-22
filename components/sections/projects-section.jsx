@@ -38,7 +38,6 @@ function ProjectSection({
             <ArticleCard article={project} isProject placeholder="blur" />
           </div>
         ))}
-        {/* NOTE: the cta */}
         <div key="cta" className="col-span-4">
           <div className="relative w-full">
             <div className="absolute z-2 h-full w-full rounded-lg bg-gradient-to-tl from-secondary via-primary to-gray-900 opacity-80" />

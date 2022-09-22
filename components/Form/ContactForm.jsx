@@ -186,7 +186,7 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
           <Field
             name="tel"
             label="Tel"
-            autoComplete="tel" // TODO: what is the tel autocomplete?
+            autoComplete="tel"
             // error={notification.isError ? notification.text : null}
             disabled={formButtonDisabled}
             value={tel}

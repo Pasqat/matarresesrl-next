@@ -197,9 +197,6 @@ export default function News({data, groups}) {
 
         <div className="mx-auto mb-14 max-w-7xl">
           <form
-            // this two are for Remix
-            // action="/news" // what is this for?
-            // method="GET" // what is this for?
             onSubmit={e => e.preventDefault()} //here I can call something like fetchMore?
           >
             <div className="relative">
@@ -320,7 +317,6 @@ export async function getStaticProps({preview = false}) {
 
   const {img, css} = await getPlaiceholder(
     data.posts[0].featuredImage.node.mediaItemUrl,
-    // {size: 64},
   )
 
   return {
@@ -330,7 +326,6 @@ export async function getStaticProps({preview = false}) {
         tags,
         posts: data.posts,
         img,
-        // svg,
         css,
       },
       preview,

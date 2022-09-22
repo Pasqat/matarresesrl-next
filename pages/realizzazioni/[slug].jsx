@@ -11,7 +11,6 @@ import HeaderBig from '../../components/Header/HeaderBig'
 import SocialShareBar from '../../components/SocialShareBar/SocialShareBar'
 import {ButtonLink} from '../../components/button'
 
-// TODO: for test
 import Lightbox from 'react-image-lightbox'
 import 'react-image-lightbox/style.css'
 
@@ -24,7 +23,6 @@ import {SeoDataSection} from '../../components/sections/seodata-section'
 export default function Project({project}) {
   const router = useRouter()
   // const moreEvents = events?.edges
-  // TODO: set with a proper lightbox
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [imgIndex, setImgIndex] = useState(0)
 

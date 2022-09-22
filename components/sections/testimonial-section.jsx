@@ -5,9 +5,7 @@ import {Grid} from '../grid'
 import {ArrowButton} from '../arrow-button'
 import IconStar from '../icons/star-icon'
 
-// function TestimonialSection({testimonials, className, nested}) {
 function TestimonialSection({testimonials, className, nested}) {
-  // FIXME: scrolling is bugged after some click
   const [page, setPage] = React.useState(0)
 
   return (
