@@ -58,7 +58,6 @@ export default function Project({project}) {
           <HeaderBig
             noButton
             overlay="bg-gradient-to-tl from-secondary via-primary to-black opacity-80"
-            slopeSectionColor="text-gray-100"
             backgroundImgSrc={
               project.featuredImage && project.featuredImage.node.sourceUrl
             }

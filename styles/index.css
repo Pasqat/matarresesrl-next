@@ -266,7 +266,7 @@ strong {
   }
 
   .content .wp-block-table .has-text-align-left {
-    @apply text-left;
+    @apply md:text-left;
   }
 
   .content .wp-block-table .has-text-align-right {
@@ -274,11 +274,11 @@ strong {
   }
 
   .content .wp-block-table th {
-    @apply px-6 py-2;
+    @apply md:px-6 md:py-2;
   }
 
   .content .wp-block-table td {
-    @apply px-6 py-2;
+    @apply md:px-6 md:py-2;
   }
 
   .content .wp-block-table tbody tr:nth-child(even) {

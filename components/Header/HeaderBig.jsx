@@ -30,7 +30,7 @@ function HeaderBig({
 
   return (
     <div className="relative flex h-[500px] content-center items-center justify-center pb-32 pt-16">
-      <div className="absolute top-0 h-full w-full">
+      <div className="fixed top-0 h-full w-full">
         <Image
           src={backgroundImgSrc || background}
           layout="fill"
