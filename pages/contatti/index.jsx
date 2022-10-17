@@ -9,7 +9,10 @@ import ContactForm from '../../components/Form/ContactForm'
 import Layout from '../../components/Layout'
 import Map from '../../components/Maps/Map'
 import Header from '../../components/Header/Header'
-import {H6} from '../../components/typography'
+import {H6, H2} from '../../components/typography'
+import {FacebookIcon} from '../../components/icons/facebook-icon'
+import {LinkedInIcon} from '../../components/icons/linkedin-icon'
+import {InstagramIcon} from '../../components/icons/instagram-icon'
 
 import {getGroups} from '../../lib/newsletter'
 
@@ -138,6 +141,49 @@ export default function Contatti({groups}) {
               >
                 +
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-10vw mb-24 lg:mb-48" id="social-links">
+          <div className="relative mx-auto max-w-7xl ">
+            <H2 as="h4" className="mb-12 lg:mb-24">
+              Seguici sui social e rimani aggironato sulle novità del settore
+            </H2>
+            <div className="grid gap-6 lg:grid-cols-3">
+              <a
+                href="https://www.facebook.com/matarresesrl"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center text-xl"
+              >
+                <button className="font-normal" type="button">
+                  <FacebookIcon size="100" />
+                </button>
+                Facebook
+              </a>
+              <a
+                href="https://www.linkedin.com/company/matarrese-srl/"
+                rel="noreferrer"
+                target="_blank"
+                className="flex items-center text-xl lg:justify-center"
+              >
+                <button className="font-normal" type="button">
+                  <LinkedInIcon size="100" />
+                </button>
+                Linkedin
+              </a>
+              <a
+                rel="noreferrer"
+                href="https://www.instagram.com/matarrese.srl/"
+                target="_blank"
+                className="flex items-center text-xl lg:justify-end"
+              >
+                <button className="mr-2 font-normal" type="button">
+                  <InstagramIcon size="100" />
+                </button>
+                Instagram
+              </a>
             </div>
           </div>
         </section>
