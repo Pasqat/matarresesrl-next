@@ -292,6 +292,10 @@ strong {
   .content .wp-block-gallery.has-nested-images {
      @apply relative w-full grid grid-cols-1 gap-x-2 gap-y-2 md:grid-cols-3;
    }
+
+  .content .wp-block-gallery figcaption {
+    @apply text-center;
+  }
 }
 
 
