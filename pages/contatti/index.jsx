@@ -197,6 +197,8 @@ export default function Contatti({groups}) {
 
 export async function getStaticProps() {
   const groups = await getGroups()
+
+  console.log(groups)
   return {
     props: {
       groups,

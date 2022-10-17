@@ -19,98 +19,29 @@ import {BadgeCheckedIcon} from '../icons/badge-checked-icon'
 import {MailIcon} from '../icons/mail-icon'
 
 const groups = [
-  {
-    id: 107688379,
-    name: 'Altro',
-  },
-  {
-    id: 109876460,
-    name: 'Ristorante',
-  },
-  {
-    id: 109876550,
-    name: 'Gastronomia',
-  },
-  {
-    id: 109876553,
-    name: 'Pizzeria',
-  },
-  {
-    id: 109876565,
-    name: 'Pasticceria',
-  },
-  {
-    id: 109876613,
-    name: 'Gelateria',
-  },
-  {
-    id: 109876649,
-    name: 'Hotel - Sala Ricevimenti - B&B',
-  },
-  {
-    id: 109876664,
-    name: 'Enti-PA',
-  },
-  {
-    id: 109876682,
-    name: 'Supermercati ed Alimentari',
-  },
-  {
-    id: 109876694,
-    name: 'Villaggio Turistico',
-  },
-  {
-    id: 109877168,
-    name: 'Macelleria',
-  },
-  {
-    id: 109877180,
-    name: 'Panificio',
-  },
-  {
-    id: 109877183,
-    name: 'Bar',
-  },
-  {
-    id: 109877186,
-    name: 'Agriturismo',
-  },
-  {
-    id: 109877192,
-    name: 'Caseificio',
-  },
-  {
-    id: 109877201,
-    name: 'Pub',
-  },
-  {
-    id: 109877216,
-    name: 'Vineria',
-  },
-  {
-    id: 109877219,
-    name: 'Pescheria',
-  },
-  {
-    id: 109877231,
-    name: 'Pastificio',
-  },
-  {
-    id: 109877234,
-    name: 'Industrie',
-  },
-  {
-    id: 109877246,
-    name: 'No food',
-  },
-  {
-    id: 109877249,
-    name: 'Braceria',
-  },
-  {
-    id: 109877258,
-    name: 'Privato',
-  },
+  {id: 107688379, name: 'Altro'},
+  {id: 109876460, name: 'Ristorante'},
+  {id: 109876550, name: 'Gastronomia'},
+  {id: 109876553, name: 'Pizzeria'},
+  {id: 109876565, name: 'Pasticceria'},
+  {id: 109876613, name: 'Gelateria'},
+  {id: 109876649, name: 'Hotel - Sala Ricevimenti - B&B'},
+  {id: 109876664, name: 'Enti-PA'},
+  {id: 109876682, name: 'Supermercati ed Alimentari'},
+  {id: 109876694, name: 'Villaggio Turistico'},
+  {id: 109877168, name: 'Macelleria'},
+  {id: 109877180, name: 'Panificio'},
+  {id: 109877183, name: 'Bar'},
+  {id: 109877186, name: 'Agriturismo'},
+  {id: 109877192, name: 'Caseificio'},
+  {id: 109877201, name: 'Pub'},
+  {id: 109877216, name: 'Vineria'},
+  {id: 109877219, name: 'Pescheria'},
+  {id: 109877231, name: 'Pastificio'},
+  {id: 109877234, name: 'Industrie'},
+  {id: 109877246, name: 'No food'},
+  {id: 109877249, name: 'Braceria'},
+  {id: 109877258, name: 'Privato'},
 ]
 
 export default function Footer() {
