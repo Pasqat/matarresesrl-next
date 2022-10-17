@@ -2,7 +2,7 @@ import * as React from 'react'
 
 function FacebookIcon({size = 20, title = 'Fackebook'}) {
   return (
-    <svg width={size} height={size} fill="none" viewBox="2 2 24 24">
+    <svg width={size} height={size} fill="none" viewBox="-2 -2 28 28">
       <title>{title}</title>
       <g
         fill="none"

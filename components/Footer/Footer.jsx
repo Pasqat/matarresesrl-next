@@ -138,7 +138,7 @@ export default function Footer() {
               rel="noreferrer"
             >
               <button className="mr-2 h-10 w-10 font-normal" type="button">
-                <FacebookIcon size="25" />
+                <FacebookIcon size="30" />
               </button>
             </a>
             <a
