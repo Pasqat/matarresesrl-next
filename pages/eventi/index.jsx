@@ -164,6 +164,6 @@ export async function getStaticProps() {
       data,
       groups,
     },
-    revalidate: 60 * 60 * 24,
+    revalidate: 60 * 60 * 12,
   }
 }
