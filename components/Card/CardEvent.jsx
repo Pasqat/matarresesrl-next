@@ -54,6 +54,7 @@ export default function CardEvent({event}) {
         </div>
 
         <Spacer size="2xs" />
+        <div>{console.log(event)}</div>
 
         <H6 as="div" className="flex flex-wrap items-center gap-2">
           {startDate === endDate ? (
