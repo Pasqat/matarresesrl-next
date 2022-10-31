@@ -12,7 +12,7 @@ import SocialShareBar from '../../components/SocialShareBar/SocialShareBar'
 import {H2, H3, Paragraph} from '../../components/typography'
 
 import {getAllEventsWithSlug, getEvent} from '../../lib/query/event'
-import {formatDate, getHour} from '../../actions/utils/formatDate'
+import {getHour} from '../../actions/utils/formatDate'
 import {SeoDataSection} from '../../components/sections/seodata-section'
 
 export default function Events({event}) {
@@ -68,15 +68,13 @@ export default function Events({event}) {
                     <div className="mt-8 flex flex-wrap justify-center">
                       <div className="flex items-center justify-center">
                         <div className="mb-2 text-left text-gray-800">
-                          {formatDate(event.startDate) ===
-                          formatDate(event.endDate) ? (
+                          {event.startDate === event.endDate ? (
                             <>
                               <span className="block text-xl font-bold uppercase tracking-wide text-gray-600">
                                 <Date dateString={event.startDate} />
                               </span>
                               <span className="block text-lg font-bold text-yellow-500">
-                                h {getHour(event.startDate)} -{' '}
-                                {getHour(event.endDate)}
+                                h {event.startHour} - {event.endHour}
                               </span>
                             </>
                           ) : (
@@ -188,11 +186,11 @@ export default function Events({event}) {
 }
 
 export async function getStaticProps({params}) {
-  const data = await getEvent(params.slug)
+  const event = await getEvent(params.slug)
 
   return {
     props: {
-      event: data.event,
+      event,
     },
     revalidate: 60 * 60 * 24,
   }

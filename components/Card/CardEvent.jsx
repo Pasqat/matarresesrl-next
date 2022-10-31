@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 import {H3, H6, Paragraph} from '../typography'
 import {Spacer} from '../spacer'
-import {formatDate} from '../../actions/utils/formatDate'
+// import {formatDate} from '../../actions/utils/formatDate'
 
 function truncate(text, length) {
   if (!text || text.length <= length) {
@@ -14,8 +14,10 @@ function truncate(text, length) {
 }
 
 export default function CardEvent({event}) {
-  const startDate = formatDate(event.startDate)
-  const endDate = formatDate(event.endDate)
+  // const startDate = formatDate(event.startDate)
+  // const endDate = formatDate(event.endDate)
+  const startDate = event.startDate
+  const endDate = event.endDate
 
   return (
     <Link href={`/eventi/${event.slug}`}>
