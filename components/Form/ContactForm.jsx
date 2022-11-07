@@ -17,14 +17,14 @@ import {ChevronLeftIcon} from '../icons/chevron-left-icon'
 export default function ContactForm({hasAutoFocus, featured, groups}) {
   const plausible = usePlausible()
   const [form, setForm] = useState({
-    name: '',
+    referente: '',
     email: '',
     tel: '',
     company: '',
     formContent: '',
     newsletterGroupId: 107688379,
   })
-  const {name, email, tel, formContent, company, newsletterGroupId} = form
+  const {referente, email, tel, formContent, company, newsletterGroupId} = form
 
   const [isCheckedTerms, setIsCheckedTerms] = useState(false)
   const [isCheckedNewsletter, setIsCheckedNewsletter] = useState(false)
@@ -57,7 +57,7 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
   async function submitContactForm(event) {
     event.preventDefault()
 
-    if (name === '' || email === '' || formContent === '') {
+    if (referente === '' || email === '' || formContent === '') {
       return setNotification({
         ...notification,
         text: 'Per favore compila tutti i campi',
@@ -74,7 +74,7 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
     }
 
     const res = await sendContactMail({
-      name,
+      referente,
       senderMail: email,
       tel,
       company,
@@ -92,7 +92,7 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
       plausible('Contatti', {props: {form_location: 'Contact Form'}})
       setForm({
         ...form,
-        name: '',
+        referente: '',
         email: '',
         tel: '',
         company: '',
@@ -113,7 +113,7 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
         body: JSON.stringify({
           email: email,
           groupId: newsletterGroupId,
-          name: name,
+          name: referente,
           company: company,
         }),
         headers: {
@@ -160,13 +160,13 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
         <Spacer size="2xs" />
         <Grid nested>
           <Field
-            name="name"
+            name="referente"
             label="Nome*"
             // error={notification.isError ? notification.text : null}
             autoComplete="given-name"
             required
             disabled={formButtonDisabled}
-            value={name}
+            value={referente}
             onChange={handleChange}
             className="col-span-full lg:col-span-6"
             featured={featured}

@@ -5,7 +5,6 @@ const recipientMail = () => {
 }
 
 export const sendContactMail = async ({
-  name,
   surname,
   senderMail,
   tel,
@@ -13,14 +12,17 @@ export const sendContactMail = async ({
   company,
   participants,
   title,
+  referente,
+  ragione_sociale,
 }) => {
   const data = {
     recipientMail: recipientMail(),
-    name,
+    ragione_sociale,
     surname,
     senderMail,
     tel,
     company,
+    referente,
     formContent,
     participants,
     title,

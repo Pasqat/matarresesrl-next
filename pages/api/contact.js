@@ -27,7 +27,8 @@ const transporter = nodemailer.createTransport({
 const sendMail = async (req, res) => {
   const {
     senderMail,
-    name,
+    ragione_sociale,
+    referente,
     surname,
     tel,
     participants,
@@ -38,12 +39,12 @@ const sendMail = async (req, res) => {
   } = req.body
 
   // Check if fields are all filled
-  if (name === '' || recipientMail === '') {
+  if (referente === '' || recipientMail === '') {
     res.status(403).send('')
     return
   }
 
-  if (name === '' && tel === '') {
+  if (referente === '' && tel === '') {
     res.status(403).send('')
     return
   }
@@ -59,24 +60,38 @@ const sendMail = async (req, res) => {
 
   const mailerRes = await mailer({
     senderMail,
-    name: `${name} ${surname}`,
+    referente: `${referente} ${surname}`,
     title,
-    text: `Nome: ${name} ${surname}\nDenominazione azienda: ${company}\nEmail: ${senderMail}\ntel: ${tel}\n${content}`,
+    ragione_sociale,
+    text: `Nome (referente): ${referente} ${surname || ''}\nRagione Sociale: ${
+      company || ragione_sociale
+    }\nEmail: ${senderMail}\ntel: ${tel}\n${content}\n`,
     recipientMail,
   })
   res.send(mailerRes)
 }
 
-const mailer = ({senderMail, name, title, text, recipientMail}) => {
+const mailer = ({
+  senderMail,
+  referente,
+  title,
+  ragione_sociale,
+  text,
+  recipientMail,
+}) => {
   const fromReal =
-    name && senderMail ? `${name} <${senderMail}>` : `${name || senderMail}`
+    referente && senderMail
+      ? `${referente} <${senderMail}>`
+      : `${referente || senderMail}`
   const subject = title
     ? `Partecipazione per l'evento ${title} da ${fromReal}`
+    : ragione_sociale
+    ? `Richiesta assistenza da ${ragione_sociale}`
     : `Nuovo messaggio da ${fromReal}`
   const from = process.env.SENDGRID_ADDRESS
   const message = {
     from,
-    to: `${recipientMail}`,
+    to: ragione_sociale ? `gianni.matarrese@matarrese.it` : `${recipientMail}`,
     subject,
     text,
     replyTo: fromReal,

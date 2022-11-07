@@ -28,14 +28,14 @@ export default function FormModal({
 
   let [isOpen, setIsOpen] = useState(false)
   const [form, setForm] = useState({
-    name: '',
+    referente: '',
     surname: '',
     mail: '',
     tel: '',
     formContent: '',
     participants: null,
   })
-  const {name, surname, mail, tel, formContent, participants} = form
+  const {referente, surname, mail, tel, formContent, participants} = form
   const [isChecked, setIsChecked] = useState(false)
 
   const [formButtonDisabled, setFormButtonDisabled] = useState(false)
@@ -62,7 +62,7 @@ export default function FormModal({
 
   useEffect(() => {
     setFormButtonDisabled(false)
-    setForm(form => ({...form, name: '', surname: '', mail: '', tel: ''}))
+    setForm(form => ({...form, referente: '', surname: '', mail: '', tel: ''}))
     setIsChecked(false)
     setNotification({text: '', isError: false})
   }, [isOpen])
@@ -76,7 +76,7 @@ export default function FormModal({
   async function submitContactForm(event) {
     event.preventDefault()
 
-    if (name === '' || surname === '') {
+    if (referente === '' || surname === '') {
       return setNotification({
         ...notification,
         text: 'Per favore compila tutti i campi',
@@ -121,7 +121,7 @@ export default function FormModal({
     }
 
     const res = await sendContactMail({
-      name,
+      referente,
       surname,
       senderMail: mail,
       tel,
@@ -155,7 +155,7 @@ export default function FormModal({
       })
       setForm({
         ...form,
-        name: '',
+        referente: '',
         surname: '',
         tel: '',
         mail: '',
@@ -279,8 +279,8 @@ export default function FormModal({
                         type="text"
                         className="w-full rounded border-0 bg-white px-3 py-3 text-sm text-gray-600 placeholder-gray-300 shadow transition-all duration-150 ease-linear focus:outline-none focus:ring"
                         placeholder="Nome"
-                        name="name"
-                        value={name}
+                        name="referente"
+                        value={referente}
                         onChange={handleChange}
                         required
                       />
@@ -356,7 +356,7 @@ export default function FormModal({
                   ) : (
                     <div
                       className={clsx('relative w-full', {
-                        hidden: !name || !mail,
+                        hidden: !referente || !mail,
                       })}
                     >
                       <label
