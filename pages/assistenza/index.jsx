@@ -181,6 +181,7 @@ export default function Assistenza() {
                   value={ragione_sociale}
                   onChange={handleChange}
                   className="col-span-full"
+                  placeholder="Matarrese srl"
                   featured
                 />
                 <Field
@@ -194,6 +195,7 @@ export default function Assistenza() {
                   onChange={handleChange}
                   className="col-span-full lg:col-span-6"
                   featured
+                  placeholder="contrada popoleto, nc Alberobello (BA)"
                 />
                 <Field
                   name="email"
@@ -206,6 +208,7 @@ export default function Assistenza() {
                   onChange={handleChange}
                   className="col-span-full lg:col-span-6"
                   featured
+                  placeholder="name@example.it"
                 />
                 <Field
                   name="tel"
@@ -217,6 +220,7 @@ export default function Assistenza() {
                   onChange={handleChange}
                   className="col-span-full lg:col-span-6"
                   featured
+                  placeholder="0804323431"
                 />
                 <Field
                   name="referente"
@@ -228,6 +232,7 @@ export default function Assistenza() {
                   onChange={handleChange}
                   className="col-span-full lg:col-span-6"
                   featured
+                  placeholder="Nome Cognome"
                 />
               </Grid>
               <Field

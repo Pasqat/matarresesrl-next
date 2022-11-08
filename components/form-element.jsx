@@ -16,7 +16,7 @@ const Input = React.forwardRef(function Input(
   ref,
 ) {
   const className = clsx(
-    'py-4 px-8 w-full text-lg font-medium placeholder-gray-500 text-black disabled:text-gray-400 disabled:bg-gray-100 rounded-lg caret-yellow-500 focus-ring',
+    'py-4 px-8 w-full text-lg font-medium placeholder-gray-300 text-black disabled:text-gray-400 disabled:bg-gray-100 rounded-lg caret-yellow-500 focus-ring',
     featured ? 'bg-white' : 'bg-gray-100',
     props.className,
   )
@@ -53,6 +53,7 @@ const Field = React.forwardRef(function Field(
     id,
     required,
     featured,
+    autoComplete,
     ...props
   },
   ref,
@@ -80,7 +81,7 @@ const Field = React.forwardRef(function Field(
         {...props}
         name={name}
         id={inputId}
-        autoComplete={name}
+        autoComplete={autoComplete}
         required={required}
         defaultValue={defaultValue}
         featured={featured}

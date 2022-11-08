@@ -13,6 +13,7 @@ export const sendContactMail = async ({
   participants,
   title,
   referente,
+  indirizzo,
   ragione_sociale,
 }) => {
   const data = {
@@ -25,6 +26,7 @@ export const sendContactMail = async ({
     referente,
     formContent,
     participants,
+    indirizzo,
     title,
   }
 

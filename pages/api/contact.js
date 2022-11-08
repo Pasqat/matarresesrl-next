@@ -34,6 +34,7 @@ const sendMail = async (req, res) => {
     participants,
     formContent,
     company,
+    indirizzo,
     recipientMail,
     title,
   } = req.body
@@ -65,7 +66,7 @@ const sendMail = async (req, res) => {
     ragione_sociale,
     text: `Nome (referente): ${referente} ${surname || ''}\nRagione Sociale: ${
       company || ragione_sociale
-    }\nEmail: ${senderMail}\ntel: ${tel}\n${content}\n`,
+    }\nIndirizzo: ${indirizzo}\nEmail: ${senderMail}\ntel: ${tel}\n${content}\n`,
     recipientMail,
   })
   res.send(mailerRes)
@@ -91,7 +92,9 @@ const mailer = ({
   const from = process.env.SENDGRID_ADDRESS
   const message = {
     from,
-    to: ragione_sociale ? `gianni.matarrese@matarrese.it` : `${recipientMail}`,
+    to: ragione_sociale
+      ? `gianni.matarrese@matarrese.it; pasquale.matarrese@matarrese.it`
+      : `${recipientMail}`,
     subject,
     text,
     replyTo: fromReal,
