@@ -145,6 +145,9 @@ export default function Contatti({groups}) {
           </div>
         </section>
 
+        <section className="mb-24 lg:mb-48" id="contatti">
+          <ContactForm groups={groups} />
+        </section>
         <section className="mx-10vw mb-24 lg:mb-48" id="social-links">
           <div className="relative mx-auto max-w-7xl ">
             <H2 as="h4" className="mb-12 lg:mb-24">
@@ -186,9 +189,6 @@ export default function Contatti({groups}) {
               </a>
             </div>
           </div>
-        </section>
-        <section className="mb-24 lg:mb-48" id="contatti">
-          <ContactForm groups={groups} />
         </section>
       </Layout>
     </>
