@@ -24,9 +24,10 @@ export default function Assistenza() {
     tel: '',
     email: '',
     referente: '',
+    indirizzo: '',
     formContent: '',
   })
-  const {ragione_sociale, tel, email, formContent, referente} = form
+  const {ragione_sociale, tel, email, formContent, referente, indirizzo} = form
 
   const [isCheckedTerms, setIsCheckedTerms] = useState(false)
   const [formButtonDisabled, setFormButtonDisabled] = useState(false)
@@ -57,7 +58,8 @@ export default function Assistenza() {
       email === '' ||
       formContent === '' ||
       tel === '' ||
-      referente === ''
+      referente === '' ||
+      indirizzo === ''
     ) {
       return setNotification({
         ...notification,
@@ -79,6 +81,7 @@ export default function Assistenza() {
       senderMail: email,
       tel,
       referente,
+      indirizzo,
       formContent,
     })
     if (res.status < 300) {
@@ -97,6 +100,7 @@ export default function Assistenza() {
         email: '',
         tel: '',
         referente: '',
+        indirizzo: '',
         formContent: '',
       })
       setIsCheckedTerms(false)
@@ -175,6 +179,18 @@ export default function Assistenza() {
                   required
                   disabled={formButtonDisabled}
                   value={ragione_sociale}
+                  onChange={handleChange}
+                  className="col-span-full"
+                  featured
+                />
+                <Field
+                  name="indirizzo"
+                  label="Indirizzo*"
+                  // error={notification.isError ? notification.text : null}
+                  autoComplete="address"
+                  required
+                  disabled={formButtonDisabled}
+                  value={indirizzo}
                   onChange={handleChange}
                   className="col-span-full lg:col-span-6"
                   featured
