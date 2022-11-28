@@ -227,14 +227,20 @@ export default function Events({data, groups}) {
 export async function getStaticProps() {
   const data = await getEvents()
   const groups = await getGroups()
+  let imgFeaturedEvent = null
+  let cssFeaturedEvent = null
 
-  const {img, css} = await getPlaiceholder(
-    data.futureEvent[0].featuredImage.node.mediaItemUrl,
-  )
+  if (data.futureEvent[0]) {
+    const {img, css} = await getPlaiceholder(
+      data.futureEvent[0].featuredImage.node.mediaItemUrl,
+    )
+    imgFeaturedEvent = img
+    cssFeaturedEvent = css
+  }
 
   return {
     props: {
-      data: {...data, imgFeaturedEvent: img, cssFeaturedEvent: css},
+      data: {...data, imgFeaturedEvent, cssFeaturedEvent},
       groups,
     },
     revalidate: 60 * 60 * 12,
