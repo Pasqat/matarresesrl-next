@@ -3,11 +3,12 @@ import * as React from 'react'
 // import Image from 'next/image'
 
 import {Grid} from '../grid'
-import {H2, H6} from '../typography'
+import {H2, H6, Paragraph} from '../typography'
 import {ArrowLink} from '../arrow-button'
 import {ClipboardCopyButton} from '../clipboard-copy-button'
 
 import {BlurringImage} from '../blurringImage.jsx'
+import Truncate from '../../actions/utils/truncate'
 
 function FeaturedSection({
   slug,
@@ -21,6 +22,7 @@ function FeaturedSection({
   title = 'Post senza titolo',
   subTitle,
   permalink,
+  excerpt,
 }) {
   return (
     <div className="w-full px-8 lg:px-0">
@@ -34,6 +36,20 @@ function FeaturedSection({
                 className="mt-12"
                 dangerouslySetInnerHTML={{__html: title}}
               />
+              <div className="mt-6 flex-auto">
+                {/*
+                    We do use css line-clamp, this is for the 10% of the browsers that
+                    don't support that. Don't focus too much at perfection. It's important
+                    that the truncated string remains longer than the line-clamp, so that
+                    line-clamp precedes for the 90% supporting that.
+                */}
+                <Paragraph
+                  className="line-clamp-3 lg:pr-32"
+                  dangerouslySetInnerHTML={{
+                    __html: Truncate(excerpt, 120),
+                  }}
+                />
+              </div>
               <div
                 className="mt-6 text-xl font-medium text-gray-500"
                 dangerouslySetInnerHTML={{__html: subTitle}}

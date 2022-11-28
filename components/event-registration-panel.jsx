@@ -1,11 +1,13 @@
 import Link from 'next/link'
 import * as React from 'react'
-import {formatDate} from '../actions/utils/formatDate'
+// import {formatDate} from '../actions/utils/formatDate'
 import FormModal from '../components/Form/FormModal'
 
-function RegistrationPanel({event}) {
-  const startDate = formatDate(event.startDate)
-  const endDate = formatDate(event.endDate)
+function RegistrationPanel({event, pastEvent}) {
+  // const startDate = formatDate(event.startDate)
+  // const endDate = formatDate(event.endDate)
+  const startDate = event.startDate
+  const endDate = event.endDate
 
   return (
     <div
@@ -26,12 +28,14 @@ function RegistrationPanel({event}) {
           </p>
         )}
       </div>
-      <FormModal
-        withButton
-        buttonText="Partecipa"
-        type="reservation"
-        title={event.title}
-      />
+      {pastEvent ? null : (
+        <FormModal
+          withButton
+          buttonText="Partecipa"
+          type="reservation"
+          title={event.title}
+        />
+      )}
     </div>
   )
 }
