@@ -3,15 +3,16 @@ import Link from 'next/link'
 
 import {H3, H6, Paragraph} from '../typography'
 import {Spacer} from '../spacer'
+import Truncate from '../../actions/utils/truncate'
 // import {formatDate} from '../../actions/utils/formatDate'
 
-function truncate(text, length) {
-  if (!text || text.length <= length) {
-    return text
-  }
-
-  return `${text.substr(0, length).trim()}...`
-}
+// function truncate(text, length) {
+//   if (!text || text.length <= length) {
+//     return text
+//   }
+//
+//   return `${text.substr(0, length).trim()}...`
+// }
 
 export default function CardEvent({event}) {
   // const startDate = formatDate(event.startDate)
@@ -51,7 +52,7 @@ export default function CardEvent({event}) {
           */}
           <Paragraph
             className="line-clamp-3"
-            dangerouslySetInnerHTML={{__html: truncate(event.content, 120)}}
+            dangerouslySetInnerHTML={{__html: Truncate(event.content, 120)}}
           />
         </div>
 

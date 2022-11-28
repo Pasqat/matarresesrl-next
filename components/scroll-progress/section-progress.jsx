@@ -6,8 +6,6 @@ export default function SectionProgress({sectionRef, lgHidden, endOfProgress}) {
   const [positionReached, setPositionReached] = useState(null)
 
   const getPosition = () => {
-    console.log(sectionRef.current)
-
     const y =
       sectionRef.current.offsetTop +
       sectionRef.current.offsetParent.offsetTop -
