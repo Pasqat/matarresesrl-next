@@ -40,8 +40,10 @@ module.exports = {
       },
       green: {
         100: 'var(--color-green-100)',
+        400: 'var(--color-green-400)',
         500: 'var(--color-green-500)',
         600: 'var(--color-green-600)',
+        700: 'var(--color-green-700)',
       },
     },
     gradientColorStops: theme => ({

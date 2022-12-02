@@ -10,7 +10,7 @@ import {ProjectSection} from '../components/sections/projects-section'
 import {LogoSection} from '../components/sections/logo-section'
 import {ImgSlider} from '../components/imgSlider'
 
-import {H3, H5} from '../components/typography'
+import {H3, H4, H5, Paragraph} from '../components/typography'
 import {Grid} from '../components/grid'
 
 import testimonials from '../data/testimonials'
@@ -24,6 +24,7 @@ import imgHomeBoxSupporto from '../public/img/home-box-supporto.jpg'
 import imgHomeAttrezzature from '../public/img/home-attrezzature.jpg'
 import imgHomePartnerOperatori from '../public/img/home-partner-operatori.jpg'
 import logoAssogi from '../public/img/logos/Assogi_logo-300x119.png'
+import logoSostenibilita from '../public/img/logos/dispositivo-ad-ozono.png'
 import {Spacer} from '../components/spacer'
 
 export default function Home({groups, lastTwoProjects}) {
@@ -148,6 +149,61 @@ export default function Home({groups, lastTwoProjects}) {
                   imgSrc="/img/vicini-al-cliente.jpg"
                   noSlope
                 /> */}
+            </Grid>
+          </section>
+
+          <section className="mb-12 lg:mb-24 xl:mb-48" id="sostenibilita">
+            <Grid featured background="bg-green-100">
+              <div className="col-span-full flex items-center justify-center lg:col-span-3">
+                <Image
+                  src={logoSostenibilita}
+                  alt="logo Sostenibilità, ecologia, eco-friendly"
+                  layout="intrinsic"
+                  placeholder="blur"
+                />
+              </div>
+              <div className="col-span-full lg:col-span-9">
+                <H3 variant="secondary" as="p">
+                  Amiamo la cucina e la nostra Terra
+                </H3>
+                <Paragraph className="text-2xl">
+                  Sostenibilità, risparmio energetico e ecologia sono per noi un
+                  serio impegno per salvaguardare l’ambiente e la terra che ci
+                  dona le materie prime necessarie in cucina. Ci impegniamo su
+                  diversi fronti per fornire soluzioni eco-friendly con la
+                  qualità che ci contraddistingue.
+                </Paragraph>
+                <Grid nested rowGap className="mt-8">
+                  <H4
+                    variant="secondary"
+                    as="p"
+                    className="col-span-full rounded border border-green-700 p-4 lg:col-span-3"
+                  >
+                    Risparmio energetico
+                  </H4>
+                  <H4
+                    variant="secondary"
+                    as="p"
+                    className="col-span-full rounded border border-green-700 p-4 lg:col-span-3"
+                  >
+                    Eco friendly
+                  </H4>
+                  <H4
+                    variant="secondary"
+                    as="p"
+                    className="col-span-full rounded border border-green-700 p-4 lg:col-span-3"
+                  >
+                    Dispositivi ad ozono
+                  </H4>
+                  <H4
+                    variant="secondary"
+                    as="p"
+                    className="col-span-full rounded border border-green-700 p-4 lg:col-span-3"
+                  >
+                    Gas naturale R290
+                  </H4>
+                </Grid>
+              </div>
             </Grid>
           </section>
 

@@ -2,7 +2,15 @@ import * as React from 'react'
 import clsx from 'clsx'
 
 const Grid = React.forwardRef(function Grid(
-  {children, className, as: Tag = 'div', featured, nested, rowGap},
+  {
+    children,
+    className,
+    as: Tag = 'div',
+    featured,
+    nested,
+    rowGap,
+    background = 'bg-secondary',
+  },
   ref,
 ) {
   return (
@@ -16,7 +24,12 @@ const Grid = React.forwardRef(function Grid(
     >
       {featured ? (
         <div className="absolute inset-0 -mx-5vw">
-          <div className="bg-secondary mx-auto h-full w-full max-w-8xl rounded-lg" />
+          <div
+            className={clsx(
+              background,
+              'mx-auto h-full w-full max-w-8xl rounded-lg',
+            )}
+          />
         </div>
       ) : null}
 
