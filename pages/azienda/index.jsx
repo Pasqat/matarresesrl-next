@@ -4,7 +4,7 @@ import Lottie from 'react-lottie-player'
 
 import Layout from '../../components/Layout'
 import {Grid} from '../../components/grid'
-import {H2, H6, Paragraph} from '../../components/typography'
+import {H2, H3, H6, Paragraph} from '../../components/typography'
 import {HeroSection} from '../../components/sections/hero-section'
 import {Spacer} from '../../components/spacer'
 
@@ -15,6 +15,7 @@ import lottiejson from '../../public/img/illustration/Inspiration.json'
 import {FeatureCard} from '../../components/feature-card'
 
 import VitoMatarreseProfileImage from '../../public/img/vito_matarrese.webp'
+import imgHomePartnerOperatori from '../../public/img/home-partner-operatori.jpg'
 import DomenicoMatarreseProfileImage from '../../public/img/domenico_matarrese.webp'
 import cotturaProdotti from '../../public/img/cottura-prodotti.png'
 import {ProjectSection} from '../../components/sections/projects-section'
@@ -144,6 +145,50 @@ export default function AboutUs({lastTwoProjects}) {
             projects={lastTwoProjects.slice(2, 4)}
             title="Le nostre realizzazioni"
           />
+        </section>
+
+        <Spacer size="base" />
+
+        <section>
+          <Grid rowGap>
+            <div className="col-span-full lg:col-span-6">
+              <H3 className="mb-2" variant="secondary">
+                Da 40 anni partner degli operatori ho.re.ca
+              </H3>
+              <p className="mb-4 text-lg font-light leading-relaxed text-gray-600">
+                Creiamo spazi su misura dei professionisti. Dalla dimensione
+                delle attrezzature professionali agli arredi su misura, ci
+                impegniamo a cercare la soluzione ottimale per i tuoi spazi e
+                più efficiente per il tuo lavoro.
+              </p>
+              <p className="mt-0 mb-4 text-lg font-light leading-relaxed text-gray-600">
+                L’innovazione e la tecnologia sono componenti essenziali nella
+                scelta di attrezzature per la ristorazione, di cucine
+                professionali e di impianti di aerazione e climatizzazione. La
+                professionalità e la qualità ci caratterizzano nella consulenza
+                professionale e nell’assistenza tecnica post vendita.
+              </p>
+            </div>
+
+            <div className="col-span-full text-center lg:col-span-6 lg:ml-8">
+              <Image
+                src={imgHomePartnerOperatori}
+                layout="intrinsic"
+                objectFit="cover"
+                objectPosition="center"
+                alt="attrezzature ristorazione nello showroom"
+                className="rounded-lg shadow-sm"
+                placeholder="blur"
+              />
+            </div>
+            {/* <CardBigImg
+                  title="Vicini al Cliente"
+                  content="Dalla progettazione alla realizzazione,
+                  i nostri esperti seguono il cliente per trasformare le idee in realtà"
+                  imgSrc="/img/vicini-al-cliente.jpg"
+                  noSlope
+                /> */}
+          </Grid>
         </section>
 
         <Spacer size="base" />
