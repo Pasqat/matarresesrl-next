@@ -223,38 +223,33 @@ export default function Home({groups, lastTwoProjects}) {
                   Amiamo la cucina e la nostra Terra
                 </H3>
                 <Paragraph className="text-2xl">
-                  Sostenibilità, risparmio energetico e ecologia sono per noi un
-                  serio impegno per salvaguardare l’ambiente e la terra che ci
+                  Sostenibilità, risparmio energetico e{' '}
+                  <strong>ecologia</strong> sono per noi un serio impegno per{' '}
+                  <strong>salvaguardare l’ambiente</strong> e la terra che ci
                   dona le materie prime necessarie in cucina. Ci impegniamo su
-                  diversi fronti per fornire soluzioni eco-friendly con la
-                  qualità che ci contraddistingue.
+                  diversi fronti per fornire{' '}
+                  <strong>soluzioni eco-friendly</strong> con la qualità che ci
+                  contraddistingue.
                 </Paragraph>
                 <Grid nested rowGap className="mt-8">
                   <H4
                     variant="secondary"
                     as="p"
-                    className="col-span-full rounded border border-green-700 p-4 lg:col-span-3"
+                    className="col-span-full rounded border border-green-700 p-4 lg:col-span-4"
                   >
                     Risparmio energetico
                   </H4>
                   <H4
                     variant="secondary"
                     as="p"
-                    className="col-span-full rounded border border-green-700 p-4 lg:col-span-3"
-                  >
-                    Eco friendly
-                  </H4>
-                  <H4
-                    variant="secondary"
-                    as="p"
-                    className="col-span-full rounded border border-green-700 p-4 lg:col-span-3"
+                    className="col-span-full rounded border border-green-700 p-4 lg:col-span-4"
                   >
                     Dispositivi ad ozono
                   </H4>
                   <H4
                     variant="secondary"
                     as="p"
-                    className="col-span-full rounded border border-green-700 p-4 lg:col-span-3"
+                    className="col-span-full rounded border border-green-700 p-4 lg:col-span-4"
                   >
                     Gas naturale R290
                   </H4>
