@@ -133,14 +133,14 @@ export default function Servizi({groups}) {
                   <div className="col-span-full lg:col-span-4">
                     <FeatureCard
                       title="Progettazione impianti di climatizzazione"
-                      description="Caldo o freddo impostiamo la temperatura giusta all'interno della tua attività per il comfort tuo e dei tuoi clienti"
+                      description="Caldo o freddo impostiamo la temperatura giusta all'interno della tua attività per il comfort tuo e dei tuoi clienti."
                       // icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
                   <div className="col-span-full lg:col-span-4">
                     <FeatureCard
                       title="Progettazione impianti aspirazione"
-                      description="Non sottovalutiamo la qualità negli ambienti di lavoro e ti proponiamo le soluzioni più innovative"
+                      description="Non sottovalutiamo la qualità negli ambienti di lavoro e ti proponiamo le soluzioni più innovative."
                       // icon={<BriefCaseIcon size={48} />}
                     />
                   </div>
@@ -503,14 +503,14 @@ export default function Servizi({groups}) {
             <Grid className="py-24">
               <div className="col-span-full">
                 <H2 className="mb-3 font-medium text-gray-100 lg:mt-6">{`Servizi e allestimenti per GDO`}</H2>
-                <H3 as="p" className="my-14 text-gray-300">
+                <H3 as="p" className="mt-14 mb-7 text-gray-300">
                   Progettiamo le{' '}
                   <span className="font-medium italic text-white">
                     aree ristoro{' '}
                   </span>
                   dei grandi supermercati, librerie e negozi.{' '}
                 </H3>
-                <H3 as="p" className="my-14 text-gray-300">
+                <H3 as="p" className="my-7 text-gray-300">
                   <span className="font-medium italic text-white">
                     Allestiamo{' '}
                   </span>
@@ -524,7 +524,7 @@ export default function Servizi({groups}) {
                   </span>{' '}
                   cucine per la grande distribuzione organizzata.
                 </H3>
-                <H3 as="p" className="my-14 text-gray-300">
+                <H3 as="p" className="my-7 text-gray-300">
                   Mettiamo il cliente al centro garantendo le{' '}
                   <span className="font-medium italic text-white">
                     attrezzature più innovative{' '}

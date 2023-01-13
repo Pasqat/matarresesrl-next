@@ -107,7 +107,7 @@ export default function AboutUs({lastTwoProjects}) {
                   </>
                 }
                 url="mailto:vito.matarrese@matarrese.it"
-                urlText="contatta"
+                urlText="Contatta"
               />
             </div>
             <div className="col-span-full lg:col-span-6">

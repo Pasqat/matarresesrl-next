@@ -97,7 +97,7 @@ export default function Contatti({groups}) {
                         Indirizzo
                       </H6>
                       <p className="mt-1">
-                        contrada popoleto,n.c. {'\n'} Alberobello (BA) 70011
+                        Contrada Popoleto,n.c. {'\n'} Alberobello (BA) 70011
                       </p>
                     </div>
                     <div>
@@ -151,7 +151,7 @@ export default function Contatti({groups}) {
         <section className="mx-10vw mb-24 lg:mb-48" id="social-links">
           <div className="relative mx-auto max-w-7xl ">
             <H2 as="h4" className="mb-12 lg:mb-24">
-              Seguici sui social e rimani aggironato sulle novità del settore
+              Seguici sui social e rimani aggiornato sulle novità del settore
             </H2>
             <div className="grid gap-6 lg:grid-cols-3">
               <a
