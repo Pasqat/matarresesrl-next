@@ -162,7 +162,7 @@ export default function NewsletterForm({
               onChange={() => setIsCheckedTerms(!isCheckedTerms)}
             />
             <span className="ml-2">
-              accetto il{' '}
+              Accetto il{' '}
               <Link href="/privacy-policy">
                 <a className="text-yellow-500" target="_blank">
                   trattamento dei dati e condizioni *

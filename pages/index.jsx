@@ -126,12 +126,12 @@ export default function Home({groups, lastTwoProjects}) {
                   <H3 variant="secondary">
                     Tutto per creare i tuoi spazi professionali
                   </H3>
-                  <p className="mt-4 text-lg leading-relaxed text-gray-500">
+                  <Paragraph className="mt-4 leading-relaxed text-gray-500">
                     In una struttura aziendale di <strong>5000 mq</strong>{' '}
                     uniamo il laboratorio di produzione di arredi su misura,
                     l’officina e magazzino ricambi, il laboratorio di formazione
                     e un ampio showroom in cui potrai trovare:
-                  </p>
+                  </Paragraph>
                   <ul className="mt-6 list-none">
                     <li className="py-2">
                       <div className="flex items-center">
@@ -222,8 +222,8 @@ export default function Home({groups, lastTwoProjects}) {
                 <H3 variant="secondary" as="p">
                   Amiamo la cucina e la nostra Terra
                 </H3>
-                <Paragraph className="text-2xl">
-                  Sostenibilità, risparmio energetico e{' '}
+                <Paragraph className="text-2xl leading-relaxed">
+                  Sostenibilità, risparmio energetico ed{' '}
                   <strong>ecologia</strong> sono per noi un serio impegno per{' '}
                   <strong>salvaguardare l’ambiente</strong> e la terra che ci
                   dona le materie prime necessarie in cucina. Ci impegniamo su
@@ -235,21 +235,21 @@ export default function Home({groups, lastTwoProjects}) {
                   <H4
                     variant="secondary"
                     as="p"
-                    className="col-span-full rounded border border-green-700 p-4 lg:col-span-4"
+                    className="col-span-full rounded border border-green-700 p-4 text-center lg:col-span-4"
                   >
                     Risparmio energetico
                   </H4>
                   <H4
                     variant="secondary"
                     as="p"
-                    className="col-span-full rounded border border-green-700 p-4 lg:col-span-4"
+                    className="col-span-full rounded border border-green-700 p-4 text-center lg:col-span-4"
                   >
                     Dispositivi ad ozono
                   </H4>
                   <H4
                     variant="secondary"
                     as="p"
-                    className="col-span-full rounded border border-green-700 p-4 lg:col-span-4"
+                    className="col-span-full rounded border border-green-700 p-4 text-center lg:col-span-4"
                   >
                     Gas naturale R290
                   </H4>

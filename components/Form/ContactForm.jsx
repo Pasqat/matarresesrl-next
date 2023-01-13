@@ -228,7 +228,7 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
                 onChange={() => setIsCheckedNewsletter(!isCheckedNewsletter)}
               />
               <span className="ml-2">
-                voglio rimanere aggiornato su novità e promozioni
+                Voglio rimanere aggiornato su novità e promozioni
               </span>
             </label>
             {isCheckedNewsletter ? (
@@ -254,7 +254,7 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
               </div>
             ) : null}
           </div>
-          <div className="col-span-full lg:col-span-6">
+          <div className="col-span-full text-lg lg:col-span-6">
             <label className="flex-end inline-flex w-full items-center">
               <input
                 type="checkbox"
@@ -264,7 +264,7 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
                 onChange={() => setIsCheckedTerms(!isCheckedTerms)}
               />
               <span className="ml-2">
-                accetto il{' '}
+                Accetto il{' '}
                 <Link href="/privacy-policy">
                   <a className="text-yellow-500" target="_blank">
                     trattamento dei dati e condizioni
