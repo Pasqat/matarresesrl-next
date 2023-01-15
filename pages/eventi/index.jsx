@@ -238,6 +238,8 @@ export async function getStaticProps() {
     cssFeaturedEvent = css
   }
 
+  console.log('data -> ', data)
+
   return {
     props: {
       data: {...data, imgFeaturedEvent, cssFeaturedEvent},
