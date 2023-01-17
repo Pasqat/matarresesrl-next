@@ -94,7 +94,7 @@ export default function Events({data, groups}) {
               </Grid>
 
               <Spacer size="xs" />
-*/}
+                  */}
 
               {data.futureEvent.length === 1 ? null : (
                 <Grid>
@@ -237,8 +237,6 @@ export async function getStaticProps() {
     imgFeaturedEvent = img
     cssFeaturedEvent = css
   }
-
-  console.log('data -> ', data)
 
   return {
     props: {
