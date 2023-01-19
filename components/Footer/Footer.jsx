@@ -183,7 +183,7 @@ export default function Footer() {
               <li className="mb-2 flex">
                 <MapIcon />
                 <span className="ml-2 text-gray-600 hover:text-gray-800">
-                  Contrada Popoleto n.c. 70011 Alberobello (BA)
+                  Contrada Popoleto, n.c. 70011 Alberobello (BA)
                 </span>
               </li>
               <li className="mb-2 flex">

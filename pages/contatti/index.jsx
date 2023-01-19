@@ -97,7 +97,7 @@ export default function Contatti({groups}) {
                         Indirizzo
                       </H6>
                       <p className="mt-1">
-                        Contrada Popoleto,n.c. {'\n'} Alberobello (BA) 70011
+                        Contrada Popoleto, n.c. {'\n'} Alberobello (BA) 70011
                       </p>
                     </div>
                     <div>
