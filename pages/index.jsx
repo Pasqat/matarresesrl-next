@@ -235,21 +235,21 @@ export default function Home({groups, lastTwoProjects}) {
                   <H4
                     variant="secondary"
                     as="p"
-                    className="col-span-full rounded border border-green-700 p-4 text-center lg:col-span-4"
+                    className="col-span-full flex items-center justify-center rounded border border-green-700 p-4 text-center lg:col-span-4"
                   >
                     Risparmio energetico
                   </H4>
                   <H4
                     variant="secondary"
                     as="p"
-                    className="col-span-full rounded border border-green-700 p-4 text-center lg:col-span-4"
+                    className="col-span-full flex items-center justify-center rounded border border-green-700 p-4 text-center lg:col-span-4"
                   >
                     Dispositivi ad ozono
                   </H4>
                   <H4
                     variant="secondary"
                     as="p"
-                    className="col-span-full rounded border border-green-700 p-4 text-center lg:col-span-4"
+                    className="col-span-full flex items-center justify-center rounded border border-green-700 p-4 text-center lg:col-span-4"
                   >
                     Gas naturale R290
                   </H4>
