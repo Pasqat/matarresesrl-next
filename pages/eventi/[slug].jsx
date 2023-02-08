@@ -63,7 +63,7 @@ export default function Events({event}) {
           <section className="relative w-full bg-gray-100 pt-16 pb-24 text-gray-800">
             <div className="container mx-auto px-4">
               <div className="relative lg:flex lg:flex-row">
-                <div className="relative -mt-96 mb-6 flex w-full min-w-0 flex-col break-words bg-white shadow-lg">
+                <div className="relative -mt-96 mb-6 flex w-full min-w-0 flex-col break-words bg-white shadow-lg pb-24">
                   <div className="px-6">
                     <div className="mt-8 flex flex-wrap justify-center">
                       <div className="flex items-center justify-center">
@@ -149,7 +149,7 @@ export default function Events({event}) {
                         <div className="w-full px-4 lg:w-9/12">
                           <EventBody content={event.content} />
                           {!event.isPast ? (
-                            <div className="flex items-center justify-end">
+                            <div className="flex items-center justify-end py-10">
                               <Paragraph className="mr-8 font-medium">
                                 Prenota subito il tuo posto all&apos;evento.
                                 Clicca su &ldquo;Partecipa&rdquo;
