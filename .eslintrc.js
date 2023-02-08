@@ -10,10 +10,11 @@ module.exports = {
     },
   },
   extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:prettier/recommended',
-    'plugin:@next/next/recommended',
+    // 'eslint:recommended',
+    // 'plugin:react/recommended',
+    // 'plugin:prettier/recommended',
+    // 'plugin:@next/next/recommended',
+    'next', 'prettier' 
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -22,7 +23,7 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['react', 'react-hooks'],
+  // plugins: ['react', 'react-hooks'],
   rules: {
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
@@ -30,11 +31,11 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     '@next/next/no-img-element': 'off',
     requireStringLiterals: 'off',
-    'prettier/prettier': [
-      'error',
-      {
-        endOfLine: 'auto',
-      },
-    ],
+    // 'prettier': [
+    //   'error',
+    //   {
+    //     endOfLine: 'auto',
+    //   },
+    // ],
   },
 }
