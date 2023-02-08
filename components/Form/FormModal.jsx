@@ -354,11 +354,7 @@ export default function FormModal({
                       />
                     </div>
                   ) : null}
-                  <div
-                    className={clsx('relative w-full', {
-                       // hidden: !mail,
-                    })}
-                  >
+                  <div className='relative w-full'>
                     <label
                       className="mb-2 block text-xs font-bold uppercase text-gray-600"
                       htmlFor="messaggio"
