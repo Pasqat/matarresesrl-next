@@ -353,29 +353,28 @@ export default function FormModal({
                         onChange={handleChange}
                       />
                     </div>
-                  ) : (
-                    <div
-                      className={clsx('relative w-full', {
-                        hidden: !referente || !mail,
-                      })}
+                  ) : null}
+                  <div
+                    className={clsx('relative w-full', {
+                       // hidden: !mail,
+                    })}
+                  >
+                    <label
+                      className="mb-2 block text-xs font-bold uppercase text-gray-600"
+                      htmlFor="messaggio"
                     >
-                      <label
-                        className="mb-2 block text-xs font-bold uppercase text-gray-600"
-                        htmlFor="messaggio"
-                      >
-                        Messaggio
-                      </label>
-                      <textarea
-                        rows="4"
-                        cols="80"
-                        className="w-full rounded border-0 bg-white px-3 py-3 text-sm text-gray-600 placeholder-gray-300 shadow focus:outline-none focus:ring"
-                        placeholder="Scrivi la tua richiesta..."
-                        name="formContent"
-                        value={formContent}
-                        onChange={handleChange}
-                      />
-                    </div>
-                  )}
+                      Messaggio
+                    </label>
+                    <textarea
+                      rows="4"
+                      cols="80"
+                      className="w-full rounded border-0 bg-white px-3 py-3 text-sm text-gray-600 placeholder-gray-300 shadow focus:outline-none focus:ring"
+                      placeholder="Scrivi la tua richiesta..."
+                      name="formContent"
+                      value={formContent}
+                      onChange={handleChange}
+                    />
+                  </div>
                   <div className="relative mt-5 text-right text-gray-600">
                     <label className="inline-flex items-center">
                       <input
