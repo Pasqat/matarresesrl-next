@@ -154,7 +154,7 @@ export default function Assistenza() {
           </div>
         </section>
 
-        <section className="mb-24 lg:mb-48" id="assistenza">
+        <section id="assistenza">
           <Grid featured>
             <form
               className="col-span-full mt-8 space-y-4"
