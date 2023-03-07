@@ -66,7 +66,7 @@ const sendMail = async (req, res) => {
     ragione_sociale,
     text: `Nome (referente): ${referente} ${surname || ''}\nRagione Sociale: ${
       company || ragione_sociale
-    }\nIndirizzo: ${indirizzo}\nEmail: ${senderMail}\ntel: ${tel}\n${content}\n`,
+    }\nIndirizzo: ${indirizzo}\nEmail: ${senderMail}\ntel: ${tel}\npartecipanti: ${participants}\nmessaggio: ${formContent}\n`,
     recipientMail,
   })
   res.send(mailerRes)
