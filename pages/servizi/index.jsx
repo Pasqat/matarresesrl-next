@@ -104,7 +104,7 @@ export default function Servizi({groups}) {
                   </div>
                   <div className="col-span-full lg:col-span-4">
                     <FeatureCard
-                      title="Realizzazine arredi su misura"
+                      title="Realizzazione arredi su misura"
                       description="Adattiamo gli arredi e scegliamo le attrezzature migliori per i tuoi ambienti."
                       // icon={<BriefCaseIcon size={48} />}
                     />
