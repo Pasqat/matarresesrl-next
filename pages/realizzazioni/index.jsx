@@ -129,7 +129,7 @@ export default function Realizzazioni({data}) {
       </Head>
 
       <Layout>
-        <Grid className="my-14">
+        <Grid className="my-14 hidden lg:block">
           {data.categories && data.categories.length > 0 ? (
             <>
               <H5 as="div" className="col-span-full mb-6">
@@ -156,7 +156,7 @@ export default function Realizzazioni({data}) {
 
         <div className="mx-auto mb-14 max-w-7xl">
           <form onSubmit={e => e.preventDefault()}>
-            <div className="relative">
+            <div className="relative mx-16 lg:mx-0">
               <button
                 title={query === '' ? 'Cerca' : 'Pulisci ricerca'}
                 type="button"
