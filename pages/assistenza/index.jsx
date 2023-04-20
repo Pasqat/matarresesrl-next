@@ -157,7 +157,7 @@ export default function Assistenza() {
         <section id="assistenza">
           <Grid featured>
             <form
-              className="col-span-full mt-8 space-y-4"
+              className="col-span-full mx-8 lg:mx-16 space-y-4"
               onSubmit={submitContactForm}
             >
               {/*
