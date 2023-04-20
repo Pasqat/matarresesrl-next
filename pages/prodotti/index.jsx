@@ -280,8 +280,8 @@ export default function ProductsHome({groups}) {
           >
             <Grid className="py-24">
               <div className="col-span-full">
-                <H2 className="mb-3 text-gray-100 lg:mt-6">{`Igiene e sanificazione`}</H2>
-                <H2 as="p" className="mb-14 text-gray-300">
+                <H2 variant="light-gray" className="mb-3 lg:mt-6">{`Igiene e sanificazione`}</H2>
+                <H2 variant="light-gray" as="p" className="mb-14 text-gray-300">
                   {`Possiamo aiutarti a mantenere i tuoi ambienti puliti ed igienizzati`}
                 </H2>
               </div>

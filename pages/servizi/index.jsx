@@ -502,15 +502,15 @@ export default function Servizi({groups}) {
           >
             <Grid className="py-24">
               <div className="col-span-full">
-                <H2 className="mb-3 font-medium text-gray-100 lg:mt-6">{`Servizi e allestimenti per GDO`}</H2>
-                <H3 as="p" className="mt-14 mb-7 text-gray-300">
+                <H2 variant="light-gray" className="mb-3 font-medium lg:mt-6">{`Servizi e allestimenti per GDO`}</H2>
+                <H3 as="p" variant="light-gray" className="mt-14 mb-7">
                   Progettiamo le{' '}
                   <span className="font-medium italic text-white">
                     aree ristoro{' '}
                   </span>
                   dei grandi supermercati, librerie e negozi.{' '}
                 </H3>
-                <H3 as="p" className="my-7 text-gray-300">
+                <H3  variant="light-gray" as="p" className="my-7 ">
                   <span className="font-medium italic text-white">
                     Allestiamo{' '}
                   </span>
@@ -524,7 +524,7 @@ export default function Servizi({groups}) {
                   </span>{' '}
                   cucine per la grande distribuzione organizzata.
                 </H3>
-                <H3 as="p" className="my-7 text-gray-300">
+                <H3  variant="light-gray" as="p" className="my-7">
                   Mettiamo il cliente al centro garantendo le{' '}
                   <span className="font-medium italic text-white">
                     attrezzature più innovative{' '}

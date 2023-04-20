@@ -23,6 +23,7 @@
     "@reach/checkbox": "^0.16.0",
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/forms": "^0.4.0",
+    "@vercel/analytics": "^1.0.0",
     "apollo-boost": "^0.4.9",
     "axios": "^0.26.0",
     "babel-plugin-macros": "^3.1.0",

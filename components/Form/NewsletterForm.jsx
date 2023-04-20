@@ -1,6 +1,6 @@
 import {useEffect, useRef, useState} from 'react'
 import Link from 'next/link'
-import {gtmEvent} from '../../lib/gtm'
+// import {gtmEvent} from '../../lib/gtm'
 import {usePlausible} from 'next-plausible'
 
 import {H2} from '../typography'
@@ -87,7 +87,7 @@ export default function NewsletterForm({
     })
 
     const {message, error} = await resSubscription.json()
-    gtmEvent('new_subscriber', {formLocation: 'page'})
+    // gtmEvent('new_subscriber', {formLocation: 'page'})
     plausible('Iscrizione Newsletter', {
       props: {form_location: 'page', groupId: newsletterGroupId},
     })

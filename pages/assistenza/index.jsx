@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import Link from 'next/link'
 import * as fbq from '../../lib/fpixel'
-import {gtmEvent} from '../../lib/gtm'
+// import {gtmEvent} from '../../lib/gtm'
 import {usePlausible} from 'next-plausible'
 
 import Head from 'next/head'
@@ -92,7 +92,7 @@ export default function Assistenza() {
         isError: false,
       })
       fbq.event('Contact')
-      gtmEvent('contact')
+      // gtmEvent('contact')
       plausible('Contatti', {props: {form_location: 'Assistenza'}})
       setForm({
         ...form,
@@ -157,7 +157,7 @@ export default function Assistenza() {
         <section id="assistenza">
           <Grid featured>
             <form
-              className="col-span-full mt-8 space-y-4"
+              className="col-span-full mx-8 lg:mx-16 space-y-4"
               onSubmit={submitContactForm}
             >
               {/*

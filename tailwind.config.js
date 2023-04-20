@@ -12,12 +12,12 @@ module.exports = {
       xl: '1500px', // this is the "design resolution"
     },
     colors: {
-      trasparent: 'transparent',
-      current: 'currentColor',
-      white: 'var(--color-white)',
-      black: 'var(--color-black)',
+      'trasparent': 'transparent',
+      'current': 'currentColor',
+      'white': 'var(--color-white)',
+      'black': 'var(--color-black)',
 
-      gray: {
+      'gray': {
         100: 'var(--color-gray-100)',
         200: 'var(--color-gray-200)',
         300: 'var(--color-gray-300)',
@@ -28,17 +28,17 @@ module.exports = {
         800: 'var(--color-gray-800)',
         900: 'var(--color-gray-900)',
       },
-      yellow: {
+      'yellow': {
         400: 'var(--color-yellow-400)',
         500: 'rgb(var(--color-yellow-500) / <alpha-value>)',
         600: 'var(--color-yellow-600)',
       },
-      red: {
+      'red': {
         400: 'var(--color-red-400)',
         500: 'var(--color-red-500)',
         600: 'var(--color-red-400)',
       },
-      green: {
+      'green': {
         100: 'var(--color-green-100)',
         400: 'var(--color-green-400)',
         500: 'var(--color-green-500)',

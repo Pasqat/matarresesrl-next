@@ -1,7 +1,7 @@
 import {useEffect, useRef, useState} from 'react'
 import Link from 'next/link'
 import * as fbq from '../../lib/fpixel'
-import {gtmEvent} from '../../lib/gtm'
+// import {gtmEvent} from '../../lib/gtm'
 import {usePlausible} from 'next-plausible'
 
 import {H2} from '../typography'
@@ -88,7 +88,7 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
         isError: false,
       })
       fbq.event('Contact')
-      gtmEvent('contact')
+      // gtmEvent('contact')
       plausible('Contatti', {props: {form_location: 'Contact Form'}})
       setForm({
         ...form,
@@ -123,7 +123,7 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
       })
 
       plausible('New subscriber', {props: {form_location: 'Contact Form'}})
-      gtmEvent('new_subscriber', {formLocation: 'Contact Form'})
+      // gtmEvent('new_subscriber', {formLocation: 'Contact Form'})
       const {message, error} = await resSubscription.json()
 
       if (error) {
