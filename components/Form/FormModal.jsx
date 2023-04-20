@@ -1,7 +1,7 @@
 import {Fragment, useEffect, useState} from 'react'
 import Link from 'next/link'
 import * as fbq from '../../lib/fpixel'
-import {gtmEvent} from '../../lib/gtm'
+// import {gtmEvent} from '../../lib/gtm'
 import {usePlausible} from 'next-plausible'
 
 import {Dialog, Transition} from '@headlessui/react'
@@ -140,14 +140,14 @@ export default function FormModal({
           content_name: title,
           value: participants,
         })
-        gtmEvent('complete_registration', {
-          content_name: title,
-          value: participants,
-        })
+        // gtmEvent('complete_registration', {
+        //   content_name: title,
+        //   value: participants,
+        // })
       } else {
         plausible('Contatti', {props: {form_location: 'Modal Form'}})
         fbq.event('Contact')
-        gtmEvent('contact', {formLocation: 'Modal form'})
+        // gtmEvent('contact', {formLocation: 'Modal form'})
       }
       setNotification({
         ...notification,

@@ -1,5 +1,5 @@
 import Document, {Html, Head, Main, NextScript} from 'next/document'
-import {GTM_ID} from '../lib/gtm'
+// import {GTM_ID} from '../lib/gtm'
 import {FB_PIXEL_ID} from '../lib/fpixel'
 
 export default class MyDocument extends Document {
@@ -17,6 +17,7 @@ export default class MyDocument extends Document {
           </noscript>
         </Head>
         <body>
+          {/*
           <noscript>
             <iframe
               src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
@@ -25,6 +26,7 @@ export default class MyDocument extends Document {
               style={{display: 'none', visibility: 'hidden'}}
             />
           </noscript>
+          */}
           <div id="page-transition"></div>
           <Main />
           <NextScript />
