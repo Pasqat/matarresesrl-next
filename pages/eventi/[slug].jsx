@@ -34,7 +34,6 @@ export default function Events({ event }) {
   //   return parsedAddress.join('+')
   // }
   //
-  console.log("event ->", event);
 
   return (
     <Layout navbarTransparent>
