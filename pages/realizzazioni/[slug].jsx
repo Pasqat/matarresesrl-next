@@ -190,6 +190,7 @@ export default function Project({project}) {
 
 export async function getStaticProps({params}) {
   const data = await getProject(params.slug)
+  data.galleria = data.galleria.filter(n => n != null)
 
   return {
     props: {
