@@ -5,7 +5,7 @@ import Script from 'next/script'
 import {useEffect, useState} from 'react'
 import {useRouter} from 'next/router'
 import * as fbq from '../lib/fpixel'
-// import {GTM_ID, pageview} from '../lib/gtm'
+import {GTM_ID, pageview} from '../lib/gtm'
 import CookieConsent, {getCookieConsentValue} from 'react-cookie-consent'
 import { Analytics } from '@vercel/analytics/react'
 
@@ -29,7 +29,7 @@ function MyApp({Component, pageProps}) {
 
     const handleRouteChange = () => {
       fbq.pageview()
-      // pageview()
+      pageview()
     }
 
     router.events.on('routeChangeComplete', handleRouteChange)
@@ -61,7 +61,6 @@ function MyApp({Component, pageProps}) {
           `,
               }}
             />
-            {/*
             <Script
               id="tag-manager"
               strategy="afterInteractive"
@@ -75,7 +74,6 @@ function MyApp({Component, pageProps}) {
               `,
               }}
             />
-            */}
           </>
         ) : null}
         <Component {...pageProps} />

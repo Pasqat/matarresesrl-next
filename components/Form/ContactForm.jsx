@@ -1,76 +1,77 @@
-import {useEffect, useRef, useState} from 'react'
-import Link from 'next/link'
-import * as fbq from '../../lib/fpixel'
-// import {gtmEvent} from '../../lib/gtm'
-import {usePlausible} from 'next-plausible'
+import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import * as fbq from "../../lib/fpixel";
+import { gtmEvent } from "../../lib/gtm";
+import { usePlausible } from "next-plausible";
 
-import {H2} from '../typography'
+import { H2 } from "../typography";
 
-import {sendContactMail} from '../../actions/networking/mailApi'
-import {NotificationPanel, Field} from '../form-element'
-import {Grid} from '../grid'
-import {Spacer} from '../spacer'
-import {ArrowButton} from '../arrow-button'
-import {CheckIcon} from '../icons/check-icon'
-import {ChevronLeftIcon} from '../icons/chevron-left-icon'
+import { sendContactMail } from "../../actions/networking/mailApi";
+import { Field, NotificationPanel } from "../form-element";
+import { Grid } from "../grid";
+import { Spacer } from "../spacer";
+import { ArrowButton } from "../arrow-button";
+import { CheckIcon } from "../icons/check-icon";
+import { ChevronLeftIcon } from "../icons/chevron-left-icon";
 
-export default function ContactForm({hasAutoFocus, featured, groups}) {
-  const plausible = usePlausible()
+export default function ContactForm({ hasAutoFocus, featured, groups }) {
+  const plausible = usePlausible();
   const [form, setForm] = useState({
-    referente: '',
-    email: '',
-    tel: '',
-    company: '',
-    formContent: '',
+    referente: "",
+    email: "",
+    tel: "",
+    company: "",
+    formContent: "",
     newsletterGroupId: 107688379,
-  })
-  const {referente, email, tel, formContent, company, newsletterGroupId} = form
+  });
+  const { referente, email, tel, formContent, company, newsletterGroupId } =
+    form;
 
-  const [isCheckedTerms, setIsCheckedTerms] = useState(false)
-  const [isCheckedNewsletter, setIsCheckedNewsletter] = useState(false)
-  const [formButtonDisabled, setFormButtonDisabled] = useState(false)
+  const [isCheckedTerms, setIsCheckedTerms] = useState(false);
+  const [isCheckedNewsletter, setIsCheckedNewsletter] = useState(false);
+  const [formButtonDisabled, setFormButtonDisabled] = useState(false);
   const [notification, setNotification] = useState({
-    text: '',
+    text: "",
     isError: false,
-  })
+  });
 
-  const inputName = useRef(null)
+  const inputName = useRef(null);
 
-  const handleChange = e => {
-    const {name, value} = e.target
+  const handleChange = (e) => {
+    const { name, value } = e.target;
     setForm({
       ...form,
       [name]: value,
-    })
-  }
+    });
+  };
 
   useEffect(() => {
-    hasAutoFocus && inputName.current.focus()
-  }, [hasAutoFocus])
+    hasAutoFocus && inputName.current.focus();
+  }, [hasAutoFocus]);
 
   useEffect(() => {
-    if (isCheckedTerms && notification.text.includes('termini')) {
-      setNotification({text: '', isError: false})
+    if (isCheckedTerms && notification.text.includes("termini")) {
+      setNotification({ text: "", isError: false });
     }
-  }, [isCheckedTerms, notification.text])
+  }, [isCheckedTerms, notification.text]);
 
   async function submitContactForm(event) {
-    event.preventDefault()
+    event.preventDefault();
 
-    if (referente === '' || email === '' || formContent === '') {
+    if (referente === "" || email === "" || formContent === "") {
       return setNotification({
         ...notification,
-        text: 'Per favore compila tutti i campi',
+        text: "Per favore compila tutti i campi",
         isError: true,
-      })
+      });
     }
 
     if (isCheckedTerms === false) {
       return setNotification({
         ...notification,
-        text: 'Non dimenticare di accettare i termini e le condizioni',
+        text: "Non dimenticare di accettare i termini e le condizioni",
         isError: true,
-      })
+      });
     }
 
     const res = await sendContactMail({
@@ -79,37 +80,37 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
       tel,
       company,
       formContent,
-    })
+    });
     if (res.status < 300) {
-      setFormButtonDisabled(true)
+      setFormButtonDisabled(true);
       setNotification({
         ...notification,
-        text: 'Grazie, ti ricontatteremo al più presto',
+        text: "Grazie, ti ricontatteremo al più presto",
         isError: false,
-      })
-      fbq.event('Contact')
-      // gtmEvent('contact')
-      plausible('Contatti', {props: {form_location: 'Contact Form'}})
+      });
+      fbq.event("Contact");
+      gtmEvent("contact");
+      plausible("Contatti", { props: { form_location: "Contact Form" } });
       setForm({
         ...form,
-        referente: '',
-        email: '',
-        tel: '',
-        company: '',
-        formContent: '',
-      })
-      setIsCheckedTerms(false)
+        referente: "",
+        email: "",
+        tel: "",
+        company: "",
+        formContent: "",
+      });
+      setIsCheckedTerms(false);
     } else {
       setNotification({
         ...notification,
-        text: 'Per favore compila tutti i campi',
+        text: "Per favore compila tutti i campi",
         isError: true,
-      })
+      });
     }
 
     // 3. Send a request to our API with the user's email address.
     if (isCheckedNewsletter) {
-      const resSubscription = await fetch('/api/subscribe', {
+      const resSubscription = await fetch("/api/subscribe", {
         body: JSON.stringify({
           email: email,
           groupId: newsletterGroupId,
@@ -117,14 +118,14 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
           company: company,
         }),
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        method: 'POST',
-      })
+        method: "POST",
+      });
 
-      plausible('New subscriber', {props: {form_location: 'Contact Form'}})
-      // gtmEvent('new_subscriber', {formLocation: 'Contact Form'})
-      const {message, error} = await resSubscription.json()
+      plausible("New subscriber", { props: { form_location: "Contact Form" } });
+      gtmEvent("new_subscriber", { formLocation: "Contact Form" });
+      const { message, error } = await resSubscription.json();
 
       if (error) {
         // 4. If there was an error, update the message in state.
@@ -132,7 +133,7 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
           ...notification,
           text: error,
           isError: true,
-        })
+        });
       }
 
       if (message) {
@@ -140,7 +141,7 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
           ...notification,
           text: message,
           isError: false,
-        })
+        });
       }
     }
   }
@@ -231,28 +232,30 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
                 Voglio rimanere aggiornato su novità e promozioni
               </span>
             </label>
-            {isCheckedNewsletter ? (
-              <div className="my-2 ml-4 flex items-center lg:my-6">
-                <select
-                  value={newsletterGroupId}
-                  name="newsletterGroupId"
-                  onChange={handleChange}
-                  className="w-full rounded-lg bg-white py-4 px-2 text-lg font-medium disabled:text-gray-400 lg:w-auto lg:px-8"
-                >
-                  {groups.map(group => {
-                    return (
-                      <option key={group.id} value={group.id}>
-                        {group.name}
-                      </option>
-                    )
-                  })}
-                </select>
-                <ChevronLeftIcon />
-                <label className="text-xs lg:text-lg">
-                  scegli il tuo settore
-                </label>
-              </div>
-            ) : null}
+            {isCheckedNewsletter
+              ? (
+                <div className="my-2 ml-4 flex items-center lg:my-6">
+                  <select
+                    value={newsletterGroupId}
+                    name="newsletterGroupId"
+                    onChange={handleChange}
+                    className="w-full rounded-lg bg-white py-4 px-2 text-lg font-medium disabled:text-gray-400 lg:w-auto lg:px-8"
+                  >
+                    {groups.map((group) => {
+                      return (
+                        <option key={group.id} value={group.id}>
+                          {group.name}
+                        </option>
+                      );
+                    })}
+                  </select>
+                  <ChevronLeftIcon />
+                  <label className="text-xs lg:text-lg">
+                    scegli il tuo settore
+                  </label>
+                </div>
+              )
+              : null}
           </div>
           <div className="col-span-full text-lg lg:col-span-6">
             <label className="flex-end inline-flex w-full items-center">
@@ -264,7 +267,7 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
                 onChange={() => setIsCheckedTerms(!isCheckedTerms)}
               />
               <span className="ml-2">
-                Accetto il{' '}
+                Accetto il{" "}
                 <Link href="/privacy-policy">
                   <a className="text-yellow-500" target="_blank">
                     trattamento dei dati e condizioni
@@ -276,29 +279,33 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
           </div>
         </div>
 
-        {notification.isError ? (
-          <NotificationPanel isError={notification.isError}>
-            {notification.text}
-          </NotificationPanel>
-        ) : null}
+        {notification.isError
+          ? (
+            <NotificationPanel isError={notification.isError}>
+              {notification.text}
+            </NotificationPanel>
+          )
+          : null}
 
         <div className="text-right">
-          {formButtonDisabled ? (
-            <div className="flex justify-end">
-              <CheckIcon />
-              <p className="text-secondary text-lg">
-                {!notification.text
-                  ? `Grazie, ti ricontatteremo al più presto`
-                  : notification.text}
-              </p>
-            </div>
-          ) : (
-            <ArrowButton className="pt-4" type="submit" direction="right">
-              Invia
-            </ArrowButton>
-          )}
+          {formButtonDisabled
+            ? (
+              <div className="flex justify-end">
+                <CheckIcon />
+                <p className="text-secondary text-lg">
+                  {!notification.text
+                    ? `Grazie, ti ricontatteremo al più presto`
+                    : notification.text}
+                </p>
+              </div>
+            )
+            : (
+              <ArrowButton className="pt-4" type="submit" direction="right">
+                Invia
+              </ArrowButton>
+            )}
         </div>
       </form>
     </Grid>
-  )
+  );
 }

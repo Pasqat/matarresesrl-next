@@ -1,89 +1,89 @@
-import {useEffect, useRef, useState} from 'react'
-import Link from 'next/link'
-// import {gtmEvent} from '../../lib/gtm'
-import {usePlausible} from 'next-plausible'
+import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { gtmEvent } from "../../lib/gtm";
+import { usePlausible } from "next-plausible";
 
-import {Paragraph} from '../typography'
+import { Paragraph } from "../typography";
 
-import {Field} from '../form-element'
-import clsx from 'clsx'
+import { Field } from "../form-element";
+import clsx from "clsx";
 
 export default function NewsletterForm({
   hasAutoFocus,
   featured,
   groups,
-  title = 'Iscriviti alla nostra newsletter',
+  title = "Iscriviti alla nostra newsletter",
 }) {
-  const plausible = usePlausible()
+  const plausible = usePlausible();
 
   const [form, setForm] = useState({
-    email: '',
+    email: "",
     newsletterGroupId: 107688379,
-  })
-  const {email, newsletterGroupId} = form
+  });
+  const { email, newsletterGroupId } = form;
 
-  const [isCheckedTerms, setIsCheckedTerms] = useState(false)
+  const [isCheckedTerms, setIsCheckedTerms] = useState(false);
   const [notification, setNotification] = useState({
-    text: '',
+    text: "",
     isError: false,
-  })
+  });
 
-  const inputName = useRef(null)
+  const inputName = useRef(null);
 
-  const handleChange = e => {
-    const {name, value} = e.target
+  const handleChange = (e) => {
+    const { name, value } = e.target;
     setForm({
       ...form,
       [name]: value,
-    })
-  }
+    });
+  };
 
   useEffect(() => {
-    hasAutoFocus && inputName.current.focus()
-  }, [hasAutoFocus])
+    hasAutoFocus && inputName.current.focus();
+  }, [hasAutoFocus]);
 
   useEffect(() => {
-    if (isCheckedTerms && notification.text.includes('termini')) {
-      setNotification({text: '', isError: false})
+    if (isCheckedTerms && notification.text.includes("termini")) {
+      setNotification({ text: "", isError: false });
     }
-  }, [isCheckedTerms, notification.text])
+  }, [isCheckedTerms, notification.text]);
 
   async function submitContactForm(event) {
-    event.preventDefault()
+    event.preventDefault();
 
-    if (email === '') {
+    if (email === "") {
       return setNotification({
         ...notification,
-        text: 'Non dimenticare la mail',
+        text: "Non dimenticare la mail",
         isError: true,
-      })
+      });
     }
 
     if (isCheckedTerms === false) {
       return setNotification({
         ...notification,
-        text: 'Accetta i termini e le condizioni',
+        text: "Accetta i termini e le condizioni",
         isError: true,
-      })
+      });
     }
 
     // 3. Send a request to our API with the user's email address.
-    const resSubscription = await fetch('/api/subscribe', {
+    const resSubscription = await fetch("/api/subscribe", {
       body: JSON.stringify({
         email: email,
         groupId: newsletterGroupId,
       }),
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      method: 'POST',
-    })
+      method: "POST",
+    });
 
-    plausible('Iscrizione Newsletter', {
-      props: {form_location: 'footer', groupId: newsletterGroupId},
-    })
-    // gtmEvent('new_subscriber', {formLocation: 'footer'})
-    const {message, error} = await resSubscription.json()
+    plausible("Iscrizione Newsletter", {
+      props: { form_location: "footer", groupId: newsletterGroupId },
+    });
+    gtmEvent("new_subscriber", { formLocation: "footer" });
+    const { message, error } = await resSubscription.json();
 
     if (error) {
       // 4. If there was an error, update the message in state.
@@ -91,7 +91,7 @@ export default function NewsletterForm({
         ...notification,
         text: error,
         isError: true,
-      })
+      });
     }
 
     if (message) {
@@ -99,7 +99,7 @@ export default function NewsletterForm({
         ...notification,
         text: message,
         isError: false,
-      })
+      });
     }
   }
 
@@ -135,19 +135,19 @@ export default function NewsletterForm({
               name="newsletterGroupId"
               onChange={handleChange}
               className={clsx(
-                'focus-ring w-full rounded-lg bg-white py-[1.17rem] px-8 text-lg font-medium text-black placeholder-gray-500 caret-yellow-500 disabled:bg-gray-100 disabled:text-gray-400',
-                featured ? 'bg-white' : 'bg-gray-100',
+                "focus-ring w-full rounded-lg bg-white py-[1.17rem] px-8 text-lg font-medium text-black placeholder-gray-500 caret-yellow-500 disabled:bg-gray-100 disabled:text-gray-400",
+                featured ? "bg-white" : "bg-gray-100",
               )}
-              aria-describedby={
-                notification.isError ? 'industry-error' : undefined
-              }
+              aria-describedby={notification.isError
+                ? "industry-error"
+                : undefined}
             >
-              {groups.map(group => {
+              {groups.map((group) => {
                 return (
                   <option key={group.id} value={group.id}>
                     {group.name}
                   </option>
-                )
+                );
               })}
             </select>
           </div>
@@ -162,7 +162,7 @@ export default function NewsletterForm({
               onChange={() => setIsCheckedTerms(!isCheckedTerms)}
             />
             <span className="ml-2">
-              Accetto il{' '}
+              Accetto il{" "}
               <Link href="/privacy-policy">
                 <a className="text-yellow-500" target="_blank">
                   trattamento dei dati e condizioni *
@@ -172,7 +172,8 @@ export default function NewsletterForm({
           </label>
         </div>
 
-        {/* <div className="text-right">
+        {
+          /* <div className="text-right">
           {formButtonDisabled ? (
             <div className="flex justify-end">
               <CheckIcon />
@@ -187,8 +188,9 @@ export default function NewsletterForm({
               Invia
             </ArrowButton>
           )}
-        </div> */}
+        </div> */
+        }
       </form>
     </div>
-  )
+  );
 }
