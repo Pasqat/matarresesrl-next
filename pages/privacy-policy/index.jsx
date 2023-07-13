@@ -117,7 +117,7 @@ export default function PrivacyPolicy() {
                   e non riguarda altri Siti Web eventualmente consultati dagli
                   utenti mediante i link (collegamenti ipertestuali) in esso
                   contenuti, totalmente estranei alla sfera del Titolare del
-                  trattamento <strong>Marattese s.r.l.</strong>
+                  trattamento <strong>Matarrese s.r.l.</strong>
                 </div>
               </section>
               <section>
@@ -126,7 +126,7 @@ export default function PrivacyPolicy() {
                 </H3>
                 <div className="md:columns-2">
                   Il Titolare del trattamento dei Suoi dati personali di cui
-                  alla presente Informativa è <strong>Marattese s.r.l.</strong>,
+                  alla presente Informativa è <strong>Matarrese s.r.l.</strong>,
                   accessibile per ogni comunicazione o richiesta in merito ai
                   Suoi dati ai seguenti contatti:
                   <p className="my-2">
@@ -171,7 +171,7 @@ export default function PrivacyPolicy() {
                 </H3>
                 <div className="md:columns-2">
                   Non ricorrendo i presupposti di Regolamento,{' '}
-                  <strong>Marattese s.r.l.</strong>
+                  <strong>Matarrese s.r.l.</strong>
                   non ha nominato il Responsabile della Protezione dei dati
                   personali ai sensi e per gli effetti di cui agli artt. 37 e
                   ss. del Regolamento cit.
@@ -245,7 +245,7 @@ export default function PrivacyPolicy() {
                       <span className="font-bold text-gray-700">
                         Dati forniti volontariamente dall’utente.
                       </span>{' '}
-                      <strong>Marattese s.r.l.</strong>
+                      <strong>Matarrese s.r.l.</strong>
                       potrà acquisire il Suo nome e i Suoi dati di contatto
                       nonché eventuali altri Suoi dati personali, da Lei
                       volontariamente trasmessi tramite l’invio di messaggi di
@@ -278,7 +278,7 @@ export default function PrivacyPolicy() {
                   <ul className="list-disc py-4 pl-6">
                     <li>
                       dipendenti/collaboratori/addetti di{' '}
-                      <strong>Marattese s.r.l.</strong>,
+                      <strong>Matarrese s.r.l.</strong>,
                     </li>
                     <li>
                       fornitori di servizi legati alla gestione e al
@@ -293,7 +293,7 @@ export default function PrivacyPolicy() {
                   <ul className="list-disc py-4 pl-6">
                     <li>
                       dipendenti/collaboratori/addetti di{' '}
-                      <strong>Marattese s.r.l.</strong>;
+                      <strong>Matarrese s.r.l.</strong>;
                     </li>
                     <li>
                       fornitori di servizi e-mail, servizi legati alla gestione
@@ -322,10 +322,10 @@ export default function PrivacyPolicy() {
                   I soggetti sopra indicati, talvolta operano in totale
                   autonomia cioè come autonomi titolari del trattamento, altre
                   volte come responsabili del trattamento nominati da{' '}
-                  <strong>Marattese s.r.l.</strong> l’elenco completo e
+                  <strong>Matarrese s.r.l.</strong> l’elenco completo e
                   aggiornato dei soggetti destinatari dei dati personali è a
                   disposizione presso la sede di{' '}
-                  <strong>Marattese s.r.l.</strong>
+                  <strong>Matarrese s.r.l.</strong>
                 </div>
               </section>
               <seciton>
@@ -335,7 +335,7 @@ export default function PrivacyPolicy() {
                 </H3>
                 <div className="md:columns-2">
                   I suoi dati personali sono trattati da{' '}
-                  <strong>Marattese s.r.l.</strong>
+                  <strong>Matarrese s.r.l.</strong>
                   all’interno dell’Unione Europea e non vengono diffusi. Se
                   necessario, per ragioni di natura tecnico/operativa e comunque
                   nell’ambito delle finalità di cui sopra, i dati di navigazione
@@ -346,10 +346,10 @@ export default function PrivacyPolicy() {
                   </Link>{' '}
                   potrebbero essere trasferiti su server ubicati in Paesi
                   extra-UE, qualora i fornitori di servizi informatici e i
-                  programmi impiegati da <strong>Marattese s.r.l.</strong>,
+                  programmi impiegati da <strong>Matarrese s.r.l.</strong>,
                   sopra indicati quali destinatari, lo prevedano o impieghino
                   tecnologia di <em>cloud computing.</em> Tuttavia, Le
-                  ricordiamo che <strong>Marattese s.r.l.</strong> ha
+                  ricordiamo che <strong>Matarrese s.r.l.</strong> ha
                   selezionato attentamente solo fornitori di servizi in grado di
                   offrire un elevato livello di sicurezza e protezione dei dati
                   personali.
@@ -373,7 +373,7 @@ export default function PrivacyPolicy() {
                   prevalenti sui diritti / interessi / libertà dell’interessato;
                   diritto di revocare il consenso precedentemente accordato,
                   anche semplicemente inviando la revoca al seguente indirizzo:{' '}
-                  <strong>Marattese s.r.l.</strong>, C.da Popoleto, n.c. 70011
+                  <strong>Matarrese s.r.l.</strong>, C.da Popoleto, n.c. 70011
                   Alberobello (BA), salva la liceità del trattamento dati basata
                   sul consenso ed effettuato prima della revoca. Tutti i diritti
                   sopra descritti potranno essere esercitati con richiesta
@@ -432,7 +432,7 @@ export default function PrivacyPolicy() {
               <section>
                 <H3 className="pb-3">Sez. 11 – Misure di sicurezza.</H3>{' '}
                 <div className="md:columns-2">
-                  <strong>Marattese s.r.l.</strong> come Titolare del
+                  <strong>Matarrese s.r.l.</strong> come Titolare del
                   trattamento dei Suoi dati adotta adeguate misure di sicurezza
                   tecniche e organizzative, in conformità a quanto disposto dal
                   RGPD, al fine di ridurre al minimo i rischi che potrebbero
