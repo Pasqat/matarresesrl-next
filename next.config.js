@@ -308,6 +308,16 @@ module.exports = {
         destination: '/prodotti',
         permanent: true,
       },
+      {
+        source: '/m/negozio',
+        destination: '/prodotti',
+        permanent: true,
+      },
+      {
+        source: '/index.php/negozio',
+        destination: '/prodotti',
+        permanent: true,
+      },
     ]
   },
 }
