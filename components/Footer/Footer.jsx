@@ -183,7 +183,7 @@ export default function Footer() {
               <li className="mb-2 flex">
                 <MapIcon />
                 <span className="ml-2 text-gray-600 hover:text-gray-800">
-                  Contrada Popoleto, n.c. 70011 Alberobello (BA)
+                  Matarrese srl, Contrada Popoleto, n.c. 70011 Alberobello (BA)
                 </span>
               </li>
               <li className="mb-2 flex">
@@ -222,7 +222,7 @@ export default function Footer() {
               <div>Lunedì - Venerdì</div>
               <div className="ml-3 font-medium text-gray-500">
                 <p>08:30 - 13:00</p>
-                <p> 15:00 - 19:00</p>
+                <p> 15:00 - 18:30</p>
               </div>
             </div>
             <div className="flex flex-row justify-between">
@@ -238,7 +238,7 @@ export default function Footer() {
               </a>
             </p>
             <p>
-              {`Numero attivo dal lunedì al venerdì 8.30 - 13.00  15.00 - 19.00`}
+              {`Numero attivo dal lunedì al venerdì nelle ore 09:00 - 13:00 e 15:00 - 18:00`}
             </p>
             <p className="pt-2 italic">
               Per urgenze nei giorni festivi, il servizio di risposta verrà
