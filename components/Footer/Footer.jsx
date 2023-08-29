@@ -221,7 +221,7 @@ export default function Footer() {
             <div className="flex flex-row justify-between">
               <div>Lunedì - Venerdì</div>
               <div className="ml-3 font-medium text-gray-500">
-                <p>08:30 - 13:00</p>
+                <p>09:00 - 13:00</p>
                 <p> 15:00 - 18:30</p>
               </div>
             </div>
@@ -238,12 +238,12 @@ export default function Footer() {
               </a>
             </p>
             <p>
-              {`Numero attivo dal lunedì al venerdì nelle ore 09:00 - 13:00 e 15:00 - 18:00`}
+              {`Numero attivo dal lunedì al venerdì nelle ore 08:30 - 13:00 e 15:00 - 17:30`}
             </p>
             <p className="pt-2 italic">
               Per urgenze nei giorni festivi, il servizio di risposta verrà
               garantito entro 24 h dalla chiamata e l&apos;eventuale intervento
-              tecnico urgente verrà valutato con tariffa dedicata.
+              tecnico verrà valutato con tariffa dedicata.
             </p>
           </div>
         </div>
