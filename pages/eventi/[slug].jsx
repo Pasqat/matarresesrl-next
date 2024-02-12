@@ -14,6 +14,7 @@ import { H2, H3, Paragraph } from "../../components/typography";
 import { getAllEventsWithSlug, getEvent } from "../../lib/query/event";
 import { isFutureDate } from "../../actions/utils/formatDate";
 import { SeoDataSection } from "../../components/sections/seodata-section";
+import { Button } from "../../components/button";
 
 export default function Events({ event }) {
   const router = useRouter();
@@ -32,6 +33,37 @@ export default function Events({ event }) {
     }
 
     return parsedAddress.join("+");
+  }
+
+  function showTheButton(event) {
+    if (event.isFutureDate) {
+      if (event.external_link.link === null) {
+        return (
+          <div className="w-4/12 self-center px-4 text-right">
+            <FormModal
+              buttonText="Partecipa"
+              buttonClassName="px-4 py-2 mb-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-gradient-to-tl from-primary to-secondary rounded shadow outline-none active:bg-yellow-500 hover:shadow-md focus:outline-none sm:mr-2"
+              type="reservation"
+              title={event.title}
+              withButton
+            />
+          </div>
+        );
+      } else {
+        return (
+          <div className="w-4/12 self-center px-4 text-right">
+            <Button>
+              <a
+                href={event.external_link.link}
+                className="hover:no-underline"
+              >
+                Partecipa
+              </a>
+            </Button>
+          </div>
+        );
+      }
+    } else return null;
   }
 
   return (
@@ -104,7 +136,9 @@ export default function Events({ event }) {
                               )}
                           </div>
                         </div>
-                        {isFutureDate(event.startDate)
+                        {showTheButton(event)}
+                        {
+                          /* isFutureDate(event.startDate) && event.external_link.link === null
                           ? (
                             <div className="w-4/12 self-center px-4 text-right">
                               <FormModal
@@ -116,7 +150,21 @@ export default function Events({ event }) {
                               />
                             </div>
                           )
-                          : null}
+                          : event.external_link.link !== null
+                          ? (
+                            <div className="w-4/12 self-center px-4 text-right">
+                              <Button>
+                                <a
+                                  href={event.external_link.link}
+                                  className="hover:no-underline"
+                                >
+                                  External_link
+                                </a>
+                              </Button>
+                            </div>
+                          )
+                          : null */
+                        }
                       </div>
                       <div className="mt-12">
                         <H3 className="mb-2 text-center" variant="secondary">
