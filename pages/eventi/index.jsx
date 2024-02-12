@@ -81,7 +81,7 @@ export default function Events({data, groups}) {
                 <H3 className="col-span-full">In primo piano</H3>
                 <div className="col-span-full mt-6">
                   {data.futureEvent.map((event, index) =>
-                    event.isFeatured ? (
+                    event.Featured ? (
                       <React.Fragment key={`${event.id}-featured`}>
                         <RegistrationPanel event={event} />
                         {index === data.length - 1 ? null : (

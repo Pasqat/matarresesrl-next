@@ -12,7 +12,7 @@ import SocialShareBar from "../../components/SocialShareBar/SocialShareBar";
 import { H2, H3, Paragraph } from "../../components/typography";
 
 import { getAllEventsWithSlug, getEvent } from "../../lib/query/event";
-import { getHour } from "../../actions/utils/formatDate";
+import { isFutureDate } from "../../actions/utils/formatDate";
 import { SeoDataSection } from "../../components/sections/seodata-section";
 
 export default function Events({ event }) {
@@ -24,16 +24,15 @@ export default function Events({ event }) {
 
   // take n String arguments and join them
   // in split case (this-is-split-case)
-  // function addressToMapsLink(...props) {
-  //   let parsedAddress = []
+  function addressToMapsLink(...props) {
+    let parsedAddress = [];
 
-  //   for (let element of props) {
-  //     parsedAddress.push(element.split(/\W/).join('+'))
-  //   }
+    for (let element of props) {
+      parsedAddress.push(element.split(/\W/).join("+"));
+    }
 
-  //   return parsedAddress.join('+')
-  // }
-  //
+    return parsedAddress.join("+");
+  }
 
   return (
     <Layout navbarTransparent>
@@ -105,7 +104,7 @@ export default function Events({ event }) {
                               )}
                           </div>
                         </div>
-                        {!event.isPast
+                        {isFutureDate(event.startDate)
                           ? (
                             <div className="w-4/12 self-center px-4 text-right">
                               <FormModal
@@ -123,38 +122,33 @@ export default function Events({ event }) {
                         <H3 className="mb-2 text-center" variant="secondary">
                           {event.title}
                         </H3>
-                        {
-                          /* FIXME: with the latest version of the event calendar WP
-                          ql-event can't fetch venue and organization
-                          seems like it's a problem other doesn't have
-                      */
-                        }
-                        {/*  {event.venue && ( */}
-                        {/*   <div className="mb-2 mt-0 text-gray-400 text-sm font-bold leading-normal uppercase"> */}
-                        {/*     <i className="fas fa-map-marker-alt mr-2 text-gray-400 text-lg"></i>{' '} */}
-                        {/*     <a */}
-                        {/*       href={`https://maps.google.com/?q=${addressToMapsLink( */}
-                        {/*         event.venue.title, */}
-                        {/*         event.venue.city, */}
-                        {/*         event.venue.address, */}
-                        {/*       )}`} */}
-                        {/*       target="_blank" */}
-                        {/*       rel="noreferrer" */}
-                        {/*     > */}
-                        {/*       {event.venue.title} - {event.venue.address},{' '} */}
-                        {/*       {event.venue.city} */}
-                        {/*     </a> */}
-                        {/*   </div> */}
-                        {/* )} */}
-                        {/* {event.organizers && ( */}
-                        {/*   <div className="mb-2 mt-10 text-gray-600"> */}
-                        {/*     <i className="fas fa-briefcase mr-2 text-gray-400 text-lg"></i> */}
-                        {/*     Organizzato da:{' '} */}
-                        {/*     <a href={event.organizers?.nodes[0].link}> */}
-                        {/*       {event.organizers?.nodes[0].title} */}
-                        {/*     </a> */}
-                        {/*   </div> */}
-                        {/* )}  */}
+                        {event.venue && (
+                          <div className="mb-2 mt-0 text-gray-400 text-sm font-bold leading-normal uppercase text-center">
+                            <i className="fas fa-map-marker-alt mr-2 text-gray-400 text-lg">
+                            </i>{" "}
+                            <a
+                              href={`https://maps.google.com/?q=${
+                                addressToMapsLink(
+                                  event.venue.title,
+                                  event.venue.city,
+                                  event.venue.address,
+                                )
+                              }`}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              {event.venue.title} - {event.venue.address},{" "}
+                              {event.venue.city}
+                            </a>
+                          </div>
+                        )}
+                        {event.organizers && (
+                          <div className="mb-2 text-center text-gray-600">
+                            <i className="fas fa-briefcase mr-2 text-gray-400 text-lg">
+                            </i>
+                            Organizzato da: {event.organizers?.title}
+                          </div>
+                        )}
                       </div>
 
                       <div className="mt-10 border-t border-gray-200 py-10">
@@ -162,21 +156,35 @@ export default function Events({ event }) {
                           <div className="w-full px-4 lg:w-9/12">
                             <EventBody content={event.content} />
                             {!event.isPast
-                              ? (
-                                <div className="flex items-center justify-end py-10">
-                                  <Paragraph className="mr-8 font-medium">
-                                    Prenota subito il tuo posto all&apos;evento.
-                                    Clicca su &ldquo;Partecipa&rdquo;
-                                  </Paragraph>
-                                  <FormModal
-                                    buttonText="Partecipa"
-                                    buttonClassName="px-4 py-2 mb-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-gradient-to-tl from-primary to-secondary rounded shadow outline-none active:bg-yellow-500 hover:shadow-md focus:outline-none sm:mr-2"
-                                    type="reservation"
-                                    title={event.title}
-                                    withButton
-                                  />
-                                </div>
-                              )
+                              ? !event.cost === null
+                                ? (
+                                  <div className="flex items-center justify-end py-10">
+                                    <Paragraph className="mr-8 font-medium">
+                                      Prenota subito il tuo posto
+                                      all&apos;evento. Clicca su
+                                      &ldquo;Partecipa&rdquo;
+                                    </Paragraph>
+                                    <Paragraph className="px-4 py-2 mb-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-gradient-to-tl from-primary to-secondary rounded shadow outline-none active:bg-yellow-500 hover:shadow-md focus:outline-none sm:mr-2">
+                                      {event.cost}
+                                    </Paragraph>
+                                  </div>
+                                )
+                                : (
+                                  <div className="flex items-center justify-end py-10">
+                                    <Paragraph className="mr-8 font-medium">
+                                      Prenota subito il tuo posto
+                                      all&apos;evento. Clicca su
+                                      &ldquo;Partecipa&rdquo;
+                                    </Paragraph>
+                                    <FormModal
+                                      buttonText="Partecipa"
+                                      buttonClassName="px-4 py-2 mb-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-gradient-to-tl from-primary to-secondary rounded shadow outline-none active:bg-yellow-500 hover:shadow-md focus:outline-none sm:mr-2"
+                                      type="reservation"
+                                      title={event.title}
+                                      withButton
+                                    />
+                                  </div>
+                                )
                               : null}
                           </div>
                         </div>
