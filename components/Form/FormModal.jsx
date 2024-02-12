@@ -135,7 +135,7 @@ export default function FormModal({
       participants,
       title,
     });
-    console.log("formModal participants", participants);
+
     if (res.status < 300) {
       setFormButtonDisabled(true);
       if (type === "reservation") {
