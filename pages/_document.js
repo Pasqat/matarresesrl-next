@@ -12,6 +12,7 @@ export default class MyDocument extends Document {
               height="1"
               width="1"
               style={{ display: "none" }}
+              alt=""
               src={`https://www.facebook.com/tr?id=${FB_PIXEL_ID}&dev=PageView&noscript=1`}
             />
           </noscript>

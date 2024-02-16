@@ -1,32 +1,32 @@
-import Head from 'next/head'
-import Image from 'next/image'
+import Head from "next/head";
+import Image from "next/image";
 
-import CardSquareImg from '../components/Card/CardSquareImg'
-import ContactForm from '../components/Form/ContactForm'
-import Layout from '../components/Layout'
-import {LinkButton} from '../components/button'
-import {TestimonialSection} from '../components/sections/testimonial-section'
-import {ProjectSection} from '../components/sections/projects-section'
-import {LogoSection} from '../components/sections/logo-section'
-import {ImgSlider} from '../components/imgSlider'
+import CardSquareImg from "../components/Card/CardSquareImg";
+import ContactForm from "../components/Form/ContactForm";
+import Layout from "../components/Layout";
+import { LinkButton } from "../components/button";
+import { TestimonialSection } from "../components/sections/testimonial-section";
+import { ProjectSection } from "../components/sections/projects-section";
+import { LogoSection } from "../components/sections/logo-section";
+import { ImgSlider } from "../components/imgSlider";
 
-import {H3, H4, H5, Paragraph} from '../components/typography'
-import {Grid} from '../components/grid'
+import { H3, H4, H5, Paragraph } from "../components/typography";
+import { Grid } from "../components/grid";
 
-import testimonials from '../data/testimonials'
-import {getGroups} from '../lib/newsletter'
-import {getLastTwoProjects} from '../lib/query/project'
+import testimonials from "../data/testimonials";
+import { getGroups } from "../lib/newsletter";
+import { getLastTwoProjects } from "../lib/query/project";
 
-import imgHomeBoxArredo from '../public/img/home-box-arredo.jpg'
-import imgHomeBoxMarchi from '../public/img/home-box-marchi.jpg'
-import imgHomeBoxSupporto from '../public/img/home-box-supporto.jpg'
+import imgHomeBoxArredo from "../public/img/home-box-arredo.jpg";
+import imgHomeBoxMarchi from "../public/img/home-box-marchi.jpg";
+import imgHomeBoxSupporto from "../public/img/home-box-supporto.jpg";
 
-import imgHomeAttrezzature from '../public/img/home-attrezzature.jpg'
-import logoAssogi from '../public/img/logos/Assogi_logo-300x119.png'
-import logoSostenibilita from '../public/img/logos/dispositivo-ad-ozono.png'
-import {Spacer} from '../components/spacer'
+import imgHomeAttrezzature from "../public/img/home-attrezzature.jpg";
+import logoAssogi from "../public/img/logos/Assogi_logo-300x119.png";
+import logoSostenibilita from "../public/img/logos/dispositivo-ad-ozono.png";
+import { Spacer } from "../components/spacer";
 
-export default function Home({groups, lastTwoProjects}) {
+export default function Home({ groups, lastTwoProjects }) {
   return (
     <div>
       <Head>
@@ -59,13 +59,15 @@ export default function Home({groups, lastTwoProjects}) {
         <main>
           <ImgSlider />
           <section className="relative">
-            {/* NOTE: version with title overing the img
+            {
+              /* NOTE: version with title overing the img
           <section className="relative pt-20" id="cta">
             <H1 className="mx-auto mb-8 max-w-6xl text-center lg:mb-12 xl:mb-24">
               Dal design dell&apos;arredo alla formazione del personale per
               realizzare i tuoi progetti
             </H1>
-        */}
+        */
+            }
             <Grid rowGap className="mb-12 lg:mb-24 xl:mb-48">
               <div className="col-span-full  lg:col-span-4">
                 {/* TODO: Use static import*/}
@@ -91,7 +93,8 @@ export default function Home({groups, lastTwoProjects}) {
                     `}
                   urlText="Guarda i prodotti"
                   url="/prodotti"
-                ></CardSquareImg>
+                >
+                </CardSquareImg>
               </div>
               <div className="col-span-full lg:col-span-4">
                 <CardSquareImg
@@ -103,7 +106,8 @@ export default function Home({groups, lastTwoProjects}) {
                     `}
                   url="/contatti"
                   urlText="Vieni a conoscerci"
-                ></CardSquareImg>
+                >
+                </CardSquareImg>
               </div>
             </Grid>
           </section>
@@ -127,7 +131,7 @@ export default function Home({groups, lastTwoProjects}) {
                     Tutto per creare i tuoi spazi professionali
                   </H3>
                   <Paragraph className="mt-4 leading-relaxed text-gray-500">
-                    In una struttura aziendale di <strong>5000 mq</strong>{' '}
+                    In una struttura aziendale di <strong>5000 mq</strong>{" "}
                     uniamo il laboratorio di produzione di arredi su misura,
                     l’officina e magazzino ricambi, il laboratorio di formazione
                     e un ampio showroom in cui potrai trovare:
@@ -223,13 +227,14 @@ export default function Home({groups, lastTwoProjects}) {
                   Amiamo la cucina e la nostra Terra
                 </H3>
                 <Paragraph className="text-2xl leading-relaxed">
-                  Sostenibilità, risparmio energetico ed{' '}
-                  <strong>ecologia</strong> sono per noi un serio impegno per{' '}
-                  <strong>salvaguardare l’ambiente</strong> e la terra che ci
-                  dona le materie prime necessarie in cucina. Ci impegniamo su
-                  diversi fronti per fornire soluzioni{' '}
-                  <strong>eco-friendly</strong> con la qualità che ci
-                  contraddistingue.
+                  Sostenibilità, risparmio energetico ed{" "}
+                  <strong>ecologia</strong> sono per noi un serio impegno per
+                  {" "}
+                  <strong>salvaguardare l’ambiente</strong>{" "}
+                  e la terra che ci dona le materie prime necessarie in cucina.
+                  Ci impegniamo su diversi fronti per fornire soluzioni{" "}
+                  <strong>eco-friendly</strong>{" "}
+                  con la qualità che ci contraddistingue.
                 </Paragraph>
                 <Grid nested rowGap className="mt-8">
                   <H4
@@ -299,17 +304,18 @@ export default function Home({groups, lastTwoProjects}) {
         </main>
       </Layout>
     </div>
-  )
+  );
 }
 
 export async function getStaticProps() {
-  const groups = await getGroups()
-  const lastTwoProjects = await getLastTwoProjects()
+  const groups = await getGroups();
+  const lastTwoProjects = await getLastTwoProjects();
+  // TODO: Devo provare a mettere in home il prossimo evento e forse anche le ultime 2 news?
 
   return {
     props: {
       groups,
       lastTwoProjects: lastTwoProjects,
     },
-  }
+  };
 }

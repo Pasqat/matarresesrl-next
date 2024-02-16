@@ -1,22 +1,24 @@
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Link from "next/link";
+import { getPlaiceholder } from "plaiceholder";
 
 import Layout from "../../components/Layout";
 import Header from "../../components/Header/Header";
 import EventBody from "../../components/Events/event-body";
-import Date from "../../components/Date";
 import HeaderBig from "../../components/Header/HeaderBig";
 import FormModal from "../../components/Form/FormModal";
 import SocialShareBar from "../../components/SocialShareBar/SocialShareBar";
 import { H2, H3, Paragraph } from "../../components/typography";
+import { BlurringImage } from "../../components/blurringImage";
+import { Spacer } from "../../components/spacer";
 
 import { getAllEventsWithSlug, getEvent } from "../../lib/query/event";
 import { isFutureDate } from "../../actions/utils/formatDate";
 import { SeoDataSection } from "../../components/sections/seodata-section";
 import { Button } from "../../components/button";
 
-export default function Events({ event }) {
+export default function Events({ event, img, css }) {
   const router = useRouter();
 
   if (!router.isFallback && !event.slug) {
@@ -36,34 +38,28 @@ export default function Events({ event }) {
   }
 
   function showTheButton(event) {
-    if (event.isFutureDate) {
-      if (event.external_link.link === null) {
-        return (
-          <div className="w-4/12 self-center px-4 text-right">
-            <FormModal
-              buttonText="Partecipa"
-              buttonClassName="px-4 py-2 mb-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-gradient-to-tl from-primary to-secondary rounded shadow outline-none active:bg-yellow-500 hover:shadow-md focus:outline-none sm:mr-2"
-              type="reservation"
-              title={event.title}
-              withButton
-            />
-          </div>
-        );
-      } else {
-        return (
-          <div className="w-4/12 self-center px-4 text-right">
-            <Button>
-              <a
-                href={event.external_link.link}
-                className="hover:no-underline"
-              >
-                Partecipa
-              </a>
-            </Button>
-          </div>
-        );
-      }
-    } else return null;
+    if (event.external_link.link === null) {
+      return (
+        <FormModal
+          buttonText="Partecipa"
+          buttonClassName="px-4 py-2 mb-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-gradient-to-tl from-primary to-secondary rounded shadow outline-none active:bg-yellow-500 hover:shadow-md focus:outline-none sm:mr-2"
+          type="reservation"
+          title={event.title}
+          withButton
+        />
+      );
+    } else {
+      return (
+        <Button>
+          <a
+            href={event.external_link.link}
+            className="hover:no-underline"
+          >
+            Partecipa
+          </a>
+        </Button>
+      );
+    }
   }
 
   return (
@@ -103,7 +99,7 @@ export default function Events({ event }) {
                     <div className="px-6">
                       <div className="mt-8 flex flex-wrap justify-center">
                         <div className="flex items-center justify-center">
-                          <div className="mb-2 text-left text-gray-800">
+                          <div className="mb-2 text-center text-gray-800">
                             {event.startDate === event.endDate
                               ? (
                                 <>
@@ -136,35 +132,13 @@ export default function Events({ event }) {
                               )}
                           </div>
                         </div>
-                        {showTheButton(event)}
-                        {
-                          /* isFutureDate(event.startDate) && event.external_link.link === null
+                        {event.isFutureDate
                           ? (
                             <div className="w-4/12 self-center px-4 text-right">
-                              <FormModal
-                                buttonText="Partecipa"
-                                buttonClassName="px-4 py-2 mb-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-gradient-to-tl from-primary to-secondary rounded shadow outline-none active:bg-yellow-500 hover:shadow-md focus:outline-none sm:mr-2"
-                                type="reservation"
-                                title={event.title}
-                                withButton
-                              />
+                              {showTheButton(event)}
                             </div>
                           )
-                          : event.external_link.link !== null
-                          ? (
-                            <div className="w-4/12 self-center px-4 text-right">
-                              <Button>
-                                <a
-                                  href={event.external_link.link}
-                                  className="hover:no-underline"
-                                >
-                                  External_link
-                                </a>
-                              </Button>
-                            </div>
-                          )
-                          : null */
-                        }
+                          : null}
                       </div>
                       <div className="mt-12">
                         <H3 className="mb-2 text-center" variant="secondary">
@@ -175,13 +149,12 @@ export default function Events({ event }) {
                             <i className="fas fa-map-marker-alt mr-2 text-gray-400 text-lg">
                             </i>{" "}
                             <a
-                              href={`https://maps.google.com/?q=${
-                                addressToMapsLink(
-                                  event.venue.title,
-                                  event.venue.city,
-                                  event.venue.address,
-                                )
-                              }`}
+                              href={`https://maps.google.com/?q=${addressToMapsLink(
+                                event.venue.title,
+                                event.venue.city,
+                                event.venue.address,
+                              )
+                                }`}
                               target="_blank"
                               rel="noreferrer"
                             >
@@ -202,37 +175,32 @@ export default function Events({ event }) {
                       <div className="mt-10 border-t border-gray-200 py-10">
                         <div className="flex flex-wrap justify-center">
                           <div className="w-full px-4 lg:w-9/12">
-                            <EventBody content={event.content} />
-                            {!event.isPast
-                              ? !event.cost === null
+                            <div className="sm:mx-0 mb-8 md:mb-16">
+                              {img || css
                                 ? (
-                                  <div className="flex items-center justify-end py-10">
-                                    <Paragraph className="mr-8 font-medium">
-                                      Prenota subito il tuo posto
-                                      all&apos;evento. Clicca su
-                                      &ldquo;Partecipa&rdquo;
-                                    </Paragraph>
-                                    <Paragraph className="px-4 py-2 mb-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-gradient-to-tl from-primary to-secondary rounded shadow outline-none active:bg-yellow-500 hover:shadow-md focus:outline-none sm:mr-2">
-                                      {event.cost}
-                                    </Paragraph>
-                                  </div>
-                                )
-                                : (
-                                  <div className="flex items-center justify-end py-10">
-                                    <Paragraph className="mr-8 font-medium">
-                                      Prenota subito il tuo posto
-                                      all&apos;evento. Clicca su
-                                      &ldquo;Partecipa&rdquo;
-                                    </Paragraph>
-                                    <FormModal
-                                      buttonText="Partecipa"
-                                      buttonClassName="px-4 py-2 mb-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-gradient-to-tl from-primary to-secondary rounded shadow outline-none active:bg-yellow-500 hover:shadow-md focus:outline-none sm:mr-2"
-                                      type="reservation"
-                                      title={event.title}
-                                      withButton
+                                  <div className="aspect-w-2 aspect-h-1 relative overflow-hidden">
+                                    <BlurringImage
+                                      img={img}
+                                      css={css}
+                                      alt={`Immagine di copertina di ${event.title}`}
+                                      objectFit="cover"
+                                      layout="fill"
                                     />
                                   </div>
                                 )
+                                : <Spacer size="base" />}
+                            </div>
+                            <EventBody content={event.content} />
+                            {event.isFutureDate
+                              ? (
+                                <div className="flex items-center justify-end py-10">
+                                  <Paragraph className="mr-8 font-medium">
+                                    Prenota subito il tuo posto all&apos;evento.
+                                    Clicca su &ldquo;Partecipa&rdquo;
+                                  </Paragraph>
+                                  {showTheButton(event)}
+                                </div>
+                              )
                               : null}
                           </div>
                         </div>
@@ -259,9 +227,24 @@ export default function Events({ event }) {
 export async function getStaticProps({ params }) {
   const event = await getEvent(params.slug);
 
+  if (!event?.featuredImage?.node?.mediaItemUrl) {
+    return {
+      props: {
+        event,
+      },
+      revalidate: 60 * 60 * 24,
+    };
+  }
+
+  const { img, css } = await getPlaiceholder(
+    event.featuredImage.node.mediaItemUrl,
+  );
+
   return {
     props: {
       event,
+      img,
+      css,
     },
     revalidate: 60 * 60 * 24,
   };
