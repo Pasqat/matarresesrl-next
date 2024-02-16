@@ -36,7 +36,7 @@ const slides = [
     name: "Ruben Lagattolla",
     content:
       "Centro di innovazione e ricerca, fornito di strutture all'avanguardia e professionisti di alto livello",
-    start: 5,
+    stars: 5,
     category: "prodotti",
   },
   {
