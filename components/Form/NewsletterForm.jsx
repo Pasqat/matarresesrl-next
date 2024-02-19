@@ -24,7 +24,7 @@ export default function NewsletterForm({
 
   const [form, setForm] = useState({
     email: "",
-    newsletterGroupId: 107688379,
+    newsletterGroupId: "101815183615198233",
   });
   const { email, newsletterGroupId } = form;
 

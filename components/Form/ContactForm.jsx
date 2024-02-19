@@ -22,7 +22,7 @@ export default function ContactForm({ hasAutoFocus, featured, groups }) {
     tel: "",
     company: "",
     formContent: "",
-    newsletterGroupId: 107688379,
+    newsletterGroupId: "101815183615198233",
   });
   const { referente, email, tel, formContent, company, newsletterGroupId } =
     form;
