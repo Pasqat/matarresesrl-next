@@ -9,12 +9,14 @@ import { TestimonialSection } from "../components/sections/testimonial-section";
 import { ProjectSection } from "../components/sections/projects-section";
 import { LogoSection } from "../components/sections/logo-section";
 import { ImgSlider } from "../components/imgSlider";
+import { FeaturedSection } from "../components/sections/featured-section";
 
 import { H3, H4, H5, Paragraph } from "../components/typography";
 import { Grid } from "../components/grid";
 
 import testimonials from "../data/testimonials";
 import { getGroups } from "../lib/newsletter";
+import { getEvents } from "../lib/query/event";
 import { getLastTwoProjects } from "../lib/query/project";
 
 import imgHomeBoxArredo from "../public/img/home-box-arredo.jpg";
@@ -25,8 +27,10 @@ import imgHomeAttrezzature from "../public/img/home-attrezzature.jpg";
 import logoAssogi from "../public/img/logos/Assogi_logo-300x119.png";
 import logoSostenibilita from "../public/img/logos/dispositivo-ad-ozono.png";
 import { Spacer } from "../components/spacer";
+import { event } from "../lib/fpixel";
+import { getPlaiceholder } from "plaiceholder";
 
-export default function Home({ groups, lastTwoProjects }) {
+export default function Home({ groups, lastTwoProjects, event }) {
   return (
     <div>
       <Head>
@@ -110,6 +114,31 @@ export default function Home({ groups, lastTwoProjects }) {
                 </CardSquareImg>
               </div>
             </Grid>
+          </section>
+
+          <section className="mb-12 lg:mb-24 xl:mb-48">
+            {event.futureEvent.length
+              ? (
+                <div className="my-20">
+                  <FeaturedSection
+                    subTitle={event.futureEvent[0].startDate}
+                    title={event.futureEvent[0].title}
+                    imageUrl={event.futureEvent[0].featuredImage.node.sourceUrl}
+                    img={event.imgFeaturedEvent}
+                    css={event.cssFeaturedEvent}
+                    imageAlt={event.futureEvent[0].featuredImage.node.altText}
+                    caption="In primo piano"
+                    cta="Maggiori informazioni"
+                    slug={`eventi/${event.futureEvent[0].slug}`}
+                    permalink={`${process.env.NEXT_PUBLIC_DOMAIN}/eventi/${
+                      event.futureEvent[0].slug
+                    }`}
+                    excerpt={event.futureEvent[0].content}
+                    withBorder
+                  />
+                </div>
+              )
+              : null}
           </section>
 
           <section className="mb-12 lg:mb-24 xl:mb-48">
@@ -312,10 +341,34 @@ export async function getStaticProps() {
   const lastTwoProjects = await getLastTwoProjects();
   // TODO: Devo provare a mettere in home il prossimo evento e forse anche le ultime 2 news?
 
+  const event = await getEvents();
+  let imgFeaturedEvent = null;
+  let cssFeaturedEvent = null;
+
+  console.log('EVENTO', event)
+  console.log('FUTUROOO', event.futureEvent[0].featuredImage.node)
+
+  if (event.futureEvent[0]) {
+    const { img, css } = await getPlaiceholder(
+      event.futureEvent[0].featuredImage.node.mediaItemUrl,
+    );
+    imgFeaturedEvent = img;
+    cssFeaturedEvent = css;
+  }
+
   return {
     props: {
+      event: { ...event, imgFeaturedEvent, cssFeaturedEvent },
       groups,
       lastTwoProjects: lastTwoProjects,
     },
+    revalidate: 60 * 60 * 24,
   };
+
+  // return {
+  //   props: {
+  //     groups,
+  //     lastTwoProjects: lastTwoProjects,
+  //   },
+  // };
 }

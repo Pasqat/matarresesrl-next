@@ -1,42 +1,43 @@
-import * as React from 'react'
-import Head from 'next/head'
-import {useRouter} from 'next/dist/client/router'
-import clsx from 'clsx'
+import * as React from "react";
+import Head from "next/head";
+import { useRouter } from "next/dist/client/router";
+import clsx from "clsx";
 
-import * as fbq from '../../lib/fpixel'
-import {getGroups} from '../../lib/newsletter'
+import * as fbq from "../../lib/fpixel";
+import { getGroups } from "../../lib/newsletter";
 
-import Layout from '../../components/Layout'
-import {SearchIcon} from '../../components/icons/search-icon'
-import {Grid} from '../../components/grid'
-import {H5, H3} from '../../components/typography'
-import {Category} from '../../components/category'
-import {FeaturedSection} from '../../components/sections/featured-section'
-import {ArticleCard} from '../../components/article-card'
-import {PlusIcon} from '../../components/icons/plus-icon'
-import {Button} from '../../components/button'
-import NewsletterForm from '../../components/Form/NewsletterForm'
+import Layout from "../../components/Layout";
+import { SearchIcon } from "../../components/icons/search-icon";
+import { Grid } from "../../components/grid";
+import { H3, H5 } from "../../components/typography";
+import { Category } from "../../components/category";
+import { FeaturedSection } from "../../components/sections/featured-section";
+import { ArticleCard } from "../../components/article-card";
+import { PlusIcon } from "../../components/icons/plus-icon";
+import { Button } from "../../components/button";
+import NewsletterForm from "../../components/Form/NewsletterForm";
 
-import {filterPosts} from '../../actions/utils/blog'
-import {formatDate} from '../../actions/utils/formatDate'
-import {getAllPosts} from '../../lib/query/post'
-import {getPlaiceholder} from 'plaiceholder'
-import {Spacer} from '../../components/spacer'
+import { filterPosts } from "../../actions/utils/blog";
+import { formatDate } from "../../actions/utils/formatDate";
+import { getAllPosts } from "../../lib/query/post";
+import { getPlaiceholder } from "plaiceholder";
+import { Spacer } from "../../components/spacer";
 
-const PAGE_SIZE = 12
-const initialIndexToShow = PAGE_SIZE
+const PAGE_SIZE = 12;
+const initialIndexToShow = PAGE_SIZE;
 
 // this really is not needed, or maybe only the part `(\s|$)?
-const specialQueryRegex = /(?<not>!)?leader:(?<team>\w+)(\s|$)?/g
+const specialQueryRegex = /(?<not>!)?leader:(?<team>\w+)(\s|$)?/g;
 
-export default function News({data, groups}) {
-  const router = useRouter()
+export default function News({ data, groups }) {
+  const router = useRouter();
 
-  const searchParams =
-    typeof router.query.q === Array ? router.query.q.join('+') : router.query.q
-  const searchInputRef = React.useRef(null)
+  const searchParams = typeof router.query.q === Array
+    ? router.query.q.join("+")
+    : router.query.q;
+  const searchInputRef = React.useRef(null);
 
-  const resultsRef = React.useRef(null)
+  const resultsRef = React.useRef(null);
 
   /**
    * This is here to make sure that a user doesn't hit "enter" on the search
@@ -44,11 +45,11 @@ export default function News({data, groups}) {
    * which will trigger the scroll down. We should *only* scroll when the
    * "enter" keypress and keyup happen on the input.
    */
-  const ignoreInputKeyUp = React.useRef(false)
+  const ignoreInputKeyUp = React.useRef(false);
 
   const [queryValue, setQuery] = React.useState(() => {
-    return searchParams ?? ''
-  })
+    return searchParams ?? "";
+  });
 
   // This is a failed try to have the search when landing with a query
   // e.g. expamle.com/news?q=eventi
@@ -57,64 +58,64 @@ export default function News({data, groups}) {
   //   router.query.q ? setQuery(router.query.q) : ''
   // }, [router.query.q])
 
-  const query = queryValue.trim()
+  const query = queryValue.trim();
 
-  const {posts: allPosts} = data
+  const { posts: allPosts } = data;
 
-  const regularQuery = query.replace(specialQueryRegex, '').trim()
+  const regularQuery = query.replace(specialQueryRegex, "").trim();
 
   const matchingPosts = React.useMemo(() => {
-    return filterPosts(allPosts, regularQuery)
-  }, [allPosts, regularQuery])
+    return filterPosts(allPosts, regularQuery);
+  }, [allPosts, regularQuery]);
 
-  const [indexToShow, setIndexToShow] = React.useState(initialIndexToShow)
+  const [indexToShow, setIndexToShow] = React.useState(initialIndexToShow);
   // when the query changes, we want to reset the index
   React.useEffect(() => {
-    setIndexToShow(initialIndexToShow)
-  }, [query])
+    setIndexToShow(initialIndexToShow);
+  }, [query]);
 
   function toggleCategory(category) {
-    setQuery(q => {
+    setQuery((q) => {
       // create a regexp so that we can replace multiple occurrences (`this that this`)
-      const expression = new RegExp(category, 'ig')
+      const expression = new RegExp(category, "ig");
 
       const newQuery = expression.test(q)
-        ? q.replace(expression, '')
-        : `${q} ${category}`
+        ? q.replace(expression, "")
+        : `${q} ${category}`;
 
       router.push(
-        {query: {q: newQuery.toLowerCase().replace(/\s+/g, ' ').trim()}},
-        '',
+        { query: { q: newQuery.toLowerCase().replace(/\s+/g, " ").trim() } },
+        "",
         {
           scroll: false,
         },
-      )
+      );
       // trim and remove subsequent spaces (`this   that` => `this that`)
-      return newQuery.replace(/\s+/g, ' ').trim()
-    })
+      return newQuery.replace(/\s+/g, " ").trim();
+    });
   }
 
-  const isSearching = query.length > 0
+  const isSearching = query.length > 0;
 
   const posts = isSearching
     ? matchingPosts.slice(0, indexToShow)
     : matchingPosts
-        .filter(p => p.slug !== data?.posts[0].slug)
-        .slice(0, indexToShow)
+      .filter((p) => p.slug !== data?.posts[0].slug)
+      .slice(0, indexToShow);
 
   const hasMorePosts = isSearching
     ? indexToShow < matchingPosts.length
-    : indexToShow < matchingPosts.length - 1
+    : indexToShow < matchingPosts.length - 1;
 
   const visibleCategories = isSearching
     ? new Set(
-        matchingPosts
-          .flatMap(post => {
-            return post.categories
-          })
-          .filter(Boolean),
-      )
-    : new Set(data.categories)
+      matchingPosts
+        .flatMap((post) => {
+          return post.categories;
+        })
+        .filter(Boolean),
+    )
+    : new Set(data.categories);
 
   return (
     <div>
@@ -153,72 +154,78 @@ export default function News({data, groups}) {
       </Head>
 
       <Layout>
-        {!isSearching ? (
-          <div className="my-20">
-            <FeaturedSection
-              subTitle={formatDate(data.posts[0].date)}
-              title={data.posts[0].title}
-              imageUrl={data.posts[0].featuredImage.node.mediaItemUrl}
-              img={data.img}
-              css={data.css}
-              impageAlt={data.posts[0].featuredImage.node.altText}
-              caption="In evidenza"
-              cta="Leggi tutto"
-              slug={`news/${data.posts[0].slug}`}
-              permalink={`${process.env.NEXT_PUBLIC_DOMAIN}/news/${data.posts[0].slug}`}
-            />
-          </div>
-        ) : null}
+        {!isSearching
+          ? (
+            <div className="my-20">
+              <FeaturedSection
+                subTitle={formatDate(data.posts[0].date)}
+                title={data.posts[0].title}
+                imageUrl={data.posts[0].featuredImage.node.mediaItemUrl}
+                img={data.img}
+                css={data.css}
+                impageAlt={data.posts[0].featuredImage.node.altText}
+                caption="In evidenza"
+                cta="Leggi tutto"
+                slug={`news/${data.posts[0].slug}`}
+                permalink={`${process.env.NEXT_PUBLIC_DOMAIN}/news/${data.posts[0].slug
+                  }`}
+                withBackground
+              />
+            </div>
+          )
+          : null}
 
         <Grid className="my-14">
-          {data.categories && data.categories.length > 0 ? (
-            <>
-              <H5 as="div" className="col-span-full mb-6">
-                Filtra per categoria
-              </H5>
-              <div className="col-span-full -mr-4 -mb-4 flex flex-wrap lg:col-span-10">
-                {data.categories.map(category => {
-                  const selected = regularQuery.includes(category)
+          {data.categories && data.categories.length > 0
+            ? (
+              <>
+                <H5 as="div" className="col-span-full mb-6">
+                  Filtra per categoria
+                </H5>
+                <div className="col-span-full -mr-4 -mb-4 flex flex-wrap lg:col-span-10">
+                  {data.categories.map((category) => {
+                    const selected = regularQuery.includes(category);
 
-                  return (
-                    <Category
-                      key={category}
-                      category={category}
-                      selected={selected}
-                      onClick={() => toggleCategory(category)}
-                      disabled={!visibleCategories.has(category) && !selected}
-                    />
-                  )
-                })}
-              </div>
-            </>
-          ) : null}
+                    return (
+                      <Category
+                        key={category}
+                        category={category}
+                        selected={selected}
+                        onClick={() => toggleCategory(category)}
+                        disabled={!visibleCategories.has(category) && !selected}
+                      />
+                    );
+                  })}
+                </div>
+              </>
+            )
+            : null}
         </Grid>
 
         <div className="mx-auto mb-14 max-w-7xl">
           <form
-            onSubmit={e => e.preventDefault()} //here I can call something like fetchMore?
+            onSubmit={(e) => e.preventDefault()} //here I can call something like fetchMore?
           >
             <div className="relative">
               <button
-                title={query === '' ? 'Cerca' : 'Pulisci ricerca'}
+                title={query === "" ? "Cerca" : "Pulisci ricerca"}
                 type="button"
                 onClick={() => {
-                  setQuery('')
-                  ignoreInputKeyUp.current = true
-                  searchInputRef.current?.focus()
+                  setQuery("");
+                  ignoreInputKeyUp.current = true;
+                  searchInputRef.current?.focus();
                 }}
                 onKeyDown={() => {
-                  ignoreInputKeyUp.current = true
+                  ignoreInputKeyUp.current = true;
                 }}
                 onKeyUp={() => {
-                  ignoreInputKeyUp.current = false
+                  ignoreInputKeyUp.current = false;
                 }}
                 className={clsx(
-                  'absolute top-0 left-6 flex h-full items-center justify-center border-none bg-trasparent p-0 text-gray-500',
+                  "absolute top-0 left-6 flex h-full items-center justify-center border-none bg-trasparent p-0 text-gray-500",
                   {
-                    'cursor-pointer': query !== '',
-                    'cursor-default': query === '',
+                    "cursor-pointer": query !== "",
+                    "cursor-default": query === "",
                   },
                 )}
               >
@@ -228,31 +235,31 @@ export default function News({data, groups}) {
                 ref={searchInputRef}
                 type="search"
                 value={queryValue}
-                onChange={event => {
-                  return setQuery(event.currentTarget.value.toLowerCase())
+                onChange={(event) => {
+                  return setQuery(event.currentTarget.value.toLowerCase());
                 }}
-                onKeyUp={e => {
-                  if (!ignoreInputKeyUp.current && e.key === 'Enter') {
+                onKeyUp={(e) => {
+                  if (!ignoreInputKeyUp.current && e.key === "Enter") {
                     resultsRef.current
-                      ?.querySelector('a')
-                      ?.focus({preventScroll: true})
+                      ?.querySelector("a")
+                      ?.focus({ preventScroll: true });
                     resultsRef.current?.scrollIntoView({
-                      behavior: 'smooth',
-                    })
+                      behavior: "smooth",
+                    });
 
                     router.push(
                       {
-                        query: {q: e.target.value.toLocaleLowerCase()},
+                        query: { q: e.target.value.toLocaleLowerCase() },
                       },
-                      '',
-                      {scroll: false},
-                    )
-                    fbq.event('Search', {
-                      content_category: 'news',
+                      "",
+                      { scroll: false },
+                    );
+                    fbq.event("Search", {
+                      content_category: "news",
                       search_string: query,
-                    })
+                    });
                   }
-                  ignoreInputKeyUp.current = false
+                  ignoreInputKeyUp.current = false;
                 }}
                 name="q"
                 placeholder="cerca"
@@ -266,58 +273,62 @@ export default function News({data, groups}) {
         </div>
 
         <Grid className="mb-12 lg:mb-24 xl:mb-48" ref={resultsRef}>
-          {posts.length === 0 ? (
-            <div className="col-span-full flex flex-col items-center">
-              <H3 as="p" variant="secondary" className="mt-24 max-w-lg">
-                {`Purtroppo non è stato trovato nulla con i tuoi criteri di ricerca`}
-              </H3>
-              <Spacer size="base" />
-              <NewsletterForm
-                nested
-                groups={groups}
-                title="Iscriviti alla nostra newsletter per rimanere aggiornato sulle ultime novità."
-              />
-            </div>
-          ) : (
-            posts.map(article => (
-              <div key={article.slug} className="col-span-4 mb-10">
-                <ArticleCard
-                  article={article}
-                  domain={process.env.NEXT_PUBLIC_DOMAIN}
-                  placeholder="blur"
+          {posts.length === 0
+            ? (
+              <div className="col-span-full flex flex-col items-center">
+                <H3 as="p" variant="secondary" className="mt-24 max-w-lg">
+                  {`Purtroppo non è stato trovato nulla con i tuoi criteri di ricerca`}
+                </H3>
+                <Spacer size="base" />
+                <NewsletterForm
+                  nested
+                  groups={groups}
+                  title="Iscriviti alla nostra newsletter per rimanere aggiornato sulle ultime novità."
                 />
               </div>
-            ))
-          )}
+            )
+            : (
+              posts.map((article) => (
+                <div key={article.slug} className="col-span-4 mb-10">
+                  <ArticleCard
+                    article={article}
+                    domain={process.env.NEXT_PUBLIC_DOMAIN}
+                    placeholder="blur"
+                  />
+                </div>
+              ))
+            )}
         </Grid>
 
-        {hasMorePosts ? (
-          <div className="mb-24 flex w-full justify-center lg:mb-48 xl:mb-64">
-            <Button
-              variant="secondary"
-              onClick={() => setIndexToShow(i => i + PAGE_SIZE)}
-              size="medium"
-            >
-              <span>Mostra altri articoli</span> <PlusIcon />
-            </Button>
-          </div>
-        ) : null}
+        {hasMorePosts
+          ? (
+            <div className="mb-24 flex w-full justify-center lg:mb-48 xl:mb-64">
+              <Button
+                variant="secondary"
+                onClick={() => setIndexToShow((i) => i + PAGE_SIZE)}
+                size="medium"
+              >
+                <span>Mostra altri articoli</span> <PlusIcon />
+              </Button>
+            </div>
+          )
+          : null}
       </Layout>
     </div>
-  )
+  );
 }
 
-export async function getStaticProps({preview = false}) {
-  const data = await getAllPosts(preview)
+export async function getStaticProps({ preview = false }) {
+  const data = await getAllPosts(preview);
   const categories = data.categories
-    .filter(category => category.count > 0)
-    .map(c => c.name)
-  const tags = data.tags.filter(tags => tags.count > 0).map(t => t.name)
-  const groups = await getGroups()
+    .filter((category) => category.count > 0)
+    .map((c) => c.name);
+  const tags = data.tags.filter((tags) => tags.count > 0).map((t) => t.name);
+  const groups = await getGroups();
 
-  const {img, css} = await getPlaiceholder(
+  const { img, css } = await getPlaiceholder(
     data.posts[0].featuredImage.node.mediaItemUrl,
-  )
+  );
 
   return {
     props: {
@@ -332,5 +343,5 @@ export async function getStaticProps({preview = false}) {
       groups,
     },
     revalidate: 60 * 60 * 24,
-  }
+  };
 }

@@ -66,6 +66,7 @@ export default function Events({ data, groups }) {
                   permalink={`${process.env.NEXT_PUBLIC_DOMAIN}/eventi/${data.futureEvent[0].slug
                     }`}
                   excerpt={data.futureEvent[0].content}
+                  withBackground
                 />
               </div>
             )
