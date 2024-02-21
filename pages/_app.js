@@ -8,6 +8,7 @@ import * as fbq from "../lib/fpixel";
 import { GTM_ID, pageview } from "../lib/gtm";
 import CookieConsent, { getCookieConsentValue } from "react-cookie-consent";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import ScrollToTop from "../components/ScrollToTop";
 import PlausibleProvider from "next-plausible";
@@ -96,6 +97,7 @@ function MyApp({ Component, pageProps }) {
           : null}
         <Component {...pageProps} />
         <Analytics />
+        <SpeedInsights/>
         <ScrollToTop />
         <CookieConsent
           enableDeclineButton
