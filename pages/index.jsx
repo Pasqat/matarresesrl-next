@@ -130,9 +130,8 @@ export default function Home({ groups, lastTwoProjects, event }) {
                     caption="In primo piano"
                     cta="Maggiori informazioni"
                     slug={`eventi/${event.futureEvent[0].slug}`}
-                    permalink={`${process.env.NEXT_PUBLIC_DOMAIN}/eventi/${
-                      event.futureEvent[0].slug
-                    }`}
+                    permalink={`${process.env.NEXT_PUBLIC_DOMAIN}/eventi/${event.futureEvent[0].slug
+                      }`}
                     excerpt={event.futureEvent[0].content}
                     withBorder
                   />
@@ -344,9 +343,6 @@ export async function getStaticProps() {
   const event = await getEvents();
   let imgFeaturedEvent = null;
   let cssFeaturedEvent = null;
-
-  console.log('EVENTO', event)
-  console.log('FUTUROOO', event.futureEvent[0].featuredImage.node)
 
   if (event.futureEvent[0]) {
     const { img, css } = await getPlaiceholder(
