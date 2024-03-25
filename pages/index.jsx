@@ -27,7 +27,7 @@ import imgHomeAttrezzature from "../public/img/home-attrezzature.jpg";
 import logoAssogi from "../public/img/logos/Assogi_logo-300x119.png";
 import logoSostenibilita from "../public/img/logos/dispositivo-ad-ozono.png";
 import { Spacer } from "../components/spacer";
-import { event } from "../lib/fpixel";
+// import { event } from "../lib/fpixel";
 import { getPlaiceholder } from "plaiceholder";
 
 export default function Home({ groups, lastTwoProjects, event }) {
