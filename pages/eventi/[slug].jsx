@@ -246,8 +246,6 @@ export async function getStaticProps({ params }) {
     event.featuredImage.node.mediaItemUrl,
   );
 
-  console.log(event);
-
   return {
     props: {
       event,
