@@ -14,7 +14,7 @@ import { BlurringImage } from "../../components/blurringImage";
 import { Spacer } from "../../components/spacer";
 
 import { getAllEventsWithSlug, getEvent } from "../../lib/query/event";
-import { isFutureDate } from "../../actions/utils/formatDate";
+// import { isFutureDate } from "../../actions/utils/formatDate";
 import { SeoDataSection } from "../../components/sections/seodata-section";
 import { Button } from "../../components/button";
 
@@ -107,9 +107,13 @@ export default function Events({ event, img, css }) {
                                     <time>{event.startDate}</time>
                                     {/* <Date dateString={event.startDate} />*/}
                                   </span>
-                                  <span className="block text-lg font-bold text-yellow-500">
-                                    h {event.startHour} - {event.endHour}
-                                  </span>
+                                  {event.allDay
+                                    ? null
+                                    : (
+                                      <span className="block text-lg font-bold text-yellow-500">
+                                        h {event.startHour} - {event.endHour}
+                                      </span>
+                                    )}
                                 </>
                               )
                               : (
@@ -163,13 +167,15 @@ export default function Events({ event, img, css }) {
                             </a>
                           </div>
                         )}
-                        {event.organizers && (
+                        {
+                          /** event.organizers && (
                           <div className="mb-2 text-center text-gray-600">
                             <i className="fas fa-briefcase mr-2 text-gray-400 text-lg">
                             </i>
                             Organizzato da: {event.organizers?.title}
                           </div>
-                        )}
+                        )**/
+                        }
                       </div>
 
                       <div className="mt-10 border-t border-gray-200 py-10">
@@ -239,6 +245,8 @@ export async function getStaticProps({ params }) {
   const { img, css } = await getPlaiceholder(
     event.featuredImage.node.mediaItemUrl,
   );
+
+  console.log(event);
 
   return {
     props: {

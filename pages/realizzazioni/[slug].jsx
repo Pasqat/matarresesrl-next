@@ -139,6 +139,7 @@ export default function Project({project}) {
                                     layout="fill"
                                     objectFit="cover"
                                     objectPosition="center"
+                                    alt={image.altText}
                                   />
                                 </div>
                               ))}

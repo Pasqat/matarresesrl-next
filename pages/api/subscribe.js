@@ -1,6 +1,6 @@
 const API_KEY = process.env.MAILERLITE_API_KEY;
 
-export default async (req, res) => {
+export default async function Subscribe(req, res) {
   const { email, name, groupId, company } = req.body;
 
   // see mailerlite docs for more info
@@ -53,4 +53,4 @@ export default async (req, res) => {
     console.log(error);
     return res.status(500).json({ error: error.message || error.toString() });
   }
-};
+}
