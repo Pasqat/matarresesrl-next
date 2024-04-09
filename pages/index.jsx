@@ -32,7 +32,6 @@ import {getPlaiceholder} from 'plaiceholder'
 import {RegistrationPanel} from '../components/event-registration-panel'
 
 export default function Home({groups, lastTwoProjects, event}) {
-  console.log(event.futureEvent.length)
   return (
     <div>
       <Head>
