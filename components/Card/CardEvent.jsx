@@ -50,10 +50,10 @@ export default function CardEvent({event}) {
             that the truncated string remains longer than the line-clamp, so that
             line-clamp precedes for the 90% supporting that.
           */}
-          <Paragraph
+          {/* <Paragraph
             className="line-clamp-3"
             dangerouslySetInnerHTML={{__html: Truncate(event.content, 120)}}
-          />
+          /> */}
         </div>
 
         <Spacer size="2xs" />

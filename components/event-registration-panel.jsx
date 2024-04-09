@@ -2,8 +2,9 @@ import Link from 'next/link'
 import * as React from 'react'
 // import {formatDate} from '../actions/utils/formatDate'
 import FormModal from '../components/Form/FormModal'
+import {Button, ButtonLink} from './button'
 
-function RegistrationPanel({event, pastEvent}) {
+function RegistrationPanel({event, pastEvent, modal}) {
   // const startDate = formatDate(event.startDate)
   // const endDate = formatDate(event.endDate)
   const startDate = event.startDate
@@ -28,13 +29,17 @@ function RegistrationPanel({event, pastEvent}) {
           </p>
         )}
       </div>
-      {pastEvent ? null : (
+      {pastEvent ? null : modal ? (
         <FormModal
           withButton
           buttonText="Partecipa"
           type="reservation"
           title={event.title}
         />
+      ) : (
+        <Button>
+          <Link href={`eventi/${event.slug}`}>Partecipa</Link>
+        </Button>
       )}
     </div>
   )

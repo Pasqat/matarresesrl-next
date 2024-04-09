@@ -135,7 +135,7 @@ export default function Realizzazioni({data}) {
               <H5 as="div" className="col-span-full mb-6">
                 Filtra per settore
               </H5>
-              <div className="col-span-full -mr-4 -mb-4 flex flex-wrap lg:col-span-10">
+              <div className="col-span-full -mb-4 -mr-4 flex flex-wrap lg:col-span-10">
                 {data.categories.map(category => {
                   const selected = regularQuery.includes(category)
 
@@ -172,7 +172,7 @@ export default function Realizzazioni({data}) {
                   ignoreInputKeyUp.current = false
                 }}
                 className={clsx(
-                  'absolute top-0 left-6 flex h-full items-center justify-center border-none bg-trasparent p-0 text-gray-500',
+                  'absolute left-6 top-0 flex h-full items-center justify-center border-none bg-trasparent p-0 text-gray-500',
                   {
                     'cursor-pointer': query !== '',
                     'cursor-default': query === '',
@@ -212,9 +212,9 @@ export default function Realizzazioni({data}) {
                 }}
                 name="q"
                 placeholder="cerca"
-                className="text-primary bg-primary border-secondary focus:bg-secondary w-full rounded-full border py-6 pr-6 pl-14 text-lg font-medium hover:border-yellow-500 focus:border-yellow-500 focus:outline-none md:pr-24"
+                className="text-primary bg-primary border-secondary focus:bg-secondary w-full rounded-full border py-6 pl-14 pr-6 text-lg font-medium hover:border-yellow-500 focus:border-yellow-500 focus:outline-none md:pr-24"
               />
-              <div className="absolute top-0 right-6 hidden h-full w-14 items-center justify-between text-lg font-medium text-gray-500 md:flex">
+              <div className="absolute right-6 top-0 hidden h-full w-14 items-center justify-between text-lg font-medium text-gray-500 md:flex">
                 {isSearching ? matchingPosts.length : null}
               </div>
             </div>
