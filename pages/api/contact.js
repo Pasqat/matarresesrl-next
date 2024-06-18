@@ -93,8 +93,8 @@ const mailer = ({
   const message = {
     from,
     to: ragione_sociale
-      ? `gianni.matarrese@matarrese.it; pasquale.matarrese@matarrese.it`
-      : `${recipientMail}`,
+      ? `${recipientMail}`
+      : `gianni.matarrese@matarrese.it; pasquale.matarrese@matarrese.it`,
     subject,
     text,
     replyTo: fromReal,

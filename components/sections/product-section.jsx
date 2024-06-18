@@ -46,7 +46,7 @@ export default function ProductSection() {
     <HeroSection
       subtitle="Prodotti"
       title="Tecnologie e innovazione irrinunciabili in cucina"
-      image="/img/pastorizzatore-prodotti.jpg"
+      image="/img/pastorizzatore-prodotti.png"
       action={ListMenu()}
     />
   )
