@@ -90,7 +90,7 @@ export default function Servizi({groups}) {
                 <Grid rowGap nested>
                   <div className="col-span-full lg:col-span-4">
                     <FeatureCard
-                      title="Consulenza commerciale"
+                      title="Consulenza"
                       description="I nostri esperti ti guidano nella scelta delle migliori soluzioni Ho.Re.Ca disponibili sul mercato."
                       // icon={<BriefCaseIcon size={48} />}
                     />
@@ -185,7 +185,7 @@ export default function Servizi({groups}) {
                   <div className="lg:pr-16">
                     <div className="flex">
                       <SectionProgress sectionRef={section1} />
-                      <div className="pt-1 pb-8">
+                      <div className="pb-8 pt-1">
                         <Link href="#consulenza-tecnica">
                           <a className="mb-2 text-lg font-bold">
                             Consulenza Tecnica
@@ -195,7 +195,7 @@ export default function Servizi({groups}) {
                     </div>
                     <div className="flex">
                       <SectionProgress sectionRef={section2} />
-                      <div className="pt-1 pb-8">
+                      <div className="pb-8 pt-1">
                         <Link href="#il-progetto">
                           <a className="mb-2 text-lg font-bold">Il progetto</a>
                         </Link>
@@ -206,7 +206,7 @@ export default function Servizi({groups}) {
                     </div>
                     <div className="flex">
                       <SectionProgress sectionRef={section3} />
-                      <div className="pt-1 pb-8">
+                      <div className="pb-8 pt-1">
                         <Link href="#iter-operativo">
                           <a className="mb-2 text-lg font-bold">
                             Iter Operativo
@@ -216,7 +216,7 @@ export default function Servizi({groups}) {
                     </div>
                     <div className="flex">
                       <SectionProgress sectionRef={section4} />
-                      <div className="pt-1 pb-8">
+                      <div className="pb-8 pt-1">
                         <Link href="#arredi-su-misura">
                           <a className="mb-2 text-lg font-bold">
                             Realizzazione arredi su misura
@@ -226,7 +226,7 @@ export default function Servizi({groups}) {
                     </div>
                     <div className="flex">
                       <SectionProgress sectionRef={section5} />
-                      <div className="pt-1 pb-8">
+                      <div className="pb-8 pt-1">
                         <Link href="#coordinamento-lavori">
                           <a className="mb-2 text-lg font-bold">
                             Coordinamento lavori
@@ -236,7 +236,7 @@ export default function Servizi({groups}) {
                     </div>
                     <div className="flex">
                       <SectionProgress sectionRef={section6} />
-                      <div className="pt-1 pb-8">
+                      <div className="pb-8 pt-1">
                         <Link href="#collaudo">
                           <a className="mb-2 text-lg font-bold">Collaudo</a>
                         </Link>
@@ -502,15 +502,18 @@ export default function Servizi({groups}) {
           >
             <Grid className="py-24">
               <div className="col-span-full">
-                <H2 variant="light-gray" className="mb-3 font-medium lg:mt-6">{`Servizi e allestimenti per GDO`}</H2>
-                <H3 as="p" variant="light-gray" className="mt-14 mb-7">
+                <H2
+                  variant="light-gray"
+                  className="mb-3 font-medium lg:mt-6"
+                >{`Servizi e allestimenti per GDO`}</H2>
+                <H3 as="p" variant="light-gray" className="mb-7 mt-14">
                   Progettiamo le{' '}
                   <span className="font-medium italic text-white">
                     aree ristoro{' '}
                   </span>
                   dei grandi supermercati, librerie e negozi.{' '}
                 </H3>
-                <H3  variant="light-gray" as="p" className="my-7 ">
+                <H3 variant="light-gray" as="p" className="my-7 ">
                   <span className="font-medium italic text-white">
                     Allestiamo{' '}
                   </span>
@@ -524,7 +527,7 @@ export default function Servizi({groups}) {
                   </span>{' '}
                   cucine per la grande distribuzione organizzata.
                 </H3>
-                <H3  variant="light-gray" as="p" className="my-7">
+                <H3 variant="light-gray" as="p" className="my-7">
                   Mettiamo il cliente al centro garantendo le{' '}
                   <span className="font-medium italic text-white">
                     attrezzature più innovative{' '}
