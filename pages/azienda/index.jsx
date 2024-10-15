@@ -1,6 +1,9 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import Lottie from 'react-lottie-player'
+import dynamic from 'next/dynamic'
+
+// import Lottie from 'react-lottie-player'
+const Lottie = dynamic(() => import('react-lottie-player'), {ssr: false})
 
 import Layout from '../../components/Layout'
 import {Grid} from '../../components/grid'
@@ -23,6 +26,7 @@ import {ProjectSection} from '../../components/sections/projects-section'
 import {getLastTwoProjects} from '../../lib/query/project'
 
 export default function AboutUs({lastTwoProjects}) {
+  console.log('%cCiao sono io', 'color: red; font-size: large')
   return (
     <>
       <Head>
@@ -61,6 +65,8 @@ export default function AboutUs({lastTwoProjects}) {
             title="Un partner affidabile per la tua attività"
             subtitle="Chi siamo"
             illustration={<Lottie loop animationData={lottiejson} play />}
+            // image="/img/illustration/inspiration.png"
+            // imageSize="large"
             arrowUrl="#team"
             action={
               <>
@@ -161,7 +167,7 @@ export default function AboutUs({lastTwoProjects}) {
                 impegniamo a cercare la soluzione ottimale per i tuoi spazi e
                 più efficiente per il tuo lavoro.
               </p>
-              <p className="mt-0 mb-4 text-lg font-light leading-relaxed text-gray-600">
+              <p className="mb-4 mt-0 text-lg font-light leading-relaxed text-gray-600">
                 L’innovazione e la tecnologia sono componenti essenziali nella
                 scelta di attrezzature per la ristorazione, di cucine
                 professionali e di impianti di aerazione e climatizzazione. La
@@ -196,7 +202,7 @@ export default function AboutUs({lastTwoProjects}) {
         <section>
           <Grid className="mb-12 lg:mb-24 xl:mb-48">
             <div className="col-span-full lg:col-span-6 lg:col-start-1">
-              <div className="aspect-w-4 aspect-h-6 mb-12 lg:mb-0">
+              <div className="aspect-h-6 aspect-w-4 mb-12 lg:mb-0">
                 <Image
                   alt="prodotti per la cucina professionale"
                   className="max-w-full rounded-lg shadow-lg"
@@ -239,6 +245,8 @@ export default function AboutUs({lastTwoProjects}) {
 
 export async function getStaticProps() {
   const lastTwoProjects = await getLastTwoProjects()
+
+  console.log('%cLast Two Projects -->' + lastTwoProjects, 'color:yellow')
 
   return {
     props: {

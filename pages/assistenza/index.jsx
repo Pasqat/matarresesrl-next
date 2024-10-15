@@ -1,80 +1,79 @@
-import { useEffect, useState } from "react";
-import Link from "next/link";
-import * as fbq from "../../lib/fpixel";
-import { gtmEvent } from "../../lib/gtm";
-import { usePlausible } from "next-plausible";
+import {useEffect, useState} from 'react'
+import Link from 'next/link'
+import * as fbq from '../../lib/fpixel'
+import {gtmEvent} from '../../lib/gtm'
+import {usePlausible} from 'next-plausible'
 
-import Head from "next/head";
+import Head from 'next/head'
 
-import Layout from "../../components/Layout";
-import Header from "../../components/Header/Header";
+import Layout from '../../components/Layout'
+import Header from '../../components/Header/Header'
 
-import { getGroups } from "../../lib/newsletter";
+import {getGroups} from '../../lib/newsletter'
 
-import { sendContactMail } from "../../actions/networking/mailApi";
-import { Field, NotificationPanel } from "../../components/form-element";
-import { Grid } from "../../components/grid";
-import { ArrowButton } from "../../components/arrow-button";
-import { CheckIcon } from "../../components/icons/check-icon";
+import {sendContactMail} from '../../actions/networking/mailApi'
+import {Field, NotificationPanel} from '../../components/form-element'
+import {Grid} from '../../components/grid'
+import {ArrowButton} from '../../components/arrow-button'
+import {CheckIcon} from '../../components/icons/check-icon'
 
 export default function Assistenza() {
-  const plausible = usePlausible();
+  const plausible = usePlausible()
   const [form, setForm] = useState({
-    ragione_sociale: "",
-    tel: "",
-    email: "",
-    referente: "",
-    indirizzo: "",
-    formContent: "",
-  });
-  const { ragione_sociale, tel, email, formContent, referente, indirizzo } =
-    form;
+    ragione_sociale: '',
+    tel: '',
+    email: '',
+    referente: '',
+    indirizzo: '',
+    formContent: '',
+  })
+  const {ragione_sociale, tel, email, formContent, referente, indirizzo} = form
 
-  const [isCheckedTerms, setIsCheckedTerms] = useState(false);
-  const [formButtonDisabled, setFormButtonDisabled] = useState(false);
+  const [isCheckedTerms, setIsCheckedTerms] = useState(false)
+  const [formButtonDisabled, setFormButtonDisabled] = useState(false)
   const [notification, setNotification] = useState({
-    text: "",
+    text: '',
     isError: false,
-  });
+  })
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = e => {
+    const {name, value} = e.target
     setForm({
       ...form,
       [name]: value,
-    });
-  };
+    })
+  }
 
   useEffect(() => {
-    if (isCheckedTerms && notification.text.includes("termini")) {
-      setNotification({ text: "", isError: false });
+    if (isCheckedTerms && notification.text.includes('termini')) {
+      setNotification({text: '', isError: false})
     }
-  }, [isCheckedTerms, notification.text]);
+  }, [isCheckedTerms, notification.text])
 
   async function submitContactForm(event) {
-    event.preventDefault();
+    event.preventDefault()
 
     if (
-      ragione_sociale === "" ||
-      email === "" ||
-      formContent === "" ||
-      tel === "" ||
-      referente === "" ||
-      indirizzo === ""
+      ragione_sociale === '' ||
+      email === '' ||
+      formContent === '' ||
+      tel === '' ||
+      referente === '' ||
+      indirizzo === ''
     ) {
       return setNotification({
         ...notification,
-        text: "Per favore compila tutti i campi",
+        text: 'Per favore compila tutti i campi',
         isError: true,
-      });
+      })
     }
 
     if (isCheckedTerms === false) {
       return setNotification({
         ...notification,
-        text: "Non dimenticare di accettare i termini e le condizioni",
+        text: 'Non dimenticare di accettare i termini e le condizioni',
         isError: true,
-      });
+      })
     }
 
     const res = await sendContactMail({
@@ -84,33 +83,33 @@ export default function Assistenza() {
       referente,
       indirizzo,
       formContent,
-    });
+    })
     if (res.status < 300) {
-      setFormButtonDisabled(true);
+      setFormButtonDisabled(true)
       setNotification({
         ...notification,
-        text: "Grazie, ti ricontatteremo al più presto",
+        text: 'Grazie, ti ricontatteremo al più presto',
         isError: false,
-      });
-      fbq.event("Contact");
-      gtmEvent("contact");
-      plausible("Contatti", { props: { form_location: "Assistenza" } });
+      })
+      fbq.event('Contact')
+      gtmEvent('contact')
+      plausible('Contatti', {props: {form_location: 'Assistenza'}})
       setForm({
         ...form,
-        ragione_sociale: "",
-        email: "",
-        tel: "",
-        referente: "",
-        indirizzo: "",
-        formContent: "",
-      });
-      setIsCheckedTerms(false);
+        ragione_sociale: '',
+        email: '',
+        tel: '',
+        referente: '',
+        indirizzo: '',
+        formContent: '',
+      })
+      setIsCheckedTerms(false)
     } else {
       setNotification({
         ...notification,
-        text: "Per favore compila tutti i campi",
+        text: 'Per favore compila tutti i campi',
         isError: true,
-      });
+      })
     }
   }
   return (
@@ -158,11 +157,10 @@ export default function Assistenza() {
         <section id="assistenza">
           <Grid featured>
             <form
-              className="col-span-full mx-8 lg:mx-16 space-y-4"
+              className="col-span-full mx-8 space-y-4 lg:mx-16"
               onSubmit={submitContactForm}
             >
-              {
-                /*
+              {/*
               <H2 as="h4">
                 Hai un progetto da realizzare o hai bisogno di informazioni?
               </H2>
@@ -171,8 +169,7 @@ export default function Assistenza() {
               </H2>
               <Spacer size="2xs" />
 
-            */
-              }
+            */}
               <Grid nested>
                 <Field
                   name="ragione_sociale"
@@ -261,7 +258,7 @@ export default function Assistenza() {
                       onChange={() => setIsCheckedTerms(!isCheckedTerms)}
                     />
                     <span className="ml-2">
-                      accetto il{" "}
+                      accetto il{' '}
                       <Link href="/privacy-policy">
                         <a className="text-yellow-500" target="_blank">
                           trattamento dei dati e condizioni
@@ -273,49 +270,41 @@ export default function Assistenza() {
                 </div>
               </div>
 
-              {notification.isError
-                ? (
-                  <NotificationPanel isError={notification.isError}>
-                    {notification.text}
-                  </NotificationPanel>
-                )
-                : null}
+              {notification.isError ? (
+                <NotificationPanel isError={notification.isError}>
+                  {notification.text}
+                </NotificationPanel>
+              ) : null}
 
               <div className="text-right">
-                {formButtonDisabled
-                  ? (
-                    <div className="flex justify-end">
-                      <CheckIcon />
-                      <p className="text-secondary text-lg">
-                        {!notification.text
-                          ? `Grazie, ti ricontatteremo al più presto`
-                          : notification.text}
-                      </p>
-                    </div>
-                  )
-                  : (
-                    <ArrowButton
-                      className="pt-4"
-                      type="submit"
-                      direction="right"
-                    >
-                      Invia
-                    </ArrowButton>
-                  )}
+                {formButtonDisabled ? (
+                  <div className="flex justify-end">
+                    <CheckIcon />
+                    <p className="text-secondary text-lg">
+                      {!notification.text
+                        ? `Grazie, ti ricontatteremo al più presto`
+                        : notification.text}
+                    </p>
+                  </div>
+                ) : (
+                  <ArrowButton className="pt-4" type="submit" direction="right">
+                    Invia
+                  </ArrowButton>
+                )}
               </div>
             </form>
           </Grid>
         </section>
       </Layout>
     </>
-  );
+  )
 }
 
 export async function getStaticProps() {
-  const groups = await getGroups();
+  const groups = await getGroups()
   return {
     props: {
       groups,
     },
-  };
+  }
 }

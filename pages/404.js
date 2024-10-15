@@ -1,5 +1,7 @@
 import Head from 'next/head'
-import Lottie from 'react-lottie-player'
+import dynamic from 'next/dynamic'
+
+const Lottie = dynamic(() => import('react-lottie-player'), {ssr: false})
 
 import Layout from '../components/Layout'
 import {H2} from '../components/typography'
