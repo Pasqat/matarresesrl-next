@@ -246,8 +246,6 @@ export default function AboutUs({lastTwoProjects}) {
 export async function getStaticProps() {
   const lastTwoProjects = await getLastTwoProjects()
 
-  console.log('%cLast Two Projects -->' + lastTwoProjects, 'color:yellow')
-
   return {
     props: {
       lastTwoProjects: lastTwoProjects,
