@@ -15,6 +15,7 @@ let navigation = [
   {name: 'Azienda', href: '/azienda', current: false},
   {name: 'Eventi', href: '/eventi', current: false},
   {name: 'Realizzazioni', href: '/realizzazioni', current: false},
+  {name: 'R&S', href: '/ricerca', current: false},
   {name: 'Chi siamo', href: '/azienda', current: false},
   {name: 'News', href: '/news', current: false},
 ]
@@ -58,7 +59,7 @@ export default function Navbar({isTransparent}) {
                       <Link key={item.name} href={item.href}>
                         <a
                           className={clsx(
-                            'rounded-md py-2 px-3 text-sm font-medium text-gray-100 md:text-base',
+                            'rounded-md px-3 py-2 text-sm font-medium text-gray-100 md:text-base',
                             item.current
                               ? 'hover:first-letter:text-yellow-500'
                               : 'hover:no-underline hover:first-letter:text-yellow-500',
@@ -100,7 +101,7 @@ export default function Navbar({isTransparent}) {
           </div>
 
           <Disclosure.Panel className="lg:hidden">
-            <div className="space-y-1 bg-gray-900 px-2 pt-2 pb-3">
+            <div className="space-y-1 bg-gray-900 px-2 pb-3 pt-2">
               {navigation.map(item => (
                 <a
                   key={item.name}
@@ -109,7 +110,7 @@ export default function Navbar({isTransparent}) {
                     item.current
                       ? 'bg-gray-900 text-white'
                       : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                    'block rounded-md py-2 px-3 text-base font-medium',
+                    'block rounded-md px-3 py-2 text-base font-medium',
                   )}
                   aria-current={item.current ? 'page' : undefined}
                 >

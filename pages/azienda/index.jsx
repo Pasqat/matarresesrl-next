@@ -26,7 +26,6 @@ import {ProjectSection} from '../../components/sections/projects-section'
 import {getLastTwoProjects} from '../../lib/query/project'
 
 export default function AboutUs({lastTwoProjects}) {
-  console.log('%cCiao sono io', 'color: red; font-size: large')
   return (
     <>
       <Head>
