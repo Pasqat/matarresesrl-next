@@ -8,16 +8,16 @@ const Lottie = dynamic(() => import('react-lottie-player'), {ssr: false})
 import Layout from '../../components/Layout'
 import {Grid} from '../../components/grid'
 import {LinkButton} from '../../components/button'
-import {H2, H3, H6, Paragraph} from '../../components/typography'
+import {H3, Paragraph} from '../../components/typography'
 import {HeroSection} from '../../components/sections/hero-section'
 import {Spacer} from '../../components/spacer'
 
 import lottiejson from '../../public/img/illustration/ricerca.json'
 
-import imgHomePartnerOperatori from '../../public/img/home-partner-operatori.jpg'
 import FBMlogo from '../../public/img/logos/FBM_LOGO-High-Res.png'
 import UEfundedLogo from '../../public/img/logos/funded-eu-blue.png'
 import PrimaLogo from '../../public/img/logos/prima-logo-hor.png'
+import FBM_ReD_page from '../../public/img/FBM-ReS_page.webp'
 
 export default function AboutUs() {
   return (
@@ -55,24 +55,22 @@ export default function AboutUs() {
       <Layout>
         <div className="mb-12 lg:mb-24">
           <HeroSection
-            title="Ricerca e tecnologia al servizio del futuro"
+            title="Esperienza e tecnologia al servizio del futuro"
             subtitle="Ricerca e Sviluppo"
             illustration={<Lottie loop animationData={lottiejson} play />}
-            // image="/img/illustration/inspiration.png"
-            // imageSize="large"
             arrowUrl="#flat-bread-mine"
             action={
               <>
                 <Paragraph>
-                  La nostra azienda, da sempre all&apos;avanguardia nel settore,
-                  collabora come partner tecnologico con università e centri di
-                  ricerca per promuovere l&apos;innovazione.
+                  Collaboriamo con università e centri specializzati per
+                  sviluppare soluzioni innovative che rispondono alle sfide di
+                  domani.
                 </Paragraph>
                 <Paragraph>
-                  Crediamo che la ricerca sia il pilastro fondamentale per
-                  sviluppare nuove tecnologie e affrontare le sfide del futuro,
-                  combinando esperienza pratica e conoscenze accademiche per
-                  creare soluzioni all&apos;avanguardia.
+                  Crediamo fermamente che il progresso nasca dalla combinazione
+                  di conoscenze accademiche ed esperienza pratica, pilastri
+                  fondamentali per affrontare il futuro e creare tecnologie
+                  all'avanguardia.
                 </Paragraph>
               </>
             }
@@ -81,10 +79,10 @@ export default function AboutUs() {
 
         <section className="-mt-24 pt-24" id="flat-bread-mine">
           <Grid rowGap>
+            <H3 className="col-span-full mb-2" variant="secondary">
+              Flat Bread Mine
+            </H3>
             <div className="col-span-full lg:col-span-6">
-              <H3 className="mb-2" variant="secondary">
-                Flat Bread Mine
-              </H3>
               <p className="mb-4 text-lg font-light leading-relaxed text-gray-600">
                 Il progetto Flat Bread Mine nasce per valorizzare il pane
                 piatto, simbolo delle tradizioni culinarie mediterranee,
@@ -114,19 +112,54 @@ export default function AboutUs() {
             </div>
 
             <div className="col-span-full text-center lg:col-span-6 lg:ml-8">
-              <Image
-                src={imgHomePartnerOperatori}
-                layout="intrinsic"
-                objectFit="cover"
-                objectPosition="center"
-                alt="attrezzature ristorazione nello showroom"
-                className="rounded-lg shadow-sm"
-                placeholder="blur"
-              />
+              <div className="grid-row-2 grid h-full justify-stretch">
+                <Image
+                  src={FBM_ReD_page}
+                  layout="intrinsic"
+                  objectFit="cover"
+                  objectPosition="center"
+                  alt="attrezzature ristorazione nello showroom"
+                  className="rounded-lg shadow-sm"
+                  placeholder="blur"
+                />
+                <div className="mt-8 grid grid-cols-2 place-content-between gap-x-4 gap-y-4 md:grid-cols-3">
+                  <Image
+                    key="Funded-UE"
+                    width={360}
+                    height={95}
+                    objectFit="contain"
+                    src={UEfundedLogo}
+                    alt="Funded by the European Union"
+                    placeholder="blur"
+                    blurDataURL={UEfundedLogo}
+                  />
+                  <Image
+                    key="Prima"
+                    width={360}
+                    height={95}
+                    objectFit="contain"
+                    src={PrimaLogo}
+                    alt="Prima Partnership for researh and innovation in the mediterranean area"
+                    placeholder="blur"
+                    blurDataURL={PrimaLogo}
+                  />
+                  <Image
+                    key={'FBMlogo'}
+                    width={360}
+                    height={95}
+                    objectFit="contain"
+                    src={FBMlogo}
+                    alt={`Flat Bread Mine logo`}
+                    placeholder="blur"
+                    blurDataURL={FBMlogo}
+                  />
+                </div>
+              </div>
             </div>
           </Grid>
 
-          <div className="container mx-auto my-12 max-w-7xl px-16">
+          {/*
+         <div className="container mx-auto my-12 max-w-7xl px-16">
             <div className="grid grid-cols-2 place-content-between gap-x-4 gap-y-4 md:grid-cols-3">
               <Image
                 key="Funded-UE"
@@ -160,9 +193,8 @@ export default function AboutUs() {
               />
             </div>
           </div>
+          */}
         </section>
-
-        <section className="relative mb-12 lg:mb-24 xl:mb-48"></section>
 
         <Spacer size="base" />
       </Layout>
