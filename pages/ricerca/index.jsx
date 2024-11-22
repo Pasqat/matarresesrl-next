@@ -70,7 +70,7 @@ export default function AboutUs() {
                   Crediamo fermamente che il progresso nasca dalla combinazione
                   di conoscenze accademiche ed esperienza pratica, pilastri
                   fondamentali per affrontare il futuro e creare tecnologie
-                  all'avanguardia.
+                  all&apos;avanguardia.
                 </Paragraph>
               </>
             }
