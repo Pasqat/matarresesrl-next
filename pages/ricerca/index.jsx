@@ -9,7 +9,6 @@ import Layout from '../../components/Layout'
 import {Grid} from '../../components/grid'
 import {LinkButton} from '../../components/button'
 import {H3, Paragraph} from '../../components/typography'
-import {H3, Paragraph} from '../../components/typography'
 import {HeroSection} from '../../components/sections/hero-section'
 import {Spacer} from '../../components/spacer'
 
@@ -18,7 +17,6 @@ import lottiejson from '../../public/img/illustration/ricerca.json'
 import FBMlogo from '../../public/img/logos/FBM_LOGO-High-Res.png'
 import UEfundedLogo from '../../public/img/logos/funded-eu-blue.png'
 import PrimaLogo from '../../public/img/logos/prima-logo-hor.png'
-import FBM_ReD_page from '../../public/img/FBM-ReS_page.webp'
 import FBM_ReD_page from '../../public/img/FBM-ReS_page.webp'
 
 export default function AboutUs() {
