@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 import {ButtonLink} from '../button'
 import {motion, useReducedMotion} from 'framer-motion'
 import {H1} from '../typography'
@@ -68,11 +68,15 @@ function HeaderBig({
                 ) : null}
               </motion.div>
               {!noButton && (
-                <Link href={button.link} passHref>
-                  <ButtonLink size="medium" className="mt-8">
-                    <i className="fas fa-message" /> {button.text}
-                  </ButtonLink>
-                </Link>
+                <ButtonLink size="medium" className="mt-8" href={button.link}>
+                  <i className="fas fa-message" /> {button.text}
+                </ButtonLink>
+
+                //   <Link href={button.link} passHref>
+                //   <ButtonLink size="medium" className="mt-8">
+                //     <i className="fas fa-message" /> {button.text}
+                //   </ButtonLink>
+                // </Link>
               )}
               {children}
             </div>

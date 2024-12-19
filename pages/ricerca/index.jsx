@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import dynamic from 'next/dynamic'
 
 // import Lottie from 'react-lottie-player'
