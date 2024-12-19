@@ -1,14 +1,14 @@
-import { Fragment, useEffect, useState } from "react";
-import Link from "next/link";
-import * as fbq from "../../lib/fpixel";
-import { gtmEvent } from "../../lib/gtm";
-import { usePlausible } from "next-plausible";
+import {Fragment, useEffect, useState} from 'react'
+import Link from 'next/link'
+import * as fbq from '../../lib/fpixel'
+import {gtmEvent} from '../../lib/gtm'
+import {usePlausible} from 'next-plausible'
 
-import { Dialog, Transition } from "@headlessui/react";
-import clsx from "clsx";
+import {Dialog, Transition} from '@headlessui/react'
+import clsx from 'clsx'
 
-import { sendContactMail } from "../../actions/networking/mailApi";
-import { Button } from "../../components/button";
+import {sendContactMail} from '../../actions/networking/mailApi'
+import {Button} from '../../components/button'
 
 /**
  * @param buttonText default "Contattaci"
@@ -17,113 +17,113 @@ import { Button } from "../../components/button";
  */
 
 export default function FormModal({
-  buttonText = "Contattaci",
-  type = "contacts",
+  buttonText = 'Contattaci',
+  type = 'contacts',
   title = null,
-  size = "medium",
-  variant = "primary",
+  size = 'medium',
+  variant = 'primary',
   withButton,
 }) {
-  const plausible = usePlausible();
+  const plausible = usePlausible()
 
-  let [isOpen, setIsOpen] = useState(false);
+  let [isOpen, setIsOpen] = useState(false)
   const [form, setForm] = useState({
-    referente: "",
-    surname: "",
-    mail: "",
-    tel: "",
-    formContent: "",
+    referente: '',
+    surname: '',
+    mail: '',
+    tel: '',
+    formContent: '',
     participants: null,
-  });
-  const { referente, surname, mail, tel, formContent, participants } = form;
-  const [isChecked, setIsChecked] = useState(false);
+  })
+  const {referente, surname, mail, tel, formContent, participants} = form
+  const [isChecked, setIsChecked] = useState(false)
 
-  const [formButtonDisabled, setFormButtonDisabled] = useState(false);
+  const [formButtonDisabled, setFormButtonDisabled] = useState(false)
   const [notification, setNotification] = useState({
-    text: "",
+    text: '',
     isError: false,
-  });
+  })
 
   function closeModal() {
-    setIsOpen(false);
+    setIsOpen(false)
   }
 
   function openModal() {
-    setIsOpen(true);
+    setIsOpen(true)
   }
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = e => {
+    const {name, value} = e.target
     setForm({
       ...form,
       [name]: value,
-    });
-  };
+    })
+  }
 
   useEffect(() => {
-    setFormButtonDisabled(false);
-    setForm((form) => ({
+    setFormButtonDisabled(false)
+    setForm(form => ({
       ...form,
-      referente: "",
-      surname: "",
-      mail: "",
-      tel: "",
-    }));
-    setIsChecked(false);
-    setNotification({ text: "", isError: false });
-  }, [isOpen]);
+      referente: '',
+      surname: '',
+      mail: '',
+      tel: '',
+    }))
+    setIsChecked(false)
+    setNotification({text: '', isError: false})
+  }, [isOpen])
 
   useEffect(() => {
-    if (isChecked && notification.text.includes("termini")) {
-      setNotification({ text: "", isError: false });
+    if (isChecked && notification.text.includes('termini')) {
+      setNotification({text: '', isError: false})
     }
-  }, [isChecked, notification.text]);
+  }, [isChecked, notification.text])
 
   async function submitContactForm(event) {
-    event.preventDefault();
+    event.preventDefault()
 
-    if (referente === "" || surname === "") {
+    if (referente === '' || surname === '') {
       return setNotification({
         ...notification,
-        text: "Per favore compila tutti i campi",
+        text: 'Per favore compila tutti i campi',
         isError: true,
-      });
+      })
     }
 
-    if (type === "reservation") {
-      if (participants === null || participants === "") {
+    if (type === 'reservation') {
+      if (participants === null || participants === '') {
         return setNotification({
           ...notification,
-          text: "Per favore compila tutti i campi",
+          text: 'Per favore compila tutti i campi',
           isError: true,
-        });
+        })
       }
     }
 
-    if (type !== "reservation") {
-      if (formContent === "") {
+    if (type !== 'reservation') {
+      if (formContent === '') {
         return setNotification({
           ...notification,
-          text: "Per favore compila tutti i campi",
+          text: 'Per favore compila tutti i campi',
           isError: true,
-        });
+        })
       }
     }
 
-    if (mail === "" && tel === "") {
+    if (mail === '' && tel === '') {
       return setNotification({
         ...notification,
-        text: "Per favore inserisci un numero valido o una email valida",
+        text: 'Per favore inserisci un numero valido o una email valida',
         isError: true,
-      });
+      })
     }
 
     if (!isChecked) {
       return setNotification({
         ...notification,
-        text: "Non dimenticare di accettare i termini e le condizioni",
+        text: 'Non dimenticare di accettare i termini e le condizioni',
         isError: true,
-      });
+      })
     }
 
     const res = await sendContactMail({
@@ -134,81 +134,79 @@ export default function FormModal({
       formContent,
       participants,
       title,
-    });
+    })
 
     if (res.status < 300) {
-      setFormButtonDisabled(true);
-      if (type === "reservation") {
-        plausible("Prenotazione", {
-          props: { title: title, partecipanti: participants },
-        });
-        fbq.event("CompleteRegistration", {
+      setFormButtonDisabled(true)
+      if (type === 'reservation') {
+        plausible('Prenotazione', {
+          props: {title: title, partecipanti: participants},
+        })
+        fbq.event('CompleteRegistration', {
           content_name: title,
           value: participants,
-        });
-        gtmEvent("complete_registration", {
+        })
+        gtmEvent('complete_registration', {
           content_name: title,
           value: participants,
-        });
+        })
       } else {
-        plausible("Contatti", { props: { form_location: "Modal Form" } });
-        fbq.event("Contact");
-        gtmEvent("contact", { formLocation: "Modal form" });
+        plausible('Contatti', {props: {form_location: 'Modal Form'}})
+        fbq.event('Contact')
+        gtmEvent('contact', {formLocation: 'Modal form'})
       }
       setNotification({
         ...notification,
-        text: "Grazie, ti ricontatteremo al più presto",
+        text: 'Grazie, ti ricontatteremo al più presto',
         isError: false,
-      });
+      })
       setForm({
         ...form,
-        referente: "",
-        surname: "",
-        tel: "",
-        mail: "",
-        formContent: "",
-        participants: "",
-      });
-      setIsChecked(false);
+        referente: '',
+        surname: '',
+        tel: '',
+        mail: '',
+        formContent: '',
+        participants: '',
+      })
+      setIsChecked(false)
       setTimeout(() => {
-        closeModal();
-      }, 2000);
+        closeModal()
+      }, 2000)
     } else {
       setNotification({
         ...notification,
-        text: "Per favore compila tutti i campi",
+        text: 'Per favore compila tutti i campi',
         isError: true,
-      });
+      })
     }
   }
   return (
     <>
-      {withButton
-        ? (
-          <Button variant={variant} size={size} onClick={openModal}>
-            {buttonText}
-          </Button>
-        )
-        : (
-          <a
-            onClick={openModal}
-            className="text-accent group mt-4 inline-flex cursor-pointer items-center text-lg no-underline md:mb-2 lg:mb-0"
+      {withButton ? (
+        <Button variant={variant} size={size} onClick={openModal}>
+          {buttonText}
+        </Button>
+      ) : (
+        <a
+          onClick={openModal}
+          className="text-accent group mt-4 inline-flex cursor-pointer items-center text-lg no-underline md:mb-2 lg:mb-0"
+        >
+          {buttonText}
+          <svg
+            className="ml-2 h-4 w-4 animate-bounceX"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth="2"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
-            {buttonText}
-            <svg
-              className="ml-2 h-4 w-4 animate-bounceX"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth="2"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M5 12h14"></path>
-              <path d="M12 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        )}
+            <path d="M5 12h14"></path>
+            <path d="M12 5l7 7-7 7"></path>
+          </svg>
+        </a>
+      )}
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
@@ -247,32 +245,30 @@ export default function FormModal({
               leaveTo="opacity-0 scale-95"
             >
               <div className="my-8 inline-block w-full max-w-md overflow-hidden rounded-2xl bg-white p-10 text-left align-middle shadow-xl transition-all">
-                {type === "contacts"
-                  ? (
-                    <>
-                      <Dialog.Title
-                        as="h3"
-                        className="leading-tigth text-lg font-medium text-gray-900"
-                      >
-                        {title ??
-                          `Hai un'idea che vorresti realizzare, o hai bisogno di informazioni?`}
-                      </Dialog.Title>
-                      <div className="mt-2">
-                        <p className="text-sm text-gray-500">
-                          Completa questo modulo, un nostro consulente ti
-                          contatterà
-                        </p>
-                      </div>
-                    </>
-                  )
-                  : (
+                {type === 'contacts' ? (
+                  <>
                     <Dialog.Title
                       as="h3"
-                      className="text-lg font-medium leading-6 text-gray-900"
+                      className="leading-tigth text-lg font-medium text-gray-900"
                     >
-                      {title}
+                      {title ??
+                        `Hai un'idea che vorresti realizzare, o hai bisogno di informazioni?`}
                     </Dialog.Title>
-                  )}
+                    <div className="mt-2">
+                      <p className="text-sm text-gray-500">
+                        Completa questo modulo, un nostro consulente ti
+                        contatterà
+                      </p>
+                    </div>
+                  </>
+                ) : (
+                  <Dialog.Title
+                    as="h3"
+                    className="text-lg font-medium leading-6 text-gray-900"
+                  >
+                    {title}
+                  </Dialog.Title>
+                )}
 
                 <form
                   className="mt-8 flex-auto space-y-8"
@@ -346,27 +342,25 @@ export default function FormModal({
                       onChange={handleChange}
                     />
                   </div>
-                  {type === "reservation"
-                    ? (
-                      <div className="relative w-full">
-                        <label
-                          className="mb-2 block text-xs font-bold uppercase text-gray-600"
-                          htmlFor="participants"
-                        >
-                          Numero Partecipanti
-                        </label>
-                        <input
-                          type="number"
-                          min="1"
-                          className="w-full rounded border-0 bg-white px-3 py-3 text-sm text-gray-600 placeholder-gray-300 shadow transition-all duration-150 ease-linear focus:outline-none focus:ring"
-                          placeholder="Numero partecipanti"
-                          name="participants"
-                          value={participants}
-                          onChange={handleChange}
-                        />
-                      </div>
-                    )
-                    : null}
+                  {type === 'reservation' ? (
+                    <div className="relative w-full">
+                      <label
+                        className="mb-2 block text-xs font-bold uppercase text-gray-600"
+                        htmlFor="participants"
+                      >
+                        Numero Partecipanti
+                      </label>
+                      <input
+                        type="number"
+                        min="1"
+                        className="w-full rounded border-0 bg-white px-3 py-3 text-sm text-gray-600 placeholder-gray-300 shadow transition-all duration-150 ease-linear focus:outline-none focus:ring"
+                        placeholder="Numero partecipanti"
+                        name="participants"
+                        value={participants}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  ) : null}
                   <div className="relative w-full">
                     <label
                       className="mb-2 block text-xs font-bold uppercase text-gray-600"
@@ -394,11 +388,13 @@ export default function FormModal({
                         onChange={() => setIsChecked(!isChecked)}
                       />
                       <span className="ml-2 text-sm">
-                        accetto il{" "}
-                        <Link href="/privacy-policy">
-                          <a className="text-yellow-500" target="_blank">
-                            trattamento dei dati e condizioni
-                          </a>
+                        accetto il{' '}
+                        <Link
+                          href="/privacy-policy"
+                          className="text-yellow-500"
+                          target="_blank"
+                        >
+                          trattamento dei dati e condizioni
                         </Link>
                       </span>
                     </label>
@@ -426,8 +422,8 @@ export default function FormModal({
                 </form>
                 <div
                   className={clsx(
-                    "px-4 text-center",
-                    notification.isError ? "text-red-600" : "text-green-600",
+                    'px-4 text-center',
+                    notification.isError ? 'text-red-600' : 'text-green-600',
                   )}
                 >
                   {notification.text}
@@ -438,5 +434,5 @@ export default function FormModal({
         </Dialog>
       </Transition>
     </>
-  );
+  )
 }

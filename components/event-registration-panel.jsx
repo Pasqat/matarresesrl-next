@@ -17,9 +17,7 @@ function RegistrationPanel({event, pastEvent, modal}) {
     >
       <div className="mb-10 lg:mb-0 lg:ml-16">
         <Link href={`/eventi/${event.slug}`}>
-          <a>
-            <h5 className="text-2xl font-medium text-black">{event.title}</h5>
-          </a>
+          <h5 className="text-2xl font-medium text-black">{event.title}</h5>
         </Link>
         {startDate === endDate ? (
           <p>{startDate}</p>
