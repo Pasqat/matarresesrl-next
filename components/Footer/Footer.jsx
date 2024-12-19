@@ -32,7 +32,7 @@ const groups = [
   {id: '101815183677064262', name: 'Macelleria'},
   {id: '101815183683355723', name: 'Panificio'},
   {id: '101815183690695758', name: 'Bar'},
-  {id: "101815183696987219", name: 'Agriturismo'},
+  {id: '101815183696987219', name: 'Agriturismo'},
   {id: '101815183705375834', name: 'Caseificio'},
   {id: '101815183713764449', name: 'Pub'},
   {id: '101815183720055909', name: 'Vineria'},
@@ -249,11 +249,11 @@ export default function Footer() {
         </div>
       </Grid>
       <div className="mx-10vw bg-gray-100">
-        <div className="mx-auto flex max-w-7xl flex-col flex-wrap items-center justify-between px-5 py-4 md:flex-row">
+        <div className="mx-auto flex max-w-7xl flex-col flex-wrap items-center justify-end px-5 py-4 md:flex-row">
           <p className="sm:text-left text-center text-sm text-gray-500">
             Copyright © {new Date().getFullYear()} Matarrese srl{' '}
           </p>
-          <div className="sm:justify-start sm:mt-0 sm:ml-auto mt-2 inline-flex justify-center">
+          {/* <div className="sm:justify-start sm:mt-0 sm:ml-auto mt-2 inline-flex justify-center">
             <p className="text-center text-sm text-gray-500">
               by <span className="font-semibold">Pasquale Matarrese</span>
             </p>
@@ -328,7 +328,7 @@ export default function Footer() {
                 <circle cx="4" cy="4" r="2" stroke="none"></circle>
               </svg>
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>
