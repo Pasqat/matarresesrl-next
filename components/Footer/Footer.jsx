@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import Link from 'next/link'
 import Image from 'next/image'
-import logoEccelsa from '../../public/img/logos/Eccelsa-RGB_400x400.png'
+import logoAssogi from '../../public/img/logos/Assogi_logo-300x119.png'
 import logoQucino from '../../public/img/logos/MARCHIO-QUCINO150.png'
 import logoAliGroup from '../../public/img/logos/Ali_Group_logo.png'
 
@@ -91,24 +91,24 @@ export default function Footer() {
               </button>
             </a>
           </div>
-          <div className="my-16 flex flex-wrap justify-between">
+          <div className="my-16 flex flex-wrap justify-start">
             <a
               rel="noreferrer"
               href="https://www.istitutoeccelsa.it"
               target="_blank"
             >
-              <div className="relative h-20 w-16">
+              <div className="relative h-20 w-28">
                 <Image
                   placeholder="blur"
                   layout="fill"
                   objectFit="contain"
-                  alt="Logo Istituto Eccelsa"
-                  src={logoEccelsa}
+                  alt="Logo Assogi"
+                  src={logoAssogi}
                 />
               </div>
             </a>
             <a rel="noreferrer" href="https://www.qucino.it/" target="_blank">
-              <div className="relative h-20 w-24">
+              <div className="relative ml-4 h-20 w-24">
                 <Image
                   layout="fill"
                   objectFit="contain"
@@ -118,7 +118,7 @@ export default function Footer() {
                 />
               </div>
             </a>
-            <a rel="noreferrer" href="https://www.aligroup.it/" target="_blank">
+            {/* <a rel="noreferrer" href="https://www.aligroup.it/" target="_blank">
               <div className="relative h-16 w-16">
                 <Image
                   layout="fill"
@@ -128,7 +128,7 @@ export default function Footer() {
                   placeholder="blur"
                 />
               </div>
-            </a>
+            </a> */}
           </div>
         </div>
         <div className="col-span-full pl-4 lg:col-span-3">
