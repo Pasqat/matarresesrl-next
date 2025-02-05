@@ -2,7 +2,7 @@ import {useRouter} from 'next/router'
 import {useState} from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
-import Image from "next/legacy/image"
+import Image from 'next/legacy/image'
 
 import Layout from '../../components/Layout'
 import Header from '../../components/Header/Header'
@@ -72,7 +72,7 @@ export default function Project({project}) {
               project.featuredImage && project.featuredImage.node.sourceUrl
             }
           />
-          <section className="relative w-full bg-gray-100 pt-16 pb-24 text-gray-800">
+          <section className="relative w-full bg-gray-100 pb-24 pt-16 text-gray-800">
             <div className="container mx-auto px-4">
               <div className="relative lg:flex lg:flex-row">
                 <div className="relative -mt-96 mb-6 flex w-full min-w-0 flex-col break-words bg-white shadow-lg">
@@ -81,7 +81,7 @@ export default function Project({project}) {
                       <H1 className="mb-2" variant="secondary">
                         {project.title}
                       </H1>
-                      <div className="mt-0 mb-2 text-sm font-bold uppercase leading-normal text-gray-400">
+                      <div className="mb-2 mt-0 text-sm font-bold uppercase leading-normal text-gray-400">
                         {project.portfolioCategories.edges.map(({node}) => (
                           <div key={node.id}>{node.name}</div>
                         ))}
@@ -97,13 +97,13 @@ export default function Project({project}) {
                       <div className="flex flex-wrap justify-center">
                         <div className="w-full px-4 lg:w-9/12">
                           {project.galleria.every(n => n !== null) ? (
-                            <Grid
-                              nested
-                              className="mb-8 gap-2 lg:mb-24 lg:gap-4"
-                            >
-                              <ImageGallery items={images} />
-                            </Grid>
-                          ) : null}
+                            // <Grid
+                            //   nested
+                            //   className="mb-8 gap-2 lg:mb-24 lg:gap-4"
+                            // >
+                            <ImageGallery items={images} />
+                          ) : // </Grid>
+                          null}
                           <div className="mb-14 lg:mb-24">
                             <EventBody content={project.content} />
                           </div>
@@ -122,9 +122,9 @@ export default function Project({project}) {
                   <H2 as="p">{`Hai anche tu un progetto da realizzare?`}</H2>
                   <Spacer size="2xs" />
                   <div className="flex justify-center">
-                    <Link href="/contatti" passHref>
-                      <ButtonLink size="large">Contattaci!</ButtonLink>
-                    </Link>
+                    <ButtonLink href="/contatti" size="large">
+                      Contattaci!
+                    </ButtonLink>
                   </div>
                 </div>
               </section>

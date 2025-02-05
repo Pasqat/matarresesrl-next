@@ -7,29 +7,6 @@ export default class MyDocument extends Document {
     return (
       <Html lang="it">
         <Head>
-          {/* Google Tag Manager */}
-          {/* <script
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=${GTM_ID}`}
-          />
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('consent', 'default', {
-                'ad_storage': 'denied',
-                'ad_user_data: 'denied',
-                'ad_personalizaiotn': 'denied',
-                'analytics_storage': 'denied',
-                })
-              gtag('js', new Date());
-              gtag('config', '${GTM_ID}', {
-              page_path: window.location.pathname,
-              });
-            `,
-            }}
-          /> */}
           <noscript>
             <img
               height="1"
