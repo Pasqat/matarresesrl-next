@@ -9,9 +9,7 @@ module.exports = {
       version: 'detect',
     },
   },
-  extends: [
-    'next', 'prettier'
-  ],
+  extends: ['next', 'prettier'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,

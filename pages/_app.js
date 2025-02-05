@@ -6,7 +6,6 @@ import {useEffect, useState} from 'react'
 import {useRouter} from 'next/router'
 import * as fbq from '../lib/fpixel'
 import * as gtag from '../lib/gtm'
-// import {GTM_ID, pageview} from '../lib/gtm'
 import CookieConsent, {getCookieConsentValue} from 'react-cookie-consent'
 
 import ScrollToTop from '../components/ScrollToTop'

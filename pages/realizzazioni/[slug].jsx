@@ -15,7 +15,6 @@ import 'react-image-gallery/styles/css/image-gallery.css'
 import {getProject, getAllProjectsWithSlug} from '../../lib/query/project'
 import {H2, H1} from '../../components/typography'
 import {Spacer} from '../../components/spacer'
-import {Grid} from '../../components/grid'
 import {SeoDataSection} from '../../components/sections/seodata-section'
 
 export default function Project({project}) {
@@ -85,7 +84,7 @@ export default function Project({project}) {
                     <div className="mt-10 border-t border-gray-200 py-10">
                       <div className="flex flex-wrap justify-center">
                         <div className="w-full px-4 lg:w-9/12">
-                          {project.galleria.every(n => n !== null) ? (
+                          {project.galleria?.every(n => n !== null) ? (
                             <ImageGallery items={images} />
                           ) : null}
                           <div className="mb-14 lg:mb-24">
