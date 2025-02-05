@@ -1,8 +1,6 @@
 import {useRouter} from 'next/router'
-import {useState} from 'react'
+// import {useState} from 'react'
 import Head from 'next/head'
-import Link from 'next/link'
-import Image from 'next/legacy/image'
 
 import Layout from '../../components/Layout'
 import Header from '../../components/Header/Header'
@@ -11,10 +9,8 @@ import HeaderBig from '../../components/Header/HeaderBig'
 import SocialShareBar from '../../components/SocialShareBar/SocialShareBar'
 import {ButtonLink} from '../../components/button'
 
-// import Lightbox from 'react-image-lightbox' // Remove this import
-// import 'react-image-lightbox/style.css' // Remove this import
-import ImageGallery from 'react-image-gallery' // Add this import
-import 'react-image-gallery/styles/css/image-gallery.css' // Add this import
+import ImageGallery from 'react-image-gallery'
+import 'react-image-gallery/styles/css/image-gallery.css'
 
 import {getProject, getAllProjectsWithSlug} from '../../lib/query/project'
 import {H2, H1} from '../../components/typography'
@@ -25,15 +21,8 @@ import {SeoDataSection} from '../../components/sections/seodata-section'
 export default function Project({project}) {
   const router = useRouter()
   // const moreEvents = events?.edges
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [imgIndex, setImgIndex] = useState(0)
 
-  const setModal = i => {
-    setIsModalOpen(true)
-    setImgIndex(i)
-  }
-
-  if (!router.isFallback && !project.slug) {
+  if (!router.isFallback && !project?.slug) {
     return <p>hmm...sembra ci sia un errore</p>
   }
 
@@ -97,13 +86,8 @@ export default function Project({project}) {
                       <div className="flex flex-wrap justify-center">
                         <div className="w-full px-4 lg:w-9/12">
                           {project.galleria.every(n => n !== null) ? (
-                            // <Grid
-                            //   nested
-                            //   className="mb-8 gap-2 lg:mb-24 lg:gap-4"
-                            // >
                             <ImageGallery items={images} />
-                          ) : // </Grid>
-                          null}
+                          ) : null}
                           <div className="mb-14 lg:mb-24">
                             <EventBody content={project.content} />
                           </div>
@@ -128,18 +112,6 @@ export default function Project({project}) {
                   </div>
                 </div>
               </section>
-              {/**
-
-              <Spacer size="xs" />
-
-              <div className="flex justify-center ">
-                <Link href="/realizzazioni" passHref>
-                  <ButtonLink size="medium">
-                    Guarda le altre realizzazioni
-                  </ButtonLink>
-                </Link>
-              </div>
-*/}
             </div>
           </section>
         </>
