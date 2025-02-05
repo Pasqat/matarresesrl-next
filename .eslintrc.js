@@ -10,11 +10,7 @@ module.exports = {
     },
   },
   extends: [
-    // 'eslint:recommended',
-    // 'plugin:react/recommended',
-    // 'plugin:prettier/recommended',
-    // 'plugin:@next/next/recommended',
-    'next', 'prettier' 
+    'next', 'prettier'
   ],
   parserOptions: {
     ecmaFeatures: {

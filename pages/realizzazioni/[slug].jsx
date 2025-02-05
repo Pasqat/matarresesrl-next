@@ -11,8 +11,10 @@ import HeaderBig from '../../components/Header/HeaderBig'
 import SocialShareBar from '../../components/SocialShareBar/SocialShareBar'
 import {ButtonLink} from '../../components/button'
 
-import Lightbox from 'react-image-lightbox'
-import 'react-image-lightbox/style.css'
+// import Lightbox from 'react-image-lightbox' // Remove this import
+// import 'react-image-lightbox/style.css' // Remove this import
+import ImageGallery from 'react-image-gallery' // Add this import
+import 'react-image-gallery/styles/css/image-gallery.css' // Add this import
 
 import {getProject, getAllProjectsWithSlug} from '../../lib/query/project'
 import {H2, H1} from '../../components/typography'
@@ -34,6 +36,14 @@ export default function Project({project}) {
   if (!router.isFallback && !project.slug) {
     return <p>hmm...sembra ci sia un errore</p>
   }
+
+  const images = project.galleria.map(image => ({
+    original: image.sourceUrl,
+    thumbnail: image.sourceUrl,
+    description: image.caption,
+    originalAlt: image.altText,
+    thumbnailAlt: image.altText,
+  }))
 
   return (
     <Layout navbarTransparent>
@@ -91,58 +101,7 @@ export default function Project({project}) {
                               nested
                               className="mb-8 gap-2 lg:mb-24 lg:gap-4"
                             >
-                              {isModalOpen && (
-                                <Lightbox
-                                  nextLabel="Prossima immagine"
-                                  prevLabel="Immagine precedente"
-                                  closeLabel="Chiudi"
-                                  imageTitle={
-                                    project.galleria[imgIndex].altText
-                                  }
-                                  imageCaption={
-                                    project.galleria[imgIndex].caption
-                                  }
-                                  mainSrc={project.galleria[imgIndex].sourceUrl}
-                                  nextSrc={
-                                    project.galleria[
-                                      (imgIndex + 1) % project.galleria.length
-                                    ].sourceUrl
-                                  }
-                                  prevSrc={
-                                    project.galleria[
-                                      (imgIndex + project.galleria.length - 1) %
-                                        project.galleria.length
-                                    ].sourceUrl
-                                  }
-                                  onCloseRequest={() => setIsModalOpen(false)}
-                                  onMovePrevRequest={() =>
-                                    setImgIndex(
-                                      (imgIndex + project.galleria.length - 1) %
-                                        project.galleria.length,
-                                    )
-                                  }
-                                  onMoveNextRequest={() =>
-                                    setImgIndex(
-                                      (imgIndex + 1) % project.galleria.length,
-                                    )
-                                  }
-                                />
-                              )}
-                              {project.galleria.map((image, i) => (
-                                <div
-                                  key={image.id}
-                                  className="relative col-span-4 h-32 cursor-pointer lg:h-64"
-                                  onClick={() => setModal(i)}
-                                >
-                                  <Image
-                                    src={image.sourceUrl}
-                                    layout="fill"
-                                    objectFit="cover"
-                                    objectPosition="center"
-                                    alt={image.altText}
-                                  />
-                                </div>
-                              ))}
+                              <ImageGallery items={images} />
                             </Grid>
                           ) : null}
                           <div className="mb-14 lg:mb-24">

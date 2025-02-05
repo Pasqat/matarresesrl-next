@@ -1,6 +1,5 @@
 import * as React from 'react'
 import clsx from 'clsx'
-import {useId} from '@reach/auto-id'
 
 function Label({className, ...labelProps}) {
   return (
@@ -58,7 +57,7 @@ const Field = React.forwardRef(function Field(
   },
   ref,
 ) {
-  const prefix = useId()
+  const prefix = React.useId()
   const inputId = id ?? `${prefix}-${name}`
   const errorId = `${inputId}-error`
   const descriptionId = `${inputId}-description`
@@ -95,7 +94,7 @@ const Field = React.forwardRef(function Field(
 
 function ButtonGroup({children}) {
   return (
-    <div className="flex flex-col space-y-4 md:flex-row md:space-y-6 md:space-x-4">
+    <div className="flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-6">
       {children}
     </div>
   )
@@ -103,7 +102,7 @@ function ButtonGroup({children}) {
 
 function NotificationPanel({children, id, isError}) {
   return (
-    <div role="alert" className="relative mt-8 py-8 px-11" id={id}>
+    <div role="alert" className="relative mt-8 px-11 py-8" id={id}>
       <div
         className={clsx('absolute inset-0 rounded-lg opacity-25', {
           'bg-green-500': !isError,

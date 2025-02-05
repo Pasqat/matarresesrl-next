@@ -1,13 +1,9 @@
 import * as React from 'react'
 import clsx from 'clsx'
-import {CustomCheckboxContainer, CustomCheckboxInput} from '@reach/checkbox'
 
 function Category({category, selected, onClick, disabled}) {
   return (
-    <CustomCheckboxContainer
-      as="label"
-      checked={selected}
-      onChange={onClick}
+    <label
       className={clsx(
         'relative mb-4 mr-4 block h-auto w-auto cursor-pointer rounded-full px-6 py-3 transition',
         {
@@ -17,15 +13,17 @@ function Category({category, selected, onClick, disabled}) {
           'opacity-25': disabled,
         },
       )}
-      disabled={disabled}
     >
-      <CustomCheckboxInput
+      <input
+        type="checkbox"
         checked={selected}
+        onChange={onClick}
         value={category}
         className="sr-only"
+        disabled={disabled}
       />
       <span>{category}</span>
-    </CustomCheckboxContainer>
+    </label>
   )
 }
 
