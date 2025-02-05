@@ -16,14 +16,14 @@ import client from '../lib/apolloClient'
 
 function MyApp({Component, pageProps}) {
   const router = useRouter()
-  const [isCookieConsentAccept, setIsCookieConsentAccept] = useState(false)
+  const [isCookieConsentAccept, setIsCookieConsentAccept] = useState(null)
 
   useEffect(() => {
-    setIsCookieConsentAccept(getCookieConsentValue())
-  }, [isCookieConsentAccept])
+    setIsCookieConsentAccept(getCookieConsentValue() === 'true')
+  }, [])
 
   useEffect(() => {
-    if (!isCookieConsentAccept) return
+    if (isCookieConsentAccept === null) return
 
     if (isCookieConsentAccept) {
       // this pageviewonly triggers th first time (it's important for Pixel to have real information)
@@ -56,11 +56,8 @@ function MyApp({Component, pageProps}) {
         {/* Global Site Code Pixel - Facebook Pixel */}
         {isCookieConsentAccept ? (
           <>
-            <Script
-              id="fb-pixel"
-              strategy="afterInteractive"
-              dangerouslySetInnerHTML={{
-                __html: `
+            <Script id="fb-pixel" strategy="afterInteractive">
+              {`
             !function(f,b,e,v,n,t,s)
             {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
             n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -70,29 +67,16 @@ function MyApp({Component, pageProps}) {
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
             fbq('init', ${fbq.FB_PIXEL_ID});
-          `,
-              }}
-            />
-            {/* <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${GTM_ID}`}
-            />
-            <Script id="tag-manager">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-
-                gtag('config', '${GTM_ID}');
-              `}
-            </Script> */}
+          `}
+            </Script>
           </>
         ) : null}
-        <script
+        <Script
           id="google-tag-manager"
           strategy="afterInteractive"
           src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GTM_ID}`}
         />
-        <script id="gtag-init" strategy="afterInteractive">
+        <Script id="gtag-init" strategy="afterInteractive">
           {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -105,7 +89,7 @@ function MyApp({Component, pageProps}) {
           gtag('js', new Date());
           gtag('config', '${gtag.GTM_ID}');
         `}
-        </script>
+        </Script>
         <Component {...pageProps} />
         <ScrollToTop />
         <CookieConsent

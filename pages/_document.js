@@ -8,7 +8,7 @@ export default class MyDocument extends Document {
       <Html lang="it">
         <Head>
           {/* Google Tag Manager */}
-          <script
+          {/* <script
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${GTM_ID}`}
           />
@@ -29,8 +29,7 @@ export default class MyDocument extends Document {
               });
             `,
             }}
-          />
-          {/* Facebook Pixel Code */}
+          /> */}
           <noscript>
             <img
               height="1"
