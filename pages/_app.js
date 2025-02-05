@@ -10,6 +10,7 @@ import CookieConsent, {getCookieConsentValue} from 'react-cookie-consent'
 
 import ScrollToTop from '../components/ScrollToTop'
 import PlausibleProvider from 'next-plausible'
+import {SpeedInsights} from '@vercel/speed-insights/next'
 
 import client from '../lib/apolloClient'
 
@@ -90,6 +91,7 @@ function MyApp({Component, pageProps}) {
         `}
         </Script>
         <Component {...pageProps} />
+        <SpeedInsights />
         <ScrollToTop />
         <CookieConsent
           onAccept={() => {

@@ -84,7 +84,7 @@ export default function Project({project}) {
                     <div className="mt-10 border-t border-gray-200 py-10">
                       <div className="flex flex-wrap justify-center">
                         <div className="w-full px-4 lg:w-9/12">
-                          {project.galleria?.every(n => n !== null) ? (
+                          {project?.galleria?.every(n => n !== null) ? (
                             <ImageGallery items={images} />
                           ) : null}
                           <div className="mb-14 lg:mb-24">
