@@ -10,6 +10,7 @@ module.exports = {
       'matarrese.it',
       'be.matarrese.it',
     ],
+    unoptimized: true,
   },
   async redirects() {
     return [
