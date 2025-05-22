@@ -253,9 +253,22 @@ strong {
     @apply absolute bottom-0 w-full max-h-full text-center m-0;
   }
 
+/* TEST */
+
   .content .wp-block-table {
-    @apply border-2 border-yellow-500/50;
+    @apply border-2 border-yellow-500/50 relative overflow-x-auto w-full;
+    -webkit-overflow-scrolling: touch;
   }
+
+  .content .wp-block-table table {
+    @apply min-w-[600px] w-full border-collapse;
+  }
+
+/* FINE TEST */
+
+  /* .content .wp-block-table {
+    @apply border-2 border-yellow-500/50;
+  } */
 
   .content .wp-block-table thead {
     @apply bg-yellow-500 text-white;

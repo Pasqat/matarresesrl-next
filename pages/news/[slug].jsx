@@ -26,6 +26,7 @@ export default function Post({postData, posts, img, css, preview}) {
   //   return <p>hmm...sembra ci sia un errore</p>
   // }
   //
+
   return (
     <Layout preview={preview}>
       {router.isFallback ? (
@@ -46,11 +47,11 @@ export default function Post({postData, posts, img, css, preview}) {
             })}
           </Head>
           <article className="bg-gray-100">
-            <div className="mx-auto max-w-7xl py-4 md:py-16 md:px-5">
+            <div className="mx-auto max-w-7xl py-4 md:px-5 md:py-16">
               <main className="md:mb-24">
                 <div className="sm:mx-0 mb-8 md:mb-16">
                   {img || css ? (
-                    <div className="aspect-w-2 aspect-h-1 relative overflow-hidden">
+                    <div className="aspect-h-1 aspect-w-2 relative overflow-hidden">
                       <BlurringImage
                         img={img}
                         css={css}
