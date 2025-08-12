@@ -65,16 +65,6 @@ export const logos = [
     href: null,
   },
   {
-    name: 'Mondialforni',
-    url: '/img/logos/mondial-forni.webp',
-    href: null,
-  },
-  {
-    name: 'Oem',
-    url: '/img/logos/oem_bw.png',
-    href: null,
-  },
-  {
     name: 'Orved',
     url: '/img/logos/orved.webp',
     href: null,
@@ -107,6 +97,36 @@ export const logos = [
   {
     name: 'Wegrill',
     url: '/img/logos/wegrill.webp',
+    href: null,
+  },
+  {
+    name: 'Agnelli',
+    url: '/img/logos/agnelli_bw.png',
+    href: null,
+  },
+  {
+    name: 'Royale',
+    url: '/img/logos/royale_bw.png',
+    href: null,
+  },
+  {
+    name: 'TMI',
+    url: '/img/logos/TMI_bw.png',
+    href: null,
+  },
+  {
+    name: 'Hoshizaki',
+    url: '/img/logos/hoshizaki_bw.png',
+    href: null,
+  },
+  {
+    name: 'Cuppone',
+    url: '/img/logos/cuppone_bw.png',
+    href: null,
+  },
+  {
+    name: 'Rocam',
+    url: '/img/logos/rocam_bw.png',
     href: null,
   },
   // {
