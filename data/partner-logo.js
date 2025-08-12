@@ -116,7 +116,7 @@ export const logos = [
   },
   {
     name: 'Hoshizaki',
-    url: '/img/logos/hoshizaki_bw.png',
+    url: '/img/logos/Hoshizaki_bw.png',
     href: null,
   },
   {
