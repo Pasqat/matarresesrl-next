@@ -1,5 +1,21 @@
 import axios from 'axios'
 
+function logStructuredError(context, err, extra = {}) {
+  const ts = new Date().toISOString()
+  // eslint-disable-next-line no-console
+  console.error(
+    JSON.stringify({
+      ts,
+      level: 'error',
+      system: 'mailApi',
+      context,
+      message: err && err.message ? err.message : String(err),
+      stack: err && err.stack,
+      ...extra,
+    }),
+  )
+}
+
 const recipientMail = () => {
   return process.env.NEXT_PUBLIC_SEND_MAIL_TO
 }
@@ -41,7 +57,7 @@ export const sendContactMail = async ({
     })
     return res
   } catch (error) {
-    console.log(error)
+    logStructuredError('sendContactMail', error, {data})
     return error
   }
 }
