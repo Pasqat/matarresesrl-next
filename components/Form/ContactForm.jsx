@@ -3,6 +3,7 @@ import Link from 'next/link'
 import * as fbq from '../../lib/fpixel'
 import {gtmEvent} from '../../lib/gtm'
 import {usePlausible} from 'next-plausible'
+import {logStructuredError} from '../../lib/logging'
 
 import {H2} from '../typography'
 
@@ -142,7 +143,12 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
         }
       }
     } catch (err) {
-      logStructuredError('contact-form-submit', err, {payload})
+      logStructuredError('contact-form-submit', err, {
+        referente,
+        senderMail: email,
+        company,
+        error: err.message || "Errore durante l'invio",
+      })
       setNotification({
         text: err.message || "Errore durante l'invio",
         isError: true,
