@@ -24,8 +24,9 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
     formContent: '',
     honeypot: '',
     newsletterGroupId: '101815183615198233',
+    source: 'homepage',
   })
-  const {referente, email, tel, formContent, company, newsletterGroupId} = form
+  const {referente, email, tel, formContent, company, newsletterGroupId, source} = form
 
   const [isCheckedTerms, setIsCheckedTerms] = useState(false)
   const [isCheckedNewsletter, setIsCheckedNewsletter] = useState(false)
@@ -34,6 +35,7 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
     text: '',
     isError: false,
   })
+  const [fieldErrors, setFieldErrors] = useState({})
   const [loading, setLoading] = useState(false)
 
   const inputName = useRef(null)
@@ -44,6 +46,10 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
       ...form,
       [name]: value,
     })
+    // Clear field error when user starts typing
+    if (fieldErrors[name]) {
+      setFieldErrors(prev => ({...prev, [name]: ''}))
+    }
   }
 
   useEffect(() => {
@@ -59,9 +65,22 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
   async function submitContactForm(event) {
     event.preventDefault()
 
-    if (referente === '' || email === '' || formContent === '') {
+    // Clear previous errors
+    setFieldErrors({})
+
+    // Required: Nome, Messaggio, Terms, and at least one of Email or Tel
+    const errors = {}
+    if (!referente) errors.referente = 'Nome è obbligatorio'
+    if (!formContent) errors.formContent = 'Messaggio è obbligatorio'
+    if (!email && !tel) {
+      errors.email = 'Inserisci almeno uno tra Email o Telefono'
+      errors.tel = 'Inserisci almeno uno tra Email o Telefono'
+    }
+
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors)
       return setNotification({
-        text: 'Per favore compila tutti i campi',
+        text: 'Controlla i campi evidenziati',
         isError: true,
       })
     }
@@ -82,6 +101,7 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
         company,
         formContent,
         honeypot: form.honeypot,
+        source,
       }
       const r = await fetch('/api/contact', {
         method: 'POST',
@@ -175,7 +195,7 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
           <Field
             name="referente"
             label="Nome*"
-            // error={notification.isError ? notification.text : null}
+            error={fieldErrors.referente}
             autoComplete="given-name"
             required
             disabled={formButtonDisabled || loading}
@@ -186,10 +206,9 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
           />
           <Field
             name="email"
-            label="Email*"
+            label="Email"
             autoComplete="email"
-            // error={notification.isError ? notification.text : null}
-            required
+            error={fieldErrors.email}
             disabled={formButtonDisabled || loading}
             value={email}
             onChange={handleChange}
@@ -200,7 +219,7 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
             name="tel"
             label="Tel"
             autoComplete="tel"
-            // error={notification.isError ? notification.text : null}
+            error={fieldErrors.tel}
             disabled={formButtonDisabled || loading}
             value={tel}
             onChange={handleChange}
@@ -222,7 +241,7 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
         <Field
           name="formContent"
           label="Messaggio"
-          // error={notification.isError ? notification.text : null}
+          error={fieldErrors.formContent}
           required
           disabled={formButtonDisabled || loading}
           value={formContent}
