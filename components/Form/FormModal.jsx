@@ -85,49 +85,23 @@ export default function FormModal({
 
   async function submitContactForm(event) {
     event.preventDefault()
-
-    if (referente === '' || surname === '') {
-      return setNotification({
+    // Check missing fields
+    const missing = []
+    if (!referente) missing.push('referente')
+    if (!surname) missing.push('surname')
+    if (!mail && !tel) missing.push('mail') // at least one required
+    if (type === 'reservation' && (!participants || participants === ''))
+      missing.push('participants')
+    if (type !== 'reservation' && !formContent) missing.push('formContent')
+    if (!isChecked) missing.push('conditions')
+    setMissingFields(missing)
+    if (missing.length > 0) {
+      setNotification({
         ...notification,
-        text: 'Per favore compila tutti i campi',
+        text: 'Per favore compila i campi evidenziati',
         isError: true,
       })
-    }
-
-    if (type === 'reservation') {
-      if (participants === null || participants === '') {
-        return setNotification({
-          ...notification,
-          text: 'Per favore compila tutti i campi',
-          isError: true,
-        })
-      }
-    }
-
-    if (type !== 'reservation') {
-      if (formContent === '') {
-        return setNotification({
-          ...notification,
-          text: 'Per favore compila tutti i campi',
-          isError: true,
-        })
-      }
-    }
-
-    if (mail === '' && tel === '') {
-      return setNotification({
-        ...notification,
-        text: 'Per favore inserisci un numero valido o una email valida',
-        isError: true,
-      })
-    }
-
-    if (!isChecked) {
-      return setNotification({
-        ...notification,
-        text: 'Non dimenticare di accettare i termini e le condizioni',
-        isError: true,
-      })
+      return
     }
 
     setLoading(true)
@@ -311,9 +285,9 @@ export default function FormModal({
                     <div className="w-full">
                       <label
                         className="mb-2 block text-xs font-bold uppercase text-gray-600"
-                        htmlFor="name"
+                        htmlFor="referente"
                       >
-                        Nome
+                        Nome <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="text"
@@ -328,13 +302,18 @@ export default function FormModal({
                         onChange={handleChange}
                         required
                       />
+                      {missingFields.includes('referente') && (
+                        <span className="text-xs text-red-500">
+                          Campo obbligatorio
+                        </span>
+                      )}
                     </div>
                     <div className="w-full">
                       <label
                         className="mb-2 block text-xs font-bold uppercase text-gray-600"
                         htmlFor="surname"
                       >
-                        Cognome
+                        Cognome <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="text"
@@ -348,14 +327,19 @@ export default function FormModal({
                         value={surname}
                         onChange={handleChange}
                       />
+                      {missingFields.includes('surname') && (
+                        <span className="text-xs text-red-500">
+                          Campo obbligatorio
+                        </span>
+                      )}
                     </div>
                   </div>
                   <div className="relative w-full">
                     <label
                       className="mb-2 block text-xs font-bold uppercase text-gray-600"
-                      htmlFor="email"
+                      htmlFor="mail"
                     >
-                      Email
+                      Email <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="email"
@@ -370,13 +354,18 @@ export default function FormModal({
                       onChange={handleChange}
                       required
                     />
+                    {missingFields.includes('mail') && (
+                      <span className="text-xs text-red-500">
+                        Inserisci una email o telefono
+                      </span>
+                    )}
                   </div>
                   <div className="relative w-full">
                     <label
                       className="mb-2 block text-xs font-bold uppercase text-gray-600"
                       htmlFor="tel"
                     >
-                      Telefono
+                      Telefono <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="tel"
@@ -390,6 +379,11 @@ export default function FormModal({
                       value={tel}
                       onChange={handleChange}
                     />
+                    {missingFields.includes('tel') && (
+                      <span className="text-xs text-red-500">
+                        Inserisci una email o telefono
+                      </span>
+                    )}
                   </div>
                   {type === 'reservation' ? (
                     <div className="relative w-full">
@@ -397,7 +391,8 @@ export default function FormModal({
                         className="mb-2 block text-xs font-bold uppercase text-gray-600"
                         htmlFor="participants"
                       >
-                        Numero Partecipanti
+                        Numero Partecipanti{' '}
+                        <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="number"
@@ -412,14 +407,19 @@ export default function FormModal({
                         value={participants}
                         onChange={handleChange}
                       />
+                      {missingFields.includes('participants') && (
+                        <span className="text-xs text-red-500">
+                          Campo obbligatorio
+                        </span>
+                      )}
                     </div>
                   ) : null}
                   <div className="relative w-full">
                     <label
                       className="mb-2 block text-xs font-bold uppercase text-gray-600"
-                      htmlFor="messaggio"
+                      htmlFor="formContent"
                     >
-                      Messaggio
+                      Messaggio <span className="text-red-500">*</span>
                     </label>
                     <textarea
                       rows="4"
@@ -434,6 +434,11 @@ export default function FormModal({
                       value={formContent}
                       onChange={handleChange}
                     />
+                    {missingFields.includes('formContent') && (
+                      <span className="text-xs text-red-500">
+                        Campo obbligatorio
+                      </span>
+                    )}
                   </div>
                   <div className="relative mt-5 text-right text-gray-600">
                     <label className="inline-flex items-center">
