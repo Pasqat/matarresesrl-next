@@ -51,20 +51,27 @@ export default async function handler(req, res) {
     return res.status(200).json({ok: true})
   }
 
-  // Basic validation
-  if (!referente || !senderMail || !formContent || !tel) {
-    return res.status(400).json({error: 'Campi obbligatori mancanti'})
+  // Validation based on source
+  if (source === 'assistenza') {
+    // For assistenza: all fields required
+    if (!referente || !senderMail || !formContent || !tel || !company || !indirizzo) {
+      return res.status(400).json({error: 'Campi obbligatori mancanti per richiesta di assistenza'})
+    }
+  } else {
+    // For homepage, modal-contact, modal-reservation: Nome, Messaggio required; at least one of email or tel
+    if (!referente || !formContent) {
+      return res.status(400).json({error: 'Nome e Messaggio sono obbligatori'})
+    }
+    if (!senderMail && !tel) {
+      return res
+        .status(400)
+        .json({error: 'Inserisci almeno uno tra email o telefono'})
+    }
   }
 
-  // Additional validation for assistance form
-  if (source === 'assistenza' && (!company || !indirizzo)) {
-    return res
-      .status(400)
-      .json({error: 'Campi obbligatori mancanti per richiesta di assistenza'})
-  }
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-  if (!emailRegex.test(senderMail)) {
+  if (senderMail && !emailRegex.test(senderMail)) {
     return res.status(400).json({error: 'Email non valida'})
   }
 

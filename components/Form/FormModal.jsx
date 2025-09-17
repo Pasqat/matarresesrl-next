@@ -47,6 +47,7 @@ export default function FormModal({
     isError: false,
   })
   const [missingFields, setMissingFields] = useState([])
+  const [fieldErrors, setFieldErrors] = useState({})
 
   function closeModal() {
     setIsOpen(false)
@@ -62,6 +63,10 @@ export default function FormModal({
       ...form,
       [name]: value,
     })
+    // Clear field error when user starts typing
+    if (fieldErrors[name]) {
+      setFieldErrors(prev => ({...prev, [name]: ''}))
+    }
   }
 
   useEffect(() => {
@@ -85,20 +90,47 @@ export default function FormModal({
 
   async function submitContactForm(event) {
     event.preventDefault()
-    // Check missing fields
+    
+    // Clear previous errors
+    setFieldErrors({})
+    setMissingFields([])
+
+    // Validation logic
+    const errors = {}
     const missing = []
-    if (!referente) missing.push('referente')
-    if (!surname) missing.push('surname')
-    if (!mail && !tel) missing.push('mail') // at least one required
-    if (type === 'reservation' && (!participants || participants === ''))
+    
+    if (!referente) {
+      errors.referente = 'Nome è obbligatorio'
+      missing.push('referente')
+    }
+    if (!surname) {
+      errors.surname = 'Cognome è obbligatorio'
+      missing.push('surname')
+    }
+    if (!mail && !tel) {
+      errors.mail = 'Inserisci almeno uno tra Email o Telefono'
+      errors.tel = 'Inserisci almeno uno tra Email o Telefono'
+      missing.push('mail')
+    }
+    if (type === 'reservation' && (!participants || participants === '')) {
+      errors.participants = 'Numero partecipanti è obbligatorio'
       missing.push('participants')
-    if (type !== 'reservation' && !formContent) missing.push('formContent')
-    if (!isChecked) missing.push('conditions')
+    }
+    if (type !== 'reservation' && !formContent) {
+      errors.formContent = 'Messaggio è obbligatorio'
+      missing.push('formContent')
+    }
+    if (!isChecked) {
+      errors.conditions = 'Accettazione termini è obbligatoria'
+      missing.push('conditions')
+    }
+
+    setFieldErrors(errors)
     setMissingFields(missing)
-    if (missing.length > 0) {
+    
+    if (Object.keys(errors).length > 0) {
       setNotification({
-        ...notification,
-        text: 'Per favore compila i campi evidenziati',
+        text: 'Controlla i campi evidenziati',
         isError: true,
       })
       return
@@ -116,6 +148,7 @@ export default function FormModal({
             ? `${title}\nNumero partecipanti: ${participants}\n${formContent}`
             : formContent,
         honeypot,
+        source: type === 'reservation' ? 'modal-reservation' : 'modal-contact',
       }
 
       const r = await fetch('/api/contact', {
@@ -302,9 +335,9 @@ export default function FormModal({
                         onChange={handleChange}
                         required
                       />
-                      {missingFields.includes('referente') && (
+                      {fieldErrors.referente && (
                         <span className="text-xs text-red-500">
-                          Campo obbligatorio
+                          {fieldErrors.referente}
                         </span>
                       )}
                     </div>
@@ -327,9 +360,9 @@ export default function FormModal({
                         value={surname}
                         onChange={handleChange}
                       />
-                      {missingFields.includes('surname') && (
+                      {fieldErrors.surname && (
                         <span className="text-xs text-red-500">
-                          Campo obbligatorio
+                          {fieldErrors.surname}
                         </span>
                       )}
                     </div>
@@ -339,7 +372,7 @@ export default function FormModal({
                       className="mb-2 block text-xs font-bold uppercase text-gray-600"
                       htmlFor="mail"
                     >
-                      Email <span className="text-red-500">*</span>
+                      Email o Telefono <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="email"
@@ -354,9 +387,9 @@ export default function FormModal({
                       onChange={handleChange}
                       required
                     />
-                    {missingFields.includes('mail') && (
+                    {fieldErrors.mail && (
                       <span className="text-xs text-red-500">
-                        Inserisci una email o telefono
+                        {fieldErrors.mail}
                       </span>
                     )}
                   </div>
@@ -365,7 +398,7 @@ export default function FormModal({
                       className="mb-2 block text-xs font-bold uppercase text-gray-600"
                       htmlFor="tel"
                     >
-                      Telefono <span className="text-red-500">*</span>
+                      Telefono
                     </label>
                     <input
                       type="tel"
@@ -379,9 +412,9 @@ export default function FormModal({
                       value={tel}
                       onChange={handleChange}
                     />
-                    {missingFields.includes('tel') && (
+                    {fieldErrors.tel && (
                       <span className="text-xs text-red-500">
-                        Inserisci una email o telefono
+                        {fieldErrors.tel}
                       </span>
                     )}
                   </div>
@@ -407,9 +440,9 @@ export default function FormModal({
                         value={participants}
                         onChange={handleChange}
                       />
-                      {missingFields.includes('participants') && (
+                      {fieldErrors.participants && (
                         <span className="text-xs text-red-500">
-                          Campo obbligatorio
+                          {fieldErrors.participants}
                         </span>
                       )}
                     </div>
@@ -434,9 +467,9 @@ export default function FormModal({
                       value={formContent}
                       onChange={handleChange}
                     />
-                    {missingFields.includes('formContent') && (
+                    {fieldErrors.formContent && (
                       <span className="text-xs text-red-500">
-                        Campo obbligatorio
+                        {fieldErrors.formContent}
                       </span>
                     )}
                   </div>
@@ -456,7 +489,13 @@ export default function FormModal({
                             trattamento dei dati e condizioni
                           </a>
                         </Link>
+                        <span className="text-red-500"> *</span>
                       </span>
+                      {fieldErrors.conditions && (
+                        <div className="mt-1 text-xs text-red-500">
+                          {fieldErrors.conditions}
+                        </div>
+                      )}
                     </label>
                   </div>
                   {/* Honeypot anti-spam field (hidden from users) */}
