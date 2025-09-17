@@ -12,8 +12,16 @@ export default async function handler(req, res) {
   if (req.method !== 'POST')
     return res.status(405).json({error: 'Method not allowed'})
 
-  const {referente, senderMail, tel, company, formContent, honeypot} =
-    req.body || {}
+  const {
+    referente,
+    senderMail,
+    tel,
+    company,
+    formContent,
+    indirizzo,
+    honeypot,
+    source,
+  } = req.body || {}
 
   // Rate limiting
   try {
@@ -44,8 +52,15 @@ export default async function handler(req, res) {
   }
 
   // Basic validation
-  if (!referente || !senderMail || !formContent) {
-    return res.status(400).json({error: 'Campi mancanti'})
+  if (!referente || !senderMail || !formContent || !tel) {
+    return res.status(400).json({error: 'Campi obbligatori mancanti'})
+  }
+
+  // Additional validation for assistance form
+  if (source === 'assistenza' && (!company || !indirizzo)) {
+    return res
+      .status(400)
+      .json({error: 'Campi obbligatori mancanti per richiesta di assistenza'})
   }
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -54,14 +69,29 @@ export default async function handler(req, res) {
   }
 
   // Build email body (sanitization: keep simple text/html)
-  const html = `
-    <h3>Nuovo contatto da ${escapeHtml(referente)}</h3>
-    <p><strong>Email:</strong> ${escapeHtml(senderMail)}</p>
-    <p><strong>Telefono:</strong> ${escapeHtml(tel || '-')}</p>
-    <p><strong>Azienda:</strong> ${escapeHtml(company || '-')}</p>
-    <p><strong>Messaggio:</strong></p>
-    <div>${escapeHtml(formContent).replace(/\n/g, '<br/>')}</div>
-  `
+  // Build email template based on source
+  let html
+  if (source === 'assistenza') {
+    html = `
+      <h3>Nuova richiesta di assistenza da ${escapeHtml(referente)}</h3>
+      <p><strong>Ragione Sociale:</strong> ${escapeHtml(company)}</p>
+      <p><strong>Indirizzo:</strong> ${escapeHtml(indirizzo)}</p>
+      <p><strong>Email:</strong> ${escapeHtml(senderMail)}</p>
+      <p><strong>Telefono:</strong> ${escapeHtml(tel)}</p>
+      <p><strong>Referente:</strong> ${escapeHtml(referente)}</p>
+      <p><strong>Descrizione del problema:</strong></p>
+      <div>${escapeHtml(formContent).replace(/\n/g, '<br/>')}</div>
+    `
+  } else {
+    html = `
+      <h3>Nuovo contatto da ${escapeHtml(referente)}</h3>
+      <p><strong>Email:</strong> ${escapeHtml(senderMail)}</p>
+      <p><strong>Telefono:</strong> ${escapeHtml(tel || '-')}</p>
+      <p><strong>Azienda:</strong> ${escapeHtml(company || '-')}</p>
+      <p><strong>Messaggio:</strong></p>
+      <div>${escapeHtml(formContent).replace(/\n/g, '<br/>')}</div>
+    `
+  }
 
   try {
     const apiKey = process.env.RESEND_API_KEY

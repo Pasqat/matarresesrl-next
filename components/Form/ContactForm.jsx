@@ -7,7 +7,6 @@ import {logStructuredError} from '../../lib/logging'
 
 import {H2} from '../typography'
 
-import {sendContactMail} from '../../actions/networking/mailApi'
 import {Field, NotificationPanel} from '../form-element'
 import {Grid} from '../grid'
 import {Spacer} from '../spacer'
@@ -155,22 +154,6 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
       })
     } finally {
       setLoading(false)
-    }
-    // Structured logging for errors (importable)
-    function logStructuredError(context, err, extra = {}) {
-      const ts = new Date().toISOString()
-      // eslint-disable-next-line no-console
-      console.error(
-        JSON.stringify({
-          ts,
-          level: 'error',
-          system: 'contact-form',
-          context,
-          message: err && err.message ? err.message : String(err),
-          stack: err && err.stack,
-          ...extra,
-        }),
-      )
     }
   }
 

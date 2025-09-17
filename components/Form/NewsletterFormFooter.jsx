@@ -1,105 +1,131 @@
-import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
-import { gtmEvent } from "../../lib/gtm";
-import { usePlausible } from "next-plausible";
+import {useEffect, useRef, useState} from 'react'
+import Link from 'next/link'
+import {gtmEvent} from '../../lib/gtm'
+import {usePlausible} from 'next-plausible'
+import {logStructuredError} from '../../lib/logging'
+import {ArrowButton} from '../arrow-button'
 
-import { Paragraph } from "../typography";
-
-import { Field } from "../form-element";
-import clsx from "clsx";
+import {Paragraph} from '../typography'
+import {Field} from '../form-element'
+import clsx from 'clsx'
+import {CheckIcon} from '../icons/check-icon'
 
 export default function NewsletterForm({
   hasAutoFocus,
   featured,
   groups,
-  title = "Iscriviti alla nostra newsletter",
+  title = 'Iscriviti alla nostra newsletter',
 }) {
-  const plausible = usePlausible();
+  const plausible = usePlausible()
 
   const [form, setForm] = useState({
-    email: "",
-    newsletterGroupId: "101815183615198233",
-  });
-  const { email, newsletterGroupId } = form;
+    email: '',
+    newsletterGroupId: '101815183615198233',
+  })
+  const {email, newsletterGroupId} = form
 
-  const [isCheckedTerms, setIsCheckedTerms] = useState(false);
+  const [isCheckedTerms, setIsCheckedTerms] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [honeypot, setHoneypot] = useState('')
   const [notification, setNotification] = useState({
-    text: "",
+    text: '',
     isError: false,
-  });
+  })
 
-  const inputName = useRef(null);
+  const inputName = useRef(null)
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = e => {
+    const {name, value} = e.target
     setForm({
       ...form,
       [name]: value,
-    });
-  };
+    })
+  }
 
   useEffect(() => {
-    hasAutoFocus && inputName.current.focus();
-  }, [hasAutoFocus]);
+    hasAutoFocus && inputName.current.focus()
+  }, [hasAutoFocus])
 
   useEffect(() => {
-    if (isCheckedTerms && notification.text.includes("termini")) {
-      setNotification({ text: "", isError: false });
+    if (isCheckedTerms && notification.text.includes('termini')) {
+      setNotification({text: '', isError: false})
     }
-  }, [isCheckedTerms, notification.text]);
+  }, [isCheckedTerms, notification.text])
 
   async function submitContactForm(event) {
-    event.preventDefault();
+    event.preventDefault()
 
-    if (email === "") {
-      return setNotification({
-        ...notification,
-        text: "Non dimenticare la mail",
+    // Anti-spam check
+    if (honeypot) {
+      setNotification({
+        text: 'Rilevato tentativo di spam',
         isError: true,
-      });
+      })
+      return
+    }
+
+    if (email === '') {
+      return setNotification({
+        text: 'Non dimenticare la mail',
+        isError: true,
+      })
     }
 
     if (isCheckedTerms === false) {
       return setNotification({
-        ...notification,
-        text: "Accetta i termini e le condizioni",
+        text: 'Accetta i termini e le condizioni',
         isError: true,
-      });
+      })
     }
 
-    // 3. Send a request to our API with the user's email address.
-    const resSubscription = await fetch("/api/subscribe", {
-      body: JSON.stringify({
+    setLoading(true)
+    try {
+      const resSubscription = await fetch('/api/subscribe', {
+        body: JSON.stringify({
+          email: email,
+          groupId: newsletterGroupId,
+          honeypot,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+      })
+
+      const data = await resSubscription.json()
+
+      if (!resSubscription.ok) {
+        throw new Error(data.error || "Errore durante l'iscrizione")
+      }
+
+      plausible('Iscrizione Newsletter', {
+        props: {form_location: 'footer', groupId: newsletterGroupId},
+      })
+      gtmEvent('new_subscriber', {formLocation: 'footer'})
+
+      setNotification({
+        text: data.message || 'Iscrizione effettuata con successo',
+        isError: false,
+      })
+
+      setForm({
+        ...form,
+        email: '',
+      })
+    } catch (err) {
+      logStructuredError('Newsletter subscription failed', err, {
         email: email,
         groupId: newsletterGroupId,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "POST",
-    });
-
-    plausible("Iscrizione Newsletter", {
-      props: { form_location: "footer", groupId: newsletterGroupId },
-    });
-    gtmEvent("new_subscriber", { formLocation: "footer" });
-    const { message, error } = await resSubscription.json();
-
-    if (error) {
-      // 4. If there was an error, update the message in state.
+        location: 'footer',
+      })
       setNotification({
-        ...notification,
-        text: error,
+        text:
+          err.message ||
+          "Si è verificato un errore durante l'iscrizione. Riprova più tardi.",
         isError: true,
-      });
-    }
-
-    if (message) {
-      setNotification({
-        ...notification,
-        text: message,
-        isError: false,
-      });
+      })
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -125,6 +151,21 @@ export default function NewsletterForm({
             featured={featured}
             placeholder="e-mail"
           />
+          {/* Honeypot field */}
+          <div style={{display: 'none'}}>
+            <label>
+              Non compilare questo campo se sei umano
+              <input
+                type="text"
+                name="honeypot"
+                value={honeypot}
+                onChange={e => setHoneypot(e.target.value)}
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </label>
+          </div>
+
           <div className="col-span-full mb-4 lg:col-span-4">
             <div className="mb-2 flex items-baseline justify-between gap-2">
               {/* <Label htmlFor="industry">Settore</Label> */}
@@ -135,19 +176,19 @@ export default function NewsletterForm({
               name="newsletterGroupId"
               onChange={handleChange}
               className={clsx(
-                "focus-ring w-full rounded-lg bg-white py-[1.17rem] px-8 text-lg font-medium text-black placeholder-gray-500 caret-yellow-500 disabled:bg-gray-100 disabled:text-gray-400",
-                featured ? "bg-white" : "bg-gray-100",
+                'focus-ring w-full rounded-lg bg-white px-8 py-[1.17rem] text-lg font-medium text-black placeholder-gray-500 caret-yellow-500 disabled:bg-gray-100 disabled:text-gray-400',
+                featured ? 'bg-white' : 'bg-gray-100',
               )}
-              aria-describedby={notification.isError
-                ? "industry-error"
-                : undefined}
+              aria-describedby={
+                notification.isError ? 'industry-error' : undefined
+              }
             >
-              {groups.map((group) => {
+              {groups.map(group => {
                 return (
                   <option key={group.id} value={group.id}>
                     {group.name}
                   </option>
-                );
+                )
               })}
             </select>
           </div>
@@ -162,7 +203,7 @@ export default function NewsletterForm({
               onChange={() => setIsCheckedTerms(!isCheckedTerms)}
             />
             <span className="ml-2">
-              Accetto il{" "}
+              Accetto il{' '}
               <Link href="/privacy-policy">
                 <a className="text-yellow-500" target="_blank">
                   trattamento dei dati e condizioni *
@@ -172,25 +213,24 @@ export default function NewsletterForm({
           </label>
         </div>
 
-        {
-          /* <div className="text-right">
-          {formButtonDisabled ? (
+        <div className="text-right">
+          {!notification.isError && notification.text ? (
             <div className="flex justify-end">
               <CheckIcon />
-              <p className="text-secondary text-lg">
-                {!notification.text
-                  ? `Grazie, ti ricontatteremo al più presto`
-                  : notification.text}
-              </p>
+              <p className="text-secondary text-lg">{notification.text}</p>
             </div>
           ) : (
-            <ArrowButton className="pt-4" type="submit" direction="right">
-              Invia
+            <ArrowButton
+              className="pt-4"
+              type="submit"
+              direction="right"
+              disabled={loading}
+            >
+              {loading ? 'Invio...' : 'Iscriviti'}
             </ArrowButton>
           )}
-        </div> */
-        }
+        </div>
       </form>
     </div>
-  );
+  )
 }

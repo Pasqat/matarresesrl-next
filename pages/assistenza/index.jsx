@@ -3,6 +3,7 @@ import Link from 'next/link'
 import * as fbq from '../../lib/fpixel'
 import {gtmEvent} from '../../lib/gtm'
 import {usePlausible} from 'next-plausible'
+import {logStructuredError} from '../../lib/logging'
 
 import Head from 'next/head'
 
@@ -10,8 +11,6 @@ import Layout from '../../components/Layout'
 import Header from '../../components/Header/Header'
 
 import {getGroups} from '../../lib/newsletter'
-
-import {sendContactMail} from '../../actions/networking/mailApi'
 import {Field, NotificationPanel} from '../../components/form-element'
 import {Grid} from '../../components/grid'
 import {ArrowButton} from '../../components/arrow-button'
@@ -20,17 +19,18 @@ import {CheckIcon} from '../../components/icons/check-icon'
 export default function Assistenza() {
   const plausible = usePlausible()
   const [form, setForm] = useState({
-    ragione_sociale: '',
+    company: '',
     tel: '',
-    email: '',
+    senderMail: '',
     referente: '',
     indirizzo: '',
     formContent: '',
   })
-  const {ragione_sociale, tel, email, formContent, referente, indirizzo} = form
+  const {company, tel, senderMail, formContent, referente, indirizzo} = form
 
   const [isCheckedTerms, setIsCheckedTerms] = useState(false)
-  const [formButtonDisabled, setFormButtonDisabled] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [honeypot, setHoneypot] = useState('')
   const [notification, setNotification] = useState({
     text: '',
     isError: false,
@@ -53,16 +53,24 @@ export default function Assistenza() {
   async function submitContactForm(event) {
     event.preventDefault()
 
+    // Anti-spam check
+    if (honeypot) {
+      setNotification({
+        text: 'Rilevato tentativo di spam',
+        isError: true,
+      })
+      return
+    }
+
     if (
-      ragione_sociale === '' ||
-      email === '' ||
+      company === '' ||
+      senderMail === '' ||
       formContent === '' ||
       tel === '' ||
       referente === '' ||
       indirizzo === ''
     ) {
       return setNotification({
-        ...notification,
         text: 'Per favore compila tutti i campi',
         isError: true,
       })
@@ -70,46 +78,65 @@ export default function Assistenza() {
 
     if (isCheckedTerms === false) {
       return setNotification({
-        ...notification,
         text: 'Non dimenticare di accettare i termini e le condizioni',
         isError: true,
       })
     }
 
-    const res = await sendContactMail({
-      ragione_sociale,
-      senderMail: email,
-      tel,
-      referente,
-      indirizzo,
-      formContent,
-    })
-    if (res.status < 300) {
-      setFormButtonDisabled(true)
+    setLoading(true)
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          company,
+          senderMail,
+          tel,
+          referente,
+          indirizzo,
+          formContent,
+          honeypot,
+          source: 'assistenza',
+        }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.message || "Errore durante l'invio del messaggio")
+      }
+
       setNotification({
-        ...notification,
         text: 'Grazie, ti ricontatteremo al più presto',
         isError: false,
       })
+
       fbq.event('Contact')
       gtmEvent('contact')
       plausible('Contatti', {props: {form_location: 'Assistenza'}})
+
       setForm({
-        ...form,
-        ragione_sociale: '',
-        email: '',
+        company: '',
+        senderMail: '',
         tel: '',
         referente: '',
         indirizzo: '',
         formContent: '',
       })
       setIsCheckedTerms(false)
-    } else {
+    } catch (err) {
+      logStructuredError('Contact form submission failed', err, {
+        formLocation: 'Assistenza',
+        senderMail,
+      })
       setNotification({
-        ...notification,
-        text: 'Per favore compila tutti i campi',
+        text:
+          err.message ||
+          "Si è verificato un errore durante l'invio. Riprova più tardi.",
         isError: true,
       })
+    } finally {
+      setLoading(false)
     }
   }
   return (
@@ -170,15 +197,30 @@ export default function Assistenza() {
               <Spacer size="2xs" />
 
             */}
+              {/* Honeypot field */}
+              <div style={{display: 'none'}}>
+                <label>
+                  Non compilare questo campo se sei umano
+                  <input
+                    type="text"
+                    name="honeypot"
+                    value={honeypot}
+                    onChange={e => setHoneypot(e.target.value)}
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </label>
+              </div>
+
               <Grid nested>
                 <Field
-                  name="ragione_sociale"
+                  name="company"
                   label="Ragione Sociale*"
                   // error={notification.isError ? notification.text : null}
                   autoComplete="company"
                   required
-                  disabled={formButtonDisabled}
-                  value={ragione_sociale}
+                  disabled={loading}
+                  value={company}
                   onChange={handleChange}
                   className="col-span-full"
                   placeholder="Matarrese srl"
@@ -186,11 +228,11 @@ export default function Assistenza() {
                 />
                 <Field
                   name="indirizzo"
-                  label="Indirizzo*"
+                  label="Indirizzo Completo*"
                   // error={notification.isError ? notification.text : null}
                   autoComplete="address"
                   required
-                  disabled={formButtonDisabled}
+                  disabled={loading}
                   value={indirizzo}
                   onChange={handleChange}
                   className="col-span-full lg:col-span-6"
@@ -198,13 +240,13 @@ export default function Assistenza() {
                   placeholder="contrada popoleto, nc Alberobello (BA)"
                 />
                 <Field
-                  name="email"
+                  name="senderMail"
                   label="Email*"
                   autoComplete="email"
                   // error={notification.isError ? notification.text : null}
                   required
-                  disabled={formButtonDisabled}
-                  value={email}
+                  disabled={loading}
+                  value={senderMail}
                   onChange={handleChange}
                   className="col-span-full lg:col-span-6"
                   featured
@@ -215,7 +257,7 @@ export default function Assistenza() {
                   label="Tel*"
                   autoComplete="tel"
                   // error={notification.isError ? notification.text : null}
-                  disabled={formButtonDisabled}
+                  disabled={loading}
                   value={tel}
                   onChange={handleChange}
                   className="col-span-full lg:col-span-6"
@@ -227,7 +269,7 @@ export default function Assistenza() {
                   label="Referente*"
                   autoComplete="given_name"
                   // error={notification.isError ? notification.text : null}
-                  disabled={formButtonDisabled}
+                  disabled={loading}
                   value={referente}
                   onChange={handleChange}
                   className="col-span-full lg:col-span-6"
@@ -240,7 +282,7 @@ export default function Assistenza() {
                 label="Descrizione del problema*"
                 // error={notification.isError ? notification.text : null}
                 required
-                disabled={formButtonDisabled}
+                disabled={loading}
                 value={formContent}
                 onChange={handleChange}
                 type="textarea"
@@ -277,18 +319,21 @@ export default function Assistenza() {
               ) : null}
 
               <div className="text-right">
-                {formButtonDisabled ? (
+                {!notification.isError && notification.text ? (
                   <div className="flex justify-end">
                     <CheckIcon />
                     <p className="text-secondary text-lg">
-                      {!notification.text
-                        ? `Grazie, ti ricontatteremo al più presto`
-                        : notification.text}
+                      {notification.text}
                     </p>
                   </div>
                 ) : (
-                  <ArrowButton className="pt-4" type="submit" direction="right">
-                    Invia
+                  <ArrowButton
+                    className="pt-4"
+                    type="submit"
+                    direction="right"
+                    disabled={loading}
+                  >
+                    {loading ? 'Invio...' : 'Invia'}
                   </ArrowButton>
                 )}
               </div>
