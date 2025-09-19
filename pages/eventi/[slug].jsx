@@ -62,6 +62,29 @@ export default function Events({ event, img, css }) {
     }
   }
 
+  // Schema.org Event JSON-LD
+  const eventStructuredData = event && {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": event.title,
+    "startDate": event.startDate,
+    "endDate": event.endDate,
+    "eventStatus": event.isFutureDate ? "https://schema.org/EventScheduled" : "https://schema.org/EventCompleted",
+    "location": event.venue ? {
+      "@type": "Place",
+      "name": event.venue.title,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": event.venue.address,
+        "addressLocality": event.venue.city,
+        "addressCountry": "IT"
+      }
+    } : undefined,
+    "image": event.featuredImage?.node?.mediaItemUrl,
+    "description": event.seo?.metaDesc || event.title,
+    "url": `${process.env.NEXT_PUBLIC_DOMAIN}/eventi/${event.slug}`
+  };
+  const StructuredData = require('../../components/StructuredData').default;
   return (
     <Layout navbarTransparent>
       {/* <Layout > */}
@@ -85,6 +108,7 @@ export default function Events({ event, img, css }) {
                 slug: `eventi/${event.slug}`,
               })}
             </Head>
+            <StructuredData data={eventStructuredData} />
             <HeaderBig
               noButton
               overlay="bg-gradient-to-tl from-secondary via-primary to-black opacity-80"

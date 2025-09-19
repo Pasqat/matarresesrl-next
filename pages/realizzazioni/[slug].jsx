@@ -35,6 +35,18 @@ export default function Project({project}) {
     return <p>hmm...sembra ci sia un errore</p>
   }
 
+  // Schema.org CreativeWork JSON-LD
+  const projectStructuredData = project && {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": project.title,
+    "description": project.seo?.metaDesc || project.title,
+    "image": project.featuredImage?.node?.sourceUrl,
+    "url": `${process.env.NEXT_PUBLIC_DOMAIN}/realizzazioni/${project.slug}`,
+    "keywords": project.portfolioTags?.edges?.map(({node}) => node.name).join(", "),
+    "about": project.portfolioCategories?.edges?.map(({node}) => node.name).join(", ")
+  };
+  const StructuredData = require('../../components/StructuredData').default;
   return (
     <Layout navbarTransparent>
       {router.isFallback ? (
@@ -55,6 +67,7 @@ export default function Project({project}) {
               slug: `realizzazioni/${project.slug}`,
             })}
           </Head>
+          <StructuredData data={projectStructuredData} />
           <HeaderBig
             noButton
             overlay="bg-gradient-to-tl from-secondary via-primary to-black opacity-80"

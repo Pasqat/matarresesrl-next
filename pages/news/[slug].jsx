@@ -27,6 +27,25 @@ export default function Post({postData, posts, img, css, preview}) {
   // }
   //
 
+  // Schema.org NewsArticle JSON-LD
+  const newsStructuredData = postData && {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "headline": postData.title,
+    "datePublished": postData.date,
+    "dateModified": postData.modified,
+    "author": {
+      "@type": "Person",
+      "name": postData.seo?.opengraphAuthor || "Matarrese srl"
+    },
+    "image": postData.featuredImage?.node?.mediaItemUrl,
+    "description": postData.seo?.metaDesc || postData.title,
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `${process.env.NEXT_PUBLIC_DOMAIN}/news/${postData.slug}`
+    }
+  };
+  const StructuredData = require('../../components/StructuredData').default;
   return (
     <Layout preview={preview}>
       {router.isFallback ? (
@@ -46,6 +65,7 @@ export default function Post({postData, posts, img, css, preview}) {
               slug: `news/${postData.slug}`,
             })}
           </Head>
+          <StructuredData data={newsStructuredData} />
           <article className="bg-gray-100">
             <div className="mx-auto max-w-7xl py-4 md:px-5 md:py-16">
               <main className="md:mb-24">
