@@ -38,7 +38,7 @@
     "next-plausible": "^3.5.0",
     "next-sitemap": "^2.5.19",
     "nodemailer": "^6.7.2",
-    "plaiceholder": "^2.3.0",
+    "plaiceholder": "^3.0.0",
     "prop-types": "^15.8.1",
     "react": "17.0.2",
     "react-cookie-consent": "^7.4.1",
