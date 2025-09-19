@@ -37,16 +37,20 @@ export default function Project({project}) {
 
   // Schema.org CreativeWork JSON-LD
   const projectStructuredData = project && {
-    "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    "name": project.title,
-    "description": project.seo?.metaDesc || project.title,
-    "image": project.featuredImage?.node?.sourceUrl,
-    "url": `${process.env.NEXT_PUBLIC_DOMAIN}/realizzazioni/${project.slug}`,
-    "keywords": project.portfolioTags?.edges?.map(({node}) => node.name).join(", "),
-    "about": project.portfolioCategories?.edges?.map(({node}) => node.name).join(", ")
-  };
-  const StructuredData = require('../../components/StructuredData').default;
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    name: project.title,
+    description: project.seo?.metaDesc || project.title,
+    image: project.featuredImage?.node?.sourceUrl,
+    url: `${process.env.NEXT_PUBLIC_DOMAIN}/realizzazioni/${project.slug}`,
+    keywords: project.portfolioTags?.edges
+      ?.map(({node}) => node.name)
+      .join(', '),
+    about: project.portfolioCategories?.edges
+      ?.map(({node}) => node.name)
+      .join(', '),
+  }
+  const StructuredData = require('../../components/StructuredData').default
   return (
     <Layout navbarTransparent>
       {router.isFallback ? (
@@ -75,7 +79,7 @@ export default function Project({project}) {
               project.featuredImage && project.featuredImage.node.sourceUrl
             }
           />
-          <section className="relative w-full bg-gray-100 pt-16 pb-24 text-gray-800">
+          <section className="relative w-full bg-gray-100 pb-24 pt-16 text-gray-800">
             <div className="container mx-auto px-4">
               <div className="relative lg:flex lg:flex-row">
                 <div className="relative -mt-96 mb-6 flex w-full min-w-0 flex-col break-words bg-white shadow-lg">
@@ -84,7 +88,7 @@ export default function Project({project}) {
                       <H1 className="mb-2" variant="secondary">
                         {project.title}
                       </H1>
-                      <div className="mt-0 mb-2 text-sm font-bold uppercase leading-normal text-gray-400">
+                      <div className="mb-2 mt-0 text-sm font-bold uppercase leading-normal text-gray-400">
                         {project.portfolioCategories.edges.map(({node}) => (
                           <div key={node.id}>{node.name}</div>
                         ))}

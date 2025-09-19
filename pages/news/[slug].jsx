@@ -29,23 +29,23 @@ export default function Post({postData, posts, img, css, preview}) {
 
   // Schema.org NewsArticle JSON-LD
   const newsStructuredData = postData && {
-    "@context": "https://schema.org",
-    "@type": "NewsArticle",
-    "headline": postData.title,
-    "datePublished": postData.date,
-    "dateModified": postData.modified,
-    "author": {
-      "@type": "Person",
-      "name": postData.seo?.opengraphAuthor || "Matarrese srl"
+    '@context': 'https://schema.org',
+    '@type': 'NewsArticle',
+    headline: postData.title,
+    datePublished: postData.date,
+    dateModified: postData.modified,
+    author: {
+      '@type': 'Person',
+      name: postData.seo?.opengraphAuthor || 'Matarrese srl',
     },
-    "image": postData.featuredImage?.node?.mediaItemUrl,
-    "description": postData.seo?.metaDesc || postData.title,
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": `${process.env.NEXT_PUBLIC_DOMAIN}/news/${postData.slug}`
-    }
-  };
-  const StructuredData = require('../../components/StructuredData').default;
+    image: postData.featuredImage?.node?.mediaItemUrl,
+    description: postData.seo?.metaDesc || postData.title,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${process.env.NEXT_PUBLIC_DOMAIN}/news/${postData.slug}`,
+    },
+  }
+  const StructuredData = require('../../components/StructuredData').default
   return (
     <Layout preview={preview}>
       {router.isFallback ? (
