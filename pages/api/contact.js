@@ -1,5 +1,6 @@
 import {logStructuredError} from '../../lib/logging'
 import {escapeHtml} from '../../lib/security'
+// maybeCreateOdooLead ora usa XML-RPC per invio lead
 import {maybeCreateOdooLead} from '../../lib/odoo'
 
 // Serverless endpoint to receive contact form submissions and send email via Resend
@@ -130,7 +131,7 @@ export default async function handler(req, res) {
       return res.status(502).json({error: "Errore nell'invio email"})
     }
 
-    // Optionally create a lead in Odoo. Make failures blocking if ODOO_MUST_SYNC === 'true'
+  // Optionally create a lead in Odoo via XML-RPC. Make failures blocking if ODOO_MUST_SYNC === 'true'
     if (process.env.ODOO_ENABLED === 'true') {
       try {
         console.log('[API] Invio dati a Odoo:', {
