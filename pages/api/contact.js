@@ -133,6 +133,13 @@ export default async function handler(req, res) {
     // Optionally create a lead in Odoo. Make failures blocking if ODOO_MUST_SYNC === 'true'
     if (process.env.ODOO_ENABLED === 'true') {
       try {
+        console.log('[API] Invio dati a Odoo:', {
+          referente,
+          senderMail,
+          tel,
+          company,
+          formContent,
+        })
         await maybeCreateOdooLead({
           referente,
           senderMail,
@@ -140,8 +147,10 @@ export default async function handler(req, res) {
           company,
           formContent,
         })
+        console.log('[API] Invio a Odoo completato')
       } catch (err) {
         logStructuredError('maybeCreateOdooLead', err)
+        console.error('[API] Errore invio Odoo:', err)
         if (process.env.ODOO_MUST_SYNC === 'true') {
           // Treat Odoo failure as blocking: surface 502 to client
           return res.status(502).json({error: 'Errore sincronizzazione CRM'})
