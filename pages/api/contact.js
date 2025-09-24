@@ -147,6 +147,7 @@ export default async function handler(req, res) {
           tel,
           company,
           formContent,
+          source,
         })
         console.log('[API] Invio a Odoo completato')
       } catch (err) {

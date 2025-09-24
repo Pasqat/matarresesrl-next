@@ -24,7 +24,6 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
     formContent: '',
     honeypot: '',
     newsletterGroupId: '101815183615198233',
-    source: 'homepage',
   })
   const {referente, email, tel, formContent, company, newsletterGroupId, source} = form
 
@@ -101,7 +100,6 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
         company,
         formContent,
         honeypot: form.honeypot,
-        source,
       }
       const r = await fetch('/api/contact', {
         method: 'POST',
