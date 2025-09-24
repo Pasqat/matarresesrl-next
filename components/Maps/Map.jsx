@@ -21,58 +21,58 @@ function MapExample() {
       center: {lat: 40.788, lng: 17.2448473},
       scrollwheel: false,
       zoomControl: true,
-      // styles: [
-      //   {
-      //     featureType: 'administrative',
-      //     elementType: 'labels.text.fill',
-      //     stylers: [{color: '#444444'}],
-      //   },
-      //   {
-      //     featureType: 'landscape',
-      //     elementType: 'all',
-      //     stylers: [{color: '#f2f2f2'}],
-      //   },
-      //   {
-      //     featureType: 'landscape.man_made',
-      //     elementType: 'geometry',
-      //     stylers: [
-      //       {hue: '#aaffaa'},
-      //       {saturation: -80},
-      //       {lightness: -5},
-      //       {visibility: 'on'},
-      //     ],
-      //   },
-      //   {
-      //     featureType: 'poi',
-      //     elementType: 'all',
-      //     stylers: [{visibility: 'off'}],
-      //   },
-      //   {
-      //     featureType: 'road',
-      //     elementType: 'all',
-      //     stylers: [{saturation: -50}, {lightness: 45}],
-      //   },
-      //   {
-      //     featureType: 'road.highway',
-      //     elementType: 'all',
-      //     stylers: [{visibility: 'simplified'}],
-      //   },
-      //   {
-      //     featureType: 'road.arterial',
-      //     elementType: 'labels.icon',
-      //     stylers: [{visibility: 'on'}],
-      //   },
-      //   {
-      //     featureType: 'transit',
-      //     elementType: 'all',
-      //     stylers: [{visibility: 'off'}],
-      //   },
-      //   {
-      //     featureType: 'water',
-      //     elementType: 'all',
-      //     stylers: [{color: '#cbd5e0'}, {visibility: 'on'}],
-      //   },
-      // ],
+      styles: [
+        {
+          featureType: 'administrative',
+          elementType: 'labels.text.fill',
+          stylers: [{color: '#444444'}],
+        },
+        {
+          featureType: 'landscape',
+          elementType: 'all',
+          stylers: [{color: '#f2f2f2'}],
+        },
+        {
+          featureType: 'landscape.man_made',
+          elementType: 'geometry',
+          stylers: [
+            {hue: '#aaffaa'},
+            {saturation: -80},
+            {lightness: -5},
+            {visibility: 'on'},
+          ],
+        },
+        {
+          featureType: 'poi',
+          elementType: 'all',
+          stylers: [{visibility: 'off'}],
+        },
+        {
+          featureType: 'road',
+          elementType: 'all',
+          stylers: [{saturation: -50}, {lightness: 45}],
+        },
+        {
+          featureType: 'road.highway',
+          elementType: 'all',
+          stylers: [{visibility: 'simplified'}],
+        },
+        {
+          featureType: 'road.arterial',
+          elementType: 'labels.icon',
+          stylers: [{visibility: 'on'}],
+        },
+        {
+          featureType: 'transit',
+          elementType: 'all',
+          stylers: [{visibility: 'off'}],
+        },
+        {
+          featureType: 'water',
+          elementType: 'all',
+          stylers: [{color: '#cbd5e0'}, {visibility: 'on'}],
+        },
+      ],
     }
 
     let map
