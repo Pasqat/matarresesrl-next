@@ -67,8 +67,8 @@ export default function Events({ event, img, css }) {
     "@context": "https://schema.org",
     "@type": "Event",
     "name": event.title,
-    "startDate": event.startDate,
-    "endDate": event.endDate,
+    "startDate": event.startDateISO,
+    "endDate": event.endDateISO,
     "eventStatus": event.isFutureDate ? "https://schema.org/EventScheduled" : "https://schema.org/EventCompleted",
     "location": event.venue ? {
       "@type": "Place",
