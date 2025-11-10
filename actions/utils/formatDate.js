@@ -3,7 +3,6 @@ import {it} from 'date-fns/locale'
 
 export const formatDate = date => {
   const newDate = new Date(date)
-  console.log(date, newDate)
   return newDate.toLocaleDateString('it-it', {
     year: 'numeric',
     month: 'long',
