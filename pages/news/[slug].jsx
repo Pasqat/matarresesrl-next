@@ -45,6 +45,58 @@ export default function Post({postData, posts, img, css, preview}) {
       '@id': `${process.env.NEXT_PUBLIC_DOMAIN}/news/${postData.slug}`,
     },
   }
+
+
+  // FAQ JSON-LD (rimuove HTML per il campo text usato nello schema)
+  const faqSchema =
+    postData?.faqs?.faqs && postData.faqs.faqs.length
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: postData.faqs.faqs.map((faq) => ({
+            '@type': 'Question',
+            name: faq.question,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              // rimuove tag HTML per fornire testo pulito allo schema
+              text: (faq.answer || '').replace(/<[^>]+>/g, '').trim(),
+            },
+          })),
+        }
+      : null
+
+// Unisce con lo schema generato da Yoast (postData.seo.schemaJson)
+  let yoastSchema = null
+  try {
+    yoastSchema = JSON.parse(postData.seo?.schemaJson || '{}')
+  } catch (e) {
+    yoastSchema = null
+  }
+
+  let fullSchema = null
+  if (yoastSchema && Object.keys(yoastSchema).length) {
+    if (faqSchema) {
+      // Se yoast restituisce un array di graph, aggiungi FAQ come elemento separato
+      if (Array.isArray(yoastSchema)) {
+        fullSchema = [...yoastSchema, faqSchema]
+      } else if (yoastSchema['@type'] === 'FAQPage') {
+        // Se Yoast è già FAQPage, unisci le mainEntity
+        const mergedMainEntity = [
+          ...(yoastSchema.mainEntity || []),
+          ...(faqSchema.mainEntity || []),
+        ]
+        fullSchema = { ...yoastSchema, mainEntity: mergedMainEntity }
+      } else {
+        // Yoast è un singolo oggetto non-FAQ: trasformalo in array con l'FAQ
+        fullSchema = [yoastSchema, faqSchema]
+      }
+    } else {
+      fullSchema = yoastSchema
+    }
+  } else {
+    fullSchema = faqSchema || newsStructuredData
+  }
+
   const StructuredData = require('../../components/StructuredData').default
   return (
     <Layout preview={preview}>
@@ -65,7 +117,8 @@ export default function Post({postData, posts, img, css, preview}) {
               slug: `news/${postData.slug}`,
             })}
           </Head>
-          <StructuredData data={newsStructuredData} />
+          {/* <StructuredData data={newsStructuredData} /> */}
+          <StructuredData data={fullSchema} />
           <article className="bg-gray-100">
             <div className="mx-auto max-w-7xl py-4 md:px-5 md:py-16">
               <main className="md:mb-24">
@@ -100,6 +153,23 @@ export default function Post({postData, posts, img, css, preview}) {
                       {postData.title}
                     </H1>
                     <PostBody content={postData.content} />
+
+                    {/* Render visivo delle FAQ (se presenti) */}
+                    {postData?.faqs?.faqs?.length ? (
+                      <div className="mt-8 bg-gray-50 p-6 rounded">
+                        <h3 className="mb-4 text-lg font-semibold">FAQ</h3>
+                        {postData.faqs.faqs.map((faq, i) => (
+                          <div key={`faq-${i}`} className="mb-4">
+                            <h4 className="font-medium">{faq.question}</h4>
+                            <div
+                              className="prose text-gray-700"
+                              dangerouslySetInnerHTML={{ __html: faq.answer }}
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    ) : null}
+
                     <div className="mx-auto flex max-w-3xl flex-wrap gap-4 text-gray-400">
                       <div className="text-medium">tags:</div>
                       {tags.map(t => (
