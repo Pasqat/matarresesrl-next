@@ -1,6 +1,6 @@
 import {ArrowLink} from '../arrow-button'
 import {H3} from '../typography'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 
 function CardSquareImg({
   slug,

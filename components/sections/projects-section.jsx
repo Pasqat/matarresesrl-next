@@ -7,7 +7,7 @@ import {Spacer} from '../spacer'
 import {HeaderSection} from './header-section'
 import {H2, H3} from '../typography'
 import clsx from 'clsx'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 
 import projectCta from '../../public/img/Piazza-Grande_61.webp'
 import FormModal from '../Form/FormModal'

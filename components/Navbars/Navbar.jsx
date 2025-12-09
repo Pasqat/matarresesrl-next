@@ -3,7 +3,7 @@ import {MenuIcon, XIcon, UserGroupIcon} from '@heroicons/react/outline'
 import Logo from '../../public/img/logo-matarrese-bianco-350.png'
 import useUser from '../../lib/useUser'
 
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import Link from 'next/link'
 import clsx from 'clsx'
 import {ButtonLink} from '../button'

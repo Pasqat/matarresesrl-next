@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import {ButtonLink} from '../button'
 import {motion, useReducedMotion} from 'framer-motion'
 import {H1} from '../typography'

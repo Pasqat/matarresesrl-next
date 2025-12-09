@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import Link from 'next/link'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import logoAssogi from '../../public/img/logos/Assogi_logo-300x119.png'
 import logoQucino from '../../public/img/logos/MARCHIO-QUCINO150.png'
 import logoAliGroup from '../../public/img/logos/Ali_Group_logo.png'
