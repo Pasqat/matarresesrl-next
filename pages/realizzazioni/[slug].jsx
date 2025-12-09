@@ -180,7 +180,7 @@ export default function Project({project}) {
                   <H2 as="p">{`Hai anche tu un progetto da realizzare?`}</H2>
                   <Spacer size="2xs" />
                   <div className="flex justify-center">
-                    <Link href="/contatti" passHref>
+                    <Link href="/contatti">
                       <ButtonLink size="large">Contattaci!</ButtonLink>
                     </Link>
                   </div>
@@ -203,7 +203,7 @@ export default function Project({project}) {
         </>
       )}
     </Layout>
-  )
+  );
 }
 
 export async function getStaticProps({params}) {

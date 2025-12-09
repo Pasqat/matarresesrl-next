@@ -301,10 +301,10 @@ export default function Assistenza() {
                     />
                     <span className="ml-2">
                       accetto il{' '}
-                      <Link href="/privacy-policy">
-                        <a className="text-yellow-500" target="_blank">
+                      <Link href="/privacy-policy" className="text-yellow-500" target="_blank">
+                        
                           trattamento dei dati e condizioni
-                        </a>
+                        
                       </Link>
                     </span>
                     *
@@ -342,7 +342,7 @@ export default function Assistenza() {
         </section>
       </Layout>
     </>
-  )
+  );
 }
 
 export async function getStaticProps() {

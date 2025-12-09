@@ -68,7 +68,7 @@ function HeaderBig({
                 ) : null}
               </motion.div>
               {!noButton && (
-                <Link href={button.link} passHref>
+                <Link href={button.link}>
                   <ButtonLink size="medium" className="mt-8">
                     <i className="fas fa-message" /> {button.text}
                   </ButtonLink>
@@ -80,7 +80,7 @@ function HeaderBig({
         </div>
       )}
     </div>
-  )
+  );
 }
 
 export default HeaderBig

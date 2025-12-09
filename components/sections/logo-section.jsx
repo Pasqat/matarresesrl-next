@@ -14,16 +14,19 @@ function LogoSection() {
       <div className="2xl:grid-cols-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
         {logos.map(logo => {
           return logo.href ? (
-            <Link key={logo.name} href={logo.href}>
-              <a className="cursor-pointer text-center hover:drop-shadow-md">
-                <Image
-                  width={180}
-                  height={95}
-                  objectFit="contain"
-                  src={logo.url}
-                  alt={`${logo.name} logo`}
-                />
-              </a>
+            <Link
+              key={logo.name}
+              href={logo.href}
+              className="cursor-pointer text-center hover:drop-shadow-md">
+
+              <Image
+                width={180}
+                height={95}
+                objectFit="contain"
+                src={logo.url}
+                alt={`${logo.name} logo`}
+              />
+
             </Link>
           ) : (
             <Image
@@ -36,11 +39,11 @@ function LogoSection() {
               placeholder="blur"
               blurDataURL={logo.url}
             />
-          )
+          );
         })}
       </div>
     </div>
-  )
+  );
 }
 
 export {LogoSection}

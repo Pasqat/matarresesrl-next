@@ -52,15 +52,15 @@ export default function Footer() {
       </div>
       <Grid className="py-14">
         <div className="col-span-full mx-auto text-center lg:col-span-3">
-          <Link href="/">
-            <a className="items-center justify-center pb-2">
-              <Image
-                width={340}
-                height={20}
-                alt={'Logo Matarrese srl'}
-                src="/img/logos/logo-matarrese-grigio-350.png"
-              />
-            </a>
+          <Link href="/" className="items-center justify-center pb-2">
+
+            <Image
+              width={340}
+              height={20}
+              alt={'Logo Matarrese srl'}
+              src="/img/logos/logo-matarrese-grigio-350.png"
+            />
+
           </Link>
           <div className="my-6 text-center">
             <a
@@ -138,37 +138,37 @@ export default function Footer() {
           <nav className="mb-10 list-none">
             <ul>
               <li>
-                <Link href="/azienda">
-                  <a className="text-gray-600 hover:text-gray-800">Chi siamo</a>
+                <Link href="/azienda" className="text-gray-600 hover:text-gray-800">
+                  Chi siamo
                 </Link>
               </li>
               <li>
-                <Link href="/contatti">
-                  <a className="text-gray-600 hover:text-gray-800">Contatti</a>
+                <Link href="/contatti" className="text-gray-600 hover:text-gray-800">
+                  Contatti
                 </Link>
               </li>
               <li>
-                <Link href="/news">
-                  <a className="text-gray-600 hover:text-gray-800">News</a>
+                <Link href="/news" className="text-gray-600 hover:text-gray-800">
+                  News
                 </Link>
               </li>
               <li>
-                <Link href="/realizzazioni">
-                  <a className="text-gray-600 hover:text-gray-800">
+                <Link href="/realizzazioni" className="text-gray-600 hover:text-gray-800">
+                  
                     Realizzazioni
-                  </a>
+                  
                 </Link>
               </li>
               <li>
-                <Link href="/#assogi">
-                  <a className="text-gray-600 hover:text-gray-800">Assogi</a>
+                <Link href="/#assogi" className="text-gray-600 hover:text-gray-800">
+                  Assogi
                 </Link>
               </li>
               <li>
-                <Link href="/privacy-policy">
-                  <a className="text-gray-600 hover:text-gray-800">
+                <Link href="/privacy-policy" className="text-gray-600 hover:text-gray-800">
+                  
                     Termini e Condizioni
-                  </a>
+                  
                 </Link>
               </li>
             </ul>
@@ -332,5 +332,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

@@ -24,8 +24,8 @@ export default function CoverImage({
   return coverImage ? (
     <div className="sm:mx-0">
       {slug ? (
-        <Link href={href}>
-          <a aria-label={title}>{image}</a>
+        <Link href={href} aria-label={title}>
+          {image}
         </Link>
       ) : (
         image
@@ -37,5 +37,5 @@ export default function CoverImage({
         {placeholderText}
       </div>
     </div>
-  )
+  );
 }

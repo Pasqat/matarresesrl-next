@@ -17,40 +17,42 @@ function ArticleCard({
 
   return (
     <div className="relative w-full">
-      <Link href={isProject ? `/realizzazioni/${slug}` : `/news/${slug}`}>
-        <a className="group peer relative block w-full focus:outline-none">
-          {featuredImage ? (
-            <div className="focus-ring aspect-w-4 aspect-h-3 rounded-lg lg:aspect-h-5 lg:aspect-w-4">
-              <Image
-                className="rounded-lg"
-                objectFit="cover"
-                alt={featuredImage?.node.altText}
-                src={featuredImage?.node.mediaItemUrl}
-                layout="fill"
-                placeholder={placeholder ?? 'empty'}
-                blurDataURL={placeholder ? featuredImage.node.sourceUrl : null}
-              />
+      <Link
+        href={isProject ? `/realizzazioni/${slug}` : `/news/${slug}`}
+        className="group peer relative block w-full focus:outline-none">
+
+        {featuredImage ? (
+          <div className="focus-ring aspect-w-4 aspect-h-3 rounded-lg lg:aspect-h-5 lg:aspect-w-4">
+            <Image
+              className="rounded-lg"
+              objectFit="cover"
+              alt={featuredImage?.node.altText}
+              src={featuredImage?.node.mediaItemUrl}
+              layout="fill"
+              placeholder={placeholder ?? 'empty'}
+              blurDataURL={placeholder ? featuredImage.node.sourceUrl : null}
+            />
+          </div>
+        ) : (
+          <div className="focus-ring aspect-w-4 aspect-h-3 relative flex w-full items-center justify-center overflow-hidden rounded-lg bg-gradient-to-tl from-red-600 to-yellow-400 text-center lg:aspect-h-5 lg:aspect-w-4">
+            <div className="absolute bottom-[30%] z-0 scale-150 select-none font-serif text-4xl font-extrabold leading-tight text-gray-100 opacity-30">
+              {title}
             </div>
-          ) : (
-            <div className="focus-ring aspect-w-4 aspect-h-3 relative flex w-full items-center justify-center overflow-hidden rounded-lg bg-gradient-to-tl from-red-600 to-yellow-400 text-center lg:aspect-h-5 lg:aspect-w-4">
-              <div className="absolute bottom-[30%] z-0 scale-150 select-none font-serif text-4xl font-extrabold leading-tight text-gray-100 opacity-30">
-                {title}
-              </div>
+          </div>
+        )}
+        {!isProject ? (
+          <>
+            <div className="mt-8 text-xl font-medium text-gray-500">
+              {formatDate(date)}
             </div>
-          )}
-          {!isProject ? (
-            <>
-              <div className="mt-8 text-xl font-medium text-gray-500">
-                {formatDate(date)}
-              </div>
-              <H4
-                as="div"
-                className="mt-4"
-                dangerouslySetInnerHTML={{__html: title}}
-              />
-            </>
-          ) : null}
-        </a>
+            <H4
+              as="div"
+              className="mt-4"
+              dangerouslySetInnerHTML={{__html: title}}
+            />
+          </>
+        ) : null}
+
       </Link>
       {domain ? (
         <ClipboardCopyButton
@@ -59,7 +61,7 @@ function ArticleCard({
         />
       ) : null}
     </div>
-  )
+  );
 }
 
 export {ArticleCard}

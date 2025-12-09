@@ -41,44 +41,45 @@ export default function Navbar({isTransparent}) {
               <div className="mx-auto flex max-w-8xl flex-1 items-center justify-between md:justify-between">
                 <div className="inline-flex items-center">
                   <Link href="/">
-                    <a>
-                      <Image
-                        width={263}
-                        height={19}
-                        alt="logo Matarrese srl"
-                        // src="https://www.matarrese.it/wp-content/uploads/2015/09/logo-matarrese-bianco-350.png"
-                        src={Logo}
-                        placeholder="blur"
-                      />
-                    </a>
+
+                    <Image
+                      width={263}
+                      height={19}
+                      alt="logo Matarrese srl"
+                      // src="https://www.matarrese.it/wp-content/uploads/2015/09/logo-matarrese-bianco-350.png"
+                      src={Logo}
+                      placeholder="blur"
+                    />
+
                   </Link>
                 </div>
                 <div className="hidden w-full flex-wrap items-center justify-between lg:flex">
                   <div className="m-auto flex space-x-1 xl:space-x-4">
                     {navigation.map(item => (
-                      <Link key={item.name} href={item.href}>
-                        <a
-                          className={clsx(
-                            'rounded-md px-3 py-2 text-sm font-medium text-gray-100 md:text-base',
-                            item.current
-                              ? 'hover:first-letter:text-yellow-500'
-                              : 'hover:no-underline hover:first-letter:text-yellow-500',
-                            {hidden: item.name === 'Chi siamo'},
-                          )}
-                          aria-current={item.current ? 'page' : undefined}
-                        >
-                          {item.name}
-                        </a>
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        className={clsx(
+                          'rounded-md px-3 py-2 text-sm font-medium text-gray-100 md:text-base',
+                          item.current
+                            ? 'hover:first-letter:text-yellow-500'
+                            : 'hover:no-underline hover:first-letter:text-yellow-500',
+                          {hidden: item.name === 'Chi siamo'},
+                        )}
+                        aria-current={item.current ? 'page' : undefined}>
+
+                        {item.name}
+
                       </Link>
                     ))}
                   </div>
                   {isLoggedIn ? (
-                    <Link href="/api/logout">
-                      <a className="text-white">ciao {userName}</a>
+                    <Link href="/api/logout" className="text-white">
+                      ciao {userName}
                     </Link>
                   ) : (
                     <div className="hidden flex-wrap items-center space-x-3 lg:flex xl:space-x-4">
-                      <Link href="/contatti" passHref>
+                      <Link href="/contatti">
                         <ButtonLink size="small" className="no-underline">
                           <UserGroupIcon className="mr-1 inline-block h-5 w-5" />
                           Contatti
@@ -119,14 +120,13 @@ export default function Navbar({isTransparent}) {
               ))}
               <div className="divide-y divide-gray-700">
                 <div></div>
-                <Link href="/contatti">
-                  <a
-                    className="flex items-center py-5 text-sm font-semibold uppercase text-gray-200 hover:bg-opacity-70 hover:shadow-md"
-                    aria-current={undefined}
-                  >
-                    <UserGroupIcon className="mr-1 inline-block h-5 w-5" />
-                    Contattaci
-                  </a>
+                <Link
+                  href="/contatti"
+                  className="flex items-center py-5 text-sm font-semibold uppercase text-gray-200 hover:bg-opacity-70 hover:shadow-md"
+                  aria-current={undefined}>
+
+                  <UserGroupIcon className="mr-1 inline-block h-5 w-5" />Contattaci
+                                    
                 </Link>
               </div>
             </div>
@@ -134,5 +134,5 @@ export default function Navbar({isTransparent}) {
         </>
       )}
     </Disclosure>
-  )
+  );
 }

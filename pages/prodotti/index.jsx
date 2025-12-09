@@ -48,7 +48,6 @@ export default function ProductsHome({groups}) {
         />
         <meta property="og:url" content="https://www.matarrese.it/prodotti" />
       </Head>
-
       <Layout>
         <div className="mb-12 lg:mb-24 xl:mb-48">
           <ProductSection />
@@ -224,7 +223,7 @@ export default function ProductsHome({groups}) {
 
           <section className="mb-12 lg:mb-24 xl:mb-48">
             <div className="mx-auto text-center">
-              <Link href="/contatti" passHref>
+              <Link href="/contatti">
                 <Button size="medium">Visita il nostro showroom</Button>
               </Link>
             </div>
@@ -334,7 +333,7 @@ export default function ProductsHome({groups}) {
         </main>
       </Layout>
     </>
-  )
+  );
 }
 
 export async function getStaticProps() {

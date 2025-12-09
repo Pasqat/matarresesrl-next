@@ -41,28 +41,30 @@ function ProjectSection({
         <div key="cta" className="col-span-4">
           <div className="relative w-full">
             <div className="absolute z-2 h-full w-full rounded-lg bg-gradient-to-tl from-secondary via-primary to-gray-900 opacity-80" />
-            <Link href="/realizzazioni">
-              <a className="group peer relative block w-full focus:outline-none">
-                <div className="absolute z-2 flex h-full w-full items-center justify-center rounded-lg">
-                  <H2
-                    variant="white"
-                    as="div"
-                    className="top-0 z-2 p-4 text-center font-medium text-opacity-100"
-                  >
-                    Guarda le altre realizzazioni
-                  </H2>
-                </div>
-                <div className="focus-ring aspect-w-4 aspect-h-3 rounded-lg lg:aspect-h-5 lg:aspect-w-4">
-                  <Image
-                    className="rounded-lg"
-                    objectFit="cover"
-                    alt="esempio di un progetto realizzato da Matarrese srl"
-                    src={projectCta}
-                    layout="fill"
-                    placeholder="blur"
-                  />
-                </div>
-              </a>
+            <Link
+              href="/realizzazioni"
+              className="group peer relative block w-full focus:outline-none">
+
+              <div className="absolute z-2 flex h-full w-full items-center justify-center rounded-lg">
+                <H2
+                  variant="white"
+                  as="div"
+                  className="top-0 z-2 p-4 text-center font-medium text-opacity-100"
+                >
+                  Guarda le altre realizzazioni
+                </H2>
+              </div>
+              <div className="focus-ring aspect-w-4 aspect-h-3 rounded-lg lg:aspect-h-5 lg:aspect-w-4">
+                <Image
+                  className="rounded-lg"
+                  objectFit="cover"
+                  alt="esempio di un progetto realizzato da Matarrese srl"
+                  src={projectCta}
+                  layout="fill"
+                  placeholder="blur"
+                />
+              </div>
+
             </Link>
           </div>
         </div>
@@ -83,7 +85,7 @@ function ProjectSection({
         </div>
       </div>
     </>
-  )
+  );
 }
 
 export {ProjectSection}

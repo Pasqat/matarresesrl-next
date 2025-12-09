@@ -66,35 +66,35 @@ function LinkButton({
   ...buttonProps
 }) {
   return (
-    <Link href={href}>
-      <a
-        {...buttonProps}
-        className={clsx(
-          className,
-          withArrow
-            ? 'no-underline'
-            : 'underlined whitespace-nowrap focus:outline-none',
-          'text-accent group inline-flex items-center md:mb-2 lg:mb-0',
-        )}
-      >
-        {children}
-        {withArrow && (
-          <svg
-            className="ml-2 h-4 w-4 animate-bounceX"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth="2"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M5 12h14"></path>
-            <path d="M12 5l7 7-7 7"></path>
-          </svg>
-        )}
-      </a>
+    <Link
+      href={href}
+      {...buttonProps}
+      className={clsx(
+        className,
+        withArrow
+          ? 'no-underline'
+          : 'underlined whitespace-nowrap focus:outline-none',
+        'text-accent group inline-flex items-center md:mb-2 lg:mb-0',
+      )}>
+
+      {children}
+      {withArrow && (
+        <svg
+          className="ml-2 h-4 w-4 animate-bounceX"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth="2"
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M5 12h14"></path>
+          <path d="M12 5l7 7-7 7"></path>
+        </svg>
+      )}
+
     </Link>
-  )
+  );
 }
 
 /**
