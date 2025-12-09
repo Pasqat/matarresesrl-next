@@ -1,6 +1,6 @@
 import {ArrowLink} from '../arrow-button'
 import {H3} from '../typography'
-import Image from "next/legacy/image"
+import Image from "next/image"
 
 function CardSquareImg({
   slug,
@@ -18,13 +18,15 @@ function CardSquareImg({
         <div>
           <div className="relative h-32 w-full shadow-md">
             <Image
-              objectFit="cover"
-              objectPosition="center"
-              layout="fill"
               src={imgSrc}
               alt={imgAlt ?? title}
               placeholder="blur"
-            />
+              fill
+              sizes="100vw"
+              style={{
+                objectFit: "cover",
+                objectPosition: "center"
+              }} />
           </div>
         </div>
         <H3 variant="secondary" className="mt-12">
@@ -44,7 +46,7 @@ function CardSquareImg({
         </div>
       ) : null}
     </div>
-  )
+  );
 }
 
 export default CardSquareImg

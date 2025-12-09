@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import Link from 'next/link'
-import Image from "next/legacy/image"
+import Image from "next/image"
 import logoAssogi from '../../public/img/logos/Assogi_logo-300x119.png'
 import logoQucino from '../../public/img/logos/MARCHIO-QUCINO150.png'
 import logoAliGroup from '../../public/img/logos/Ali_Group_logo.png'
@@ -59,7 +59,10 @@ export default function Footer() {
               height={20}
               alt={'Logo Matarrese srl'}
               src="/img/logos/logo-matarrese-grigio-350.png"
-            />
+              style={{
+                maxWidth: "100%",
+                height: "auto"
+              }} />
 
           </Link>
           <div className="my-6 text-center">
@@ -100,22 +103,26 @@ export default function Footer() {
               <div className="relative h-20 w-28">
                 <Image
                   placeholder="blur"
-                  layout="fill"
-                  objectFit="contain"
                   alt="Logo Assogi"
                   src={logoAssogi}
-                />
+                  fill
+                  sizes="100vw"
+                  style={{
+                    objectFit: "contain"
+                  }} />
               </div>
             </a>
             <a rel="noreferrer" href="https://www.qucino.it/" target="_blank">
               <div className="relative ml-4 h-20 w-24">
                 <Image
-                  layout="fill"
-                  objectFit="contain"
                   alt="Logo Qucino"
                   src={logoQucino}
                   placeholder="blur"
-                />
+                  fill
+                  sizes="100vw"
+                  style={{
+                    objectFit: "contain"
+                  }} />
               </div>
             </a>
             {/* <a rel="noreferrer" href="https://www.aligroup.it/" target="_blank">

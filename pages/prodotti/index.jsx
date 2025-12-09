@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Image from "next/legacy/image"
+import Image from "next/image"
 import Link from 'next/link'
 
 import ContactForm from '../../components/Form/ContactForm'
@@ -75,9 +75,11 @@ export default function ProductsHome({groups}) {
                         <Image
                           src={IconCucineProfessionali}
                           alt="icona cottura"
-                          layout="intrinsic"
                           placeholder="blur"
-                        />
+                          style={{
+                            maxWidth: "100%",
+                            height: "auto"
+                          }} />
                       }
                     />
                   </div>
@@ -94,9 +96,11 @@ export default function ProductsHome({groups}) {
                         <Image
                           src={IconProdotti}
                           alt="icona attrezzature"
-                          layout="intrinsic"
                           placeholder="blur"
-                        />
+                          style={{
+                            maxWidth: "100%",
+                            height: "auto"
+                          }} />
                       }
                     />
                   </div>
@@ -111,9 +115,11 @@ export default function ProductsHome({groups}) {
                         <Image
                           src={IconMacchineAgro}
                           alt="icona macchine agroalimentari"
-                          layout="intrinsic"
                           placeholder="blur"
-                        />
+                          style={{
+                            maxWidth: "100%",
+                            height: "auto"
+                          }} />
                       }
                     />
                   </div>
@@ -129,9 +135,11 @@ export default function ProductsHome({groups}) {
                         <Image
                           src={IconRefrigerazione}
                           alt="icona refrigerazione"
-                          layout="intrinsic"
                           placeholder="blur"
-                        />
+                          style={{
+                            maxWidth: "100%",
+                            height: "auto"
+                          }} />
                       }
                     />
                   </div>
@@ -171,11 +179,11 @@ export default function ProductsHome({groups}) {
                     alt="prodotti per la cucina professionale"
                     className="max-w-full rounded-lg shadow-lg"
                     src={arredoSuMisura}
-                    // width="1000"
-                    // height="1300"
-                    objectFit="cover"
-                    layout="fill"
-                  />
+                    fill
+                    sizes="100vw"
+                    style={{
+                      objectFit: "cover"
+                    }} />
                 </div>
               </div>
             </Grid>

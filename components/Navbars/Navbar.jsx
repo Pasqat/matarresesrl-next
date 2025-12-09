@@ -3,7 +3,7 @@ import {MenuIcon, XIcon, UserGroupIcon} from '@heroicons/react/outline'
 import Logo from '../../public/img/logo-matarrese-bianco-350.png'
 import useUser from '../../lib/useUser'
 
-import Image from "next/legacy/image"
+import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
 import {ButtonLink} from '../button'
@@ -41,7 +41,6 @@ export default function Navbar({isTransparent}) {
               <div className="mx-auto flex max-w-8xl flex-1 items-center justify-between md:justify-between">
                 <div className="inline-flex items-center">
                   <Link href="/">
-
                     <Image
                       width={263}
                       height={19}
@@ -49,8 +48,11 @@ export default function Navbar({isTransparent}) {
                       // src="https://www.matarrese.it/wp-content/uploads/2015/09/logo-matarrese-bianco-350.png"
                       src={Logo}
                       placeholder="blur"
+                      style={{
+                        maxWidth: '100%',
+                        height: 'auto',
+                      }}
                     />
-
                   </Link>
                 </div>
                 <div className="hidden w-full flex-wrap items-center justify-between lg:flex">
@@ -66,10 +68,9 @@ export default function Navbar({isTransparent}) {
                             : 'hover:no-underline hover:first-letter:text-yellow-500',
                           {hidden: item.name === 'Chi siamo'},
                         )}
-                        aria-current={item.current ? 'page' : undefined}>
-
+                        aria-current={item.current ? 'page' : undefined}
+                      >
                         {item.name}
-
                       </Link>
                     ))}
                   </div>
@@ -79,12 +80,14 @@ export default function Navbar({isTransparent}) {
                     </Link>
                   ) : (
                     <div className="hidden flex-wrap items-center space-x-3 lg:flex xl:space-x-4">
-                      <Link href="/contatti">
-                        <ButtonLink size="small" className="no-underline">
-                          <UserGroupIcon className="mr-1 inline-block h-5 w-5" />
-                          Contatti
-                        </ButtonLink>
-                      </Link>
+                      <ButtonLink
+                        size="small"
+                        className="no-underline"
+                        href="/contatti"
+                      >
+                        <UserGroupIcon className="mr-1 inline-block h-5 w-5" />
+                        Contatti
+                      </ButtonLink>
                     </div>
                   )}
                 </div>
@@ -123,10 +126,10 @@ export default function Navbar({isTransparent}) {
                 <Link
                   href="/contatti"
                   className="flex items-center py-5 text-sm font-semibold uppercase text-gray-200 hover:bg-opacity-70 hover:shadow-md"
-                  aria-current={undefined}>
-
-                  <UserGroupIcon className="mr-1 inline-block h-5 w-5" />Contattaci
-                                    
+                  aria-current={undefined}
+                >
+                  <UserGroupIcon className="mr-1 inline-block h-5 w-5" />
+                  Contattaci
                 </Link>
               </div>
             </div>
@@ -134,5 +137,5 @@ export default function Navbar({isTransparent}) {
         </>
       )}
     </Disclosure>
-  );
+  )
 }

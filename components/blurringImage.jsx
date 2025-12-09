@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Image from "next/legacy/image"
+import Image from "next/image"
 
 function BlurringImage({
   css,
@@ -21,7 +21,6 @@ function BlurringImage({
           }}
         />
       ) : null}
-
       <Image
         {...img}
         {...otherProps}
@@ -29,9 +28,12 @@ function BlurringImage({
         width={width}
         alt={alt}
         onLoadingComplete={() => setHasPlaceholder(false)}
-      />
+        style={{
+          maxWidth: "100%",
+          height: "auto"
+        }} />
     </>
-  )
+  );
 }
 
 export {BlurringImage}

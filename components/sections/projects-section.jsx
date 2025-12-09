@@ -7,7 +7,7 @@ import {Spacer} from '../spacer'
 import {HeaderSection} from './header-section'
 import {H2, H3} from '../typography'
 import clsx from 'clsx'
-import Image from "next/legacy/image"
+import Image from "next/image"
 
 import projectCta from '../../public/img/Piazza-Grande_61.webp'
 import FormModal from '../Form/FormModal'
@@ -57,12 +57,14 @@ function ProjectSection({
               <div className="focus-ring aspect-w-4 aspect-h-3 rounded-lg lg:aspect-h-5 lg:aspect-w-4">
                 <Image
                   className="rounded-lg"
-                  objectFit="cover"
                   alt="esempio di un progetto realizzato da Matarrese srl"
                   src={projectCta}
-                  layout="fill"
                   placeholder="blur"
-                />
+                  fill
+                  sizes="100vw"
+                  style={{
+                    objectFit: "cover"
+                  }} />
               </div>
 
             </Link>

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Link from 'next/link'
-import Image from "next/legacy/image"
+import Image from "next/image"
 import {formatDate} from '../actions/utils/formatDate'
 import {H4} from './typography'
 import {ClipboardCopyButton} from './clipboard-copy-button'
@@ -25,13 +25,15 @@ function ArticleCard({
           <div className="focus-ring aspect-w-4 aspect-h-3 rounded-lg lg:aspect-h-5 lg:aspect-w-4">
             <Image
               className="rounded-lg"
-              objectFit="cover"
               alt={featuredImage?.node.altText}
               src={featuredImage?.node.mediaItemUrl}
-              layout="fill"
               placeholder={placeholder ?? 'empty'}
               blurDataURL={placeholder ? featuredImage.node.sourceUrl : null}
-            />
+              fill
+              sizes="100vw"
+              style={{
+                objectFit: "cover"
+              }} />
           </div>
         ) : (
           <div className="focus-ring aspect-w-4 aspect-h-3 relative flex w-full items-center justify-center overflow-hidden rounded-lg bg-gradient-to-tl from-red-600 to-yellow-400 text-center lg:aspect-h-5 lg:aspect-w-4">

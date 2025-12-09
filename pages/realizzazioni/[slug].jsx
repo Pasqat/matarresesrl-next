@@ -2,7 +2,7 @@ import {useRouter} from 'next/router'
 import {useState} from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
-import Image from "next/legacy/image"
+import Image from 'next/image'
 
 import Layout from '../../components/Layout'
 import Header from '../../components/Header/Header'
@@ -153,10 +153,13 @@ export default function Project({project}) {
                                 >
                                   <Image
                                     src={image.sourceUrl}
-                                    layout="fill"
-                                    objectFit="cover"
-                                    objectPosition="center"
                                     alt={image.altText}
+                                    fill
+                                    sizes="100vw"
+                                    style={{
+                                      objectFit: 'cover',
+                                      objectPosition: 'center',
+                                    }}
                                   />
                                 </div>
                               ))}
@@ -180,9 +183,9 @@ export default function Project({project}) {
                   <H2 as="p">{`Hai anche tu un progetto da realizzare?`}</H2>
                   <Spacer size="2xs" />
                   <div className="flex justify-center">
-                    <Link href="/contatti">
-                      <ButtonLink size="large">Contattaci!</ButtonLink>
-                    </Link>
+                    <ButtonLink size="large" href="/contatti">
+                      Contattaci!
+                    </ButtonLink>
                   </div>
                 </div>
               </section>
@@ -203,7 +206,7 @@ export default function Project({project}) {
         </>
       )}
     </Layout>
-  );
+  )
 }
 
 export async function getStaticProps({params}) {
