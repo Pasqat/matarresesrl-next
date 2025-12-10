@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Image from "next/image"
+import Image from 'next/image'
 
 function BlurringImage({
   css,
@@ -7,9 +7,38 @@ function BlurringImage({
   alt,
   height = undefined,
   width = undefined,
+  objectFit = 'cover',
   ...otherProps
 }) {
   const [hasPlaceholder, setHasPlaceholder] = React.useState(true)
+
+  const hasFill =
+    Boolean(img?.fill) ||
+    Boolean(otherProps?.fill) ||
+    img?.layout === 'fill' ||
+    otherProps?.layout === 'fill'
+
+  // Prepara imgProps rimuovendo proprietà legacy
+  const imgProps = {...img}
+  if (hasFill) {
+    delete imgProps.height
+    delete imgProps.width
+    delete imgProps.layout
+    delete imgProps.objectFit
+    imgProps.fill = true
+  } else {
+    delete imgProps.layout
+    delete imgProps.fill
+  }
+
+  const imageStyle = hasFill
+    ? {
+        objectFit: objectFit,
+      }
+    : {
+        height: 'auto',
+        maxWidth: '100%',
+      }
 
   return (
     <>
@@ -22,18 +51,15 @@ function BlurringImage({
         />
       ) : null}
       <Image
-        {...img}
+        {...imgProps}
         {...otherProps}
-        height={height}
-        width={width}
+        {...(!hasFill ? {height, width} : {})}
         alt={alt}
-        onLoadingComplete={() => setHasPlaceholder(false)}
-        style={{
-          maxWidth: "100%",
-          height: "auto"
-        }} />
+        onLoad={() => setHasPlaceholder(false)}
+        style={imageStyle}
+      />
     </>
-  );
+  )
 }
 
 export {BlurringImage}

@@ -46,14 +46,14 @@ export default function Post({postData, posts, img, css, preview}) {
     },
   }
 
-
+  console.info(postData)
   // FAQ JSON-LD (rimuove HTML per il campo text usato nello schema)
   const faqSchema =
     postData?.faqs?.faqs && postData.faqs.faqs.length
       ? {
           '@context': 'https://schema.org',
           '@type': 'FAQPage',
-          mainEntity: postData.faqs.faqs.map((faq) => ({
+          mainEntity: postData.faqs.faqs.map(faq => ({
             '@type': 'Question',
             name: faq.question,
             acceptedAnswer: {
@@ -65,7 +65,7 @@ export default function Post({postData, posts, img, css, preview}) {
         }
       : null
 
-// Unisce con lo schema generato da Yoast (postData.seo.schemaJson)
+  // Unisce con lo schema generato da Yoast (postData.seo.schemaJson)
   let yoastSchema = null
   try {
     yoastSchema = JSON.parse(postData.seo?.schemaJson || '{}')
@@ -85,7 +85,7 @@ export default function Post({postData, posts, img, css, preview}) {
           ...(yoastSchema.mainEntity || []),
           ...(faqSchema.mainEntity || []),
         ]
-        fullSchema = { ...yoastSchema, mainEntity: mergedMainEntity }
+        fullSchema = {...yoastSchema, mainEntity: mergedMainEntity}
       } else {
         // Yoast è un singolo oggetto non-FAQ: trasformalo in array con l'FAQ
         fullSchema = [yoastSchema, faqSchema]
@@ -130,7 +130,6 @@ export default function Post({postData, posts, img, css, preview}) {
                         css={css}
                         alt={`Immagine di copertina di ${postData.title}`}
                         objectFit="cover"
-                        layout="fill"
                       />
                     </div>
                   ) : (
@@ -163,7 +162,7 @@ export default function Post({postData, posts, img, css, preview}) {
                             <h4 className="font-medium">{faq.question}</h4>
                             <div
                               className="prose text-gray-700"
-                              dangerouslySetInnerHTML={{ __html: faq.answer }}
+                              dangerouslySetInnerHTML={{__html: faq.answer}}
                             />
                           </div>
                         ))}
