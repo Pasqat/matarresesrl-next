@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Link from 'next/link'
-import Image from "next/image"
+import Image from 'next/image'
 import {formatDate} from '../actions/utils/formatDate'
 import {H4} from './typography'
 import {ClipboardCopyButton} from './clipboard-copy-button'
@@ -19,8 +19,8 @@ function ArticleCard({
     <div className="relative w-full">
       <Link
         href={isProject ? `/realizzazioni/${slug}` : `/news/${slug}`}
-        className="group peer relative block w-full focus:outline-none">
-
+        className="group peer relative block w-full focus:outline-none"
+      >
         {featuredImage ? (
           <div className="focus-ring aspect-w-4 aspect-h-3 rounded-lg lg:aspect-h-5 lg:aspect-w-4">
             <Image
@@ -30,10 +30,11 @@ function ArticleCard({
               placeholder={placeholder ?? 'empty'}
               blurDataURL={placeholder ? featuredImage.node.sourceUrl : null}
               fill
-              sizes="100vw"
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
               style={{
-                objectFit: "cover"
-              }} />
+                objectFit: 'cover',
+              }}
+            />
           </div>
         ) : (
           <div className="focus-ring aspect-w-4 aspect-h-3 relative flex w-full items-center justify-center overflow-hidden rounded-lg bg-gradient-to-tl from-red-600 to-yellow-400 text-center lg:aspect-h-5 lg:aspect-w-4">
@@ -54,7 +55,6 @@ function ArticleCard({
             />
           </>
         ) : null}
-
       </Link>
       {domain ? (
         <ClipboardCopyButton
@@ -63,7 +63,7 @@ function ArticleCard({
         />
       ) : null}
     </div>
-  );
+  )
 }
 
 export {ArticleCard}

@@ -10,7 +10,13 @@ module.exports = {
       'matarrese.it',
       'be.matarrese.it',
     ],
-    unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'be.matarrese.it',
+      },
+    ],
+    // unoptimized: true,
   },
   async redirects() {
     return [
