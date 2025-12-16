@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
+import {BlurringImage} from './blurringImage'
 import {formatDate} from '../actions/utils/formatDate'
 import {H4} from './typography'
 import {ClipboardCopyButton} from './clipboard-copy-button'
@@ -23,14 +23,15 @@ function ArticleCard({
       >
         {featuredImage ? (
           <div className="focus-ring aspect-w-4 aspect-h-3 rounded-lg lg:aspect-h-5 lg:aspect-w-4">
-            <Image
+            <BlurringImage
               className="rounded-lg"
               alt={featuredImage?.node.altText}
-              src={featuredImage?.node.mediaItemUrl}
+              img={featuredImage?.node.mediaItemUrl}
               placeholder={placeholder ?? 'empty'}
               blurDataURL={placeholder ? featuredImage.node.sourceUrl : null}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              quality={90}
               style={{
                 objectFit: 'cover',
               }}

@@ -10,22 +10,30 @@ function BlurringImage({
   objectFit = 'cover',
   priority = false,
   sizes = undefined,
+  // preferito: onLoad (Next.js v14)
+  onLoad: onLoadProp = undefined,
+  // manteniamo il vecchio handler per compatibilità
   onLoadingComplete: onLoadingCompleteProp = undefined,
   ...otherProps
 }) {
   const [hasPlaceholder, setHasPlaceholder] = React.useState(true)
 
+  console.log('BlurringImage render', {img, alt})
   // Normalize img input (string | WP node | next/image props)
   let imgProps = {}
   if (typeof img === 'string') {
     imgProps.src = img
   } else if (img?.node?.mediaItemUrl) {
     imgProps.src = img.node.mediaItemUrl
-    if (img.node.width) imgProps.width = img.node.width
-    if (img.node.height) imgProps.height = img.node.height
+    if (img.node.mediaDetails.width)
+      imgProps.width = img.node.mediaDetails.width
+    if (img.node.mediaDetails.height)
+      imgProps.height = img.node.mediaDetails.height
   } else {
     imgProps = {...(img || {})}
   }
+
+  console.log('BlurringImage imgProps', imgProps)
 
   const hasFill =
     Boolean(imgProps?.fill) ||
@@ -70,11 +78,11 @@ function BlurringImage({
         {...otherProps}
         {...(!hasFill ? {height, width} : {})}
         alt={alt}
-        onLoadingComplete={result => {
+        onLoad={event => {
           setHasPlaceholder(false)
-          if (typeof onLoadingCompleteProp === 'function') {
-            onLoadingCompleteProp(result)
-          }
+          if (typeof onLoadProp === 'function') onLoadProp(event)
+          if (typeof onLoadingCompleteProp === 'function')
+            onLoadingCompleteProp(event) // legacy support
         }}
         priority={priority}
         sizes={sizes}

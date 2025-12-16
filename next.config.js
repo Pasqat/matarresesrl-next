@@ -2,21 +2,18 @@
 module.exports = {
   swcMinify: true,
   images: {
-    // TODO: cdn wp domain can be other than this. Find a better way.
-    // at today 07/13/2021 next don't accept wildcards
-    domains: [
-      'localhost',
-      'www.matarrese.it',
-      'matarrese.it',
-      'be.matarrese.it',
-    ],
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'be.matarrese.it',
-      },
+      {protocol: 'https', hostname: 'be.matarrese.it'},
+      {protocol: 'https', hostname: 'www.matarrese.it'},
+      {protocol: 'https', hostname: 'matarrese.it'},
+      // local dev server (http), include port if needed
+      {protocol: 'http', hostname: 'localhost', port: '3000'},
     ],
-    // unoptimized: true,
+    deviceSizes: [320, 480, 640, 768, 1024, 1280, 1600, 1920, 2560, 3840],
+    imageSizes: [
+      16, 32, 48, 64, 96, 128, 256, 384, 512, 768, 1024, 1280, 1600, 1920, 3840,
+    ],
+    // unoptimized: true, // rimuovere o tenere solo come workaround temporaneo
   },
   async redirects() {
     return [
