@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Image from "next/image"
+import Image from 'next/image'
 import dynamic from 'next/dynamic'
 
 // import Lottie from 'react-lottie-player'
@@ -118,11 +118,12 @@ export default function AboutUs() {
                   className="rounded-lg shadow-sm"
                   placeholder="blur"
                   style={{
-                    maxWidth: "100%",
-                    height: "auto",
-                    objectFit: "cover",
-                    objectPosition: "center"
-                  }} />
+                    maxWidth: '100%',
+                    height: 'auto',
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                  }}
+                />
                 <div className="mt-8 grid grid-cols-2 place-content-between gap-x-4 gap-y-4 md:grid-cols-3">
                   <Image
                     key="Funded-UE"
@@ -131,13 +132,13 @@ export default function AboutUs() {
                     src={UEfundedLogo}
                     alt="Funded by the European Union"
                     placeholder="blur"
-                    blurDataURL={UEfundedLogo}
                     style={{
-                      maxWidth: "100%",
-                      height: "auto",
-                      objectFit: "contain",
-                      objectPosition: "center"
-                    }} />
+                      maxWidth: '100%',
+                      height: 'auto',
+                      objectFit: 'contain',
+                      objectPosition: 'center',
+                    }}
+                  />
                   <Image
                     key="Prima"
                     width={360}
@@ -145,13 +146,13 @@ export default function AboutUs() {
                     src={PrimaLogo}
                     alt="Prima Partnership for researh and innovation in the mediterranean area"
                     placeholder="blur"
-                    blurDataURL={PrimaLogo}
                     style={{
-                      maxWidth: "100%",
-                      height: "auto",
-                      objectFit: "contain",
-                      objectPosition: "center"
-                    }} />
+                      maxWidth: '100%',
+                      height: 'auto',
+                      objectFit: 'contain',
+                      objectPosition: 'center',
+                    }}
+                  />
                   <Image
                     key={'FBMlogo'}
                     width={360}
@@ -159,13 +160,13 @@ export default function AboutUs() {
                     src={FBMlogo}
                     alt={`Flat Bread Mine logo`}
                     placeholder="blur"
-                    blurDataURL={FBMlogo}
                     style={{
-                      maxWidth: "100%",
-                      height: "auto",
-                      objectFit: "contain",
-                      objectPosition: "center"
-                    }} />
+                      maxWidth: '100%',
+                      height: 'auto',
+                      objectFit: 'contain',
+                      objectPosition: 'center',
+                    }}
+                  />
                 </div>
               </div>
             </div>
@@ -212,5 +213,5 @@ export default function AboutUs() {
         <Spacer size="base" />
       </Layout>
     </>
-  );
+  )
 }

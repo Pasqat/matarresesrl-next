@@ -1,5 +1,5 @@
-import * as React from 'react'
 import Image from 'next/image'
+import React from 'react'
 
 function BlurringImage({
   css,
@@ -8,18 +8,32 @@ function BlurringImage({
   height = undefined,
   width = undefined,
   objectFit = 'cover',
+  priority = false,
+  sizes = undefined,
+  onLoadingComplete: onLoadingCompleteProp = undefined,
   ...otherProps
 }) {
   const [hasPlaceholder, setHasPlaceholder] = React.useState(true)
 
+  // Normalize img input (string | WP node | next/image props)
+  let imgProps = {}
+  if (typeof img === 'string') {
+    imgProps.src = img
+  } else if (img?.node?.mediaItemUrl) {
+    imgProps.src = img.node.mediaItemUrl
+    if (img.node.width) imgProps.width = img.node.width
+    if (img.node.height) imgProps.height = img.node.height
+  } else {
+    imgProps = {...(img || {})}
+  }
+
   const hasFill =
-    Boolean(img?.fill) ||
+    Boolean(imgProps?.fill) ||
     Boolean(otherProps?.fill) ||
-    img?.layout === 'fill' ||
+    imgProps?.layout === 'fill' ||
     otherProps?.layout === 'fill'
 
-  // Prepara imgProps rimuovendo proprietà legacy
-  const imgProps = {...img}
+  // Prepare imgProps removing legacy props
   if (hasFill) {
     delete imgProps.height
     delete imgProps.width
@@ -38,6 +52,7 @@ function BlurringImage({
     : {
         height: 'auto',
         maxWidth: '100%',
+        ...(height !== undefined && width === undefined ? {width: 'auto'} : {}),
       }
 
   return (
@@ -55,7 +70,14 @@ function BlurringImage({
         {...otherProps}
         {...(!hasFill ? {height, width} : {})}
         alt={alt}
-        onLoad={() => setHasPlaceholder(false)}
+        onLoadingComplete={result => {
+          setHasPlaceholder(false)
+          if (typeof onLoadingCompleteProp === 'function') {
+            onLoadingCompleteProp(result)
+          }
+        }}
+        priority={priority}
+        sizes={sizes}
         style={imageStyle}
       />
     </>

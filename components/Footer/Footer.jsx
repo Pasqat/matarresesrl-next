@@ -51,18 +51,19 @@ export default function Footer() {
       </div>
       <Grid className="py-14">
         <div className="col-span-full mx-auto text-center lg:col-span-3">
-          <Link href="/" className="items-center justify-center pb-2">
-            <Image
-              width={340}
-              height={20}
-              alt={'Logo Matarrese srl'}
-              src="/img/logos/logo-matarrese-grigio-350.png"
-              style={{
-                maxWidth: '100%',
-                height: 'auto',
-              }}
-            />
-          </Link>
+          <div className="my-6 text-center pb-2">
+            <div className="relative h-14 mx-auto">
+              <Image
+                fill
+                alt={'Logo Matarrese srl'}
+                src="/img/logos/logo-matarrese-grigio-350.png"
+                style={{
+                  objectFit: 'contain',
+                }}
+                sizes="100vw"
+              />
+            </div>
+          </div>
           <div className="my-6 text-center">
             <a
               href="https://www.facebook.com/matarresesrl"
@@ -104,7 +105,7 @@ export default function Footer() {
                   alt="Logo Assogi"
                   src={logoAssogi}
                   fill
-                  sizes="100vw"
+                  sizes="112px"
                   style={{
                     objectFit: 'contain',
                   }}
@@ -118,7 +119,7 @@ export default function Footer() {
                   src={logoQucino}
                   placeholder="blur"
                   fill
-                  sizes="100vw"
+                  sizes="96px"
                   style={{
                     objectFit: 'contain',
                   }}

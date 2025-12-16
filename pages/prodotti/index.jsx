@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Image from "next/image"
+import Image from 'next/image'
 import Link from 'next/link'
 
 import ContactForm from '../../components/Form/ContactForm'
@@ -77,9 +77,10 @@ export default function ProductsHome({groups}) {
                           alt="icona cottura"
                           placeholder="blur"
                           style={{
-                            maxWidth: "100%",
-                            height: "auto"
-                          }} />
+                            maxWidth: '100%',
+                            height: 'auto',
+                          }}
+                        />
                       }
                     />
                   </div>
@@ -98,9 +99,10 @@ export default function ProductsHome({groups}) {
                           alt="icona attrezzature"
                           placeholder="blur"
                           style={{
-                            maxWidth: "100%",
-                            height: "auto"
-                          }} />
+                            maxWidth: '100%',
+                            height: 'auto',
+                          }}
+                        />
                       }
                     />
                   </div>
@@ -117,9 +119,10 @@ export default function ProductsHome({groups}) {
                           alt="icona macchine agroalimentari"
                           placeholder="blur"
                           style={{
-                            maxWidth: "100%",
-                            height: "auto"
-                          }} />
+                            maxWidth: '100%',
+                            height: 'auto',
+                          }}
+                        />
                       }
                     />
                   </div>
@@ -137,9 +140,10 @@ export default function ProductsHome({groups}) {
                           alt="icona refrigerazione"
                           placeholder="blur"
                           style={{
-                            maxWidth: "100%",
-                            height: "auto"
-                          }} />
+                            maxWidth: '100%',
+                            height: 'auto',
+                          }}
+                        />
                       }
                     />
                   </div>
@@ -182,8 +186,9 @@ export default function ProductsHome({groups}) {
                     fill
                     sizes="100vw"
                     style={{
-                      objectFit: "cover"
-                    }} />
+                      objectFit: 'cover',
+                    }}
+                  />
                 </div>
               </div>
             </Grid>
@@ -242,7 +247,7 @@ export default function ProductsHome({groups}) {
               <div className="col-span-full">
                 <H2>{`Lavora in un ambiente sano e confortevole`}</H2>
                 <H3 as="p" variant="secondary" className="mb-14">
-                  {`Gestiamo il microclima di cucine professionali, 
+                  {`Gestiamo il microclima di cucine professionali,
                     locali commerciali, laboratori alimentari e laboratori industriali`}
                 </H3>
               </div>
@@ -287,7 +292,10 @@ export default function ProductsHome({groups}) {
           >
             <Grid className="py-24">
               <div className="col-span-full">
-                <H2 variant="light-gray" className="mb-3 lg:mt-6">{`Igiene e sanificazione`}</H2>
+                <H2
+                  variant="light-gray"
+                  className="mb-3 lg:mt-6"
+                >{`Igiene e sanificazione`}</H2>
                 <H2 variant="light-gray" as="p" className="mb-14 text-gray-300">
                   {`Possiamo aiutarti a mantenere i tuoi ambienti puliti ed igienizzati`}
                 </H2>
@@ -341,7 +349,7 @@ export default function ProductsHome({groups}) {
         </main>
       </Layout>
     </>
-  );
+  )
 }
 
 export async function getStaticProps() {

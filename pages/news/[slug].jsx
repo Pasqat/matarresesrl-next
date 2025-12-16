@@ -130,6 +130,7 @@ export default function Post({postData, posts, img, css, preview}) {
                         css={css}
                         alt={`Immagine di copertina di ${postData.title}`}
                         objectFit="cover"
+                        priority
                       />
                     </div>
                   ) : (
