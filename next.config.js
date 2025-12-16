@@ -13,7 +13,7 @@ module.exports = {
     imageSizes: [
       16, 32, 48, 64, 96, 128, 256, 384, 512, 768, 1024, 1280, 1600, 1920, 3840,
     ],
-    // unoptimized: true, // rimuovere o tenere solo come workaround temporaneo
+    unoptimized: true, // rimuovere o tenere solo come workaround temporaneo
   },
   async redirects() {
     return [

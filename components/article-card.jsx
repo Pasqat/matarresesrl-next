@@ -26,10 +26,10 @@ function ArticleCard({
             <BlurringImage
               className="rounded-lg"
               alt={featuredImage?.node.altText}
-              img={featuredImage?.node.mediaItemUrl}
+              img={featuredImage?.node}
               placeholder={placeholder ?? 'empty'}
               blurDataURL={placeholder ? featuredImage.node.sourceUrl : null}
-              fill
+              // fill
               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
               quality={90}
               style={{

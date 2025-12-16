@@ -2,93 +2,78 @@ import Image from 'next/image'
 import React from 'react'
 
 function BlurringImage({
-  css,
   img,
   alt,
-  height = undefined,
-  width = undefined,
+  width,
+  height,
+  fill,
+  sizes,
+  quality,
+  placeholder,
+  blurDataURL,
   objectFit = 'cover',
+  onLoad,
   priority = false,
-  sizes = undefined,
-  // preferito: onLoad (Next.js v14)
-  onLoad: onLoadProp = undefined,
-  // manteniamo il vecchio handler per compatibilità
-  onLoadingComplete: onLoadingCompleteProp = undefined,
-  ...otherProps
+  className,
+  style,
+  ...rest
 }) {
-  const [hasPlaceholder, setHasPlaceholder] = React.useState(true)
+  const [loaded, setLoaded] = React.useState(false)
 
-  console.log('BlurringImage render', {img, alt})
-  // Normalize img input (string | WP node | next/image props)
-  let imgProps = {}
-  if (typeof img === 'string') {
-    imgProps.src = img
-  } else if (img?.node?.mediaItemUrl) {
-    imgProps.src = img.node.mediaItemUrl
-    if (img.node.mediaDetails.width)
-      imgProps.width = img.node.mediaDetails.width
-    if (img.node.mediaDetails.height)
-      imgProps.height = img.node.mediaDetails.height
-  } else {
-    imgProps = {...(img || {})}
+  // normalize img input
+  const imgSrc = typeof img === 'string' ? img : img?.mediaItemUrl ?? img?.src
+  const nodeWidth = img?.mediaDetails?.width
+  const nodeHeight = img?.mediaDetails?.height
+
+  // prefer explicit dimensions when available
+  const explicitWidth = width ?? nodeWidth
+  const explicitHeight = height ?? nodeHeight
+
+  const useFill = fill ?? !(explicitWidth && explicitHeight)
+
+  const imageProps = {
+    src: imgSrc,
+    alt,
+    priority,
+    quality,
+    sizes: sizes ?? '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw',
+    style: {objectFit, ...style},
+    className,
+    ...rest,
   }
 
-  console.log('BlurringImage imgProps', imgProps)
-
-  const hasFill =
-    Boolean(imgProps?.fill) ||
-    Boolean(otherProps?.fill) ||
-    imgProps?.layout === 'fill' ||
-    otherProps?.layout === 'fill'
-
-  // Prepare imgProps removing legacy props
-  if (hasFill) {
-    delete imgProps.height
-    delete imgProps.width
-    delete imgProps.layout
-    delete imgProps.objectFit
-    imgProps.fill = true
-  } else {
-    delete imgProps.layout
-    delete imgProps.fill
+  if (useFill) {
+    imageProps.fill = true
+  } else if (explicitWidth && explicitHeight) {
+    imageProps.width = explicitWidth
+    imageProps.height = explicitHeight
   }
-
-  const imageStyle = hasFill
-    ? {
-        objectFit: objectFit,
-      }
-    : {
-        height: 'auto',
-        maxWidth: '100%',
-        ...(height !== undefined && width === undefined ? {width: 'auto'} : {}),
-      }
 
   return (
-    <>
-      {hasPlaceholder ? (
+    <div className="relative">
+      {/* simple blur placeholder */}
+      {placeholder === 'blur' && blurDataURL && !loaded && (
         <div
-          className="absolute top-0 right-0 left-0 bottom-0 h-full w-full scale-150 blur-2xl"
+          aria-hidden
           style={{
-            ...css,
+            position: 'absolute',
+            inset: 0,
+            backgroundImage: `url(${blurDataURL})`,
+            backgroundSize: 'cover',
+            filter: 'blur(20px)',
+            transform: 'scale(1.05)',
           }}
         />
-      ) : null}
+      )}
+
       <Image
-        {...imgProps}
-        {...otherProps}
-        {...(!hasFill ? {height, width} : {})}
-        alt={alt}
-        onLoad={event => {
-          setHasPlaceholder(false)
-          if (typeof onLoadProp === 'function') onLoadProp(event)
-          if (typeof onLoadingCompleteProp === 'function')
-            onLoadingCompleteProp(event) // legacy support
+        {...imageProps}
+        onLoad={e => {
+          setLoaded(true)
+          if (typeof onLoad === 'function') onLoad(e)
         }}
-        priority={priority}
-        sizes={sizes}
-        style={imageStyle}
       />
-    </>
+    </div>
   )
 }
 
