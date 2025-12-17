@@ -45,13 +45,14 @@ export default function Post({postData, posts, img, css, preview}) {
       '@id': `${process.env.NEXT_PUBLIC_DOMAIN}/news/${postData.slug}`,
     },
   }
-  console.log('postaData.faq', postData?.faqs)
+
+  const faqsArray = Array.isArray(postData?.faqs) ? postData.faqs : []
   // FAQ JSON-LD (rimuove HTML per il campo text usato nello schema)
-  const faqSchema = postData?.faqs
+  const faqSchema = faqsArray.length
     ? {
         '@context': 'https://schema.org',
         '@type': 'FAQPage',
-        mainEntity: postData.faqs.map(faq => ({
+        mainEntity: faqsArray.map(faq => ({
           '@type': 'Question',
           name: faq.question,
           acceptedAnswer: {
@@ -72,7 +73,6 @@ export default function Post({postData, posts, img, css, preview}) {
   // }
 
   // console.log('yoastSchema', yoastSchema)
-  console.log('faqSchema', faqSchema)
 
   // let fullSchema = null
   // if (yoastSchema && Object.keys(yoastSchema).length) {
