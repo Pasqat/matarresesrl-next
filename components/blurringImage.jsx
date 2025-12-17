@@ -50,7 +50,7 @@ function BlurringImage({
   }
 
   return (
-    <div className="relative">
+    <div className="">
       {/* simple blur placeholder */}
       {placeholder === 'blur' && blurDataURL && !loaded && (
         <div
