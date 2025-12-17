@@ -14,15 +14,17 @@ export default function Alert({preview}) {
         <div className="py-2 text-center text-sm">
           <>
             Questa è un&apos;anteprima.{' '}
-            <Link href="/api/exit-preview">
-              <a className="underline transition-colors duration-200 hover:text-yellow-500">
+            <Link
+              href="/api/exit-preview"
+              className="underline transition-colors duration-200 hover:text-yellow-500">
+              
                 Clicca qui
-              </a>
+              
             </Link>{' '}
             per uscire dalla visualizzazione anteprima.
           </>
         </div>
       </Container>
     </div>
-  ) : null
+  ) : null;
 }

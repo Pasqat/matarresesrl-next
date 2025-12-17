@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Image from 'next/image'
+import Image from "next/image"
 
 import {H2} from '../typography'
 import {Grid} from '../grid'
@@ -22,25 +22,31 @@ function MepaSection() {
             <Image
               src={logoAcquistinrete}
               alt="logo acquistinrete"
-              layout="intrinsic"
               placeholder="blur"
-            />
+              style={{
+                maxWidth: "100%",
+                height: "auto"
+              }} />
           </div>
           <div className="">
             <Image
               src={logoConsip}
               alt="logo consig"
-              layout="intrinsic"
               placeholder="blur"
-            />
+              style={{
+                maxWidth: "100%",
+                height: "auto"
+              }} />
           </div>
           <div className="">
             <Image
               src={logoMEF}
               alt="logo ministero dell'economia"
-              layout="intrinsic"
               placeholder="blur"
-            />
+              style={{
+                maxWidth: "100%",
+                height: "auto"
+              }} />
           </div>
         </div>
         {/*   <Paragraph> */}
@@ -59,7 +65,7 @@ function MepaSection() {
         {/*   </Paragraph> */}
       </div>
     </Grid>
-  )
+  );
 }
 
 export {MepaSection}

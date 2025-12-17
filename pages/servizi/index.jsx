@@ -59,7 +59,6 @@ export default function Servizi({groups}) {
         <meta property="og:site_name" content="Matarrese srl" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-
       <Layout>
         <div className="mb-12 lg:mb-24 xl:mb-48">
           <HeroSection
@@ -186,18 +185,18 @@ export default function Servizi({groups}) {
                     <div className="flex">
                       <SectionProgress sectionRef={section1} />
                       <div className="pb-8 pt-1">
-                        <Link href="#consulenza-tecnica">
-                          <a className="mb-2 text-lg font-bold">
+                        <Link href="#consulenza-tecnica" className="mb-2 text-lg font-bold">
+                          
                             Consulenza Tecnica
-                          </a>
+                          
                         </Link>
                       </div>
                     </div>
                     <div className="flex">
                       <SectionProgress sectionRef={section2} />
                       <div className="pb-8 pt-1">
-                        <Link href="#il-progetto">
-                          <a className="mb-2 text-lg font-bold">Il progetto</a>
+                        <Link href="#il-progetto" className="mb-2 text-lg font-bold">
+                          Il progetto
                         </Link>
                         {/* <p className="text-gray-700">
                           Lorem ipsum dolor sit amet consectetur adipisicing.
@@ -207,38 +206,38 @@ export default function Servizi({groups}) {
                     <div className="flex">
                       <SectionProgress sectionRef={section3} />
                       <div className="pb-8 pt-1">
-                        <Link href="#iter-operativo">
-                          <a className="mb-2 text-lg font-bold">
+                        <Link href="#iter-operativo" className="mb-2 text-lg font-bold">
+                          
                             Iter Operativo
-                          </a>
+                          
                         </Link>
                       </div>
                     </div>
                     <div className="flex">
                       <SectionProgress sectionRef={section4} />
                       <div className="pb-8 pt-1">
-                        <Link href="#arredi-su-misura">
-                          <a className="mb-2 text-lg font-bold">
+                        <Link href="#arredi-su-misura" className="mb-2 text-lg font-bold">
+                          
                             Realizzazione arredi su misura
-                          </a>
+                          
                         </Link>
                       </div>
                     </div>
                     <div className="flex">
                       <SectionProgress sectionRef={section5} />
                       <div className="pb-8 pt-1">
-                        <Link href="#coordinamento-lavori">
-                          <a className="mb-2 text-lg font-bold">
+                        <Link href="#coordinamento-lavori" className="mb-2 text-lg font-bold">
+                          
                             Coordinamento lavori
-                          </a>
+                          
                         </Link>
                       </div>
                     </div>
                     <div className="flex">
                       <SectionProgress sectionRef={section6} />
                       <div className="pb-8 pt-1">
-                        <Link href="#collaudo">
-                          <a className="mb-2 text-lg font-bold">Collaudo</a>
+                        <Link href="#collaudo" className="mb-2 text-lg font-bold">
+                          Collaudo
                         </Link>
                       </div>
                     </div>
@@ -551,7 +550,7 @@ export default function Servizi({groups}) {
         </main>
       </Layout>
     </div>
-  )
+  );
 }
 
 export async function getStaticProps() {

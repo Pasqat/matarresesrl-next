@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from "next/image"
 import Link from 'next/link'
 
 export default function CoverImage({
@@ -16,16 +16,19 @@ export default function CoverImage({
       height={1000}
       alt={`Immagine di copertina per ${title}`}
       src={coverImage}
-      objectFit="cover"
       className={`z-0 ${className} rounded-lg `}
       {...rest}
-    />
+      style={{
+        maxWidth: "100%",
+        height: "auto",
+        objectFit: "cover"
+      }} />
   )
   return coverImage ? (
     <div className="sm:mx-0">
       {slug ? (
-        <Link href={href}>
-          <a aria-label={title}>{image}</a>
+        <Link href={href} aria-label={title}>
+          {image}
         </Link>
       ) : (
         image
@@ -37,5 +40,5 @@ export default function CoverImage({
         {placeholderText}
       </div>
     </div>
-  )
+  );
 }

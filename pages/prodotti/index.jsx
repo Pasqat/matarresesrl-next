@@ -48,7 +48,6 @@ export default function ProductsHome({groups}) {
         />
         <meta property="og:url" content="https://www.matarrese.it/prodotti" />
       </Head>
-
       <Layout>
         <div className="mb-12 lg:mb-24 xl:mb-48">
           <ProductSection />
@@ -76,8 +75,11 @@ export default function ProductsHome({groups}) {
                         <Image
                           src={IconCucineProfessionali}
                           alt="icona cottura"
-                          layout="intrinsic"
                           placeholder="blur"
+                          style={{
+                            maxWidth: '100%',
+                            height: 'auto',
+                          }}
                         />
                       }
                     />
@@ -95,8 +97,11 @@ export default function ProductsHome({groups}) {
                         <Image
                           src={IconProdotti}
                           alt="icona attrezzature"
-                          layout="intrinsic"
                           placeholder="blur"
+                          style={{
+                            maxWidth: '100%',
+                            height: 'auto',
+                          }}
                         />
                       }
                     />
@@ -112,8 +117,11 @@ export default function ProductsHome({groups}) {
                         <Image
                           src={IconMacchineAgro}
                           alt="icona macchine agroalimentari"
-                          layout="intrinsic"
                           placeholder="blur"
+                          style={{
+                            maxWidth: '100%',
+                            height: 'auto',
+                          }}
                         />
                       }
                     />
@@ -130,8 +138,11 @@ export default function ProductsHome({groups}) {
                         <Image
                           src={IconRefrigerazione}
                           alt="icona refrigerazione"
-                          layout="intrinsic"
                           placeholder="blur"
+                          style={{
+                            maxWidth: '100%',
+                            height: 'auto',
+                          }}
                         />
                       }
                     />
@@ -172,10 +183,11 @@ export default function ProductsHome({groups}) {
                     alt="prodotti per la cucina professionale"
                     className="max-w-full rounded-lg shadow-lg"
                     src={arredoSuMisura}
-                    // width="1000"
-                    // height="1300"
-                    objectFit="cover"
-                    layout="fill"
+                    fill
+                    sizes="100vw"
+                    style={{
+                      objectFit: 'cover',
+                    }}
                   />
                 </div>
               </div>
@@ -224,7 +236,7 @@ export default function ProductsHome({groups}) {
 
           <section className="mb-12 lg:mb-24 xl:mb-48">
             <div className="mx-auto text-center">
-              <Link href="/contatti" passHref>
+              <Link href="/contatti">
                 <Button size="medium">Visita il nostro showroom</Button>
               </Link>
             </div>
@@ -235,7 +247,7 @@ export default function ProductsHome({groups}) {
               <div className="col-span-full">
                 <H2>{`Lavora in un ambiente sano e confortevole`}</H2>
                 <H3 as="p" variant="secondary" className="mb-14">
-                  {`Gestiamo il microclima di cucine professionali, 
+                  {`Gestiamo il microclima di cucine professionali,
                     locali commerciali, laboratori alimentari e laboratori industriali`}
                 </H3>
               </div>
@@ -280,7 +292,10 @@ export default function ProductsHome({groups}) {
           >
             <Grid className="py-24">
               <div className="col-span-full">
-                <H2 variant="light-gray" className="mb-3 lg:mt-6">{`Igiene e sanificazione`}</H2>
+                <H2
+                  variant="light-gray"
+                  className="mb-3 lg:mt-6"
+                >{`Igiene e sanificazione`}</H2>
                 <H2 variant="light-gray" as="p" className="mb-14 text-gray-300">
                   {`Possiamo aiutarti a mantenere i tuoi ambienti puliti ed igienizzati`}
                 </H2>

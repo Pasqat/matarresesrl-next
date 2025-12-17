@@ -51,7 +51,6 @@ export default function AboutUs() {
         <meta property="og:url" content="https://www.matarrese.it/azienda" />
         <meta property="og:type" content="blog" />
       </Head>
-
       <Layout>
         <div className="mb-12 lg:mb-24">
           <HeroSection
@@ -115,43 +114,58 @@ export default function AboutUs() {
               <div className="grid-row-2 grid h-full justify-stretch">
                 <Image
                   src={FBM_ReD_page}
-                  layout="intrinsic"
-                  objectFit="cover"
-                  objectPosition="center"
                   alt="attrezzature ristorazione nello showroom"
                   className="rounded-lg shadow-sm"
                   placeholder="blur"
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                  }}
                 />
                 <div className="mt-8 grid grid-cols-2 place-content-between gap-x-4 gap-y-4 md:grid-cols-3">
                   <Image
                     key="Funded-UE"
                     width={360}
                     height={95}
-                    objectFit="contain"
                     src={UEfundedLogo}
                     alt="Funded by the European Union"
                     placeholder="blur"
-                    blurDataURL={UEfundedLogo}
+                    style={{
+                      maxWidth: '100%',
+                      height: 'auto',
+                      objectFit: 'contain',
+                      objectPosition: 'center',
+                    }}
                   />
                   <Image
                     key="Prima"
                     width={360}
                     height={95}
-                    objectFit="contain"
                     src={PrimaLogo}
                     alt="Prima Partnership for researh and innovation in the mediterranean area"
                     placeholder="blur"
-                    blurDataURL={PrimaLogo}
+                    style={{
+                      maxWidth: '100%',
+                      height: 'auto',
+                      objectFit: 'contain',
+                      objectPosition: 'center',
+                    }}
                   />
                   <Image
                     key={'FBMlogo'}
                     width={360}
                     height={95}
-                    objectFit="contain"
                     src={FBMlogo}
                     alt={`Flat Bread Mine logo`}
                     placeholder="blur"
-                    blurDataURL={FBMlogo}
+                    style={{
+                      maxWidth: '100%',
+                      height: 'auto',
+                      objectFit: 'contain',
+                      objectPosition: 'center',
+                    }}
                   />
                 </div>
               </div>

@@ -57,7 +57,6 @@ export default function AboutUs({lastTwoProjects}) {
         <meta property="og:url" content="https://www.matarrese.it/azienda" />
         <meta property="og:type" content="blog" />
       </Head>
-
       <Layout>
         <div className="mb-12 lg:mb-24">
           <HeroSection
@@ -88,14 +87,20 @@ export default function AboutUs({lastTwoProjects}) {
 
         <section className="-mt-24 pt-24" id="team">
           <Grid rowGap>
+            {/* Versione a due colonne
             <div className="col-span-full lg:col-span-6">
+             */}
+            <div className="col-span-full mx-auto">
               <FeatureCard
                 icon={
                   <Image
                     src={VitoMatarreseProfileImage}
                     alt="fotografia di Vito Matarrese, socio fondatore e direttore"
-                    layout="intrinsic"
                     placeholder="blur"
+                    style={{
+                      maxWidth: '100%',
+                      height: 'auto',
+                    }}
                   />
                 }
                 title="Vito Matarrese"
@@ -115,15 +120,18 @@ export default function AboutUs({lastTwoProjects}) {
                 urlText="Contatta"
               />
             </div>
+            {/*
             <div className="col-span-full lg:col-span-6">
               <FeatureCard
                 icon={
                   <Image
                     src={DomenicoMatarreseProfileImage}
                     alt="fotografia di Domenico Matarrese"
-                    layout="intrinsic"
                     placeholder="blur"
-                  />
+                    style={{
+                      maxWidth: "100%",
+                      height: "auto"
+                    }} />
                 }
                 title="Domenico Matarrese"
                 description={
@@ -140,6 +148,7 @@ export default function AboutUs({lastTwoProjects}) {
                 }
               />
             </div>
+            */}
           </Grid>
         </section>
 
@@ -178,12 +187,15 @@ export default function AboutUs({lastTwoProjects}) {
             <div className="col-span-full text-center lg:col-span-6 lg:ml-8">
               <Image
                 src={imgHomePartnerOperatori}
-                layout="intrinsic"
-                objectFit="cover"
-                objectPosition="center"
                 alt="attrezzature ristorazione nello showroom"
                 className="rounded-lg shadow-sm"
                 placeholder="blur"
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                  objectFit: 'cover',
+                  objectPosition: 'center',
+                }}
               />
             </div>
             {/* <CardBigImg
@@ -206,11 +218,12 @@ export default function AboutUs({lastTwoProjects}) {
                   alt="prodotti per la cucina professionale"
                   className="max-w-full rounded-lg shadow-lg"
                   src={cotturaProdotti}
-                  // width="1000"
-                  // height="1300"
-                  objectFit="cover"
-                  layout="fill"
                   placeholder="blur"
+                  fill
+                  sizes="100vw"
+                  style={{
+                    objectFit: 'cover',
+                  }}
                 />
               </div>
             </div>

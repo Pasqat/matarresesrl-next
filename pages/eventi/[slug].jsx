@@ -240,10 +240,12 @@ export default function Events({ event, img, css }) {
                   <SocialShareBar route={router.asPath} title={event.title} />
                 </div>
                 <div className="flex justify-center">
-                  <Link href="/eventi">
-                    <a className="mt-10 rounded bg-white p-4 text-center uppercase shadow-lg hover:shadow-sm">
+                  <Link
+                    href="/eventi"
+                    className="mt-10 rounded bg-white p-4 text-center uppercase shadow-lg hover:shadow-sm">
+                    
                       Eventi
-                    </a>
+                    
                   </Link>
                 </div>
               </div>

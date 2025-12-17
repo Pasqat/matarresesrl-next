@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Image from 'next/image'
+import Image from "next/image"
 import Link from 'next/link'
 
 import {H2} from '../typography'
@@ -14,33 +14,42 @@ function LogoSection() {
       <div className="2xl:grid-cols-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
         {logos.map(logo => {
           return logo.href ? (
-            <Link key={logo.name} href={logo.href}>
-              <a className="cursor-pointer text-center hover:drop-shadow-md">
-                <Image
-                  width={180}
-                  height={95}
-                  objectFit="contain"
-                  src={logo.url}
-                  alt={`${logo.name} logo`}
-                />
-              </a>
+            <Link
+              key={logo.name}
+              href={logo.href}
+              className="cursor-pointer text-center hover:drop-shadow-md">
+
+              <Image
+                width={180}
+                height={95}
+                src={logo.url}
+                alt={`${logo.name} logo`}
+                style={{
+                  maxWidth: "100%",
+                  height: "auto",
+                  objectFit: "contain"
+                }} />
+
             </Link>
           ) : (
             <Image
               key={logo.name}
               width={180}
               height={95}
-              objectFit="contain"
               src={logo.url}
               alt={`${logo.name} logo`}
               placeholder="blur"
               blurDataURL={logo.url}
-            />
-          )
+              style={{
+                maxWidth: "100%",
+                height: "auto",
+                objectFit: "contain"
+              }} />
+          );
         })}
       </div>
     </div>
-  )
+  );
 }
 
 export {LogoSection}

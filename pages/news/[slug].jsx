@@ -45,6 +45,25 @@ export default function Post({postData, posts, img, css, preview}) {
       '@id': `${process.env.NEXT_PUBLIC_DOMAIN}/news/${postData.slug}`,
     },
   }
+
+  const faqsArray = Array.isArray(postData?.faqs) ? postData.faqs : []
+  // FAQ JSON-LD (rimuove HTML per il campo text usato nello schema)
+  const faqSchema = faqsArray.length
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: faqsArray.map(faq => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            // rimuove tag HTML per fornire testo pulito allo schema
+            text: (faq.answer || '').replace(/<[^>]+>/g, '').trim(),
+          },
+        })),
+      }
+    : null
+
   const StructuredData = require('../../components/StructuredData').default
   return (
     <Layout preview={preview}>
@@ -66,19 +85,22 @@ export default function Post({postData, posts, img, css, preview}) {
             })}
           </Head>
           <StructuredData data={newsStructuredData} />
+          <StructuredData data={faqSchema} />
           <article className="bg-gray-100">
             <div className="mx-auto max-w-7xl py-4 md:px-5 md:py-16">
               <main className="md:mb-24">
                 <div className="sm:mx-0 mb-8 md:mb-16">
                   {img || css ? (
-                    <div className="aspect-h-1 aspect-w-2 relative overflow-hidden">
-                      <BlurringImage
-                        img={img}
-                        css={css}
-                        alt={`Immagine di copertina di ${postData.title}`}
-                        objectFit="cover"
-                        layout="fill"
-                      />
+                    <div className="overflow-hidden">
+                      <div className="relative aspect-[2/1]">
+                        <BlurringImage
+                          img={img}
+                          css={css}
+                          alt={`Immagine di copertina di ${postData.title}`}
+                          objectFit="cover"
+                          priority
+                        />
+                      </div>
                     </div>
                   ) : (
                     <Spacer size="base" />
@@ -100,6 +122,23 @@ export default function Post({postData, posts, img, css, preview}) {
                       {postData.title}
                     </H1>
                     <PostBody content={postData.content} />
+
+                    {/* Render visivo delle FAQ (se presenti) */}
+                    {postData?.faqs?.faqs?.length ? (
+                      <div className="mt-8 bg-gray-50 p-6 rounded">
+                        <h3 className="mb-4 text-lg font-semibold">FAQ</h3>
+                        {postData.faqs.faqs.map((faq, i) => (
+                          <div key={`faq-${i}`} className="mb-4">
+                            <h4 className="font-medium">{faq.question}</h4>
+                            <div
+                              className="prose text-gray-700"
+                              dangerouslySetInnerHTML={{__html: faq.answer}}
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    ) : null}
+
                     <div className="mx-auto flex max-w-3xl flex-wrap gap-4 text-gray-400">
                       <div className="text-medium">tags:</div>
                       {tags.map(t => (

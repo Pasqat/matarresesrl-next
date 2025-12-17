@@ -204,10 +204,10 @@ export default function NewsletterForm({
             />
             <span className="ml-2">
               Accetto il{' '}
-              <Link href="/privacy-policy">
-                <a className="text-yellow-500" target="_blank">
+              <Link href="/privacy-policy" className="text-yellow-500" target="_blank">
+                
                   trattamento dei dati e condizioni *
-                </a>
+                
               </Link>
             </span>
           </label>
@@ -232,5 +232,5 @@ export default function NewsletterForm({
         </div>
       </form>
     </div>
-  )
+  );
 }

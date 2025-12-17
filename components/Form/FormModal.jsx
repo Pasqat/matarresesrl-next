@@ -484,10 +484,10 @@ export default function FormModal({
                       />
                       <span className="ml-2 text-sm">
                         accetto il{' '}
-                        <Link href="/privacy-policy">
-                          <a className="text-yellow-500" target="_blank">
+                        <Link href="/privacy-policy" className="text-yellow-500" target="_blank">
+                          
                             trattamento dei dati e condizioni
-                          </a>
+                          
                         </Link>
                         <span className="text-red-500"> *</span>
                       </span>
@@ -553,5 +553,5 @@ export default function FormModal({
         </Dialog>
       </Transition>
     </>
-  )
+  );
 }

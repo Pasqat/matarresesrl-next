@@ -33,10 +33,13 @@ function HeaderBig({
       <div className="fixed top-0 h-full w-full">
         <Image
           src={backgroundImgSrc || background}
-          layout="fill"
-          objectFit="cover"
-          objectPosition="center"
           alt="Cucina realizzata da Matarrese srl"
+          fill
+          sizes="100vw"
+          style={{
+            objectFit: 'cover',
+            objectPosition: 'center',
+          }}
         />
         <span
           id="blackOverlay"
@@ -68,11 +71,9 @@ function HeaderBig({
                 ) : null}
               </motion.div>
               {!noButton && (
-                <Link href={button.link} passHref>
-                  <ButtonLink size="medium" className="mt-8">
-                    <i className="fas fa-message" /> {button.text}
-                  </ButtonLink>
-                </Link>
+                <ButtonLink size="medium" className="mt-8" href={button.link}>
+                  <i className="fas fa-message" /> {button.text}
+                </ButtonLink>
               )}
               {children}
             </div>

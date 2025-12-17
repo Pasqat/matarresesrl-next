@@ -170,6 +170,7 @@ export default function News({ data, groups }) {
                 permalink={`${process.env.NEXT_PUBLIC_DOMAIN}/news/${data.posts[0].slug
                   }`}
                 withBackground
+                priority
               />
             </div>
           )

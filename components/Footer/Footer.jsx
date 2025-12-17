@@ -4,7 +4,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import logoAssogi from '../../public/img/logos/Assogi_logo-300x119.png'
 import logoQucino from '../../public/img/logos/MARCHIO-QUCINO150.png'
-import logoAliGroup from '../../public/img/logos/Ali_Group_logo.png'
 
 import {H4} from '../typography'
 import {Grid} from '../grid'
@@ -52,16 +51,19 @@ export default function Footer() {
       </div>
       <Grid className="py-14">
         <div className="col-span-full mx-auto text-center lg:col-span-3">
-          <Link href="/">
-            <a className="items-center justify-center pb-2">
+          <div className="my-6 text-center pb-2">
+            <div className="relative h-14 mx-auto">
               <Image
-                width={340}
-                height={20}
+                fill
                 alt={'Logo Matarrese srl'}
                 src="/img/logos/logo-matarrese-grigio-350.png"
+                style={{
+                  objectFit: 'contain',
+                }}
+                sizes="100vw"
               />
-            </a>
-          </Link>
+            </div>
+          </div>
           <div className="my-6 text-center">
             <a
               href="https://www.facebook.com/matarresesrl"
@@ -100,35 +102,30 @@ export default function Footer() {
               <div className="relative h-20 w-28">
                 <Image
                   placeholder="blur"
-                  layout="fill"
-                  objectFit="contain"
                   alt="Logo Assogi"
                   src={logoAssogi}
+                  fill
+                  sizes="112px"
+                  style={{
+                    objectFit: 'contain',
+                  }}
                 />
               </div>
             </a>
             <a rel="noreferrer" href="https://www.qucino.it/" target="_blank">
               <div className="relative ml-4 h-20 w-24">
                 <Image
-                  layout="fill"
-                  objectFit="contain"
                   alt="Logo Qucino"
                   src={logoQucino}
                   placeholder="blur"
+                  fill
+                  sizes="96px"
+                  style={{
+                    objectFit: 'contain',
+                  }}
                 />
               </div>
             </a>
-            {/* <a rel="noreferrer" href="https://www.aligroup.it/" target="_blank">
-              <div className="relative h-16 w-16">
-                <Image
-                  layout="fill"
-                  objectFit="contain"
-                  alt="Logo Aligroup"
-                  src={logoAliGroup}
-                  placeholder="blur"
-                />
-              </div>
-            </a> */}
           </div>
         </div>
         <div className="col-span-full pl-4 lg:col-span-3">
@@ -138,37 +135,51 @@ export default function Footer() {
           <nav className="mb-10 list-none">
             <ul>
               <li>
-                <Link href="/azienda">
-                  <a className="text-gray-600 hover:text-gray-800">Chi siamo</a>
+                <Link
+                  href="/azienda"
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  Chi siamo
                 </Link>
               </li>
               <li>
-                <Link href="/contatti">
-                  <a className="text-gray-600 hover:text-gray-800">Contatti</a>
+                <Link
+                  href="/contatti"
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  Contatti
                 </Link>
               </li>
               <li>
-                <Link href="/news">
-                  <a className="text-gray-600 hover:text-gray-800">News</a>
+                <Link
+                  href="/news"
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  News
                 </Link>
               </li>
               <li>
-                <Link href="/realizzazioni">
-                  <a className="text-gray-600 hover:text-gray-800">
-                    Realizzazioni
-                  </a>
+                <Link
+                  href="/realizzazioni"
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  Realizzazioni
                 </Link>
               </li>
               <li>
-                <Link href="/#assogi">
-                  <a className="text-gray-600 hover:text-gray-800">Assogi</a>
+                <Link
+                  href="/#assogi"
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  Assogi
                 </Link>
               </li>
               <li>
-                <Link href="/privacy-policy">
-                  <a className="text-gray-600 hover:text-gray-800">
-                    Termini e Condizioni
-                  </a>
+                <Link
+                  href="/privacy-policy"
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  Termini e Condizioni
                 </Link>
               </li>
             </ul>

@@ -153,10 +153,13 @@ export default function Project({project}) {
                                 >
                                   <Image
                                     src={image.sourceUrl}
-                                    layout="fill"
-                                    objectFit="cover"
-                                    objectPosition="center"
                                     alt={image.altText}
+                                    fill
+                                    sizes="100vw"
+                                    style={{
+                                      objectFit: 'cover',
+                                      objectPosition: 'center',
+                                    }}
                                   />
                                 </div>
                               ))}
@@ -180,9 +183,9 @@ export default function Project({project}) {
                   <H2 as="p">{`Hai anche tu un progetto da realizzare?`}</H2>
                   <Spacer size="2xs" />
                   <div className="flex justify-center">
-                    <Link href="/contatti" passHref>
-                      <ButtonLink size="large">Contattaci!</ButtonLink>
-                    </Link>
+                    <ButtonLink size="large" href="/contatti">
+                      Contattaci!
+                    </ButtonLink>
                   </div>
                 </div>
               </section>

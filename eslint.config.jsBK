@@ -1,0 +1,32 @@
+const js = require('@eslint/js')
+const nextPlugin = require('@next/eslint-plugin-next')
+
+/** @type {import('eslint').Linter.FlatConfig[]} */
+module.exports = [
+  {
+    files: ['**/*.{js,jsx,ts,tsx}'],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: 'module',
+      ecmaFeatures: {
+        jsx: true,
+      },
+      globals: {
+        window: 'readonly',
+        document: 'readonly',
+        console: 'readonly',
+        process: 'readonly',
+        module: 'readonly',
+        require: 'readonly',
+        fetch: 'readonly',
+      },
+    },
+    plugins: {
+      '@next/next': nextPlugin,
+    },
+    rules: {
+      ...js.configs.recommended.rules,
+      ...nextPlugin.configs.recommended.rules,
+    },
+  },
+]

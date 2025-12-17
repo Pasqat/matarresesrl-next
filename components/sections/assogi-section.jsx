@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Image from 'next/image'
+import Image from "next/image"
 
 import {H2, Paragraph} from '../typography'
 import {Grid} from '../grid'
@@ -29,9 +29,11 @@ function AssogiSection() {
           <Image
             src={logoAssogi}
             alt="logo Assogi"
-            layout="intrinsic"
             placeholder="blur"
-          />
+            style={{
+              maxWidth: "100%",
+              height: "auto"
+            }} />
         </a>
       </div>
       <div className="col-span-full lg:col-span-5 lg:col-start-8 lg:mr-12">
@@ -68,7 +70,7 @@ function AssogiSection() {
         </div>
       </div>
     </Grid>
-  )
+  );
 }
 
 export {AssogiSection}

@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Image from 'next/image'
+import Image from "next/image"
 
 import CardSquareImg from '../components/Card/CardSquareImg'
 import ContactForm from '../components/Form/ContactForm'
@@ -59,7 +59,6 @@ export default function Home({groups, lastTwoProjects, event}) {
         <meta property="og:site_name" content="Matarrese srl" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-
       <Layout navbarTransparent>
         <main>
           <ImgSlider />
@@ -156,13 +155,15 @@ export default function Home({groups, lastTwoProjects, event}) {
               <div className="col-span-full mr-8 text-center lg:col-span-6">
                 <Image
                   src={imgHomeAttrezzature}
-                  layout="intrinsic"
-                  objectFit="cover"
-                  objectPosition="center"
                   alt="attrezzature ristorazione nello showroom"
                   className="rounded-lg shadow-sm"
                   placeholder="blur"
-                />
+                  style={{
+                    maxWidth: "100%",
+                    height: "auto",
+                    objectFit: "cover",
+                    objectPosition: "center"
+                  }} />
               </div>
               <div className="col-span-full lg:col-span-6">
                 <div>
@@ -257,9 +258,13 @@ export default function Home({groups, lastTwoProjects, event}) {
                 <Image
                   src={logoSostenibilita}
                   alt="logo Sostenibilità, ecologia, eco-friendly"
-                  layout="intrinsic"
                   placeholder="blur"
-                />
+                  style={{
+                    maxWidth: "100%",
+                    height: "auto",
+                    objectFit: "cover",
+                    objectPosition: "center"
+                  }} />
               </div>
               <div className="col-span-full lg:col-span-9">
                 <H3 variant="secondary" as="p">
@@ -316,9 +321,13 @@ export default function Home({groups, lastTwoProjects, event}) {
                 <Image
                   src={logoAssogi}
                   alt="logo Assogi"
-                  layout="intrinsic"
                   placeholder="blur"
-                />
+                  style={{
+                    maxWidth: "100%",
+                    height: "auto",
+                    objectFit: "cover",
+                    objectPosition: "center"
+                  }} />
               </a>
               <H3
                 variant="secondary"
@@ -342,7 +351,7 @@ export default function Home({groups, lastTwoProjects, event}) {
         </main>
       </Layout>
     </div>
-  )
+  );
 }
 
 export async function getStaticProps() {
