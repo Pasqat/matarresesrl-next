@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Image from "next/image"
+import Image from 'next/image'
 import dynamic from 'next/dynamic'
 
 // import Lottie from 'react-lottie-player'
@@ -87,7 +87,10 @@ export default function AboutUs({lastTwoProjects}) {
 
         <section className="-mt-24 pt-24" id="team">
           <Grid rowGap>
+            {/* Versione a due colonne
             <div className="col-span-full lg:col-span-6">
+             */}
+            <div className="col-span-full mx-auto">
               <FeatureCard
                 icon={
                   <Image
@@ -95,9 +98,10 @@ export default function AboutUs({lastTwoProjects}) {
                     alt="fotografia di Vito Matarrese, socio fondatore e direttore"
                     placeholder="blur"
                     style={{
-                      maxWidth: "100%",
-                      height: "auto"
-                    }} />
+                      maxWidth: '100%',
+                      height: 'auto',
+                    }}
+                  />
                 }
                 title="Vito Matarrese"
                 description={
@@ -116,6 +120,7 @@ export default function AboutUs({lastTwoProjects}) {
                 urlText="Contatta"
               />
             </div>
+            {/*
             <div className="col-span-full lg:col-span-6">
               <FeatureCard
                 icon={
@@ -143,6 +148,7 @@ export default function AboutUs({lastTwoProjects}) {
                 }
               />
             </div>
+            */}
           </Grid>
         </section>
 
@@ -185,11 +191,12 @@ export default function AboutUs({lastTwoProjects}) {
                 className="rounded-lg shadow-sm"
                 placeholder="blur"
                 style={{
-                  maxWidth: "100%",
-                  height: "auto",
-                  objectFit: "cover",
-                  objectPosition: "center"
-                }} />
+                  maxWidth: '100%',
+                  height: 'auto',
+                  objectFit: 'cover',
+                  objectPosition: 'center',
+                }}
+              />
             </div>
             {/* <CardBigImg
                   title="Vicini al Cliente"
@@ -215,8 +222,9 @@ export default function AboutUs({lastTwoProjects}) {
                   fill
                   sizes="100vw"
                   style={{
-                    objectFit: "cover"
-                  }} />
+                    objectFit: 'cover',
+                  }}
+                />
               </div>
             </div>
             <div className="col-span-full lg:col-span-5 lg:col-start-8 lg:row-start-1">
@@ -244,7 +252,7 @@ export default function AboutUs({lastTwoProjects}) {
         </section>
       </Layout>
     </>
-  );
+  )
 }
 
 export async function getStaticProps() {
