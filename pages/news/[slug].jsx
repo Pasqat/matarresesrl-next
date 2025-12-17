@@ -45,57 +45,58 @@ export default function Post({postData, posts, img, css, preview}) {
       '@id': `${process.env.NEXT_PUBLIC_DOMAIN}/news/${postData.slug}`,
     },
   }
-
-  console.info(postData)
+  console.log('postaData.faq', postData?.faqs)
   // FAQ JSON-LD (rimuove HTML per il campo text usato nello schema)
-  const faqSchema =
-    postData?.faqs?.faqs && postData.faqs.faqs.length
-      ? {
-          '@context': 'https://schema.org',
-          '@type': 'FAQPage',
-          mainEntity: postData.faqs.faqs.map(faq => ({
-            '@type': 'Question',
-            name: faq.question,
-            acceptedAnswer: {
-              '@type': 'Answer',
-              // rimuove tag HTML per fornire testo pulito allo schema
-              text: (faq.answer || '').replace(/<[^>]+>/g, '').trim(),
-            },
-          })),
-        }
-      : null
+  const faqSchema = postData?.faqs
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: postData.faqs.map(faq => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            // rimuove tag HTML per fornire testo pulito allo schema
+            text: (faq.answer || '').replace(/<[^>]+>/g, '').trim(),
+          },
+        })),
+      }
+    : null
 
   // Unisce con lo schema generato da Yoast (postData.seo.schemaJson)
-  let yoastSchema = null
-  try {
-    yoastSchema = JSON.parse(postData.seo?.schemaJson || '{}')
-  } catch (e) {
-    yoastSchema = null
-  }
+  // let yoastSchema = null
+  // try {
+  //   yoastSchema = JSON.parse(postData.seo?.schemaJson || '{}')
+  // } catch (e) {
+  //   yoastSchema = null
+  // }
 
-  let fullSchema = null
-  if (yoastSchema && Object.keys(yoastSchema).length) {
-    if (faqSchema) {
-      // Se yoast restituisce un array di graph, aggiungi FAQ come elemento separato
-      if (Array.isArray(yoastSchema)) {
-        fullSchema = [...yoastSchema, faqSchema]
-      } else if (yoastSchema['@type'] === 'FAQPage') {
-        // Se Yoast è già FAQPage, unisci le mainEntity
-        const mergedMainEntity = [
-          ...(yoastSchema.mainEntity || []),
-          ...(faqSchema.mainEntity || []),
-        ]
-        fullSchema = {...yoastSchema, mainEntity: mergedMainEntity}
-      } else {
-        // Yoast è un singolo oggetto non-FAQ: trasformalo in array con l'FAQ
-        fullSchema = [yoastSchema, faqSchema]
-      }
-    } else {
-      fullSchema = yoastSchema
-    }
-  } else {
-    fullSchema = faqSchema || newsStructuredData
-  }
+  // console.log('yoastSchema', yoastSchema)
+  console.log('faqSchema', faqSchema)
+
+  // let fullSchema = null
+  // if (yoastSchema && Object.keys(yoastSchema).length) {
+  //   if (faqSchema) {
+  //     // Se yoast restituisce un array di graph, aggiungi FAQ come elemento separato
+  //     if (Array.isArray(yoastSchema)) {
+  //       fullSchema = [...yoastSchema, faqSchema]
+  //     } else if (yoastSchema['@type'] === 'FAQPage') {
+  //       // Se Yoast è già FAQPage, unisci le mainEntity
+  //       const mergedMainEntity = [
+  //         ...(yoastSchema.mainEntity || []),
+  //         ...(faqSchema.mainEntity || []),
+  //       ]
+  //       fullSchema = {...yoastSchema, mainEntity: mergedMainEntity}
+  //     } else {
+  //       // Yoast è un singolo oggetto non-FAQ: trasformalo in array con l'FAQ
+  //       fullSchema = [yoastSchema, faqSchema]
+  //     }
+  //   } else {
+  //     fullSchema = yoastSchema
+  //   }
+  // } else {
+  //   fullSchema = faqSchema || newsStructuredData
+  // }
 
   const StructuredData = require('../../components/StructuredData').default
   return (
@@ -117,8 +118,8 @@ export default function Post({postData, posts, img, css, preview}) {
               slug: `news/${postData.slug}`,
             })}
           </Head>
-          {/* <StructuredData data={newsStructuredData} /> */}
-          <StructuredData data={fullSchema} />
+          <StructuredData data={newsStructuredData} />
+          <StructuredData data={faqSchema} />
           <article className="bg-gray-100">
             <div className="mx-auto max-w-7xl py-4 md:px-5 md:py-16">
               <main className="md:mb-24">
