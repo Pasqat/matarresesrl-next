@@ -1,6 +1,6 @@
 // next.config.js
 module.exports = {
-  swcMinify: true,
+  // swcMinify: true,
   images: {
     remotePatterns: [
       {protocol: 'https', hostname: 'be.matarrese.it'},
