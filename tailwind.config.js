@@ -12,12 +12,12 @@ module.exports = {
       xl: '1500px', // this is the "design resolution"
     },
     colors: {
-      'trasparent': 'transparent',
-      'current': 'currentColor',
-      'white': 'var(--color-white)',
-      'black': 'var(--color-black)',
+      trasparent: 'transparent',
+      current: 'currentColor',
+      white: 'var(--color-white)',
+      black: 'var(--color-black)',
 
-      'gray': {
+      gray: {
         100: 'var(--color-gray-100)',
         200: 'var(--color-gray-200)',
         300: 'var(--color-gray-300)',
@@ -28,29 +28,32 @@ module.exports = {
         800: 'var(--color-gray-800)',
         900: 'var(--color-gray-900)',
       },
-      'yellow': {
+      yellow: {
         400: 'var(--color-yellow-400)',
         500: 'rgb(var(--color-yellow-500) / <alpha-value>)',
         600: 'var(--color-yellow-600)',
       },
-      'red': {
+      red: {
         400: 'var(--color-red-400)',
         500: 'var(--color-red-500)',
         600: 'var(--color-red-400)',
       },
-      'green': {
+      green: {
         100: 'var(--color-green-100)',
         400: 'var(--color-green-400)',
         500: 'var(--color-green-500)',
         600: 'var(--color-green-600)',
         700: 'var(--color-green-700)',
       },
-    },
-    gradientColorStops: theme => ({
-      ...theme('colors'),
+
       primary: 'rgb(var(--color-yellow-500))',
       secondary: 'var(--color-red-500)',
-    }),
+    },
+    // gradientColorStops: theme => ({
+    //   ...theme('colors'),
+    //   primary: 'rgb(var(--color-yellow-500))',
+    //   secondary: 'var(--color-red-500)',
+    // }),
     extend: {
       gridTemplateRows: {
         'max-content': 'max-content',
@@ -150,7 +153,6 @@ module.exports = {
               {
                 '> *': {
                   gridColumn: '1 / -1',
-
                   [`@media (min-width: ${theme('screens.lg')})`]: {
                     gridColumn: '3 / span 8',
                   },
@@ -192,7 +194,6 @@ module.exports = {
                   marginRight: `-${theme('spacing.10vw')}`,
                   padding: theme('spacing.8'),
                   borderRadius: 0,
-
                   [`@media (min-width: ${theme('screens.lg')})`]: {
                     borderRadius: theme('borderRadius.lg'),
                     ...breakout,
@@ -291,6 +292,5 @@ module.exports = {
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
-    require('autoprefixer'),
   ],
 }

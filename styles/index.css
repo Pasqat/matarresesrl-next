@@ -1,6 +1,12 @@
-@tailwind base;
+@config "../tailwind.config.js";
+@import "tailwindcss";
+
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
+
+@import "./globals.css";
+
 
 /* tailwind is configured to prefer this font */
 @font-face {
@@ -21,17 +27,24 @@
   font-display: swap;
 }
 
-strong {
-  @apply text-gray-900;
-}
+
 
 @layer components {
   .bg-gradient-tl-yellow {
     @apply bg-gradient-to-tl from-primary to-secondary;
   }
+
+  body::-webkit-scrollbar-thumb {
+  @apply bg-yellow-500;
+  box-shadow: 0 3px 9px 1px rgba(63, 34, 0, 0.534);
+}
 }
 
 @layer utilities {
+  strong {
+    @apply text-gray-900;
+  }
+
   .focus-ring {
     @apply focus:outline-none focus-within:outline-none transition duration-300 disabled:ring-0 hover:ring-2 focus:ring-2 focus-within:ring-2 group-hover:ring-2 group-focus:ring-2 hover:ring-yellow-500 focus:ring-yellow-500 focus-within:ring-yellow-500 group-hover:ring-yellow-500 group-focus:ring-yellow-500 ring-offset-4 ring-offset-white;
   }
@@ -310,6 +323,7 @@ strong {
     @apply text-center;
   }
 }
+
 
 
 /* Wrapping */

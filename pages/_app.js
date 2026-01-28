@@ -1,4 +1,3 @@
-import "../styles/globals.css";
 import "../styles/index.css";
 import { ApolloProvider } from "@apollo/client";
 import Script from "next/script";

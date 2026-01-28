@@ -1,3 +1,5 @@
+import next from "eslint-config-next";
+import nextCoreWebVitals from "eslint-config-next/core-web-vitals";
 const {
     defineConfig,
 } = require("eslint/config");
@@ -38,7 +40,7 @@ module.exports = defineConfig([{
         },
     },
 
-    extends: compat.extends("next", "prettier", "next/core-web-vitals"),
+    extends: [...next, ...compat.extends("prettier"), ...nextCoreWebVitals],
 
     rules: {
         "react-hooks/rules-of-hooks": "error",
