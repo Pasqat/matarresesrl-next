@@ -18,6 +18,7 @@ import FBMlogo from '../../public/img/logos/FBM_LOGO-High-Res.png'
 import UEfundedLogo from '../../public/img/logos/funded-eu-blue.png'
 import PrimaLogo from '../../public/img/logos/prima-logo-hor.png'
 import FBM_ReD_page from '../../public/img/FBM-ReS_page.webp'
+import OHOWOW from '../../public/img/progetto_carni_2025.jpg'
 
 export default function AboutUs() {
   return (
@@ -171,43 +172,95 @@ export default function AboutUs() {
               </div>
             </div>
           </Grid>
+        </section>
 
-          {/*
-         <div className="container mx-auto my-12 max-w-7xl px-16">
-            <div className="grid grid-cols-2 place-content-between gap-x-4 gap-y-4 md:grid-cols-3">
-              <Image
-                key="Funded-UE"
-                width={360}
-                height={95}
-                objectFit="contain"
-                src={UEfundedLogo}
-                alt="Funded by the European Union"
-                placeholder="blur"
-                blurDataURL={UEfundedLogo}
-              />
-              <Image
-                key="Prima"
-                width={360}
-                height={95}
-                objectFit="contain"
-                src={PrimaLogo}
-                alt="Prima Partnership for researh and innovation in the mediterranean area"
-                placeholder="blur"
-                blurDataURL={PrimaLogo}
-              />
-              <Image
-                key={'FBMlogo'}
-                width={360}
-                height={95}
-                objectFit="contain"
-                src={FBMlogo}
-                alt={`Flat Bread Mine logo`}
-                placeholder="blur"
-                blurDataURL={FBMlogo}
-              />
+        <section className="-mt-24 pt-24" id="flat-bread-mine">
+          <Grid rowGap>
+            <H3 className="col-span-full mb-2" variant="secondary">
+              One Health, One Welfare, One World
+            </H3>
+
+            <div className="col-span-full text-center lg:col-span-6 lg:ml-8">
+              <div className="grid-row-2 grid h-full justify-stretch">
+                <Image
+                  src={OHOWOW}
+                  alt="attrezzature ristorazione nello showroom"
+                  className="rounded-lg shadow-sm"
+                  placeholder="blur"
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                  }}
+                />
+                {/* <div className="mt-8 grid grid-cols-2 place-content-between gap-x-4 gap-y-4 md:grid-cols-3">
+                  <Image
+                    key="Funded-UE"
+                    width={360}
+                    height={95}
+                    src={UEfundedLogo}
+                    alt="Funded by the European Union"
+                    placeholder="blur"
+                    style={{
+                      maxWidth: '100%',
+                      height: 'auto',
+                      objectFit: 'contain',
+                      objectPosition: 'center',
+                    }}
+                  />
+                  <Image
+                    key="Prima"
+                    width={360}
+                    height={95}
+                    src={PrimaLogo}
+                    alt="Prima Partnership for researh and innovation in the mediterranean area"
+                    placeholder="blur"
+                    style={{
+                      maxWidth: '100%',
+                      height: 'auto',
+                      objectFit: 'contain',
+                      objectPosition: 'center',
+                    }}
+                  />
+                  <Image
+                    key={'FBMlogo'}
+                    width={360}
+                    height={95}
+                    src={FBMlogo}
+                    alt={`Flat Bread Mine logo`}
+                    placeholder="blur"
+                    style={{
+                      maxWidth: '100%',
+                      height: 'auto',
+                      objectFit: 'contain',
+                      objectPosition: 'center',
+                    }}
+                  />
+                </div> */}
+              </div>
             </div>
-          </div>
-          */}
+
+                        <div className="col-span-full lg:col-span-6">
+              <p className="mb-4 text-lg font-light leading-relaxed text-gray-600">
+                Il progetto “One health-one welfare-one world” nasce per innovare le filiere del latte e della carne al fine di migliorare il benessere dell’uomo.
+              </p>
+              <p className="mb-4 mt-0 text-lg font-light leading-relaxed text-gray-600">
+                Grazie alla collaborazione tra le Università di Bari, dipartimento di Veterinaria, del Molise, di Teramo e imprese agro-zootecniche pugliesi, il progetto ha sviluppato dei protocolli per la produzione di carni e prodotti caseari con contenuto lipidico ridotto, maggiore sicurezza e una shelf-life più lunga.
+              </p>
+              <p className="mb-4 mt-0 text-lg font-light leading-relaxed text-gray-600">
+                Il progetto dimostra come, con l’introduzione di foraggi idroponici di orzo e piselli, e un mix di oli essenziali estratti da alloro e carciofi, si possa aiutare anche la sostenibilità ambientale e tutelare la salute del bestiame e dei consumatori. Il campione di 100 volontari ha mostrato che, l’assunzione di prodotti lavorati secondo i protocolli del progetto ha generato un maggiore beneficio per i batteri buoni dell’intestino.
+                I risultati del progetto sono stati presentati giovedì 11 dicembre 2025 nell’azienda Matarrese ad Alberobello.
+
+              </p>
+              <p className="mb-4 mt-0 text-lg font-light leading-relaxed text-gray-600">
+                {`Scopri di più sulla pagina ufficiale del progetto\n`}
+                <LinkButton href="https://www.ponricerca.gov.it" withArrow>
+                  https://www.ponricerca.gov.it
+                </LinkButton>
+              </p>
+            </div>
+          </Grid>
         </section>
 
         <Spacer size="base" />
