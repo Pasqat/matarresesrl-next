@@ -9,7 +9,7 @@
     "build": "next build",
     "postbuild": "npx --yes next-sitemap",
     "start": "next start",
-    "format": "yarn lint --fix",
+    "format": "pnpm lint --fix",
     "lint": "npx eslint .",
     "lint:no-path": "npx eslint"
   },
