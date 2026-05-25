@@ -134,17 +134,16 @@ export default function AboutUs({lastTwoProjects}) {
                     }}
                   />
                 }
-                title="Giovanni Matarrese"
+                title="Gianni Matarrese"
                 description={
                   <>
-                    <p className="text-gray-400">Socio fondatore</p>
+                    <p className="text-gray-400">Socio</p>
                     <br />
                     <p>
-                      Giovanni opera con dimestichezza e passione nel campo
-                      della trasformazione alimentare, ottimizzando i processi
-                      di lavorazione anche negli altri settori, trovando
-                      soluzioni ottimali nel pieno rispetto dell&apos;uomo e del
-                      suo ambiente.
+                      Gianni opera con dimestichezza nel campo della
+                      trasformazione alimentare, ottimizzando i processi di
+                      lavorazione e trovando soluzioni ottimali declinabili
+                      anche nel campo della ristorazione professionale.
                     </p>
                   </>
                 }
@@ -169,7 +168,7 @@ export default function AboutUs({lastTwoProjects}) {
                 title="Pasquale Matarrese"
                 description={
                   <>
-                    <p className="text-gray-400">Socio fondatore</p>
+                    <p className="text-gray-400">Socio</p>
                     <br />
                     <p>Pasquale opera</p>
                   </>
