@@ -37,3 +37,6 @@ yarn-error.log*
 .vercel
 
 TODO.md
+
+# Claude Code
+.claude/launch.json
