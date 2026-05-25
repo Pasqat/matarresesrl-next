@@ -90,7 +90,7 @@ export default function AboutUs({lastTwoProjects}) {
             {/* Versione a due colonne
             <div className="col-span-full lg:col-span-6">
              */}
-            <div className="col-span-full mx-auto">
+            <div className="col-span-full lg:col-span-4">
               <FeatureCard
                 icon={
                   <Image
@@ -121,7 +121,7 @@ export default function AboutUs({lastTwoProjects}) {
               />
             </div>
 
-            <div className="col-span-full lg:col-span-6">
+            <div className="col-span-full lg:col-span-4">
               <FeatureCard
                 icon={
                   <Image
@@ -153,7 +153,7 @@ export default function AboutUs({lastTwoProjects}) {
               />
             </div>
 
-            <div className="col-span-full lg:col-span-6">
+            <div className="col-span-full lg:col-span-4">
               <FeatureCard
                 icon={
                   <Image
