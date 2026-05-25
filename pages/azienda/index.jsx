@@ -120,35 +120,64 @@ export default function AboutUs({lastTwoProjects}) {
                 urlText="Contatta"
               />
             </div>
-            {/*
+
             <div className="col-span-full lg:col-span-6">
               <FeatureCard
                 icon={
                   <Image
                     src={DomenicoMatarreseProfileImage}
-                    alt="fotografia di Domenico Matarrese"
+                    alt="fotografia di Giovanni Matarrese"
                     placeholder="blur"
                     style={{
-                      maxWidth: "100%",
-                      height: "auto"
-                    }} />
+                      maxWidth: '100%',
+                      height: 'auto',
+                    }}
+                  />
                 }
-                title="Domenico Matarrese"
+                title="Giovanni Matarrese"
                 description={
                   <>
                     <p className="text-gray-400">Socio fondatore</p>
                     <br />
                     <p>
-                      Domenico opera con dimestichezza e passione nel campo
-                      della refrigerazione industriale e della climatizzazione,
-                      trovando soluzioni ottimali nel pieno rispetto
-                      dell&apos;uomo e del suo ambiente.
+                      Giovanni opera con dimestichezza e passione nel campo
+                      della trasformazione alimentare, ottimizzando i processi
+                      di lavorazione anche negli altri settori, trovando
+                      soluzioni ottimali nel pieno rispetto dell&apos;uomo e del
+                      suo ambiente.
                     </p>
                   </>
                 }
+                url="mailto:gianni.matarrese@matarrese.it"
+                urlText="Contatta"
               />
             </div>
-            */}
+
+            <div className="col-span-full lg:col-span-6">
+              <FeatureCard
+                icon={
+                  <Image
+                    src={DomenicoMatarreseProfileImage}
+                    alt="fotografia di Pasquale Matarrese"
+                    placeholder="blur"
+                    style={{
+                      maxWidth: '100%',
+                      height: 'auto',
+                    }}
+                  />
+                }
+                title="Pasquale Matarrese"
+                description={
+                  <>
+                    <p className="text-gray-400">Socio fondatore</p>
+                    <br />
+                    <p>Pasquale opera</p>
+                  </>
+                }
+                url="mailto:pasquale.matarrese@matarrese.it"
+                urlText="Contatta"
+              />
+            </div>
           </Grid>
         </section>
 
