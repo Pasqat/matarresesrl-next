@@ -109,11 +109,6 @@ module.exports = {
         permanent: false,
       },
       {
-        source: '/prodotti/arredo-e-complementi',
-        destination: '/prodotti',
-        permanent: true,
-      },
-      {
         source: '/prodotti/aspirazione',
         destination: '/prodotti',
         permanent: false,
@@ -212,7 +207,7 @@ module.exports = {
       },
       {
         source: '/news/tag/:slug',
-        destination: '/news?=q:slug',
+        destination: '/news?q=:slug',
         permanent: true,
       },
       {

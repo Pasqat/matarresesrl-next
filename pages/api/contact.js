@@ -134,13 +134,6 @@ export default async function handler(req, res) {
   // Optionally create a lead in Odoo via XML-RPC. Make failures blocking if ODOO_MUST_SYNC === 'true'
     if (process.env.ODOO_ENABLED === 'true') {
       try {
-        console.log('[API] Invio dati a Odoo:', {
-          referente,
-          senderMail,
-          tel,
-          company,
-          formContent,
-        })
         await maybeCreateOdooLead({
           referente,
           senderMail,
@@ -149,7 +142,6 @@ export default async function handler(req, res) {
           formContent,
           source,
         })
-        console.log('[API] Invio a Odoo completato')
       } catch (err) {
         logStructuredError('maybeCreateOdooLead', err)
         console.error('[API] Errore invio Odoo:', err)
