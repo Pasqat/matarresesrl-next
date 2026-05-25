@@ -121,7 +121,7 @@ export default function AboutUs({lastTwoProjects}) {
               />
             </div>
 
-            <div className="col-span-full lg:col-span-4">
+            {/* <div className="col-span-full lg:col-span-4">
               <FeatureCard
                 icon={
                   <Image
@@ -176,7 +176,7 @@ export default function AboutUs({lastTwoProjects}) {
                 url="mailto:pasquale.matarrese@matarrese.it"
                 urlText="Contatta"
               />
-            </div>
+            </div> */}
           </Grid>
         </section>
 
