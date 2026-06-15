@@ -23,7 +23,10 @@ export default function Events({data, groups}) {
     <>
       <Head>
         <title>Eventi per l&apos;ho.re.ca | Matarrese srl</title>
-        <link rel="canonical" href="https://www.matarrese.it/eventi/" />
+        <link
+          rel="canonical"
+          href={`${process.env.NEXT_PUBLIC_DOMAIN}/eventi`}
+        />
         <meta name="author" content="Matarrese srl" />
         <meta
           name="robots"
@@ -38,7 +41,10 @@ export default function Events({data, groups}) {
           property="og:description"
           content="I prossimi eventi che si terranno a cura di Matarrese srl. Approfondimenti, master class, demo ed altro"
         />
-        <meta property="og:url" content="https://www.matarrese.it/eventi" />
+        <meta
+          property="og:url"
+          content={`${process.env.NEXT_PUBLIC_DOMAIN}/eventi`}
+        />
         <meta
           property="og:image"
           content={`${process.env.NEXT_PUBLIC_DOMAIN}/img/piazza_grande_61.jpg`}
@@ -73,6 +79,7 @@ export default function Events({data, groups}) {
               title="Eventi formativi e dimostrativi per la ristorazione"
               imageSize="large"
               image="/img/header_eventi.jpg"
+              imageAlt="Eventi formativi e dimostrativi per la ristorazione"
             />
           )}
           {data.futureEvent.length ? (

@@ -102,7 +102,10 @@ export default function Realizzazioni({data}) {
     <div>
       <Head>
         <title>Progettazione spazi e cucine</title>
-        <link rel="canonical" href="https://www.matarrese.it/realizzazioni/" />
+        <link
+          rel="canonical"
+          href={`${process.env.NEXT_PUBLIC_DOMAIN}/realizzazioni`}
+        />
         <meta
           name="robots"
           content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
@@ -112,7 +115,7 @@ export default function Realizzazioni({data}) {
           name="description"
           content="Allestimento bar, ristoranti e gastronomia. Arredamento su misura, progettazione tecnica, supporto e manutenzione attrezzature per ristorazione."
         />
-        <meta property="og:title" content="News" />
+        <meta property="og:title" content="Realizzazioni" />
         <meta
           property="og:description"
           content="Alcune delle nostre realizzazioni"
@@ -125,7 +128,10 @@ export default function Realizzazioni({data}) {
           property="og:url"
           content={`${process.env.NEXT_PUBLIC_DOMAIN}/realizzazioni`}
         />
-        <meta property="og:type" content="blog" />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="it_IT" />
+        <meta property="og:site_name" content="Matarrese srl" />
+        <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
       <Layout>
