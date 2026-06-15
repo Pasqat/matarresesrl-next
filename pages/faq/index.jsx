@@ -12,7 +12,7 @@ const FAQS = [
   {
     question: 'Quali servizi offre Matarrese srl?',
     answer:
-      "Matarrese srl offre consulenza per attività ho.re.ca. e nell'industria della trasfromazione agroalimentare, progettazione tecnica di locali commerciali e cucine professionali, realizzazione di arredi su misura, progettazione di impianti di aspirazione e assistenza tecnica post-vendita.",
+      "Matarrese srl offre consulenza per attività ho.re.ca. e nell'industria della trasformazione agroalimentare, progettazione tecnica di locali commerciali e cucine professionali, realizzazione di arredi su misura, progettazione di impianti di aspirazione e assistenza tecnica post-vendita.",
   },
   {
     question: 'Dove si trova lo showroom Matarrese srl?',
@@ -37,7 +37,7 @@ const FAQS = [
   {
     question: 'Quali marchi di attrezzature trattate?',
     answer:
-      'Selezioniamo i migliori marchi del settore ho.re.ca., con predilezione per il Made in Italy, tra cui Lainox, Unox, Ratioanl, Silko, Pedrali, Ciam, Qucino Optimum e altri primari produttori.',
+      'Selezioniamo i migliori marchi del settore ho.re.ca., con predilezione per il Made in Italy, tra cui Lainox, Unox, Rational, Silko, Pedrali, Ciam, Qucino Optimum e altri primari produttori.',
   },
   {
     question: 'Realizzate arredi su misura?',
@@ -65,7 +65,7 @@ export default function Faq() {
         <meta name="author" content="Matarrese srl" />
         <meta
           name="description"
-          content="Risposte alle domande frequenti su attrezzature ho.re.ca., apertura di un locale, arredi su misura, assistenza tecnica, formazione e MEPA."
+          content="Risposte alle domande frequenti su attrezzature ho.re.ca., apertura di un locale, arredi su misura, assistenza tecnica, marchi trattati, prove One to One e MEPA."
         />
         <meta
           name="robots"
