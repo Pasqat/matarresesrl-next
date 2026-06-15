@@ -12,7 +12,9 @@ module.exports = {
     imageSizes: [
       16, 32, 48, 64, 96, 128, 256, 384, 512, 768, 1024, 1280, 1600, 1920, 3840,
     ],
-    unoptimized: true, // rimuovere o tenere solo come workaround temporaneo
+    // Ottimizzazione immagini riattivata: Next genera srcset/WebP on-demand.
+    // NB su Vercel l'ottimizzazione immagini ha quote/costi: monitorare l'uso
+    // dopo il deploy. Per disattivarla reimpostare `unoptimized: true`.
   },
   async redirects() {
     return [

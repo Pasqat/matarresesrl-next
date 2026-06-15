@@ -21,13 +21,31 @@ import arredoSuMisura from '../../public/img/arredo-su-misura-prodotti.jpg'
 import {getGroups} from '../../lib/newsletter'
 import FormModal from '../../components/Form/FormModal'
 import {Button} from '../../components/button'
+import StructuredData from '../../components/StructuredData'
+import {itemListSchema, breadcrumbSchema} from '../../lib/seo/schema'
+
+const CATEGORIE_PRODOTTO = [
+  'Cottura professionale',
+  'Refrigerazione',
+  'Macchinari agroalimentari',
+  'Attrezzature per ristorazione',
+  'Arredi su misura',
+  'Forniture alberghiere e hotellerie',
+  'Impianti di aspirazione',
+  'Impianti di climatizzazione',
+  'Sanificazione',
+  'Lavaggio e lavanderia',
+]
 
 export default function ProductsHome({groups}) {
   return (
     <>
       <Head>
         <title>Attrezzature horeca e forniture alberghiere</title>
-        <link rel="canonical" href="https://www.matarrese.it/prodotti" />
+        <link
+          rel="canonical"
+          href={`${process.env.NEXT_PUBLIC_DOMAIN}/prodotti`}
+        />
         <meta name="author" content="Matarrese srl" />
         <meta
           name="description"
@@ -46,8 +64,19 @@ export default function ProductsHome({groups}) {
           property="og:image"
           content={`${process.env.NEXT_PUBLIC_DOMAIN}/img/prodotti_og.webp`}
         />
-        <meta property="og:url" content="https://www.matarrese.it/prodotti" />
+        <meta
+          property="og:url"
+          content={`${process.env.NEXT_PUBLIC_DOMAIN}/prodotti`}
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="it_IT" />
+        <meta property="og:site_name" content="Matarrese srl" />
+        <meta name="twitter:card" content="summary_large_image" />
       </Head>
+      <StructuredData
+        data={itemListSchema('Categorie prodotto Matarrese srl', CATEGORIE_PRODOTTO)}
+      />
+      <StructuredData data={breadcrumbSchema([{name: 'Prodotti', path: '/prodotti'}])} />
       <Layout>
         <div className="mb-12 lg:mb-24 xl:mb-48">
           <ProductSection />

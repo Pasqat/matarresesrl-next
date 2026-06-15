@@ -24,33 +24,37 @@ export default function AboutUs() {
   return (
     <>
       <Head>
-        <title>Supportiamo ristoranti e imprenditori</title>
-        <link rel="canonical" href="https://www.matarrese.it/azienda" />
+        <title>Ricerca e Sviluppo | Matarrese srl</title>
+        <link
+          rel="canonical"
+          href={`${process.env.NEXT_PUBLIC_DOMAIN}/ricerca`}
+        />
         <meta name="author" content="Matarrese srl" />
         <meta
           name="description"
-          content="Al servizio dei professionisti della ristorazione, progettiamo cucine professionali, interior design e consulenza per imprenditori"
+          content="I progetti di Ricerca e Sviluppo di Matarrese srl: innovazione nella ristorazione professionale, dal progetto europeo Flat Bread Mine alle nuove tecnologie in cucina."
         />
         <meta
           name="robots"
           content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
         />
-        <meta name="author" content="Matarrese srl" />
-        <meta
-          name="description"
-          content="Al servizio dei professionisti della ristorazione, progettiamo cucine professionali, interior design e consulenza per imprenditori"
-        />
-        <meta property="og:title" content="Chi Siamo" />
+        <meta property="og:title" content="Ricerca e Sviluppo" />
         <meta
           property="og:description"
-          content="Al servizio dei professionisti della ristorazione"
+          content="Innovazione nella ristorazione professionale: i progetti di Ricerca e Sviluppo di Matarrese srl."
         />
         <meta
           property="og:image"
           content={`${process.env.NEXT_PUBLIC_DOMAIN}/img/piazza_grande_61.jpg`}
         />
-        <meta property="og:url" content="https://www.matarrese.it/azienda" />
-        <meta property="og:type" content="blog" />
+        <meta
+          property="og:url"
+          content={`${process.env.NEXT_PUBLIC_DOMAIN}/ricerca`}
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="it_IT" />
+        <meta property="og:site_name" content="Matarrese srl" />
+        <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <Layout>
         <div className="mb-12 lg:mb-24">

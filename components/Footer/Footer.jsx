@@ -69,8 +69,14 @@ export default function Footer() {
               href="https://www.facebook.com/matarresesrl"
               target="_blank"
               rel="noreferrer"
+              aria-label="Matarrese srl su Facebook"
             >
-              <button className="mr-2 h-10 w-10 font-normal" type="button">
+              <button
+                className="mr-2 h-10 w-10 font-normal"
+                type="button"
+                aria-hidden="true"
+                tabIndex={-1}
+              >
                 <FacebookIcon size="30" />
               </button>
             </a>
@@ -78,8 +84,14 @@ export default function Footer() {
               href="https://www.linkedin.com/company/matarrese-srl/"
               rel="noreferrer"
               target="_blank"
+              aria-label="Matarrese srl su LinkedIn"
             >
-              <button className="mr-2 h-10 w-10 font-normal" type="button">
+              <button
+                className="mr-2 h-10 w-10 font-normal"
+                type="button"
+                aria-hidden="true"
+                tabIndex={-1}
+              >
                 <LinkedInIcon size="30" />
               </button>
             </a>
@@ -87,8 +99,14 @@ export default function Footer() {
               rel="noreferrer"
               href="https://www.instagram.com/matarrese.srl/"
               target="_blank"
+              aria-label="Matarrese srl su Instagram"
             >
-              <button className="mr-2 h-10 w-10 font-normal" type="button">
+              <button
+                className="mr-2 h-10 w-10 font-normal"
+                type="button"
+                aria-hidden="true"
+                tabIndex={-1}
+              >
                 <InstagramIcon size="30" />
               </button>
             </a>
@@ -164,6 +182,14 @@ export default function Footer() {
                   className="text-gray-600 hover:text-gray-800"
                 >
                   Realizzazioni
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/faq"
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  FAQ
                 </Link>
               </li>
               <li>

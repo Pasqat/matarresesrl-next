@@ -15,65 +15,56 @@ import {H1} from '../../components/typography'
 
 import {getAllPostsWithSlug, getPost, getMorePosts} from '../../lib/query/post'
 import {SeoDataSection} from '../../components/sections/seodata-section'
+import StructuredData from '../../components/StructuredData'
+import {articleSchema, faqSchema as buildFaqSchema, breadcrumbSchema} from '../../lib/seo/schema'
 
 export default function Post({postData, posts, img, css, preview}) {
   const router = useRouter()
 
   const tags = postData?.tags?.nodes.flatMap(t => t.name)
 
-  // if (!router.isFallback && !postData.slug) {
-  //   console.log('sdeng 💣️')
-  //   return <p>hmm...sembra ci sia un errore</p>
-  // }
-  //
-
-  // Schema.org NewsArticle JSON-LD
-  const newsStructuredData = postData && {
-    '@context': 'https://schema.org',
-    '@type': 'NewsArticle',
-    headline: postData.title,
-    datePublished: postData.date,
-    dateModified: postData.modified,
-    author: {
-      '@type': 'Person',
-      name: postData.seo?.opengraphAuthor || 'Matarrese srl',
-    },
-    image: postData.featuredImage?.node?.mediaItemUrl,
-    description: postData.seo?.metaDesc || postData.title,
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': `${process.env.NEXT_PUBLIC_DOMAIN}/news/${postData.slug}`,
-    },
-  }
+  // Schema.org BlogPosting JSON-LD
+  const newsStructuredData =
+    postData &&
+    articleSchema({
+      title: postData.title,
+      description: postData.seo?.metaDesc || postData.title,
+      slug: postData.slug,
+      image: postData.featuredImage?.node?.mediaItemUrl,
+      datePublished: postData.date,
+      dateModified: postData.modified,
+      author: postData.seo?.opengraphAuthor,
+    })
 
   const faqsArray = Array.isArray(postData?.faqs) ? postData.faqs : []
-  // FAQ JSON-LD (rimuove HTML per il campo text usato nello schema)
-  const faqSchema = faqsArray.length
-    ? {
-        '@context': 'https://schema.org',
-        '@type': 'FAQPage',
-        mainEntity: faqsArray.map(faq => ({
-          '@type': 'Question',
-          name: faq.question,
-          acceptedAnswer: {
-            '@type': 'Answer',
-            // rimuove tag HTML per fornire testo pulito allo schema
-            text: (faq.answer || '').replace(/<[^>]+>/g, '').trim(),
-          },
-        })),
-      }
-    : null
+  // FAQ JSON-LD (rimuove HTML dal testo per uno schema pulito)
+  const faqStructuredData = buildFaqSchema(
+    faqsArray.map(faq => ({
+      question: faq.question,
+      answer: (faq.answer || '').replace(/<[^>]+>/g, '').trim(),
+    })),
+  )
 
-  const StructuredData = require('../../components/StructuredData').default
+  const breadcrumb =
+    postData &&
+    breadcrumbSchema([
+      {name: 'News', path: '/news'},
+      {name: postData.title, path: `/news/${postData.slug}`},
+    ])
+
   return (
     <Layout preview={preview}>
       {router.isFallback ? (
         <>
           <Head>
-            <title>Matarrese srl</title>
+            <title>Caricamento articolo | Matarrese srl</title>
           </Head>
-          <main className="mx-auto max-w-7xl py-16">
-            <h2>Loading...</h2>
+          <main
+            className="mx-auto max-w-7xl py-16 text-center"
+            role="status"
+            aria-live="polite"
+          >
+            <p className="text-lg text-gray-500">Caricamento dell&apos;articolo…</p>
           </main>
         </>
       ) : (
@@ -85,7 +76,8 @@ export default function Post({postData, posts, img, css, preview}) {
             })}
           </Head>
           <StructuredData data={newsStructuredData} />
-          <StructuredData data={faqSchema} />
+          <StructuredData data={faqStructuredData} />
+          <StructuredData data={breadcrumb} />
           <article className="bg-gray-100">
             <div className="mx-auto max-w-7xl py-4 md:px-5 md:py-16">
               <main className="md:mb-24">
@@ -124,10 +116,10 @@ export default function Post({postData, posts, img, css, preview}) {
                     <PostBody content={postData.content} />
 
                     {/* Render visivo delle FAQ (se presenti) */}
-                    {postData?.faqs?.faqs?.length ? (
+                    {faqsArray.length ? (
                       <div className="mt-8 bg-gray-50 p-6 rounded">
                         <h3 className="mb-4 text-lg font-semibold">FAQ</h3>
-                        {postData.faqs.faqs.map((faq, i) => (
+                        {faqsArray.map((faq, i) => (
                           <div key={`faq-${i}`} className="mb-4">
                             <h4 className="font-medium">{faq.question}</h4>
                             <div
