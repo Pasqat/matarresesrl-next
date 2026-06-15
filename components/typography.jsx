@@ -3,7 +3,7 @@ import clsx from 'clsx'
 
 const fontSize = {
   h1: 'leading-tight text-3xl sm:text-4xl md:text-5xl',
-  H2: 'leading-tight text-3xl md:text-4xl',
+  h2: 'leading-tight text-3xl md:text-4xl',
   h3: 'font-medium text-2xl md:text-3xl',
   h4: 'font-medium text-xl md:text-2xl',
   h5: 'font-medium text-lg md:text-xl',
@@ -35,7 +35,7 @@ function H1(props) {
 }
 
 function H2(props) {
-  return <Title {...props} size="H2" />
+  return <Title {...props} size="h2" />
 }
 
 function H3(props) {

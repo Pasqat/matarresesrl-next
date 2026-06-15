@@ -33,7 +33,6 @@ function BlurringImage({
 
   const imageProps = {
     src: imgSrc,
-    alt,
     priority,
     quality,
     sizes: sizes ?? '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw',
@@ -68,6 +67,7 @@ function BlurringImage({
 
       <Image
         {...imageProps}
+        alt={alt ?? ''}
         onLoad={e => {
           setLoaded(true)
           if (typeof onLoad === 'function') onLoad(e)
