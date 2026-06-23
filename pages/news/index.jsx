@@ -147,7 +147,7 @@ export default function News({ data, groups }) {
           property="og:url"
           content={`${process.env.NEXT_PUBLIC_DOMAIN}/news`}
         />
-        <meta property="og:type" content="blog" />
+        <meta property="og:type" content="website" />
         <meta property="og:locale" content="it_IT" />
         <meta property="og:site_name" content="Matarrese srl" />
         <meta name="twitter:card" content="summary_large_image" />

@@ -19,6 +19,8 @@ import {H2, H1} from '../../components/typography'
 import {Spacer} from '../../components/spacer'
 import {Grid} from '../../components/grid'
 import {SeoDataSection} from '../../components/sections/seodata-section'
+import StructuredData from '../../components/StructuredData'
+import {creativeWorkSchema, breadcrumbSchema} from '../../lib/seo/schema'
 
 export default function Project({project}) {
   const router = useRouter()
@@ -36,21 +38,24 @@ export default function Project({project}) {
   }
 
   // Schema.org CreativeWork JSON-LD
-  const projectStructuredData = project && {
-    '@context': 'https://schema.org',
-    '@type': 'CreativeWork',
-    name: project.title,
-    description: project.seo?.metaDesc || project.title,
-    image: project.featuredImage?.node?.sourceUrl,
-    url: `${process.env.NEXT_PUBLIC_DOMAIN}/realizzazioni/${project.slug}`,
-    keywords: project.portfolioTags?.edges
-      ?.map(({node}) => node.name)
-      .join(', '),
-    about: project.portfolioCategories?.edges
-      ?.map(({node}) => node.name)
-      .join(', '),
-  }
-  const StructuredData = require('../../components/StructuredData').default
+  const projectStructuredData =
+    project &&
+    creativeWorkSchema({
+      title: project.title,
+      description: project.seo?.metaDesc || project.title,
+      slug: project.slug,
+      image: project.featuredImage?.node?.sourceUrl,
+      categories: project.portfolioCategories?.edges?.map(({node}) => node.name),
+    })
+
+  const projectBreadcrumb =
+    project &&
+    project.slug &&
+    breadcrumbSchema([
+      {name: 'Realizzazioni', path: '/realizzazioni'},
+      {name: project.title, path: `/realizzazioni/${project.slug}`},
+    ])
+
   return (
     <Layout navbarTransparent>
       {router.isFallback ? (
@@ -72,6 +77,7 @@ export default function Project({project}) {
             })}
           </Head>
           <StructuredData data={projectStructuredData} />
+          <StructuredData data={projectBreadcrumb} />
           <HeaderBig
             noButton
             overlay="bg-gradient-to-tl from-secondary via-primary to-black opacity-80"

@@ -7,6 +7,21 @@ export default class MyDocument extends Document {
     return (
       <Html lang="it">
         <Head>
+          {/* Preload dei font principali per ridurre il layout shift (CLS) */}
+          <link
+            rel="preload"
+            href="/fonts/Matter-Regular.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
+          <link
+            rel="preload"
+            href="/fonts/Matter-Medium.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
           <noscript>
             <img
               height="1"

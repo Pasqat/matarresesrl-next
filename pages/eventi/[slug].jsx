@@ -17,6 +17,8 @@ import { getAllEventsWithSlug, getEvent } from "../../lib/query/event";
 // import { isFutureDate } from "../../actions/utils/formatDate";
 import { SeoDataSection } from "../../components/sections/seodata-section";
 import { Button } from "../../components/button";
+import StructuredData from "../../components/StructuredData";
+import { eventSchema, breadcrumbSchema } from "../../lib/seo/schema";
 
 export default function Events({ event, img, css }) {
   const router = useRouter();
@@ -63,28 +65,34 @@ export default function Events({ event, img, css }) {
   }
 
   // Schema.org Event JSON-LD
-  const eventStructuredData = event && {
-    "@context": "https://schema.org",
-    "@type": "Event",
-    "name": event.title,
-    "startDate": event.startDateISO,
-    "endDate": event.endDateISO,
-    "eventStatus": event.isFutureDate ? "https://schema.org/EventScheduled" : "https://schema.org/EventCompleted",
-    "location": event.venue ? {
-      "@type": "Place",
-      "name": event.venue.title,
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": event.venue.address,
-        "addressLocality": event.venue.city,
-        "addressCountry": "IT"
-      }
-    } : undefined,
-    "image": event.featuredImage?.node?.mediaItemUrl,
-    "description": event.seo?.metaDesc || event.title,
-    "url": `${process.env.NEXT_PUBLIC_DOMAIN}/eventi/${event.slug}`
-  };
-  const StructuredData = require('../../components/StructuredData').default;
+  const eventStructuredData =
+    event &&
+    eventSchema({
+      title: event.title,
+      description: event.seo?.metaDesc || event.title,
+      slug: event.slug,
+      image: event.featuredImage?.node?.mediaItemUrl,
+      startDate: event.startDateISO,
+      endDate: event.endDateISO,
+      venue: event.venue
+        ? {
+            venue: event.venue.title,
+            address: event.venue.address,
+            city: event.venue.city,
+            country: event.venue.country,
+          }
+        : null,
+      externalLink: event.external_link?.link || null,
+    });
+
+  const eventBreadcrumb =
+    event &&
+    event.slug &&
+    breadcrumbSchema([
+      { name: "Eventi", path: "/eventi" },
+      { name: event.title, path: `/eventi/${event.slug}` },
+    ]);
+
   return (
     <Layout navbarTransparent>
       {/* <Layout > */}
@@ -109,6 +117,7 @@ export default function Events({ event, img, css }) {
               })}
             </Head>
             <StructuredData data={eventStructuredData} />
+            <StructuredData data={eventBreadcrumb} />
             <HeaderBig
               noButton
               overlay="bg-gradient-to-tl from-secondary via-primary to-black opacity-80"

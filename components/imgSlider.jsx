@@ -2,6 +2,7 @@ import * as React from 'react'
 import {useState} from 'react'
 import {motion, AnimatePresence, useReducedMotion} from 'framer-motion'
 import {wrap} from 'popmotion'
+import Image from 'next/image'
 import {images, imagesMobile} from '../data/home-imgs.js'
 import {H1} from './typography'
 import {ArrowLink} from './arrow-button'
@@ -55,21 +56,17 @@ export const ImgSlider = () => {
     visible: {opacity: 1, y: 0, transition: {duration: 0.5}},
   }
 
+  const isMobile = width !== null && width <= 600
+  const slide = isMobile ? imagesMobile[imageIndex] : images[imageIndex]
+
   return (
     <>
       <div className="relative flex h-screen max-w-full content-center items-center justify-center overflow-hidden ">
         <div className="absolute top-0 z-10 h-20 w-screen bg-gradient-to-b from-black to-trasparent" />
         <AnimatePresence initial={false} custom={direction}>
-          <motion.img
-            className="absolute top-0 h-screen max-w-none object-cover"
+          <motion.div
+            className="absolute top-0 left-0 h-screen w-full"
             key={page}
-            src={
-              !width
-                ? images[imageIndex].src
-                : width > 600
-                ? images[imageIndex].src
-                : imagesMobile[imageIndex].src
-            }
             custom={direction}
             variants={variants}
             initial="enter"
@@ -79,7 +76,16 @@ export const ImgSlider = () => {
               x: {type: 'spring', stiffness: 300, damping: 30},
               opacity: {duration: 0.5},
             }}
-          />
+          >
+            <Image
+              className="object-cover"
+              src={slide.src}
+              alt={slide.alt || ''}
+              fill
+              priority={page === 0}
+              sizes="100vw"
+            />
+          </motion.div>
           {withTitle ? (
             <div className="relative z-20 p-2 md:p-8">
               <div className="flex flex-wrap items-center lg:mx-10vw lg:max-w-7xl">
