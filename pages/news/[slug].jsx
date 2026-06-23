@@ -124,7 +124,7 @@ export default function Post({postData, posts, img, css, preview}) {
                     <PostBody content={postData.content} />
 
                     {/* Render visivo delle FAQ (se presenti) */}
-                    {postData?.faqs?.faqs?.length ? (
+                    {/* {postData?.faqs?.faqs?.length ? (
                       <div className="mt-8 bg-gray-50 p-6 rounded">
                         <h3 className="mb-4 text-lg font-semibold">FAQ</h3>
                         {postData.faqs.faqs.map((faq, i) => (
@@ -137,7 +137,7 @@ export default function Post({postData, posts, img, css, preview}) {
                           </div>
                         ))}
                       </div>
-                    ) : null}
+                    ) : null} */}
 
                     <div className="mx-auto flex max-w-3xl flex-wrap gap-4 text-gray-400">
                       <div className="text-medium">tags:</div>
