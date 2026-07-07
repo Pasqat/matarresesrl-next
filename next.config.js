@@ -1,6 +1,7 @@
 // next.config.js
 module.exports = {
   images: {
+    unoptimized: true,
     remotePatterns: [
       {protocol: 'https', hostname: 'be.matarrese.it'},
       {protocol: 'https', hostname: 'www.matarrese.it'},
@@ -12,9 +13,6 @@ module.exports = {
     imageSizes: [
       16, 32, 48, 64, 96, 128, 256, 384, 512, 768, 1024, 1280, 1600, 1920, 3840,
     ],
-    // Ottimizzazione immagini riattivata: Next genera srcset/WebP on-demand.
-    // NB su Vercel l'ottimizzazione immagini ha quote/costi: monitorare l'uso
-    // dopo il deploy. Per disattivarla reimpostare `unoptimized: true`.
   },
   async redirects() {
     return [
@@ -225,6 +223,12 @@ module.exports = {
       {
         source: '/ricetta-monoporzioni-amorini',
         destination: '/news/ricetta-monoporzioni-amorini',
+        permanent: true,
+      },
+      {
+        source: '/iperammortammento-del-250-tutto-quello-che-devi-sapere/',
+        destination:
+          '/news/iperammortammento-del-250-tutto-quello-che-devi-sapere',
         permanent: true,
       },
       {

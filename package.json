@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "npx --yes next-sitemap",
+    "postbuild": "pnpm exec next-sitemap",
     "start": "next start",
     "format": "pnpm lint --fix",
     "lint": "npx eslint .",

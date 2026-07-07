@@ -88,7 +88,7 @@ export default function Meta() {
       />
       <meta
         name="description"
-        content={`Traduttori di idee, creatori di spazi`}
+        content="Attrezzature professionali per ristorazione, cucine professionali, arredi su misura e soluzioni per bar, ristoranti e hotel."
       />
       <link rel="manifest" href="/img/favicon/manifest.json" />
       <meta

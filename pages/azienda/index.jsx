@@ -22,6 +22,8 @@ import imgHomePartnerOperatori from '../../public/img/home-partner-operatori.jpg
 import DomenicoMatarreseProfileImage from '../../public/img/domenico_matarrese.webp'
 import cotturaProdotti from '../../public/img/cottura-prodotti.png'
 import {ProjectSection} from '../../components/sections/projects-section'
+import StructuredData from '../../components/StructuredData'
+import {aboutPageSchema, breadcrumbSchema} from '../../lib/seo/schema'
 
 import {getLastTwoProjects} from '../../lib/query/project'
 
@@ -29,7 +31,9 @@ export default function AboutUs({lastTwoProjects}) {
   return (
     <>
       <Head>
-        <title>Supportiamo ristoranti e imprenditori</title>
+        <title>
+          Chi siamo | Matarrese srl | Attrezzature e arredi per ristorazione
+        </title>
         <link
           rel="canonical"
           href={`${process.env.NEXT_PUBLIC_DOMAIN}/azienda`}
@@ -37,16 +41,16 @@ export default function AboutUs({lastTwoProjects}) {
         <meta name="author" content="Matarrese srl" />
         <meta
           name="description"
-          content="Al servizio dei professionisti della ristorazione, progettiamo cucine professionali, interior design e consulenza per imprenditori"
+          content="Matarrese srl supporta ristoranti, hotel e professionisti della ristorazione con cucine professionali, arredi su misura, attrezzature e consulenza tecnica."
         />
         <meta
           name="robots"
           content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
         />
-        <meta property="og:title" content="Chi Siamo" />
+        <meta property="og:title" content="Chi siamo | Matarrese srl" />
         <meta
           property="og:description"
-          content="Al servizio dei professionisti della ristorazione"
+          content="Partner affidabile per cucine professionali, arredi su misura, attrezzature per ristorazione e servizi post-vendita."
         />
         <meta
           property="og:image"
@@ -61,6 +65,10 @@ export default function AboutUs({lastTwoProjects}) {
         <meta property="og:site_name" content="Matarrese srl" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
+      <StructuredData data={aboutPageSchema()} />
+      <StructuredData
+        data={breadcrumbSchema([{name: 'Azienda', path: '/azienda'}])}
+      />
       <Layout>
         <div className="mb-12 lg:mb-24">
           <HeroSection
