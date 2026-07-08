@@ -4,7 +4,7 @@ module.exports = {
     unoptimized: true,
     remotePatterns: [
       {protocol: 'https', hostname: 'be.matarrese.it'},
-      {protocol: 'https', hostname: 'matarrese.it'},
+      {protocol: 'https', hostname: 'www.matarrese.it'},
       {protocol: 'https', hostname: 'matarrese.it'},
       // local dev server (http), include port if needed
       {protocol: 'http', hostname: 'localhost', port: '3000'},
@@ -16,6 +16,12 @@ module.exports = {
   },
   async redirects() {
     return [
+      {
+        source: '/:path*',
+        has: [{type: 'host', value: 'matarrese.it'}],
+        destination: 'https://www.matarrese.it/:path*',
+        permanent: true,
+      },
       {
         source: '/it/index.asp',
         destination: '/',
@@ -321,6 +327,35 @@ module.exports = {
         source: '/index.php/negozio',
         destination: '/prodotti',
         permanent: true,
+      },
+    ]
+  },
+  async headers() {
+    // Header di sicurezza applicati a tutte le rotte.
+    // NOTA: Content-Security-Policy NON è inclusa di proposito: una CSP
+    // enforced dovrebbe autorizzare esplicitamente Plausible, Google Tag
+    // Manager, Facebook Pixel, le immagini di be.matarrese.it e gli script
+    // inline, altrimenti rompe il sito. Va introdotta con un passaggio
+    // dedicato (preferibilmente prima in modalità Report-Only).
+    const securityHeaders = [
+      {key: 'X-Content-Type-Options', value: 'nosniff'},
+      {key: 'X-Frame-Options', value: 'SAMEORIGIN'},
+      {key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin'},
+      {
+        key: 'Strict-Transport-Security',
+        value: 'max-age=63072000; includeSubDomains; preload',
+      },
+      {
+        key: 'Permissions-Policy',
+        value: 'camera=(), microphone=(), geolocation=()',
+      },
+      {key: 'X-DNS-Prefetch-Control', value: 'on'},
+    ]
+
+    return [
+      {
+        source: '/:path*',
+        headers: securityHeaders,
       },
     ]
   },

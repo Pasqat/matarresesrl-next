@@ -71,7 +71,7 @@ Profilo gratuito che alimenta Maps e il pannello a destra nelle ricerche.
 ### 2.3 Strumenti per webmaster
 
 - **Google Search Console**: verificare il dominio e **inviare la sitemap**
-  (`https://matarrese.it/sitemap.xml`). Monitorare query, copertura, Core Web
+  (`https://www.matarrese.it/sitemap.xml`). Monitorare query, copertura, Core Web
   Vitals.
 - **Bing Webmaster Tools**: stessa cosa lato Bing.
 

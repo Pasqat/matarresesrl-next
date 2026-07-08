@@ -86,7 +86,7 @@ export default function ProductsHome({groups}) {
             <Grid className="mb-12 lg:mb-24 xl:mb-48">
               {/* NOTE: `-mt-20 pt-20 for anchor link and sticky navbar` */}
               <div className="col-span-full -mt-20 pt-20" id="lavorazione">
-                <H2 className="mb-14">{`Prodotti per la lavorazione e conservazione degli alimenti`}</H2>
+                <H2 as="h1" className="mb-14">{`Prodotti per la lavorazione e conservazione degli alimenti`}</H2>
               </div>
 
               <div className="col-span-full">

@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 
-const siteUrl = process.env.NEXT_PUBLIC_DOMAIN || 'https://matarrese.it'
+const siteUrl = process.env.NEXT_PUBLIC_DOMAIN || 'https://www.matarrese.it'
 
 // Priorità per-rotta: home > pagine principali > liste > dettaglio > legali.
 function priorityFor(path) {

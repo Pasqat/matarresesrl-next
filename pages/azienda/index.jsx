@@ -72,6 +72,7 @@ export default function AboutUs({lastTwoProjects}) {
       <Layout>
         <div className="mb-12 lg:mb-24">
           <HeroSection
+            titleAs="h1"
             title="Un partner affidabile per la tua attività"
             subtitle="Chi siamo"
             illustration={<Lottie loop animationData={lottiejson} play />}

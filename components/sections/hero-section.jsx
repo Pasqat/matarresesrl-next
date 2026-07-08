@@ -20,6 +20,7 @@ function HeroSection({
   // imageBuilder,
   imageSize = 'medium',
   as = 'header',
+  titleAs = 'h2',
 }) {
   const hasImage = Boolean(image)
   const hasIllustration = Boolean(illustration)
@@ -105,7 +106,7 @@ function HeroSection({
 
           <motion.div variants={childVariants}>
             {/* <H2 as="h2" variant="accent"> */}
-            <H2 as="h2">{title}</H2>
+            <H2 as={titleAs}>{title}</H2>
           </motion.div>
 
           {action ? (

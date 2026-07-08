@@ -59,6 +59,7 @@ export default function AboutUs() {
       <Layout>
         <div className="mb-12 lg:mb-24">
           <HeroSection
+            titleAs="h1"
             title="Esperienza e tecnologia al servizio del futuro"
             subtitle="Ricerca e Sviluppo"
             illustration={<Lottie loop animationData={lottiejson} play />}

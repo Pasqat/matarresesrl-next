@@ -1,54 +1,53 @@
-import "../styles/globals.css";
-import "../styles/index.css";
-import { ApolloProvider } from "@apollo/client";
-import Script from "next/script";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import * as fbq from "../lib/fpixel";
-import { GTM_ID, pageview } from "../lib/gtm";
-import CookieConsent, { getCookieConsentValue } from "react-cookie-consent";
+import '../styles/globals.css'
+import '../styles/index.css'
+import {ApolloProvider} from '@apollo/client'
+import Script from 'next/script'
+import {useEffect, useState} from 'react'
+import {useRouter} from 'next/router'
+import * as fbq from '../lib/fpixel'
+import {GTM_ID, pageview} from '../lib/gtm'
+import CookieConsent, {getCookieConsentValue} from 'react-cookie-consent'
 
-import ScrollToTop from "../components/ScrollToTop";
-import PlausibleProvider from "next-plausible";
+import ScrollToTop from '../components/ScrollToTop'
+import PlausibleProvider from 'next-plausible'
 
-import client from "../lib/apolloClient";
+import client from '../lib/apolloClient'
 
-function MyApp({ Component, pageProps }) {
-  const router = useRouter();
-  const [isCookieConsentAccept, setIsCookieConsentAccept] = useState(false);
-
-  useEffect(() => {
-    setIsCookieConsentAccept(getCookieConsentValue());
-  }, [isCookieConsentAccept]);
+function MyApp({Component, pageProps}) {
+  const router = useRouter()
+  const [isCookieConsentAccept, setIsCookieConsentAccept] = useState(false)
 
   useEffect(() => {
-    if (!isCookieConsentAccept) return;
+    setIsCookieConsentAccept(getCookieConsentValue())
+  }, [isCookieConsentAccept])
+
+  useEffect(() => {
+    if (!isCookieConsentAccept) return
     // this pageviewonly triggers th first time (it's important for Pixel to have real information)
-    fbq.pageview();
+    fbq.pageview()
 
     const handleRouteChange = () => {
-      fbq.pageview();
-      pageview();
-    };
+      fbq.pageview()
+      pageview()
+    }
 
-    router.events.on("routeChangeComplete", handleRouteChange);
+    router.events.on('routeChangeComplete', handleRouteChange)
     return () => {
-      router.events.off("routeChangeComplete", handleRouteChange);
-    };
-  }, [router.events, isCookieConsentAccept]);
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router.events, isCookieConsentAccept])
 
   return (
     <ApolloProvider client={client}>
-      <PlausibleProvider domain="matarrese.it">
+      <PlausibleProvider domain="www.matarrese.it">
         {/* Global Site Code Pixel - Facebook Pixel */}
-        {isCookieConsentAccept
-          ? (
-            <>
-              <Script
-                id="fb-pixel"
-                strategy="afterInteractive"
-                dangerouslySetInnerHTML={{
-                  __html: `
+        {isCookieConsentAccept ? (
+          <>
+            <Script
+              id="fb-pixel"
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `
             !function(f,b,e,v,n,t,s)
             {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
             n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -59,10 +58,9 @@ function MyApp({ Component, pageProps }) {
             'https://connect.facebook.net/en_US/fbevents.js');
             fbq('init', ${fbq.FB_PIXEL_ID});
           `,
-                }}
-              />
-              {
-                /*
+              }}
+            />
+            {/*
               <Script
                 id="tag-manager"
                 strategy="afterInteractive"
@@ -76,30 +74,28 @@ function MyApp({ Component, pageProps }) {
               `,
                 }}
               />
-              */
-              }
-              <Script
-                src={`https://www.googletagmanager.com/gtag/js?id=${GTM_ID}`}
-              />
-              <Script id="tag-manager">
-                {`
+              */}
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GTM_ID}`}
+            />
+            <Script id="tag-manager">
+              {`
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
 
                 gtag('config', '${GTM_ID}');
               `}
-              </Script>
-            </>
-          )
-          : null}
+            </Script>
+          </>
+        ) : null}
         <Component {...pageProps} />
         <ScrollToTop />
         <CookieConsent
           enableDeclineButton
           onDecline={() => {
-            setIsCookieConsentAccept(false);
-            return router.reload(window.location.pathname);
+            setIsCookieConsentAccept(false)
+            return router.reload(window.location.pathname)
           }}
           declineButtonText="Declino"
           // acceptOnScroll
@@ -109,16 +105,16 @@ function MyApp({ Component, pageProps }) {
           // }}
           location="bottom"
           buttonText="Accetto tutti i cookies"
-          style={{ background: "#2B373B", fontSize: "1rem" }}
+          style={{background: '#2B373B', fontSize: '1rem'}}
           buttonStyle={{
-            background: "#DE7C00",
-            color: "#fff",
+            background: '#DE7C00',
+            color: '#fff',
             // fontSize: '16px',
           }}
           expires={getCookieConsentValue == false ? 1 : 365}
         >
           Questo sito web utilizza alcuni cookie per poter miglorare
-          l&apos;esperinza dell&apos;utente.{" "}
+          l&apos;esperinza dell&apos;utente.{' '}
           <a
             href="/cookie-policy"
             target="_blank"
@@ -129,7 +125,7 @@ function MyApp({ Component, pageProps }) {
         </CookieConsent>
       </PlausibleProvider>
     </ApolloProvider>
-  );
+  )
 }
 
-export default MyApp;
+export default MyApp

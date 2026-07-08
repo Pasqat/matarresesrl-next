@@ -78,6 +78,7 @@ export default function Servizi({groups}) {
       <Layout>
         <div className="mb-12 lg:mb-24 xl:mb-48">
           <HeroSection
+            titleAs="h1"
             title="Esperienza e professionalità per l'ho.re.ca."
             subtitle="Servizi"
             // action={

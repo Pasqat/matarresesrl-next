@@ -155,6 +155,11 @@ export default function News({data, groups}) {
       </Head>
 
       <Layout>
+        <div className="mx-auto mb-4 max-w-7xl px-4 pt-8 lg:px-8">
+          <H3 as="h1" variant="secondary">
+            News e approfondimenti sulla ristorazione professionale
+          </H3>
+        </div>
         {!isSearching ? (
           <div className="my-20">
             <FeaturedSection

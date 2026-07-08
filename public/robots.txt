@@ -42,7 +42,7 @@ User-agent: CCBot
 Allow: /
 
 # Host
-Host: https://matarrese.it
+Host: https://www.matarrese.it
 
 # Sitemaps
-Sitemap: https://matarrese.it/sitemap.xml
+Sitemap: https://www.matarrese.it/sitemap.xml

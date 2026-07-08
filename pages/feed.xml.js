@@ -1,6 +1,6 @@
 import {getAllPosts} from '../lib/query/post'
 
-const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN || 'https://matarrese.it'
+const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN || 'https://www.matarrese.it'
 
 function cdata(value = '') {
   return `<![CDATA[${String(value).replace(/]]>/g, ']]]]><![CDATA[>')}]]>`

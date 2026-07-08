@@ -138,7 +138,7 @@ export default function Realizzazioni({data}) {
 
       <Layout>
         <div className="mx-auto mb-10 max-w-7xl px-4 pt-8 lg:px-8">
-          <H3 as="h2" variant="secondary" className="mb-4">
+          <H3 as="h1" variant="secondary" className="mb-4">
             Realizzazioni per bar, ristoranti, hotel e attività professionali
           </H3>
           <p className="max-w-3xl text-lg leading-relaxed text-gray-600">

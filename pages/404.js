@@ -12,7 +12,7 @@ export default function AboutUs() {
     <>
       <Head>
         <title>Matarrese srl</title>
-        <link rel="canonical" href="https://matarrese.it" />
+        <link rel="canonical" href="https://www.matarrese.it" />
         <meta name="author" content="Matarrese srl" />
         <link rel="icon" href="/public/img/favicon/favicon.ico" />
       </Head>

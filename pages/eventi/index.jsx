@@ -75,6 +75,7 @@ export default function Events({data, groups}) {
             </div>
           ) : (
             <HeroSection
+              titleAs="h1"
               subtitle="Incontriamoci in cucina"
               title="Eventi formativi e dimostrativi per la ristorazione"
               imageSize="large"
