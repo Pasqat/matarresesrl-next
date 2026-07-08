@@ -67,4 +67,4 @@ Copy `.env.local.example` to `.env.local`. Key variables:
 - `NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID`, `NEXT_PUBLIC_FACEBOOK_PIXEL_ID` — analytics
 
 ### ESLint
-Config is in `.eslintrc.js` (ESLint 8, legacy format). The flat config format is **not** used — do not create `eslint.config.js`.
+Config is in `eslint.config.mjs` (ESLint 9, flat config). `eslint-config-next` 16 ships a native flat config, so we spread `eslint-config-next/core-web-vitals` and `eslint-config-prettier` directly — no `FlatCompat`, no `.eslintrc`. The old `.eslintrc.js` legacy format is gone; do not reintroduce it. The React Compiler rules that `eslint-plugin-react-hooks` 7 now enables (`react-hooks/set-state-in-effect`, `react-hooks/immutability`) are intentionally turned **off** — the codebase predates them; see the comment in `eslint.config.mjs`.
