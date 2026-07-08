@@ -1,5 +1,11 @@
 // next.config.js
 module.exports = {
+  // Limita i worker di build a 1: l'hosting condiviso del backend WordPress
+  // (be.matarrese.it) va in 508 "Resource Limit Is Reached" se il prerender
+  // SSG delle ~210 pagine spara troppe query GraphQL concorrenti.
+  experimental: {
+    cpus: 1,
+  },
   images: {
     unoptimized: true,
     remotePatterns: [
