@@ -20,7 +20,7 @@ export default function CookiePolicy() {
         />
         <meta
           property="og:url"
-          content="https://www.matarrese.it/cookie-policy"
+          content="https://matarrese.it/cookie-policy"
         />
       </Head>
       <Layout>
@@ -68,7 +68,7 @@ export default function CookiePolicy() {
                   <p className="pb-2">
                     La presente Cookie Policy è relativa al sito{' '}
                     <Link href="/" className="text-yellow-600">
-                      www.matarrese.it
+                      matarrese.it
                     </Link>{' '}
                     (“Sito”) gestito e operato dalla società Matarrese srl, con
                     sede in c.da Popoleto nc, 70011 Alberobello (Bari), Italia,

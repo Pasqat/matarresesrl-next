@@ -44,7 +44,7 @@ export default function Navbar({isTransparent}) {
                       width={263}
                       height={19}
                       alt="logo Matarrese srl"
-                      // src="https://www.matarrese.it/wp-content/uploads/2015/09/logo-matarrese-bianco-350.png"
+                      // src="https://matarrese.it/wp-content/uploads/2015/09/logo-matarrese-bianco-350.png"
                       src={Logo}
                       placeholder="blur"
                       style={{

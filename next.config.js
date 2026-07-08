@@ -4,7 +4,7 @@ module.exports = {
     unoptimized: true,
     remotePatterns: [
       {protocol: 'https', hostname: 'be.matarrese.it'},
-      {protocol: 'https', hostname: 'www.matarrese.it'},
+      {protocol: 'https', hostname: 'matarrese.it'},
       {protocol: 'https', hostname: 'matarrese.it'},
       // local dev server (http), include port if needed
       {protocol: 'http', hostname: 'localhost', port: '3000'},
