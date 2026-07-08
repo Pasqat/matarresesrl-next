@@ -1,11 +1,19 @@
 import * as React from 'react'
 import {useState} from 'react'
 import {motion, AnimatePresence, useReducedMotion} from 'framer-motion'
-import {wrap} from 'popmotion'
 import Image from 'next/image'
 import {images, imagesMobile} from '../data/home-imgs.js'
 import {H1} from './typography'
 import {ArrowLink} from './arrow-button'
+
+// Riporta il valore v nell'intervallo [min, max) con wrap-around (es. per
+// ciclare l'indice dello slider). Prima importato da 'popmotion' (dipendenza
+// transitiva di framer-motion 6): inlineato perché Turbopack non risolve i
+// pacchetti non dichiarati.
+function wrap(min, max, v) {
+  const rangeSize = max - min
+  return (((v - min) % rangeSize) + rangeSize) % rangeSize + min
+}
 
 const variants = {
   enter: {opacity: 0},
