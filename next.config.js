@@ -8,6 +8,9 @@ module.exports = {
   },
   images: {
     unoptimized: true,
+    // Next 16 richiede di dichiarare esplicitamente i valori di `quality`
+    // usati nei componenti <Image> (default: solo 75). article-card usa 90.
+    qualities: [75, 90],
     remotePatterns: [
       {protocol: 'https', hostname: 'be.matarrese.it'},
       {protocol: 'https', hostname: 'www.matarrese.it'},
