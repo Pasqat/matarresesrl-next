@@ -12,6 +12,7 @@ import NewsletterFormFooter from '../Form/NewsletterFormFooter'
 import {FacebookIcon} from '../icons/facebook-icon'
 import {LinkedInIcon} from '../icons/linkedin-icon'
 import {InstagramIcon} from '../icons/instagram-icon'
+import {YoutubeIcon} from '../icons/youtube-icon'
 import {MapIcon} from '../icons/map-icon'
 import {PhoneIcon} from '../icons/phone-icon'
 import {BadgeCheckedIcon} from '../icons/badge-checked-icon'
@@ -108,6 +109,21 @@ export default function Footer() {
                 tabIndex={-1}
               >
                 <InstagramIcon size="30" />
+              </button>
+            </a>
+            <a
+              rel="noreferrer"
+              href="https://www.youtube.com/@matarresesrl"
+              target="_blank"
+              aria-label="Matarrese srl su YouTube"
+            >
+              <button
+                className="mr-2 h-10 w-10 font-normal"
+                type="button"
+                aria-hidden="true"
+                tabIndex={-1}
+              >
+                <YoutubeIcon size="30" />
               </button>
             </a>
           </div>

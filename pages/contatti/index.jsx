@@ -13,6 +13,7 @@ import {H6, H2} from '../../components/typography'
 import {FacebookIcon} from '../../components/icons/facebook-icon'
 import {LinkedInIcon} from '../../components/icons/linkedin-icon'
 import {InstagramIcon} from '../../components/icons/instagram-icon'
+import {YoutubeIcon} from '../../components/icons/youtube-icon'
 
 import {getGroups} from '../../lib/newsletter'
 
@@ -153,7 +154,7 @@ export default function Contatti({groups}) {
             <H2 as="h4" className="mb-12 lg:mb-24">
               Seguici sui social e rimani aggiornato sulle novità del settore
             </H2>
-            <div className="grid gap-6 lg:grid-cols-3">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               <a
                 href="https://www.facebook.com/matarresesrl"
                 target="_blank"
@@ -180,12 +181,23 @@ export default function Contatti({groups}) {
                 rel="noreferrer"
                 href="https://www.instagram.com/matarrese.srl/"
                 target="_blank"
-                className="flex items-center text-xl lg:justify-end"
+                className="flex items-center text-xl lg:justify-center"
               >
                 <button className="mr-2 font-normal" type="button">
                   <InstagramIcon size="100" />
                 </button>
                 Instagram
+              </a>
+              <a
+                rel="noreferrer"
+                href="https://www.youtube.com/@matarresesrl"
+                target="_blank"
+                className="flex items-center text-xl lg:justify-end"
+              >
+                <button className="mr-2 font-normal" type="button">
+                  <YoutubeIcon size="100" />
+                </button>
+                YouTube
               </a>
             </div>
           </div>
