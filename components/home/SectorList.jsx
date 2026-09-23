@@ -66,7 +66,7 @@ export default function SectorList({settori, href, title, intro}) {
                     )}
                     <span
                       className={`type-display block text-[clamp(22px,2.6vw,40px)] transition-[color,transform] duration-500 ease-out group-hover:translate-x-3 group-focus-visible:translate-x-3 motion-reduce:transition-none ${
-                        active === s.slug ? 'text-ghisa' : 'text-ghisa/55'
+                        active === s.slug ? 'text-ghisa' : 'text-ghisa/70'
                       }`}
                     >
                       {s.nome}
