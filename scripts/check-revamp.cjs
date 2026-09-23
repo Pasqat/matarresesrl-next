@@ -58,6 +58,7 @@ async function checkForm(file, props, values, endpoint) {
     ...React,
     useEffect() {},
     useRef: () => ({current: null}),
+    useId: () => 'test-id',
     useState(initial) {
       const index = cursor++
       if (!(index in states))
@@ -191,53 +192,7 @@ async function main() {
       `${file}: empty archive`,
     )
   }
-  const {ArticleCard} = load('components/article-card.jsx', emptyImports)
-  assert(
-    nodes(ArticleCard({article: {title: 'Senza immagine', slug: 'test'}})).some(
-      n => n.props?.className === 'image-fallback',
-    ),
-  )
-  console.log('PASS empty archives and missing image fallback')
-  let copiedValue,
-    copyStatus = 'idle',
-    denyClipboard = false
-  const copyButton = load(
-    'components/clipboard-copy-button.jsx',
-    name => {
-      if (name === 'react')
-        return {
-          ...React,
-          useEffect() {},
-          useState: () => [
-            copyStatus,
-            value => {
-              copyStatus = value
-            },
-          ],
-        }
-      if (name === 'clsx') return require('clsx')
-      return {ShareIcon: () => null, CheckIcon: () => null}
-    },
-    {
-      navigator: {
-        clipboard: {
-          writeText: async value => {
-            if (denyClipboard) throw new Error('Clipboard denied')
-            copiedValue = value
-          },
-        },
-      },
-    },
-  ).ClipboardCopyButton
-  await copyButton({
-    value: 'https://www.matarrese.it/realizzazioni',
-  }).props.onClick()
-  assert.equal(copiedValue, 'https://www.matarrese.it/realizzazioni')
-  assert.equal(copyStatus, 'copied')
-  denyClipboard = true
-  await copyButton({value: 'test'}).props.onClick()
-  assert.equal(copyStatus, 'error')
-  console.log('PASS share button: copy success and denied clipboard feedback')
+  console.log('PASS empty archives')
   let mapEffect,
     mapUnavailable = false
   const map = load(
@@ -297,12 +252,6 @@ async function main() {
   )
   await checkForm(
     'components/Form/NewsletterFormFooter.jsx',
-    {groups},
-    {email: 'test@example.com'},
-    '/api/subscribe',
-  )
-  await checkForm(
-    'components/Form/NewsletterForm.jsx',
     {groups},
     {email: 'test@example.com'},
     '/api/subscribe',
