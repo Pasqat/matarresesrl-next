@@ -57,8 +57,10 @@ all'azione per vista, qualche dettaglio.
 - Il movimento che risponde a un'azione (aprire, espandere, confermare) è sempre benvenuto.
 - **Interazioni col puntatore** (richiesta di Pasquale, 23/09/2026): il sito deve "rispondere al
   mouse". Componenti già pronti da riusare: `components/Magnetic.jsx` (CTA che segue il cursore),
-  luce che segue il cursore nell'apertura (`HomeHero`), anteprima foto che segue il cursore
-  sugli elenchi (`home/SectorList`), cerchio "Scopri" sulle foto dei progetti (`home/ProjectGrid`),
+  luce che segue il cursore nell'apertura (`HomeHero`), pannello del titolo che mostra la foto
+  della voce indicata (`home/SectorList`), fascia "Guarda il progetto" che sale sulle foto
+  (`home/ProjectGrid`). Scartati da Pasquale: foto che segue il cursore e cerchio "Scopri"
+  (troppo invadenti), foto a tutto sfondo di sezione (testi meno leggibili);
   fascia marchi che si ferma al passaggio (`home/BrandMarquee`), "text roll" sulle voci di menu.
   Sempre solo con `(hover: hover) and (pointer: fine)` e senza movimento ridotto; su touch il
   contenuto deve restare completo (es. miniature al posto dell'anteprima che segue il cursore).
