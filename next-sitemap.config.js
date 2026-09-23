@@ -31,6 +31,7 @@ module.exports = {
     '/feed.xml',
     '/404',
     '/server-sitemap.xml',
+    '/dev/*',
   ],
   transform: async (config, path) => ({
     loc: path,
@@ -40,7 +41,7 @@ module.exports = {
   }),
   robotsTxtOptions: {
     policies: [
-      {userAgent: '*', allow: '/', disallow: ['/api/', '/auth/', '/preview']},
+      {userAgent: '*', allow: '/', disallow: ['/api/', '/auth/', '/preview', '/dev/']},
       // Crawler AI esplicitamente ammessi per massimizzare la citabilità nelle
       // risposte generative (ChatGPT, Claude, Perplexity, Gemini/Google AI).
       {userAgent: 'GPTBot', allow: '/'},

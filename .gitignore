@@ -45,3 +45,10 @@ TODO.md
 /graphify-out/
 /artifacts/
 /.pnpm-store/
+
+# screenshot di confronto del revamp (locali)
+docs/revamp/baseline/
+.firecrawl/
+# strumento selezione media (generati in locale)
+data/media-index.json
+public/_media-review/
