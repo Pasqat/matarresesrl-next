@@ -203,17 +203,21 @@ export default function Servizi({groups}) {
                     <div className="flex">
                       <SectionProgress sectionRef={section1} />
                       <div className="pb-8 pt-1">
-                        <Link href="#consulenza-tecnica" className="mb-2 text-lg font-bold">
-                          
-                            Consulenza Tecnica
-                          
+                        <Link
+                          href="#consulenza-tecnica"
+                          className="mb-2 text-lg font-bold"
+                        >
+                          Consulenza Tecnica
                         </Link>
                       </div>
                     </div>
                     <div className="flex">
                       <SectionProgress sectionRef={section2} />
                       <div className="pb-8 pt-1">
-                        <Link href="#il-progetto" className="mb-2 text-lg font-bold">
+                        <Link
+                          href="#il-progetto"
+                          className="mb-2 text-lg font-bold"
+                        >
                           Il progetto
                         </Link>
                         {/* <p className="text-gray-700">
@@ -224,37 +228,43 @@ export default function Servizi({groups}) {
                     <div className="flex">
                       <SectionProgress sectionRef={section3} />
                       <div className="pb-8 pt-1">
-                        <Link href="#iter-operativo" className="mb-2 text-lg font-bold">
-                          
-                            Iter Operativo
-                          
+                        <Link
+                          href="#iter-operativo"
+                          className="mb-2 text-lg font-bold"
+                        >
+                          Iter Operativo
                         </Link>
                       </div>
                     </div>
                     <div className="flex">
                       <SectionProgress sectionRef={section4} />
                       <div className="pb-8 pt-1">
-                        <Link href="#arredi-su-misura" className="mb-2 text-lg font-bold">
-                          
-                            Realizzazione arredi su misura
-                          
+                        <Link
+                          href="#arredi-su-misura"
+                          className="mb-2 text-lg font-bold"
+                        >
+                          Realizzazione arredi su misura
                         </Link>
                       </div>
                     </div>
                     <div className="flex">
                       <SectionProgress sectionRef={section5} />
                       <div className="pb-8 pt-1">
-                        <Link href="#coordinamento-lavori" className="mb-2 text-lg font-bold">
-                          
-                            Coordinamento lavori
-                          
+                        <Link
+                          href="#coordinamento-lavori"
+                          className="mb-2 text-lg font-bold"
+                        >
+                          Coordinamento lavori
                         </Link>
                       </div>
                     </div>
                     <div className="flex">
                       <SectionProgress sectionRef={section6} />
                       <div className="pb-8 pt-1">
-                        <Link href="#collaudo" className="mb-2 text-lg font-bold">
+                        <Link
+                          href="#collaudo"
+                          className="mb-2 text-lg font-bold"
+                        >
                           Collaudo
                         </Link>
                       </div>

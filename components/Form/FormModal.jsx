@@ -553,5 +553,5 @@ export default function FormModal({
         </Dialog>
       </Transition>
     </>
-  );
+  )
 }

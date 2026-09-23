@@ -16,10 +16,9 @@ export default function Alert({preview}) {
             Questa è un&apos;anteprima.{' '}
             <Link
               href="/api/exit-preview"
-              className="underline transition-colors duration-200 hover:text-yellow-500">
-              
-                Clicca qui
-              
+              className="underline transition-colors duration-200 hover:text-yellow-500"
+            >
+              Clicca qui
             </Link>{' '}
             per uscire dalla visualizzazione anteprima.
           </>

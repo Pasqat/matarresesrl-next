@@ -5,49 +5,59 @@ import Script from 'next/script'
 import {useEffect, useState} from 'react'
 import {useRouter} from 'next/router'
 import * as fbq from '../lib/fpixel'
-import {GTM_ID, pageview} from '../lib/gtm'
+import * as gtag from '../lib/gtm'
 import CookieConsent, {getCookieConsentValue} from 'react-cookie-consent'
 
 import ScrollToTop from '../components/ScrollToTop'
 import PlausibleProvider from 'next-plausible'
+import {SpeedInsights} from '@vercel/speed-insights/next'
 
 import client from '../lib/apolloClient'
 
 function MyApp({Component, pageProps}) {
   const router = useRouter()
-  const [isCookieConsentAccept, setIsCookieConsentAccept] = useState(false)
+  const [isCookieConsentAccept, setIsCookieConsentAccept] = useState(null)
 
   useEffect(() => {
-    setIsCookieConsentAccept(getCookieConsentValue())
-  }, [isCookieConsentAccept])
+    setIsCookieConsentAccept(getCookieConsentValue() === 'true')
+  }, [])
 
   useEffect(() => {
-    if (!isCookieConsentAccept) return
-    // this pageviewonly triggers th first time (it's important for Pixel to have real information)
-    fbq.pageview()
+    if (isCookieConsentAccept === null) return
 
-    const handleRouteChange = () => {
+    if (isCookieConsentAccept) {
+      // this pageviewonly triggers th first time (it's important for Pixel to have real information)
       fbq.pageview()
-      pageview()
-    }
 
-    router.events.on('routeChangeComplete', handleRouteChange)
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
+      const handleRouteChange = () => {
+        fbq.pageview()
+        gtag.pageview()
+      }
+
+      router.events.on('routeChangeComplete', handleRouteChange)
+      return () => {
+        router.events.off('routeChangeComplete', handleRouteChange)
+      }
     }
   }, [router.events, isCookieConsentAccept])
 
+  const consentGrantedAdStorage = () => {
+    window.gtag?.('consent', 'update', {
+      ad_storage: 'granted',
+      ad_user_data: 'granted',
+      ad_personalization: 'granted',
+      analytics_storage: 'granted',
+    })
+  }
+
   return (
     <ApolloProvider client={client}>
-      <PlausibleProvider domain="www.matarrese.it">
+      <PlausibleProvider domain="matarrese.it">
         {/* Global Site Code Pixel - Facebook Pixel */}
         {isCookieConsentAccept ? (
           <>
-            <Script
-              id="fb-pixel"
-              strategy="afterInteractive"
-              dangerouslySetInnerHTML={{
-                __html: `
+            <Script id="fb-pixel" strategy="afterInteractive">
+              {`
             !function(f,b,e,v,n,t,s)
             {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
             n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -57,41 +67,37 @@ function MyApp({Component, pageProps}) {
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
             fbq('init', ${fbq.FB_PIXEL_ID});
-          `,
-              }}
-            />
-            {/*
-              <Script
-                id="tag-manager"
-                strategy="afterInteractive"
-                dangerouslySetInnerHTML={{
-                  __html: `
-              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','${GTM_ID}')
-              `,
-                }}
-              />
-              */}
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${GTM_ID}`}
-            />
-            <Script id="tag-manager">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-
-                gtag('config', '${GTM_ID}');
-              `}
+          `}
             </Script>
           </>
         ) : null}
+        <Script
+          id="google-tag-manager"
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GTM_ID}`}
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage': 'denied'
+          });
+          gtag('js', new Date());
+          gtag('config', '${gtag.GTM_ID}');
+        `}
+        </Script>
         <Component {...pageProps} />
+        <SpeedInsights />
         <ScrollToTop />
         <CookieConsent
+          onAccept={() => {
+            setIsCookieConsentAccept(true)
+            consentGrantedAdStorage()
+          }}
           enableDeclineButton
           onDecline={() => {
             setIsCookieConsentAccept(false)

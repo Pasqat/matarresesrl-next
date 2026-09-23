@@ -76,7 +76,7 @@ export default function Realizzazioni({data}) {
         },
       )
       // trim and remove subsequent spaces (`this   that` => `this that`)
-      return newQuery.replace(/\s+/g, ' ').trim()
+      return newQuery.replace(/\s+/g, ' ').trim();
     })
   }
 

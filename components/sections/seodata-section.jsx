@@ -5,7 +5,7 @@ const domain = process.env.NEXT_PUBLIC_DOMAIN
 function SeoDataSection({seoData, slug}) {
   return (
     <>
-      <title>{seoData.title} | Matarrese srl</title>
+      <title>{`${seoData.title} | Matarrese srl`}</title>
       <link rel="canonical" href={`${domain}/${slug}`} />
       <meta
         name="robots"

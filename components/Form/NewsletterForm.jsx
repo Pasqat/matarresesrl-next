@@ -252,5 +252,5 @@ export default function NewsletterForm({
         </div>
       </form>
     </Grid>
-  );
+  )
 }

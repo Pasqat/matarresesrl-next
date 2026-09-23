@@ -1,8 +1,6 @@
 import {useRouter} from 'next/router'
-import {useState} from 'react'
+// import {useState} from 'react'
 import Head from 'next/head'
-import Link from 'next/link'
-import Image from 'next/image'
 
 import Layout from '../../components/Layout'
 import Header from '../../components/Header/Header'
@@ -11,13 +9,12 @@ import HeaderBig from '../../components/Header/HeaderBig'
 import SocialShareBar from '../../components/SocialShareBar/SocialShareBar'
 import {ButtonLink} from '../../components/button'
 
-import Lightbox from 'react-image-lightbox'
-import 'react-image-lightbox/style.css'
+import ImageGallery from 'react-image-gallery'
+import 'react-image-gallery/styles/css/image-gallery.css'
 
 import {getProject, getAllProjectsWithSlug} from '../../lib/query/project'
 import {H2, H1} from '../../components/typography'
 import {Spacer} from '../../components/spacer'
-import {Grid} from '../../components/grid'
 import {SeoDataSection} from '../../components/sections/seodata-section'
 import StructuredData from '../../components/StructuredData'
 import {creativeWorkSchema, breadcrumbSchema} from '../../lib/seo/schema'
@@ -25,18 +22,18 @@ import {creativeWorkSchema, breadcrumbSchema} from '../../lib/seo/schema'
 export default function Project({project}) {
   const router = useRouter()
   // const moreEvents = events?.edges
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [imgIndex, setImgIndex] = useState(0)
 
-  const setModal = i => {
-    setIsModalOpen(true)
-    setImgIndex(i)
-  }
-
-  if (!router.isFallback && !project.slug) {
+  if (!router.isFallback && !project?.slug) {
     return <p>hmm...sembra ci sia un errore</p>
   }
 
+  const images = (project?.galleria || []).filter(image => image?.sourceUrl).map(image => ({
+    original: image.sourceUrl,
+    thumbnail: image.sourceUrl,
+    description: image.caption,
+    originalAlt: image.altText,
+    thumbnailAlt: image.altText,
+  }))
   // Schema.org CreativeWork JSON-LD
   const projectStructuredData =
     project &&
@@ -109,67 +106,8 @@ export default function Project({project}) {
                     <div className="mt-10 border-t border-gray-200 py-10">
                       <div className="flex flex-wrap justify-center">
                         <div className="w-full px-4 lg:w-9/12">
-                          {project.galleria.every(n => n !== null) ? (
-                            <Grid
-                              nested
-                              className="mb-8 gap-2 lg:mb-24 lg:gap-4"
-                            >
-                              {isModalOpen && (
-                                <Lightbox
-                                  nextLabel="Prossima immagine"
-                                  prevLabel="Immagine precedente"
-                                  closeLabel="Chiudi"
-                                  imageTitle={
-                                    project.galleria[imgIndex].altText
-                                  }
-                                  imageCaption={
-                                    project.galleria[imgIndex].caption
-                                  }
-                                  mainSrc={project.galleria[imgIndex].sourceUrl}
-                                  nextSrc={
-                                    project.galleria[
-                                      (imgIndex + 1) % project.galleria.length
-                                    ].sourceUrl
-                                  }
-                                  prevSrc={
-                                    project.galleria[
-                                      (imgIndex + project.galleria.length - 1) %
-                                        project.galleria.length
-                                    ].sourceUrl
-                                  }
-                                  onCloseRequest={() => setIsModalOpen(false)}
-                                  onMovePrevRequest={() =>
-                                    setImgIndex(
-                                      (imgIndex + project.galleria.length - 1) %
-                                        project.galleria.length,
-                                    )
-                                  }
-                                  onMoveNextRequest={() =>
-                                    setImgIndex(
-                                      (imgIndex + 1) % project.galleria.length,
-                                    )
-                                  }
-                                />
-                              )}
-                              {project.galleria.map((image, i) => (
-                                <div
-                                  key={image.id}
-                                  className="relative col-span-4 h-32 cursor-pointer lg:h-64"
-                                  onClick={() => setModal(i)}
-                                >
-                                  <Image
-                                    src={image.sourceUrl}
-                                    alt={image.altText}
-                                    fill
-                                    sizes="100vw"
-                                    style={{
-                                      objectFit: 'cover',
-                                      objectPosition: 'center',
-                                    }}
-                                  />
-                                </div>
-                              ))}
-                            </Grid>
+                          {images.length > 0 ? (
+                            <ImageGallery items={images} />
                           ) : null}
                           <div className="mb-14 lg:mb-24">
                             <EventBody content={project.content} />
@@ -189,24 +127,12 @@ export default function Project({project}) {
                   <H2 as="p">{`Hai anche tu un progetto da realizzare?`}</H2>
                   <Spacer size="2xs" />
                   <div className="flex justify-center">
-                    <ButtonLink size="large" href="/contatti">
+                    <ButtonLink href="/contatti" size="large">
                       Contattaci!
                     </ButtonLink>
                   </div>
                 </div>
               </section>
-              {/**
-
-              <Spacer size="xs" />
-
-              <div className="flex justify-center ">
-                <Link href="/realizzazioni" passHref>
-                  <ButtonLink size="medium">
-                    Guarda le altre realizzazioni
-                  </ButtonLink>
-                </Link>
-              </div>
-*/}
             </div>
           </section>
         </>

@@ -353,5 +353,5 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
         </div>
       </form>
     </Grid>
-  );
+  )
 }

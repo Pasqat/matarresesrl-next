@@ -1,6 +1,7 @@
 import * as React from 'react'
 import clsx from 'clsx'
 // import Image from 'next/image'
+// import DOMPurify from "dompurify";
 
 import {Grid} from '../grid'
 import {H2, H6, Paragraph} from '../typography'
@@ -90,7 +91,7 @@ function FeaturedSection({
             </div>
           </div>
           <div className="relative col-span-full mt-12 lg:col-span-4 lg:col-start-8">
-            <div className="aspect-w-4 aspect-h-3 overflow-hidden rounded-lg lg:aspect-h-5 lg:aspect-w-4">
+            <div className="aspect-h-3 aspect-w-4 overflow-hidden rounded-lg lg:aspect-h-5 lg:aspect-w-4">
               <BlurringImage
                 img={img}
                 css={css}
