@@ -5,7 +5,7 @@ const siteUrl = process.env.NEXT_PUBLIC_DOMAIN || 'https://www.matarrese.it'
 // Priorità per-rotta: home > pagine principali > liste > dettaglio > legali.
 function priorityFor(path) {
   if (path === '/') return 1.0
-  if (['/servizi', '/prodotti', '/azienda', '/contatti'].includes(path))
+  if (['/servizi', '/prodotti', '/azienda', '/contatti', '/settori'].includes(path))
     return 0.9
   if (['/news', '/eventi', '/realizzazioni', '/faq', '/ricerca'].includes(path))
     return 0.8

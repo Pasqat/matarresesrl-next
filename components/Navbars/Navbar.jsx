@@ -5,6 +5,7 @@ import Link from 'next/link'
 import {useRouter} from 'next/router'
 
 const primary = [
+  ['Settori', '/settori'],
   ['Prodotti', '/prodotti'],
   ['Servizi', '/servizi'],
   ['Realizzazioni', '/realizzazioni'],
