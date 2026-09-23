@@ -41,6 +41,17 @@ strong {
     animation: hero-progress var(--hero-duration, 6s) linear both;
   }
 
+  /* Fascia marchi (components/home/BrandMarquee.jsx): due copie, scorre di metà larghezza */
+  .marquee {
+    animation: marquee 45s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee {
+      animation: none;
+    }
+  }
+
   .type-editorial {
     font-family: var(--font-editorial);
     font-optical-sizing: auto;
@@ -424,5 +435,11 @@ strong {
   }
   to {
     transform: scaleX(1);
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(calc(-50% - 2rem));
   }
 }

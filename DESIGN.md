@@ -55,6 +55,13 @@ all'azione per vista, qualche dettaglio.
 - Video di apertura: loop corto, muto, compresso (mp4/webm) con poster, servito da Next/Vercel e
   caricato in modo differito; con `prefers-reduced-motion` solo il poster.
 - Il movimento che risponde a un'azione (aprire, espandere, confermare) è sempre benvenuto.
+- **Interazioni col puntatore** (richiesta di Pasquale, 23/09/2026): il sito deve "rispondere al
+  mouse". Componenti già pronti da riusare: `components/Magnetic.jsx` (CTA che segue il cursore),
+  luce che segue il cursore nell'apertura (`HomeHero`), anteprima foto che segue il cursore
+  sugli elenchi (`home/SectorList`), cerchio "Scopri" sulle foto dei progetti (`home/ProjectGrid`),
+  fascia marchi che si ferma al passaggio (`home/BrandMarquee`), "text roll" sulle voci di menu.
+  Sempre solo con `(hover: hover) and (pointer: fine)` e senza movimento ridotto; su touch il
+  contenuto deve restare completo (es. miniature al posto dell'anteprima che segue il cursore).
 - Sempre rispettare `prefers-reduced-motion`: parallax, scrub e pin disattivati.
 
 ## Media

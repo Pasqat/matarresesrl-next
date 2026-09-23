@@ -23,15 +23,34 @@ const social = [
 export default function Footer() {
   return (
     <footer className="text-base">
-      {/* Newsletter: fascia calce chiara sopra il blocco scuro. Il form è
-          pensato per fondi chiari; qui si adattano solo le classi visive:
-          input bianchi (featured), link privacy in fiamma-testo (AA su
-          chiaro), margini allineati a .site-shell. */}
-      <div className="border-t border-ghisa/10 bg-calce py-14 text-ghisa">
-        <div className="site-shell [&>div]:mx-0 [&_a]:text-fiamma-testo [&_form]:max-w-none">
-          <NewsletterFormFooter groups={newsletterGroups} featured />
+      {/* Newsletter: fascia calce sopra il blocco ghisa. Resta chiara perché
+          il ghisa si apre con la CTA forte "Parliamone" (l'unica in fiamma):
+          qui l'invito è secondario, con pulsante ghisa, e l'alternanza
+          chiaro/scuro chiude la pagina. */}
+      <section
+        aria-labelledby="newsletter-title"
+        className="border-t border-ghisa/10 bg-calce py-16 text-ghisa lg:py-24"
+      >
+        <div className="site-shell grid gap-x-10 gap-y-10 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            {/* copy da approvare */}
+            <h2
+              id="newsletter-title"
+              className="type-display text-[1.75rem] md:text-4xl lg:text-[2.75rem]"
+            >
+              Eventi, demo e novità tecniche per il tuo locale.
+            </h2>
+            {/* copy da approvare */}
+            <p className="mt-5 max-w-prose text-lg leading-relaxed text-acciaio">
+              Ti scriviamo quando organizziamo showcooking e dimostrazioni, o
+              quando pubblichiamo novità utili per chi lavora nell&apos;ho.re.ca.
+            </p>
+          </div>
+          <div className="lg:col-span-6 lg:col-start-7 lg:self-end">
+            <NewsletterFormFooter groups={newsletterGroups} />
+          </div>
         </div>
-      </div>
+      </section>
 
       <div className="bg-ghisa text-inox">
         <div className="site-shell">

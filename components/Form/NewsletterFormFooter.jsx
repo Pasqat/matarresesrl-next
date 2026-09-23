@@ -3,19 +3,17 @@ import Link from 'next/link'
 import {gtmEvent} from '../../lib/gtm'
 import {usePlausible} from 'next-plausible'
 import {logStructuredError} from '../../lib/logging'
-import {ArrowButton} from '../arrow-button'
-
-import {Paragraph} from '../typography'
-import {Field} from '../form-element'
 import clsx from 'clsx'
 import {CheckIcon} from '../icons/check-icon'
 
-export default function NewsletterForm({
-  hasAutoFocus,
-  featured,
-  groups,
-  title = 'Iscriviti alla nostra newsletter',
-}) {
+// Campi "a linea" su calce: solo filetto inferiore, 48px di altezza. Il focus
+// è l'outline globale fiamma-testo (styles/revamp.css), già AA su chiaro.
+// L'ombra inset sovrascrive il fondo grigio che globals.css dà all'autofill.
+const field =
+  'block h-12 w-full rounded-none border-0 border-b border-ghisa/30 bg-transparent px-0 text-lg text-ghisa transition-colors placeholder:text-acciaio hover:border-ghisa/60 focus:border-ghisa aria-[invalid=true]:border-red-600 autofill:!shadow-[inset_0_0_0_999px_var(--calce)]'
+const label = 'block text-sm font-medium text-acciaio'
+
+export default function NewsletterForm({hasAutoFocus, groups}) {
   const plausible = usePlausible()
 
   const [form, setForm] = useState({
@@ -129,56 +127,50 @@ export default function NewsletterForm({
     }
   }
 
+  const done = !notification.isError && Boolean(notification.text)
+  const termsError =
+    notification.isError && notification.text.includes('termini')
+  const emailError = notification.isError && !termsError
+
   return (
-    <div className="mx-10vw">
-      <form
-        className="col-span-full mx-auto max-w-7xl "
-        onSubmit={submitContactForm}
-      >
-        <div className="grid w-full grid-cols-4 gap-x-4 md:grid-cols-8 lg:grid-cols-12">
-          <Paragraph className="col-span-full flex items-center lg:col-span-4">
-            {title}
-          </Paragraph>
-          <Field
+    <form onSubmit={submitContactForm}>
+      <div className="grid gap-x-8 gap-y-8 md:grid-cols-2">
+        <div>
+          <label htmlFor="newsletter-email" className={label}>
+            Email
+          </label>
+          <input
+            ref={inputName}
+            id="newsletter-email"
             name="email"
-            label="Email"
             type="email"
             autoComplete="email"
-            error={notification.isError ? notification.text : null}
             required
             value={email}
             onChange={handleChange}
-            className="col-span-full lg:col-span-4"
-            featured={featured}
-            placeholder="e-mail"
+            placeholder="nome@azienda.it"
+            aria-invalid={emailError}
+            aria-describedby={
+              notification.isError ? 'newsletter-error' : undefined
+            }
+            className={field}
           />
-          {/* Honeypot field */}
-          <div style={{display: 'none'}}>
-            <label>
-              Non compilare questo campo se sei umano
-              <input
-                type="text"
-                name="honeypot"
-                value={honeypot}
-                onChange={e => setHoneypot(e.target.value)}
-                tabIndex={-1}
-                autoComplete="off"
-              />
-            </label>
-          </div>
+        </div>
 
-          <div className="col-span-full mb-4 lg:col-span-4">
-            <div className="mb-2 flex items-baseline justify-between gap-2">
-              <label htmlFor="industry">Settore</label>
-            </div>
+        <div>
+          <label htmlFor="industry" className={label}>
+            {/* copy da approvare */}
+            Il tuo settore
+          </label>
+          <div className="relative">
             <select
               id="industry"
               value={newsletterGroupId}
               name="newsletterGroupId"
               onChange={handleChange}
               className={clsx(
-                'focus-ring w-full rounded-lg bg-white px-8 py-[1.17rem] text-lg font-medium text-black placeholder-gray-500 caret-yellow-500 disabled:bg-gray-100 disabled:text-gray-400',
-                featured ? 'bg-white' : 'bg-gray-100',
+                field,
+                'cursor-pointer appearance-none truncate pr-8',
               )}
             >
               {groups.map(group => {
@@ -189,48 +181,124 @@ export default function NewsletterForm({
                 )
               })}
             </select>
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 16 16"
+              className="pointer-events-none absolute right-0 top-1/2 h-4 w-4 -translate-y-1/2 text-ghisa"
+            >
+              <path
+                d="m4 6 4 4 4-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+              />
+            </svg>
           </div>
         </div>
-        <div className="flex-end col-span-full ml-auto">
-          <label className="flex w-full items-center justify-end">
-            <input
-              type="checkbox"
-              className="cursor-pointer border-2 border-solid border-gray-400 text-yellow-500 checked:bg-yellow-500"
-              name="conditions"
-              checked={isCheckedTerms}
-              onChange={() => setIsCheckedTerms(!isCheckedTerms)}
-            />
-            <span className="ml-2">
-              Accetto il{' '}
-              <Link
-                href="/privacy-policy"
-                className="text-yellow-500"
-                target="_blank"
-              >
-                trattamento dei dati e condizioni *
-              </Link>
-            </span>
-          </label>
-        </div>
+      </div>
 
-        <div className="text-right">
-          {!notification.isError && notification.text ? (
-            <div className="flex justify-end">
-              <CheckIcon />
-              <p className="text-secondary text-lg">{notification.text}</p>
-            </div>
-          ) : (
-            <ArrowButton
-              className="pt-4"
-              type="submit"
-              direction="right"
-              disabled={loading}
+      {/* Honeypot field */}
+      <div style={{display: 'none'}}>
+        <label>
+          Non compilare questo campo se sei umano
+          <input
+            type="text"
+            name="honeypot"
+            value={honeypot}
+            onChange={e => setHoneypot(e.target.value)}
+            tabIndex={-1}
+            autoComplete="off"
+          />
+        </label>
+      </div>
+
+      <div className="mt-8 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+        <label className="flex min-h-12 cursor-pointer items-center gap-3 text-base text-acciaio">
+          <input
+            type="checkbox"
+            className="h-5 w-5 shrink-0 cursor-pointer accent-ghisa"
+            name="conditions"
+            checked={isCheckedTerms}
+            onChange={() => setIsCheckedTerms(!isCheckedTerms)}
+            aria-invalid={termsError}
+            aria-describedby={termsError ? 'newsletter-error' : undefined}
+          />
+          <span>
+            Accetto il{' '}
+            <Link
+              href="/privacy-policy"
+              className="text-fiamma-testo underline decoration-fiamma-testo/40 underline-offset-4 transition-colors hover:decoration-fiamma-testo"
+              target="_blank"
             >
-              {loading ? 'Invio...' : 'Iscriviti'}
-            </ArrowButton>
-          )}
+              trattamento dei dati e condizioni *
+            </Link>
+          </span>
+        </label>
+
+        {/* Pulsante e conferma nella stessa cella: a iscrizione riuscita il
+            pulsante sparisce (e si disattiva, niente reinvio con Invio) e il
+            messaggio entra con una dissolvenza; senza movimento se ridotto. */}
+        <div className="grid shrink-0 [&>*]:[grid-area:1/1]">
+          <button
+            type="submit"
+            disabled={loading || done}
+            aria-hidden={done || undefined}
+            className={clsx(
+              'group inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-sm bg-ghisa px-7 text-base font-medium text-calce transition-[background-color,opacity,visibility] duration-300 hover:bg-grafite disabled:cursor-wait md:w-auto motion-reduce:transition-none',
+              done && 'invisible opacity-0',
+            )}
+          >
+            {loading ? 'Invio…' : 'Iscriviti'}
+            {loading ? (
+              <span
+                aria-hidden="true"
+                className="h-4 w-4 rounded-full border-2 border-calce/30 border-t-calce motion-safe:animate-spin"
+              />
+            ) : (
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 16 16"
+                className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0"
+              >
+                <path
+                  d="M2 8h11M9 4l4 4-4 4"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                />
+              </svg>
+            )}
+          </button>
+          <p
+            role="status"
+            className={clsx(
+              'flex items-center gap-3 text-lg font-medium text-ghisa transition-[opacity,transform] delay-100 duration-500 ease-out motion-reduce:transition-none',
+              done
+                ? 'translate-y-0 opacity-100'
+                : 'pointer-events-none translate-y-2 opacity-0 motion-reduce:translate-y-0',
+            )}
+          >
+            {done && (
+              <>
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-ghisa text-calce">
+                  <CheckIcon />
+                </span>
+                {notification.text}
+              </>
+            )}
+          </p>
         </div>
-      </form>
-    </div>
+      </div>
+
+      {notification.isError && (
+        <p
+          id="newsletter-error"
+          role="alert"
+          className="mt-4 text-base font-medium text-red-600"
+        >
+          {notification.text}
+        </p>
+      )}
+    </form>
   )
 }

@@ -4,6 +4,10 @@ import Link from 'next/link'
 import Layout from '../components/Layout'
 import ContactForm from '../components/Form/ContactForm'
 import HomeHero from '../components/home/HomeHero'
+import SectorList from '../components/home/SectorList'
+import ProjectGrid from '../components/home/ProjectGrid'
+import BrandMarquee from '../components/home/BrandMarquee'
+import Testimonials from '../components/home/Testimonials'
 import {getGroups} from '../lib/newsletter'
 import {getEvents} from '../lib/query/event'
 import {getLastTwoProjects} from '../lib/query/project'
@@ -76,9 +80,8 @@ const fatti = [
 
 export default function Home({groups, lastTwoProjects = [], event}) {
   const upcoming = event?.futureEvent?.[0]
-  const evidenza = settori.filter(s => s.inEvidenza)
-  const altri = settori.filter(s => !s.inEvidenza)
-  const quote = testimonials[0]
+  // Le recensioni più descrittive tra quelle disponibili.
+  const reviews = [0, 2, 3, 5].map(n => testimonials[n])
   return (
     <>
       <Head>
@@ -119,7 +122,11 @@ export default function Home({groups, lastTwoProjects = [], event}) {
         />
 
         {/* Capitolo chiaro: per chi lavoriamo */}
-        <section className="bg-calce text-ghisa" aria-labelledby="settori-title">
+        <section
+          className="bg-calce text-ghisa"
+          data-header="light"
+          aria-labelledby="settori-title"
+        >
           <div className="site-shell grid gap-14 py-24 lg:grid-cols-12 lg:py-32">
             <div className="lg:col-span-5">
               <h2
@@ -135,43 +142,17 @@ export default function Home({groups, lastTwoProjects = [], event}) {
               </p>
             </div>
             <div className="lg:col-span-7">
-              <div className="grid gap-4 md:grid-cols-2">
-                {evidenza.map(s => (
-                  <article
-                    key={s.slug}
-                    className="flex flex-col justify-between bg-ghisa p-7 text-white md:min-h-[260px]"
-                  >
-                    <h3 className="type-display text-[clamp(24px,2.2vw,32px)]">
-                      {s.nome}
-                    </h3>
-                    <div>
-                      <p className="mt-6 text-inox">{s.frase}</p>
-                      <Link
-                        href="#parliamone"
-                        className="mt-6 inline-block border-b border-fiamma py-1 text-fiamma hover:text-white"
-                      >
-                        Parliamone
-                      </Link>
-                    </div>
-                  </article>
-                ))}
-              </div>
-              <ul className="mt-10">
-                {altri.map(s => (
-                  <li
-                    key={s.slug}
-                    className="type-display border-t border-ghisa/15 py-5 text-[clamp(20px,1.9vw,28px)] last:border-b"
-                  >
-                    {s.nome}
-                  </li>
-                ))}
-              </ul>
+              <SectorList settori={settori} href={() => '#parliamone'} />
             </div>
           </div>
         </section>
 
         {/* Capitolo scuro: come lavoriamo */}
-        <section className="bg-ghisa text-white" aria-labelledby="metodo-title">
+        <section
+          className="bg-ghisa text-white"
+          data-header="dark"
+          aria-labelledby="metodo-title"
+        >
           <div className="site-shell py-24 lg:py-32">
             <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
               <h2
@@ -189,9 +170,16 @@ export default function Home({groups, lastTwoProjects = [], event}) {
             </div>
             <ol className="mt-16 grid gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-4">
               {metodo.map(([titolo, testo], i) => (
-                <li key={titolo} className="border-t border-inox/25 pt-6">
+                <li
+                  key={titolo}
+                  className="group relative border-t border-inox/25 pt-6"
+                >
                   <span
-                    className="type-display text-4xl text-fiamma"
+                    className="absolute -top-px left-0 h-px w-0 bg-fiamma transition-all duration-700 ease-out group-hover:w-full motion-reduce:transition-none"
+                    aria-hidden="true"
+                  />
+                  <span
+                    className="type-display inline-block text-4xl text-fiamma transition-transform duration-500 group-hover:-translate-y-1 motion-reduce:transition-none"
                     aria-hidden="true"
                   >
                     {String(i + 1).padStart(2, '0')}
@@ -207,7 +195,11 @@ export default function Home({groups, lastTwoProjects = [], event}) {
         </section>
 
         {/* Capitolo chiaro: prove */}
-        <section className="bg-calce text-ghisa" aria-labelledby="progetti-title">
+        <section
+          className="bg-calce text-ghisa"
+          data-header="light"
+          aria-labelledby="progetti-title"
+        >
           <div className="site-shell py-24 lg:py-32">
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
               <h2
@@ -223,45 +215,16 @@ export default function Home({groups, lastTwoProjects = [], event}) {
                 Tutte le realizzazioni
               </Link>
             </div>
-            <div className="mt-14 grid gap-x-8 gap-y-14 md:grid-cols-2">
-              {lastTwoProjects.slice(0, 4).map((project, i) => {
-                const src =
-                  project.featuredImage?.node?.mediaItemUrl ||
-                  project.featuredImage?.node?.sourceUrl
-                return (
-                  <Link
-                    key={project.slug}
-                    href={`/realizzazioni/${project.slug}`}
-                    className={`group block ${i % 2 ? 'md:mt-28' : ''}`}
-                  >
-                    <div
-                      className={`relative overflow-hidden bg-inox ${
-                        i % 2 ? 'aspect-[4/5]' : 'aspect-[5/4]'
-                      }`}
-                    >
-                      {src && (
-                        <Image
-                          src={src}
-                          alt={project.featuredImage.node.altText || ''}
-                          fill
-                          sizes="(min-width: 640px) 45vw, 100vw"
-                          className="object-cover transition-transform duration-700 group-hover:scale-[1.03] motion-reduce:transition-none"
-                        />
-                      )}
-                    </div>
-                    <h3
-                      className="type-display mt-5 text-2xl"
-                      dangerouslySetInnerHTML={{__html: project.title}}
-                    />
-                  </Link>
-                )
-              })}
-            </div>
+            <ProjectGrid projects={lastTwoProjects} />
           </div>
         </section>
 
         {/* Capitolo scuro: dentro Matarrese */}
-        <section className="bg-ghisa text-white" aria-labelledby="azienda-title">
+        <section
+          className="bg-ghisa text-white"
+          data-header="dark"
+          aria-labelledby="azienda-title"
+        >
           <div className="site-shell grid gap-14 py-24 lg:grid-cols-12 lg:items-center lg:py-32">
             <div className="relative aspect-[4/3] overflow-hidden lg:col-span-7">
               <Image
@@ -300,52 +263,56 @@ export default function Home({groups, lastTwoProjects = [], event}) {
           </div>
         </section>
 
-        {/* Capitolo chiaro: marchi e voce dei clienti */}
-        <section className="bg-calce text-ghisa" aria-labelledby="marchi-title">
-          <div className="site-shell py-24 lg:py-28">
-            <div className="grid gap-12 lg:grid-cols-12">
-              <div className="lg:col-span-5">
-                <h2
-                  id="marchi-title"
-                  className="type-display text-[clamp(28px,3vw,44px)]"
-                >
-                  I marchi che conosciamo a fondo.
-                </h2>
-                <Link
-                  href="/prodotti"
-                  className="mt-6 inline-block border-b border-ghisa py-2 hover:text-fiamma-testo"
-                >
-                  Prodotti e marchi
-                </Link>
-              </div>
-              <ul className="grid grid-cols-3 items-center gap-x-8 gap-y-6 md:grid-cols-4 lg:col-span-7">
-                {logos.slice(0, 12).map(logo => (
-                  <li key={logo.name} className="relative h-12">
-                    <Image
-                      src={logo.url}
-                      alt={logo.name}
-                      fill
-                      sizes="160px"
-                      className="object-contain opacity-80 mix-blend-multiply grayscale"
-                    />
-                  </li>
-                ))}
-              </ul>
+        {/* Fascia marchi: separata dalle recensioni */}
+        <section
+          className="border-y border-ghisa/10 bg-white text-ghisa"
+          data-header="light"
+          aria-labelledby="marchi-title"
+        >
+          <div className="site-shell flex flex-col gap-4 pb-8 pt-16 md:flex-row md:items-end md:justify-between">
+            <h2
+              id="marchi-title"
+              className="type-display text-[clamp(24px,2.4vw,36px)]"
+            >
+              I marchi che conosciamo a fondo.
+            </h2>
+            <Link
+              href="/prodotti"
+              className="self-start border-b border-ghisa py-2 hover:text-fiamma-testo md:self-auto"
+            >
+              Prodotti e marchi
+            </Link>
+          </div>
+          <div className="pb-16">
+            <BrandMarquee logos={logos} />
+          </div>
+        </section>
+
+        {/* Capitolo chiaro: la voce dei clienti */}
+        <section
+          className="bg-calce text-ghisa"
+          data-header="light"
+          aria-labelledby="recensioni-title"
+        >
+          <div className="site-shell py-24 lg:py-32">
+            <h2
+              id="recensioni-title"
+              className="type-display text-[clamp(24px,2.4vw,36px)]"
+            >
+              Cosa dicono i clienti.
+            </h2>
+            <div className="mt-8">
+              <Testimonials items={reviews} />
             </div>
-            <figure className="mt-20 grid gap-6 border-t border-ghisa/15 pt-12 lg:grid-cols-12">
-              <blockquote className="type-editorial text-[clamp(26px,2.6vw,40px)] leading-snug lg:col-span-9">
-                “{quote.content}”
-              </blockquote>
-              <figcaption className="text-acciaio lg:col-span-3 lg:self-end">
-                <span className="block text-ghisa">{quote.name}</span>
-                Recensione di un cliente
-              </figcaption>
-            </figure>
           </div>
         </section>
 
         {upcoming && (
-          <section className="bg-calce text-ghisa" aria-labelledby="evento-title">
+          <section
+            className="bg-calce text-ghisa"
+            data-header="light"
+            aria-labelledby="evento-title"
+          >
             <div className="site-shell flex flex-col gap-6 border-t border-ghisa/15 py-14 md:flex-row md:items-center md:justify-between">
               <div>
                 <p className="text-acciaio">
@@ -370,6 +337,7 @@ export default function Home({groups, lastTwoProjects = [], event}) {
         {/* Chiusura: la chiamata al progetto */}
         <section
           className="bg-white text-ghisa"
+          data-header="light"
           id="parliamone"
           aria-labelledby="contatto-title"
         >
