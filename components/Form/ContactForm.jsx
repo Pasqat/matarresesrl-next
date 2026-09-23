@@ -1,5 +1,6 @@
-import {useEffect, useRef, useState} from 'react'
+import {useEffect, useId, useRef, useState} from 'react'
 import Link from 'next/link'
+import clsx from 'clsx'
 import * as fbq from '../../lib/fpixel'
 import {gtmEvent} from '../../lib/gtm'
 import {usePlausible} from 'next-plausible'
@@ -7,12 +8,67 @@ import {logStructuredError} from '../../lib/logging'
 
 import {H2} from '../typography'
 
-import {Field, NotificationPanel} from '../form-element'
 import {Grid} from '../grid'
 import {Spacer} from '../spacer'
-import {ArrowButton} from '../arrow-button'
 import {CheckIcon} from '../icons/check-icon'
-import {ChevronLeftIcon} from '../icons/chevron-left-icon'
+
+// Stesso linguaggio della newsletter nel footer: campi "a linea" (solo filetto
+// inferiore), testo 18px, focus = outline globale fiamma-testo (revamp.css).
+// Trasparenti, quindi reggono sia su bianco sia su calce.
+const field =
+  'block w-full rounded-none border-0 border-b border-ghisa/25 bg-transparent px-0 text-lg text-ghisa transition-colors placeholder:text-acciaio hover:border-ghisa/60 focus:border-ghisa disabled:cursor-not-allowed disabled:border-ghisa/10 disabled:text-acciaio aria-[invalid=true]:border-red-600'
+// L'ombra inset copre il fondo che il browser dà all'autofill. Sul riquadro
+// `featured` (gray-100) basta quella di globals.css, che è già gray-100.
+const autofillOnWhite =
+  'autofill:!shadow-[inset_0_0_0_999px_var(--color-white)]'
+const labelClass = 'block text-sm font-medium text-acciaio'
+const checkLabel =
+  'flex min-h-12 cursor-pointer items-center gap-3 text-base text-acciaio'
+// `!`: revamp.css forza accent fiamma-testo sui checkbox in .site-content form.
+const checkbox = 'h-5 w-5 shrink-0 cursor-pointer !accent-ghisa'
+
+// Sostituisce `Field` di form-element.jsx solo qui: stessi attributi (name,
+// id, required, autoComplete, aria-invalid, aria-describedby).
+function LineField({
+  id,
+  label,
+  error,
+  textarea,
+  featured,
+  className,
+  ...props
+}) {
+  const errorId = `${id}-error`
+  const Tag = textarea ? 'textarea' : 'input'
+  return (
+    <div className={className}>
+      <label htmlFor={id} className={labelClass}>
+        {label}
+      </label>
+      <Tag
+        {...props}
+        id={id}
+        rows={textarea ? 4 : undefined}
+        aria-invalid={Boolean(error)}
+        aria-describedby={error ? errorId : undefined}
+        className={clsx(
+          field,
+          textarea ? 'min-h-[8rem] resize-y py-3' : 'h-12',
+          !featured && autofillOnWhite,
+        )}
+      />
+      {error ? (
+        <p
+          role="alert"
+          id={errorId}
+          className="mt-2 text-sm font-medium text-red-600"
+        >
+          {error}
+        </p>
+      ) : null}
+    </div>
+  )
+}
 
 export default function ContactForm({
   compact = false,
@@ -51,6 +107,7 @@ export default function ContactForm({
   const [loading, setLoading] = useState(false)
 
   const inputName = useRef(null)
+  const uid = useId()
 
   const handleChange = e => {
     const {name, value} = e.target
@@ -188,10 +245,15 @@ export default function ContactForm({
     }
   }
 
+  const done = formButtonDisabled
+  const termsError =
+    notification.isError && notification.text.includes('termini')
+  const errorId = `${uid}-error`
+
   return (
     <Grid featured={featured}>
       <form
-        className="col-span-full mt-8 space-y-4"
+        className="col-span-full mt-8"
         onSubmit={submitContactForm}
         aria-busy={loading}
       >
@@ -206,8 +268,9 @@ export default function ContactForm({
             <Spacer size="2xs" />
           </>
         )}
-        <Grid nested>
-          <Field
+        <Grid nested className="gap-y-8">
+          <LineField
+            id={`${uid}-referente`}
             name="referente"
             label="Nome*"
             error={fieldErrors.referente}
@@ -216,54 +279,60 @@ export default function ContactForm({
             disabled={formButtonDisabled || loading}
             value={referente}
             onChange={handleChange}
-            className="col-span-full lg:col-span-6"
+            className="col-span-full md:col-span-4 lg:col-span-6"
             featured={featured}
           />
-          <Field
+          <LineField
+            id={`${uid}-email`}
             name="email"
             label="Email"
             autoComplete="email"
+            inputMode="email"
             error={fieldErrors.email}
             disabled={formButtonDisabled || loading}
             value={email}
             onChange={handleChange}
-            className="col-span-full lg:col-span-6"
+            className="col-span-full md:col-span-4 lg:col-span-6"
             featured={featured}
           />
-          <Field
+          <LineField
+            id={`${uid}-tel`}
             name="tel"
             label="Tel"
             autoComplete="tel"
+            inputMode="tel"
             error={fieldErrors.tel}
             disabled={formButtonDisabled || loading}
             value={tel}
             onChange={handleChange}
-            className="col-span-full lg:col-span-6"
+            className="col-span-full md:col-span-4 lg:col-span-6"
             featured={featured}
           />
-          <Field
+          <LineField
+            id={`${uid}-company`}
             name="company"
             label="Denominazione Aziendale"
-            autoComplete="company"
-            // error={notification.isError ? notification.text : null}
+            autoComplete="organization"
             disabled={formButtonDisabled || loading}
             value={company}
             onChange={handleChange}
-            className="col-span-full lg:col-span-6"
+            className="col-span-full md:col-span-4 lg:col-span-6"
+            featured={featured}
+          />
+          <LineField
+            id={`${uid}-formContent`}
+            name="formContent"
+            label="Messaggio"
+            error={fieldErrors.formContent}
+            required
+            disabled={formButtonDisabled || loading}
+            value={formContent}
+            onChange={handleChange}
+            textarea
+            className="col-span-full"
             featured={featured}
           />
         </Grid>
-        <Field
-          name="formContent"
-          label="Messaggio"
-          error={fieldErrors.formContent}
-          required
-          disabled={formButtonDisabled || loading}
-          value={formContent}
-          onChange={handleChange}
-          type="textarea"
-          featured={featured}
-        />
         {/* Honeypot anti-spam field (hidden from users) */}
         <input
           type="text"
@@ -282,94 +351,150 @@ export default function ContactForm({
             overflow: 'hidden',
           }}
         />
-        <div className="relative mt-5 grid grid-cols-4 gap-x-4 text-gray-600 md:grid-cols-8 lg:grid-cols-12 lg:gap-x-6">
-          <div className="col-span-full mb-2 text-lg lg:col-span-6">
-            <label className="mb-2 inline-flex w-full items-center leading-tight">
+
+        <div className="mt-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+          <div className="flex flex-col gap-1">
+            <label className={checkLabel}>
               <input
                 type="checkbox"
-                className="cursor-pointer border-2 border-solid border-gray-400 text-yellow-600 checked:bg-yellow-500"
+                className={checkbox}
                 name="newsletter"
                 checked={isCheckedNewsletter}
                 onChange={() => setIsCheckedNewsletter(!isCheckedNewsletter)}
               />
-              <span className="ml-2">
-                Voglio rimanere aggiornato su novità e promozioni
-              </span>
+              <span>Voglio rimanere aggiornato su novità e promozioni</span>
             </label>
             {isCheckedNewsletter ? (
-              <div className="my-2 ml-4 flex items-center lg:my-6">
-                <select
-                  value={newsletterGroupId}
-                  name="newsletterGroupId"
-                  onChange={handleChange}
-                  className="w-full rounded-lg bg-white px-2 py-4 text-lg font-medium disabled:text-gray-400 lg:w-auto lg:px-8"
-                >
-                  {groups.map(group => {
-                    return (
-                      <option key={group.id} value={group.id}>
-                        {group.name}
-                      </option>
-                    )
-                  })}
-                </select>
-                <ChevronLeftIcon />
-                <label className="text-xs lg:text-lg">
-                  scegli il tuo settore
+              <div className="mb-3 ml-8 max-w-sm">
+                <label htmlFor={`${uid}-group`} className={labelClass}>
+                  Scegli il tuo settore
                 </label>
+                <div className="relative">
+                  <select
+                    id={`${uid}-group`}
+                    value={newsletterGroupId}
+                    name="newsletterGroupId"
+                    onChange={handleChange}
+                    className={clsx(
+                      field,
+                      // `!`: revamp.css dà a `.site-content form select` un
+                      // bordo pieno su 4 lati che batterebbe le classi.
+                      'h-12 cursor-pointer appearance-none truncate pr-8 !rounded-none !border-0 !border-b !border-ghisa/25 hover:!border-ghisa/60 focus:!border-ghisa',
+                    )}
+                  >
+                    {groups.map(group => {
+                      return (
+                        <option key={group.id} value={group.id}>
+                          {group.name}
+                        </option>
+                      )
+                    })}
+                  </select>
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 16 16"
+                    className="pointer-events-none absolute right-0 top-1/2 h-4 w-4 -translate-y-1/2 text-ghisa"
+                  >
+                    <path
+                      d="m4 6 4 4 4-4"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                    />
+                  </svg>
+                </div>
               </div>
             ) : null}
-          </div>
-          <div className="col-span-full text-lg lg:col-span-6">
-            <label className="flex-end inline-flex w-full items-center">
+            <label className={checkLabel}>
               <input
                 type="checkbox"
-                className="cursor-pointer border-2 border-solid border-gray-400 text-yellow-500 checked:bg-yellow-500"
+                className={checkbox}
                 name="conditions"
                 checked={isCheckedTerms}
                 onChange={() => setIsCheckedTerms(!isCheckedTerms)}
+                aria-invalid={termsError}
+                aria-describedby={termsError ? errorId : undefined}
               />
-              <span className="ml-2">
+              <span>
                 Accetto il{' '}
                 <Link
                   href="/privacy-policy"
-                  className="text-yellow-500"
+                  className="text-fiamma-testo underline decoration-fiamma-testo/40 underline-offset-4 transition-colors hover:decoration-fiamma-testo"
                   target="_blank"
                 >
                   trattamento dei dati e condizioni
                 </Link>
+                &nbsp;*
               </span>
-              *
             </label>
+          </div>
+
+          {/* Pulsante e conferma nella stessa cella: a invio riuscito il
+              pulsante sparisce (resta disattivato) e il messaggio entra con
+              una dissolvenza; senza movimento se ridotto. */}
+          <div className="grid shrink-0 [&>*]:[grid-area:1/1]">
+            <button
+              type="submit"
+              disabled={loading || formButtonDisabled}
+              aria-hidden={done || undefined}
+              className={clsx(
+                'cta-ghisa group w-full justify-center gap-3 text-base transition-[background-color,opacity,visibility] duration-300 disabled:cursor-wait md:w-auto motion-reduce:transition-none',
+                done && 'invisible opacity-0',
+              )}
+            >
+              {loading ? 'Invio...' : 'Invia'}
+              {loading ? (
+                <span
+                  aria-hidden="true"
+                  className="h-4 w-4 rounded-full border-2 border-white/30 border-t-white motion-safe:animate-spin"
+                />
+              ) : (
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 16 16"
+                  className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1 group-focus-visible:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0 motion-reduce:group-focus-visible:translate-x-0"
+                >
+                  <path
+                    d="M2 8h11M9 4l4 4-4 4"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                  />
+                </svg>
+              )}
+            </button>
+            <p
+              role="status"
+              className={clsx(
+                'flex items-center gap-3 text-lg font-medium text-ghisa transition-[opacity,transform] delay-100 duration-500 ease-out motion-reduce:transition-none',
+                done
+                  ? 'translate-y-0 opacity-100'
+                  : 'pointer-events-none translate-y-2 opacity-0 motion-reduce:translate-y-0',
+              )}
+            >
+              {done && (
+                <>
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-ghisa text-white">
+                    <CheckIcon />
+                  </span>
+                  {!notification.text
+                    ? `Grazie, ti ricontatteremo al più presto`
+                    : notification.text}
+                </>
+              )}
+            </p>
           </div>
         </div>
 
         {notification.isError ? (
-          <NotificationPanel isError={notification.isError}>
+          <p
+            id={errorId}
+            role="alert"
+            className="mt-6 text-base font-medium text-red-600"
+          >
             {notification.text}
-          </NotificationPanel>
+          </p>
         ) : null}
-
-        <div className="text-right">
-          {formButtonDisabled ? (
-            <div className="flex justify-end">
-              <CheckIcon />
-              <p className="text-secondary text-lg">
-                {!notification.text
-                  ? `Grazie, ti ricontatteremo al più presto`
-                  : notification.text}
-              </p>
-            </div>
-          ) : (
-            <ArrowButton
-              className="pt-4"
-              type="submit"
-              direction="right"
-              disabled={loading || formButtonDisabled}
-            >
-              {loading ? 'Invio...' : 'Invia'}
-            </ArrowButton>
-          )}
-        </div>
       </form>
     </Grid>
   )
