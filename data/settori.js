@@ -1,9 +1,9 @@
 // Settori serviti. `inEvidenza` = settori da spingere (meno saturi di offerta).
-// Le frasi sono bozze da approvare con Pasquale; le pagine /settori/<slug> arrivano nella fase Settori.
+// Frasi e pagine sono bozze da approvare con Pasquale; ogni settore con `pagina` ha /settori/<slug>.
 const settori = [
   {
     slug: 'dark-kitchen',
-    foto: '/img/settori/dark-kitchen.webp', // ponytail: segnaposto (cucina Viù), serve una foto di dark kitchen vera
+    foto: '/img/settori/dk-ritiro.webp', // ponytail: cucina con ritiro (Coppino), non un caso dark kitchen: sostituire con una foto vera quando c'è
     nome: 'Dark kitchen',
     frase: 'Tecnologia e organizzazione per chi entra nel delivery.',
     inEvidenza: true,
@@ -151,5 +151,275 @@ const settori = [
     nome: 'GDO, pescherie e macellerie',
   },
 ]
+
+// Pagine degli altri settori. copy da approvare. Clienti citati: autorizzati da Pasquale il 23/09/2026.
+// L'offerta usa solo servizi già dichiarati sul sito (progettazione, arredi su misura,
+// attrezzature, aspirazione e climatizzazione, formazione, assistenza e ricambi).
+const altrePagine = {
+  'ristoranti-pizzerie': {
+    titolo: 'Cucine per ristoranti e pizzerie che reggono il servizio.',
+    intro:
+      'Dalla linea calda al banco pizza, dalla sala al lavaggio: progettiamo la cucina attorno al tuo menù e al ritmo del tuo servizio.',
+    hero: '/img/settori/ristoranti-pizzerie.webp',
+    capitolo: {
+      titolo: 'Ogni menù chiede una cucina diversa.',
+      voci: [
+        [
+          'Il passe è il cuore',
+          'Dalla disposizione delle partite dipendono i tempi di uscita dei piatti e la fatica della brigata.',
+        ],
+        [
+          'Il forno detta i tempi',
+          'In pizzeria il forno e il banco di stesura decidono quante pizze escono nell’ora di punta.',
+        ],
+        [
+          'Sala e cucina parlano',
+          'Percorsi di servizio e lavaggio pensati insieme evitano incroci e attese.',
+        ],
+      ],
+    },
+    offerta: {
+      titolo: 'Cosa facciamo per un ristorante.',
+      voci: [
+        [
+          'Progetto della cucina',
+          'Layout delle partite, del passe e del lavaggio, con disegni tecnici e rendering prima di costruire.',
+        ],
+        [
+          'Attrezzature',
+          'Cottura, refrigerazione, forni per pizza e lavaggio, scelti tra i marchi che conosciamo a fondo.',
+        ],
+        [
+          'Arredi su misura',
+          'Banchi, sala e dehors realizzati nel nostro laboratorio.',
+        ],
+        [
+          'Assistenza',
+          'Installazione, collaudo, manutenzione e ricambi in sede.',
+        ],
+      ],
+    },
+    galleria: [
+      {
+        src: '/img/settori/rist-viu.webp',
+        didascalia: 'Viù restaurant, Martina Franca',
+      },
+      {
+        src: '/img/settori/rist-la-strega.webp',
+        didascalia: 'La Strega ristorante',
+      },
+      {
+        src: '/img/settori/rist-happy-burger.webp',
+        didascalia: 'Happy Burger, Palagianello',
+      },
+    ],
+  },
+  'bar-gelaterie-pasticcerie': {
+    titolo: 'Banchi e laboratori per bar, gelaterie e pasticcerie.',
+    intro:
+      'Il banco che vende e il laboratorio che produce: li progettiamo insieme, perché l’uno regge l’altro.',
+    hero: '/img/settori/bar-gelaterie-pasticcerie.webp',
+    capitolo: {
+      titolo: 'Vetrina davanti, produzione dietro.',
+      voci: [
+        [
+          'Il banco vende',
+          'Esposizione, temperature e ergonomia del banco fanno la differenza su ogni scontrino.',
+        ],
+        [
+          'Il laboratorio produce',
+          'Forni, abbattitori e piani di lavoro dimensionati sulla produzione di ogni giorno.',
+        ],
+        [
+          'Tutto in pochi metri',
+          'Spesso lo spazio è poco: ogni centimetro va disegnato.',
+        ],
+      ],
+    },
+    offerta: {
+      titolo: 'Cosa facciamo per un bar o una pasticceria.',
+      voci: [
+        [
+          'Progetto',
+          'Banco, laboratorio e percorsi, con rendering del locale finito.',
+        ],
+        [
+          'Arredi su misura',
+          'Banchi bar e vetrine realizzati nel nostro laboratorio.',
+        ],
+        [
+          'Attrezzature',
+          'Forni, abbattitori, refrigerazione e attrezzature per bar dei marchi che trattiamo.',
+        ],
+        [
+          'Assistenza',
+          'Installazione, collaudo, manutenzione e ricambi in sede.',
+        ],
+      ],
+    },
+    galleria: [
+      {
+        src: '/img/settori/bar-nardelli.webp',
+        didascalia: 'Pasticceria Nardelli, Locorotondo',
+      },
+      {
+        src: '/img/settori/bar-eniliva.webp',
+        didascalia: 'Eniliva caffè, Bengasi',
+      },
+      {
+        src: '/img/settori/bar-birroteca.webp',
+        didascalia: 'Birroteca Pugliese',
+      },
+    ],
+  },
+  'hotel-ricevimenti': {
+    titolo: 'Cucine e servizi per hotel e sale ricevimenti.',
+    intro:
+      'Colazioni, ristorante, banchetti: volumi che cambiano ogni giorno. Progettiamo cucine e spazi di servizio che reggono tutto il calendario.',
+    hero: '/img/settori/hotel-ricevimenti.webp',
+    capitolo: {
+      titolo: 'Più servizi sotto lo stesso tetto.',
+      voci: [
+        [
+          'Volumi variabili',
+          'Dalla colazione al banchetto da centinaia di coperti: la cucina deve adattarsi senza sprechi.',
+        ],
+        [
+          'Tempi di servizio',
+          'Preparazione anticipata, abbattimento e rigenerazione tengono insieme qualità e tempi.',
+        ],
+        [
+          'Immagine dell’ospite',
+          'Bar, sala e buffet sono parte dell’esperienza: arredi e attrezzature si vedono.',
+        ],
+      ],
+    },
+    offerta: {
+      titolo: 'Cosa facciamo per un hotel.',
+      voci: [
+        ['Progetto', 'Cucine, office, bar e aree buffet progettati insieme.'],
+        [
+          'Attrezzature e forniture',
+          'Cottura, refrigerazione, lavaggio, lavanderia e forniture alberghiere.',
+        ],
+        [
+          'Impianti',
+          'Aspirazione e climatizzazione per cucine e spazi comuni.',
+        ],
+        [
+          'Assistenza',
+          'Manutenzione programmata e ricambi in sede, per non fermarsi in alta stagione.',
+        ],
+      ],
+    },
+    galleria: [
+      {
+        src: '/img/settori/hotel-movenpick-cucina.webp',
+        didascalia: 'Mövenpick Hotel, Bari',
+      },
+      {
+        src: '/img/settori/hotel-palazzo-ceraselli.webp',
+        didascalia: 'Palazzo Ceraselli, Martina Franca',
+      },
+      {
+        src: '/img/settori/hotel-masseria-calongo.webp',
+        didascalia: 'Masseria Calongo, Cisternino',
+      },
+    ],
+    nota: 'Tra i lavori recenti anche Alvino Resort, Matera.',
+  },
+  collettiva: {
+    titolo: 'Cucine per la ristorazione collettiva.',
+    intro:
+      'Mense, centri cottura, strutture che servono molti pasti ogni giorno: progettiamo cucine affidabili, efficienti e semplici da gestire.',
+    hero: '/img/settori/collettiva.webp',
+    capitolo: {
+      titolo: 'Molti pasti, ogni giorno.',
+      voci: [
+        [
+          'Produzione in serie',
+          'Grandi volumi e orari fissi: servono attrezzature pensate per produrre in quantità.',
+        ],
+        [
+          'Percorsi netti',
+          'Flussi separati tra materie prime, preparazione, distribuzione e lavaggio.',
+        ],
+        [
+          'Continuità',
+          'Una cucina ferma lascia senza pasto chi aspetta: manutenzione e ricambi contano.',
+        ],
+      ],
+    },
+    offerta: {
+      titolo: 'Cosa facciamo per la ristorazione collettiva.',
+      voci: [
+        [
+          'Progetto',
+          'Layout della cucina e dei percorsi, con disegni tecnici e rendering.',
+        ],
+        [
+          'Attrezzature',
+          'Cottura, refrigerazione, abbattimento e lavaggio per grandi volumi.',
+        ],
+        ['Impianti', 'Aspirazione e climatizzazione.'],
+        ['Assistenza', 'Manutenzione programmata e ricambi in sede.'],
+      ],
+    },
+  },
+  'gdo-pescherie-macellerie': {
+    titolo: 'Banchi e laboratori per GDO, pescherie e macellerie.',
+    intro:
+      'Dal banco servito al laboratorio retrostante, fino alle aree ristoro dentro i punti vendita: progettiamo spazi che vendono e producono.',
+    hero: '/img/settori/gdo-pescherie-macellerie.webp',
+    capitolo: {
+      titolo: 'Il prodotto fresco va mostrato e protetto.',
+      voci: [
+        [
+          'Il banco vende',
+          'Esposizione, luce e temperature del banco servito fanno la scelta del cliente.',
+        ],
+        [
+          'Il laboratorio lavora',
+          'Dietro il banco: sezionamento, preparazione e conservazione.',
+        ],
+        [
+          'Ristoro nel punto vendita',
+          'Bistrò e aree ristoro portano nuove occasioni di consumo in negozio.',
+        ],
+      ],
+    },
+    offerta: {
+      titolo: 'Cosa facciamo per un punto vendita.',
+      voci: [
+        ['Progetto', 'Banchi, laboratori e aree ristoro progettati insieme.'],
+        [
+          'Banchi e refrigerazione',
+          'Banchi refrigerati, celle e attrezzature per la lavorazione.',
+        ],
+        [
+          'Arredi su misura',
+          'Arredi e complementi realizzati nel nostro laboratorio.',
+        ],
+        ['Assistenza', 'Manutenzione e ricambi in sede.'],
+      ],
+    },
+    galleria: [
+      {
+        src: '/img/settori/gdo-famila-bistro.webp',
+        didascalia: 'Famila Bistrò, Bari',
+      },
+      {
+        src: '/img/settori/gdo-pupillo.webp',
+        didascalia: 'Pupillo gastronomia ittica, Bari',
+      },
+      {
+        src: '/img/settori/gdo-macelleria-ivone.webp',
+        didascalia: 'Macelleria Ivone',
+      },
+    ],
+    nota: 'Tra le realizzazioni anche la Macelleria Tropiano.',
+  },
+}
+for (const s of settori) s.pagina ??= altrePagine[s.slug]
 
 export default settori

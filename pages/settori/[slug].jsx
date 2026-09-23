@@ -184,7 +184,7 @@ export default function Settore({slug, groups}) {
           <section
             className="bg-calce text-ghisa"
             data-header="light"
-            aria-label="Alcuni laboratori realizzati"
+            aria-label="Alcuni lavori realizzati"
           >
             <div className="site-shell grid gap-8 py-24 md:grid-cols-3 lg:py-32">
               {pagina.galleria.map((foto, i) => (
@@ -203,6 +203,9 @@ export default function Settore({slug, groups}) {
                   </figcaption>
                 </figure>
               ))}
+              {pagina.nota && (
+                <p className="text-acciaio md:col-span-3">{pagina.nota}</p>
+              )}
             </div>
           </section>
         )}
