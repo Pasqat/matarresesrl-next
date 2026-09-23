@@ -52,6 +52,15 @@ strong {
     }
   }
 
+  /* Chiamate all'azione condivise (DESIGN.md): fiamma solo su fondo scuro, testo ghisa */
+  .cta-fiamma {
+    @apply inline-flex min-h-[52px] items-center bg-fiamma px-7 font-medium text-ghisa transition-colors hover:bg-white;
+  }
+
+  .cta-ghisa {
+    @apply inline-flex min-h-[52px] items-center bg-ghisa px-7 font-medium text-white transition-colors hover:bg-grafite;
+  }
+
   .type-editorial {
     font-family: var(--font-editorial);
     font-optical-sizing: auto;
