@@ -3,42 +3,82 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Layout from '../components/Layout'
 import ContactForm from '../components/Form/ContactForm'
+import HomeHero from '../components/home/HomeHero'
 import {getGroups} from '../lib/newsletter'
 import {getEvents} from '../lib/query/event'
 import {getLastTwoProjects} from '../lib/query/project'
 import {logos} from '../data/partner-logo'
 import testimonials from '../data/testimonials'
-import hero from '../public/img/matarrese_srl_home_01.webp'
+import settori from '../data/settori'
 
-const expertise = [
+// Foto dei lavori per l'apertura (scelte in /dev/media, esportate con scripts/media-export.mjs).
+// ponytail: provvisorie, 4 su 5 precedenti al 2025; da sostituire con scelte recenti o col video della sede.
+const heroSlides = [
   {
-    title: 'Dall’idea, allo spazio.',
-    text: 'Ascoltiamo il tuo progetto. Disegniamo gli ambienti, organizziamo il lavoro e realizziamo arredi su misura.',
-    image: '/img/home-box-arredo.jpg',
-    alt: 'Arredi su misura per un locale',
-    href: '/servizi',
-    link: 'Progettazione e arredi',
+    src: '/img/home/piazza-grande.webp',
+    caption: 'Piazza Grande',
+    kind: 'bancone bar e arredi su misura',
+    position: '60% 50%',
   },
   {
-    title: 'La tecnologia che serve.',
-    text: 'Cucine professionali, attrezzature e forniture. Selezioniamo le soluzioni adatte al tuo modo di lavorare.',
-    image: '/img/matarrese_srl_home_02.webp',
-    alt: 'Una cucina professionale attrezzata',
-    href: '/prodotti',
-    link: 'Attrezzature e forniture',
+    src: '/img/home/pantaleo-cucina.webp',
+    caption: 'Pantaleo Agribistrot',
+    kind: 'cucina professionale in servizio',
   },
   {
-    title: 'Al tuo fianco, ogni giorno.',
-    text: 'Dalla messa in funzione alla manutenzione. La nostra assistenza continua anche dopo la consegna.',
-    image: '/img/home-box-supporto.jpg',
-    alt: 'Assistenza tecnica su un’attrezzatura professionale',
-    href: '/assistenza',
-    link: 'Assistenza tecnica',
+    src: '/img/home/masseria-paretano.webp',
+    caption: 'Masseria Paretano',
+    kind: 'progettazione della cucina',
   },
+  {
+    src: '/img/home/assistenza-tecnica.webp',
+    caption: 'Assistenza tecnica',
+    kind: 'manutenzione e ricambi',
+    position: '70% 50%',
+  },
+  {
+    src: '/img/home/salumeria-gourmet.webp',
+    caption: 'La Salumeria Gourmet',
+    kind: 'allestimento per la vendita',
+    position: '50% 40%',
+  },
+]
+
+// Il metodo è davvero una sequenza: qui la numerazione è informazione (DESIGN.md).
+const metodo = [
+  [
+    'Ascolto e sopralluogo',
+    'Partiamo da come lavorerà la tua brigata: menù, volumi, spazi, vincoli sanitari e impiantistici.',
+  ],
+  [
+    'Progetto',
+    'Disegni tecnici, calcoli e rendering: vedi il locale finito prima che si inizi a costruire.',
+  ],
+  [
+    'Produzione e fornitura',
+    'Arredi su misura dal nostro laboratorio, attrezzature scelte tra i marchi che conosciamo a fondo.',
+  ],
+  [
+    'Consegna e assistenza',
+    'Installazione, collaudo e formazione. Poi manutenzione e ricambi, per tutta la vita della cucina.',
+  ],
+]
+
+const fatti = [
+  [
+    '5.000 m²',
+    'showroom, laboratorio arredi, officina, magazzino ricambi e spazi per la formazione',
+  ],
+  ['1983', 'l’anno in cui abbiamo iniziato, ad Alberobello'],
+  ['ASSOGI', 'parte del consorzio nazionale dal 2010'],
+  ['MEPA', 'fornitori abilitati per la pubblica amministrazione'],
 ]
 
 export default function Home({groups, lastTwoProjects = [], event}) {
   const upcoming = event?.futureEvent?.[0]
+  const evidenza = settori.filter(s => s.inEvidenza)
+  const altri = settori.filter(s => !s.inEvidenza)
+  const quote = testimonials[0]
   return (
     <>
       <Head>
@@ -68,231 +108,286 @@ export default function Home({groups, lastTwoProjects = [], event}) {
         <meta property="og:site_name" content="Matarrese srl" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <Layout>
-        <div className="home-page">
-          <section className="home-hero" aria-labelledby="home-title">
-            <div className="home-hero-photo">
-              <Image
-                src={hero}
-                alt="Dettaglio del banco e degli arredi realizzati da Matarrese"
-                fill
-                priority
-                sizes="100vw"
-                quality={90}
-              />
-            </div>
-            <div className="home-hero-shade" />
-            <div className="home-hero-content">
-              <p className="hero-location">Alberobello · Dal 1983</p>
-              <h1 id="home-title">
-                Diamo forma
-                <br />
-                ai luoghi della
-                <br />
-                ristorazione.
-              </h1>
-              <div className="hero-bottom">
-                <div className="hero-actions">
-                  <Link
-                    className="site-button site-button-light"
-                    href="/realizzazioni"
-                  >
-                    Scopri le realizzazioni
-                  </Link>
-                  <Link className="hero-contact" href="/contatti">
-                    Contattaci
-                  </Link>
-                </div>
-                <p>
-                  Progettazione, attrezzature,
-                  <br />
-                  arredi su misura e assistenza tecnica.
-                </p>
-              </div>
-            </div>
-          </section>
-          <div className="site-shell home-signature">
-            <span>Un unico partner, dal progetto al servizio.</span>
-            <a href="#competenze">
-              Conosci Matarrese <span aria-hidden="true">↓</span>
-            </a>
-          </div>
-          <section className="site-shell home-expertise" id="competenze">
-            <div className="section-topline">
-              <h2>
-                Le tue idee.
-                <br />
-                Il nostro mestiere.
+      <Layout navbarTransparent>
+        {/* copy da approvare: titolo, sottotitolo e testi dei capitoli */}
+        <HomeHero
+          slides={heroSlides}
+          title="Costruiamo i luoghi dove il cibo diventa lavoro."
+          intro="Progettiamo, costruiamo e assistiamo cucine professionali, laboratori e locali ho.re.ca., da Alberobello dal 1983."
+          primary={{href: '#parliamone', label: 'Parla con un progettista'}}
+          secondary={{href: '/realizzazioni', label: 'Guarda i progetti'}}
+        />
+
+        {/* Capitolo chiaro: per chi lavoriamo */}
+        <section className="bg-calce text-ghisa" aria-labelledby="settori-title">
+          <div className="site-shell grid gap-14 py-24 lg:grid-cols-12 lg:py-32">
+            <div className="lg:col-span-5">
+              <h2
+                id="settori-title"
+                className="type-display text-[clamp(32px,3.6vw,56px)]"
+              >
+                Ogni cucina ha il suo mestiere.
               </h2>
-              <p>
-                Ogni attività ha la sua identità. La trasformiamo in spazi che
-                accolgono e strumenti che lavorano, con la cura di chi conosce
-                la ristorazione.
+              <p className="mt-6 max-w-[44ch] text-acciaio">
+                Lavoriamo per chi cucina, serve, produce e vende cibo. Ogni
+                settore ha flussi, norme e ritmi diversi: il progetto parte da
+                lì.
               </p>
             </div>
-            <div className="expertise-grid">
-              {expertise.map(item => (
-                <article key={item.href}>
-                  <Link
-                    className="expertise-image"
-                    href={item.href}
-                    aria-label={item.link}
+            <div className="lg:col-span-7">
+              <div className="grid gap-4 md:grid-cols-2">
+                {evidenza.map(s => (
+                  <article
+                    key={s.slug}
+                    className="flex flex-col justify-between bg-ghisa p-7 text-white md:min-h-[260px]"
                   >
-                    <Image
-                      src={item.image}
-                      alt={item.alt}
-                      fill
-                      sizes="(max-width: 700px) 100vw, 33vw"
-                    />
-                  </Link>
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
-                  <Link className="text-link" href={item.href}>
-                    {item.link}
-                  </Link>
-                </article>
-              ))}
-            </div>
-          </section>
-          <section className="home-projects">
-            <div className="site-shell">
-              <div className="section-topline">
-                <h2>Luoghi che prendono vita.</h2>
-                <Link className="text-link" href="/realizzazioni">
-                  Tutte le realizzazioni
-                </Link>
-              </div>
-              <div className="home-project-grid">
-                {lastTwoProjects.slice(0, 4).map((project, index) => {
-                  const source =
-                    project.featuredImage?.node?.mediaItemUrl ||
-                    project.featuredImage?.node?.sourceUrl
-                  return (
-                    <article key={project.slug}>
-                      <Link href={`/realizzazioni/${project.slug}`}>
-                        <div className="home-project-image">
-                          {source ? (
-                            <Image
-                              src={source}
-                              alt={
-                                project.featuredImage.node.altText ||
-                                project.title
-                              }
-                              fill
-                              sizes="(max-width: 700px) 100vw, 55vw"
-                            />
-                          ) : (
-                            <span className="image-fallback">Matarrese</span>
-                          )}
-                        </div>
-                        <div className="project-caption">
-                          <h3
-                            dangerouslySetInnerHTML={{__html: project.title}}
-                          />
-                          <span>Scopri il progetto</span>
-                        </div>
+                    <h3 className="type-display text-[clamp(24px,2.2vw,32px)]">
+                      {s.nome}
+                    </h3>
+                    <div>
+                      <p className="mt-6 text-inox">{s.frase}</p>
+                      <Link
+                        href="#parliamone"
+                        className="mt-6 inline-block border-b border-fiamma py-1 text-fiamma hover:text-white"
+                      >
+                        Parliamone
                       </Link>
-                    </article>
-                  )
-                })}
-              </div>
-              {lastTwoProjects.length === 0 && (
-                <p>
-                  Scopri i nostri progetti nella sezione{' '}
-                  <Link href="/realizzazioni">Realizzazioni</Link>.
-                </p>
-              )}
-            </div>
-          </section>
-          <section className="site-shell home-company">
-            <div className="home-company-image">
-              <Image
-                src="/img/home-attrezzature.jpg"
-                fill
-                alt="Lo showroom Matarrese dedicato alla ristorazione professionale"
-                sizes="(max-width: 900px) 100vw, 55vw"
-              />
-            </div>
-            <div className="home-company-copy">
-              <p className="page-intro">Dentro Matarrese</p>
-              <h2>
-                Le competenze.
-                <br />E lo spazio
-                <br />
-                per metterle in pratica.
-              </h2>
-              <p>
-                Ad Alberobello, 5.000 m² riuniscono showroom, laboratorio di
-                produzione di arredi, officina, magazzino ricambi e spazi per la
-                formazione.
-              </p>
-              <p>
-                Un luogo dove vedere le soluzioni, confrontarsi con chi le
-                conosce e costruire il proprio progetto.
-              </p>
-              <Link className="text-link" href="/azienda">
-                Conosci la nostra azienda
-              </Link>
-            </div>
-          </section>
-          <section className="home-trust" id="assogi">
-            <div className="site-shell">
-              <div className="trust-intro">
-                <h2>La qualità si costruisce insieme.</h2>
-                <p>
-                  Selezioniamo marchi e tecnologie per la ristorazione
-                  professionale. Dal 2010 siamo parte del Consorzio ASSOGI.
-                </p>
-              </div>
-              <div className="home-partners">
-                {logos.slice(0, 6).map(logo => (
-                  <Image
-                    key={logo.name}
-                    src={logo.url}
-                    width={180}
-                    height={95}
-                    alt={logo.name}
-                  />
+                    </div>
+                  </article>
                 ))}
               </div>
-              <Link className="text-link" href="/prodotti">
-                Esplora prodotti e marchi
-              </Link>
-              <figure className="home-quote">
-                <blockquote>“{testimonials[0].content}”</blockquote>
-                <figcaption>
-                  {testimonials[0].name}
-                  <span>La voce dei nostri clienti</span>
-                </figcaption>
-              </figure>
+              <ul className="mt-10">
+                {altri.map(s => (
+                  <li
+                    key={s.slug}
+                    className="type-display border-t border-ghisa/15 py-5 text-[clamp(20px,1.9vw,28px)] last:border-b"
+                  >
+                    {s.nome}
+                  </li>
+                ))}
+              </ul>
             </div>
-          </section>
-          {upcoming && (
-            <section className="site-shell home-event">
-              <p className="page-intro">Il prossimo incontro</p>
-              <h2 dangerouslySetInnerHTML={{__html: upcoming.title}} />
-              <p>{upcoming.startDate}</p>
-              <Link className="site-button" href={`/eventi/${upcoming.slug}`}>
+          </div>
+        </section>
+
+        {/* Capitolo scuro: come lavoriamo */}
+        <section className="bg-ghisa text-white" aria-labelledby="metodo-title">
+          <div className="site-shell py-24 lg:py-32">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+              <h2
+                id="metodo-title"
+                className="type-display max-w-[16ch] text-[clamp(32px,3.6vw,56px)]"
+              >
+                Un solo interlocutore, dal primo schizzo all’ultimo ricambio.
+              </h2>
+              <Link
+                href="/servizi"
+                className="shrink-0 self-start border-b border-inox/60 py-2 text-inox hover:text-white lg:self-auto"
+              >
+                Tutti i servizi
+              </Link>
+            </div>
+            <ol className="mt-16 grid gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-4">
+              {metodo.map(([titolo, testo], i) => (
+                <li key={titolo} className="border-t border-inox/25 pt-6">
+                  <span
+                    className="type-display text-4xl text-fiamma"
+                    aria-hidden="true"
+                  >
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <h3 className="type-display mt-6 text-[22px] leading-tight">
+                    {titolo}
+                  </h3>
+                  <p className="mt-4 text-inox-muted">{testo}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        {/* Capitolo chiaro: prove */}
+        <section className="bg-calce text-ghisa" aria-labelledby="progetti-title">
+          <div className="site-shell py-24 lg:py-32">
+            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+              <h2
+                id="progetti-title"
+                className="type-display text-[clamp(32px,3.6vw,56px)]"
+              >
+                Luoghi finiti, pieni di clienti.
+              </h2>
+              <Link
+                href="/realizzazioni"
+                className="shrink-0 self-start border-b border-ghisa py-2 hover:text-fiamma-testo md:self-auto"
+              >
+                Tutte le realizzazioni
+              </Link>
+            </div>
+            <div className="mt-14 grid gap-x-8 gap-y-14 md:grid-cols-2">
+              {lastTwoProjects.slice(0, 4).map((project, i) => {
+                const src =
+                  project.featuredImage?.node?.mediaItemUrl ||
+                  project.featuredImage?.node?.sourceUrl
+                return (
+                  <Link
+                    key={project.slug}
+                    href={`/realizzazioni/${project.slug}`}
+                    className={`group block ${i % 2 ? 'md:mt-28' : ''}`}
+                  >
+                    <div
+                      className={`relative overflow-hidden bg-inox ${
+                        i % 2 ? 'aspect-[4/5]' : 'aspect-[5/4]'
+                      }`}
+                    >
+                      {src && (
+                        <Image
+                          src={src}
+                          alt={project.featuredImage.node.altText || ''}
+                          fill
+                          sizes="(min-width: 640px) 45vw, 100vw"
+                          className="object-cover transition-transform duration-700 group-hover:scale-[1.03] motion-reduce:transition-none"
+                        />
+                      )}
+                    </div>
+                    <h3
+                      className="type-display mt-5 text-2xl"
+                      dangerouslySetInnerHTML={{__html: project.title}}
+                    />
+                  </Link>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* Capitolo scuro: dentro Matarrese */}
+        <section className="bg-ghisa text-white" aria-labelledby="azienda-title">
+          <div className="site-shell grid gap-14 py-24 lg:grid-cols-12 lg:items-center lg:py-32">
+            <div className="relative aspect-[4/3] overflow-hidden lg:col-span-7">
+              <Image
+                src="/img/home-attrezzature.jpg"
+                alt="Lo showroom Matarrese ad Alberobello"
+                fill
+                sizes="(min-width: 1024px) 55vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+            <div className="lg:col-span-5">
+              <h2
+                id="azienda-title"
+                className="type-display text-[clamp(32px,3.6vw,56px)]"
+              >
+                Dove le soluzioni si toccano con mano.
+              </h2>
+              <dl className="mt-10">
+                {fatti.map(([dato, spiegazione]) => (
+                  <div
+                    key={dato}
+                    className="grid grid-cols-[7.5rem_1fr] gap-4 border-t border-inox/25 py-4"
+                  >
+                    <dt className="type-display text-xl text-white">{dato}</dt>
+                    <dd className="text-inox-muted">{spiegazione}</dd>
+                  </div>
+                ))}
+              </dl>
+              <Link
+                href="/azienda"
+                className="mt-8 inline-block border-b border-fiamma py-2 text-fiamma hover:text-white"
+              >
+                Conosci l’azienda
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Capitolo chiaro: marchi e voce dei clienti */}
+        <section className="bg-calce text-ghisa" aria-labelledby="marchi-title">
+          <div className="site-shell py-24 lg:py-28">
+            <div className="grid gap-12 lg:grid-cols-12">
+              <div className="lg:col-span-5">
+                <h2
+                  id="marchi-title"
+                  className="type-display text-[clamp(28px,3vw,44px)]"
+                >
+                  I marchi che conosciamo a fondo.
+                </h2>
+                <Link
+                  href="/prodotti"
+                  className="mt-6 inline-block border-b border-ghisa py-2 hover:text-fiamma-testo"
+                >
+                  Prodotti e marchi
+                </Link>
+              </div>
+              <ul className="grid grid-cols-3 items-center gap-x-8 gap-y-6 md:grid-cols-4 lg:col-span-7">
+                {logos.slice(0, 12).map(logo => (
+                  <li key={logo.name} className="relative h-12">
+                    <Image
+                      src={logo.url}
+                      alt={logo.name}
+                      fill
+                      sizes="160px"
+                      className="object-contain opacity-80 mix-blend-multiply grayscale"
+                    />
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <figure className="mt-20 grid gap-6 border-t border-ghisa/15 pt-12 lg:grid-cols-12">
+              <blockquote className="type-editorial text-[clamp(26px,2.6vw,40px)] leading-snug lg:col-span-9">
+                “{quote.content}”
+              </blockquote>
+              <figcaption className="text-acciaio lg:col-span-3 lg:self-end">
+                <span className="block text-ghisa">{quote.name}</span>
+                Recensione di un cliente
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
+        {upcoming && (
+          <section className="bg-calce text-ghisa" aria-labelledby="evento-title">
+            <div className="site-shell flex flex-col gap-6 border-t border-ghisa/15 py-14 md:flex-row md:items-center md:justify-between">
+              <div>
+                <p className="text-acciaio">
+                  Prossimo evento in sede, {upcoming.startDate}
+                </p>
+                <h2
+                  id="evento-title"
+                  className="type-display mt-2 text-[clamp(24px,2.4vw,36px)]"
+                  dangerouslySetInnerHTML={{__html: upcoming.title}}
+                />
+              </div>
+              <Link
+                className="site-button shrink-0"
+                href={`/eventi/${upcoming.slug}`}
+              >
                 Scopri l’evento
               </Link>
-            </section>
-          )}
-          <section className="home-contact" id="parliamone">
-            <div className="site-shell section-topline">
-              <h2>
-                Il prossimo progetto
-                <br />
-                inizia da qui.
-              </h2>
-              <p>
-                Raccontaci cosa hai in mente.
-                <br />
-                Troviamo insieme il modo di realizzarlo.
-              </p>
             </div>
-            <ContactForm groups={groups} compact />
           </section>
-        </div>
+        )}
+
+        {/* Chiusura: la chiamata al progetto */}
+        <section
+          className="bg-white text-ghisa"
+          id="parliamone"
+          aria-labelledby="contatto-title"
+        >
+          <div className="site-shell grid gap-6 pb-10 pt-24 lg:grid-cols-12 lg:pt-32">
+            <h2
+              id="contatto-title"
+              className="type-display text-[clamp(36px,4.4vw,72px)] lg:col-span-7"
+            >
+              Il prossimo progetto inizia da qui.
+            </h2>
+            <p className="max-w-[40ch] text-acciaio lg:col-span-4 lg:col-start-9 lg:self-end">
+              Raccontaci cosa hai in mente: ti risponde un progettista.
+            </p>
+          </div>
+          <div className="pb-24">
+            <ContactForm groups={groups} compact />
+          </div>
+        </section>
       </Layout>
     </>
   )

@@ -1,0 +1,233 @@
+// Apertura della home: sequenza di foto dei lavori che si danno il cambio "a lamelle"
+// (le doghe dei banconi, i filtri delle cappe). Unico momento orchestrato della pagina (DESIGN.md).
+// Pausa accessibile; si ferma fuori schermo o a scheda nascosta; con prefers-reduced-motion
+// resta la prima foto e il cambio è istantaneo.
+import {useCallback, useEffect, useRef, useState} from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+import gsap from 'gsap'
+import {ScrollTrigger} from 'gsap/ScrollTrigger'
+import {useGSAP} from '@gsap/react'
+
+if (typeof window !== 'undefined') gsap.registerPlugin(useGSAP, ScrollTrigger)
+
+const SLATS = 7
+const DURATION = 6 // secondi per foto
+const KEN_BURNS = 1.06
+
+function Photo({slide, priority, className}) {
+  return (
+    <Image
+      src={slide.src}
+      alt=""
+      fill
+      priority={priority}
+      sizes="100vw"
+      quality={80}
+      className={className}
+      style={{objectPosition: slide.position || '50% 50%'}}
+    />
+  )
+}
+
+export default function HomeHero({slides, title, intro, primary, secondary}) {
+  const root = useRef(null)
+  const base = useRef(null)
+  const strips = useRef(null)
+  const [index, setIndex] = useState(0)
+  const [next, setNext] = useState(null)
+  const [playing, setPlaying] = useState(true)
+  const [visible, setVisible] = useState(true)
+  const [reduced, setReduced] = useState(false)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const sync = () => setReduced(mq.matches)
+    sync()
+    mq.addEventListener('change', sync)
+    return () => mq.removeEventListener('change', sync)
+  }, [])
+
+  // Fermo quando l'apertura non si vede o la scheda è nascosta.
+  useEffect(() => {
+    const io = new IntersectionObserver(([e]) => setVisible(e.isIntersecting), {threshold: 0.2})
+    io.observe(root.current)
+    const onVis = () => setVisible(!document.hidden)
+    document.addEventListener('visibilitychange', onVis)
+    return () => {
+      io.disconnect()
+      document.removeEventListener('visibilitychange', onVis)
+    }
+  }, [])
+
+  const go = useCallback(
+    target => {
+      if (next !== null || target === index) return
+      if (reduced) setIndex(target)
+      else setNext(target)
+    },
+    [index, next, reduced],
+  )
+
+  const running = playing && visible && !reduced && next === null
+
+  // Avanzamento automatico.
+  useEffect(() => {
+    if (!running) return
+    const t = setTimeout(() => go((index + 1) % slides.length), DURATION * 1000)
+    return () => clearTimeout(t)
+  }, [running, index, go, slides.length])
+
+  // Zoom lento della foto corrente.
+  useGSAP(
+    () => {
+      if (reduced) return
+      gsap.fromTo(base.current, {scale: KEN_BURNS}, {scale: 1, duration: DURATION + 1.5, ease: 'none'})
+    },
+    {dependencies: [index, reduced], scope: root, revertOnUpdate: true},
+  )
+
+  // Cambio a lamelle: le strisce della foto successiva entrano alternando alto e basso.
+  useGSAP(
+    () => {
+      if (next === null) return
+      const els = strips.current.children
+      gsap.fromTo(
+        els,
+        {clipPath: (i) => clip(i, i % 2 ? '100%' : '0%', i % 2 ? '0%' : '100%')},
+        {
+          clipPath: (i) => clip(i, '0%', '0%'),
+          duration: 0.9,
+          ease: 'power3.inOut',
+          stagger: {each: 0.07, from: 'start'},
+          onComplete: () => {
+            setIndex(next)
+            setNext(null)
+          },
+        },
+      )
+    },
+    {dependencies: [next], scope: root},
+  )
+
+  // Leggero parallasse della foto mentre si scorre via dall'apertura.
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia()
+      mm.add('(prefers-reduced-motion: no-preference)', () => {
+        gsap.to('[data-hero-media]', {
+          yPercent: 12,
+          ease: 'none',
+          scrollTrigger: {trigger: root.current, start: 'top top', end: 'bottom top', scrub: true},
+        })
+      })
+      return () => mm.revert()
+    },
+    {scope: root},
+  )
+
+  const current = slides[index]
+  const shown = slides[next ?? index]
+  const upcoming = slides[(index + 1) % slides.length]
+
+  return (
+    <section
+      ref={root}
+      className="relative isolate flex max-h-[1100px] min-h-[640px] flex-col justify-end overflow-hidden bg-ghisa text-white"
+      style={{height: '100svh'}}
+      aria-labelledby="home-title"
+    >
+      <div data-hero-media className="absolute inset-0 -z-10">
+        <div ref={base} className="absolute inset-0">
+          <Photo slide={current} priority={index === 0} className="object-cover" />
+        </div>
+        {next !== null && (
+          <div ref={strips} className="absolute inset-0" style={{transform: `scale(${KEN_BURNS})`}}>
+            {Array.from({length: SLATS}, (_, i) => (
+              <div key={i} className="absolute inset-0" style={{clipPath: clip(i, '100%', '0%')}}>
+                <Photo slide={slides[next]} className="object-cover" />
+              </div>
+            ))}
+          </div>
+        )}
+        {/* Precarica la foto successiva quando la pagina è già interattiva. */}
+        {!reduced && (
+          <div className="invisible absolute inset-0" aria-hidden="true">
+            <Photo slide={upcoming} className="object-cover" />
+          </div>
+        )}
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(30_34_38/.9)_0%,rgb(30_34_38/.55)_50%,rgb(30_34_38/.1)_100%),linear-gradient(0deg,rgb(30_34_38/.85)_0%,transparent_45%),linear-gradient(180deg,rgb(30_34_38/.7)_0%,transparent_22%)]" />
+      </div>
+
+      <div className="site-shell pb-8 pt-36 lg:pb-10">
+        <h1 id="home-title" className="type-display max-w-[15ch] text-[clamp(40px,6.6vw,116px)]">
+          {title}
+        </h1>
+        <p className="mt-7 max-w-[48ch] text-lg text-inox lg:text-xl">{intro}</p>
+        <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
+          <Link
+            href={primary.href}
+            className="inline-flex min-h-[52px] items-center bg-fiamma px-7 font-medium text-ghisa transition-colors hover:bg-white focus-visible:outline-white"
+          >
+            {primary.label}
+          </Link>
+          <Link href={secondary.href} className="border-b border-inox/60 py-2 text-white transition-colors hover:border-white">
+            {secondary.label}
+          </Link>
+        </div>
+
+        <div className="mt-14 flex flex-col gap-5 border-t border-inox/25 pt-5 md:flex-row md:items-center md:justify-between">
+          <p className="text-sm text-inox" aria-live="off">
+            <span className="text-white">{shown.caption}</span>
+            <span className="text-inox-muted"> — {shown.kind}</span>
+          </p>
+          {slides.length > 1 && (
+            <div className="flex items-center gap-4">
+              <ol className="flex gap-2" aria-label="Foto dell'apertura">
+                {slides.map((s, i) => (
+                  <li key={s.src}>
+                    <button
+                      type="button"
+                      onClick={() => go(i)}
+                      aria-label={`Mostra ${s.caption}`}
+                      aria-current={i === (next ?? index) ? 'true' : undefined}
+                      className="group block py-3"
+                    >
+                      <span className="block h-0.5 w-8 overflow-hidden bg-inox/30 md:w-12">
+                        <span
+                          key={`${index}-${running}`}
+                          className={`block h-full origin-left bg-fiamma ${i === (next ?? index) ? 'hero-progress' : 'scale-x-0'} ${
+                            i === (next ?? index) && !running ? '[animation-play-state:paused]' : ''
+                          } ${reduced && i === index ? '![animation:none]' : ''}`}
+                          style={{'--hero-duration': `${DURATION}s`}}
+                        />
+                      </span>
+                    </button>
+                  </li>
+                ))}
+              </ol>
+              {!reduced && (
+                <button
+                  type="button"
+                  onClick={() => setPlaying(p => !p)}
+                  className="min-h-[44px] min-w-[44px] text-sm text-inox underline-offset-4 hover:text-white hover:underline"
+                  aria-pressed={!playing}
+                >
+                  {playing ? 'Pausa' : 'Riprendi'}
+                </button>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// clip-path della striscia i: visibile solo nella sua colonna, con inset verticale top/bottom.
+function clip(i, top, bottom) {
+  const w = 100 / SLATS
+  const left = (i * w).toFixed(3)
+  const right = Math.max(0, 100 - (i + 1) * w - 0.1).toFixed(3) // 0.1% di sovrapposizione: niente fessure
+  return `inset(${top} ${right}% ${bottom} ${left}%)`
+}

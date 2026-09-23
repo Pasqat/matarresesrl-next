@@ -36,6 +36,11 @@ strong {
     text-wrap: balance;
   }
 
+  /* Barra di avanzamento delle foto dell'apertura (components/home/HomeHero.jsx) */
+  .hero-progress {
+    animation: hero-progress var(--hero-duration, 6s) linear both;
+  }
+
   .type-editorial {
     font-family: var(--font-editorial);
     font-optical-sizing: auto;
@@ -411,4 +416,13 @@ strong {
   top: 50%;
   transform: translateX(0) translateY(-50%);
   border-left-color: black;
+}
+
+@keyframes hero-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
 }

@@ -856,5 +856,396 @@
  },
  "local:6b778cc9811414e4": {
   "role": "scarta"
+ },
+ "local:13aa3b74e0b82049": {
+  "role": "scarta"
+ },
+ "local:a7c5cccca9c20c0a": {
+  "role": "scarta"
+ },
+ "local:1edfffd823d5efef": {
+  "role": "scarta"
+ },
+ "local:7771f92faa59d130": {
+  "sector": "azienda",
+  "role": "sezione"
+ },
+ "local:d6c7fa7c76893520": {
+  "role": "scarta"
+ },
+ "local:af330f6b93fd72e1": {
+  "role": "scarta"
+ },
+ "local:4da5ec3806a415d7": {
+  "role": "scarta"
+ },
+ "local:a4734d936629eb94": {
+  "role": "scarta"
+ },
+ "local:56287b57aab89f08": {
+  "role": "scarta"
+ },
+ "local:3f301440eede4c2b": {
+  "role": "scarta"
+ },
+ "local:997c877e1c8c6bef": {
+  "role": "scarta"
+ },
+ "local:b6a8fd7e8f54708d": {
+  "role": "scarta"
+ },
+ "local:81f4d7da59ba2e0d": {
+  "role": "scarta"
+ },
+ "local:d6619a7e566bb475": {
+  "role": "scarta"
+ },
+ "local:33fb53d07fa1cf00": {
+  "role": "scarta"
+ },
+ "local:f776f800baae30b9": {
+  "role": "scarta"
+ },
+ "local:aaae45c73a8accef": {
+  "role": "scarta"
+ },
+ "local:60a78bd3029f54b3": {
+  "role": "scarta"
+ },
+ "local:335a5331ec5f4e48": {
+  "role": "scarta"
+ },
+ "local:9ea7cf67d36a24ff": {
+  "role": "scarta"
+ },
+ "local:76d7a884a31147c1": {
+  "role": "scarta"
+ },
+ "local:bf2b9932dec529ac": {
+  "role": "scarta"
+ },
+ "local:2335ee2d9dcbd1b2": {
+  "role": "scarta"
+ },
+ "local:188ab60e81e3fffa": {
+  "role": "scarta"
+ },
+ "local:991f55026802ed27": {
+  "role": "scarta"
+ },
+ "local:1cc98161bf5b9b59": {
+  "role": "scarta"
+ },
+ "local:afc0fe6c33a61920": {
+  "role": "scarta"
+ },
+ "local:718ac26e9fcce8b5": {
+  "role": "scarta"
+ },
+ "local:387cba5bc087c661": {
+  "role": "scarta"
+ },
+ "local:8de15dab77f6a98a": {
+  "role": "scarta"
+ },
+ "local:9928197ae8588c7e": {
+  "role": "scarta"
+ },
+ "local:2ebfa6d699687c69": {
+  "role": "scarta"
+ },
+ "local:6e95a8ad65037d18": {
+  "role": "scarta"
+ },
+ "local:32ca8c6886f6c972": {
+  "role": "scarta"
+ },
+ "local:5a10f2741c2f318e": {
+  "role": "scarta"
+ },
+ "local:8b4368ffc3e18b66": {
+  "role": "scarta"
+ },
+ "local:d383d64dd34d43c0": {
+  "role": "scarta"
+ },
+ "local:730c0d69ef9656ce": {
+  "role": "scarta"
+ },
+ "local:5ab9292e73cbce0b": {
+  "role": "scarta"
+ },
+ "local:e620a3bf6c7b9efd": {
+  "role": "scarta"
+ },
+ "local:29e42799a880c9d6": {
+  "role": "scarta"
+ },
+ "local:7849987f10d5e405": {
+  "sector": "azienda",
+  "role": "scarta"
+ },
+ "local:c4e47e1e4cf883ff": {
+  "role": "scarta"
+ },
+ "local:45bbd29a7015f2ea": {
+  "role": "scarta"
+ },
+ "local:c08388974b822ca2": {
+  "role": "scarta"
+ },
+ "local:5c43f1a35187c649": {
+  "sector": "ristoranti-pizzerie",
+  "note": "assistenza",
+  "role": "sezione"
+ },
+ "local:648ed745a0bf2c6a": {
+  "role": "scarta"
+ },
+ "local:28cc4522d8aa4cc5": {
+  "role": "scarta"
+ },
+ "local:dcab8aa4dc5b8c69": {
+  "role": "scarta"
+ },
+ "local:3270428a9d9fb7fe": {
+  "role": "scarta"
+ },
+ "local:27c11977dbc9df36": {
+  "role": "scarta"
+ },
+ "local:7257fd65a47de25f": {
+  "role": "scarta"
+ },
+ "local:59fd59daf7440717": {
+  "role": "scarta"
+ },
+ "local:1ce9e8c9076c9385": {
+  "role": "scarta"
+ },
+ "local:a831382424524d06": {
+  "role": "scarta"
+ },
+ "local:fb7ea26110c3e710": {
+  "role": "scarta"
+ },
+ "local:fb380845a3feb440": {
+  "role": "scarta"
+ },
+ "local:61ab299ecd0fa40d": {
+  "role": "scarta"
+ },
+ "local:d140b2fa31ada457": {
+  "role": "scarta"
+ },
+ "local:c5469cae6f1b8a59": {
+  "role": "scarta"
+ },
+ "local:ab348cdb30a01c9f": {
+  "role": "scarta"
+ },
+ "local:f96c68a53fbb4aea": {
+  "role": "scarta"
+ },
+ "local:7cf60b10a4460ca9": {
+  "role": "scarta"
+ },
+ "local:be2cea3295f998d9": {
+  "role": "scarta"
+ },
+ "local:75633ba685550054": {
+  "role": "scarta"
+ },
+ "local:557ba671ec372d39": {
+  "role": "scarta"
+ },
+ "local:989ab3ce2cb00d41": {
+  "role": "scarta"
+ },
+ "local:e4cd92f13ab86e2b": {
+  "role": "scarta"
+ },
+ "local:814d1ee97cf49215": {
+  "role": "scarta"
+ },
+ "local:b7ba336163617b73": {
+  "role": "scarta"
+ },
+ "local:ea50cdc329262aaa": {
+  "role": "scarta"
+ },
+ "local:f1fa43854ec07c8c": {
+  "role": "scarta"
+ },
+ "local:e255897a21d93e0a": {
+  "role": "scarta"
+ },
+ "local:c4927f783d6c3f74": {
+  "role": "scarta"
+ },
+ "local:3c1ce7a58e1f00e5": {
+  "role": "scarta"
+ },
+ "local:fc009345313ae8d3": {
+  "role": "scarta"
+ },
+ "local:ca631bd448661350": {
+  "role": "scarta"
+ },
+ "local:434119dd7f559477": {
+  "role": "scarta"
+ },
+ "local:59d2db1b5eb7c48d": {
+  "role": "scarta"
+ },
+ "local:c54ebf7d459de65c": {
+  "role": "scarta"
+ },
+ "local:902a48354d53e531": {
+  "role": "scarta"
+ },
+ "local:048af47a85bd79f5": {
+  "role": "scarta"
+ },
+ "local:4f5a6afde16feb2d": {
+  "role": "scarta"
+ },
+ "local:9379b79092bac4ef": {
+  "role": "scarta"
+ },
+ "local:6b19cde208619d94": {
+  "role": "scarta"
+ },
+ "local:b24fe48c944bd99e": {
+  "role": "scarta"
+ },
+ "local:b5e882fa84c28c36": {
+  "role": "scarta"
+ },
+ "local:834c2f1bf83e5c73": {
+  "role": "scarta"
+ },
+ "local:08facfc3b0fe0b87": {
+  "role": "scarta"
+ },
+ "local:b35bafd7a125e799": {
+  "role": "scarta"
+ },
+ "local:64cd333227c1a936": {
+  "role": "scarta"
+ },
+ "local:a541c940f882c931": {
+  "role": "scarta"
+ },
+ "local:738b86757413c104": {
+  "role": "scarta"
+ },
+ "local:fca7d09e48f86ee7": {
+  "role": "scarta"
+ },
+ "local:24d366542d846592": {
+  "role": "scarta"
+ },
+ "local:372452aa2324fd99": {
+  "role": "scarta"
+ },
+ "local:0452ca33c18a5f69": {
+  "role": "scarta"
+ },
+ "local:9a54fd405dddf630": {
+  "role": "scarta"
+ },
+ "local:00080076d667f511": {
+  "role": "scarta"
+ },
+ "local:3c7d274b7a739491": {
+  "role": "sezione"
+ },
+ "local:349e1a65f637ed8a": {
+  "role": "scarta"
+ },
+ "local:8a566a5c95db2b4c": {
+  "role": "scarta"
+ },
+ "local:9c7978e93f92aebe": {
+  "role": "scarta"
+ },
+ "local:b06a291ede64ef8e": {
+  "role": "scarta"
+ },
+ "local:846eccdf0d5a89e8": {
+  "role": "scarta"
+ },
+ "local:540675f194c9d94a": {
+  "role": "scarta"
+ },
+ "local:0d8403a3155000da": {
+  "role": "scarta"
+ },
+ "local:b83586af2eca9910": {
+  "role": "scarta"
+ },
+ "local:eea1a3982bcd4823": {
+  "role": "scarta"
+ },
+ "local:b2ac2d90230a5d4c": {
+  "role": "scarta"
+ },
+ "local:73073cf463f54843": {
+  "role": "scarta"
+ },
+ "local:3b0a00eb2b2c48c0": {
+  "role": "sezione"
+ },
+ "local:20bcf43762054ecd": {
+  "role": "scarta"
+ },
+ "local:220496650dc41eaa": {
+  "role": "scarta"
+ },
+ "local:a819d94d88c75c26": {
+  "role": "scarta"
+ },
+ "local:c767e1d8cdf87eda": {
+  "role": "scarta"
+ },
+ "local:9034639d9040f0f4": {
+  "role": "sezione"
+ },
+ "local:c156ba126b3a170c": {
+  "role": "scarta"
+ },
+ "local:f117720ed0f52367": {
+  "role": "scarta"
+ },
+ "local:ae4297e337f77bc2": {
+  "role": "scarta"
+ },
+ "local:093d1dcdae0d581f": {
+  "role": "scarta"
+ },
+ "local:3d90b4952ac6c1c4": {
+  "role": "scarta"
+ },
+ "local:3f3e82182fb90e0a": {
+  "role": "scarta"
+ },
+ "local:a884ece5e20ddd73": {
+  "role": "scarta"
+ },
+ "local:85334bae358f0d55": {
+  "role": "scarta"
+ },
+ "local:fcd533a859c5b89c": {
+  "role": "scarta"
+ },
+ "local:1c8db94595e50300": {
+  "role": "scarta"
+ },
+ "local:5064331856744953": {
+  "role": "scarta"
+ },
+ "local:0588b2692f045357": {
+  "role": "scarta"
  }
 }

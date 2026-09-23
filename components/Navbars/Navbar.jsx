@@ -1,5 +1,6 @@
-import {Fragment, useState} from 'react'
+import {Fragment, useEffect, useState} from 'react'
 import {Dialog, Menu} from '@headlessui/react'
+import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
@@ -17,8 +18,20 @@ const secondary = [
   ['Domande frequenti', '/faq'],
 ]
 
-export default function Navbar() {
+// Variante sopra l'hero scuro: focus in fiamma (il #995200 di default non regge su ghisa).
+const focusDark = 'focus-visible:outline-fiamma'
+
+export default function Navbar({isTransparent = false}) {
   const [open, setOpen] = useState(false)
+  const [solid, setSolid] = useState(false)
+  useEffect(() => {
+    if (!isTransparent) return
+    const onScroll = () => setSolid(window.scrollY > 80)
+    onScroll()
+    window.addEventListener('scroll', onScroll, {passive: true})
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [isTransparent])
+  const dark = isTransparent ? focusDark : undefined
   const router = useRouter()
   const current = href =>
     router.pathname === href || router.pathname.startsWith(href + '/')
@@ -27,36 +40,62 @@ export default function Navbar() {
       <a className="skip-link" href="#contenuto">
         Vai al contenuto
       </a>
-      <header className="site-header">
+      <header
+        className={clsx(
+          'site-header',
+          isTransparent && [
+            '!fixed inset-x-0 text-white transition-colors duration-300 motion-reduce:transition-none',
+            solid
+              ? '!border-b-inox/15 !bg-ghisa'
+              : '!border-b-transparent !bg-transparent',
+          ],
+        )}
+      >
         <div className="site-header-inner">
           <Link
             href="/"
-            className="brand"
+            className={clsx('brand', dark)}
             aria-label="Matarrese, pagina iniziale"
           >
-            <Image
-              src="/img/logos/logo-matarrese-grigio-350.png"
-              width={263}
-              height={35}
-              alt="Matarrese"
-              priority
-            />
+            {isTransparent ? (
+              <Image
+                src="/img/logo-matarrese-bianco-350.png"
+                width={350}
+                height={26}
+                alt="Matarrese"
+                priority
+              />
+            ) : (
+              <Image
+                src="/img/logos/logo-matarrese-grigio-350.png"
+                width={263}
+                height={35}
+                alt="Matarrese"
+                priority
+              />
+            )}
           </Link>
           <nav className="desktop-nav" aria-label="Navigazione principale">
             {primary.map(([name, href]) => (
               <Link
                 key={href}
                 href={href}
+                className={dark}
                 aria-current={current(href) ? 'page' : undefined}
               >
                 {name}
               </Link>
             ))}
             <Menu as="div" className="more-menu">
-              <Menu.Button className="nav-more">
+              <Menu.Button className={clsx('nav-more', dark)}>
                 Esplora <span aria-hidden="true">+</span>
               </Menu.Button>
-              <Menu.Items className="more-menu-items">
+              <Menu.Items
+                className={clsx(
+                  'more-menu-items',
+                  isTransparent && '!text-ghisa',
+                )}
+              >
                 {secondary.map(([name, href]) => (
                   <Menu.Item key={href} as={Fragment}>
                     {({active}) => (
@@ -70,14 +109,31 @@ export default function Navbar() {
             </Menu>
           </nav>
           <div className="header-actions">
-            <Link className="support-link" href="/assistenza">
+            <Link
+              className={clsx(
+                'support-link',
+                isTransparent && '!text-inox',
+                dark,
+              )}
+              href="/assistenza"
+            >
               Assistenza
             </Link>
-            <Link className="site-button site-button-small" href="/contatti">
+            <Link
+              className={clsx(
+                'site-button site-button-small',
+                isTransparent && 'site-button-light',
+                dark,
+              )}
+              href="/contatti"
+            >
               Contattaci
             </Link>
             <button
-              className="mobile-toggle"
+              className={clsx(
+                'mobile-toggle',
+                isTransparent && ['[&>span]:!bg-white', focusDark],
+              )}
               onClick={() => setOpen(true)}
               aria-label="Apri menu"
               aria-expanded={open}
