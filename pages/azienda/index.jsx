@@ -16,7 +16,6 @@ import {FeatureCard} from '../../components/feature-card'
 
 import VitoMatarreseProfileImage from '../../public/img/vito_matarrese.webp'
 import imgHomePartnerOperatori from '../../public/img/home-partner-operatori.jpg'
-import DomenicoMatarreseProfileImage from '../../public/img/domenico_matarrese.webp'
 import cotturaProdotti from '../../public/img/cottura-prodotti.png'
 import {ProjectSection} from '../../components/sections/projects-section'
 import StructuredData from '../../components/StructuredData'
@@ -132,62 +131,6 @@ export default function AboutUs({lastTwoProjects}) {
               />
             </div>
 
-            {/* <div className="col-span-full lg:col-span-4">
-              <FeatureCard
-                icon={
-                  <Image
-                    src={DomenicoMatarreseProfileImage}
-                    alt="fotografia di Giovanni Matarrese"
-                    placeholder="blur"
-                    style={{
-                      maxWidth: '100%',
-                      height: 'auto',
-                    }}
-                  />
-                }
-                title="Gianni Matarrese"
-                description={
-                  <>
-                    <p className="text-gray-400">Socio</p>
-                    <br />
-                    <p>
-                      Gianni opera con dimestichezza nel campo della
-                      trasformazione alimentare, ottimizzando i processi di
-                      lavorazione e trovando soluzioni ottimali declinabili
-                      anche nel campo della ristorazione professionale.
-                    </p>
-                  </>
-                }
-                url="mailto:gianni.matarrese@matarrese.it"
-                urlText="Contatta"
-              />
-            </div>
-
-            <div className="col-span-full lg:col-span-4">
-              <FeatureCard
-                icon={
-                  <Image
-                    src={DomenicoMatarreseProfileImage}
-                    alt="fotografia di Pasquale Matarrese"
-                    placeholder="blur"
-                    style={{
-                      maxWidth: '100%',
-                      height: 'auto',
-                    }}
-                  />
-                }
-                title="Pasquale Matarrese"
-                description={
-                  <>
-                    <p className="text-gray-400">Socio</p>
-                    <br />
-                    <p>Pasquale opera</p>
-                  </>
-                }
-                url="mailto:pasquale.matarrese@matarrese.it"
-                urlText="Contatta"
-              />
-            </div> */}
           </Grid>
         </section>
 
