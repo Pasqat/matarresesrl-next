@@ -80,10 +80,15 @@ export default function Meta() {
         content={`${process.env.NEXT_PUBLIC_DOMAIN}/img/favicon/browserconfig.xml`}
       />
       <meta name="theme-color" content="#e0851f" />
-      {/* <link rel="alternate" type="application/rss+xml" href="/feed.xml" /> */}
+      <link
+        rel="alternate"
+        type="application/rss+xml"
+        title="Matarrese srl — News"
+        href="/feed.xml"
+      />
       <meta
         name="description"
-        content={`Traduttori di idee, creatori di spazi`}
+        content="Attrezzature professionali per ristorazione, cucine professionali, arredi su misura e soluzioni per bar, ristoranti e hotel."
       />
       <link rel="manifest" href="/img/favicon/manifest.json" />
       <meta

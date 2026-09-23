@@ -16,6 +16,8 @@ import {getProject, getAllProjectsWithSlug} from '../../lib/query/project'
 import {H2, H1} from '../../components/typography'
 import {Spacer} from '../../components/spacer'
 import {SeoDataSection} from '../../components/sections/seodata-section'
+import StructuredData from '../../components/StructuredData'
+import {creativeWorkSchema, breadcrumbSchema} from '../../lib/seo/schema'
 
 export default function Project({project}) {
   const router = useRouter()
@@ -25,13 +27,31 @@ export default function Project({project}) {
     return <p>hmm...sembra ci sia un errore</p>
   }
 
-  const images = project.galleria.map(image => ({
+  const images = (project?.galleria || []).filter(image => image?.sourceUrl).map(image => ({
     original: image.sourceUrl,
     thumbnail: image.sourceUrl,
     description: image.caption,
     originalAlt: image.altText,
     thumbnailAlt: image.altText,
   }))
+  // Schema.org CreativeWork JSON-LD
+  const projectStructuredData =
+    project &&
+    creativeWorkSchema({
+      title: project.title,
+      description: project.seo?.metaDesc || project.title,
+      slug: project.slug,
+      image: project.featuredImage?.node?.sourceUrl,
+      categories: project.portfolioCategories?.edges?.map(({node}) => node.name),
+    })
+
+  const projectBreadcrumb =
+    project &&
+    project.slug &&
+    breadcrumbSchema([
+      {name: 'Realizzazioni', path: '/realizzazioni'},
+      {name: project.title, path: `/realizzazioni/${project.slug}`},
+    ])
 
   return (
     <Layout navbarTransparent>
@@ -53,6 +73,8 @@ export default function Project({project}) {
               slug: `realizzazioni/${project.slug}`,
             })}
           </Head>
+          <StructuredData data={projectStructuredData} />
+          <StructuredData data={projectBreadcrumb} />
           <HeaderBig
             noButton
             overlay="bg-gradient-to-tl from-secondary via-primary to-black opacity-80"
@@ -84,7 +106,7 @@ export default function Project({project}) {
                     <div className="mt-10 border-t border-gray-200 py-10">
                       <div className="flex flex-wrap justify-center">
                         <div className="w-full px-4 lg:w-9/12">
-                          {project?.galleria?.every(n => n !== null) ? (
+                          {images.length > 0 ? (
                             <ImageGallery items={images} />
                           ) : null}
                           <div className="mb-14 lg:mb-24">

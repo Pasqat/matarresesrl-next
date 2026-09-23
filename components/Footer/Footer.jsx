@@ -1,10 +1,9 @@
 import * as React from 'react'
 
 import Link from 'next/link'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import logoAssogi from '../../public/img/logos/Assogi_logo-300x119.png'
 import logoQucino from '../../public/img/logos/MARCHIO-QUCINO150.png'
-import logoAliGroup from '../../public/img/logos/Ali_Group_logo.png'
 
 import {H4} from '../typography'
 import {Grid} from '../grid'
@@ -13,6 +12,7 @@ import NewsletterFormFooter from '../Form/NewsletterFormFooter'
 import {FacebookIcon} from '../icons/facebook-icon'
 import {LinkedInIcon} from '../icons/linkedin-icon'
 import {InstagramIcon} from '../icons/instagram-icon'
+import {YoutubeIcon} from '../icons/youtube-icon'
 import {MapIcon} from '../icons/map-icon'
 import {PhoneIcon} from '../icons/phone-icon'
 import {BadgeCheckedIcon} from '../icons/badge-checked-icon'
@@ -52,21 +52,32 @@ export default function Footer() {
       </div>
       <Grid className="py-14">
         <div className="col-span-full mx-auto text-center lg:col-span-3">
-          <Link href="/" className="items-center justify-center pb-2">
-            <Image
-              width={340}
-              height={20}
-              alt={'Logo Matarrese srl'}
-              src="/img/logos/logo-matarrese-grigio-350.png"
-            />
-          </Link>
+          <div className="my-6 text-center pb-2">
+            <div className="relative h-14 mx-auto">
+              <Image
+                fill
+                alt={'Logo Matarrese srl'}
+                src="/img/logos/logo-matarrese-grigio-350.png"
+                style={{
+                  objectFit: 'contain',
+                }}
+                sizes="100vw"
+              />
+            </div>
+          </div>
           <div className="my-6 text-center">
             <a
               href="https://www.facebook.com/matarresesrl"
               target="_blank"
               rel="noreferrer"
+              aria-label="Matarrese srl su Facebook"
             >
-              <button className="mr-2 h-10 w-10 font-normal" type="button">
+              <button
+                className="mr-2 h-10 w-10 font-normal"
+                type="button"
+                aria-hidden="true"
+                tabIndex={-1}
+              >
                 <FacebookIcon size="30" />
               </button>
             </a>
@@ -74,8 +85,14 @@ export default function Footer() {
               href="https://www.linkedin.com/company/matarrese-srl/"
               rel="noreferrer"
               target="_blank"
+              aria-label="Matarrese srl su LinkedIn"
             >
-              <button className="mr-2 h-10 w-10 font-normal" type="button">
+              <button
+                className="mr-2 h-10 w-10 font-normal"
+                type="button"
+                aria-hidden="true"
+                tabIndex={-1}
+              >
                 <LinkedInIcon size="30" />
               </button>
             </a>
@@ -83,9 +100,30 @@ export default function Footer() {
               rel="noreferrer"
               href="https://www.instagram.com/matarrese.srl/"
               target="_blank"
+              aria-label="Matarrese srl su Instagram"
             >
-              <button className="mr-2 h-10 w-10 font-normal" type="button">
+              <button
+                className="mr-2 h-10 w-10 font-normal"
+                type="button"
+                aria-hidden="true"
+                tabIndex={-1}
+              >
                 <InstagramIcon size="30" />
+              </button>
+            </a>
+            <a
+              rel="noreferrer"
+              href="https://www.youtube.com/@matarresesrl"
+              target="_blank"
+              aria-label="Matarrese srl su YouTube"
+            >
+              <button
+                className="mr-2 h-10 w-10 font-normal"
+                type="button"
+                aria-hidden="true"
+                tabIndex={-1}
+              >
+                <YoutubeIcon size="30" />
               </button>
             </a>
           </div>
@@ -98,35 +136,30 @@ export default function Footer() {
               <div className="relative h-20 w-28">
                 <Image
                   placeholder="blur"
-                  layout="fill"
-                  objectFit="contain"
                   alt="Logo Assogi"
                   src={logoAssogi}
+                  fill
+                  sizes="112px"
+                  style={{
+                    objectFit: 'contain',
+                  }}
                 />
               </div>
             </a>
             <a rel="noreferrer" href="https://www.qucino.it/" target="_blank">
               <div className="relative ml-4 h-20 w-24">
                 <Image
-                  layout="fill"
-                  objectFit="contain"
                   alt="Logo Qucino"
                   src={logoQucino}
                   placeholder="blur"
+                  fill
+                  sizes="96px"
+                  style={{
+                    objectFit: 'contain',
+                  }}
                 />
               </div>
             </a>
-            {/* <a rel="noreferrer" href="https://www.aligroup.it/" target="_blank">
-              <div className="relative h-16 w-16">
-                <Image
-                  layout="fill"
-                  objectFit="contain"
-                  alt="Logo Aligroup"
-                  src={logoAliGroup}
-                  placeholder="blur"
-                />
-              </div>
-            </a> */}
           </div>
         </div>
         <div className="col-span-full pl-4 lg:col-span-3">
@@ -165,6 +198,14 @@ export default function Footer() {
                   className="text-gray-600 hover:text-gray-800"
                 >
                   Realizzazioni
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/faq"
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  FAQ
                 </Link>
               </li>
               <li>

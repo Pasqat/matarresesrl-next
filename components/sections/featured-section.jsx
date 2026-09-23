@@ -32,6 +32,7 @@ function FeaturedSection({
   excerpt,
   withBackground,
   withBorder,
+  priority = false,
 }) {
   return (
     <div className="w-full px-8 lg:px-0">
@@ -97,8 +98,10 @@ function FeaturedSection({
                 className="rounded-lg"
                 objectFit="cover"
                 alt={imageAlt}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 // src={imageUrl}
-                layout="fill"
+                priority={priority}
               />
             </div>
             {permalink ? (

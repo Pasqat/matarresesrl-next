@@ -1,6 +1,7 @@
 import * as React from 'react'
 import clsx from 'clsx'
 import {motion, useReducedMotion} from 'framer-motion'
+import Image from 'next/image'
 
 import {H2} from '../typography'
 import {Grid} from '../grid'
@@ -13,11 +14,13 @@ function HeroSection({
   arrowUrl,
   arrowLabel,
   image,
+  imageAlt,
   illustration,
   // imageProps,
   // imageBuilder,
   imageSize = 'medium',
   as = 'header',
+  titleAs = 'h2',
 }) {
   const hasImage = Boolean(image)
   const hasIllustration = Boolean(illustration)
@@ -46,17 +49,26 @@ function HeroSection({
               imageSize === 'giant',
           })}
         >
-          <motion.img
+          <motion.div
             key={image}
-            src={image}
-            className={clsx('h-auto w-full object-contain', {
-              'max-h-50vh': imageSize === 'medium',
-              'max-h-75vh': imageSize === 'giant',
-            })}
+            className="w-full"
             initial={{scale: shouldReduceMotion ? 1 : 1.5, opacity: 0}}
             animate={{scale: 1, opacity: 1}}
             transition={{duration: 0.75}}
-          />
+          >
+            <Image
+              src={image}
+              alt={imageAlt || title || ''}
+              width={800}
+              height={800}
+              priority
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className={clsx('h-auto w-full object-contain', {
+                'max-h-50vh': imageSize === 'medium',
+                'max-h-75vh': imageSize === 'giant',
+              })}
+            />
+          </motion.div>
         </div>
       ) : null}
 
@@ -94,7 +106,7 @@ function HeroSection({
 
           <motion.div variants={childVariants}>
             {/* <H2 as="h2" variant="accent"> */}
-            <H2 as="h2">{title}</H2>
+            <H2 as={titleAs}>{title}</H2>
           </motion.div>
 
           {action ? (

@@ -2,11 +2,13 @@ import {useEffect, useRef, useState} from 'react'
 import Link from 'next/link'
 import {gtmEvent} from '../../lib/gtm'
 import {usePlausible} from 'next-plausible'
+import {logStructuredError} from '../../lib/logging'
+import {ArrowButton} from '../arrow-button'
 
 import {Paragraph} from '../typography'
-
 import {Field} from '../form-element'
 import clsx from 'clsx'
+import {CheckIcon} from '../icons/check-icon'
 
 export default function NewsletterForm({
   hasAutoFocus,
@@ -23,6 +25,8 @@ export default function NewsletterForm({
   const {email, newsletterGroupId} = form
 
   const [isCheckedTerms, setIsCheckedTerms] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [honeypot, setHoneypot] = useState('')
   const [notification, setNotification] = useState({
     text: '',
     isError: false,
@@ -51,9 +55,17 @@ export default function NewsletterForm({
   async function submitContactForm(event) {
     event.preventDefault()
 
+    // Anti-spam check
+    if (honeypot) {
+      setNotification({
+        text: 'Rilevato tentativo di spam',
+        isError: true,
+      })
+      return
+    }
+
     if (email === '') {
       return setNotification({
-        ...notification,
         text: 'Non dimenticare la mail',
         isError: true,
       })
@@ -61,45 +73,59 @@ export default function NewsletterForm({
 
     if (isCheckedTerms === false) {
       return setNotification({
-        ...notification,
         text: 'Accetta i termini e le condizioni',
         isError: true,
       })
     }
 
-    // 3. Send a request to our API with the user's email address.
-    const resSubscription = await fetch('/api/subscribe', {
-      body: JSON.stringify({
-        email: email,
-        groupId: newsletterGroupId,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-    })
-
-    plausible('Iscrizione Newsletter', {
-      props: {form_location: 'footer', groupId: newsletterGroupId},
-    })
-    gtmEvent('new_subscriber', {formLocation: 'footer'})
-    const {message, error} = await resSubscription.json()
-
-    if (error) {
-      // 4. If there was an error, update the message in state.
-      setNotification({
-        ...notification,
-        text: error,
-        isError: true,
+    setLoading(true)
+    try {
+      const resSubscription = await fetch('/api/subscribe', {
+        body: JSON.stringify({
+          email: email,
+          groupId: newsletterGroupId,
+          honeypot,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
       })
-    }
 
-    if (message) {
+      const data = await resSubscription.json()
+
+      if (!resSubscription.ok) {
+        throw new Error(data.error || "Errore durante l'iscrizione")
+      }
+
+      plausible('Iscrizione Newsletter', {
+        props: {form_location: 'footer', groupId: newsletterGroupId},
+      })
+      gtmEvent('new_subscriber', {formLocation: 'footer'})
+
       setNotification({
-        ...notification,
-        text: message,
+        text: data.message || 'Iscrizione effettuata con successo',
         isError: false,
       })
+
+      setForm({
+        ...form,
+        email: '',
+      })
+    } catch (err) {
+      logStructuredError('Newsletter subscription failed', err, {
+        email: email,
+        groupId: newsletterGroupId,
+        location: 'footer',
+      })
+      setNotification({
+        text:
+          err.message ||
+          "Si è verificato un errore durante l'iscrizione. Riprova più tardi.",
+        isError: true,
+      })
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -125,6 +151,21 @@ export default function NewsletterForm({
             featured={featured}
             placeholder="e-mail"
           />
+          {/* Honeypot field */}
+          <div style={{display: 'none'}}>
+            <label>
+              Non compilare questo campo se sei umano
+              <input
+                type="text"
+                name="honeypot"
+                value={honeypot}
+                onChange={e => setHoneypot(e.target.value)}
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </label>
+          </div>
+
           <div className="col-span-full mb-4 lg:col-span-4">
             <div className="mb-2 flex items-baseline justify-between gap-2">
               {/* <Label htmlFor="industry">Settore</Label> */}
@@ -163,33 +204,32 @@ export default function NewsletterForm({
             />
             <span className="ml-2">
               Accetto il{' '}
-              <Link
-                href="/privacy-policy"
-                className="text-yellow-500"
-                target="_blank"
-              >
-                trattamento dei dati e condizioni *
+              <Link href="/privacy-policy" className="text-yellow-500" target="_blank">
+                
+                  trattamento dei dati e condizioni *
+                
               </Link>
             </span>
           </label>
         </div>
 
-        {/* <div className="text-right">
-          {formButtonDisabled ? (
+        <div className="text-right">
+          {!notification.isError && notification.text ? (
             <div className="flex justify-end">
               <CheckIcon />
-              <p className="text-secondary text-lg">
-                {!notification.text
-                  ? `Grazie, ti ricontatteremo al più presto`
-                  : notification.text}
-              </p>
+              <p className="text-secondary text-lg">{notification.text}</p>
             </div>
           ) : (
-            <ArrowButton className="pt-4" type="submit" direction="right">
-              Invia
+            <ArrowButton
+              className="pt-4"
+              type="submit"
+              direction="right"
+              disabled={loading}
+            >
+              {loading ? 'Invio...' : 'Iscriviti'}
             </ArrowButton>
           )}
-        </div> */}
+        </div>
       </form>
     </div>
   )

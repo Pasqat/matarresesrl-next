@@ -3,11 +3,11 @@ import Link from 'next/link'
 import * as fbq from '../../lib/fpixel'
 import {gtmEvent} from '../../lib/gtm'
 import {usePlausible} from 'next-plausible'
+import {logStructuredError} from '../../lib/logging'
 
 import {Dialog, Transition} from '@headlessui/react'
 import clsx from 'clsx'
 
-import {sendContactMail} from '../../actions/networking/mailApi'
 import {Button} from '../../components/button'
 
 /**
@@ -34,15 +34,20 @@ export default function FormModal({
     tel: '',
     formContent: '',
     participants: null,
+    honeypot: '',
   })
-  const {referente, surname, mail, tel, formContent, participants} = form
+  const {referente, surname, mail, tel, formContent, participants, honeypot} =
+    form
   const [isChecked, setIsChecked] = useState(false)
 
   const [formButtonDisabled, setFormButtonDisabled] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [notification, setNotification] = useState({
     text: '',
     isError: false,
   })
+  const [missingFields, setMissingFields] = useState([])
+  const [fieldErrors, setFieldErrors] = useState({})
 
   function closeModal() {
     setIsOpen(false)
@@ -58,6 +63,10 @@ export default function FormModal({
       ...form,
       [name]: value,
     })
+    // Clear field error when user starts typing
+    if (fieldErrors[name]) {
+      setFieldErrors(prev => ({...prev, [name]: ''}))
+    }
   }
 
   useEffect(() => {
@@ -81,63 +90,81 @@ export default function FormModal({
 
   async function submitContactForm(event) {
     event.preventDefault()
+    
+    // Clear previous errors
+    setFieldErrors({})
+    setMissingFields([])
 
-    if (referente === '' || surname === '') {
-      return setNotification({
-        ...notification,
-        text: 'Per favore compila tutti i campi',
-        isError: true,
-      })
+    // Validation logic
+    const errors = {}
+    const missing = []
+    
+    if (!referente) {
+      errors.referente = 'Nome è obbligatorio'
+      missing.push('referente')
     }
-
-    if (type === 'reservation') {
-      if (participants === null || participants === '') {
-        return setNotification({
-          ...notification,
-          text: 'Per favore compila tutti i campi',
-          isError: true,
-        })
-      }
+    if (!surname) {
+      errors.surname = 'Cognome è obbligatorio'
+      missing.push('surname')
     }
-
-    if (type !== 'reservation') {
-      if (formContent === '') {
-        return setNotification({
-          ...notification,
-          text: 'Per favore compila tutti i campi',
-          isError: true,
-        })
-      }
+    if (!mail && !tel) {
+      errors.mail = 'Inserisci almeno uno tra Email o Telefono'
+      errors.tel = 'Inserisci almeno uno tra Email o Telefono'
+      missing.push('mail')
     }
-
-    if (mail === '' && tel === '') {
-      return setNotification({
-        ...notification,
-        text: 'Per favore inserisci un numero valido o una email valida',
-        isError: true,
-      })
+    if (type === 'reservation' && (!participants || participants === '')) {
+      errors.participants = 'Numero partecipanti è obbligatorio'
+      missing.push('participants')
     }
-
+    if (type !== 'reservation' && !formContent) {
+      errors.formContent = 'Messaggio è obbligatorio'
+      missing.push('formContent')
+    }
     if (!isChecked) {
-      return setNotification({
-        ...notification,
-        text: 'Non dimenticare di accettare i termini e le condizioni',
-        isError: true,
-      })
+      errors.conditions = 'Accettazione termini è obbligatoria'
+      missing.push('conditions')
     }
 
-    const res = await sendContactMail({
-      referente,
-      surname,
-      senderMail: mail,
-      tel,
-      formContent,
-      participants,
-      title,
-    })
+    setFieldErrors(errors)
+    setMissingFields(missing)
+    
+    if (Object.keys(errors).length > 0) {
+      setNotification({
+        text: 'Controlla i campi evidenziati',
+        isError: true,
+      })
+      return
+    }
 
-    if (res.status < 300) {
+    setLoading(true)
+    try {
+      const payload = {
+        referente: `${referente} ${surname}`,
+        senderMail: mail,
+        tel,
+        company: '',
+        formContent:
+          type === 'reservation'
+            ? `${title}\nNumero partecipanti: ${participants}\n${formContent}`
+            : formContent,
+        honeypot,
+        source: type === 'reservation' ? 'modal-reservation' : 'modal-contact',
+      }
+
+      const r = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(payload),
+      })
+
+      const data = await r.json().catch(() => ({}))
+
+      if (!r.ok) {
+        throw new Error(data.error || 'Errore invio form')
+      }
+
       setFormButtonDisabled(true)
+
       if (type === 'reservation') {
         plausible('Prenotazione', {
           props: {title: title, partecipanti: participants},
@@ -155,11 +182,12 @@ export default function FormModal({
         fbq.event('Contact')
         gtmEvent('contact', {formLocation: 'Modal form'})
       }
+
       setNotification({
-        ...notification,
         text: 'Grazie, ti ricontatteremo al più presto',
         isError: false,
       })
+
       setForm({
         ...form,
         referente: '',
@@ -168,17 +196,30 @@ export default function FormModal({
         mail: '',
         formContent: '',
         participants: '',
+        honeypot: '',
       })
+
       setIsChecked(false)
+
       setTimeout(() => {
         closeModal()
       }, 2000)
-    } else {
+    } catch (err) {
+      logStructuredError('modal-form-submit', err, {
+        referente,
+        surname,
+        mail,
+        type,
+        title,
+        error: err.message || "Errore durante l'invio",
+      })
+
       setNotification({
-        ...notification,
-        text: 'Per favore compila tutti i campi',
+        text: err.message || "Errore durante l'invio",
         isError: true,
       })
+    } finally {
+      setLoading(false)
     }
   }
   return (
@@ -211,8 +252,7 @@ export default function FormModal({
         <Dialog
           as="div"
           className="fixed inset-0 z-[51] overflow-y-auto"
-          onClose={closeModal}
-          // onClose={() => null}
+          onClose={() => {}}
         >
           <div className="absolute inset-0 -z-2 h-full w-full bg-black opacity-95" />
           <div className="min-h-screen px-4 text-center">
@@ -278,53 +318,80 @@ export default function FormModal({
                     <div className="w-full">
                       <label
                         className="mb-2 block text-xs font-bold uppercase text-gray-600"
-                        htmlFor="name"
+                        htmlFor="referente"
                       >
-                        Nome
+                        Nome <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="text"
-                        className="w-full rounded border-0 bg-white px-3 py-3 text-sm text-gray-600 placeholder-gray-300 shadow transition-all duration-150 ease-linear focus:outline-none focus:ring"
+                        className={clsx(
+                          'w-full rounded border-0 bg-white px-3 py-3 text-sm text-gray-600 placeholder-gray-300 shadow transition-all duration-150 ease-linear focus:outline-none focus:ring',
+                          missingFields.includes('referente') &&
+                            'border-red-500 ring-2 ring-red-400',
+                        )}
                         placeholder="Nome"
                         name="referente"
                         value={referente}
                         onChange={handleChange}
                         required
                       />
+                      {fieldErrors.referente && (
+                        <span className="text-xs text-red-500">
+                          {fieldErrors.referente}
+                        </span>
+                      )}
                     </div>
                     <div className="w-full">
                       <label
                         className="mb-2 block text-xs font-bold uppercase text-gray-600"
                         htmlFor="surname"
                       >
-                        Cognome
+                        Cognome <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="text"
-                        className="w-full rounded border-0 bg-white px-3 py-3 text-sm text-gray-600 placeholder-gray-300 shadow transition-all duration-150 ease-linear focus:outline-none focus:ring"
+                        className={clsx(
+                          'w-full rounded border-0 bg-white px-3 py-3 text-sm text-gray-600 placeholder-gray-300 shadow transition-all duration-150 ease-linear focus:outline-none focus:ring',
+                          missingFields.includes('surname') &&
+                            'border-red-500 ring-2 ring-red-400',
+                        )}
                         placeholder="Cognome"
                         name="surname"
                         value={surname}
                         onChange={handleChange}
                       />
+                      {fieldErrors.surname && (
+                        <span className="text-xs text-red-500">
+                          {fieldErrors.surname}
+                        </span>
+                      )}
                     </div>
                   </div>
                   <div className="relative w-full">
                     <label
                       className="mb-2 block text-xs font-bold uppercase text-gray-600"
-                      htmlFor="email"
+                      htmlFor="mail"
                     >
-                      Email
+                      Email o Telefono <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="email"
-                      className="w-full rounded border-0 bg-white px-3 py-3 text-sm text-gray-600 placeholder-gray-300 shadow transition-all duration-150 ease-linear focus:outline-none focus:ring"
+                      className={clsx(
+                        'w-full rounded border-0 bg-white px-3 py-3 text-sm text-gray-600 placeholder-gray-300 shadow transition-all duration-150 ease-linear focus:outline-none focus:ring',
+                        missingFields.includes('mail') &&
+                          'border-red-500 ring-2 ring-red-400',
+                      )}
                       placeholder="Email"
                       name="mail"
                       value={mail}
                       onChange={handleChange}
                       required
                     />
+                    {fieldErrors.mail && (
+                      <span className="text-xs text-red-500">
+                        {fieldErrors.mail}
+                      </span>
+                    )}
                   </div>
                   <div className="relative w-full">
                     <label
@@ -335,12 +402,21 @@ export default function FormModal({
                     </label>
                     <input
                       type="tel"
-                      className="w-full rounded border-0 bg-white px-3 py-3 text-sm text-gray-600 placeholder-gray-300 shadow transition-all duration-150 ease-linear focus:outline-none focus:ring"
+                      className={clsx(
+                        'w-full rounded border-0 bg-white px-3 py-3 text-sm text-gray-600 placeholder-gray-300 shadow transition-all duration-150 ease-linear focus:outline-none focus:ring',
+                        missingFields.includes('tel') &&
+                          'border-red-500 ring-2 ring-red-400',
+                      )}
                       placeholder="Telefono"
                       name="tel"
                       value={tel}
                       onChange={handleChange}
                     />
+                    {fieldErrors.tel && (
+                      <span className="text-xs text-red-500">
+                        {fieldErrors.tel}
+                      </span>
+                    )}
                   </div>
                   {type === 'reservation' ? (
                     <div className="relative w-full">
@@ -348,35 +424,54 @@ export default function FormModal({
                         className="mb-2 block text-xs font-bold uppercase text-gray-600"
                         htmlFor="participants"
                       >
-                        Numero Partecipanti
+                        Numero Partecipanti{' '}
+                        <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="number"
                         min="1"
-                        className="w-full rounded border-0 bg-white px-3 py-3 text-sm text-gray-600 placeholder-gray-300 shadow transition-all duration-150 ease-linear focus:outline-none focus:ring"
+                        className={clsx(
+                          'w-full rounded border-0 bg-white px-3 py-3 text-sm text-gray-600 placeholder-gray-300 shadow transition-all duration-150 ease-linear focus:outline-none focus:ring',
+                          missingFields.includes('participants') &&
+                            'border-red-500 ring-2 ring-red-400',
+                        )}
                         placeholder="Numero partecipanti"
                         name="participants"
                         value={participants}
                         onChange={handleChange}
                       />
+                      {fieldErrors.participants && (
+                        <span className="text-xs text-red-500">
+                          {fieldErrors.participants}
+                        </span>
+                      )}
                     </div>
                   ) : null}
                   <div className="relative w-full">
                     <label
                       className="mb-2 block text-xs font-bold uppercase text-gray-600"
-                      htmlFor="messaggio"
+                      htmlFor="formContent"
                     >
-                      Messaggio
+                      Messaggio <span className="text-red-500">*</span>
                     </label>
                     <textarea
                       rows="4"
                       cols="80"
-                      className="w-full rounded border-0 bg-white px-3 py-3 text-sm text-gray-600 placeholder-gray-300 shadow focus:outline-none focus:ring"
+                      className={clsx(
+                        'w-full rounded border-0 bg-white px-3 py-3 text-sm text-gray-600 placeholder-gray-300 shadow focus:outline-none focus:ring',
+                        missingFields.includes('formContent') &&
+                          'border-red-500 ring-2 ring-red-400',
+                      )}
                       placeholder="Scrivi la tua richiesta..."
                       name="formContent"
                       value={formContent}
                       onChange={handleChange}
                     />
+                    {fieldErrors.formContent && (
+                      <span className="text-xs text-red-500">
+                        {fieldErrors.formContent}
+                      </span>
+                    )}
                   </div>
                   <div className="relative mt-5 text-right text-gray-600">
                     <label className="inline-flex items-center">
@@ -389,16 +484,39 @@ export default function FormModal({
                       />
                       <span className="ml-2 text-sm">
                         accetto il{' '}
-                        <Link
-                          href="/privacy-policy"
-                          className="text-yellow-500"
-                          target="_blank"
-                        >
-                          trattamento dei dati e condizioni
+                        <Link href="/privacy-policy" className="text-yellow-500" target="_blank">
+                          
+                            trattamento dei dati e condizioni
+                          
                         </Link>
+                        <span className="text-red-500"> *</span>
                       </span>
+                      {fieldErrors.conditions && (
+                        <div className="mt-1 text-xs text-red-500">
+                          {fieldErrors.conditions}
+                        </div>
+                      )}
                     </label>
                   </div>
+                  {/* Honeypot anti-spam field (hidden from users) */}
+                  <input
+                    type="text"
+                    name="honeypot"
+                    value={honeypot}
+                    onChange={handleChange}
+                    autoComplete="off"
+                    tabIndex={-1}
+                    aria-hidden
+                    style={{
+                      position: 'absolute',
+                      left: '-10000px',
+                      top: 'auto',
+                      width: '1px',
+                      height: '1px',
+                      overflow: 'hidden',
+                    }}
+                  />
+
                   <div className="relative mt-6 flex flex-wrap justify-between text-center">
                     <div className="mt-4">
                       <button
@@ -413,9 +531,10 @@ export default function FormModal({
                       <button
                         className="border-transparent inline-flex cursor-pointer rounded-sm border bg-yellow-500 px-4 py-2 text-sm font-bold text-white shadow-md hover:bg-opacity-90 hover:ring-2 hover:ring-yellow-400 hover:ring-offset-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 focus-visible:ring-offset-2 active:bg-gray-600 disabled:pointer-events-none disabled:bg-green-600 disabled:opacity-50"
                         type="submit"
-                        disabled={formButtonDisabled}
+                        disabled={formButtonDisabled || loading}
+                        aria-busy={loading}
                       >
-                        Invia
+                        {loading ? 'Invio...' : 'Invia'}
                       </button>
                     </div>
                   </div>

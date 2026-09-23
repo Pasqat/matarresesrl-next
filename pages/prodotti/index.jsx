@@ -21,13 +21,31 @@ import arredoSuMisura from '../../public/img/arredo-su-misura-prodotti.jpg'
 import {getGroups} from '../../lib/newsletter'
 import FormModal from '../../components/Form/FormModal'
 import {Button} from '../../components/button'
+import StructuredData from '../../components/StructuredData'
+import {itemListSchema, breadcrumbSchema} from '../../lib/seo/schema'
+
+const CATEGORIE_PRODOTTO = [
+  'Cottura professionale',
+  'Refrigerazione',
+  'Macchinari agroalimentari',
+  'Attrezzature per ristorazione',
+  'Arredi su misura',
+  'Forniture alberghiere e hotellerie',
+  'Impianti di aspirazione',
+  'Impianti di climatizzazione',
+  'Sanificazione',
+  'Lavaggio e lavanderia',
+]
 
 export default function ProductsHome({groups}) {
   return (
     <>
       <Head>
         <title>Attrezzature horeca e forniture alberghiere</title>
-        <link rel="canonical" href="https://www.matarrese.it/prodotti" />
+        <link
+          rel="canonical"
+          href={`${process.env.NEXT_PUBLIC_DOMAIN}/prodotti`}
+        />
         <meta name="author" content="Matarrese srl" />
         <meta
           name="description"
@@ -46,9 +64,19 @@ export default function ProductsHome({groups}) {
           property="og:image"
           content={`${process.env.NEXT_PUBLIC_DOMAIN}/img/prodotti_og.webp`}
         />
-        <meta property="og:url" content="https://www.matarrese.it/prodotti" />
+        <meta
+          property="og:url"
+          content={`${process.env.NEXT_PUBLIC_DOMAIN}/prodotti`}
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="it_IT" />
+        <meta property="og:site_name" content="Matarrese srl" />
+        <meta name="twitter:card" content="summary_large_image" />
       </Head>
-
+      <StructuredData
+        data={itemListSchema('Categorie prodotto Matarrese srl', CATEGORIE_PRODOTTO)}
+      />
+      <StructuredData data={breadcrumbSchema([{name: 'Prodotti', path: '/prodotti'}])} />
       <Layout>
         <div className="mb-12 lg:mb-24 xl:mb-48">
           <ProductSection />
@@ -58,7 +86,7 @@ export default function ProductsHome({groups}) {
             <Grid className="mb-12 lg:mb-24 xl:mb-48">
               {/* NOTE: `-mt-20 pt-20 for anchor link and sticky navbar` */}
               <div className="col-span-full -mt-20 pt-20" id="lavorazione">
-                <H2 className="mb-14">{`Prodotti per la lavorazione e conservazione degli alimenti`}</H2>
+                <H2 as="h1" className="mb-14">{`Prodotti per la lavorazione e conservazione degli alimenti`}</H2>
               </div>
 
               <div className="col-span-full">
@@ -76,8 +104,11 @@ export default function ProductsHome({groups}) {
                         <Image
                           src={IconCucineProfessionali}
                           alt="icona cottura"
-                          layout="intrinsic"
                           placeholder="blur"
+                          style={{
+                            maxWidth: '100%',
+                            height: 'auto',
+                          }}
                         />
                       }
                     />
@@ -95,8 +126,11 @@ export default function ProductsHome({groups}) {
                         <Image
                           src={IconProdotti}
                           alt="icona attrezzature"
-                          layout="intrinsic"
                           placeholder="blur"
+                          style={{
+                            maxWidth: '100%',
+                            height: 'auto',
+                          }}
                         />
                       }
                     />
@@ -112,8 +146,11 @@ export default function ProductsHome({groups}) {
                         <Image
                           src={IconMacchineAgro}
                           alt="icona macchine agroalimentari"
-                          layout="intrinsic"
                           placeholder="blur"
+                          style={{
+                            maxWidth: '100%',
+                            height: 'auto',
+                          }}
                         />
                       }
                     />
@@ -130,8 +167,11 @@ export default function ProductsHome({groups}) {
                         <Image
                           src={IconRefrigerazione}
                           alt="icona refrigerazione"
-                          layout="intrinsic"
                           placeholder="blur"
+                          style={{
+                            maxWidth: '100%',
+                            height: 'auto',
+                          }}
                         />
                       }
                     />
@@ -172,10 +212,11 @@ export default function ProductsHome({groups}) {
                     alt="prodotti per la cucina professionale"
                     className="max-w-full rounded-lg shadow-lg"
                     src={arredoSuMisura}
-                    // width="1000"
-                    // height="1300"
-                    objectFit="cover"
-                    layout="fill"
+                    fill
+                    sizes="100vw"
+                    style={{
+                      objectFit: 'cover',
+                    }}
                   />
                 </div>
               </div>
@@ -224,7 +265,7 @@ export default function ProductsHome({groups}) {
 
           <section className="mb-12 lg:mb-24 xl:mb-48">
             <div className="mx-auto text-center">
-              <Link href="/contatti" passHref>
+              <Link href="/contatti">
                 <Button size="medium">Visita il nostro showroom</Button>
               </Link>
             </div>
@@ -235,7 +276,7 @@ export default function ProductsHome({groups}) {
               <div className="col-span-full">
                 <H2>{`Lavora in un ambiente sano e confortevole`}</H2>
                 <H3 as="p" variant="secondary" className="mb-14">
-                  {`Gestiamo il microclima di cucine professionali, 
+                  {`Gestiamo il microclima di cucine professionali,
                     locali commerciali, laboratori alimentari e laboratori industriali`}
                 </H3>
               </div>
@@ -280,7 +321,10 @@ export default function ProductsHome({groups}) {
           >
             <Grid className="py-24">
               <div className="col-span-full">
-                <H2 variant="light-gray" className="mb-3 lg:mt-6">{`Igiene e sanificazione`}</H2>
+                <H2
+                  variant="light-gray"
+                  className="mb-3 lg:mt-6"
+                >{`Igiene e sanificazione`}</H2>
                 <H2 variant="light-gray" as="p" className="mb-14 text-gray-300">
                   {`Possiamo aiutarti a mantenere i tuoi ambienti puliti ed igienizzati`}
                 </H2>

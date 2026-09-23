@@ -22,6 +22,8 @@ import imgHomePartnerOperatori from '../../public/img/home-partner-operatori.jpg
 import DomenicoMatarreseProfileImage from '../../public/img/domenico_matarrese.webp'
 import cotturaProdotti from '../../public/img/cottura-prodotti.png'
 import {ProjectSection} from '../../components/sections/projects-section'
+import StructuredData from '../../components/StructuredData'
+import {aboutPageSchema, breadcrumbSchema} from '../../lib/seo/schema'
 
 import {getLastTwoProjects} from '../../lib/query/project'
 
@@ -29,38 +31,48 @@ export default function AboutUs({lastTwoProjects}) {
   return (
     <>
       <Head>
-        <title>Supportiamo ristoranti e imprenditori</title>
-        <link rel="canonical" href="https://www.matarrese.it/azienda" />
+        <title>
+          Chi siamo | Matarrese srl | Attrezzature e arredi per ristorazione
+        </title>
+        <link
+          rel="canonical"
+          href={`${process.env.NEXT_PUBLIC_DOMAIN}/azienda`}
+        />
         <meta name="author" content="Matarrese srl" />
         <meta
           name="description"
-          content="Al servizio dei professionisti della ristorazione, progettiamo cucine professionali, interior design e consulenza per imprenditori"
+          content="Matarrese srl supporta ristoranti, hotel e professionisti della ristorazione con cucine professionali, arredi su misura, attrezzature e consulenza tecnica."
         />
         <meta
           name="robots"
           content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
         />
-        <meta name="author" content="Matarrese srl" />
-        <meta
-          name="description"
-          content="Al servizio dei professionisti della ristorazione, progettiamo cucine professionali, interior design e consulenza per imprenditori"
-        />
-        <meta property="og:title" content="Chi Siamo" />
+        <meta property="og:title" content="Chi siamo | Matarrese srl" />
         <meta
           property="og:description"
-          content="Al servizio dei professionisti della ristorazione"
+          content="Partner affidabile per cucine professionali, arredi su misura, attrezzature per ristorazione e servizi post-vendita."
         />
         <meta
           property="og:image"
           content={`${process.env.NEXT_PUBLIC_DOMAIN}/img/piazza_grande_61.jpg`}
         />
-        <meta property="og:url" content="https://www.matarrese.it/azienda" />
-        <meta property="og:type" content="blog" />
+        <meta
+          property="og:url"
+          content={`${process.env.NEXT_PUBLIC_DOMAIN}/azienda`}
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="it_IT" />
+        <meta property="og:site_name" content="Matarrese srl" />
+        <meta name="twitter:card" content="summary_large_image" />
       </Head>
-
+      <StructuredData data={aboutPageSchema()} />
+      <StructuredData
+        data={breadcrumbSchema([{name: 'Azienda', path: '/azienda'}])}
+      />
       <Layout>
         <div className="mb-12 lg:mb-24">
           <HeroSection
+            titleAs="h1"
             title="Un partner affidabile per la tua attività"
             subtitle="Chi siamo"
             illustration={<Lottie loop animationData={lottiejson} play />}
@@ -88,14 +100,20 @@ export default function AboutUs({lastTwoProjects}) {
 
         <section className="-mt-24 pt-24" id="team">
           <Grid rowGap>
+            {/* Versione a due colonne
             <div className="col-span-full lg:col-span-6">
+             */}
+            <div className="col-span-full lg:col-span-4">
               <FeatureCard
                 icon={
                   <Image
                     src={VitoMatarreseProfileImage}
                     alt="fotografia di Vito Matarrese, socio fondatore e direttore"
-                    layout="intrinsic"
                     placeholder="blur"
+                    style={{
+                      maxWidth: '100%',
+                      height: 'auto',
+                    }}
                   />
                 }
                 title="Vito Matarrese"
@@ -115,31 +133,63 @@ export default function AboutUs({lastTwoProjects}) {
                 urlText="Contatta"
               />
             </div>
-            <div className="col-span-full lg:col-span-6">
+
+            {/* <div className="col-span-full lg:col-span-4">
               <FeatureCard
                 icon={
                   <Image
                     src={DomenicoMatarreseProfileImage}
-                    alt="fotografia di Domenico Matarrese"
-                    layout="intrinsic"
+                    alt="fotografia di Giovanni Matarrese"
                     placeholder="blur"
+                    style={{
+                      maxWidth: '100%',
+                      height: 'auto',
+                    }}
                   />
                 }
-                title="Domenico Matarrese"
+                title="Gianni Matarrese"
                 description={
                   <>
-                    <p className="text-gray-400">Socio fondatore</p>
+                    <p className="text-gray-400">Socio</p>
                     <br />
                     <p>
-                      Domenico opera con dimestichezza e passione nel campo
-                      della refrigerazione industriale e della climatizzazione,
-                      trovando soluzioni ottimali nel pieno rispetto
-                      dell&apos;uomo e del suo ambiente.
+                      Gianni opera con dimestichezza nel campo della
+                      trasformazione alimentare, ottimizzando i processi di
+                      lavorazione e trovando soluzioni ottimali declinabili
+                      anche nel campo della ristorazione professionale.
                     </p>
                   </>
                 }
+                url="mailto:gianni.matarrese@matarrese.it"
+                urlText="Contatta"
               />
             </div>
+
+            <div className="col-span-full lg:col-span-4">
+              <FeatureCard
+                icon={
+                  <Image
+                    src={DomenicoMatarreseProfileImage}
+                    alt="fotografia di Pasquale Matarrese"
+                    placeholder="blur"
+                    style={{
+                      maxWidth: '100%',
+                      height: 'auto',
+                    }}
+                  />
+                }
+                title="Pasquale Matarrese"
+                description={
+                  <>
+                    <p className="text-gray-400">Socio</p>
+                    <br />
+                    <p>Pasquale opera</p>
+                  </>
+                }
+                url="mailto:pasquale.matarrese@matarrese.it"
+                urlText="Contatta"
+              />
+            </div> */}
           </Grid>
         </section>
 
@@ -178,12 +228,15 @@ export default function AboutUs({lastTwoProjects}) {
             <div className="col-span-full text-center lg:col-span-6 lg:ml-8">
               <Image
                 src={imgHomePartnerOperatori}
-                layout="intrinsic"
-                objectFit="cover"
-                objectPosition="center"
                 alt="attrezzature ristorazione nello showroom"
                 className="rounded-lg shadow-sm"
                 placeholder="blur"
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                  objectFit: 'cover',
+                  objectPosition: 'center',
+                }}
               />
             </div>
             {/* <CardBigImg
@@ -206,11 +259,12 @@ export default function AboutUs({lastTwoProjects}) {
                   alt="prodotti per la cucina professionale"
                   className="max-w-full rounded-lg shadow-lg"
                   src={cotturaProdotti}
-                  // width="1000"
-                  // height="1300"
-                  objectFit="cover"
-                  layout="fill"
                   placeholder="blur"
+                  fill
+                  sizes="100vw"
+                  style={{
+                    objectFit: 'cover',
+                  }}
                 />
               </div>
             </div>

@@ -40,7 +40,7 @@ function RegistrationPanel({event, pastEvent, modal}) {
         </Button>
       )}
     </div>
-  )
+  );
 }
 
 export {RegistrationPanel}

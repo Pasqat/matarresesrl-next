@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Image from "next/legacy/image"
+import Image from "next/image"
 import Link from 'next/link'
 
 import {H2} from '../typography'
@@ -17,32 +17,39 @@ function LogoSection() {
             <Link
               key={logo.name}
               href={logo.href}
-              className="cursor-pointer text-center hover:drop-shadow-md"
-            >
+              className="cursor-pointer text-center hover:drop-shadow-md">
+
               <Image
                 width={180}
                 height={95}
-                objectFit="contain"
                 src={logo.url}
                 alt={`${logo.name} logo`}
-              />
+                style={{
+                  maxWidth: "100%",
+                  height: "auto",
+                  objectFit: "contain"
+                }} />
+
             </Link>
           ) : (
             <Image
               key={logo.name}
               width={180}
               height={95}
-              objectFit="contain"
               src={logo.url}
               alt={`${logo.name} logo`}
               placeholder="blur"
               blurDataURL={logo.url}
-            />
-          )
+              style={{
+                maxWidth: "100%",
+                height: "auto",
+                objectFit: "contain"
+              }} />
+          );
         })}
       </div>
     </div>
-  )
+  );
 }
 
 export {LogoSection}

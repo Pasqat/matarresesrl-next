@@ -35,12 +35,14 @@ export default function Home({groups, lastTwoProjects, event}) {
   return (
     <div>
       <Head>
-        <title>Matarrese srl, Traduttori di idee, Creatori di spazi</title>
+        <title>
+          Matarrese srl | Attrezzature professionali per ristorazione e horeca
+        </title>
         <link rel="canonical" href={process.env.NEXT_PUBLIC_DOMAIN} />
         <meta name="author" content="Matarrese srl" />
         <meta
           name="description"
-          content="Allestimento ristoranti, locali commerciali, pizzerie, bar, macellerie, pescherie. Accessori cucine professionali, attrezzatura gastronomia."
+          content="Matarrese srl progetta e fornisce attrezzature professionali per ristorazione, cucine industriali, arredi su misura e soluzioni per bar, hotel e locali commerciali."
         />
         <meta
           property="og:image"
@@ -48,18 +50,17 @@ export default function Home({groups, lastTwoProjects, event}) {
         />
         <meta
           property="og:title"
-          content="Matarrese srl, Traduttori di idee, Creatori di spazi"
+          content="Matarrese srl | Attrezzature professionali per ristorazione"
         />
         <meta
           property="og:description"
-          content="Allestimento ristoranti, locali commerciali, pizzerie, bar, macellerie, pescherie. Accessori cucine professionali, attrezzatura gastronomia."
+          content="Soluzioni complete per cucine professionali, attrezzature horeca, arredi su misura e supporto tecnico per attività gastronomiche."
         />
         <meta property="og:url" content={process.env.NEXT_PUBLIC_DOMAIN} />
         <meta property="og:locale" content="it_IT" />
         <meta property="og:site_name" content="Matarrese srl" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-
       <Layout navbarTransparent>
         <main>
           <ImgSlider />
@@ -156,12 +157,15 @@ export default function Home({groups, lastTwoProjects, event}) {
               <div className="col-span-full mr-8 text-center lg:col-span-6">
                 <Image
                   src={imgHomeAttrezzature}
-                  layout="intrinsic"
-                  objectFit="cover"
-                  objectPosition="center"
                   alt="attrezzature ristorazione nello showroom"
                   className="rounded-lg shadow-sm"
                   placeholder="blur"
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                  }}
                 />
               </div>
               <div className="col-span-full lg:col-span-6">
@@ -257,8 +261,13 @@ export default function Home({groups, lastTwoProjects, event}) {
                 <Image
                   src={logoSostenibilita}
                   alt="logo Sostenibilità, ecologia, eco-friendly"
-                  layout="intrinsic"
                   placeholder="blur"
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                  }}
                 />
               </div>
               <div className="col-span-full lg:col-span-9">
@@ -316,8 +325,13 @@ export default function Home({groups, lastTwoProjects, event}) {
                 <Image
                   src={logoAssogi}
                   alt="logo Assogi"
-                  layout="intrinsic"
                   placeholder="blur"
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                  }}
                 />
               </a>
               <H3

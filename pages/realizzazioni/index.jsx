@@ -101,8 +101,13 @@ export default function Realizzazioni({data}) {
   return (
     <div>
       <Head>
-        <title>Progettazione spazi e cucine</title>
-        <link rel="canonical" href="https://www.matarrese.it/realizzazioni/" />
+        <title>
+          Realizzazioni | Cucine professionali, arredi e attrezzature horeca
+        </title>
+        <link
+          rel="canonical"
+          href={`${process.env.NEXT_PUBLIC_DOMAIN}/realizzazioni`}
+        />
         <meta
           name="robots"
           content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
@@ -110,12 +115,12 @@ export default function Realizzazioni({data}) {
         <meta name="author" content="Matarrese srl" />
         <meta
           name="description"
-          content="Allestimento bar, ristoranti e gastronomia. Arredamento su misura, progettazione tecnica, supporto e manutenzione attrezzature per ristorazione."
+          content="Scopri le realizzazioni di Matarrese srl per bar, ristoranti, hotel, macellerie e altri locali: cucine professionali, arredi su misura e soluzioni complete."
         />
-        <meta property="og:title" content="News" />
+        <meta property="og:title" content="Realizzazioni Matarrese srl" />
         <meta
           property="og:description"
-          content="Alcune delle nostre realizzazioni"
+          content="Esempi di progetti per cucine professionali, arredi e attrezzature per la ristorazione."
         />
         <meta
           property="og:image"
@@ -125,10 +130,24 @@ export default function Realizzazioni({data}) {
           property="og:url"
           content={`${process.env.NEXT_PUBLIC_DOMAIN}/realizzazioni`}
         />
-        <meta property="og:type" content="blog" />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="it_IT" />
+        <meta property="og:site_name" content="Matarrese srl" />
+        <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
       <Layout>
+        <div className="mx-auto mb-10 max-w-7xl px-4 pt-8 lg:px-8">
+          <H3 as="h1" variant="secondary" className="mb-4">
+            Realizzazioni per bar, ristoranti, hotel e attività professionali
+          </H3>
+          <p className="max-w-3xl text-lg leading-relaxed text-gray-600">
+            Da oltre quarant&apos;anni progettiamo cucine professionali, arredi
+            su misura, attrezzature per l&apos;ho.re.ca. e soluzioni complete
+            per locali commerciali, macellerie, pasticcerie, hotel e spazi
+            dedicati alla ristorazione.
+          </p>
+        </div>
         <Grid className="my-14 hidden lg:block">
           {data.categories && data.categories.length > 0 ? (
             <>

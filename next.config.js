@@ -1,17 +1,36 @@
 // next.config.js
 module.exports = {
+  // Limita i worker di build a 1: l'hosting condiviso del backend WordPress
+  // (be.matarrese.it) va in 508 "Resource Limit Is Reached" se il prerender
+  // SSG delle ~210 pagine spara troppe query GraphQL concorrenti.
+  experimental: {
+    cpus: 1,
+  },
   images: {
-    // TODO: cdn wp domain can be other than this. Find a better way.
-    // at today 07/13/2021 next don't accept wildcards
-    domains: [
-      'localhost',
-      'www.matarrese.it',
-      'matarrese.it',
-      'be.matarrese.it',
+    unoptimized: true,
+    // Next 16 richiede di dichiarare esplicitamente i valori di `quality`
+    // usati nei componenti <Image> (default: solo 75). article-card usa 90.
+    qualities: [75, 90],
+    remotePatterns: [
+      {protocol: 'https', hostname: 'be.matarrese.it'},
+      {protocol: 'https', hostname: 'www.matarrese.it'},
+      {protocol: 'https', hostname: 'matarrese.it'},
+      // local dev server (http), include port if needed
+      {protocol: 'http', hostname: 'localhost', port: '3000'},
+    ],
+    deviceSizes: [320, 480, 640, 768, 1024, 1280, 1600, 1920, 2560, 3840],
+    imageSizes: [
+      16, 32, 48, 64, 96, 128, 256, 384, 512, 768, 1024, 1280, 1600, 1920, 3840,
     ],
   },
   async redirects() {
     return [
+      {
+        source: '/:path*',
+        has: [{type: 'host', value: 'matarrese.it'}],
+        destination: 'https://www.matarrese.it/:path*',
+        permanent: true,
+      },
       {
         source: '/it/index.asp',
         destination: '/',
@@ -103,11 +122,6 @@ module.exports = {
         source: '/prodotti/arredo-e-complementi',
         destination: '/prodotti',
         permanent: false,
-      },
-      {
-        source: '/prodotti/arredo-e-complementi',
-        destination: '/prodotti',
-        permanent: true,
       },
       {
         source: '/prodotti/aspirazione',
@@ -208,7 +222,7 @@ module.exports = {
       },
       {
         source: '/news/tag/:slug',
-        destination: '/news?=q:slug',
+        destination: '/news?q=:slug',
         permanent: true,
       },
       {
@@ -224,6 +238,12 @@ module.exports = {
       {
         source: '/ricetta-monoporzioni-amorini',
         destination: '/news/ricetta-monoporzioni-amorini',
+        permanent: true,
+      },
+      {
+        source: '/iperammortammento-del-250-tutto-quello-che-devi-sapere/',
+        destination:
+          '/news/iperammortammento-del-250-tutto-quello-che-devi-sapere',
         permanent: true,
       },
       {
@@ -316,6 +336,35 @@ module.exports = {
         source: '/index.php/negozio',
         destination: '/prodotti',
         permanent: true,
+      },
+    ]
+  },
+  async headers() {
+    // Header di sicurezza applicati a tutte le rotte.
+    // NOTA: Content-Security-Policy NON è inclusa di proposito: una CSP
+    // enforced dovrebbe autorizzare esplicitamente Plausible, Google Tag
+    // Manager, Facebook Pixel, le immagini di be.matarrese.it e gli script
+    // inline, altrimenti rompe il sito. Va introdotta con un passaggio
+    // dedicato (preferibilmente prima in modalità Report-Only).
+    const securityHeaders = [
+      {key: 'X-Content-Type-Options', value: 'nosniff'},
+      {key: 'X-Frame-Options', value: 'SAMEORIGIN'},
+      {key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin'},
+      {
+        key: 'Strict-Transport-Security',
+        value: 'max-age=63072000; includeSubDomains; preload',
+      },
+      {
+        key: 'Permissions-Policy',
+        value: 'camera=(), microphone=(), geolocation=()',
+      },
+      {key: 'X-DNS-Prefetch-Control', value: 'on'},
+    ]
+
+    return [
+      {
+        source: '/:path*',
+        headers: securityHeaders,
       },
     ]
   },

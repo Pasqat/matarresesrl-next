@@ -20,6 +20,7 @@
 # misc
 .DS_Store
 *.pem
+*.jsBK
 
 # debug
 npm-debug.log*
@@ -36,3 +37,11 @@ yarn-error.log*
 .vercel
 
 TODO.md
+
+# Claude Code
+.claude/launch.json
+
+# Local analysis and browser verification outputs
+/graphify-out/
+/artifacts/
+/.pnpm-store/

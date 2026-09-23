@@ -1,3 +1,5 @@
+import {logStructuredError} from '../../lib/logging'
+
 const API_KEY = process.env.MAILERLITE_API_KEY;
 
 export default async function Subscribe(req, res) {
@@ -25,6 +27,11 @@ export default async function Subscribe(req, res) {
     return res.status(400).json({ error: "Email is required" });
   }
 
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({ error: "Formato email non valido" })
+  }
+
   try {
     const response = await fetch(
       "https://connect.mailerlite.com/api/subscribers",
@@ -50,7 +57,7 @@ export default async function Subscribe(req, res) {
 
     throw new Error(parsed);
   } catch (error) {
-    console.log(error);
+    logStructuredError('api-subscribe', error)
     return res.status(500).json({ error: error.message || error.toString() });
   }
 }

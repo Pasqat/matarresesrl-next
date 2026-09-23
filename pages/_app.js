@@ -42,7 +42,7 @@ function MyApp({Component, pageProps}) {
   }, [router.events, isCookieConsentAccept])
 
   const consentGrantedAdStorage = () => {
-    window.gtag('consent', 'update', {
+    window.gtag?.('consent', 'update', {
       ad_storage: 'granted',
       ad_user_data: 'granted',
       ad_personalization: 'granted',
@@ -117,7 +117,7 @@ function MyApp({Component, pageProps}) {
             color: '#fff',
             // fontSize: '16px',
           }}
-          expires={getCookieConsentValue == false ? 1 : 365}
+          expires={365}
         >
           Questo sito web utilizza alcuni cookie per poter miglorare
           l&apos;esperinza dell&apos;utente.{' '}

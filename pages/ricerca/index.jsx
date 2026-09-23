@@ -18,43 +18,48 @@ import FBMlogo from '../../public/img/logos/FBM_LOGO-High-Res.png'
 import UEfundedLogo from '../../public/img/logos/funded-eu-blue.png'
 import PrimaLogo from '../../public/img/logos/prima-logo-hor.png'
 import FBM_ReD_page from '../../public/img/FBM-ReS_page.webp'
+import OHOWOW from '../../public/img/progetto_carni_2025.jpg'
 
 export default function AboutUs() {
   return (
     <>
       <Head>
-        <title>Supportiamo ristoranti e imprenditori</title>
-        <link rel="canonical" href="https://www.matarrese.it/azienda" />
+        <title>Ricerca e Sviluppo | Matarrese srl</title>
+        <link
+          rel="canonical"
+          href={`${process.env.NEXT_PUBLIC_DOMAIN}/ricerca`}
+        />
         <meta name="author" content="Matarrese srl" />
         <meta
           name="description"
-          content="Al servizio dei professionisti della ristorazione, progettiamo cucine professionali, interior design e consulenza per imprenditori"
+          content="I progetti di Ricerca e Sviluppo di Matarrese srl: innovazione nella ristorazione professionale, dal progetto europeo Flat Bread Mine alle nuove tecnologie in cucina."
         />
         <meta
           name="robots"
           content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
         />
-        <meta name="author" content="Matarrese srl" />
-        <meta
-          name="description"
-          content="Al servizio dei professionisti della ristorazione, progettiamo cucine professionali, interior design e consulenza per imprenditori"
-        />
-        <meta property="og:title" content="Chi Siamo" />
+        <meta property="og:title" content="Ricerca e Sviluppo" />
         <meta
           property="og:description"
-          content="Al servizio dei professionisti della ristorazione"
+          content="Innovazione nella ristorazione professionale: i progetti di Ricerca e Sviluppo di Matarrese srl."
         />
         <meta
           property="og:image"
           content={`${process.env.NEXT_PUBLIC_DOMAIN}/img/piazza_grande_61.jpg`}
         />
-        <meta property="og:url" content="https://www.matarrese.it/azienda" />
-        <meta property="og:type" content="blog" />
+        <meta
+          property="og:url"
+          content={`${process.env.NEXT_PUBLIC_DOMAIN}/ricerca`}
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="it_IT" />
+        <meta property="og:site_name" content="Matarrese srl" />
+        <meta name="twitter:card" content="summary_large_image" />
       </Head>
-
       <Layout>
         <div className="mb-12 lg:mb-24">
           <HeroSection
+            titleAs="h1"
             title="Esperienza e tecnologia al servizio del futuro"
             subtitle="Ricerca e Sviluppo"
             illustration={<Lottie loop animationData={lottiejson} play />}
@@ -115,85 +120,152 @@ export default function AboutUs() {
               <div className="grid-row-2 grid h-full justify-stretch">
                 <Image
                   src={FBM_ReD_page}
-                  layout="intrinsic"
-                  objectFit="cover"
-                  objectPosition="center"
                   alt="attrezzature ristorazione nello showroom"
                   className="rounded-lg shadow-sm"
                   placeholder="blur"
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                  }}
                 />
                 <div className="mt-8 grid grid-cols-2 place-content-between gap-x-4 gap-y-4 md:grid-cols-3">
                   <Image
                     key="Funded-UE"
                     width={360}
                     height={95}
-                    objectFit="contain"
                     src={UEfundedLogo}
                     alt="Funded by the European Union"
                     placeholder="blur"
-                    blurDataURL={UEfundedLogo}
+                    style={{
+                      maxWidth: '100%',
+                      height: 'auto',
+                      objectFit: 'contain',
+                      objectPosition: 'center',
+                    }}
                   />
                   <Image
                     key="Prima"
                     width={360}
                     height={95}
-                    objectFit="contain"
                     src={PrimaLogo}
                     alt="Prima Partnership for researh and innovation in the mediterranean area"
                     placeholder="blur"
-                    blurDataURL={PrimaLogo}
+                    style={{
+                      maxWidth: '100%',
+                      height: 'auto',
+                      objectFit: 'contain',
+                      objectPosition: 'center',
+                    }}
                   />
                   <Image
                     key={'FBMlogo'}
                     width={360}
                     height={95}
-                    objectFit="contain"
                     src={FBMlogo}
                     alt={`Flat Bread Mine logo`}
                     placeholder="blur"
-                    blurDataURL={FBMlogo}
+                    style={{
+                      maxWidth: '100%',
+                      height: 'auto',
+                      objectFit: 'contain',
+                      objectPosition: 'center',
+                    }}
                   />
                 </div>
               </div>
             </div>
           </Grid>
+        </section>
 
-          {/*
-         <div className="container mx-auto my-12 max-w-7xl px-16">
-            <div className="grid grid-cols-2 place-content-between gap-x-4 gap-y-4 md:grid-cols-3">
-              <Image
-                key="Funded-UE"
-                width={360}
-                height={95}
-                objectFit="contain"
-                src={UEfundedLogo}
-                alt="Funded by the European Union"
-                placeholder="blur"
-                blurDataURL={UEfundedLogo}
-              />
-              <Image
-                key="Prima"
-                width={360}
-                height={95}
-                objectFit="contain"
-                src={PrimaLogo}
-                alt="Prima Partnership for researh and innovation in the mediterranean area"
-                placeholder="blur"
-                blurDataURL={PrimaLogo}
-              />
-              <Image
-                key={'FBMlogo'}
-                width={360}
-                height={95}
-                objectFit="contain"
-                src={FBMlogo}
-                alt={`Flat Bread Mine logo`}
-                placeholder="blur"
-                blurDataURL={FBMlogo}
-              />
+        <section className="-mt-24 pt-24" id="flat-bread-mine">
+          <Grid rowGap>
+            <H3 className="col-span-full mb-2" variant="secondary">
+              One Health, One Welfare, One World
+            </H3>
+
+            <div className="col-span-full text-center lg:col-span-6 lg:ml-8">
+              <div className="grid-row-2 grid h-full justify-stretch">
+                <Image
+                  src={OHOWOW}
+                  alt="attrezzature ristorazione nello showroom"
+                  className="rounded-lg shadow-sm"
+                  placeholder="blur"
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                  }}
+                />
+                {/* <div className="mt-8 grid grid-cols-2 place-content-between gap-x-4 gap-y-4 md:grid-cols-3">
+                  <Image
+                    key="Funded-UE"
+                    width={360}
+                    height={95}
+                    src={UEfundedLogo}
+                    alt="Funded by the European Union"
+                    placeholder="blur"
+                    style={{
+                      maxWidth: '100%',
+                      height: 'auto',
+                      objectFit: 'contain',
+                      objectPosition: 'center',
+                    }}
+                  />
+                  <Image
+                    key="Prima"
+                    width={360}
+                    height={95}
+                    src={PrimaLogo}
+                    alt="Prima Partnership for researh and innovation in the mediterranean area"
+                    placeholder="blur"
+                    style={{
+                      maxWidth: '100%',
+                      height: 'auto',
+                      objectFit: 'contain',
+                      objectPosition: 'center',
+                    }}
+                  />
+                  <Image
+                    key={'FBMlogo'}
+                    width={360}
+                    height={95}
+                    src={FBMlogo}
+                    alt={`Flat Bread Mine logo`}
+                    placeholder="blur"
+                    style={{
+                      maxWidth: '100%',
+                      height: 'auto',
+                      objectFit: 'contain',
+                      objectPosition: 'center',
+                    }}
+                  />
+                </div> */}
+              </div>
             </div>
-          </div>
-          */}
+
+                        <div className="col-span-full lg:col-span-6">
+              <p className="mb-4 text-lg font-light leading-relaxed text-gray-600">
+                Il progetto “One health-one welfare-one world” nasce per innovare le filiere del latte e della carne al fine di migliorare il benessere dell’uomo.
+              </p>
+              <p className="mb-4 mt-0 text-lg font-light leading-relaxed text-gray-600">
+                Grazie alla collaborazione tra le Università di Bari, dipartimento di Veterinaria, del Molise, di Teramo e imprese agro-zootecniche pugliesi, il progetto ha sviluppato dei protocolli per la produzione di carni e prodotti caseari con contenuto lipidico ridotto, maggiore sicurezza e una shelf-life più lunga.
+              </p>
+              <p className="mb-4 mt-0 text-lg font-light leading-relaxed text-gray-600">
+                Il progetto dimostra come, con l’introduzione di foraggi idroponici di orzo e piselli, e un mix di oli essenziali estratti da alloro e carciofi, si possa aiutare anche la sostenibilità ambientale e tutelare la salute del bestiame e dei consumatori. Il campione di 100 volontari ha mostrato che, l’assunzione di prodotti lavorati secondo i protocolli del progetto ha generato un maggiore beneficio per i batteri buoni dell’intestino.
+                I risultati del progetto sono stati presentati giovedì 11 dicembre 2025 nell’azienda Matarrese ad Alberobello.
+
+              </p>
+              <p className="mb-4 mt-0 text-lg font-light leading-relaxed text-gray-600">
+                {`Scopri di più sulla pagina ufficiale del progetto\n`}
+                <LinkButton href="https://www.ponricerca.gov.it" withArrow>
+                  https://www.ponricerca.gov.it
+                </LinkButton>
+              </p>
+            </div>
+          </Grid>
         </section>
 
         <Spacer size="base" />

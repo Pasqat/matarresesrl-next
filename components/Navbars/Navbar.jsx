@@ -16,7 +16,6 @@ let navigation = [
   {name: 'Eventi', href: '/eventi', current: false},
   {name: 'Realizzazioni', href: '/realizzazioni', current: false},
   {name: 'R&S', href: '/ricerca', current: false},
-  {name: 'Chi siamo', href: '/azienda', current: false},
   {name: 'News', href: '/news', current: false},
 ]
 
@@ -41,16 +40,18 @@ export default function Navbar({isTransparent}) {
               <div className="mx-auto flex max-w-8xl flex-1 items-center justify-between md:justify-between">
                 <div className="inline-flex items-center">
                   <Link href="/">
-                    <div>
-                      <Image
-                        width={263}
-                        height={19}
-                        alt="logo Matarrese srl"
-                        // src="https://www.matarrese.it/wp-content/uploads/2015/09/logo-matarrese-bianco-350.png"
-                        src={Logo}
-                        placeholder="blur"
-                      />
-                    </div>
+                    <Image
+                      width={263}
+                      height={19}
+                      alt="logo Matarrese srl"
+                      // src="https://matarrese.it/wp-content/uploads/2015/09/logo-matarrese-bianco-350.png"
+                      src={Logo}
+                      placeholder="blur"
+                      style={{
+                        maxWidth: '100%',
+                        height: 'auto',
+                      }}
+                    />
                   </Link>
                 </div>
                 <div className="hidden w-full flex-wrap items-center justify-between lg:flex">
@@ -64,7 +65,6 @@ export default function Navbar({isTransparent}) {
                           item.current
                             ? 'hover:first-letter:text-yellow-500'
                             : 'hover:no-underline hover:first-letter:text-yellow-500',
-                          {hidden: item.name === 'Chi siamo'},
                         )}
                         aria-current={item.current ? 'page' : undefined}
                       >
@@ -86,13 +86,6 @@ export default function Navbar({isTransparent}) {
                         <UserGroupIcon className="mr-1 inline-block h-5 w-5" />
                         Contatti
                       </ButtonLink>
-
-                      {/* <Link href="/contatti" passHref>
-                        <ButtonLink size="small" className="no-underline">
-                          <UserGroupIcon className="mr-1 inline-block h-5 w-5" />
-                          Contatti
-                        </ButtonLink>
-                      </Link> */}
                     </div>
                   )}
                 </div>

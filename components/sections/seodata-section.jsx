@@ -9,7 +9,13 @@ function SeoDataSection({seoData, slug}) {
       <link rel="canonical" href={`${domain}/${slug}`} />
       <meta
         name="robots"
-        content={`${seoData.metaRobotsNoindex}, ${seoData.metaRobotsNoFollow}, max-image-preview:large, max-snippet:-1, max-video-preview:-1`}
+        content={[
+          seoData.metaRobotsNoindex || 'index',
+          seoData.metaRobotsNofollow || 'follow',
+          'max-image-preview:large',
+          'max-snippet:-1',
+          'max-video-preview:-1',
+        ].join(', ')}
       />
       <meta name="author" content="Matarrese srl" />
       <meta name="description" content={seoData.metaDesc} />
@@ -30,6 +36,20 @@ function SeoDataSection({seoData, slug}) {
         content={seoData.opengraphModifiedTime}
       />
       <meta name="twitter:card" content="summary_large_image" />
+      <meta
+        name="twitter:title"
+        content={seoData.twitterTitle || seoData.opengraphTitle}
+      />
+      <meta
+        name="twitter:description"
+        content={seoData.twitterDescription || seoData.opengraphDescription}
+      />
+      <meta
+        name="twitter:image"
+        content={
+          seoData.twitterImage?.sourceUrl || seoData.opengraphImage?.sourceUrl
+        }
+      />
       {/* <meta property="og:image:width" content="2000">
                   <meta property="og:image:height" content="1000">
                   <meta property="og:image:type" content="image/jpeg"> */}

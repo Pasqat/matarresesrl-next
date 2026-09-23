@@ -100,15 +100,15 @@ function LinkButton({
  * @param {string} size - large | medium | small
  */
 const ButtonLink = React.forwardRef(function ButtonLink(
-  {children, variant = 'primary', className, size, ...rest},
+  {children, variant = 'primary', className, size, href, ...rest},
   ref,
 ) {
   return (
-    <a ref={ref} className={getClassName({className})} {...rest}>
+    <Link href={href} ref={ref} className={getClassName({className})} {...rest}>
       <ButtonInner variant={variant} size={size}>
         {children}
       </ButtonInner>
-    </a>
+    </Link>
   )
 })
 

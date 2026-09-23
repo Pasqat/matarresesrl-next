@@ -25,5 +25,5 @@ export default function Alert({preview}) {
         </div>
       </Container>
     </div>
-  ) : null
+  ) : null;
 }

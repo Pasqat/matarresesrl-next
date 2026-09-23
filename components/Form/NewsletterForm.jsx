@@ -2,6 +2,7 @@ import {useEffect, useRef, useState} from 'react'
 import Link from 'next/link'
 import {gtmEvent} from '../../lib/gtm'
 import {usePlausible} from 'next-plausible'
+import {logStructuredError} from '../../lib/logging'
 
 import {H2} from '../typography'
 
@@ -25,11 +26,13 @@ export default function NewsletterForm({
   const [form, setForm] = useState({
     email: '',
     newsletterGroupId: '101815183615198233',
+    honeypot: '',
   })
-  const {email, newsletterGroupId} = form
+  const {email, newsletterGroupId, honeypot} = form
 
   const [isCheckedTerms, setIsCheckedTerms] = useState(false)
   const [formButtonDisabled, setFormButtonDisabled] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [notification, setNotification] = useState({
     text: '',
     isError: false,
@@ -74,40 +77,58 @@ export default function NewsletterForm({
       })
     }
 
-    // 3. Send a request to our API with the user's email address.
-    const resSubscription = await fetch('/api/subscribe', {
-      body: JSON.stringify({
-        email: email,
-        groupId: newsletterGroupId,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-    })
-
-    const {message, error} = await resSubscription.json()
-    gtmEvent('new_subscriber', {formLocation: 'page'})
-    plausible('Iscrizione Newsletter', {
-      props: {form_location: 'page', groupId: newsletterGroupId},
-    })
-
-    if (error) {
-      // 4. If there was an error, update the message in state.
-      setNotification({
-        ...notification,
-        text: error,
-        isError: true,
+    setLoading(true)
+    try {
+      // Send request with honeypot
+      const resSubscription = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          groupId: newsletterGroupId,
+          honeypot,
+        }),
       })
-    }
 
-    if (message) {
+      const data = await resSubscription.json().catch(() => ({}))
+
+      if (!resSubscription.ok) {
+        throw new Error(data.error || "Errore durante l'iscrizione")
+      }
+
+      gtmEvent('new_subscriber', {formLocation: 'page'})
+      plausible('Iscrizione Newsletter', {
+        props: {form_location: 'page', groupId: newsletterGroupId},
+      })
+
+      setFormButtonDisabled(true)
       setNotification({
-        ...notification,
-        text: message,
+        text: 'Grazie per la tua iscrizione!',
         isError: false,
       })
-      setFormButtonDisabled(true)
+
+      setForm({
+        ...form,
+        email: '',
+        honeypot: '',
+      })
+
+      setIsCheckedTerms(false)
+    } catch (err) {
+      logStructuredError('newsletter-form-submit', err, {
+        email,
+        groupId: newsletterGroupId,
+        error: err.message || "Errore durante l'iscrizione",
+      })
+
+      setNotification({
+        text: err.message || "Errore durante l'iscrizione",
+        isError: true,
+      })
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -162,6 +183,25 @@ export default function NewsletterForm({
             </select>
           </div>
         </Grid>
+        {/* Honeypot anti-spam field (hidden from users) */}
+        <input
+          type="text"
+          name="honeypot"
+          value={honeypot}
+          onChange={handleChange}
+          autoComplete="off"
+          tabIndex={-1}
+          aria-hidden
+          style={{
+            position: 'absolute',
+            left: '-10000px',
+            top: 'auto',
+            width: '1px',
+            height: '1px',
+            overflow: 'hidden',
+          }}
+        />
+
         <div className="col-span-full text-base">
           <label className="flex-end inline-flex w-full items-center">
             <input
@@ -173,12 +213,10 @@ export default function NewsletterForm({
             />
             <span className="ml-2">
               Accetto il{' '}
-              <Link
-                href="/privacy-policy"
-                className="text-yellow-500"
-                target="_blank"
-              >
-                trattamento dei dati e condizioni *
+              <Link href="/privacy-policy" className="text-yellow-500" target="_blank">
+                
+                  trattamento dei dati e condizioni *
+                
               </Link>
             </span>
           </label>
@@ -201,8 +239,14 @@ export default function NewsletterForm({
               </p>
             </div>
           ) : (
-            <ArrowButton className="pt-4" type="submit" direction="right">
-              Invia
+            <ArrowButton
+              className="pt-4"
+              type="submit"
+              direction="right"
+              disabled={loading}
+              aria-busy={loading}
+            >
+              {loading ? 'Invio...' : 'Invia'}
             </ArrowButton>
           )}
         </div>

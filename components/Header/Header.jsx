@@ -11,8 +11,8 @@ export default function Header({
 }) {
   return href ? (
     <H2 variant={textVariant} className={clsx('py-10', className)}>
-      <Link href={href}>
-        <a className="hover:underline">{children}</a>
+      <Link href={href} className="hover:underline">
+        {children}
       </Link>
       .
     </H2>
@@ -20,5 +20,5 @@ export default function Header({
     <H2 variant={textVariant} className={clsx('py-10', className)}>
       {children}
     </H2>
-  )
+  );
 }
