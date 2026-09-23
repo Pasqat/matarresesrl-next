@@ -357,7 +357,7 @@ export default function PrivacyPolicy() {
                   <strong>Matarrese s.r.l.</strong>
                 </div>
               </section>
-              <seciton>
+              <section>
                 <H3 className="pb-3">
                   Sezione 7 – Eventuale trasferimento dei dati verso Paesi
                   Terzi.
@@ -386,7 +386,7 @@ export default function PrivacyPolicy() {
                   offrire un elevato livello di sicurezza e protezione dei dati
                   personali.
                 </div>
-              </seciton>
+              </section>
               <section>
                 <H3 className="pb-3">
                   Sezione 8 – I Suoi diritti come interessato.
