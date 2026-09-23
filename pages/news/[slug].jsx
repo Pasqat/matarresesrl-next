@@ -1,13 +1,14 @@
 import {useRouter} from 'next/router'
 import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
-import Date from '../../components/Date'
 import Layout from '../../components/Layout'
-import {BlogSection} from '../../components/sections/blog-section'
-import PostBody from '../../components/News/post-body'
-import Categories from '../../components/News/post-categories'
+import AperturaEditoriale, {
+  Copertina,
+} from '../../components/editoriale/AperturaEditoriale'
+import Prosa from '../../components/editoriale/Prosa'
+import InvitoProgetto from '../../components/editoriale/InvitoProgetto'
+import Correlati from '../../components/editoriale/Correlati'
 import SocialShareBar from '../../components/SocialShareBar/SocialShareBar'
+import {formatDate} from '../../actions/utils/formatDate'
 import {getAllPostsWithSlug, getPost, getMorePosts} from '../../lib/query/post'
 import {SeoDataSection} from '../../components/sections/seodata-section'
 import StructuredData from '../../components/StructuredData'
@@ -57,67 +58,107 @@ export default function Post({postData, posts, preview}) {
     ])
 
   const cover = postData.featuredImage?.node?.mediaItemUrl
+  const categorie =
+    postData.categories?.edges?.map(({node}) => node.name).filter(Boolean) || []
   return (
-    <Layout preview={preview}>
+    <Layout preview={preview} navbarTransparent={!preview}>
       <Head>
         {SeoDataSection({seoData: postData.seo, slug: `news/${postData.slug}`})}
       </Head>
       <StructuredData data={newsStructuredData} />
       <StructuredData data={faqStructuredData} />
       <StructuredData data={breadcrumb} />
-      <div>
-        <article className="site-shell detail-shell">
-          <header className="detail-intro">
-            <Link className="text-link" href="/news">
-              News e approfondimenti
-            </Link>
-            <h1 dangerouslySetInnerHTML={{__html: postData.title}} />
-            <div className="detail-meta">
-              <Categories categories={postData.categories} />
-              <Date dateString={postData.date} />
-            </div>
-          </header>
-          {cover && (
-            <div className="detail-cover">
-              <Image
-                src={cover}
-                fill
-                priority
-                alt={postData.featuredImage.node.altText || postData.title}
-                sizes="90vw"
-              />
-            </div>
-          )}
-          <div className="detail-body">
-            <PostBody content={postData.content} />
+
+      <AperturaEditoriale
+        back={{href: '/news', label: 'News e approfondimenti'}}
+        meta={
+          <>
+            {categorie.length > 0 && <span>{categorie.join(' · ')} · </span>}
+            <time dateTime={postData.date}>{formatDate(postData.date)}</time>
+          </>
+        }
+        title={postData.title}
+      />
+      <Copertina
+        image={{src: cover, alt: postData.featuredImage?.node?.altText}}
+      />
+
+      <section
+        className="bg-white text-ghisa"
+        data-header="light"
+        aria-label="Articolo"
+      >
+        <article className="site-shell py-20 lg:py-28">
+          <div className="mx-auto max-w-[68ch] lg:ml-[calc(100%/12*3)]">
+            <Prosa content={postData.content} />
             {faqsArray.length > 0 && (
-              <section className="article-faq">
-                <h2>Domande frequenti</h2>
+              <section
+                className="mt-16"
+                data-header="light"
+                aria-labelledby="faq-title"
+              >
+                <h2
+                  id="faq-title"
+                  className="type-display mb-6 text-[clamp(25px,2.3vw,32px)]"
+                >
+                  Domande frequenti
+                </h2>
                 {faqsArray.map((faq, i) => (
-                  <details key={i}>
-                    <summary>{faq.question}</summary>
-                    <PostBody content={faq.answer} />
+                  <details
+                    key={i}
+                    className="group border-t border-ghisa/15 last:border-b"
+                  >
+                    <summary className="flex min-h-[44px] cursor-pointer list-none items-center justify-between gap-6 py-5 text-lg font-medium [&::-webkit-details-marker]:hidden">
+                      {faq.question}
+                      <span
+                        aria-hidden="true"
+                        className="text-2xl text-acciaio transition-transform group-open:rotate-45 motion-reduce:transition-none"
+                      >
+                        +
+                      </span>
+                    </summary>
+                    <div className="pb-6">
+                      <Prosa content={faq.answer} />
+                    </div>
                   </details>
                 ))}
               </section>
             )}
-            <div className="detail-meta mt-12">
-              {tags.map(tag => (
-                <span key={tag}>{tag}</span>
-              ))}
-            </div>
+            {tags.length > 0 && (
+              <ul className="mt-12 flex flex-wrap gap-2 text-sm text-acciaio">
+                {tags.map(tag => (
+                  <li key={tag} className="border border-ghisa/15 px-3 py-1">
+                    {tag}
+                  </li>
+                ))}
+              </ul>
+            )}
+            <SocialShareBar route={router.asPath} title={postData.title} />
+            {/* copy da approvare */}
+            <InvitoProgetto
+              title="Stai valutando un intervento simile?"
+              cta="Parla con un progettista"
+            />
           </div>
-          <SocialShareBar route={router.asPath} title={postData.title} />
         </article>
-        {posts?.edges?.length > 0 && (
-          <BlogSection
-            articles={posts.edges}
-            title="Continua a esplorare"
-            description="Altre idee per la tua attività"
-            showArrowButton={false}
-          />
-        )}
-      </div>
+      </section>
+
+      {posts?.edges?.length > 0 && (
+        <Correlati
+          title="Continua a esplorare"
+          link={{href: '/news', label: 'Tutti gli articoli'}}
+          cta="Leggi l’articolo"
+          items={posts.edges.map(({node}) => ({
+            href: `/news/${node.slug}`,
+            title: node.title,
+            meta: formatDate(node.date),
+            image: {
+              src: node.featuredImage?.node?.mediaItemUrl,
+              alt: node.featuredImage?.node?.altText,
+            },
+          }))}
+        />
+      )}
     </Layout>
   )
 }

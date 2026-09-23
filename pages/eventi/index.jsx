@@ -1,23 +1,57 @@
-import * as React from 'react'
 import Head from 'next/head'
+import Link from 'next/link'
 
 import {getEvents} from '../../lib/query/event'
-import {getGroups} from '../../lib/newsletter'
 
 import Layout from '../../components/Layout'
-import {HeroSection} from '../../components/sections/hero-section'
-import {RegistrationPanel} from '../../components/event-registration-panel'
-import {Spacer} from '../../components/spacer'
-import CardEvent from '../../components/Card/CardEvent'
-import {FeaturedSection} from '../../components/sections/featured-section'
-
-import {H3} from '../../components/typography'
-import {Grid} from '../../components/grid'
-import {FeatureCard} from '../../components/feature-card'
-import NewsletterForm from '../../components/Form/NewsletterForm'
+import PageHero from '../../components/PageHero'
 import FormModal from '../../components/Form/FormModal'
 
-export default function Events({data, groups}) {
+// Riga evento: data in evidenza (le date arrivano già formattate, es. "3 marzo 2026").
+function RigaEvento({event, futuro}) {
+  const [giorno, ...resto] = String(event.startDate).split(' ')
+  const periodo =
+    event.startDate === event.endDate
+      ? null
+      : `${event.startDate} – ${event.endDate}`
+  return (
+    <li>
+      <Link
+        href={`/eventi/${event.slug}`}
+        className="group grid grid-cols-[4.5rem_1fr] items-start gap-5 border-t border-ghisa/15 py-8 md:grid-cols-[8rem_1fr_auto] md:items-center md:gap-8"
+      >
+        <div className="type-display">
+          <span
+            className={`block text-[40px] leading-none md:text-[56px] ${
+              futuro ? 'text-fiamma-testo' : ''
+            }`}
+          >
+            {giorno}
+          </span>
+          <span className="mt-2 block text-sm text-acciaio">
+            {resto.join(' ')}
+          </span>
+        </div>
+        <div>
+          <h3
+            className="type-display text-[clamp(20px,2.2vw,32px)] leading-tight transition-colors group-hover:text-fiamma-testo"
+            dangerouslySetInnerHTML={{__html: event.title}}
+          />
+          {periodo && (
+            <span className="mt-2 block text-sm text-acciaio">{periodo}</span>
+          )}
+        </div>
+        {futuro && (
+          <span className="col-start-2 self-start border-b border-ghisa py-1 transition-colors group-hover:text-fiamma-testo md:col-start-3 md:self-center">
+            Partecipa
+          </span>
+        )}
+      </Link>
+    </li>
+  )
+}
+
+export default function Events({data}) {
   return (
     <>
       <Head>
@@ -53,152 +87,101 @@ export default function Events({data, groups}) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
-      <Layout>
-        <div className="mb-12 lg:mb-24 xl:mb-48">
-          {data.futureEvent.length ? (
-            <div className="my-20">
-              <FeaturedSection
-                titleAs="h1"
-                priority
-                subTitle={data.futureEvent[0].startDate}
-                title={data.futureEvent[0].title}
-                imageUrl={data.futureEvent[0].featuredImage?.node?.mediaItemUrl}
-                impageAlt={data.futureEvent[0].featuredImage?.node?.altText}
-                caption="In primo piano"
-                cta="Maggiori informazioni"
-                slug={`eventi/${data.futureEvent[0].slug}`}
-                permalink={`${process.env.NEXT_PUBLIC_DOMAIN}/eventi/${data.futureEvent[0].slug}`}
-                // excerpt={data.futureEvent[0].content}
-                withBackground
-              />
-            </div>
-          ) : (
-            <HeroSection
-              titleAs="h1"
-              subtitle="Incontriamoci in cucina"
-              title="Eventi formativi e dimostrativi per la ristorazione"
-              imageSize="large"
-              image="/img/header_eventi.jpg"
-              imageAlt="Eventi formativi e dimostrativi per la ristorazione"
-            />
-          )}
-          {data.futureEvent.length ? (
-            <section className="mb-8 lg:mb-12 xl:mb-24">
-              {data.futureEvent.length === 1 ? null : (
-                <Grid>
-                  <H3 as="h2" className="col-span-full mb-6">
-                    Tutti gli eventi
-                  </H3>
+      <Layout navbarTransparent>
+        <PageHero
+          title="Eventi formativi e dimostrativi per la ristorazione"
+          intro="Incontriamoci in cucina."
+        />
 
-                  <div className="col-span-full">
-                    <Grid nested rowGap>
-                      {data.futureEvent.map(event => (
-                        <div
-                          key={event.id}
-                          className="col-span-full md:col-span-4"
-                        >
-                          <CardEvent event={event} />
-                        </div>
-                      ))}
-                    </Grid>
-                  </div>
-                </Grid>
-              )}
-            </section>
-          ) : (
-            <section className="mb-8 lg:mb-12 xl:mb-24">
-              <Grid rowGap>
-                <H3 as="p" className="col-span-full mb-12">
-                  Non ci sono eventi disponibili al momento.
-                </H3>
-                <div className="col-span-full lg:col-span-6">
-                  <FeatureCard
-                    title="Sei un’azienda e vuoi presentare un tuo prodotto o un’attrezzatura nei nostri laboratori?"
-                    description="Disponiamo di ampi laboratori attrezzati per realizzare eventi formativi, informativi e commerciali per il settore food."
-                    urlText="Contattaci"
-                    url="/contatti"
-                  />
-                </div>
-                <div className="col-span-full lg:col-span-6">
-                  {/* NOTE: this is FeatureCard exact code, but to have the form
-              modal I thought to paste it here and modify the relevant part*/}
-                  <div className="event-demo relative flex h-full w-full flex-col items-start">
-                    <div className="text-primary mb-4 flex flex-none items-end text-xl font-medium">
-                      Vuoi venire a toccare con mano attrezzature innovative?
-                    </div>
-                    <div className="text-secondary max-w-sm flex-auto text-xl">
-                      Scegli tu il giorno e l&apos;ora, noi organizzeremo una
-                      demo personalizzata per mostrarti il funzionamento delle
-                      attrezzature ho.re.ca. che desideri conoscere.
-                    </div>
-                    <FormModal
-                      title="Richiedi una demo personalizzata"
-                      buttonText="Richiedi una demo"
-                    />
-                  </div>
-                </div>
-              </Grid>
-            </section>
-          )}
-
-          <section className="col-span-full">
-            <Grid rowGap>
-              <H3 as="h2" className="col-span-full">
-                Eventi conclusi
-              </H3>
-              <div className="col-span-full mt-6">
-                {data.pastEvent.map((event, index) => (
-                  <div key={event.id} className="col-span-full md:col-span-4">
-                    <RegistrationPanel event={event} pastEvent />
-                    {index === data.length - 1 ? null : <Spacer size="3xs" />}
-                  </div>
+        <section
+          className="bg-white text-ghisa"
+          data-header="light"
+          aria-labelledby="prossimi-title"
+        >
+          <div className="site-shell py-24 lg:py-32">
+            <h2
+              id="prossimi-title"
+              className="type-display text-[clamp(30px,3.4vw,52px)]"
+            >
+              Prossimi eventi
+            </h2>
+            {data.futureEvent.length ? (
+              <ul className="mt-12 border-b border-ghisa/15">
+                {data.futureEvent.map(event => (
+                  <RigaEvento key={event.id} event={event} futuro />
                 ))}
+              </ul>
+            ) : (
+              <p className="mt-6 max-w-[48ch] text-lg text-acciaio">
+                Non ci sono eventi disponibili al momento.
+              </p>
+            )}
+          </div>
+        </section>
+
+        <section
+          className="bg-ghisa text-white [&_:focus-visible]:outline-fiamma"
+          data-header="dark"
+          aria-label="Presentazioni e demo nei nostri laboratori"
+        >
+          <div className="site-shell grid gap-x-10 gap-y-14 py-24 md:grid-cols-2 lg:py-32">
+            <div className="border-t border-inox/25 pt-8">
+              <h3 className="type-display max-w-[24ch] text-[clamp(22px,2.2vw,32px)] leading-tight">
+                Sei un’azienda e vuoi presentare un tuo prodotto o
+                un’attrezzatura nei nostri laboratori?
+              </h3>
+              <p className="mt-5 max-w-[48ch] text-inox-muted">
+                Disponiamo di ampi laboratori attrezzati per realizzare eventi
+                formativi, informativi e commerciali per il settore food.
+              </p>
+              <Link
+                href="/contatti"
+                className="mt-8 inline-block border-b border-inox/60 py-2 text-white transition-colors hover:border-white"
+              >
+                Contattaci
+              </Link>
+            </div>
+            <div className="border-t border-inox/25 pt-8">
+              <h3 className="type-display max-w-[24ch] text-[clamp(22px,2.2vw,32px)] leading-tight">
+                Vuoi venire a toccare con mano attrezzature innovative?
+              </h3>
+              <p className="mt-5 max-w-[48ch] text-inox-muted">
+                Scegli tu il giorno e l&apos;ora, noi organizzeremo una demo
+                personalizzata per mostrarti il funzionamento delle attrezzature
+                ho.re.ca. che desideri conoscere.
+              </p>
+              <div className="mt-8 [&>button]:rounded-none [&>button]:border-fiamma [&>button]:bg-fiamma [&>button]:text-ghisa [&>button]:hover:border-white [&>button]:hover:bg-white">
+                <FormModal
+                  title="Richiedi una demo personalizzata"
+                  buttonText="Richiedi una demo"
+                  withButton
+                />
               </div>
-            </Grid>
+            </div>
+          </div>
+        </section>
+
+        {data.pastEvent.length > 0 && (
+          <section
+            className="bg-white text-ghisa"
+            data-header="light"
+            aria-labelledby="conclusi-title"
+          >
+            <div className="site-shell py-24 lg:py-32">
+              <h2
+                id="conclusi-title"
+                className="type-display text-[clamp(30px,3.4vw,52px)]"
+              >
+                Eventi conclusi
+              </h2>
+              <ul className="mt-12 border-b border-ghisa/15">
+                {data.pastEvent.map(event => (
+                  <RigaEvento key={event.id} event={event} />
+                ))}
+              </ul>
+            </div>
           </section>
-
-          <Spacer size="xs" />
-
-          {data.futureEvent.length ? (
-            <section className="mb-12 lg:mb-24 xl:mb-48">
-              <Grid rowGap>
-                <div className="col-span-full lg:col-span-6">
-                  <FeatureCard
-                    title="Sei un’azienda e vuoi presentare un tuo prodotto o un’attrezzatura nei nostri laboratori?"
-                    description="Disponiamo di ampi laboratori attrezzati per realizzare eventi formativi, informativi e commerciali per il settore food."
-                    urlText="Contattaci"
-                    url="/contatti"
-                  />
-                </div>
-                <div className="col-span-full lg:col-span-6">
-                  {/* NOTE: this is FeatureCard exact code, but to have the form
-              modal I thought to paste it here and modify the relevant part*/}
-                  <div className="event-demo relative flex h-full w-full flex-col items-start">
-                    <div className="text-primary mb-4 flex flex-none items-end text-xl font-medium">
-                      Vuoi venire a toccare con mano attrezzature innovative?
-                    </div>
-                    <div className="text-secondary max-w-sm flex-auto text-xl">
-                      Scegli tu il giorno e l&apos;ora, noi organizzeremo una
-                      demo personalizzata per mostrarti il funzionamento delle
-                      attrezzature ho.re.ca. che desideri conoscere.
-                    </div>
-                    <FormModal
-                      title="Richiedi una demo personalizzata"
-                      buttonText="Richiedi una demo"
-                    />
-                  </div>
-                </div>
-              </Grid>
-            </section>
-          ) : null}
-
-          <section className="mb-12 lg:mb-24 xl:mb-48">
-            <NewsletterForm
-              groups={groups}
-              title="Iscriviti alla nostra newsletter per essere informato sui nostri prossimi eventi."
-            />
-          </section>
-        </div>
+        )}
       </Layout>
     </>
   )
@@ -206,12 +189,10 @@ export default function Events({data, groups}) {
 
 export async function getStaticProps() {
   const data = await getEvents()
-  const groups = await getGroups()
 
   return {
     props: {
       data,
-      groups,
     },
     revalidate: 60 * 60 * 12,
   }

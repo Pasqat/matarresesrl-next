@@ -1,10 +1,7 @@
-import Tooltip from '../Tooltip/Tooltip'
 import {gtmEvent} from '../../lib/gtm'
 import {usePlausible} from 'next-plausible'
 
-/**
- * @param children - maybe usefull for tooltip
- */
+// Pulsante di condivisione (solo SocialShareBar): quadrato 44px con filetto, tracciamento invariato.
 export default function SocialShareButton(props) {
   const plausible = usePlausible()
   const {href, icon, children, tooltip, title, social} = props
@@ -13,8 +10,9 @@ export default function SocialShareButton(props) {
       href={href}
       target="_blank"
       rel="noreferrer"
-      className="share-button"
+      className="flex h-11 w-11 items-center justify-center border border-ghisa/15 text-acciaio transition-colors hover:border-ghisa hover:text-ghisa"
       aria-label={`Condividi ${tooltip}`}
+      title={`Condividi ${tooltip}`}
       onClick={() => {
         plausible('Share', {props: {title: title, on_social: social}})
         return gtmEvent('share', {
@@ -24,11 +22,8 @@ export default function SocialShareButton(props) {
         })
       }}
     >
-      <Tooltip content={`condividi ${tooltip}`}>
-        <div>{icon}</div>
-        {/* <i className={`text-3xl text-gray-600 hover:text-yellow-500 ${icon}`} /> */}
-        {children}
-      </Tooltip>
+      <span aria-hidden="true">{icon}</span>
+      {children}
     </a>
   )
 }

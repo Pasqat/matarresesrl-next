@@ -1,20 +1,20 @@
 import * as React from 'react'
 import Head from 'next/head'
 import {useRouter} from 'next/router'
-import clsx from 'clsx'
-import {PlusIcon} from '../../components/icons/plus-icon'
-import {SearchIcon} from '../../components/icons/search-icon'
 import * as fbq from '../../lib/fpixel'
 
 import Layout from '../../components/Layout'
+import PageHero from '../../components/PageHero'
+import CardEditoriale from '../../components/editoriale/CardEditoriale'
+import GrigliaEditoriale from '../../components/editoriale/GrigliaEditoriale'
+import {
+  CampoRicerca,
+  CaricaAltri,
+  ChipCategorie,
+} from '../../components/editoriale/FiltriArchivio'
 
 import {filterPosts} from '../../actions/utils/blog'
 import {getProjects} from '../../lib/query/project'
-import {Category} from '../../components/category'
-import {Grid} from '../../components/grid'
-import {H5, H3} from '../../components/typography'
-import {ArticleCard} from '../../components/article-card'
-import {Button} from '../../components/button'
 
 const PAGE_SIZE = 12
 const initialIndexToShow = PAGE_SIZE
@@ -43,6 +43,14 @@ export default function Realizzazioni({data}) {
   const [queryValue, setQuery] = React.useState(() => {
     return searchParams ?? ''
   })
+
+  // Pagina statica: `router.query` si popola solo dopo l'idratazione, quindi chi arriva da
+  // /realizzazioni?q=… va sincronizzato qui. I redirect di next.config.js passano slug
+  // (es. sale-ricevimenti): i trattini diventano spazi.
+  const {isReady} = router
+  React.useEffect(() => {
+    if (isReady && searchParams) setQuery(searchParams.replace(/-/g, ' '))
+  }, [isReady, searchParams])
 
   const query = queryValue.trim()
 
@@ -137,147 +145,122 @@ export default function Realizzazioni({data}) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
-      <Layout>
-        <div className="mx-auto mb-10 max-w-7xl px-4 pt-8 lg:px-8">
-          <H3 as="h1" variant="secondary" className="mb-4">
-            Realizzazioni per bar, ristoranti, hotel e attività professionali
-          </H3>
-          <p className="max-w-3xl text-lg leading-relaxed text-gray-600">
-            Da oltre quarant&apos;anni progettiamo cucine professionali, arredi
-            su misura, attrezzature per l&apos;ho.re.ca. e soluzioni complete
-            per locali commerciali, macellerie, pasticcerie, hotel e spazi
-            dedicati alla ristorazione.
-          </p>
-        </div>
-        <Grid className="my-10">
-          {data.categories && data.categories.length > 0 ? (
-            <>
-              <H5 as="div" className="col-span-full mb-6">
-                Filtra per settore
-              </H5>
-              <div className="col-span-full -mb-4 -mr-4 flex flex-wrap lg:col-span-10">
-                {data.categories.map(category => {
-                  const selected = regularQuery
-                    .toLowerCase()
-                    .includes(category.toLowerCase())
+      <Layout navbarTransparent>
+        <PageHero
+          title="Realizzazioni per bar, ristoranti, hotel e attività professionali"
+          intro="Da oltre quarant’anni progettiamo cucine professionali, arredi su misura, attrezzature per l’ho.re.ca. e soluzioni complete per locali commerciali, macellerie, pasticcerie, hotel e spazi dedicati alla ristorazione."
+        />
 
-                  return (
-                    <Category
-                      key={category}
-                      category={category}
-                      selected={selected}
-                      onClick={() => toggleCategory(category)}
-                      disabled={!visibleCategories.has(category) && !selected}
-                    />
-                  )
-                })}
-              </div>
-            </>
-          ) : null}
-        </Grid>
-
-        <div className="mb-14">
-          <form
-            className="site-shell archive-search"
-            onSubmit={e => e.preventDefault()}
-          >
-            <div className="relative">
-              <button
-                title={query === '' ? 'Cerca' : 'Pulisci ricerca'}
-                type="button"
-                onClick={() => {
-                  setQuery('')
-                  ignoreInputKeyUp.current = true
-                  searchInputRef.current?.focus()
-                }}
-                onKeyDown={() => {
-                  ignoreInputKeyUp.current = true
-                }}
-                onKeyUp={() => {
-                  ignoreInputKeyUp.current = false
-                }}
-                className={clsx(
-                  'absolute left-6 top-0 flex h-full items-center justify-center border-none bg-transparent p-0 text-gray-500',
-                  {
-                    'cursor-pointer': query !== '',
-                    'cursor-default': query === '',
-                  },
-                )}
-              >
-                <SearchIcon />
-              </button>
-              <input
-                ref={searchInputRef}
-                type="search"
-                value={queryValue}
-                onChange={event => {
-                  return setQuery(event.currentTarget.value.toLocaleLowerCase())
-                }}
-                onKeyUp={e => {
-                  if (!ignoreInputKeyUp.current && e.key === 'Enter') {
-                    resultsRef.current
-                      ?.querySelector('a')
-                      ?.focus({preventScroll: true})
-                    resultsRef.current?.scrollIntoView({
-                      behavior: 'smooth',
-                    })
-                    fbq.event('Search', {
-                      content_category: 'realizzazioni',
-                      search_string: query,
-                    })
-                    router.push(
-                      {
-                        query: {q: e.target.value.toLocaleLowerCase()},
-                      },
-                      '',
-                      {scroll: false},
-                    )
+        <section
+          className="bg-white text-ghisa"
+          data-header="light"
+          aria-label="Archivio delle realizzazioni"
+        >
+          <div className="site-shell pb-24 pt-16 lg:pb-32 lg:pt-20">
+            <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
+              <div className="lg:col-span-7">
+                <ChipCategorie
+                  label="Filtra per settore"
+                  categories={data.categories}
+                  isSelected={category =>
+                    regularQuery.toLowerCase().includes(category.toLowerCase())
                   }
-                  ignoreInputKeyUp.current = false
-                }}
-                name="q"
-                placeholder="cerca"
-                className="text-primary bg-primary border-secondary focus:bg-secondary w-full rounded-full border py-6 pl-14 pr-6 text-lg font-medium hover:border-yellow-500 focus:border-yellow-500 focus:outline-none md:pr-24"
-              />
-              <div className="absolute right-6 top-0 hidden h-full w-14 items-center justify-between text-lg font-medium text-gray-500 md:flex">
-                {isSearching ? matchingPosts.length : null}
-              </div>
-            </div>
-          </form>
-        </div>
-
-        <Grid className="mb-12 lg:mb-24 xl:mb-48" ref={resultsRef}>
-          {posts.length === 0 ? (
-            <div className="col-span-full flex flex-col items-center">
-              <H3 as="p" variant="secondary" className="mt-24 max-w-lg">
-                {`Purtroppo non è stato trovato nulla con i tuoi criteri di ricerca`}
-              </H3>
-            </div>
-          ) : (
-            posts.map(article => (
-              <div key={article.slug} className="col-span-4 mb-10">
-                <ArticleCard
-                  isProject
-                  article={article}
-                  domain={process.env.NEXT_PUBLIC_DOMAIN}
-                  placeholder="blur"
+                  isDisabled={category =>
+                    !visibleCategories.has(category) &&
+                    !regularQuery.toLowerCase().includes(category.toLowerCase())
+                  }
+                  onToggle={toggleCategory}
                 />
               </div>
-            ))
-          )}
-        </Grid>
+              <div className="lg:col-span-5">
+                <CampoRicerca
+                  ref={searchInputRef}
+                  label="Cerca tra le realizzazioni"
+                  value={queryValue}
+                  isSearching={isSearching}
+                  count={matchingPosts.length}
+                  buttonProps={{
+                    onClick: () => {
+                      setQuery('')
+                      ignoreInputKeyUp.current = true
+                      searchInputRef.current?.focus()
+                    },
+                    onKeyDown: () => {
+                      ignoreInputKeyUp.current = true
+                    },
+                    onKeyUp: () => {
+                      ignoreInputKeyUp.current = false
+                    },
+                  }}
+                  onChange={event => {
+                    return setQuery(
+                      event.currentTarget.value.toLocaleLowerCase(),
+                    )
+                  }}
+                  onKeyUp={e => {
+                    if (!ignoreInputKeyUp.current && e.key === 'Enter') {
+                      resultsRef.current
+                        ?.querySelector('a')
+                        ?.focus({preventScroll: true})
+                      resultsRef.current?.scrollIntoView({
+                        behavior: 'smooth',
+                      })
+                      fbq.event('Search', {
+                        content_category: 'realizzazioni',
+                        search_string: query,
+                      })
+                      router.push(
+                        {
+                          query: {q: e.target.value.toLocaleLowerCase()},
+                        },
+                        '',
+                        {scroll: false},
+                      )
+                    }
+                    ignoreInputKeyUp.current = false
+                  }}
+                />
+              </div>
+            </div>
 
-        {hasMorePosts ? (
-          <div className="mb-24 flex w-full justify-center lg:mb-48 xl:mb-64">
-            <Button
-              variant="secondary"
-              onClick={() => setIndexToShow(i => i + PAGE_SIZE)}
-              size="medium"
-            >
-              <span>Mostra altre realizzazioni</span> <PlusIcon />
-            </Button>
+            <div ref={resultsRef} className="mt-16 scroll-mt-28 lg:mt-24">
+              {posts.length === 0 ? (
+                <p className="type-display max-w-[24ch] py-16 text-[clamp(24px,2.6vw,36px)]">
+                  Purtroppo non è stato trovato nulla con i tuoi criteri di
+                  ricerca
+                </p>
+              ) : (
+                <GrigliaEditoriale
+                  items={posts}
+                  render={(project, aspect) => (
+                    <CardEditoriale
+                      as="h2"
+                      href={`/realizzazioni/${project.slug}`}
+                      image={{
+                        src: project.featuredImage?.node?.mediaItemUrl,
+                        alt: project.featuredImage?.node?.altText,
+                      }}
+                      title={project.title}
+                      meta={project.categories?.join(' · ')}
+                      cta="Guarda il progetto"
+                      aspect={aspect}
+                    />
+                  )}
+                />
+              )}
+            </div>
+
+            {hasMorePosts ? (
+              <CaricaAltri
+                shown={posts.length}
+                total={matchingPosts.length}
+                onClick={() => setIndexToShow(i => i + PAGE_SIZE)}
+              >
+                Mostra altre realizzazioni
+              </CaricaAltri>
+            ) : null}
           </div>
-        ) : null}
+        </section>
       </Layout>
     </div>
   )

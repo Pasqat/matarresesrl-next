@@ -1,17 +1,24 @@
 import {useRouter} from 'next/router'
 import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
-import ImageGallery from 'react-image-gallery'
-import 'react-image-gallery/styles/css/image-gallery.css'
 import Layout from '../../components/Layout'
-import EventBody from '../../components/Events/event-body'
+import AperturaEditoriale, {
+  Copertina,
+} from '../../components/editoriale/AperturaEditoriale'
+import Prosa from '../../components/editoriale/Prosa'
+import GalleriaProgetto from '../../components/editoriale/GalleriaProgetto'
+import InvitoProgetto from '../../components/editoriale/InvitoProgetto'
+import Correlati from '../../components/editoriale/Correlati'
 import SocialShareBar from '../../components/SocialShareBar/SocialShareBar'
-import {getProject, getAllProjectsWithSlug} from '../../lib/query/project'
+import {
+  getProject,
+  getAllProjectsWithSlug,
+  getLastTwoProjects,
+} from '../../lib/query/project'
 import {SeoDataSection} from '../../components/sections/seodata-section'
 import StructuredData from '../../components/StructuredData'
 import {creativeWorkSchema, breadcrumbSchema} from '../../lib/seo/schema'
-export default function Project({project}) {
+
+export default function Project({project, related}) {
   const router = useRouter()
   if (router.isFallback || !project)
     return (
@@ -21,20 +28,20 @@ export default function Project({project}) {
         </p>
       </Layout>
     )
-  const images = (project.galleria || [])
-    .filter(image => image?.sourceUrl)
-    .map(image => ({
-      original: image.sourceUrl,
-      thumbnail: image.sourceUrl,
-      description: image.caption || '',
-      originalAlt: image.altText || project.title,
-      thumbnailAlt: image.altText || project.title,
-    }))
+  const images = (project.galleria || []).filter(image => image?.sourceUrl)
   const cover =
     project.featuredImage?.node?.sourceUrl ||
     project.featuredImage?.node?.mediaItemUrl
+  const categorie =
+    project.portfolioCategories?.edges?.map(({node}) => node.name) || []
+  const anni = project.portfolioTags?.edges?.map(({node}) => node.name) || []
+  const scheda = [
+    ['Settore', categorie.join(', ')],
+    ['Anno', anni.join(', ')],
+  ].filter(([, valore]) => valore)
+
   return (
-    <Layout>
+    <Layout navbarTransparent>
       <Head>
         {SeoDataSection({
           seoData: project.seo,
@@ -47,9 +54,7 @@ export default function Project({project}) {
           description: project.seo?.metaDesc || project.title,
           slug: project.slug,
           image: cover,
-          categories: project.portfolioCategories?.edges?.map(
-            ({node}) => node.name,
-          ),
+          categories: categorie,
         })}
       />
       <StructuredData
@@ -58,46 +63,73 @@ export default function Project({project}) {
           {name: project.title, path: `/realizzazioni/${project.slug}`},
         ])}
       />
-      <div className="site-shell detail-shell">
-        <header className="detail-intro">
-          <Link className="text-link" href="/realizzazioni">
-            Tutte le realizzazioni
-          </Link>
-          <h1 dangerouslySetInnerHTML={{__html: project.title}} />
-          <div className="detail-meta">
-            {project.portfolioCategories?.edges?.map(({node}) => (
-              <span key={node.id || node.name}>{node.name}</span>
-            ))}
-            {project.portfolioTags?.edges?.map(({node}) => (
-              <span key={node.id || node.name}>{node.name}</span>
-            ))}
+
+      <AperturaEditoriale
+        back={{href: '/realizzazioni', label: 'Tutte le realizzazioni'}}
+        meta={categorie.join(' · ')}
+        title={project.title}
+      />
+      <Copertina
+        image={{src: cover, alt: project.featuredImage?.node?.altText}}
+      />
+
+      <section
+        className="bg-white text-ghisa"
+        data-header="light"
+        aria-label="Il progetto"
+      >
+        <div className="site-shell grid gap-12 py-20 lg:grid-cols-12 lg:py-28">
+          {scheda.length > 0 && (
+            <dl className="self-start lg:sticky lg:top-32 lg:col-span-3">
+              {scheda.map(([voce, valore]) => (
+                <div key={voce} className="border-t border-ghisa/15 py-4">
+                  <dt className="text-sm text-acciaio">{voce}</dt>
+                  <dd className="mt-1">{valore}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
+          <div className="min-w-0 lg:col-span-8 lg:col-start-5">
+            <Prosa content={project.content} editoriale />
+            <SocialShareBar route={router.asPath} title={project.title} />
+            <InvitoProgetto title="Uno spazio da immaginare insieme." />
           </div>
-        </header>
-        {cover && (
-          <div className="detail-cover">
-            <Image src={cover} alt={project.title} fill priority sizes="90vw" />
-          </div>
-        )}
-        <div className="detail-body">
-          <EventBody content={project.content} />
         </div>
-        {images.length > 0 && (
-          <ImageGallery
-            items={images}
-            showPlayButton={false}
-            lazyLoad
-            showThumbnails={images.length > 1}
-            showNav={images.length > 1}
-          />
-        )}
-        <SocialShareBar route={router.asPath} title={project.title} />
-        <section className="detail-cta">
-          <h2>Uno spazio da immaginare insieme.</h2>
-          <Link className="site-button" href="/contatti">
-            Parlaci del tuo progetto
-          </Link>
+      </section>
+
+      {images.length > 0 && (
+        <section
+          className="bg-calce text-ghisa"
+          data-header="light"
+          aria-labelledby="galleria-title"
+        >
+          <div className="site-shell py-24 lg:py-32">
+            <h2
+              id="galleria-title"
+              className="type-display text-[clamp(30px,3.4vw,52px)]"
+            >
+              Il progetto in immagini
+            </h2>
+            <div className="mt-12 lg:mt-16">
+              <GalleriaProgetto images={images} title={project.title} />
+            </div>
+          </div>
         </section>
-      </div>
+      )}
+
+      <Correlati
+        title="Altre realizzazioni"
+        link={{href: '/realizzazioni', label: 'Tutte le realizzazioni'}}
+        cta="Guarda il progetto"
+        items={related.map(p => ({
+          href: `/realizzazioni/${p.slug}`,
+          title: p.title,
+          image: {
+            src: p.featuredImage?.node?.mediaItemUrl,
+            alt: p.featuredImage?.node?.altText,
+          },
+        }))}
+      />
     </Layout>
   )
 }
@@ -105,10 +137,15 @@ export async function getStaticProps({params}) {
   const data = await getProject(params.slug)
   if (!data?.slug) return {notFound: true, revalidate: 60}
   data.galleria = (data.galleria || []).filter(n => n?.sourceUrl)
+  // Correlati: le ultime realizzazioni pubblicate, escluso il progetto aperto.
+  const related = (await getLastTwoProjects())
+    .filter(p => p.slug !== data.slug)
+    .slice(0, 3)
 
   return {
     props: {
       project: data,
+      related,
     },
     revalidate: 60 * 60 * 24,
   }

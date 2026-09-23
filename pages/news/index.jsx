@@ -1,27 +1,24 @@
 import * as React from 'react'
 import Head from 'next/head'
 import {useRouter} from 'next/router'
-import clsx from 'clsx'
+import Image from 'next/image'
+import Link from 'next/link'
 
 import * as fbq from '../../lib/fpixel'
-import {getGroups} from '../../lib/newsletter'
 
 import Layout from '../../components/Layout'
-import {SearchIcon} from '../../components/icons/search-icon'
-import {Grid} from '../../components/grid'
-import {H3, H5} from '../../components/typography'
-import {Category} from '../../components/category'
-import {FeaturedSection} from '../../components/sections/featured-section'
-import {ArticleCard} from '../../components/article-card'
-import {PlusIcon} from '../../components/icons/plus-icon'
-import {Button} from '../../components/button'
-import NewsletterForm from '../../components/Form/NewsletterForm'
+import PageHero from '../../components/PageHero'
+import CardEditoriale from '../../components/editoriale/CardEditoriale'
+import GrigliaEditoriale from '../../components/editoriale/GrigliaEditoriale'
+import {
+  CampoRicerca,
+  CaricaAltri,
+  ChipCategorie,
+} from '../../components/editoriale/FiltriArchivio'
 
 import {filterPosts} from '../../actions/utils/blog'
 import {formatDate} from '../../actions/utils/formatDate'
 import {getAllPosts} from '../../lib/query/post'
-
-import {Spacer} from '../../components/spacer'
 
 const PAGE_SIZE = 12
 const initialIndexToShow = PAGE_SIZE
@@ -29,7 +26,7 @@ const initialIndexToShow = PAGE_SIZE
 // this really is not needed, or maybe only the part `(\s|$)?
 const specialQueryRegex = /(?<not>!)?leader:(?<team>\w+)(\s|$)?/g
 
-export default function News({data, groups}) {
+export default function News({data}) {
   const router = useRouter()
 
   const searchParams = Array.isArray(router.query.q)
@@ -51,12 +48,13 @@ export default function News({data, groups}) {
     return searchParams ?? ''
   })
 
-  // This is a failed try to have the search when landing with a query
-  // e.g. expamle.com/news?q=eventi
-  // React.useLayoutEffect(() => {
-  //   console.log(router.query.q)
-  //   router.query.q ? setQuery(router.query.q) : ''
-  // }, [router.query.q])
+  // Pagina statica: `router.query` si popola solo dopo l'idratazione, quindi chi arriva da
+  // /news?q=… va sincronizzato qui. I redirect di next.config.js passano slug
+  // (es. attrezzatura-professionale): i trattini diventano spazi.
+  const {isReady} = router
+  React.useEffect(() => {
+    if (isReady && searchParams) setQuery(searchParams.replace(/-/g, ' '))
+  }, [isReady, searchParams])
 
   const query = queryValue.trim()
 
@@ -96,6 +94,7 @@ export default function News({data, groups}) {
   }
 
   const isSearching = query.length > 0
+  const featured = data.posts?.[0]
 
   const posts = isSearching
     ? matchingPosts.slice(0, indexToShow)
@@ -155,166 +154,165 @@ export default function News({data, groups}) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
-      <Layout>
-        <div className="mx-auto mb-4 max-w-7xl px-4 pt-8 lg:px-8">
-          <H3 as="h1" variant="secondary">
-            News e approfondimenti sulla ristorazione professionale
-          </H3>
-        </div>
-        {!isSearching && data.posts?.length > 0 ? (
-          <div className="my-20">
-            <FeaturedSection
-              subTitle={formatDate(data.posts[0].date)}
-              title={data.posts[0].title}
-              imageUrl={data.posts[0].featuredImage?.node?.mediaItemUrl}
-              img={data.img}
-              css={data.css}
-              impageAlt={data.posts[0].featuredImage?.node?.altText}
-              caption="In evidenza"
-              cta="Leggi tutto"
-              slug={`news/${data.posts[0].slug}`}
-              permalink={`${process.env.NEXT_PUBLIC_DOMAIN}/news/${data.posts[0].slug}`}
-              withBackground
-              priority
-            />
-          </div>
-        ) : null}
+      <Layout navbarTransparent>
+        <PageHero
+          // trattino morbido: a 375px "approfondimenti" non entra nella riga
+          title={
+            'News e approfondi\u00ADmenti sulla ristorazione professionale'
+          }
+        />
 
-        <Grid className="my-14">
-          {data.categories && data.categories.length > 0 ? (
-            <>
-              <H5 as="div" className="col-span-full mb-6">
-                Filtra per categoria
-              </H5>
-              <div className="col-span-full -mr-4 -mb-4 flex flex-wrap lg:col-span-10">
-                {data.categories.map(category => {
-                  const selected = regularQuery
-                    .toLowerCase()
-                    .includes(category.toLowerCase())
-
-                  return (
-                    <Category
-                      key={category}
-                      category={category}
-                      selected={selected}
-                      onClick={() => toggleCategory(category)}
-                      disabled={!visibleCategories.has(category) && !selected}
-                    />
-                  )
-                })}
-              </div>
-            </>
-          ) : null}
-        </Grid>
-
-        <div className="mb-14">
-          <form
-            className="site-shell archive-search"
-            onSubmit={e => e.preventDefault()} //here I can call something like fetchMore?
-          >
-            <div className="relative">
-              <button
-                title={query === '' ? 'Cerca' : 'Pulisci ricerca'}
-                type="button"
-                onClick={() => {
-                  setQuery('')
-                  ignoreInputKeyUp.current = true
-                  searchInputRef.current?.focus()
-                }}
-                onKeyDown={() => {
-                  ignoreInputKeyUp.current = true
-                }}
-                onKeyUp={() => {
-                  ignoreInputKeyUp.current = false
-                }}
-                className={clsx(
-                  'absolute top-0 left-6 flex h-full items-center justify-center border-none bg-transparent p-0 text-gray-500',
-                  {
-                    'cursor-pointer': query !== '',
-                    'cursor-default': query === '',
-                  },
-                )}
+        <section
+          className="bg-white text-ghisa"
+          data-header="light"
+          aria-label="Archivio degli articoli"
+        >
+          <div className="site-shell pb-24 pt-16 lg:pb-32 lg:pt-20">
+            {!isSearching && featured ? (
+              <Link
+                href={`/news/${featured.slug}`}
+                className="group mb-20 grid gap-8 border-b border-ghisa/15 pb-20 lg:mb-24 lg:grid-cols-12 lg:items-end lg:gap-12 lg:pb-24"
               >
-                <SearchIcon />
-              </button>
-              <input
-                ref={searchInputRef}
-                type="search"
-                value={queryValue}
-                onChange={event => {
-                  return setQuery(event.currentTarget.value.toLowerCase())
-                }}
-                onKeyUp={e => {
-                  if (!ignoreInputKeyUp.current && e.key === 'Enter') {
-                    resultsRef.current
-                      ?.querySelector('a')
-                      ?.focus({preventScroll: true})
-                    resultsRef.current?.scrollIntoView({
-                      behavior: 'smooth',
-                    })
+                <div className="relative aspect-[4/3] overflow-hidden bg-inox lg:col-span-7 lg:aspect-[3/2]">
+                  {featured.featuredImage?.node?.mediaItemUrl && (
+                    <Image
+                      src={featured.featuredImage.node.mediaItemUrl}
+                      alt={featured.featuredImage.node.altText || ''}
+                      fill
+                      preload
+                      fetchPriority="high"
+                      sizes="(min-width: 1024px) 58vw, 100vw"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] motion-reduce:transition-none"
+                    />
+                  )}
+                </div>
+                <div className="lg:col-span-5">
+                  <p className="text-sm text-acciaio">
+                    {[featured.categories?.[0], formatDate(featured.date)]
+                      .filter(Boolean)
+                      .join(' · ')}
+                  </p>
+                  <h2
+                    className="type-display mt-3 text-[clamp(28px,3vw,44px)] transition-colors group-hover:text-fiamma-testo"
+                    dangerouslySetInnerHTML={{__html: featured.title}}
+                  />
+                  {featured.excerpt && (
+                    <div
+                      className="mt-5 line-clamp-4 max-w-[52ch] text-acciaio"
+                      dangerouslySetInnerHTML={{__html: featured.excerpt}}
+                    />
+                  )}
+                  <span className="mt-8 inline-block border-b border-ghisa py-2 transition-colors group-hover:text-fiamma-testo">
+                    Leggi l’articolo
+                  </span>
+                </div>
+              </Link>
+            ) : null}
 
-                    router.push(
-                      {
-                        query: {q: e.target.value.toLocaleLowerCase()},
-                      },
-                      '',
-                      {scroll: false},
-                    )
-                    fbq.event('Search', {
-                      content_category: 'news',
-                      search_string: query,
-                    })
+            <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
+              <div className="lg:col-span-7">
+                <ChipCategorie
+                  label="Filtra per categoria"
+                  categories={data.categories}
+                  isSelected={category =>
+                    regularQuery.toLowerCase().includes(category.toLowerCase())
                   }
-                  ignoreInputKeyUp.current = false
-                }}
-                name="q"
-                placeholder="cerca"
-                className="text-primary bg-primary border-secondary focus:bg-secondary w-full rounded-full border py-6 pr-6 pl-14 text-lg font-medium hover:border-yellow-500 focus:border-yellow-500 focus:outline-none md:pr-24"
-              />
-              <div className="absolute top-0 right-6 hidden h-full w-14 items-center justify-between text-lg font-medium text-gray-500 md:flex">
-                {isSearching ? matchingPosts.length : null}
-              </div>
-            </div>
-          </form>
-        </div>
-
-        <Grid className="mb-12 lg:mb-24 xl:mb-48" ref={resultsRef}>
-          {posts.length === 0 ? (
-            <div className="col-span-full flex flex-col items-center">
-              <H3 as="p" variant="secondary" className="mt-24 max-w-lg">
-                {`Purtroppo non è stato trovato nulla con i tuoi criteri di ricerca`}
-              </H3>
-              <Spacer size="base" />
-              <NewsletterForm
-                nested
-                groups={groups}
-                title="Iscriviti alla nostra newsletter per rimanere aggiornato sulle ultime novità."
-              />
-            </div>
-          ) : (
-            posts.map(article => (
-              <div key={article.slug} className="col-span-4 mb-10">
-                <ArticleCard
-                  article={article}
-                  domain={process.env.NEXT_PUBLIC_DOMAIN}
-                  placeholder="blur"
+                  isDisabled={category =>
+                    !visibleCategories.has(category) &&
+                    !regularQuery.toLowerCase().includes(category.toLowerCase())
+                  }
+                  onToggle={toggleCategory}
                 />
               </div>
-            ))
-          )}
-        </Grid>
+              <div className="lg:col-span-5">
+                <CampoRicerca
+                  ref={searchInputRef}
+                  label="Cerca tra gli articoli"
+                  value={queryValue}
+                  isSearching={isSearching}
+                  count={matchingPosts.length}
+                  buttonProps={{
+                    onClick: () => {
+                      setQuery('')
+                      ignoreInputKeyUp.current = true
+                      searchInputRef.current?.focus()
+                    },
+                    onKeyDown: () => {
+                      ignoreInputKeyUp.current = true
+                    },
+                    onKeyUp: () => {
+                      ignoreInputKeyUp.current = false
+                    },
+                  }}
+                  onChange={event => {
+                    return setQuery(event.currentTarget.value.toLowerCase())
+                  }}
+                  onKeyUp={e => {
+                    if (!ignoreInputKeyUp.current && e.key === 'Enter') {
+                      resultsRef.current
+                        ?.querySelector('a')
+                        ?.focus({preventScroll: true})
+                      resultsRef.current?.scrollIntoView({
+                        behavior: 'smooth',
+                      })
 
-        {hasMorePosts ? (
-          <div className="mb-24 flex w-full justify-center lg:mb-48 xl:mb-64">
-            <Button
-              variant="secondary"
-              onClick={() => setIndexToShow(i => i + PAGE_SIZE)}
-              size="medium"
-            >
-              <span>Mostra altri articoli</span> <PlusIcon />
-            </Button>
+                      router.push(
+                        {
+                          query: {q: e.target.value.toLocaleLowerCase()},
+                        },
+                        '',
+                        {scroll: false},
+                      )
+                      fbq.event('Search', {
+                        content_category: 'news',
+                        search_string: query,
+                      })
+                    }
+                    ignoreInputKeyUp.current = false
+                  }}
+                />
+              </div>
+            </div>
+
+            <div ref={resultsRef} className="mt-16 scroll-mt-28 lg:mt-24">
+              {posts.length === 0 ? (
+                <p className="type-display max-w-[24ch] py-16 text-[clamp(24px,2.6vw,36px)]">
+                  Purtroppo non è stato trovato nulla con i tuoi criteri di
+                  ricerca
+                </p>
+              ) : (
+                <GrigliaEditoriale
+                  items={posts}
+                  render={(article, aspect) => (
+                    <CardEditoriale
+                      href={`/news/${article.slug}`}
+                      image={{
+                        src: article.featuredImage?.node?.mediaItemUrl,
+                        alt: article.featuredImage?.node?.altText,
+                      }}
+                      title={article.title}
+                      meta={[article.categories?.[0], formatDate(article.date)]
+                        .filter(Boolean)
+                        .join(' · ')}
+                      cta="Leggi l’articolo"
+                      aspect={aspect}
+                    />
+                  )}
+                />
+              )}
+            </div>
+
+            {hasMorePosts ? (
+              <CaricaAltri
+                shown={posts.length + (isSearching || !featured ? 0 : 1)}
+                total={matchingPosts.length}
+                onClick={() => setIndexToShow(i => i + PAGE_SIZE)}
+              >
+                Mostra altri articoli
+              </CaricaAltri>
+            ) : null}
           </div>
-        ) : null}
+        </section>
       </Layout>
     </div>
   )
@@ -326,7 +324,6 @@ export async function getStaticProps({preview = false}) {
     .filter(category => category.count > 0)
     .map(c => c.name)
   const tags = data.tags.filter(tags => tags.count > 0).map(t => t.name)
-  const groups = await getGroups()
 
   return {
     props: {
@@ -346,7 +343,6 @@ export async function getStaticProps({preview = false}) {
         })),
       },
       preview,
-      groups,
     },
     revalidate: 60 * 60 * 24,
   }
