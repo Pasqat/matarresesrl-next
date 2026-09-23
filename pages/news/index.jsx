@@ -228,7 +228,7 @@ export default function News({data, groups}) {
                   ignoreInputKeyUp.current = false
                 }}
                 className={clsx(
-                  'absolute top-0 left-6 flex h-full items-center justify-center border-none bg-trasparent p-0 text-gray-500',
+                  'absolute top-0 left-6 flex h-full items-center justify-center border-none bg-transparent p-0 text-gray-500',
                   {
                     'cursor-pointer': query !== '',
                     'cursor-default': query === '',

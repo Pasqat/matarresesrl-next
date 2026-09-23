@@ -1,25 +1,45 @@
 :root {
-  --color-black: #000;
+  /* Unica fonte dei token: vedi DESIGN.md. Tailwind li legge da tailwind.config.js. */
+  /* Materiali Matarrese */
+  --ghisa: #1e2226; /* fondo scuro: ghisa dei piani cottura */
+  --grafite: #2b3136; /* superfici rialzate su fondo scuro */
+  --inox: #c9ced2; /* acciaio satinato: testo e filetti su scuro */
+  --inox-muted: #9aa3aa; /* testo secondario su scuro */
+  --calce: #f4f5f3; /* fondo chiaro: calce dei trulli */
+  --acciaio-testo: #5b646b; /* testo secondario su chiaro */
+  --fiamma: #de7c00; /* arancio di brand: solo su scuro o come fondo con testo ghisa */
+  --fiamma-testo: #995200; /* arancio per testo su chiaro (AA) */
+
+  /* Scala legacy usata dalle utility Tailwind esistenti */
+  --color-black: #24272b;
   --color-white: #fff;
-  --color-gray-100: #f7f7f7;
-  --color-gray-200: #e6e9ee;
-  --color-gray-300: #dde0e4;
-  --color-gray-400: #818890;
-  --color-gray-500: #535661;
-  --color-gray-600: #4b4c53;
-  --color-gray-700: #3a3d4a;
-  --color-gray-800: #2e3039;
-  --color-gray-900: #1f2028;
+  --color-gray-100: #eef0f2;
+  --color-gray-200: #dce0e3;
+  --color-gray-300: #c4cbd0;
+  --color-gray-400: #69727a;
+  --color-gray-500: #555d65;
+  --color-gray-600: #555d65;
+  --color-gray-700: #41484e;
+  --color-gray-800: #30353a;
+  --color-gray-900: #24272b;
   --color-green-100: #e7f9ed;
-  --color-green-400: #B3FFAE;
+  --color-green-400: #b3ffae;
   --color-green-500: #30c85e;
   --color-green-600: #68d94a;
-  --color-green-700: #68B984;
+  --color-green-700: #68b984;
   --color-red-400: #dc2626;
   --color-red-500: #ff4545;
-  --color-red-600: #ff4545;
+  --color-red-600: #b91c1c;
   --color-yellow-400: #ffd644;
-  --color-yellow-500: 222 124 0;    /* #de7c00 */
+  --color-yellow-500: 222 124 0; /* #de7c00 */
+  --color-yellow-600: #995200;
+
+  /* Alias usati da styles/revamp.css */
+  --ink: #24272b;
+  --muted: #555d65;
+  --steel: #eef0f2;
+  --accent: #de7c00;
+  --gutter: clamp(22px, 5vw, 96px);
 }
 
 :focus:not(:focus-visible) {

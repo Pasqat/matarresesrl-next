@@ -1,5 +1,8 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 
+const material = token =>
+  `color-mix(in srgb, var(${token}) calc(<alpha-value> * 100%), transparent)`
+
 module.exports = {
   content: [
     './pages/**/*.{js,jsx,ts,tsx}',
@@ -12,10 +15,18 @@ module.exports = {
       xl: '1500px', // this is the "design resolution"
     },
     colors: {
-      'trasparent': 'transparent',
+      'transparent': 'transparent',
       'current': 'currentColor',
       'white': 'var(--color-white)',
       'black': 'var(--color-black)',
+
+      // Materiali Matarrese (vedi DESIGN.md); color-mix abilita i modificatori /opacità
+      'ghisa': material('--ghisa'),
+      'grafite': material('--grafite'),
+      'inox': {DEFAULT: material('--inox'), muted: material('--inox-muted')},
+      'calce': material('--calce'),
+      'acciaio': material('--acciaio-testo'),
+      'fiamma': {DEFAULT: material('--fiamma'), testo: material('--fiamma-testo')},
 
       'gray': {
         100: 'var(--color-gray-100)',
@@ -36,7 +47,7 @@ module.exports = {
       'red': {
         400: 'var(--color-red-400)',
         500: 'var(--color-red-500)',
-        600: 'var(--color-red-400)',
+        600: 'var(--color-red-600)',
       },
       'green': {
         100: 'var(--color-green-100)',
@@ -72,6 +83,8 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Matter', ...defaultTheme.fontFamily.sans],
+        display: ['var(--font-display)', ...defaultTheme.fontFamily.sans],
+        serif: ['var(--font-editorial)', ...defaultTheme.fontFamily.serif],
       },
       minHeight: {
         'screen-75': '75vh',

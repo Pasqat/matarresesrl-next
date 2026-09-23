@@ -1,23 +1,5 @@
 /* Matarrese: photography, precise type, and generous working space. */
-:root {
-  --color-black: #24272b;
-  --color-gray-100: #eef0f2;
-  --color-gray-200: #dce0e3;
-  --color-gray-300: #c4cbd0;
-  --color-gray-400: #69727a;
-  --color-gray-500: #555d65;
-  --color-gray-600: #555d65;
-  --color-gray-700: #41484e;
-  --color-gray-800: #30353a;
-  --color-gray-900: #24272b;
-  --color-yellow-500: 222 124 0;
-  --color-yellow-600: #995200;
-  --ink: #24272b;
-  --muted: #555d65;
-  --steel: #eef0f2;
-  --accent: #de7c00;
-  --gutter: clamp(22px, 5vw, 96px);
-}
+/* I token sono in styles/globals.css (:root unico). */
 html { scroll-padding-top: 112px; }
 body { color: var(--ink); background: white; font-size: 18px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
 body::-webkit-scrollbar { width: 8px; }

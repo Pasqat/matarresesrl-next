@@ -197,7 +197,7 @@ export default function Realizzazioni({data}) {
                   ignoreInputKeyUp.current = false
                 }}
                 className={clsx(
-                  'absolute left-6 top-0 flex h-full items-center justify-center border-none bg-trasparent p-0 text-gray-500',
+                  'absolute left-6 top-0 flex h-full items-center justify-center border-none bg-transparent p-0 text-gray-500',
                   {
                     'cursor-pointer': query !== '',
                     'cursor-default': query === '',

@@ -12,8 +12,19 @@ import CookieConsent, {getCookieConsentValue} from 'react-cookie-consent'
 import ScrollToTop from '../components/ScrollToTop'
 import PlausibleProvider from 'next-plausible'
 import {SpeedInsights} from '@vercel/speed-insights/next'
+import {Archivo, Newsreader} from 'next/font/google'
 
 import client from '../lib/apolloClient'
+
+// Display: Archivo a larghezza variabile (titoli "da targa" in versione espansa).
+// Editoriale: Newsreader per storie e citazioni. Testo: Matter (styles/index.css).
+const display = Archivo({subsets: ['latin'], axes: ['wdth'], display: 'swap'})
+const editorial = Newsreader({
+  subsets: ['latin'],
+  style: ['normal', 'italic'],
+  axes: ['opsz'],
+  display: 'swap',
+})
 
 function MyApp({Component, pageProps}) {
   const router = useRouter()
@@ -91,6 +102,12 @@ function MyApp({Component, pageProps}) {
           gtag('config', '${gtag.GTM_ID}');
         `}
         </Script>
+        <style jsx global>{`
+          :root {
+            --font-display: ${display.style.fontFamily};
+            --font-editorial: ${editorial.style.fontFamily};
+          }
+        `}</style>
         <Component {...pageProps} />
         <SpeedInsights />
         <ScrollToTop />
