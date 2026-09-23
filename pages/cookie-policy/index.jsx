@@ -26,11 +26,11 @@ export default function CookiePolicy() {
       <Layout>
         <Container>
           <Header>Tipologie ed utilizzo dei Cookies</Header>
-          <div className="container mx-auto pb-20 text-justify text-gray-900">
+          <div className="container mx-auto !max-w-[70ch] pb-20 text-left leading-relaxed text-ghisa">
             <div className="flex flex-col space-y-14">
               <section>
                 <H3 className="pb-3">Utilizzo dei Cookie</H3>
-                <div className="md:columns-2">
+                <div className="space-y-4">
                   <p className="pb-2">
                     I cookie sono righe di testo che fungono da marcatori
                     informatici inviati da un server (in questo caso, quello del
@@ -64,10 +64,13 @@ export default function CookiePolicy() {
               </section>
               <section>
                 <H3 className="pb-3">Tipologie e gestione dei cookies</H3>
-                <div className="md:columns-2">
+                <div className="space-y-4">
                   <p className="pb-2">
                     La presente Cookie Policy è relativa al sito{' '}
-                    <Link href="/" className="text-yellow-600">
+                    <Link
+                      href="/"
+                      className="text-fiamma-testo underline underline-offset-4"
+                    >
                       www.matarrese.it
                     </Link>{' '}
                     (“Sito”) gestito e operato dalla società Matarrese srl, con
@@ -244,7 +247,7 @@ export default function CookiePolicy() {
                 <H3 className="pb-3">
                   Come modificare le impostazioni sui cookies
                 </H3>
-                <div className="md:columns-2">
+                <div className="space-y-4">
                   <p className="pb-2">
                     La maggior parte dei browser accetta automaticamente i
                     cookies, ma l’utente normalmente può modificare le
@@ -263,7 +266,7 @@ export default function CookiePolicy() {
                     preferenze sui cookie (di prima e/o terza parte) si invitano
                     gli utenti a visitare anche la piattaforma{' '}
                     <a
-                      className="text-yellow-600"
+                      className="text-fiamma-testo underline underline-offset-4"
                       href="www.youronlinechoices.com"
                     >
                       www.youronlinechoices.com

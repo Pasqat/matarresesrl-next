@@ -1,10 +1,10 @@
 import Head from 'next/head'
 
+import Link from 'next/link'
+import {useState} from 'react'
+
 import Layout from '../../components/Layout'
-import {Grid} from '../../components/grid'
-import {H1, H3, Paragraph} from '../../components/typography'
-import {Spacer} from '../../components/spacer'
-import {LinkButton} from '../../components/button'
+import PageHero from '../../components/PageHero'
 import StructuredData from '../../components/StructuredData'
 import {faqSchema, breadcrumbSchema} from '../../lib/seo/schema'
 
@@ -92,41 +92,84 @@ export default function Faq() {
       </Head>
       <StructuredData data={faqSchema(FAQS)} />
       <StructuredData data={breadcrumbSchema([{name: 'FAQ', path: '/faq'}])} />
-      <Layout>
-        <div className="mx-10vw">
-          <div className="mx-auto max-w-4xl">
-            <Spacer size="2xs" />
-            <H1 className="mb-4">Domande frequenti</H1>
-            <Paragraph className="mb-12">
-              Le risposte alle domande più comuni su servizi, attrezzature,
-              arredi e assistenza per il settore ho.re.ca. Non trovi quello che
-              cerchi? Contattaci, siamo a tua disposizione.
-            </Paragraph>
+      <Layout navbarTransparent>
+        <PageHero
+          title="Domande frequenti"
+          intro="Le risposte alle domande più comuni su servizi, attrezzature, arredi e assistenza per il settore ho.re.ca."
+          tall={false}
+        />
 
-            <Grid nested rowGap>
-              {FAQS.map(faq => (
-                <section
-                  key={faq.question}
-                  className="col-span-full border-b border-gray-200 pb-6"
-                >
-                  <H3 as="h2" variant="secondary" className="mb-3">
-                    {faq.question}
-                  </H3>
-                  <Paragraph className="text-gray-600">{faq.answer}</Paragraph>
-                </section>
+        <section
+          className="bg-white text-ghisa"
+          data-header="light"
+          aria-label="Domande e risposte"
+        >
+          <div className="site-shell grid gap-12 py-20 lg:grid-cols-12 lg:py-28">
+            <div className="lg:col-span-8 lg:col-start-5 lg:row-start-1">
+              {FAQS.map((faq, i) => (
+                <FaqItem key={faq.question} faq={faq} index={i} />
               ))}
-            </Grid>
-
-            <Spacer size="2xs" />
-            <div className="flex justify-center">
-              <LinkButton href="/contatti" withArrow>
-                Hai altre domande? Contattaci
-              </LinkButton>
             </div>
-            <Spacer size="base" />
+            <div className="lg:col-span-4 lg:row-start-1 lg:pr-12">
+              <div className="lg:sticky lg:top-32">
+                <p className="max-w-[34ch] text-lg text-acciaio">
+                  Non trovi quello che cerchi? Contattaci, siamo a tua
+                  disposizione.
+                </p>
+                <Link href="/contatti" className="cta-ghisa mt-6">
+                  Hai altre domande? Contattaci
+                </Link>
+              </div>
+            </div>
           </div>
-        </div>
+        </section>
       </Layout>
+    </div>
+  )
+}
+
+// Accordion: pulsante con aria-expanded dentro l'h2; il pannello chiuso è
+// `invisible` (fuori da tab e albero di accessibilità) e si apre animando le
+// righe della griglia da 0fr a 1fr. Niente animazione con movimento ridotto.
+function FaqItem({faq, index}) {
+  const [open, setOpen] = useState(false)
+  const buttonId = `faq-q-${index}`
+  const panelId = `faq-a-${index}`
+  return (
+    <div className="border-t border-ghisa/15 last:border-b">
+      <h2 className="type-display text-[clamp(19px,1.7vw,24px)] leading-tight">
+        <button
+          type="button"
+          id={buttonId}
+          aria-expanded={open}
+          aria-controls={panelId}
+          onClick={() => setOpen(o => !o)}
+          className="group flex w-full items-start justify-between gap-6 py-6 text-left transition-colors [font-stretch:inherit] hover:text-fiamma-testo"
+        >
+          <span>{faq.question}</span>
+          <span
+            aria-hidden="true"
+            className="relative mt-1 h-4 w-4 shrink-0 text-current"
+          >
+            <span className="absolute left-0 top-1/2 h-px w-4 bg-current" />
+            <span
+              className={`absolute left-1/2 top-0 h-4 w-px bg-current transition-transform duration-300 motion-reduce:transition-none ${
+                open ? 'scale-y-0' : 'scale-y-100'
+              }`}
+            />
+          </span>
+        </button>
+      </h2>
+      <div
+        id={panelId}
+        className={`grid transition-[grid-template-rows,visibility] duration-300 ease-out motion-reduce:transition-none ${
+          open ? 'visible grid-rows-[1fr]' : 'invisible grid-rows-[0fr]'
+        }`}
+      >
+        <div className="min-h-0 overflow-hidden">
+          <p className="max-w-[65ch] pb-8 text-lg text-acciaio">{faq.answer}</p>
+        </div>
+      </div>
     </div>
   )
 }
