@@ -52,11 +52,12 @@ export default function Map() {
       />
       {unavailable && (
         <div className="map-fallback">
-          <p className="page-intro">Ci trovi ad Alberobello</p>
-          <h2>Vieni a trovarci.</h2>
-          <p>Contrada Popoleto, n.c.</p>
+          <h2 className="type-display text-[clamp(28px,3vw,44px)]">
+            Vieni a trovarci ad Alberobello.
+          </h2>
+          <p className="text-acciaio">Contrada Popoleto, n.c.</p>
           <a
-            className="site-button"
+            className="cta-ghisa"
             href="https://www.google.com/maps/search/?api=1&query=Matarrese+srl+Alberobello"
             target="_blank"
             rel="noreferrer"
