@@ -1,1 +1,860 @@
-{}
+{
+ "wp:3467": {
+  "role": "scarta"
+ },
+ "wp:5646": {
+  "role": "hero"
+ },
+ "wp:5634": {
+  "role": "hero"
+ },
+ "wp:4548": {
+  "page": "azienda",
+  "role": "sezione"
+ },
+ "wp:4553": {
+  "role": "scarta"
+ },
+ "wp:4550": {
+  "role": "scarta"
+ },
+ "wp:4544": {
+  "role": "scarta"
+ },
+ "wp:4541": {
+  "role": "scarta"
+ },
+ "wp:4538": {
+  "role": "scarta"
+ },
+ "wp:4481": {
+  "role": "scarta"
+ },
+ "wp:4107": {
+  "role": "scarta"
+ },
+ "wp:4103": {
+  "role": "scarta"
+ },
+ "wp:3694": {
+  "role": "scarta"
+ },
+ "wp:3690": {
+  "role": "scarta"
+ },
+ "wp:3651": {
+  "role": "scarta"
+ },
+ "wp:4757": {
+  "role": "scarta"
+ },
+ "wp:1594": {
+  "role": "scarta"
+ },
+ "wp:4686": {
+  "role": "scarta"
+ },
+ "wp:4668": {
+  "role": "scarta"
+ },
+ "wp:4758": {
+  "role": "scarta"
+ },
+ "wp:4784": {
+  "role": "scarta"
+ },
+ "wp:6224": {
+  "role": "scarta"
+ },
+ "wp:4557": {
+  "role": "scarta"
+ },
+ "wp:4576": {
+  "role": "scarta"
+ },
+ "wp:4577": {
+  "role": "scarta"
+ },
+ "wp:4687": {
+  "role": "scarta"
+ },
+ "wp:4742": {
+  "role": "scarta"
+ },
+ "wp:4573": {
+  "role": "scarta"
+ },
+ "wp:4572": {
+  "role": "scarta"
+ },
+ "wp:4554": {
+  "role": "scarta"
+ },
+ "wp:4720": {
+  "role": "scarta"
+ },
+ "wp:5817": {
+  "sector": "bar-gelaterie-pasticcerie",
+  "role": "sezione"
+ },
+ "wp:5627": {
+  "sector": "bar-gelaterie-pasticcerie",
+  "role": "scarta"
+ },
+ "wp:5621": {
+  "role": "scarta"
+ },
+ "wp:5616": {
+  "sector": "bar-gelaterie-pasticcerie",
+  "role": "sezione"
+ },
+ "wp:5816": {
+  "role": "scarta"
+ },
+ "wp:5602": {
+  "role": "scarta"
+ },
+ "wp:5601": {
+  "sector": "bar-gelaterie-pasticcerie",
+  "role": "sezione"
+ },
+ "wp:5596": {
+  "role": "scarta"
+ },
+ "wp:5594": {
+  "role": "scarta"
+ },
+ "wp:5592": {
+  "role": "scarta"
+ },
+ "wp:5553": {
+  "sector": "prodotti",
+  "role": "sezione"
+ },
+ "wp:5552": {
+  "role": "scarta"
+ },
+ "wp:4896": {
+  "role": "scarta"
+ },
+ "wp:4895": {
+  "sector": "prodotti",
+  "role": "sezione"
+ },
+ "wp:4894": {
+  "role": "scarta"
+ },
+ "wp:4893": {
+  "role": "scarta"
+ },
+ "wp:4891": {
+  "role": "scarta"
+ },
+ "wp:4890": {
+  "role": "scarta"
+ },
+ "wp:4889": {
+  "role": "scarta"
+ },
+ "wp:4888": {
+  "role": "scarta"
+ },
+ "wp:4887": {
+  "role": "scarta"
+ },
+ "wp:4886": {
+  "role": "scarta"
+ },
+ "wp:4885": {
+  "role": "scarta"
+ },
+ "wp:4884": {
+  "role": "scarta"
+ },
+ "wp:4883": {
+  "role": "scarta"
+ },
+ "wp:4882": {
+  "role": "scarta"
+ },
+ "wp:4881": {
+  "role": "scarta"
+ },
+ "wp:4878": {
+  "role": "scarta"
+ },
+ "wp:4823": {
+  "role": "scarta"
+ },
+ "wp:4822": {
+  "role": "scarta"
+ },
+ "wp:4819": {
+  "role": "scarta"
+ },
+ "wp:4813": {
+  "role": "scarta"
+ },
+ "wp:4811": {
+  "sector": "gdo-pescherie-macellerie",
+  "role": "sezione"
+ },
+ "wp:4785": {
+  "role": "scarta"
+ },
+ "wp:4698": {
+  "role": "scarta"
+ },
+ "wp:4817": {
+  "sector": "gdo-pescherie-macellerie",
+  "role": "sezione"
+ },
+ "wp:5815": {
+  "role": "scarta"
+ },
+ "wp:5813": {
+  "role": "scarta"
+ },
+ "wp:5812": {
+  "role": "scarta"
+ },
+ "wp:5798": {
+  "sector": "ristoranti-pizzerie",
+  "role": "hero"
+ },
+ "wp:5705": {
+  "sector": "gdo-pescherie-macellerie",
+  "role": "sezione"
+ },
+ "wp:5703": {
+  "sector": "gdo-pescherie-macellerie",
+  "role": "sezione"
+ },
+ "wp:5702": {
+  "sector": "gdo-pescherie-macellerie",
+  "role": "hero"
+ },
+ "wp:5649": {
+  "role": "scarta"
+ },
+ "wp:5648": {
+  "sector": "bar-gelaterie-pasticcerie",
+  "role": "sezione"
+ },
+ "wp:5647": {
+  "sector": "bar-gelaterie-pasticcerie",
+  "role": "sezione"
+ },
+ "wp:5645": {
+  "sector": "bar-gelaterie-pasticcerie",
+  "role": "sezione"
+ },
+ "wp:4575": {
+  "role": "scarta"
+ },
+ "wp:4549": {
+  "role": "scarta"
+ },
+ "wp:5666": {
+  "role": "scarta"
+ },
+ "wp:5665": {
+  "role": "scarta"
+ },
+ "wp:5614": {
+  "sector": "hotel-ricevimenti",
+  "role": "hero"
+ },
+ "wp:5632": {
+  "role": "scarta"
+ },
+ "wp:4319": {
+  "sector": "ristoranti-pizzerie",
+  "role": "sezione"
+ },
+ "wp:4175": {
+  "role": "scarta"
+ },
+ "wp:4174": {
+  "role": "scarta"
+ },
+ "wp:4173": {
+  "role": "scarta"
+ },
+ "wp:4172": {
+  "role": "scarta"
+ },
+ "wp:4171": {
+  "role": "scarta"
+ },
+ "wp:4170": {
+  "sector": "eventi",
+  "role": "sezione"
+ },
+ "wp:4169": {
+  "sector": "eventi",
+  "role": "sezione"
+ },
+ "wp:4168": {
+  "role": "scarta"
+ },
+ "wp:4167": {
+  "role": "scarta"
+ },
+ "wp:4166": {
+  "role": "scarta"
+ },
+ "wp:4165": {
+  "role": "scarta"
+ },
+ "wp:4164": {
+  "role": "scarta"
+ },
+ "wp:4163": {
+  "role": "scarta"
+ },
+ "wp:4162": {
+  "role": "scarta"
+ },
+ "wp:4161": {
+  "role": "scarta"
+ },
+ "wp:4160": {
+  "role": "scarta"
+ },
+ "wp:4159": {
+  "role": "scarta"
+ },
+ "wp:4158": {
+  "role": "scarta"
+ },
+ "wp:4157": {
+  "role": "scarta"
+ },
+ "wp:4067": {
+  "role": "scarta"
+ },
+ "wp:4063": {
+  "role": "scarta"
+ },
+ "wp:3680": {
+  "role": "scarta"
+ },
+ "wp:3672": {
+  "role": "scarta"
+ },
+ "wp:3549": {
+  "role": "scarta"
+ },
+ "wp:3544": {
+  "role": "scarta"
+ },
+ "wp:3542": {
+  "role": "scarta"
+ },
+ "wp:3541": {
+  "role": "scarta"
+ },
+ "wp:3540": {
+  "role": "scarta"
+ },
+ "wp:3539": {
+  "role": "scarta"
+ },
+ "wp:3536": {
+  "role": "scarta"
+ },
+ "wp:3533": {
+  "role": "scarta"
+ },
+ "wp:3528": {
+  "role": "scarta"
+ },
+ "wp:3522": {
+  "role": "scarta"
+ },
+ "wp:3455": {
+  "sector": "bar-gelaterie-pasticcerie",
+  "role": "sezione"
+ },
+ "wp:3457": {
+  "sector": "prodotti",
+  "role": "sezione"
+ },
+ "wp:3458": {
+  "role": "scarta"
+ },
+ "wp:3456": {
+  "role": "scarta"
+ },
+ "wp:3454": {
+  "role": "scarta"
+ },
+ "wp:3446": {
+  "role": "scarta"
+ },
+ "wp:3445": {
+  "sector": "prodotti",
+  "role": "sezione"
+ },
+ "wp:3443": {
+  "sector": "bar-gelaterie-pasticcerie",
+  "role": "sezione"
+ },
+ "wp:3442": {
+  "role": "sezione"
+ },
+ "wp:3441": {
+  "role": "scarta"
+ },
+ "wp:3440": {
+  "role": "scarta"
+ },
+ "wp:3439": {
+  "role": "scarta"
+ },
+ "wp:3438": {
+  "role": "scarta"
+ },
+ "wp:3437": {
+  "role": "scarta"
+ },
+ "wp:3436": {
+  "role": "scarta"
+ },
+ "wp:3434": {
+  "role": "scarta"
+ },
+ "wp:3433": {
+  "role": "scarta"
+ },
+ "wp:3432": {
+  "role": "scarta"
+ },
+ "wp:3386": {
+  "sector": "laboratori",
+  "role": "sezione"
+ },
+ "wp:3348": {
+  "role": "scarta"
+ },
+ "wp:3343": {
+  "role": "scarta"
+ },
+ "wp:3319": {
+  "role": "scarta"
+ },
+ "wp:3317": {
+  "role": "scarta"
+ },
+ "wp:3316": {
+  "sector": "prodotti",
+  "role": "sezione"
+ },
+ "wp:3315": {
+  "role": "scarta"
+ },
+ "wp:3312": {
+  "role": "scarta"
+ },
+ "wp:3307": {
+  "role": "scarta"
+ },
+ "wp:3278": {
+  "role": "scarta"
+ },
+ "wp:3246": {
+  "role": "scarta"
+ },
+ "wp:3238": {
+  "role": "scarta"
+ },
+ "wp:3237": {
+  "role": "scarta"
+ },
+ "wp:3236": {
+  "sector": "ristoranti-pizzerie",
+  "role": "sezione"
+ },
+ "wp:3235": {
+  "role": "scarta"
+ },
+ "wp:3234": {
+  "role": "scarta"
+ },
+ "wp:3214": {
+  "role": "scarta"
+ },
+ "wp:3213": {
+  "role": "scarta"
+ },
+ "wp:3212": {
+  "role": "scarta"
+ },
+ "wp:3211": {
+  "role": "scarta"
+ },
+ "wp:3210": {
+  "role": "scarta"
+ },
+ "wp:3209": {
+  "role": "scarta"
+ },
+ "wp:3195": {
+  "sector": "ristoranti-pizzerie",
+  "role": "sezione"
+ },
+ "wp:3171": {
+  "role": "scarta"
+ },
+ "wp:3113": {
+  "role": "scarta"
+ },
+ "wp:3112": {
+  "role": "scarta"
+ },
+ "wp:3111": {
+  "role": "scarta"
+ },
+ "wp:3110": {
+  "role": "scarta"
+ },
+ "wp:3109": {
+  "role": "scarta"
+ },
+ "wp:3108": {
+  "role": "scarta"
+ },
+ "wp:3069": {
+  "role": "scarta"
+ },
+ "wp:2973": {
+  "role": "scarta"
+ },
+ "wp:2839": {
+  "role": "scarta"
+ },
+ "wp:3389": {
+  "role": "scarta"
+ },
+ "wp:3391": {
+  "role": "scarta"
+ },
+ "wp:3393": {
+  "role": "scarta"
+ },
+ "wp:3394": {
+  "role": "scarta"
+ },
+ "wp:3408": {
+  "role": "scarta"
+ },
+ "wp:2835": {
+  "role": "scarta"
+ },
+ "wp:2834": {
+  "role": "scarta"
+ },
+ "wp:2729": {
+  "role": "scarta"
+ },
+ "wp:2476": {
+  "role": "scarta"
+ },
+ "wp:2255": {
+  "role": "scarta"
+ },
+ "wp:2148": {
+  "role": "scarta"
+ },
+ "wp:2141": {
+  "role": "scarta"
+ },
+ "wp:2140": {
+  "sector": "eventi",
+  "role": "sezione"
+ },
+ "wp:2314": {
+  "sector": "eventi",
+  "role": "sezione"
+ },
+ "wp:2063": {
+  "role": "scarta"
+ },
+ "wp:2054": {
+  "role": "scarta"
+ },
+ "wp:2015": {
+  "role": "scarta"
+ },
+ "wp:2014": {
+  "role": "scarta"
+ },
+ "wp:1851": {
+  "role": "scarta"
+ },
+ "wp:1706": {
+  "role": "scarta"
+ },
+ "wp:1684": {
+  "role": "scarta"
+ },
+ "wp:1678": {
+  "role": "scarta"
+ },
+ "wp:1677": {
+  "role": "scarta"
+ },
+ "wp:1676": {
+  "role": "scarta"
+ },
+ "wp:1667": {
+  "role": "scarta"
+ },
+ "wp:1657": {
+  "role": "scarta"
+ },
+ "wp:2400": {
+  "role": "scarta"
+ },
+ "wp:3189": {
+  "role": "scarta"
+ },
+ "wp:3377": {
+  "role": "scarta"
+ },
+ "wp:3188": {
+  "role": "scarta"
+ },
+ "wp:4529": {
+  "role": "scarta"
+ },
+ "wp:3120": {
+  "role": "scarta"
+ },
+ "wp:4195": {
+  "role": "scarta"
+ },
+ "wp:4196": {
+  "role": "scarta"
+ },
+ "wp:2070": {
+  "role": "scarta"
+ },
+ "wp:4113": {
+  "role": "scarta"
+ },
+ "wp:1855": {
+  "role": "scarta"
+ },
+ "wp:1196": {
+  "role": "scarta"
+ },
+ "wp:1184": {
+  "role": "scarta"
+ },
+ "wp:3666": {
+  "role": "scarta"
+ },
+ "wp:3665": {
+  "role": "scarta"
+ },
+ "wp:3282": {
+  "role": "scarta"
+ },
+ "wp:6362": {
+  "role": "scarta"
+ },
+ "wp:6358": {
+  "role": "scarta"
+ },
+ "wp:6340": {
+  "role": "scarta"
+ },
+ "wp:6341": {
+  "role": "scarta"
+ },
+ "wp:2877": {
+  "role": "scarta"
+ },
+ "wp:2875": {
+  "role": "scarta"
+ },
+ "wp:2874": {
+  "role": "scarta"
+ },
+ "wp:2846": {
+  "role": "scarta"
+ },
+ "wp:2845": {
+  "role": "scarta"
+ },
+ "wp:2843": {
+  "role": "scarta"
+ },
+ "wp:2840": {
+  "role": "scarta"
+ },
+ "wp:2838": {
+  "role": "scarta"
+ },
+ "wp:2837": {
+  "role": "scarta"
+ },
+ "wp:2836": {
+  "role": "scarta"
+ },
+ "wp:2847": {
+  "role": "scarta"
+ },
+ "wp:2818": {
+  "role": "scarta"
+ },
+ "wp:2817": {
+  "role": "scarta"
+ },
+ "wp:2816": {
+  "role": "scarta"
+ },
+ "wp:2812": {
+  "role": "scarta"
+ },
+ "wp:2810": {
+  "role": "scarta"
+ },
+ "wp:2334": {
+  "role": "scarta"
+ },
+ "wp:2330": {
+  "role": "scarta"
+ },
+ "wp:2794": {
+  "role": "scarta"
+ },
+ "local:b8941948fb766179": {
+  "role": "scarta"
+ },
+ "local:d441920d68fa2fea": {
+  "role": "scarta"
+ },
+ "local:135b717eb9678643": {
+  "role": "scarta"
+ },
+ "local:9b06198607116042": {
+  "role": "scarta"
+ },
+ "local:30af8fdd32b0d61f": {
+  "role": "scarta"
+ },
+ "local:e741d2bcef692888": {
+  "role": "scarta"
+ },
+ "local:660047a79186ccaf": {
+  "note": "assistenza",
+  "role": "sezione"
+ },
+ "local:e43c6a42712ef539": {
+  "note": "assistenza",
+  "role": "sezione"
+ },
+ "local:f94ff0093fc9c913": {
+  "role": "scarta"
+ },
+ "local:67500c45d98688e9": {
+  "sector": "azienda",
+  "role": "sezione"
+ },
+ "local:a8c0018ce2ef4ec4": {
+  "role": "hero"
+ },
+ "local:5dbbdb2f2d14ad29": {
+  "role": "scarta"
+ },
+ "local:31a560a23dc846a2": {
+  "role": "scarta"
+ },
+ "local:d6f2ee304f6ca3c0": {
+  "role": "scarta"
+ },
+ "local:12d35190be10e545": {
+  "role": "sezione"
+ },
+ "local:dc8b7ce3b878095a": {
+  "role": "scarta"
+ },
+ "local:7c164b5974ab164f": {
+  "role": "scarta"
+ },
+ "local:9c97a2d764697fb5": {
+  "note": "assistenza",
+  "role": "sezione"
+ },
+ "local:6869c7c3d80a720a": {
+  "role": "scarta"
+ },
+ "local:aa341d73ec77c80f": {
+  "role": "scarta"
+ },
+ "local:17a346d29405a924": {
+  "role": "scarta"
+ },
+ "local:311fa454b457e727": {
+  "role": "scarta"
+ },
+ "local:4471fe232db3fa34": {
+  "role": "scarta"
+ },
+ "local:913ac234ef093c3a": {
+  "role": "scarta"
+ },
+ "local:2998910cf7889cfc": {
+  "role": "scarta"
+ },
+ "local:6d8933d8866fb028": {
+  "role": "scarta"
+ },
+ "local:cdb07374432c4e11": {
+  "role": "scarta"
+ },
+ "local:8e07125b747fa962": {
+  "role": "scarta"
+ },
+ "local:fcaeaa1d4befe70e": {
+  "role": "scarta"
+ },
+ "local:98cfa5f7ab83e856": {
+  "role": "scarta"
+ },
+ "local:3afdf51ee94455b3": {
+  "role": "scarta"
+ },
+ "local:34ad9aeaae9f9058": {
+  "role": "scarta"
+ },
+ "local:f04d6619e23a5bf3": {
+  "role": "scarta"
+ },
+ "local:d110358a6cc9f12f": {
+  "sector": "azienda",
+  "role": "sezione"
+ },
+ "local:7662cee2320d3d18": {
+  "role": "scarta"
+ },
+ "local:bfb7c27074e001ec": {
+  "sector": "azienda",
+  "role": "sezione"
+ },
+ "local:c3b2914a851350cc": {
+  "role": "scarta"
+ },
+ "local:8364c8ba8118ca20": {
+  "role": "scarta"
+ },
+ "local:8c8a721be97ac537": {
+  "role": "scarta"
+ },
+ "local:6b778cc9811414e4": {
+  "role": "scarta"
+ }
+}

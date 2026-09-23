@@ -35,7 +35,7 @@ export default function DesignSpecimen() {
         <Image src={hero} alt="Bancone bar realizzato da Matarrese" fill priority placeholder="blur" className="-z-10 object-cover object-[55%_50%]" sizes="100vw" />
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgb(30_34_38/.92)_0%,rgb(30_34_38/.55)_55%,rgb(30_34_38/.15)_100%)]" />
         <div className="site-shell pb-12 pt-40 lg:pb-16">
-          <h1 className="type-display max-w-[14ch] text-[clamp(44px,7.4vw,128px)]">
+          <h1 className="type-display max-w-[14ch] text-[clamp(40px,7.4vw,128px)]">
             Cucine professionali costruite per il servizio vero.
           </h1>
           <p className="mt-8 max-w-[46ch] text-lg text-inox lg:text-xl">

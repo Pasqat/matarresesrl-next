@@ -13,9 +13,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .site-content:focus { outline: none; }
 .site-shell { width: calc(100% - var(--gutter) * 2); max-width: 1536px; margin-inline: auto; }
 .site-content { min-height: 60vh; }
-.site-content h1, .type-h1 { font-size: clamp(44px, 5.8vw, 88px); font-weight: 400; line-height: 1.04; letter-spacing: -.055em; text-wrap: balance; }
-.site-content h2:not(.type-h6), .type-h2 { font-size: clamp(32px, 3.65vw, 56px); font-weight: 400; line-height: 1.12; letter-spacing: -.04em; text-wrap: balance; }
-.site-content h3, .type-h3 { font-size: clamp(24px, 2.2vw, 32px); line-height: 1.2; font-weight: 400; letter-spacing: -.025em; }
+.site-content h1:not(.type-display), .type-h1 { font-size: clamp(44px, 5.8vw, 88px); font-weight: 400; line-height: 1.04; letter-spacing: -.055em; text-wrap: balance; }
+.site-content h2:not(.type-h6):not(.type-display), .type-h2 { font-size: clamp(32px, 3.65vw, 56px); font-weight: 400; line-height: 1.12; letter-spacing: -.04em; text-wrap: balance; }
+.site-content h3:not(.type-display), .type-h3 { font-size: clamp(24px, 2.2vw, 32px); line-height: 1.2; font-weight: 400; letter-spacing: -.025em; }
 p { text-wrap: pretty; }
 .site-content p, .feature-card-copy { line-height: 1.65; }
 .site-content :where(img) { max-width: 100%; }
