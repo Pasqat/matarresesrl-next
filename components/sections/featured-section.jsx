@@ -1,120 +1,52 @@
-import * as React from 'react'
-import clsx from 'clsx'
-// import Image from 'next/image'
-// import DOMPurify from "dompurify";
-
-import {Grid} from '../grid'
-import {H2, H6, Paragraph} from '../typography'
-import {ArrowLink} from '../arrow-button'
-import {ClipboardCopyButton} from '../clipboard-copy-button'
-
-import {BlurringImage} from '../blurringImage.jsx'
-import Truncate from '../../actions/utils/truncate'
-
-/**
- * @param {boolean} withBackground - if you want the light gray background
- * @param {boolean} withBorder - if you want the orange ring always visible
- * @param {string} css - the css of the blurred image by getPlaicehoder
- * @param {string} img - the img loaded given by getPlaiceholder
- */
+import Image from 'next/image'
+import Link from 'next/link'
 function FeaturedSection({
   slug,
   href,
-  caption = 'In Evidenza',
+  caption = 'In evidenza',
   cta = 'Leggi tutto',
-  imageAlt = '',
-  // imageUrl,
+  imageAlt,
+  impageAlt,
+  imageUrl,
   img,
-  css,
-  title = 'Post senza titolo',
+  title = '',
+  titleAs: Title = 'h2',
   subTitle,
-  permalink,
   excerpt,
-  withBackground,
-  withBorder,
   priority = false,
 }) {
+  const source = imageUrl || img?.src || img?.mediaItemUrl
+  const link = slug ? (slug.startsWith('/') ? slug : '/' + slug) : href || '/'
   return (
-    <div className="w-full px-8 lg:px-0">
-      <div
-        className={clsx(
-          'rounded-lg lg:bg-trasparent',
-          withBackground && 'bg-gray-100',
-          withBorder && 'ring-2 ring-yellow-500 ring-offset-8 lg:ring-0',
+    <section className="site-shell editorial-feature">
+      <div className="editorial-feature-copy">
+        <p className="page-intro">{caption}</p>
+        <Title dangerouslySetInnerHTML={{__html: title}} />
+        {subTitle && <p dangerouslySetInnerHTML={{__html: subTitle}} />}
+        {excerpt && (
+          <div
+            className="feature-excerpt"
+            dangerouslySetInnerHTML={{__html: excerpt}}
+          />
         )}
-      >
-        <Grid
-          className={clsx(
-            'group rounded-lg pb-6 pt-14 md:pb-12 ',
-            withBackground && 'lg:bg-gray-100',
-            withBorder && 'lg:ring-2 lg:ring-yellow-500 lg:ring-offset-8',
-          )}
-        >
-          <div className="col-span-full lg:col-span-5 lg:col-start-2 lg:flex lg:flex-col lg:justify-between">
-            <div>
-              <H6 as="h2">{caption}</H6>
-              <H2
-                as="h3"
-                className="mt-12"
-                dangerouslySetInnerHTML={{__html: title}}
-              />
-              <div className="mt-6 flex-auto">
-                {/*
-                    We do use css line-clamp, this is for the 10% of the browsers that
-                    don't support that. Don't focus too much at perfection. It's important
-                    that the truncated string remains longer than the line-clamp, so that
-                    line-clamp precedes for the 90% supporting that.
-                */}
-                <Paragraph
-                  className="line-clamp-3 lg:pr-32"
-                  dangerouslySetInnerHTML={{
-                    __html: Truncate(excerpt, 120),
-                  }}
-                />
-              </div>
-              <div
-                className="mt-6 text-xl font-medium text-gray-500"
-                dangerouslySetInnerHTML={{__html: subTitle}}
-              />
-
-              <div className="mt-12 flex items-center justify-between">
-                <ArrowLink to={slug ?? href ?? '/'}>
-                  {cta}
-                  <div
-                    className={clsx(
-                      'absolute inset-0 left-0 right-0 z-10 rounded-lg md:-left-12 md:-right-12 lg:left-0 lg:right-0',
-                      !withBorder && 'focus-ring',
-                    )}
-                  />
-                </ArrowLink>
-              </div>
-            </div>
-          </div>
-          <div className="relative col-span-full mt-12 lg:col-span-4 lg:col-start-8">
-            <div className="aspect-h-3 aspect-w-4 overflow-hidden rounded-lg lg:aspect-h-5 lg:aspect-w-4">
-              <BlurringImage
-                img={img}
-                css={css}
-                className="rounded-lg"
-                objectFit="cover"
-                alt={imageAlt}
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                // src={imageUrl}
-                priority={priority}
-              />
-            </div>
-            {permalink ? (
-              <ClipboardCopyButton
-                className="absolute left-6 top-6 z-20"
-                value={permalink}
-              />
-            ) : null}
-          </div>
-        </Grid>
+        <Link className="text-link" href={link}>
+          {cta}
+        </Link>
       </div>
-    </div>
+      <Link className="editorial-feature-image" href={link} aria-label={title}>
+        {source ? (
+          <Image
+            src={source}
+            alt={imageAlt || impageAlt || title}
+            fill
+            priority={priority}
+            sizes="(max-width: 900px) 100vw, 50vw"
+          />
+        ) : (
+          <span className="image-fallback">Matarrese</span>
+        )}
+      </Link>
+    </section>
   )
 }
-
 export {FeaturedSection}

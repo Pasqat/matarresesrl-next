@@ -141,7 +141,8 @@ export default function NewsletterForm({
           </Paragraph>
           <Field
             name="email"
-            // label="Email"
+            label="Email"
+            type="email"
             autoComplete="email"
             error={notification.isError ? notification.text : null}
             required
@@ -168,7 +169,7 @@ export default function NewsletterForm({
 
           <div className="col-span-full mb-4 lg:col-span-4">
             <div className="mb-2 flex items-baseline justify-between gap-2">
-              {/* <Label htmlFor="industry">Settore</Label> */}
+              <label htmlFor="industry">Settore</label>
             </div>
             <select
               id="industry"
@@ -179,9 +180,6 @@ export default function NewsletterForm({
                 'focus-ring w-full rounded-lg bg-white px-8 py-[1.17rem] text-lg font-medium text-black placeholder-gray-500 caret-yellow-500 disabled:bg-gray-100 disabled:text-gray-400',
                 featured ? 'bg-white' : 'bg-gray-100',
               )}
-              aria-describedby={
-                notification.isError ? 'industry-error' : undefined
-              }
             >
               {groups.map(group => {
                 return (
@@ -204,10 +202,12 @@ export default function NewsletterForm({
             />
             <span className="ml-2">
               Accetto il{' '}
-              <Link href="/privacy-policy" className="text-yellow-500" target="_blank">
-                
-                  trattamento dei dati e condizioni *
-                
+              <Link
+                href="/privacy-policy"
+                className="text-yellow-500"
+                target="_blank"
+              >
+                trattamento dei dati e condizioni *
               </Link>
             </span>
           </label>

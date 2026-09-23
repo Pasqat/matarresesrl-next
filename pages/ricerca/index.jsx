@@ -1,9 +1,7 @@
 import Head from 'next/head'
-import Image from "next/legacy/image"
-import dynamic from 'next/dynamic'
+import Image from 'next/image'
 
 // import Lottie from 'react-lottie-player'
-const Lottie = dynamic(() => import('react-lottie-player'), {ssr: false})
 
 import Layout from '../../components/Layout'
 import {Grid} from '../../components/grid'
@@ -11,8 +9,6 @@ import {LinkButton} from '../../components/button'
 import {H3, Paragraph} from '../../components/typography'
 import {HeroSection} from '../../components/sections/hero-section'
 import {Spacer} from '../../components/spacer'
-
-import lottiejson from '../../public/img/illustration/ricerca.json'
 
 import FBMlogo from '../../public/img/logos/FBM_LOGO-High-Res.png'
 import UEfundedLogo from '../../public/img/logos/funded-eu-blue.png'
@@ -62,7 +58,8 @@ export default function AboutUs() {
             titleAs="h1"
             title="Esperienza e tecnologia al servizio del futuro"
             subtitle="Ricerca e Sviluppo"
-            illustration={<Lottie loop animationData={lottiejson} play />}
+            image="/img/header_eventi.jpg"
+            imageAlt="Formazione e ricerca nella cucina professionale"
             arrowUrl="#flat-bread-mine"
             action={
               <>
@@ -246,17 +243,30 @@ export default function AboutUs() {
               </div>
             </div>
 
-                        <div className="col-span-full lg:col-span-6">
+            <div className="col-span-full lg:col-span-6">
               <p className="mb-4 text-lg font-light leading-relaxed text-gray-600">
-                Il progetto “One health-one welfare-one world” nasce per innovare le filiere del latte e della carne al fine di migliorare il benessere dell’uomo.
+                Il progetto “One health-one welfare-one world” nasce per
+                innovare le filiere del latte e della carne al fine di
+                migliorare il benessere dell’uomo.
               </p>
               <p className="mb-4 mt-0 text-lg font-light leading-relaxed text-gray-600">
-                Grazie alla collaborazione tra le Università di Bari, dipartimento di Veterinaria, del Molise, di Teramo e imprese agro-zootecniche pugliesi, il progetto ha sviluppato dei protocolli per la produzione di carni e prodotti caseari con contenuto lipidico ridotto, maggiore sicurezza e una shelf-life più lunga.
+                Grazie alla collaborazione tra le Università di Bari,
+                dipartimento di Veterinaria, del Molise, di Teramo e imprese
+                agro-zootecniche pugliesi, il progetto ha sviluppato dei
+                protocolli per la produzione di carni e prodotti caseari con
+                contenuto lipidico ridotto, maggiore sicurezza e una shelf-life
+                più lunga.
               </p>
               <p className="mb-4 mt-0 text-lg font-light leading-relaxed text-gray-600">
-                Il progetto dimostra come, con l’introduzione di foraggi idroponici di orzo e piselli, e un mix di oli essenziali estratti da alloro e carciofi, si possa aiutare anche la sostenibilità ambientale e tutelare la salute del bestiame e dei consumatori. Il campione di 100 volontari ha mostrato che, l’assunzione di prodotti lavorati secondo i protocolli del progetto ha generato un maggiore beneficio per i batteri buoni dell’intestino.
-                I risultati del progetto sono stati presentati giovedì 11 dicembre 2025 nell’azienda Matarrese ad Alberobello.
-
+                Il progetto dimostra come, con l’introduzione di foraggi
+                idroponici di orzo e piselli, e un mix di oli essenziali
+                estratti da alloro e carciofi, si possa aiutare anche la
+                sostenibilità ambientale e tutelare la salute del bestiame e dei
+                consumatori. Il campione di 100 volontari ha mostrato che,
+                l’assunzione di prodotti lavorati secondo i protocolli del
+                progetto ha generato un maggiore beneficio per i batteri buoni
+                dell’intestino. I risultati del progetto sono stati presentati
+                giovedì 11 dicembre 2025 nell’azienda Matarrese ad Alberobello.
               </p>
               <p className="mb-4 mt-0 text-lg font-light leading-relaxed text-gray-600">
                 {`Scopri di più sulla pagina ufficiale del progetto\n`}

@@ -1,55 +1,26 @@
-import * as React from 'react'
-import Image from "next/image"
-import Link from 'next/link'
-
-import {H2} from '../typography'
+import Image from 'next/image'
 import {logos} from '../../data/partner-logo'
-
 function LogoSection() {
   return (
-    <div className="container mx-auto mb-12 px-4">
-      <H2 className="mb-8 text-center" variant="secondary">
-        I nostri partner
-      </H2>
-      <div className="2xl:grid-cols-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
-        {logos.map(logo => {
-          return logo.href ? (
-            <Link
-              key={logo.name}
-              href={logo.href}
-              className="cursor-pointer text-center hover:drop-shadow-md">
-
-              <Image
-                width={180}
-                height={95}
-                src={logo.url}
-                alt={`${logo.name} logo`}
-                style={{
-                  maxWidth: "100%",
-                  height: "auto",
-                  objectFit: "contain"
-                }} />
-
-            </Link>
-          ) : (
-            <Image
-              key={logo.name}
-              width={180}
-              height={95}
-              src={logo.url}
-              alt={`${logo.name} logo`}
-              placeholder="blur"
-              blurDataURL={logo.url}
-              style={{
-                maxWidth: "100%",
-                height: "auto",
-                objectFit: "contain"
-              }} />
-          );
-        })}
+    <section className="site-shell partner-section">
+      <div className="section-topline">
+        <h2>I marchi che scegliamo.</h2>
+        <p>Tecnologie e attrezzature per il lavoro di ogni giorno.</p>
       </div>
-    </div>
-  );
+      <div className="partner-grid">
+        {logos.map(logo => (
+          <div key={logo.name}>
+            {logo.href ? (
+              <a href={logo.href} target="_blank" rel="noreferrer">
+                <Image src={logo.url} width={180} height={95} alt={logo.name} />
+              </a>
+            ) : (
+              <Image src={logo.url} width={180} height={95} alt={logo.name} />
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+  )
 }
-
 export {LogoSection}

@@ -7,7 +7,7 @@ module.exports = {
     cpus: 1,
   },
   images: {
-    unoptimized: true,
+    unoptimized: false,
     // Next 16 richiede di dichiarare esplicitamente i valori di `quality`
     // usati nei componenti <Image> (default: solo 75). article-card usa 90.
     qualities: [75, 90],

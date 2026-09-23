@@ -6,7 +6,8 @@ const LoginForm = ({errorMessage, onSubmit}) => (
     <label>
       <span className="font-semibold">Username</span>
       <input
-        className="mx-2 mt-1 mb-4 rounded border-2 p-2"
+        className="form-input mb-5 mt-2 w-full"
+        autoComplete="username"
         type="text"
         name="username"
         required
@@ -15,18 +16,21 @@ const LoginForm = ({errorMessage, onSubmit}) => (
     <label>
       <span className="font-semibold">Password</span>
       <input
-        className="mx-2 mt-0 mb-4 rounded border-2 p-2"
+        className="form-input mb-5 mt-2 w-full"
+        autoComplete="current-password"
         type="password"
         name="password"
         required
       />
     </label>
-    <button className="font-bold text-yellow-500" type="submit">
+    <button className="site-button" type="submit">
       Login
     </button>
 
     {errorMessage && (
-      <p className="mx-0 mt-4 mb-0 text-red-600">{errorMessage}</p>
+      <p role="alert" className="mx-0 mt-4 mb-0 text-red-600">
+        {errorMessage}
+      </p>
     )}
   </form>
 )

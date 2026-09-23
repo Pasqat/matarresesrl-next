@@ -1,70 +1,42 @@
-import * as React from 'react'
 import Link from 'next/link'
-import {BlurringImage} from './blurringImage'
+import Image from 'next/image'
 import {formatDate} from '../actions/utils/formatDate'
-import {H4} from './typography'
 import {ClipboardCopyButton} from './clipboard-copy-button'
-
 function ArticleCard({
   isProject,
   article: {slug, title, date, featuredImage},
   domain,
-  placeholder,
 }) {
-  const permalink = isProject
-    ? `${domain}/realizzazioni/${slug}`
-    : `${domain}/news/${slug}`
-
+  const href = `/${isProject ? 'realizzazioni' : 'news'}/${slug}`
+  const image =
+    featuredImage?.node?.mediaItemUrl || featuredImage?.node?.sourceUrl
   return (
-    <div className="relative w-full">
-      <Link
-        href={isProject ? `/realizzazioni/${slug}` : `/news/${slug}`}
-        className="group peer relative block w-full focus:outline-none"
-      >
-        {featuredImage ? (
-          <div className="focus-ring aspect-w-4 aspect-h-3 rounded-lg lg:aspect-h-5 lg:aspect-w-4">
-            <BlurringImage
-              className="rounded-lg"
-              alt={featuredImage?.node.altText}
-              img={featuredImage?.node}
-              placeholder={placeholder ?? 'empty'}
-              blurDataURL={placeholder ? featuredImage.node.sourceUrl : null}
-              // fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              quality={90}
-              style={{
-                objectFit: 'cover',
-              }}
+    <article className={`editorial-card ${isProject ? 'project-card' : ''}`}>
+      <Link href={href}>
+        <div className="editorial-card-image">
+          {image ? (
+            <Image
+              src={image}
+              alt={featuredImage.node.altText || title}
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             />
-          </div>
-        ) : (
-          <div className="focus-ring aspect-w-4 aspect-h-3 relative flex w-full items-center justify-center overflow-hidden rounded-lg bg-gradient-to-tl from-red-600 to-yellow-400 text-center lg:aspect-h-5 lg:aspect-w-4">
-            <div className="absolute bottom-[30%] z-0 scale-150 select-none font-serif text-4xl font-extrabold leading-tight text-gray-100 opacity-30">
-              {title}
-            </div>
-          </div>
+          ) : (
+            <span className="image-fallback">Matarrese</span>
+          )}
+        </div>
+        {!isProject && date && (
+          <p className="editorial-card-date">{formatDate(date)}</p>
         )}
-        {!isProject ? (
-          <>
-            <div className="mt-8 text-xl font-medium text-gray-500">
-              {formatDate(date)}
-            </div>
-            <H4
-              as="div"
-              className="mt-4"
-              dangerouslySetInnerHTML={{__html: title}}
-            />
-          </>
-        ) : null}
+        <h3 dangerouslySetInnerHTML={{__html: title}} />
       </Link>
-      {domain ? (
+      {domain && (
         <ClipboardCopyButton
-          value={permalink}
-          className="absolute left-6 top-6 z-10"
+          value={`${domain}${href}`}
+          className="editorial-copy"
         />
-      ) : null}
-    </div>
+      )}
+    </article>
   )
 }
-
 export {ArticleCard}

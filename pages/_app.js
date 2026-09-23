@@ -1,5 +1,6 @@
 import '../styles/globals.css'
 import '../styles/index.css'
+import '../styles/revamp.css'
 import {ApolloProvider} from '@apollo/client'
 import Script from 'next/script'
 import {useEffect, useState} from 'react'
@@ -98,6 +99,7 @@ function MyApp({Component, pageProps}) {
             setIsCookieConsentAccept(true)
             consentGrantedAdStorage()
           }}
+          containerClasses="cookie-banner"
           enableDeclineButton
           onDecline={() => {
             setIsCookieConsentAccept(false)
@@ -119,8 +121,8 @@ function MyApp({Component, pageProps}) {
           }}
           expires={365}
         >
-          Questo sito web utilizza alcuni cookie per poter miglorare
-          l&apos;esperinza dell&apos;utente.{' '}
+          Questo sito web utilizza alcuni cookie per poter migliorare
+          l&apos;esperienza dell&apos;utente.{' '}
           <a
             href="/cookie-policy"
             target="_blank"

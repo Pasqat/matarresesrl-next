@@ -1,77 +1,65 @@
 import clsx from 'clsx'
-import * as React from 'react'
+import {useEffect, useState} from 'react'
+import {ShareIcon} from '@heroicons/react/outline'
 import {CheckIcon} from './icons/check-icon'
-import {CopyIcon} from './icons/copy-icon'
 
 async function copyToClipboard(value) {
+  if (navigator.clipboard) return navigator.clipboard.writeText(value)
+  const element = document.createElement('textarea')
+  element.value = value
+  element.style.position = 'fixed'
+  element.style.opacity = '0'
+  document.body.append(element)
   try {
-    if ('clipboard' in navigator) {
-      await navigator.clipboard.writeText(value)
-      return true
-    }
-
-    const element = document.createElement('textarea')
-    element.value = value
-    document.body.append(element)
     element.select()
-    document.execCommand('copy')
-    element
-
-    return true
-  } catch {
-    return false
+    if (!document.execCommand('copy')) throw new Error('Clipboard unavailable')
+  } finally {
+    element.remove()
   }
 }
 
-const State = {
-  Idle: 'idle',
-  Copy: 'copy',
-  Copied: 'copied',
-}
-
-function ClipboardCopyButton({value, className, variant = 'responsive'}) {
-  const [state, setState] = React.useState(State.Idle)
-
-  React.useEffect(() => {
-    async function transition() {
-      switch (state) {
-        case State.Copy: {
-          const res = await copyToClipboard(value)
-          console.log('copied', res)
-          setState(State.Copied)
-          break
-        }
-        case State.Copied: {
-          setTimeout(() => setState(State.Idle), 2000)
-          break
-        }
-        default:
-          break
-      }
+function ClipboardCopyButton({value, className}) {
+  const [status, setStatus] = useState('idle')
+  useEffect(() => {
+    if (status === 'idle') return
+    const timer = setTimeout(() => setStatus('idle'), 2500)
+    return () => clearTimeout(timer)
+  }, [status])
+  const label =
+    status === 'copied'
+      ? 'Url copiato'
+      : status === 'error'
+      ? 'Copia non riuscita'
+      : 'Copia l’url'
+  async function copy() {
+    try {
+      await copyToClipboard(value)
+      setStatus('copied')
+    } catch {
+      setStatus('error')
     }
-    void transition()
-  }, [state, value])
-
+  }
   return (
     <button
-      onClick={() => setState(State.Copy)}
-      onMouseLeave={null}
+      type="button"
+      aria-label={label}
+      onClick={copy}
       className={clsx(
-        'whitespace-nowrap rounded-lg bg-white p-3 text-lg font-medium text-black shadow ring-yellow-500 transition hover:opacity-100 hover:shadow-md hover:ring-4 focus:opacity-100 focus:outline-none focus:ring-4 group-hover:opacity-100 peer-hover:opacity-100 peer-focus:opacity-100 lg:opacity-0',
-        {'lg:px-8 lg:py-4': variant === 'responsive'},
+        'copy-url-button',
+        status !== 'idle' && 'copy-url-expanded',
         className,
       )}
     >
-      <span className={clsx('hidden', {'lg:inline': variant === 'responsive'})}>
-        {state === State.Copied
-          ? 'Copiato nella clipboard'
-          : `Clicca per copiare l'url`}
+      <span className="copy-url-icon" aria-hidden="true">
+        {status === 'copied' ? <CheckIcon /> : <ShareIcon />}
       </span>
-      <span className={clsx('inline', {'lg:hidden': variant === 'responsive'})}>
-        {state === State.Copied ? <CheckIcon /> : <CopyIcon />}
+      <span className="copy-url-label" aria-hidden="true">
+        {label}
+      </span>
+      <span className="sr-only" role="status">
+        {status === 'idle' ? '' : label}
       </span>
     </button>
   )
 }
-
 export {ClipboardCopyButton}

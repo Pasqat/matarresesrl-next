@@ -25,8 +25,9 @@ const specialQueryRegex = /(?<not>!)?leader:(?<team>\w+)(\s|$)?/g
 export default function Realizzazioni({data}) {
   const router = useRouter()
 
-  const searchParams =
-    typeof router.query.q === Array ? router.query.q.join('+') : router.query.q
+  const searchParams = Array.isArray(router.query.q)
+    ? router.query.q.join('+')
+    : router.query.q
   const searchInputRef = React.useRef(null)
 
   const resultsRef = React.useRef(null)
@@ -76,7 +77,7 @@ export default function Realizzazioni({data}) {
         },
       )
       // trim and remove subsequent spaces (`this   that` => `this that`)
-      return newQuery.replace(/\s+/g, ' ').trim();
+      return newQuery.replace(/\s+/g, ' ').trim()
     })
   }
 
@@ -86,7 +87,7 @@ export default function Realizzazioni({data}) {
 
   const hasMorePosts = isSearching
     ? indexToShow < matchingPosts.length
-    : indexToShow < matchingPosts.length - 1
+    : indexToShow < matchingPosts.length
 
   const visibleCategories = isSearching
     ? new Set(
@@ -148,7 +149,7 @@ export default function Realizzazioni({data}) {
             dedicati alla ristorazione.
           </p>
         </div>
-        <Grid className="my-14 hidden lg:block">
+        <Grid className="my-10">
           {data.categories && data.categories.length > 0 ? (
             <>
               <H5 as="div" className="col-span-full mb-6">
@@ -156,7 +157,9 @@ export default function Realizzazioni({data}) {
               </H5>
               <div className="col-span-full -mb-4 -mr-4 flex flex-wrap lg:col-span-10">
                 {data.categories.map(category => {
-                  const selected = regularQuery.includes(category)
+                  const selected = regularQuery
+                    .toLowerCase()
+                    .includes(category.toLowerCase())
 
                   return (
                     <Category
@@ -173,9 +176,12 @@ export default function Realizzazioni({data}) {
           ) : null}
         </Grid>
 
-        <div className="mx-auto mb-14 max-w-7xl">
-          <form onSubmit={e => e.preventDefault()}>
-            <div className="relative mx-16 lg:mx-0">
+        <div className="mb-14">
+          <form
+            className="site-shell archive-search"
+            onSubmit={e => e.preventDefault()}
+          >
+            <div className="relative">
               <button
                 title={query === '' ? 'Cerca' : 'Pulisci ricerca'}
                 type="button"
@@ -268,7 +274,7 @@ export default function Realizzazioni({data}) {
               onClick={() => setIndexToShow(i => i + PAGE_SIZE)}
               size="medium"
             >
-              <span>Mostra altri realizzazioni</span> <PlusIcon />
+              <span>Mostra altre realizzazioni</span> <PlusIcon />
             </Button>
           </div>
         ) : null}
@@ -291,7 +297,17 @@ export async function getStaticProps() {
       data: {
         tags,
         categories,
-        projects: data.projects,
+        projects: data.projects.map(item => ({
+          ...item,
+          featuredImage: item.featuredImage?.node
+            ? {
+                node: {
+                  mediaItemUrl: item.featuredImage.node.mediaItemUrl,
+                  altText: item.featuredImage.node.altText,
+                },
+              }
+            : null,
+        })),
         // domain,
       },
     },

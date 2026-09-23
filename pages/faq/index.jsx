@@ -17,15 +17,16 @@ const FAQS = [
   {
     question: 'Dove si trova lo showroom Matarrese srl?',
     answer:
-      "Lo showroom e la struttura aziendale di 5.000 mq si trovano in Contrada Popoleto, 70011 Alberobello (BA), in Puglia. È possibile visitarlo per vedere le attrezzature in funzione.",
+      'Lo showroom e la struttura aziendale di 5.000 mq si trovano in Contrada Popoleto, 70011 Alberobello (BA), in Puglia. È possibile visitarlo per vedere le attrezzature in funzione.',
   },
   {
     question: 'Aiutate nell’apertura di un nuovo ristorante o locale?',
     answer:
-      "Sì. Seguiamo il cliente dall’idea al progetto reale: sopralluogo, verifica della destinazione d’uso, progettazione degli spazi, rendering tridimensionale, realizzazione degli arredi, fornitura delle attrezzature, coordinamento dei lavori e collaudo prima dell’apertura.",
+      'Sì. Seguiamo il cliente dall’idea al progetto reale: sopralluogo, verifica della destinazione d’uso, progettazione degli spazi, rendering tridimensionale, realizzazione degli arredi, fornitura delle attrezzature, coordinamento dei lavori e collaudo prima dell’apertura.',
   },
   {
-    question: 'Offrite assistenza tecnica e manutenzione? In quanto tempo intervenite?',
+    question:
+      'Offrite assistenza tecnica e manutenzione? In quanto tempo intervenite?',
     answer:
       'Sì. Disponiamo di un ampio magazzino ricambi e di tecnici specializzati. Il servizio di risposta per l’assistenza tecnica è tipicamente entro 48 ore dalla richiesta su tutto il territorio regionale.',
   },
@@ -80,7 +81,10 @@ export default function Faq() {
           property="og:image"
           content={`${process.env.NEXT_PUBLIC_DOMAIN}/img/piazza_grande_61.jpg`}
         />
-        <meta property="og:url" content={`${process.env.NEXT_PUBLIC_DOMAIN}/faq`} />
+        <meta
+          property="og:url"
+          content={`${process.env.NEXT_PUBLIC_DOMAIN}/faq`}
+        />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="it_IT" />
         <meta property="og:site_name" content="Matarrese srl" />
@@ -89,7 +93,7 @@ export default function Faq() {
       <StructuredData data={faqSchema(FAQS)} />
       <StructuredData data={breadcrumbSchema([{name: 'FAQ', path: '/faq'}])} />
       <Layout>
-        <main className="mx-10vw">
+        <div className="mx-10vw">
           <div className="mx-auto max-w-4xl">
             <Spacer size="2xs" />
             <H1 className="mb-4">Domande frequenti</H1>
@@ -121,7 +125,7 @@ export default function Faq() {
             </div>
             <Spacer size="base" />
           </div>
-        </main>
+        </div>
       </Layout>
     </div>
   )

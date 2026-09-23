@@ -14,7 +14,12 @@ import {ArrowButton} from '../arrow-button'
 import {CheckIcon} from '../icons/check-icon'
 import {ChevronLeftIcon} from '../icons/chevron-left-icon'
 
-export default function ContactForm({hasAutoFocus, featured, groups}) {
+export default function ContactForm({
+  compact = false,
+  hasAutoFocus,
+  featured,
+  groups,
+}) {
   const plausible = usePlausible()
   const [form, setForm] = useState({
     referente: '',
@@ -25,7 +30,15 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
     honeypot: '',
     newsletterGroupId: '101815183615198233',
   })
-  const {referente, email, tel, formContent, company, newsletterGroupId, source} = form
+  const {
+    referente,
+    email,
+    tel,
+    formContent,
+    company,
+    newsletterGroupId,
+    source,
+  } = form
 
   const [isCheckedTerms, setIsCheckedTerms] = useState(false)
   const [isCheckedNewsletter, setIsCheckedNewsletter] = useState(false)
@@ -182,13 +195,17 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
         onSubmit={submitContactForm}
         aria-busy={loading}
       >
-        <H2 as="h4">
-          Hai un progetto da realizzare o hai bisogno di informazioni?
-        </H2>
-        <H2 as="p" variant="secondary">
-          Completa questo modulo, un nostro consulente ti ricontatterà.
-        </H2>
-        <Spacer size="2xs" />
+        {!compact && (
+          <>
+            <H2 as="h2">
+              Hai un progetto da realizzare o hai bisogno di informazioni?
+            </H2>
+            <p className="form-description">
+              Completa questo modulo, un nostro consulente ti ricontatterà.
+            </p>
+            <Spacer size="2xs" />
+          </>
+        )}
         <Grid nested>
           <Field
             name="referente"
@@ -313,10 +330,12 @@ export default function ContactForm({hasAutoFocus, featured, groups}) {
               />
               <span className="ml-2">
                 Accetto il{' '}
-                <Link href="/privacy-policy" className="text-yellow-500" target="_blank">
-                  
-                    trattamento dei dati e condizioni
-                  
+                <Link
+                  href="/privacy-policy"
+                  className="text-yellow-500"
+                  target="_blank"
+                >
+                  trattamento dei dati e condizioni
                 </Link>
               </span>
               *

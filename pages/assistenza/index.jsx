@@ -103,7 +103,9 @@ export default function Assistenza() {
       const data = await response.json()
 
       if (!response.ok) {
-        throw new Error(data.message || "Errore durante l'invio del messaggio")
+        throw new Error(
+          data.error || data.message || "Errore durante l'invio del messaggio",
+        )
       }
 
       setNotification({
@@ -301,10 +303,12 @@ export default function Assistenza() {
                     />
                     <span className="ml-2">
                       accetto il{' '}
-                      <Link href="/privacy-policy" className="text-yellow-500" target="_blank">
-                        
-                          trattamento dei dati e condizioni
-                        
+                      <Link
+                        href="/privacy-policy"
+                        className="text-yellow-500"
+                        target="_blank"
+                      >
+                        trattamento dei dati e condizioni
                       </Link>
                     </span>
                     *
@@ -342,7 +346,7 @@ export default function Assistenza() {
         </section>
       </Layout>
     </>
-  );
+  )
 }
 
 export async function getStaticProps() {

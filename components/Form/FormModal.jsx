@@ -90,7 +90,7 @@ export default function FormModal({
 
   async function submitContactForm(event) {
     event.preventDefault()
-    
+
     // Clear previous errors
     setFieldErrors({})
     setMissingFields([])
@@ -98,7 +98,7 @@ export default function FormModal({
     // Validation logic
     const errors = {}
     const missing = []
-    
+
     if (!referente) {
       errors.referente = 'Nome è obbligatorio'
       missing.push('referente')
@@ -127,7 +127,7 @@ export default function FormModal({
 
     setFieldErrors(errors)
     setMissingFields(missing)
-    
+
     if (Object.keys(errors).length > 0) {
       setNotification({
         text: 'Controlla i campi evidenziati',
@@ -229,7 +229,8 @@ export default function FormModal({
           {buttonText}
         </Button>
       ) : (
-        <a
+        <button
+          type="button"
           onClick={openModal}
           className="text-accent group mt-4 inline-flex cursor-pointer items-center text-lg no-underline md:mb-2 lg:mb-0"
         >
@@ -246,13 +247,13 @@ export default function FormModal({
             <path d="M5 12h14"></path>
             <path d="M12 5l7 7-7 7"></path>
           </svg>
-        </a>
+        </button>
       )}
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
           className="fixed inset-0 z-[51] overflow-y-auto"
-          onClose={() => {}}
+          onClose={closeModal}
         >
           <div className="absolute inset-0 -z-2 h-full w-full bg-black opacity-95" />
           <div className="min-h-screen px-4 text-center">
@@ -284,7 +285,7 @@ export default function FormModal({
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="my-8 inline-block w-full max-w-md overflow-hidden rounded-2xl bg-white p-10 text-left align-middle shadow-xl transition-all">
+              <div className="contact-dialog my-8 inline-block w-full max-w-md overflow-hidden rounded-2xl bg-white p-10 text-left align-middle shadow-xl transition-all">
                 {type === 'contacts' ? (
                   <>
                     <Dialog.Title
@@ -484,10 +485,12 @@ export default function FormModal({
                       />
                       <span className="ml-2 text-sm">
                         accetto il{' '}
-                        <Link href="/privacy-policy" className="text-yellow-500" target="_blank">
-                          
-                            trattamento dei dati e condizioni
-                          
+                        <Link
+                          href="/privacy-policy"
+                          className="text-yellow-500"
+                          target="_blank"
+                        >
+                          trattamento dei dati e condizioni
                         </Link>
                         <span className="text-red-500"> *</span>
                       </span>

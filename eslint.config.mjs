@@ -4,10 +4,12 @@ import next from 'eslint-config-next/core-web-vitals'
 import prettier from 'eslint-config-prettier'
 
 const config = [
+  {ignores: ['graphify-out/**', 'artifacts/**', '.pnpm-store/**']},
   ...next,
   // Turn off ESLint formatting rules that conflict with Prettier.
   prettier,
   {
+    files: ['**/*.{js,jsx,mjs,ts,tsx}'],
     rules: {
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',

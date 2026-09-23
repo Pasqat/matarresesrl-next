@@ -37,15 +37,17 @@ function TestimonialSection({testimonials, className, nested}) {
       {Array.from({
         length: testimonials.length > 3 ? 3 : testimonials.length,
       }).map((_, index) => {
-        const testimonialIndex = (page * 3 + index) % testimonials.length
-        const testimonial = testimonials[Math.abs(testimonialIndex)]
+        const testimonialIndex =
+          (((page * 3 + index) % testimonials.length) + testimonials.length) %
+          testimonials.length
+        const testimonial = testimonials[testimonialIndex]
 
         if (!testimonial) return null
         return (
           <div
             key={testimonialIndex}
             className={clsx(
-              'bg-secondary col-span-4 mb-8 flex flex-col justify-between rounded-lg p-16 lg:mb-0',
+              'bg-secondary col-span-4 mb-8 flex flex-col justify-between testimonial-card p-6 lg:p-10 lg:mb-0',
               {
                 'hidden lg:flex': index >= 2,
               },
@@ -54,7 +56,7 @@ function TestimonialSection({testimonials, className, nested}) {
             <p className="text-primary mb-14 text-lg">
               “{testimonial.content}”
             </p>
-            <div className="flex items-center justify-between">
+            <div className="flex flex-wrap items-center justify-between gap-5">
               <div className="mr-8 flex w-16">
                 <IconStar number={testimonial.stars} />
               </div>

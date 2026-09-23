@@ -1,127 +1,70 @@
-import React from 'react'
+import {useEffect, useRef, useState} from 'react'
 import {Loader} from '@googlemaps/js-api-loader'
 
-
-const MAPS_API = process.env.NEXT_PUBLIC_MAPS_API
-const MAPS_ID = process.env.NEXT_PUBLIC_MAPS_ID || '8513f02641727d0d16e6a183'
-
-function MapExample() {
-  const mapRef = React.useRef(null)
-
-  React.useEffect(() => {
-    const loader = new Loader({
-      apiKey: MAPS_API,
-      version: 'weekly',
-      libraries: ['marker'],
-    })
-
-    const mapOptions = {
-      mapId: MAPS_ID,
-      zoom: 15,
-      center: {lat: 40.788, lng: 17.2448473},
-      scrollwheel: false,
-      zoomControl: true,
-      styles: [
-        {
-          featureType: 'administrative',
-          elementType: 'labels.text.fill',
-          stylers: [{color: '#444444'}],
-        },
-        {
-          featureType: 'landscape',
-          elementType: 'all',
-          stylers: [{color: '#f2f2f2'}],
-        },
-        {
-          featureType: 'landscape.man_made',
-          elementType: 'geometry',
-          stylers: [
-            {hue: '#aaffaa'},
-            {saturation: -80},
-            {lightness: -5},
-            {visibility: 'on'},
-          ],
-        },
-        {
-          featureType: 'poi',
-          elementType: 'all',
-          stylers: [{visibility: 'off'}],
-        },
-        {
-          featureType: 'road',
-          elementType: 'all',
-          stylers: [{saturation: -50}, {lightness: 45}],
-        },
-        {
-          featureType: 'road.highway',
-          elementType: 'all',
-          stylers: [{visibility: 'simplified'}],
-        },
-        {
-          featureType: 'road.arterial',
-          elementType: 'labels.icon',
-          stylers: [{visibility: 'on'}],
-        },
-        {
-          featureType: 'transit',
-          elementType: 'all',
-          stylers: [{visibility: 'off'}],
-        },
-        {
-          featureType: 'water',
-          elementType: 'all',
-          stylers: [{color: '#cbd5e0'}, {visibility: 'on'}],
-        },
-      ],
+export default function Map() {
+  const mapRef = useRef(null)
+  const [unavailable, setUnavailable] = useState(false)
+  useEffect(() => {
+    let active = true
+    const previousAuthFailure = window.gm_authFailure
+    const fail = () => {
+      if (active) setUnavailable(true)
     }
-
-    let map
-    // let lat = '40.791522'
-    // let lng = '17.2448473'
-
-    loader
-      .importLibrary('maps')
-      .then(() => loader.importLibrary('marker'))
-      .then(() => {
-        map = new window.google.maps.Map(mapRef.current, mapOptions);
-
-        // AdvancedMarkerElement (nuovo marker API)
-        const { AdvancedMarkerElement } = window.google.maps.marker;
-        const marker = new AdvancedMarkerElement({
-          map,
-          position: { lat: 40.791522, lng: 17.2448473 },
-          title: 'Matarrese srl',
-        });
-
-        const contentString =
-          '<div class="text-md font-bold"><h2>Matarrese srl</h2>' +
-          '<hr/><p>vieni a trovarci!</p></div>';
-
-        const infowindow = new window.google.maps.InfoWindow({
-          content: contentString,
-        });
-
-        marker.addListener('click', () => {
-          infowindow.open({ anchor: marker, map });
-        });
+    window.gm_authFailure = fail
+    const apiKey = process.env.NEXT_PUBLIC_MAPS_API
+    if (!apiKey) fail()
+    else {
+      const loader = new Loader({
+        apiKey,
+        version: 'weekly',
+        libraries: ['marker'],
       })
-      .catch((error) => {
-        // Notify the user if the API fails to load
-        if (mapRef.current) {
-          mapRef.current.innerHTML =
-            '<div style="color:red;text-align:center;padding:1em;">Failed to load Google Maps. Please try again later.</div>';
-        }
-        // Optionally log the error
-        console.error('Google Maps API failed to load:', error);
-      });
+      Promise.all([
+        loader.importLibrary('maps'),
+        loader.importLibrary('marker'),
+      ])
+        .then(([{Map: GoogleMap}, {AdvancedMarkerElement}]) => {
+          if (!active || !mapRef.current) return
+          const position = {lat: 40.791522, lng: 17.2448473}
+          const map = new GoogleMap(mapRef.current, {
+            mapId:
+              process.env.NEXT_PUBLIC_MAPS_ID || '8513f02641727d0d16e6a183',
+            zoom: 15,
+            center: position,
+            scrollwheel: false,
+          })
+          new AdvancedMarkerElement({map, position, title: 'Matarrese srl'})
+        })
+        .catch(fail)
+    }
+    return () => {
+      active = false
+      window.gm_authFailure = previousAuthFailure
+    }
   }, [])
   return (
-    <>
-      <div className="absolute inset-0 h-full w-full rounded">
-        <div className="h-full rounded" ref={mapRef} />
-      </div>
-    </>
+    <div className="absolute inset-0">
+      <div
+        ref={mapRef}
+        className="h-full w-full"
+        hidden={unavailable}
+        aria-label="Mappa dello showroom Matarrese"
+      />
+      {unavailable && (
+        <div className="map-fallback">
+          <p className="page-intro">Ci trovi ad Alberobello</p>
+          <h2>Vieni a trovarci.</h2>
+          <p>Contrada Popoleto, n.c.</p>
+          <a
+            className="site-button"
+            href="https://www.google.com/maps/search/?api=1&query=Matarrese+srl+Alberobello"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Apri le indicazioni su Google Maps
+          </a>
+        </div>
+      )}
+    </div>
   )
 }
-
-export default MapExample

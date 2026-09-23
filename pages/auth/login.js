@@ -30,14 +30,16 @@ const Login = () => {
       )
     } catch (error) {
       console.log("C'è stato un errore:", error)
-      setErrorMsg(error.data.message)
+      setErrorMsg(error.data?.message || 'Accesso non riuscito. Riprova.')
     }
   }
 
   return (
     <Layout>
-      <div className="flex h-screen items-center justify-center">
-        <div className="mx-auto max-w-sm rounded border-2 bg-gray-100 p-4">
+      <div className="site-shell login-shell">
+        <div className="login-panel">
+          <p className="page-intro">Area riservata</p>
+          <h1>Accedi</h1>
           <LoginForm isLogin errorMessage={errorMsg} onSubmit={handleSubmit} />
         </div>
       </div>

@@ -26,7 +26,7 @@ export default function PrivacyPolicy() {
       <Layout>
         <Container>
           <Header>Trattamento dei dati - privacy policy</Header>
-          <main className="container mx-auto pb-20 text-justify text-gray-900">
+          <div className="container mx-auto pb-20 text-justify text-gray-900">
             <H2 className="text-center" variant="secondary">
               Privacy policy sito web
             </H2>
@@ -95,7 +95,10 @@ export default function PrivacyPolicy() {
                   <p>
                     Nella consultazione del presente Sito, oltre che con l’invio
                     di comunicazioni ai contatti presenti sul Sito{' '}
-                    <a href="https://www.matarrese.it" className="text-yellow-600">
+                    <a
+                      href="https://www.matarrese.it"
+                      className="text-yellow-600"
+                    >
                       www.matarrese.it
                     </a>{' '}
                     e con la copmilazione di moduli in pagine specifiche,
@@ -467,7 +470,7 @@ export default function PrivacyPolicy() {
                 </div>
               </section>
             </div>
-          </main>
+          </div>
         </Container>
       </Layout>
     </div>

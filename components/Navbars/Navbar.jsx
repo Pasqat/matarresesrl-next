@@ -1,139 +1,127 @@
-import {Disclosure} from '@headlessui/react'
-import {MenuIcon, XIcon, UserGroupIcon} from '@heroicons/react/outline'
-import Logo from '../../public/img/logo-matarrese-bianco-350.png'
-import useUser from '../../lib/useUser'
-
-import Image from 'next/legacy/image'
+import {Fragment, useState} from 'react'
+import {Dialog, Menu} from '@headlessui/react'
+import Image from 'next/image'
 import Link from 'next/link'
-import clsx from 'clsx'
-import {ButtonLink} from '../button'
+import {useRouter} from 'next/router'
 
-let navigation = [
-  // {name: 'Home', href: '/', current: false},
-  {name: 'Prodotti', href: '/prodotti', current: false},
-  {name: 'Servizi', href: '/servizi', current: false},
-  {name: 'Azienda', href: '/azienda', current: false},
-  {name: 'Eventi', href: '/eventi', current: false},
-  {name: 'Realizzazioni', href: '/realizzazioni', current: false},
-  {name: 'R&S', href: '/ricerca', current: false},
-  {name: 'News', href: '/news', current: false},
+const primary = [
+  ['Prodotti', '/prodotti'],
+  ['Servizi', '/servizi'],
+  ['Realizzazioni', '/realizzazioni'],
+  ['Azienda', '/azienda'],
+]
+const secondary = [
+  ['Eventi', '/eventi'],
+  ['News', '/news'],
+  ['Ricerca e sviluppo', '/ricerca'],
+  ['Domande frequenti', '/faq'],
 ]
 
-export default function Navbar({isTransparent}) {
-  const {user} = useUser()
-  const isLoggedIn = user?.isLoggedIn
-  const userName = user?.user?.name
-
+export default function Navbar() {
+  const [open, setOpen] = useState(false)
+  const router = useRouter()
+  const current = href =>
+    router.pathname === href || router.pathname.startsWith(href + '/')
   return (
-    <Disclosure
-      as="div"
-      className={clsx(
-        isTransparent
-          ? 'absolute top-0 z-50 w-full'
-          : 'sticky top-0 z-50 bg-gray-900 shadow-md',
-      )}
-    >
-      {({open}) => (
-        <>
-          <div className={clsx('sm:px-6', open && 'bg-gray-900')}>
-            <nav className="mx-10vw flex h-16">
-              <div className="mx-auto flex max-w-8xl flex-1 items-center justify-between md:justify-between">
-                <div className="inline-flex items-center">
-                  <Link href="/">
-                    <Image
-                      width={263}
-                      height={19}
-                      alt="logo Matarrese srl"
-                      // src="https://matarrese.it/wp-content/uploads/2015/09/logo-matarrese-bianco-350.png"
-                      src={Logo}
-                      placeholder="blur"
-                      style={{
-                        maxWidth: '100%',
-                        height: 'auto',
-                      }}
-                    />
-                  </Link>
-                </div>
-                <div className="hidden w-full flex-wrap items-center justify-between lg:flex">
-                  <div className="m-auto flex space-x-1 xl:space-x-4">
-                    {navigation.map(item => (
-                      <Link
-                        key={item.name}
-                        href={item.href}
-                        className={clsx(
-                          'rounded-md px-3 py-2 text-sm font-medium text-gray-100 md:text-base',
-                          item.current
-                            ? 'hover:first-letter:text-yellow-500'
-                            : 'hover:no-underline hover:first-letter:text-yellow-500',
-                        )}
-                        aria-current={item.current ? 'page' : undefined}
-                      >
-                        {item.name}
+    <>
+      <a className="skip-link" href="#contenuto">
+        Vai al contenuto
+      </a>
+      <header className="site-header">
+        <div className="site-header-inner">
+          <Link
+            href="/"
+            className="brand"
+            aria-label="Matarrese, pagina iniziale"
+          >
+            <Image
+              src="/img/logos/logo-matarrese-grigio-350.png"
+              width={263}
+              height={35}
+              alt="Matarrese"
+              priority
+            />
+          </Link>
+          <nav className="desktop-nav" aria-label="Navigazione principale">
+            {primary.map(([name, href]) => (
+              <Link
+                key={href}
+                href={href}
+                aria-current={current(href) ? 'page' : undefined}
+              >
+                {name}
+              </Link>
+            ))}
+            <Menu as="div" className="more-menu">
+              <Menu.Button className="nav-more">
+                Esplora <span aria-hidden="true">+</span>
+              </Menu.Button>
+              <Menu.Items className="more-menu-items">
+                {secondary.map(([name, href]) => (
+                  <Menu.Item key={href} as={Fragment}>
+                    {({active}) => (
+                      <Link href={href} className={active ? 'is-active' : ''}>
+                        {name}
                       </Link>
-                    ))}
-                  </div>
-                  {isLoggedIn ? (
-                    <Link href="/api/logout" className="text-white">
-                      ciao {userName}
-                    </Link>
-                  ) : (
-                    <div className="hidden flex-wrap items-center space-x-3 lg:flex xl:space-x-4">
-                      <ButtonLink
-                        size="small"
-                        className="no-underline"
-                        href="/contatti"
-                      >
-                        <UserGroupIcon className="mr-1 inline-block h-5 w-5" />
-                        Contatti
-                      </ButtonLink>
-                    </div>
-                  )}
-                </div>
-                {/* Mobile menu button*/}
-                <Disclosure.Button className="items-end rounded-full p-2 text-gray-100 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500 lg:hidden">
-                  <span className="sr-only">Apri il menù principale</span>
-                  {open ? (
-                    <XIcon className="block h-6 w-6" aria-hidden="true" />
-                  ) : (
-                    <MenuIcon className="block h-6 w-6" aria-hidden="true" />
-                  )}
-                </Disclosure.Button>
-              </div>
-            </nav>
+                    )}
+                  </Menu.Item>
+                ))}
+              </Menu.Items>
+            </Menu>
+          </nav>
+          <div className="header-actions">
+            <Link className="support-link" href="/assistenza">
+              Assistenza
+            </Link>
+            <Link className="site-button site-button-small" href="/contatti">
+              Contattaci
+            </Link>
+            <button
+              className="mobile-toggle"
+              onClick={() => setOpen(true)}
+              aria-label="Apri menu"
+              aria-expanded={open}
+            >
+              <span />
+              <span />
+            </button>
           </div>
-
-          <Disclosure.Panel className="lg:hidden">
-            <div className="space-y-1 bg-gray-900 px-2 pb-3 pt-2">
-              {navigation.map(item => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className={clsx(
-                    item.current
-                      ? 'bg-gray-900 text-white'
-                      : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                    'block rounded-md px-3 py-2 text-base font-medium',
-                  )}
-                  aria-current={item.current ? 'page' : undefined}
-                >
-                  {item.name}
-                </a>
-              ))}
-              <div className="divide-y divide-gray-700">
-                <div></div>
-                <Link
-                  href="/contatti"
-                  className="flex items-center py-5 text-sm font-semibold uppercase text-gray-200 hover:bg-opacity-70 hover:shadow-md"
-                  aria-current={undefined}
-                >
-                  <UserGroupIcon className="mr-1 inline-block h-5 w-5" />
-                  Contattaci
+        </div>
+      </header>
+      <Dialog open={open} onClose={setOpen} className="mobile-dialog">
+        <div className="mobile-backdrop" aria-hidden="true" />
+        <Dialog.Panel className="mobile-panel">
+          <div className="mobile-panel-top">
+            <Dialog.Title>Esplora Matarrese</Dialog.Title>
+            <button onClick={() => setOpen(false)} aria-label="Chiudi menu">
+              Chiudi <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <nav aria-label="Navigazione mobile" onClick={() => setOpen(false)}>
+            {primary.map(([name, href]) => (
+              <Link
+                key={href}
+                href={href}
+                aria-current={current(href) ? 'page' : undefined}
+              >
+                {name}
+              </Link>
+            ))}
+            <Link href="/contatti">Contatti</Link>
+            <Link href="/assistenza">Assistenza</Link>
+            <div className="mobile-secondary">
+              {secondary.map(([name, href]) => (
+                <Link key={href} href={href}>
+                  {name}
                 </Link>
-              </div>
+              ))}
             </div>
-          </Disclosure.Panel>
-        </>
-      )}
-    </Disclosure>
+          </nav>
+          <a className="mobile-phone" href="tel:+390804323431">
+            +39 080 4323 431
+          </a>
+        </Dialog.Panel>
+      </Dialog>
+    </>
   )
 }

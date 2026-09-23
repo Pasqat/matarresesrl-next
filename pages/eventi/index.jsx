@@ -16,7 +16,6 @@ import {Grid} from '../../components/grid'
 import {FeatureCard} from '../../components/feature-card'
 import NewsletterForm from '../../components/Form/NewsletterForm'
 import FormModal from '../../components/Form/FormModal'
-import {getPlaiceholder} from 'plaiceholder'
 
 export default function Events({data, groups}) {
   return (
@@ -59,12 +58,12 @@ export default function Events({data, groups}) {
           {data.futureEvent.length ? (
             <div className="my-20">
               <FeaturedSection
+                titleAs="h1"
+                priority
                 subTitle={data.futureEvent[0].startDate}
                 title={data.futureEvent[0].title}
-                imageUrl={data.futureEvent[0].featuredImage.node.sourceUrl}
-                img={data.imgFeaturedEvent}
-                css={data.cssFeaturedEvent}
-                impageAlt={data.futureEvent[0].featuredImage.node.altText}
+                imageUrl={data.futureEvent[0].featuredImage?.node?.mediaItemUrl}
+                impageAlt={data.futureEvent[0].featuredImage?.node?.altText}
                 caption="In primo piano"
                 cta="Maggiori informazioni"
                 slug={`eventi/${data.futureEvent[0].slug}`}
@@ -123,7 +122,7 @@ export default function Events({data, groups}) {
                 <div className="col-span-full lg:col-span-6">
                   {/* NOTE: this is FeatureCard exact code, but to have the form
               modal I thought to paste it here and modify the relevant part*/}
-                  <div className="bg-secondary relative flex h-full w-full flex-col items-start rounded-lg px-8 py-12 lg:px-12">
+                  <div className="event-demo relative flex h-full w-full flex-col items-start">
                     <div className="text-primary mb-4 flex flex-none items-end text-xl font-medium">
                       Vuoi venire a toccare con mano attrezzature innovative?
                     </div>
@@ -144,7 +143,9 @@ export default function Events({data, groups}) {
 
           <section className="col-span-full">
             <Grid rowGap>
-              <H3 className="col-span-full">Eventi conclusi</H3>
+              <H3 as="h2" className="col-span-full">
+                Eventi conclusi
+              </H3>
               <div className="col-span-full mt-6">
                 {data.pastEvent.map((event, index) => (
                   <div key={event.id} className="col-span-full md:col-span-4">
@@ -172,7 +173,7 @@ export default function Events({data, groups}) {
                 <div className="col-span-full lg:col-span-6">
                   {/* NOTE: this is FeatureCard exact code, but to have the form
               modal I thought to paste it here and modify the relevant part*/}
-                  <div className="bg-secondary relative flex h-full w-full flex-col items-start rounded-lg px-8 py-12 lg:px-12">
+                  <div className="event-demo relative flex h-full w-full flex-col items-start">
                     <div className="text-primary mb-4 flex flex-none items-end text-xl font-medium">
                       Vuoi venire a toccare con mano attrezzature innovative?
                     </div>
@@ -206,20 +207,10 @@ export default function Events({data, groups}) {
 export async function getStaticProps() {
   const data = await getEvents()
   const groups = await getGroups()
-  let imgFeaturedEvent = null
-  let cssFeaturedEvent = null
-
-  if (data.futureEvent[0]) {
-    const {img, css} = await getPlaiceholder(
-      data.futureEvent[0].featuredImage.node.mediaItemUrl,
-    )
-    imgFeaturedEvent = img
-    cssFeaturedEvent = css
-  }
 
   return {
     props: {
-      data: {...data, imgFeaturedEvent, cssFeaturedEvent},
+      data,
       groups,
     },
     revalidate: 60 * 60 * 12,

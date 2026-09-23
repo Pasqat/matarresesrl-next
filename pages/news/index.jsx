@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Head from 'next/head'
-import {useRouter} from 'next/dist/client/router'
+import {useRouter} from 'next/router'
 import clsx from 'clsx'
 
 import * as fbq from '../../lib/fpixel'
@@ -20,7 +20,7 @@ import NewsletterForm from '../../components/Form/NewsletterForm'
 import {filterPosts} from '../../actions/utils/blog'
 import {formatDate} from '../../actions/utils/formatDate'
 import {getAllPosts} from '../../lib/query/post'
-import {getPlaiceholder} from 'plaiceholder'
+
 import {Spacer} from '../../components/spacer'
 
 const PAGE_SIZE = 12
@@ -32,8 +32,9 @@ const specialQueryRegex = /(?<not>!)?leader:(?<team>\w+)(\s|$)?/g
 export default function News({data, groups}) {
   const router = useRouter()
 
-  const searchParams =
-    typeof router.query.q === Array ? router.query.q.join('+') : router.query.q
+  const searchParams = Array.isArray(router.query.q)
+    ? router.query.q.join('+')
+    : router.query.q
   const searchInputRef = React.useRef(null)
 
   const resultsRef = React.useRef(null)
@@ -104,7 +105,7 @@ export default function News({data, groups}) {
 
   const hasMorePosts = isSearching
     ? indexToShow < matchingPosts.length
-    : indexToShow < matchingPosts.length - 1
+    : indexToShow < matchingPosts.length
 
   const visibleCategories = isSearching
     ? new Set(
@@ -160,15 +161,15 @@ export default function News({data, groups}) {
             News e approfondimenti sulla ristorazione professionale
           </H3>
         </div>
-        {!isSearching ? (
+        {!isSearching && data.posts?.length > 0 ? (
           <div className="my-20">
             <FeaturedSection
               subTitle={formatDate(data.posts[0].date)}
               title={data.posts[0].title}
-              imageUrl={data.posts[0].featuredImage.node.mediaItemUrl}
+              imageUrl={data.posts[0].featuredImage?.node?.mediaItemUrl}
               img={data.img}
               css={data.css}
-              impageAlt={data.posts[0].featuredImage.node.altText}
+              impageAlt={data.posts[0].featuredImage?.node?.altText}
               caption="In evidenza"
               cta="Leggi tutto"
               slug={`news/${data.posts[0].slug}`}
@@ -187,7 +188,9 @@ export default function News({data, groups}) {
               </H5>
               <div className="col-span-full -mr-4 -mb-4 flex flex-wrap lg:col-span-10">
                 {data.categories.map(category => {
-                  const selected = regularQuery.includes(category)
+                  const selected = regularQuery
+                    .toLowerCase()
+                    .includes(category.toLowerCase())
 
                   return (
                     <Category
@@ -204,8 +207,9 @@ export default function News({data, groups}) {
           ) : null}
         </Grid>
 
-        <div className="mx-auto mb-14 max-w-7xl">
+        <div className="mb-14">
           <form
+            className="site-shell archive-search"
             onSubmit={e => e.preventDefault()} //here I can call something like fetchMore?
           >
             <div className="relative">
@@ -324,18 +328,22 @@ export async function getStaticProps({preview = false}) {
   const tags = data.tags.filter(tags => tags.count > 0).map(t => t.name)
   const groups = await getGroups()
 
-  const {img, css} = await getPlaiceholder(
-    data.posts[0].featuredImage.node.mediaItemUrl,
-  )
-
   return {
     props: {
       data: {
         categories,
         tags,
-        posts: data.posts,
-        img,
-        css,
+        posts: data.posts.map(item => ({
+          ...item,
+          featuredImage: item.featuredImage?.node
+            ? {
+                node: {
+                  mediaItemUrl: item.featuredImage.node.mediaItemUrl,
+                  altText: item.featuredImage.node.altText,
+                },
+              }
+            : null,
+        })),
       },
       preview,
       groups,

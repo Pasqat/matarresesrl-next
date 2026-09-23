@@ -15,7 +15,7 @@ const Input = React.forwardRef(function Input(
   ref,
 ) {
   const className = clsx(
-    'py-4 px-8 w-full text-lg font-medium placeholder-gray-300 text-black disabled:text-gray-400 disabled:bg-gray-100 rounded-lg caret-yellow-500 focus-ring',
+    'form-input py-4 px-8 w-full text-lg font-medium placeholder-gray-300 text-black disabled:text-gray-400 disabled:bg-gray-100 rounded-lg caret-yellow-500 focus-ring',
     featured ? 'bg-white' : 'bg-gray-100',
     props.className,
   )
@@ -84,6 +84,7 @@ const Field = React.forwardRef(function Field(
         required={required}
         defaultValue={defaultValue}
         featured={featured}
+        aria-invalid={Boolean(error)}
         aria-describedby={
           error ? errorId : description ? descriptionId : undefined
         }

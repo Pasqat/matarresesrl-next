@@ -5,7 +5,7 @@ import {FB_PIXEL_ID} from '../lib/fpixel'
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html lang="it">
+      <Html lang="it" data-scroll-behavior="smooth">
         <Head>
           {/* Preload dei font principali per ridurre il layout shift (CLS) */}
           <link

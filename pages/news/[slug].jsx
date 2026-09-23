@@ -1,28 +1,32 @@
 import {useRouter} from 'next/router'
 import Head from 'next/head'
-import {getPlaiceholder} from 'plaiceholder'
-
+import Image from 'next/image'
+import Link from 'next/link'
 import Date from '../../components/Date'
 import Layout from '../../components/Layout'
 import {BlogSection} from '../../components/sections/blog-section'
 import PostBody from '../../components/News/post-body'
 import Categories from '../../components/News/post-categories'
 import SocialShareBar from '../../components/SocialShareBar/SocialShareBar'
-import {BlurringImage} from '../../components/blurringImage'
-import {Spacer} from '../../components/spacer'
-
-import {H1} from '../../components/typography'
-
 import {getAllPostsWithSlug, getPost, getMorePosts} from '../../lib/query/post'
 import {SeoDataSection} from '../../components/sections/seodata-section'
 import StructuredData from '../../components/StructuredData'
-import {articleSchema, faqSchema as buildFaqSchema, breadcrumbSchema} from '../../lib/seo/schema'
-
-export default function Post({postData, posts, img, css, preview}) {
+import {
+  articleSchema,
+  faqSchema as buildFaqSchema,
+  breadcrumbSchema,
+} from '../../lib/seo/schema'
+export default function Post({postData, posts, preview}) {
   const router = useRouter()
-
-  const tags = postData?.tags?.nodes.flatMap(t => t.name)
-
+  if (router.isFallback || !postData)
+    return (
+      <Layout>
+        <p className="site-shell py-24" role="status">
+          Caricamento dell’articolo…
+        </p>
+      </Layout>
+    )
+  const tags = postData.tags?.nodes?.map(t => t.name) || []
   // Schema.org BlogPosting JSON-LD
   const newsStructuredData =
     postData &&
@@ -52,160 +56,85 @@ export default function Post({postData, posts, img, css, preview}) {
       {name: postData.title, path: `/news/${postData.slug}`},
     ])
 
+  const cover = postData.featuredImage?.node?.mediaItemUrl
   return (
     <Layout preview={preview}>
-      {router.isFallback ? (
-        <>
-          <Head>
-            <title>Caricamento articolo | Matarrese srl</title>
-          </Head>
-          <main
-            className="mx-auto max-w-7xl py-16 text-center"
-            role="status"
-            aria-live="polite"
-          >
-            <p className="text-lg text-gray-500">Caricamento dell&apos;articolo…</p>
-          </main>
-        </>
-      ) : (
-        <>
-          <Head>
-            {SeoDataSection({
-              seoData: postData.seo,
-              slug: `news/${postData.slug}`,
-            })}
-          </Head>
-          <StructuredData data={newsStructuredData} />
-          <StructuredData data={faqStructuredData} />
-          <StructuredData data={breadcrumb} />
-          <article className="bg-gray-100">
-            <div className="mx-auto max-w-7xl py-4 md:px-5 md:py-16">
-              <main className="md:mb-24">
-                <div className="sm:mx-0 mb-8 md:mb-16">
-                  {img || css ? (
-                    <div className="overflow-hidden">
-                      <div className="relative aspect-[2/1]">
-                        <BlurringImage
-                          img={img}
-                          css={css}
-                          alt={`Immagine di copertina di ${postData.title}`}
-                          objectFit="cover"
-                          priority
-                        />
-                      </div>
-                    </div>
-                  ) : (
-                    <Spacer size="base" />
-                  )}
-                </div>
-                <div className="relative lg:flex lg:flex-row">
-                  <div className="relative z-2 -mt-12 max-w-4xl bg-white p-10 shadow-lg lg:-mt-56 lg:ml-24">
-                    <div className="mb-6 text-lg">
-                      <Categories categories={postData.categories} />
-                      <Date
-                        dateString={postData.date}
-                        className="ml-4 text-sm text-gray-400"
-                      />
-                    </div>
-                    <H1
-                      variant="secondary"
-                      className="mb-12 text-center md:text-left"
-                    >
-                      {postData.title}
-                    </H1>
-                    <PostBody content={postData.content} />
-
-                    {/* Render visivo delle FAQ (se presenti)
-                     {postData?.faqs?.faqs?.length ? (
-                      <div className="mt-8 bg-gray-50 p-6 rounded">
-                        <h3 className="mb-4 text-lg font-semibold">FAQ</h3>
-                        {faqsArray.map((faq, i) => (
-                          <div key={`faq-${i}`} className="mb-4">
-                            <h4 className="font-medium">{faq.question}</h4>
-                            <div
-                              className="prose text-gray-700"
-                              dangerouslySetInnerHTML={{__html: faq.answer}}
-                            />
-                          </div>
-                        ))}
-                      </div>
-                    ) : null} */}
-
-                    <div className="mx-auto flex max-w-3xl flex-wrap gap-4 text-gray-400">
-                      <div className="text-medium">tags:</div>
-                      {tags.map(t => (
-                        <div key={`tag-${t}`}>{t}</div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <SocialShareBar
-                    route={router.asPath}
-                    title={postData.title}
-                  />
-                </div>
-              </main>
+      <Head>
+        {SeoDataSection({seoData: postData.seo, slug: `news/${postData.slug}`})}
+      </Head>
+      <StructuredData data={newsStructuredData} />
+      <StructuredData data={faqStructuredData} />
+      <StructuredData data={breadcrumb} />
+      <div>
+        <article className="site-shell detail-shell">
+          <header className="detail-intro">
+            <Link className="text-link" href="/news">
+              News e approfondimenti
+            </Link>
+            <h1 dangerouslySetInnerHTML={{__html: postData.title}} />
+            <div className="detail-meta">
+              <Categories categories={postData.categories} />
+              <Date dateString={postData.date} />
             </div>
-          </article>
-
-          <Spacer size="base" />
-
-          {posts ? (
-            <BlogSection
-              articles={posts.edges}
-              title="Se questo articolo ti è stato utile"
-              description="Potrebbe piacerti anche uno di questi"
-              showArrowButton={false}
-            />
-          ) : null}
-
-          <Spacer size="base" />
-        </>
-      )}
+          </header>
+          {cover && (
+            <div className="detail-cover">
+              <Image
+                src={cover}
+                fill
+                priority
+                alt={postData.featuredImage.node.altText || postData.title}
+                sizes="90vw"
+              />
+            </div>
+          )}
+          <div className="detail-body">
+            <PostBody content={postData.content} />
+            {faqsArray.length > 0 && (
+              <section className="article-faq">
+                <h2>Domande frequenti</h2>
+                {faqsArray.map((faq, i) => (
+                  <details key={i}>
+                    <summary>{faq.question}</summary>
+                    <PostBody content={faq.answer} />
+                  </details>
+                ))}
+              </section>
+            )}
+            <div className="detail-meta mt-12">
+              {tags.map(tag => (
+                <span key={tag}>{tag}</span>
+              ))}
+            </div>
+          </div>
+          <SocialShareBar route={router.asPath} title={postData.title} />
+        </article>
+        {posts?.edges?.length > 0 && (
+          <BlogSection
+            articles={posts.edges}
+            title="Continua a esplorare"
+            description="Altre idee per la tua attività"
+            showArrowButton={false}
+          />
+        )}
+      </div>
     </Layout>
   )
 }
-
 export async function getStaticProps({params, preview = false, previewData}) {
   const data = await getPost(params.slug, preview, previewData)
-
-  const moreData = await getMorePosts(
-    params.slug,
-    data.post.categories.edges[0].node.categoryId,
-  )
-
-  if (!data?.post?.featuredImage?.node?.mediaItemUrl) {
-    return {
-      props: {
-        preview,
-        postData: data.post,
-        posts: moreData.posts ?? null,
-      },
-      revalidate: 60 * 60,
-    }
-  }
-
-  const {img, css} = await getPlaiceholder(
-    data.post.featuredImage.node.mediaItemUrl,
-  )
-
+  if (!data?.post) return {notFound: true, revalidate: 60}
+  const category = data.post.categories?.edges?.[0]?.node?.categoryId
+  const moreData = category ? await getMorePosts(params.slug, category) : null
   return {
-    props: {
-      preview,
-      postData: data.post,
-      posts: moreData.posts ?? null,
-      img,
-      css,
-    },
-    revalidate: 60 * 60,
+    props: {preview, postData: data.post, posts: moreData?.posts ?? null},
+    revalidate: 3600,
   }
 }
-
 export async function getStaticPaths() {
   const allPosts = await getAllPostsWithSlug()
-
   return {
-    paths: allPosts.edges.map(({node}) => `/news/${node.slug}`) || [],
+    paths: (allPosts?.edges || []).map(({node}) => `/news/${node.slug}`),
     fallback: true,
   }
 }

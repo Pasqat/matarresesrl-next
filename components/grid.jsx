@@ -17,7 +17,7 @@ const Grid = React.forwardRef(function Grid(
     <Tag
       ref={ref}
       className={clsx('relative', {
-        'mx-10vw': !nested,
+        'site-shell': !nested,
         'w-full': nested,
         'py-10 lg:py-16': featured,
       })}

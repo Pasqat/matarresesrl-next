@@ -5,7 +5,7 @@ function Category({category, selected, onClick, disabled}) {
   return (
     <label
       className={clsx(
-        'relative mb-4 mr-4 block h-auto w-auto cursor-pointer rounded-full px-6 py-3 transition',
+        'focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-[#995200] relative mb-4 mr-4 block h-auto w-auto cursor-pointer rounded-full px-6 py-3 transition',
         {
           'text-primary bg-secondary': !selected,
           'bg-inverse text-white': selected,

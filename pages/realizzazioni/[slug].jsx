@@ -1,149 +1,110 @@
 import {useRouter} from 'next/router'
-// import {useState} from 'react'
 import Head from 'next/head'
-
-import Layout from '../../components/Layout'
-import Header from '../../components/Header/Header'
-import EventBody from '../../components/Events/event-body'
-import HeaderBig from '../../components/Header/HeaderBig'
-import SocialShareBar from '../../components/SocialShareBar/SocialShareBar'
-import {ButtonLink} from '../../components/button'
-
+import Image from 'next/image'
+import Link from 'next/link'
 import ImageGallery from 'react-image-gallery'
 import 'react-image-gallery/styles/css/image-gallery.css'
-
+import Layout from '../../components/Layout'
+import EventBody from '../../components/Events/event-body'
+import SocialShareBar from '../../components/SocialShareBar/SocialShareBar'
 import {getProject, getAllProjectsWithSlug} from '../../lib/query/project'
-import {H2, H1} from '../../components/typography'
-import {Spacer} from '../../components/spacer'
 import {SeoDataSection} from '../../components/sections/seodata-section'
 import StructuredData from '../../components/StructuredData'
 import {creativeWorkSchema, breadcrumbSchema} from '../../lib/seo/schema'
-
 export default function Project({project}) {
   const router = useRouter()
-  // const moreEvents = events?.edges
-
-  if (!router.isFallback && !project?.slug) {
-    return <p>hmm...sembra ci sia un errore</p>
-  }
-
-  const images = (project?.galleria || []).filter(image => image?.sourceUrl).map(image => ({
-    original: image.sourceUrl,
-    thumbnail: image.sourceUrl,
-    description: image.caption,
-    originalAlt: image.altText,
-    thumbnailAlt: image.altText,
-  }))
-  // Schema.org CreativeWork JSON-LD
-  const projectStructuredData =
-    project &&
-    creativeWorkSchema({
-      title: project.title,
-      description: project.seo?.metaDesc || project.title,
-      slug: project.slug,
-      image: project.featuredImage?.node?.sourceUrl,
-      categories: project.portfolioCategories?.edges?.map(({node}) => node.name),
-    })
-
-  const projectBreadcrumb =
-    project &&
-    project.slug &&
-    breadcrumbSchema([
-      {name: 'Realizzazioni', path: '/realizzazioni'},
-      {name: project.title, path: `/realizzazioni/${project.slug}`},
-    ])
-
+  if (router.isFallback || !project)
+    return (
+      <Layout>
+        <p className="site-shell py-24" role="status">
+          Caricamento del progetto…
+        </p>
+      </Layout>
+    )
+  const images = (project.galleria || [])
+    .filter(image => image?.sourceUrl)
+    .map(image => ({
+      original: image.sourceUrl,
+      thumbnail: image.sourceUrl,
+      description: image.caption || '',
+      originalAlt: image.altText || project.title,
+      thumbnailAlt: image.altText || project.title,
+    }))
+  const cover =
+    project.featuredImage?.node?.sourceUrl ||
+    project.featuredImage?.node?.mediaItemUrl
   return (
-    <Layout navbarTransparent>
-      {router.isFallback ? (
-        <>
-          <Header href="/realizzazioni">Realizzazioni</Header>
-          <Head>
-            <title>Matarrese srl | Realizzazioni</title>
-          </Head>
-          <main>
-            <H2>Caricamento dei progetti realizzati</H2>
-          </main>
-        </>
-      ) : (
-        <>
-          <Head>
-            {SeoDataSection({
-              seoData: project.seo,
-              slug: `realizzazioni/${project.slug}`,
-            })}
-          </Head>
-          <StructuredData data={projectStructuredData} />
-          <StructuredData data={projectBreadcrumb} />
-          <HeaderBig
-            noButton
-            overlay="bg-gradient-to-tl from-secondary via-primary to-black opacity-80"
-            backgroundImgSrc={
-              project.featuredImage && project.featuredImage.node.sourceUrl
-            }
+    <Layout>
+      <Head>
+        {SeoDataSection({
+          seoData: project.seo,
+          slug: `realizzazioni/${project.slug}`,
+        })}
+      </Head>
+      <StructuredData
+        data={creativeWorkSchema({
+          title: project.title,
+          description: project.seo?.metaDesc || project.title,
+          slug: project.slug,
+          image: cover,
+          categories: project.portfolioCategories?.edges?.map(
+            ({node}) => node.name,
+          ),
+        })}
+      />
+      <StructuredData
+        data={breadcrumbSchema([
+          {name: 'Realizzazioni', path: '/realizzazioni'},
+          {name: project.title, path: `/realizzazioni/${project.slug}`},
+        ])}
+      />
+      <div className="site-shell detail-shell">
+        <header className="detail-intro">
+          <Link className="text-link" href="/realizzazioni">
+            Tutte le realizzazioni
+          </Link>
+          <h1 dangerouslySetInnerHTML={{__html: project.title}} />
+          <div className="detail-meta">
+            {project.portfolioCategories?.edges?.map(({node}) => (
+              <span key={node.id || node.name}>{node.name}</span>
+            ))}
+            {project.portfolioTags?.edges?.map(({node}) => (
+              <span key={node.id || node.name}>{node.name}</span>
+            ))}
+          </div>
+        </header>
+        {cover && (
+          <div className="detail-cover">
+            <Image src={cover} alt={project.title} fill priority sizes="90vw" />
+          </div>
+        )}
+        <div className="detail-body">
+          <EventBody content={project.content} />
+        </div>
+        {images.length > 0 && (
+          <ImageGallery
+            items={images}
+            showPlayButton={false}
+            lazyLoad
+            showThumbnails={images.length > 1}
+            showNav={images.length > 1}
           />
-          <section className="relative w-full bg-gray-100 pb-24 pt-16 text-gray-800">
-            <div className="container mx-auto px-4">
-              <div className="relative lg:flex lg:flex-row">
-                <div className="relative -mt-96 mb-6 flex w-full min-w-0 flex-col break-words bg-white shadow-lg">
-                  <div className="px-6">
-                    <div className="mt-12 text-center">
-                      <H1 className="mb-2" variant="secondary">
-                        {project.title}
-                      </H1>
-                      <div className="mb-2 mt-0 text-sm font-bold uppercase leading-normal text-gray-400">
-                        {project.portfolioCategories.edges.map(({node}) => (
-                          <div key={node.id}>{node.name}</div>
-                        ))}
-                      </div>
-                      <div>
-                        {project.portfolioTags.edges.map(({node}) => (
-                          <div key={node.id}>{node.name}</div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="mt-10 border-t border-gray-200 py-10">
-                      <div className="flex flex-wrap justify-center">
-                        <div className="w-full px-4 lg:w-9/12">
-                          {images.length > 0 ? (
-                            <ImageGallery items={images} />
-                          ) : null}
-                          <div className="mb-14 lg:mb-24">
-                            <EventBody content={project.content} />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <SocialShareBar route={router.asPath} title={project.title} />
-              </div>
-
-              <Spacer size="xs" />
-
-              <section className="flex justify-center">
-                <div className="">
-                  <H2 as="p">{`Hai anche tu un progetto da realizzare?`}</H2>
-                  <Spacer size="2xs" />
-                  <div className="flex justify-center">
-                    <ButtonLink href="/contatti" size="large">
-                      Contattaci!
-                    </ButtonLink>
-                  </div>
-                </div>
-              </section>
-            </div>
-          </section>
-        </>
-      )}
+        )}
+        <SocialShareBar route={router.asPath} title={project.title} />
+        <section className="detail-cta">
+          <h2>Uno spazio da immaginare insieme.</h2>
+          <Link className="site-button" href="/contatti">
+            Parlaci del tuo progetto
+          </Link>
+        </section>
+      </div>
     </Layout>
   )
 }
-
 export async function getStaticProps({params}) {
   const data = await getProject(params.slug)
-  data.galleria = data.galleria.filter(n => n != null)
+  if (!data?.slug) return {notFound: true, revalidate: 60}
+  data.galleria = (data.galleria || []).filter(n => n?.sourceUrl)
 
   return {
     props: {

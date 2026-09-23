@@ -16,7 +16,6 @@ const titleColors = {
   accent: 'text-yellow-500',
   white: 'text-white',
   'light-gray': 'text-gray-300',
-
 }
 
 function Title({variant = 'primary', size, as, className, ...rest}) {
@@ -24,7 +23,12 @@ function Title({variant = 'primary', size, as, className, ...rest}) {
 
   return (
     <Tag
-      className={clsx(fontSize[size], titleColors[variant], className)}
+      className={clsx(
+        'type-' + size,
+        fontSize[size],
+        titleColors[variant],
+        className,
+      )}
       {...rest}
     />
   )

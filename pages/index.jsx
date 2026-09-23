@@ -1,39 +1,46 @@
 import Head from 'next/head'
-import Image from 'next/legacy/image'
-
-import CardSquareImg from '../components/Card/CardSquareImg'
-import ContactForm from '../components/Form/ContactForm'
+import Image from 'next/image'
+import Link from 'next/link'
 import Layout from '../components/Layout'
-import {LinkButton} from '../components/button'
-import {TestimonialSection} from '../components/sections/testimonial-section'
-import {ProjectSection} from '../components/sections/projects-section'
-import {LogoSection} from '../components/sections/logo-section'
-import {ImgSlider} from '../components/imgSlider'
-import {FeaturedSection} from '../components/sections/featured-section'
-
-import {H2, H3, H4, H5, Paragraph} from '../components/typography'
-import {Grid} from '../components/grid'
-
-import testimonials from '../data/testimonials'
+import ContactForm from '../components/Form/ContactForm'
 import {getGroups} from '../lib/newsletter'
 import {getEvents} from '../lib/query/event'
 import {getLastTwoProjects} from '../lib/query/project'
+import {logos} from '../data/partner-logo'
+import testimonials from '../data/testimonials'
+import hero from '../public/img/matarrese_srl_home_01.webp'
 
-import imgHomeBoxArredo from '../public/img/home-box-arredo.jpg'
-import imgHomeBoxMarchi from '../public/img/home-box-marchi.jpg'
-import imgHomeBoxSupporto from '../public/img/home-box-supporto.jpg'
+const expertise = [
+  {
+    title: 'Dall’idea, allo spazio.',
+    text: 'Ascoltiamo il tuo progetto. Disegniamo gli ambienti, organizziamo il lavoro e realizziamo arredi su misura.',
+    image: '/img/home-box-arredo.jpg',
+    alt: 'Arredi su misura per un locale',
+    href: '/servizi',
+    link: 'Progettazione e arredi',
+  },
+  {
+    title: 'La tecnologia che serve.',
+    text: 'Cucine professionali, attrezzature e forniture. Selezioniamo le soluzioni adatte al tuo modo di lavorare.',
+    image: '/img/matarrese_srl_home_02.webp',
+    alt: 'Una cucina professionale attrezzata',
+    href: '/prodotti',
+    link: 'Attrezzature e forniture',
+  },
+  {
+    title: 'Al tuo fianco, ogni giorno.',
+    text: 'Dalla messa in funzione alla manutenzione. La nostra assistenza continua anche dopo la consegna.',
+    image: '/img/home-box-supporto.jpg',
+    alt: 'Assistenza tecnica su un’attrezzatura professionale',
+    href: '/assistenza',
+    link: 'Assistenza tecnica',
+  },
+]
 
-import imgHomeAttrezzature from '../public/img/home-attrezzature.jpg'
-import logoAssogi from '../public/img/logos/Assogi_logo-300x119.png'
-import logoSostenibilita from '../public/img/logos/dispositivo-ad-ozono.png'
-import {Spacer} from '../components/spacer'
-// import { event } from "../lib/fpixel";
-import {getPlaiceholder} from 'plaiceholder'
-import {RegistrationPanel} from '../components/event-registration-panel'
-
-export default function Home({groups, lastTwoProjects, event}) {
+export default function Home({groups, lastTwoProjects = [], event}) {
+  const upcoming = event?.futureEvent?.[0]
   return (
-    <div>
+    <>
       <Head>
         <title>
           Matarrese srl | Attrezzature professionali per ristorazione e horeca
@@ -54,341 +61,248 @@ export default function Home({groups, lastTwoProjects, event}) {
         />
         <meta
           property="og:description"
-          content="Soluzioni complete per cucine professionali, attrezzature horeca, arredi su misura e supporto tecnico per attività gastronomiche."
+          content="Progettazione, attrezzature, arredi su misura e assistenza tecnica per i luoghi della ristorazione."
         />
         <meta property="og:url" content={process.env.NEXT_PUBLIC_DOMAIN} />
         <meta property="og:locale" content="it_IT" />
         <meta property="og:site_name" content="Matarrese srl" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <Layout navbarTransparent>
-        <main>
-          <ImgSlider />
-          <section className="relative">
-            {/* NOTE: version with title overing the img
-          <section className="relative pt-20" id="cta">
-            <H1 className="mx-auto mb-8 max-w-6xl text-center lg:mb-12 xl:mb-24">
-              Dal design dell&apos;arredo alla formazione del personale per
-              realizzare i tuoi progetti
-            </H1>
-        */}
-            <Grid rowGap className="mb-12 lg:mb-24 xl:mb-48">
-              <div className="col-span-full  lg:col-span-4">
-                {/* TODO: Use static import*/}
-                <CardSquareImg
-                  imgSrc={imgHomeBoxArredo}
-                  title="Dall'idea al progetto reale"
-                  description={`Aprire un'attività, rinnovare un locale,
-                      avere una guida per migliorare il proprio lavoro: ti seguiamo ad ogni passo per realizzare la tue idee.`}
-                  urlText="Scopri i servizi"
-                  url="/servizi"
-                >
-                  <LinkButton className="mt-4" href="/servizi" withArrow>
-                    Scopri i servizi
-                  </LinkButton>
-                </CardSquareImg>
-              </div>
-              <div className="col-span-full lg:col-span-4">
-                <CardSquareImg
-                  imgSrc={imgHomeBoxMarchi}
-                  title="Marchi e attrezzature di qualità"
-                  description={`
-                      Selezioniamo i migliori marchi ho.re.ca, studiamo le ultime tecnologie portando innovazione in cucina ed equilibrio negli arredi.
-                    `}
-                  urlText="Guarda i prodotti"
-                  url="/prodotti"
-                ></CardSquareImg>
-              </div>
-              <div className="col-span-full lg:col-span-4">
-                <CardSquareImg
-                  imgSrc={imgHomeBoxSupporto}
-                  title="Supporto pre e post intervento"
-                  description={`
-                      Aiutiamo le idee a diventare progetti reali, assicurando il corretto ciclo di vita delle attrezzature
-                      attraverso il supporto post vendita.
-                    `}
-                  url="/contatti"
-                  urlText="Vieni a conoscerci"
-                ></CardSquareImg>
-              </div>
-            </Grid>
-          </section>
-
-          <section className="mb-12 lg:mb-24 xl:mb-48">
-            {event.futureEvent.length === 1 ? (
-              <div className="my-20">
-                <FeaturedSection
-                  subTitle={event.futureEvent[0].startDate}
-                  title={event.futureEvent[0].title}
-                  imageUrl={event.futureEvent[0].featuredImage.node.sourceUrl}
-                  img={event.imgFeaturedEvent}
-                  css={event.cssFeaturedEvent}
-                  imageAlt={event.futureEvent[0].featuredImage.node.altText}
-                  caption="In primo piano"
-                  cta="Maggiori informazioni"
-                  slug={`eventi/${event.futureEvent[0].slug}`}
-                  permalink={`${process.env.NEXT_PUBLIC_DOMAIN}/eventi/${event.futureEvent[0].slug}`}
-                  excerpt={event.futureEvent[0].content}
-                  withBorder
-                />
-              </div>
-            ) : event.futureEvent.length >= 2 ? (
-              <section className="mb-12 lg:mb-24 xl:mb-48">
-                <Grid>
-                  <H2 className="col-span-full">Scopri gli eventi futuri</H2>
-                  <Spacer size="xs" />
-                  <div className="col-span-full">
-                    <Grid nested rowGap>
-                      {event.futureEvent.map(event => (
-                        <div key={event.id} className="col-span-full">
-                          <RegistrationPanel event={event} />
-                          {/* <Spacer size="3xs" /> */}
-                        </div>
-                      ))}
-                    </Grid>
-                  </div>
-                </Grid>
-              </section>
-            ) : null}
-          </section>
-
-          <section className="mb-12 lg:mb-24 xl:mb-48">
-            <Grid rowGap>
-              <div className="col-span-full mr-8 text-center lg:col-span-6">
-                <Image
-                  src={imgHomeAttrezzature}
-                  alt="attrezzature ristorazione nello showroom"
-                  className="rounded-lg shadow-sm"
-                  placeholder="blur"
-                  style={{
-                    maxWidth: '100%',
-                    height: 'auto',
-                    objectFit: 'cover',
-                    objectPosition: 'center',
-                  }}
-                />
-              </div>
-              <div className="col-span-full lg:col-span-6">
-                <div>
-                  <H3 variant="secondary">
-                    Tutto per creare i tuoi spazi professionali
-                  </H3>
-                  <Paragraph className="mt-4 leading-relaxed text-gray-500">
-                    In una struttura aziendale di <strong>5000 mq</strong>{' '}
-                    uniamo il laboratorio di produzione di arredi su misura,
-                    l’officina e magazzino ricambi, il laboratorio di formazione
-                    e un ampio showroom in cui potrai trovare:
-                  </Paragraph>
-                  <ul className="mt-6 list-none">
-                    <li className="py-2">
-                      <div className="flex items-center">
-                        <div>
-                          <span className="mr-3 inline-block rounded-full bg-gray-100 px-2 py-1 text-xs font-semibold uppercase text-gray-500">
-                            {/* <i className="fas fa-blender"></i> */}
-                          </span>
-                        </div>
-                        <div>
-                          <H5 as="h4">Attrezzature per ristorazione</H5>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="py-2">
-                      <div className="flex items-center">
-                        <div>
-                          <span className="mr-3 inline-block rounded-full bg-gray-100 px-2 py-1 text-xs font-semibold uppercase text-gray-500">
-                            {/* <i className="fas fa-chair"></i> */}
-                          </span>
-                        </div>
-                        <div>
-                          <H5 as="h4">Arredamenti</H5>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="py-2">
-                      <div className="flex items-center">
-                        <div>
-                          <span className="mr-3 inline-block rounded-full bg-gray-100 px-2 py-1 text-xs font-semibold uppercase text-gray-500">
-                            {/* <i className="fas fa-utensils"></i> */}
-                          </span>
-                        </div>
-                        <div>
-                          <H5 as="h4">Utensili per cucine professionali</H5>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="py-2">
-                      <div className="flex items-center">
-                        <div>
-                          <span className="mr-3 inline-block rounded-full bg-gray-100 px-2 py-1 text-xs font-semibold uppercase text-gray-500">
-                            {/* <i className="fas fa-concierge-bell"></i> */}
-                          </span>
-                        </div>
-                        <div>
-                          <H5 as="h4">Hotellerie</H5>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="py-2">
-                      <div className="flex items-center">
-                        <div>
-                          <span className="mr-3 inline-block rounded-full bg-gray-100 px-2 py-1 text-xs font-semibold uppercase text-gray-500">
-                            {/* <i className="fab fa-html5"></i> */}
-                          </span>
-                        </div>
-                        <div>
-                          <H5 as="h4">...e tanto altro</H5>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
+      <Layout>
+        <div className="home-page">
+          <section className="home-hero" aria-labelledby="home-title">
+            <div className="home-hero-photo">
+              <Image
+                src={hero}
+                alt="Dettaglio del banco e degli arredi realizzati da Matarrese"
+                fill
+                priority
+                sizes="100vw"
+                quality={90}
+              />
+            </div>
+            <div className="home-hero-shade" />
+            <div className="home-hero-content">
+              <p className="hero-location">Alberobello · Dal 1983</p>
+              <h1 id="home-title">
+                Diamo forma
+                <br />
+                ai luoghi della
+                <br />
+                ristorazione.
+              </h1>
+              <div className="hero-bottom">
+                <div className="hero-actions">
+                  <Link
+                    className="site-button site-button-light"
+                    href="/realizzazioni"
+                  >
+                    Scopri le realizzazioni
+                  </Link>
+                  <Link className="hero-contact" href="/contatti">
+                    Contattaci
+                  </Link>
                 </div>
+                <p>
+                  Progettazione, attrezzature,
+                  <br />
+                  arredi su misura e assistenza tecnica.
+                </p>
               </div>
-            </Grid>
+            </div>
           </section>
-
-          <section>
-            <ProjectSection
-              projects={lastTwoProjects.slice(0, 2)}
-              title="Le nostre realizzazioni"
-            />
+          <div className="site-shell home-signature">
+            <span>Un unico partner, dal progetto al servizio.</span>
+            <a href="#competenze">
+              Conosci Matarrese <span aria-hidden="true">↓</span>
+            </a>
+          </div>
+          <section className="site-shell home-expertise" id="competenze">
+            <div className="section-topline">
+              <h2>
+                Le tue idee.
+                <br />
+                Il nostro mestiere.
+              </h2>
+              <p>
+                Ogni attività ha la sua identità. La trasformiamo in spazi che
+                accolgono e strumenti che lavorano, con la cura di chi conosce
+                la ristorazione.
+              </p>
+            </div>
+            <div className="expertise-grid">
+              {expertise.map(item => (
+                <article key={item.href}>
+                  <Link
+                    className="expertise-image"
+                    href={item.href}
+                    aria-label={item.link}
+                  >
+                    <Image
+                      src={item.image}
+                      alt={item.alt}
+                      fill
+                      sizes="(max-width: 700px) 100vw, 33vw"
+                    />
+                  </Link>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                  <Link className="text-link" href={item.href}>
+                    {item.link}
+                  </Link>
+                </article>
+              ))}
+            </div>
           </section>
-
-          <Spacer size="base" />
-
-          <section className="mb-12 lg:mb-24 xl:mb-48" id="sostenibilita">
-            <Grid featured background="bg-green-100">
-              <div className="col-span-full flex items-center justify-center lg:col-span-3">
-                <Image
-                  src={logoSostenibilita}
-                  alt="logo Sostenibilità, ecologia, eco-friendly"
-                  placeholder="blur"
-                  style={{
-                    maxWidth: '100%',
-                    height: 'auto',
-                    objectFit: 'cover',
-                    objectPosition: 'center',
-                  }}
-                />
+          <section className="home-projects">
+            <div className="site-shell">
+              <div className="section-topline">
+                <h2>Luoghi che prendono vita.</h2>
+                <Link className="text-link" href="/realizzazioni">
+                  Tutte le realizzazioni
+                </Link>
               </div>
-              <div className="col-span-full lg:col-span-9">
-                <H3 variant="secondary" as="p">
-                  Amiamo la cucina e la nostra Terra
-                </H3>
-                <Paragraph className="text-2xl leading-relaxed">
-                  Sostenibilità, risparmio energetico ed{' '}
-                  <strong>ecologia</strong> sono per noi un serio impegno per{' '}
-                  <strong>salvaguardare l’ambiente</strong> e la terra che ci
-                  dona le materie prime necessarie in cucina. Ci impegniamo su
-                  diversi fronti per fornire soluzioni{' '}
-                  <strong>eco-friendly</strong> con la qualità che ci
-                  contraddistingue.
-                </Paragraph>
-                <Grid nested rowGap className="mt-8">
-                  <H4
-                    variant="secondary"
-                    as="p"
-                    className="col-span-full flex items-center justify-center rounded border border-green-700 p-4 text-center lg:col-span-4"
-                  >
-                    Risparmio energetico
-                  </H4>
-                  <H4
-                    variant="secondary"
-                    as="p"
-                    className="col-span-full flex items-center justify-center rounded border border-green-700 p-4 text-center lg:col-span-4"
-                  >
-                    Dispositivi ad ozono
-                  </H4>
-                  <H4
-                    variant="secondary"
-                    as="p"
-                    className="col-span-full flex items-center justify-center rounded border border-green-700 p-4 text-center lg:col-span-4"
-                  >
-                    Gas naturale R290
-                  </H4>
-                </Grid>
+              <div className="home-project-grid">
+                {lastTwoProjects.slice(0, 4).map((project, index) => {
+                  const source =
+                    project.featuredImage?.node?.mediaItemUrl ||
+                    project.featuredImage?.node?.sourceUrl
+                  return (
+                    <article key={project.slug}>
+                      <Link href={`/realizzazioni/${project.slug}`}>
+                        <div className="home-project-image">
+                          {source ? (
+                            <Image
+                              src={source}
+                              alt={
+                                project.featuredImage.node.altText ||
+                                project.title
+                              }
+                              fill
+                              sizes="(max-width: 700px) 100vw, 55vw"
+                            />
+                          ) : (
+                            <span className="image-fallback">Matarrese</span>
+                          )}
+                        </div>
+                        <div className="project-caption">
+                          <h3
+                            dangerouslySetInnerHTML={{__html: project.title}}
+                          />
+                          <span>Scopri il progetto</span>
+                        </div>
+                      </Link>
+                    </article>
+                  )
+                })}
               </div>
-            </Grid>
+              {lastTwoProjects.length === 0 && (
+                <p>
+                  Scopri i nostri progetti nella sezione{' '}
+                  <Link href="/realizzazioni">Realizzazioni</Link>.
+                </p>
+              )}
+            </div>
           </section>
-
-          <section className="mb-12 lg:mb-24 xl:mb-48">
-            <TestimonialSection testimonials={testimonials} />
+          <section className="site-shell home-company">
+            <div className="home-company-image">
+              <Image
+                src="/img/home-attrezzature.jpg"
+                fill
+                alt="Lo showroom Matarrese dedicato alla ristorazione professionale"
+                sizes="(max-width: 900px) 100vw, 55vw"
+              />
+            </div>
+            <div className="home-company-copy">
+              <p className="page-intro">Dentro Matarrese</p>
+              <h2>
+                Le competenze.
+                <br />E lo spazio
+                <br />
+                per metterle in pratica.
+              </h2>
+              <p>
+                Ad Alberobello, 5.000 m² riuniscono showroom, laboratorio di
+                produzione di arredi, officina, magazzino ricambi e spazi per la
+                formazione.
+              </p>
+              <p>
+                Un luogo dove vedere le soluzioni, confrontarsi con chi le
+                conosce e costruire il proprio progetto.
+              </p>
+              <Link className="text-link" href="/azienda">
+                Conosci la nostra azienda
+              </Link>
+            </div>
           </section>
-
-          <section className="mb-12 lg:mb-24 xl:mb-48" id="assogi">
-            <Grid featured>
-              <a
-                href="https://www.assogi.it"
-                target="_blank"
-                className="col-span-full my-auto mb-14 lg:col-span-3 lg:mr-8"
-                rel="noreferrer"
-              >
-                <Image
-                  src={logoAssogi}
-                  alt="logo Assogi"
-                  placeholder="blur"
-                  style={{
-                    maxWidth: '100%',
-                    height: 'auto',
-                    objectFit: 'cover',
-                    objectPosition: 'center',
-                  }}
-                />
-              </a>
-              <H3
-                variant="secondary"
-                as="p"
-                className="col-span-full lg:col-span-9"
-              >
-                Dal 2010 facciamo parte del Consorzio ASSOGI, una rete nazionale
-                di professionisti dei grandi impianti per la ristorazione. La
-                forza di una squadra di aziende ed esperti al servizio degli
-                imprenditori e ristoratori italiani.
-              </H3>
-            </Grid>
+          <section className="home-trust" id="assogi">
+            <div className="site-shell">
+              <div className="trust-intro">
+                <h2>La qualità si costruisce insieme.</h2>
+                <p>
+                  Selezioniamo marchi e tecnologie per la ristorazione
+                  professionale. Dal 2010 siamo parte del Consorzio ASSOGI.
+                </p>
+              </div>
+              <div className="home-partners">
+                {logos.slice(0, 6).map(logo => (
+                  <Image
+                    key={logo.name}
+                    src={logo.url}
+                    width={180}
+                    height={95}
+                    alt={logo.name}
+                  />
+                ))}
+              </div>
+              <Link className="text-link" href="/prodotti">
+                Esplora prodotti e marchi
+              </Link>
+              <figure className="home-quote">
+                <blockquote>“{testimonials[0].content}”</blockquote>
+                <figcaption>
+                  {testimonials[0].name}
+                  <span>La voce dei nostri clienti</span>
+                </figcaption>
+              </figure>
+            </div>
           </section>
-
-          <section className="mb-12 lg:mb-24 xl:mb-48" id="contatti">
-            <ContactForm groups={groups} />
+          {upcoming && (
+            <section className="site-shell home-event">
+              <p className="page-intro">Il prossimo incontro</p>
+              <h2 dangerouslySetInnerHTML={{__html: upcoming.title}} />
+              <p>{upcoming.startDate}</p>
+              <Link className="site-button" href={`/eventi/${upcoming.slug}`}>
+                Scopri l’evento
+              </Link>
+            </section>
+          )}
+          <section className="home-contact" id="parliamone">
+            <div className="site-shell section-topline">
+              <h2>
+                Il prossimo progetto
+                <br />
+                inizia da qui.
+              </h2>
+              <p>
+                Raccontaci cosa hai in mente.
+                <br />
+                Troviamo insieme il modo di realizzarlo.
+              </p>
+            </div>
+            <ContactForm groups={groups} compact />
           </section>
-          <section className="relative mb-12 lg:mb-24 xl:mb-48">
-            <LogoSection />
-          </section>
-        </main>
+        </div>
       </Layout>
-    </div>
+    </>
   )
 }
-
 export async function getStaticProps() {
   const groups = await getGroups()
   const lastTwoProjects = await getLastTwoProjects()
-  // TODO: Devo provare a mettere in home il prossimo evento e forse anche le ultime 2 news?
-
   const event = await getEvents()
-  let imgFeaturedEvent = null
-  let cssFeaturedEvent = null
-
-  if (event.futureEvent[0]) {
-    const {img, css} = await getPlaiceholder(
-      event.futureEvent[0].featuredImage.node.mediaItemUrl,
-    )
-    imgFeaturedEvent = img
-    cssFeaturedEvent = css
-  }
-
   return {
-    props: {
-      event: {...event, imgFeaturedEvent, cssFeaturedEvent},
-      groups,
-      lastTwoProjects: lastTwoProjects,
-    },
-    revalidate: 60 * 60 * 24,
+    props: {groups, lastTwoProjects, event: {futureEvent: event.futureEvent}},
+    revalidate: 86400,
   }
-
-  // return {
-  //   props: {
-  //     groups,
-  //     lastTwoProjects: lastTwoProjects,
-  //   },
-  // };
 }

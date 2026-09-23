@@ -1,9 +1,7 @@
 import Head from 'next/head'
-import Image from "next/legacy/image"
-import dynamic from 'next/dynamic'
+import Image from 'next/image'
 
 // import Lottie from 'react-lottie-player'
-const Lottie = dynamic(() => import('react-lottie-player'), {ssr: false})
 
 import Layout from '../../components/Layout'
 import {Grid} from '../../components/grid'
@@ -14,7 +12,6 @@ import {Spacer} from '../../components/spacer'
 import {LogoSection} from '../../components/sections/logo-section'
 import {AssogiSection} from '../../components/sections/assogi-section'
 
-import lottiejson from '../../public/img/illustration/Inspiration.json'
 import {FeatureCard} from '../../components/feature-card'
 
 import VitoMatarreseProfileImage from '../../public/img/vito_matarrese.webp'
@@ -75,7 +72,8 @@ export default function AboutUs({lastTwoProjects}) {
             titleAs="h1"
             title="Un partner affidabile per la tua attività"
             subtitle="Chi siamo"
-            illustration={<Lottie loop animationData={lottiejson} play />}
+            image="/img/home-partner-operatori.jpg"
+            imageAlt="Le persone e gli spazi di Matarrese"
             // image="/img/illustration/inspiration.png"
             // imageSize="large"
             arrowUrl="#team"

@@ -19,15 +19,51 @@ import StructuredData from '../../components/StructuredData'
 import {serviceListSchema, breadcrumbSchema} from '../../lib/seo/schema'
 
 const SERVIZI = [
-  {name: 'Consulenza', description: 'I nostri esperti ti guidano nella scelta delle migliori soluzioni Ho.Re.Ca disponibili sul mercato.'},
-  {name: 'Progettazione tecnica attività commerciali', description: 'Ascoltiamo le tue idee e condividiamo la loro progettazione in anteprima.'},
-  {name: 'Realizzazione arredi su misura', description: 'Adattiamo gli arredi e scegliamo le attrezzature migliori per i tuoi ambienti.'},
-  {name: 'Progettazione cucine professionali', description: "Organizziamo gli spazi della tua cucina per garantire l'ottimizzazione del lavoro e dei tempi di preparazione."},
-  {name: 'Formazione', description: 'Offriamo soluzioni di formazione finanziata per la tua crescita professionale e quella dei tuoi collaboratori.'},
-  {name: 'Assistenza tecnica e manutenzione', description: 'Garantiamo assistenza tecnica qualificata e manutenzione delle attrezzature che scegli per la tua attività.'},
-  {name: 'Progettazione impianti di climatizzazione', description: "Caldo o freddo, impostiamo la temperatura giusta all'interno della tua attività per il comfort tuo e dei tuoi clienti."},
-  {name: 'Progettazione impianti aspirazione', description: 'Non sottovalutiamo la qualità negli ambienti di lavoro e ti proponiamo le soluzioni più innovative.'},
-  {name: 'Consulenza su nuove tecnologie', description: 'Da partner di progetti di Ricerca e Sviluppo studiamo le innovazioni in cucina, condividiamo e diffondiamo le nostre conoscenze.'},
+  {
+    name: 'Consulenza',
+    description:
+      'I nostri esperti ti guidano nella scelta delle migliori soluzioni Ho.Re.Ca disponibili sul mercato.',
+  },
+  {
+    name: 'Progettazione tecnica attività commerciali',
+    description:
+      'Ascoltiamo le tue idee e condividiamo la loro progettazione in anteprima.',
+  },
+  {
+    name: 'Realizzazione arredi su misura',
+    description:
+      'Adattiamo gli arredi e scegliamo le attrezzature migliori per i tuoi ambienti.',
+  },
+  {
+    name: 'Progettazione cucine professionali',
+    description:
+      "Organizziamo gli spazi della tua cucina per garantire l'ottimizzazione del lavoro e dei tempi di preparazione.",
+  },
+  {
+    name: 'Formazione',
+    description:
+      'Offriamo soluzioni di formazione finanziata per la tua crescita professionale e quella dei tuoi collaboratori.',
+  },
+  {
+    name: 'Assistenza tecnica e manutenzione',
+    description:
+      'Garantiamo assistenza tecnica qualificata e manutenzione delle attrezzature che scegli per la tua attività.',
+  },
+  {
+    name: 'Progettazione impianti di climatizzazione',
+    description:
+      "Caldo o freddo, impostiamo la temperatura giusta all'interno della tua attività per il comfort tuo e dei tuoi clienti.",
+  },
+  {
+    name: 'Progettazione impianti aspirazione',
+    description:
+      'Non sottovalutiamo la qualità negli ambienti di lavoro e ti proponiamo le soluzioni più innovative.',
+  },
+  {
+    name: 'Consulenza su nuove tecnologie',
+    description:
+      'Da partner di progetti di Ricerca e Sviluppo studiamo le innovazioni in cucina, condividiamo e diffondiamo le nostre conoscenze.',
+  },
 ]
 
 export default function Servizi({groups}) {
@@ -74,7 +110,9 @@ export default function Servizi({groups}) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <StructuredData data={serviceListSchema(SERVIZI)} />
-      <StructuredData data={breadcrumbSchema([{name: 'Servizi', path: '/servizi'}])} />
+      <StructuredData
+        data={breadcrumbSchema([{name: 'Servizi', path: '/servizi'}])}
+      />
       <Layout>
         <div className="mb-12 lg:mb-24 xl:mb-48">
           <HeroSection
@@ -93,7 +131,7 @@ export default function Servizi({groups}) {
             imageSize="large"
           />
         </div>
-        <main>
+        <div>
           <section id="panoramica">
             <Grid className="mb-12 lg:mb-24 xl:mb-48">
               <div className="col-span-full">
@@ -575,10 +613,10 @@ export default function Servizi({groups}) {
           <section className="mb-12 lg:mb-24 xl:mb-48" id="contatti">
             <ContactForm groups={groups} />
           </section>
-        </main>
+        </div>
       </Layout>
     </div>
-  );
+  )
 }
 
 export async function getStaticProps() {

@@ -1,4 +1,5 @@
 // import Alert from '../components/alert'
+import {useRouter} from 'next/router'
 import Footer from './Footer/Footer'
 import Meta from '../components/meta'
 import Alert from '../components/alert'
@@ -7,15 +8,21 @@ import StructuredData from './StructuredData'
 import {globalSchema} from '../lib/seo/schema'
 
 export default function Layout({children, navbarTransparent, preview}) {
+  const {pathname} = useRouter()
   return (
     <>
       <Meta />
       <StructuredData data={globalSchema()} />
       <Navbar isTransparent={navbarTransparent} />
-      <div className="min-h-screen selection:bg-yellow-500 selection:text-white">
+      <main
+        className="site-content"
+        id="contenuto"
+        tabIndex={-1}
+        data-page={pathname}
+      >
         <Alert preview={preview} />
-        <main>{children}</main>
-      </div>
+        <div className="page-content">{children}</div>
+      </main>
       <Footer />
     </>
   )

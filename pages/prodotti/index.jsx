@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Image from "next/legacy/image"
+import Image from 'next/image'
 import Link from 'next/link'
 
 import ContactForm from '../../components/Form/ContactForm'
@@ -74,19 +74,27 @@ export default function ProductsHome({groups}) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <StructuredData
-        data={itemListSchema('Categorie prodotto Matarrese srl', CATEGORIE_PRODOTTO)}
+        data={itemListSchema(
+          'Categorie prodotto Matarrese srl',
+          CATEGORIE_PRODOTTO,
+        )}
       />
-      <StructuredData data={breadcrumbSchema([{name: 'Prodotti', path: '/prodotti'}])} />
+      <StructuredData
+        data={breadcrumbSchema([{name: 'Prodotti', path: '/prodotti'}])}
+      />
       <Layout>
         <div className="mb-12 lg:mb-24 xl:mb-48">
           <ProductSection />
         </div>
-        <main>
+        <div>
           <section className="relative">
             <Grid className="mb-12 lg:mb-24 xl:mb-48">
               {/* NOTE: `-mt-20 pt-20 for anchor link and sticky navbar` */}
               <div className="col-span-full -mt-20 pt-20" id="lavorazione">
-                <H2 as="h1" className="mb-14">{`Prodotti per la lavorazione e conservazione degli alimenti`}</H2>
+                <H2
+                  as="h2"
+                  className="mb-14"
+                >{`Prodotti per la lavorazione e conservazione degli alimenti`}</H2>
               </div>
 
               <div className="col-span-full">
@@ -213,7 +221,7 @@ export default function ProductsHome({groups}) {
                     className="max-w-full rounded-lg shadow-lg"
                     src={arredoSuMisura}
                     fill
-                    sizes="100vw"
+                    sizes="(max-width: 1024px) 90vw, 45vw"
                     style={{
                       objectFit: 'cover',
                     }}
@@ -375,7 +383,7 @@ export default function ProductsHome({groups}) {
           <section className="mb-12 lg:mb-24 xl:mb-48" id="contatti">
             <ContactForm featured groups={groups} />
           </section>
-        </main>
+        </div>
       </Layout>
     </>
   )
