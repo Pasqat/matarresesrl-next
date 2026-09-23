@@ -1,7 +1,7 @@
 // Solo sviluppo: selezione guidata dei media per il revamp.
 // Indice generato da scripts/media-index.mjs, scelte salvate in data/media-selection.json.
 import {useCallback, useEffect, useMemo, useState} from 'react'
-import {existsSync, readFileSync} from 'node:fs'
+import {existsSync, readFileSync, statSync} from 'node:fs'
 import {join} from 'node:path'
 
 const ROLES = [
@@ -31,6 +31,24 @@ const FILTERS = [
   ['all', 'Tutti'],
 ]
 const HERO_MIN_WIDTH = 1920
+// Filtro "utilizzabili": sotto questo lato lungo la foto è troppo sacrificata anche per una sezione.
+const MIN_LONG_SIDE = 1200
+const MIN_YEAR = 2025
+const usable = m =>
+  m.year >= MIN_YEAR && (m.kind === 'video' || Math.max(m.w || 0, m.h || 0) >= MIN_LONG_SIDE)
+
+// Anno del media: quello nel nome cartella se c'è (es. "Lab Deliziosa, Noci_2024"), altrimenti
+// la data di modifica del file (non scarica i file OneDrive solo-cloud); per WordPress la data di upload.
+function yearOf(m) {
+  if (m.source === 'wp') return Number(m.date?.slice(0, 4)) || 0
+  const fromFolder = m.folder?.match(/(?:^|\D)(20\d\d)(?:\D|$)/)
+  if (fromFolder) return Number(fromFolder[1])
+  try {
+    return statSync(m.path).mtime.getFullYear()
+  } catch {
+    return 0
+  }
+}
 const group = m => (m.source === 'wp' ? 'WordPress' : m.folder.split('/').slice(0, 2).join('/'))
 
 export async function getServerSideProps() {
@@ -41,7 +59,7 @@ export async function getServerSideProps() {
   }
   const index = read('media-index.json')
   const items = Object.entries(index)
-    .map(([id, m]) => ({id, ...m}))
+    .map(([id, m]) => ({id, ...m, year: yearOf(m)}))
     // Locali raggruppati per cartella (= cliente/evento), WordPress dal più grande.
     .sort((a, b) =>
       a.source !== b.source
@@ -72,6 +90,7 @@ export default function MediaReview({items, initialSelection}) {
   const [selection, setSelection] = useState(initialSelection)
   const [filter, setFilter] = useState('todo')
   const [folder, setFolder] = useState('all')
+  const [showAll, setShowAll] = useState(false)
   const [focus, setFocus] = useState(0)
   const [error, setError] = useState(null)
 
@@ -80,11 +99,13 @@ export default function MediaReview({items, initialSelection}) {
       items.filter(m => {
         if (folder !== 'all' && group(m) !== folder) return false
         const role = selection[m.id]?.role
+        // Le scelte già fatte restano sempre visibili nelle loro viste.
+        if (!showAll && !role && !usable(m)) return false
         if (filter === 'todo') return !role
         if (filter === 'all') return true
         return role === filter
       }),
-    [items, selection, filter, folder],
+    [items, selection, filter, folder, showAll],
   )
 
   const save = useCallback(async (id, patch) => {
@@ -124,8 +145,13 @@ export default function MediaReview({items, initialSelection}) {
 
   const stats = Object.values(selection).reduce((a, s) => ({...a, [s.role]: (a[s.role] || 0) + 1}), {})
   const missing = gaps(selection)
+  const pool = showAll ? items : items.filter(usable)
+  const hidden = items.length - items.filter(usable).length
   const folders = Object.entries(
-    items.reduce((a, m) => ({...a, [group(m)]: (a[group(m)] || 0) + 1}), {}),
+    pool.reduce((a, m) => {
+      a[group(m)] = (a[group(m)] || 0) + 1
+      return a
+    }, {}),
   )
 
   return (
@@ -134,7 +160,7 @@ export default function MediaReview({items, initialSelection}) {
         <div className="flex flex-wrap items-center gap-3">
           <strong>Selezione media</strong>
           <span className="text-gray-600">
-            {items.length} totali · {stats.hero || 0} hero · {stats.sezione || 0} sezione ·{' '}
+            {pool.length} da valutare · {stats.hero || 0} hero · {stats.sezione || 0} sezione ·{' '}
             {stats.scarta || 0} scartati
           </span>
           <nav className="flex gap-1">
@@ -161,6 +187,10 @@ export default function MediaReview({items, initialSelection}) {
               </option>
             ))}
           </select>
+          <label className="flex items-center gap-2 text-gray-700">
+            <input type="checkbox" checked={showAll} onChange={e => (setShowAll(e.target.checked), setFocus(0))} />
+            Mostra anche i {hidden} nascosti (lato lungo &lt; {MIN_LONG_SIDE}px o prima del {MIN_YEAR})
+          </label>
           <span className="text-gray-500">Tasti: ← → naviga · h hero · s sezione · x scarta · u annulla</span>
         </div>
         {error && <p className="mt-2 text-red-600" role="alert">{error}</p>}
