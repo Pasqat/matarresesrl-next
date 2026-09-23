@@ -121,31 +121,13 @@ export default function Home({groups, lastTwoProjects = [], event}) {
           secondary={{href: '/realizzazioni', label: 'Guarda i progetti'}}
         />
 
-        {/* Capitolo chiaro: per chi lavoriamo */}
-        <section
-          className="bg-calce text-ghisa"
-          data-header="light"
-          aria-labelledby="settori-title"
-        >
-          <div className="site-shell grid gap-14 py-24 lg:grid-cols-12 lg:py-32">
-            <div className="lg:col-span-5">
-              <h2
-                id="settori-title"
-                className="type-display text-[clamp(32px,3.6vw,56px)]"
-              >
-                Ogni cucina ha il suo mestiere.
-              </h2>
-              <p className="mt-6 max-w-[44ch] text-acciaio">
-                Lavoriamo per chi cucina, serve, produce e vende cibo. Ogni
-                settore ha flussi, norme e ritmi diversi: il progetto parte da
-                lì.
-              </p>
-            </div>
-            <div className="lg:col-span-7">
-              <SectorList settori={settori} href={() => '#parliamone'} />
-            </div>
-          </div>
-        </section>
+        {/* Capitolo: per chi lavoriamo (la foto del settore diventa lo sfondo) */}
+        <SectorList
+          settori={settori}
+          href={() => '#parliamone'}
+          title="Ogni cucina ha il suo mestiere."
+          intro="Lavoriamo per chi cucina, serve, produce e vende cibo. Ogni settore ha flussi, norme e ritmi diversi: il progetto parte da lì."
+        />
 
         {/* Capitolo scuro: come lavoriamo */}
         <section

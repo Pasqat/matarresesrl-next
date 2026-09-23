@@ -263,7 +263,7 @@ export default function HomeHero({slides, title, intro, primary, secondary}) {
         />
       </div>
 
-      <div className="site-shell pb-8 pt-36 lg:pb-10">
+      <div className="site-shell pb-8 pt-28 lg:pb-10">
         <h1
           id="home-title"
           className="type-display max-w-[15ch] text-[clamp(40px,6.6vw,116px)]"

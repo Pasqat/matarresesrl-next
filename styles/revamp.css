@@ -1,6 +1,6 @@
 /* Matarrese: photography, precise type, and generous working space. */
 /* I token sono in styles/globals.css (:root unico). */
-html { scroll-padding-top: 112px; }
+html { scroll-padding-top: 88px; }
 body { color: var(--ink); background: white; font-size: 18px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
 body::-webkit-scrollbar { width: 8px; }
 body::-webkit-scrollbar-track { box-shadow: none; }

@@ -1,6 +1,5 @@
-import {Fragment, useEffect, useState} from 'react'
+import {Fragment, useEffect, useRef, useState} from 'react'
 import {Dialog, Menu} from '@headlessui/react'
-import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
@@ -18,20 +17,56 @@ const secondary = [
   ['Domande frequenti', '/faq'],
 ]
 
-// Variante sopra l'hero scuro: focus in fiamma (il #995200 di default non regge su ghisa).
-const focusDark = 'focus-visible:outline-fiamma'
+// "Text roll": il testo sale e da sotto arriva una copia identica, nascosta agli screen reader.
+function Roll({children}) {
+  return (
+    <span className="nav-roll">
+      <span>{children}</span>
+      <span aria-hidden="true">{children}</span>
+    </span>
+  )
+}
+
+// Tema della sezione sotto il centro dell'header, letto da data-header="dark|light".
+// In cima alla pagina (scrollY < 40) l'header resta trasparente sopra l'hero.
+function useHeaderTheme(enabled, headerRef) {
+  const [theme, setTheme] = useState('top')
+  useEffect(() => {
+    if (!enabled) return
+    let frame = 0
+    const update = () => {
+      frame = 0
+      if (window.scrollY < 40) return setTheme('top')
+      const y = headerRef.current.offsetHeight / 2
+      // elementsFromPoint attraversa anche l'header fixed e l'eventuale Dialog aperto.
+      const section = document
+        .elementsFromPoint(window.innerWidth / 2, y)
+        .map(el => el.closest('[data-header]'))
+        .find(Boolean)
+      setTheme(section?.dataset.header === 'light' ? 'light' : 'dark')
+    }
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(update)
+    }
+    update()
+    window.addEventListener('scroll', schedule, {passive: true})
+    window.addEventListener('resize', schedule, {passive: true})
+    return () => {
+      cancelAnimationFrame(frame)
+      window.removeEventListener('scroll', schedule)
+      window.removeEventListener('resize', schedule)
+    }
+  }, [enabled, headerRef])
+  return theme
+}
 
 export default function Navbar({isTransparent = false}) {
   const [open, setOpen] = useState(false)
-  const [solid, setSolid] = useState(false)
-  useEffect(() => {
-    if (!isTransparent) return
-    const onScroll = () => setSolid(window.scrollY > 80)
-    onScroll()
-    window.addEventListener('scroll', onScroll, {passive: true})
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [isTransparent])
-  const dark = isTransparent ? focusDark : undefined
+  const headerRef = useRef(null)
+  const theme = useHeaderTheme(isTransparent, headerRef)
+  // bg: fondo dell'header; tone: colore di testi, logo, CTA e focus.
+  const bg = isTransparent ? theme : 'solid'
+  const tone = bg === 'light' || bg === 'solid' ? 'light' : 'dark'
   const router = useRouter()
   const current = href =>
     router.pathname === href || router.pathname.startsWith(href + '/')
@@ -41,61 +76,53 @@ export default function Navbar({isTransparent = false}) {
         Vai al contenuto
       </a>
       <header
-        className={clsx(
-          'site-header',
-          isTransparent && [
-            '!fixed inset-x-0 text-white transition-colors duration-300 motion-reduce:transition-none',
-            solid
-              ? '!border-b-inox/15 !bg-ghisa'
-              : '!border-b-transparent !bg-transparent',
-          ],
-        )}
+        ref={headerRef}
+        className="site-header"
+        data-variant={isTransparent ? 'overlay' : 'standard'}
+        data-bg={bg}
+        data-tone={tone}
       >
         <div className="site-header-inner">
           <Link
             href="/"
-            className={clsx('brand', dark)}
+            className="brand"
             aria-label="Matarrese, pagina iniziale"
           >
-            {isTransparent ? (
+            {isTransparent && (
               <Image
                 src="/img/logo-matarrese-bianco-350.png"
                 width={350}
                 height={26}
-                alt="Matarrese"
-                priority
-              />
-            ) : (
-              <Image
-                src="/img/logos/logo-matarrese-grigio-350.png"
-                width={263}
-                height={35}
-                alt="Matarrese"
+                alt=""
+                className="logo-dark"
                 priority
               />
             )}
+            <Image
+              src="/img/logos/logo-matarrese-grigio-350.png"
+              width={343}
+              height={23}
+              alt=""
+              className="logo-light"
+              priority={!isTransparent}
+            />
           </Link>
           <nav className="desktop-nav" aria-label="Navigazione principale">
             {primary.map(([name, href]) => (
               <Link
                 key={href}
                 href={href}
-                className={dark}
+                className="nav-item"
                 aria-current={current(href) ? 'page' : undefined}
               >
-                {name}
+                <Roll>{name}</Roll>
               </Link>
             ))}
             <Menu as="div" className="more-menu">
-              <Menu.Button className={clsx('nav-more', dark)}>
-                Esplora <span aria-hidden="true">+</span>
+              <Menu.Button className="nav-more nav-item">
+                <Roll>Esplora</Roll> <span aria-hidden="true">+</span>
               </Menu.Button>
-              <Menu.Items
-                className={clsx(
-                  'more-menu-items',
-                  isTransparent && '!text-ghisa',
-                )}
-              >
+              <Menu.Items className="more-menu-items">
                 {secondary.map(([name, href]) => (
                   <Menu.Item key={href} as={Fragment}>
                     {({active}) => (
@@ -109,31 +136,18 @@ export default function Navbar({isTransparent = false}) {
             </Menu>
           </nav>
           <div className="header-actions">
-            <Link
-              className={clsx(
-                'support-link',
-                isTransparent && '!text-inox',
-                dark,
-              )}
-              href="/assistenza"
-            >
-              Assistenza
+            <Link className="support-link nav-item" href="/assistenza">
+              <Roll>Assistenza</Roll>
             </Link>
+            {/* Figlio diretto di .header-actions: la regola legacy a 760px lo nasconde su mobile. */}
             <Link
-              className={clsx(
-                'site-button site-button-small',
-                isTransparent && 'site-button-light',
-                dark,
-              )}
+              className="site-button site-button-small nav-cta"
               href="/contatti"
             >
-              Contattaci
+              <Roll>Contattaci</Roll>
             </Link>
             <button
-              className={clsx(
-                'mobile-toggle',
-                isTransparent && ['[&>span]:!bg-white', focusDark],
-              )}
+              className="mobile-toggle"
               onClick={() => setOpen(true)}
               aria-label="Apri menu"
               aria-expanded={open}
@@ -178,6 +192,193 @@ export default function Navbar({isTransparent = false}) {
           </a>
         </Dialog.Panel>
       </Dialog>
+      {/* Globale ma confinato a .site-header: Link, Image e Menu sono componenti e lo
+          scope di styled-jsx non li raggiunge. Selettori a 0,2,0 per battere revamp.css. */}
+      <style jsx global>{`
+        .site-header[data-tone='dark'] {
+          --nav-fg: #fff;
+          --nav-muted: var(--inox);
+          --nav-line: var(--fiamma);
+          --nav-focus: var(--fiamma);
+          --cta-bg: var(--fiamma);
+          --cta-fg: var(--ghisa);
+          --cta-fill: #fff;
+        }
+        .site-header[data-tone='light'] {
+          --nav-fg: var(--ghisa);
+          --nav-muted: var(--acciaio-testo);
+          --nav-line: var(--fiamma-testo);
+          --nav-focus: var(--fiamma-testo);
+          --cta-bg: var(--ghisa);
+          --cta-fg: #fff;
+          --cta-fill: #42474c;
+        }
+        .site-header[data-variant] {
+          color: var(--nav-fg);
+          transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+        }
+        .site-header[data-variant='overlay'] {
+          position: fixed;
+          left: 0;
+          right: 0;
+        }
+        .site-header[data-bg='top'] {
+          background: transparent;
+          border-bottom-color: transparent;
+        }
+        .site-header[data-bg='dark'],
+        .site-header[data-bg='light'] {
+          -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+        }
+        .site-header[data-bg='dark'] {
+          background: color-mix(in srgb, var(--ghisa) 95%, transparent);
+          border-bottom-color: color-mix(in srgb, var(--inox) 15%, transparent);
+        }
+        .site-header[data-bg='light'] {
+          background: color-mix(in srgb, #fff 90%, transparent);
+          border-bottom-color: color-mix(
+            in srgb,
+            var(--ghisa) 10%,
+            transparent
+          );
+        }
+
+        /* Compatto: 72px desktop, 60px mobile (batte le min-height legacy 104/84/78). */
+        .site-header .site-header-inner {
+          min-height: 72px;
+          padding-block: 0;
+        }
+        .site-header .brand {
+          display: grid;
+          width: 180px;
+        }
+        .site-header .brand img {
+          grid-area: 1 / 1;
+          align-self: center;
+          transition: opacity 0.3s;
+        }
+        .site-header[data-tone='dark'] .logo-light,
+        .site-header[data-tone='light'] .logo-dark {
+          opacity: 0;
+        }
+        @media (max-width: 639px) {
+          .site-header .site-header-inner {
+            min-height: 60px;
+          }
+          .site-header .brand {
+            width: 150px;
+          }
+        }
+
+        .site-header .support-link {
+          color: var(--nav-muted);
+          transition: color 0.3s;
+        }
+        .site-header .more-menu-items {
+          color: var(--ghisa);
+        }
+        .site-header .mobile-toggle span {
+          background: currentColor;
+        }
+        .site-header[data-variant] :is(a, button):focus-visible {
+          outline-color: var(--nav-focus);
+        }
+
+        /* Voci di menu: text roll + linea che si allarga da sinistra. */
+        .site-header .nav-item {
+          position: relative;
+          text-decoration: none;
+        }
+        .site-header .nav-item::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 4px;
+          height: 2px;
+          background: var(--nav-line);
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+        .site-header .desktop-nav a[aria-current='page'] {
+          box-shadow: none;
+        }
+        .site-header
+          .nav-item:is(:hover, :focus-visible, [aria-current='page'])::after {
+          transform: scaleX(1);
+        }
+        .site-header .nav-roll {
+          position: relative;
+          display: inline-block;
+          overflow: hidden;
+          vertical-align: top;
+        }
+        .site-header .nav-roll > span {
+          display: block;
+          transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+        .site-header .nav-roll > span + span {
+          position: absolute;
+          top: 100%;
+          left: 0;
+        }
+        .site-header
+          :is(.nav-item, .nav-cta):is(:hover, :focus-visible)
+          .nav-roll
+          > span {
+          transform: translateY(-100%);
+        }
+
+        /* Contattaci: fill che scorre da sinistra, testo sempre nello stesso colore. */
+        .site-header .nav-cta,
+        .site-header .nav-cta:hover {
+          position: relative;
+          overflow: hidden;
+          isolation: isolate;
+          min-height: 40px;
+          padding-block: 8px;
+          border-color: var(--cta-bg);
+          background: var(--cta-bg);
+          color: var(--cta-fg);
+          transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+        }
+        .site-header .nav-cta::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          z-index: -1;
+          background: var(--cta-fill);
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+        .site-header .nav-cta:is(:hover, :focus-visible)::before {
+          transform: scaleX(1);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .site-header[data-variant],
+          .site-header .brand img,
+          .site-header .support-link,
+          .site-header .nav-item::after,
+          .site-header .nav-roll > span,
+          .site-header .nav-cta,
+          .site-header .nav-cta::before {
+            transition: none;
+          }
+          .site-header
+            :is(.nav-item, .nav-cta):is(:hover, :focus-visible)
+            .nav-roll
+            > span {
+            transform: none;
+          }
+          .site-header .nav-item:is(:hover, :focus-visible) {
+            color: var(--nav-line);
+          }
+        }
+      `}</style>
     </>
   )
 }
