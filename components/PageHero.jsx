@@ -29,7 +29,7 @@ export default function PageHero({title, intro, image, children, tall = true}) {
       <div className="site-shell pb-14 pt-32 lg:pb-20">
         <h1
           id="page-title"
-          className="type-display max-w-[16ch] text-[clamp(40px,6vw,104px)]"
+          className="type-display max-w-[16ch] text-[clamp(34px,6vw,104px)]"
         >
           {title}
         </h1>

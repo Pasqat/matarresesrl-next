@@ -34,6 +34,9 @@ strong {
     letter-spacing: -0.02em;
     line-height: 0.98;
     text-wrap: balance;
+    /* paracadute: a capo dentro una parola solo se non entra (parole lunghe su 375px) */
+    overflow-wrap: break-word;
+    hyphens: manual;
   }
 
   /* Barra di avanzamento delle foto dell'apertura (components/home/HomeHero.jsx) */
