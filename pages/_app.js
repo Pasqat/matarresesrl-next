@@ -82,25 +82,31 @@ function MyApp({Component, pageProps}) {
             </Script>
           </>
         ) : null}
-        <Script
-          id="google-tag-manager"
-          strategy="afterInteractive"
-          src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GTM_ID}`}
-        />
-        <Script id="gtag-init" strategy="afterInteractive">
-          {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('consent', 'default', {
-            'ad_storage': 'denied',
-            'ad_user_data': 'denied',
-            'ad_personalization': 'denied',
-            'analytics_storage': 'denied'
-          });
-          gtag('js', new Date());
-          gtag('config', '${gtag.GTM_ID}');
-        `}
-        </Script>
+        {/* GTM (e i tag che carica, es. LinkedIn) solo dopo il consenso, come in produzione:
+            prima nessun cookie di terze parti. Caricato dopo "Accetto", il consenso è già concesso. */}
+        {isCookieConsentAccept ? (
+          <>
+            <Script
+              id="google-tag-manager"
+              strategy="afterInteractive"
+              src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GTM_ID}`}
+            />
+            <Script id="gtag-init" strategy="afterInteractive">
+              {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('consent', 'default', {
+                'ad_storage': 'granted',
+                'ad_user_data': 'granted',
+                'ad_personalization': 'granted',
+                'analytics_storage': 'granted'
+              });
+              gtag('js', new Date());
+              gtag('config', '${gtag.GTM_ID}');
+            `}
+            </Script>
+          </>
+        ) : null}
         <style jsx global>{`
           :root {
             --font-display: ${display.style.fontFamily};
