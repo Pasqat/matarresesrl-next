@@ -124,7 +124,7 @@ export default function Home({groups, lastTwoProjects = [], event}) {
         {/* Capitolo: per chi lavoriamo (la foto del settore diventa lo sfondo) */}
         <SectorList
           settori={settori}
-          href={() => '#parliamone'}
+          href={s => (s.pagina ? `/settori/${s.slug}` : '#parliamone')}
           title="Ogni cucina ha il suo mestiere."
           intro="Lavoriamo per chi cucina, serve, produce e vende cibo. Ogni settore ha flussi, norme e ritmi diversi: il progetto parte da lì."
         />

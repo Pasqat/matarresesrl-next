@@ -6,7 +6,7 @@ export default function PageHero({title, intro, image, children, tall = true}) {
   return (
     <section
       className={`relative isolate flex flex-col justify-end overflow-hidden bg-ghisa text-white ${
-        image && tall ? 'min-h-[560px] lg:min-h-[78svh]' : 'min-h-[420px]'
+        image && tall ? 'min-h-[560px] lg:h-[78svh] lg:max-h-[960px]' : 'min-h-[420px]'
       }`}
       data-header="dark"
       aria-labelledby="page-title"
