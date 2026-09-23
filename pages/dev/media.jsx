@@ -31,6 +31,7 @@ const FILTERS = [
   ['all', 'Tutti'],
 ]
 const HERO_MIN_WIDTH = 1920
+const group = m => (m.source === 'wp' ? 'WordPress' : m.folder.split('/').slice(0, 2).join('/'))
 
 export async function getServerSideProps() {
   if (process.env.NODE_ENV === 'production') return {notFound: true}
@@ -41,7 +42,14 @@ export async function getServerSideProps() {
   const index = read('media-index.json')
   const items = Object.entries(index)
     .map(([id, m]) => ({id, ...m}))
-    .sort((a, b) => (b.w || 0) - (a.w || 0))
+    // Locali raggruppati per cartella (= cliente/evento), WordPress dal più grande.
+    .sort((a, b) =>
+      a.source !== b.source
+        ? a.source === 'local' ? -1 : 1
+        : a.source === 'local'
+          ? (a.folder + a.name).localeCompare(b.folder + b.name)
+          : (b.w || 0) - (a.w || 0),
+    )
   return {props: {items, initialSelection: read('media-selection.json')}}
 }
 
@@ -63,20 +71,20 @@ function gaps(selection) {
 export default function MediaReview({items, initialSelection}) {
   const [selection, setSelection] = useState(initialSelection)
   const [filter, setFilter] = useState('todo')
-  const [source, setSource] = useState('all')
+  const [folder, setFolder] = useState('all')
   const [focus, setFocus] = useState(0)
   const [error, setError] = useState(null)
 
   const visible = useMemo(
     () =>
       items.filter(m => {
-        if (source !== 'all' && m.source !== source) return false
+        if (folder !== 'all' && group(m) !== folder) return false
         const role = selection[m.id]?.role
         if (filter === 'todo') return !role
         if (filter === 'all') return true
         return role === filter
       }),
-    [items, selection, filter, source],
+    [items, selection, filter, folder],
   )
 
   const save = useCallback(async (id, patch) => {
@@ -116,6 +124,9 @@ export default function MediaReview({items, initialSelection}) {
 
   const stats = Object.values(selection).reduce((a, s) => ({...a, [s.role]: (a[s.role] || 0) + 1}), {})
   const missing = gaps(selection)
+  const folders = Object.entries(
+    items.reduce((a, m) => ({...a, [group(m)]: (a[group(m)] || 0) + 1}), {}),
+  )
 
   return (
     <main className="min-h-screen bg-gray-100 p-4 text-sm text-gray-900">
@@ -137,10 +148,18 @@ export default function MediaReview({items, initialSelection}) {
               </button>
             ))}
           </nav>
-          <select value={source} onChange={e => (setSource(e.target.value), setFocus(0))} className="border px-2 py-1">
-            <option value="all">Tutte le fonti</option>
-            <option value="wp">WordPress</option>
-            <option value="local">Cartella locale</option>
+          <select
+            value={folder}
+            onChange={e => (setFolder(e.target.value), setFocus(0))}
+            aria-label="Cartella"
+            className="max-w-xs border px-2 py-1"
+          >
+            <option value="all">Tutte le cartelle</option>
+            {folders.map(([f, n]) => (
+              <option key={f} value={f}>
+                {f} ({n})
+              </option>
+            ))}
           </select>
           <span className="text-gray-500">Tasti: ← → naviga · h hero · s sezione · x scarta · u annulla</span>
         </div>
@@ -187,6 +206,7 @@ export default function MediaReview({items, initialSelection}) {
               </div>
               <div className="flex flex-col gap-2 p-2">
                 <p className="truncate text-xs text-gray-500" title={m.path || m.url}>
+                  {m.folder ? `${m.folder} · ` : ''}
                   {m.name}
                 </p>
                 <div className="flex gap-1">

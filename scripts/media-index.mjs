@@ -1,12 +1,14 @@
 // Indicizza i media per lo strumento di selezione (/dev/media).
 //   node scripts/media-index.mjs                 -> solo WordPress
-//   node scripts/media-index.mjs --dir "D:\Foto" -> WordPress + cartella locale
-//   aggiungi --no-wp per saltare WordPress
+//   node scripts/media-index.mjs --dir "D:\Foto\Clienti" --dir "D:\Foto\Team" -> + cartelle locali
+//   --no-wp        salta WordPress
+//   --images-only  salta i video
+//   --free         dopo l'anteprima rimette il file OneDrive "solo online" (attrib +U -P)
 // Scrive data/media-index.json e le anteprime in public/_media-review/ (entrambi fuori da git).
 import {createHash} from 'node:crypto'
 import {execFileSync} from 'node:child_process'
 import {existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync} from 'node:fs'
-import {basename, extname, join, resolve} from 'node:path'
+import {basename, dirname, extname, join, relative, resolve, sep} from 'node:path'
 import sharp from 'sharp'
 
 const ROOT = resolve(import.meta.dirname, '..')
@@ -17,7 +19,10 @@ const IMG = new Set(['.jpg', '.jpeg', '.png', '.webp', '.tif', '.tiff', '.avif']
 const VID = new Set(['.mp4', '.mov', '.m4v', '.webm'])
 
 const args = process.argv.slice(2)
-const dir = args.includes('--dir') ? args[args.indexOf('--dir') + 1] : null
+const dirs = args.flatMap((a, i) => (a === '--dir' ? [args[i + 1]] : []))
+const imagesOnly = args.includes('--images-only')
+const free = args.includes('--free')
+const CONCURRENCY = 4 // i file OneDrive solo-cloud vanno scaricati: la latenza domina
 const index = existsSync(INDEX) ? JSON.parse(readFileSync(INDEX, 'utf8')) : {}
 mkdirSync(THUMBS, {recursive: true})
 
@@ -69,45 +74,59 @@ function* walk(d) {
   }
 }
 
+async function thumbnail(file, root) {
+  const ext = extname(file).toLowerCase()
+  const video = VID.has(ext)
+  const hash = createHash('sha1').update(file).digest('hex').slice(0, 16)
+  const id = `local:${hash}`
+  const thumbFile = join(THUMBS, `${hash}.webp`)
+  if (index[id] && existsSync(thumbFile)) return
+  let input = file
+  if (video) {
+    // Fotogramma a 1s con ffmpeg (deve essere nel PATH).
+    input = join(THUMBS, `${hash}.frame.jpg`)
+    execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-ss', '1', '-i', file, '-frames:v', '1', input])
+  }
+  const meta = await sharp(input).metadata()
+  await sharp(input).rotate().resize({width: 640, withoutEnlargement: true}).webp({quality: 70}).toFile(thumbFile)
+  const rotated = meta.orientation >= 5 // EXIF 5-8: larghezza e altezza invertite
+  index[id] = {
+    source: 'local',
+    kind: video ? 'video' : 'image',
+    name: basename(file),
+    folder: relative(dirname(root), dirname(file)).split(sep).join('/'),
+    path: file,
+    thumb: `/_media-review/${hash}.webp`,
+    w: rotated ? meta.height : meta.width,
+    h: rotated ? meta.width : meta.height,
+  }
+  if (free) execFileSync('attrib', ['+U', '-P', file])
+}
+
 async function indexFolder(folder) {
-  let count = 0
-  for (const file of walk(resolve(folder))) {
-    const ext = extname(file).toLowerCase()
-    if (!IMG.has(ext) && !VID.has(ext)) continue
-    const hash = createHash('sha1').update(file).digest('hex').slice(0, 16)
-    const id = `local:${hash}`
-    const thumbFile = join(THUMBS, `${hash}.webp`)
-    if (!index[id] || !existsSync(thumbFile)) {
+  const root = resolve(folder)
+  const files = [...walk(root)].filter(f => {
+    const ext = extname(f).toLowerCase()
+    return IMG.has(ext) || (!imagesOnly && VID.has(ext))
+  })
+  let done = 0
+  const next = async () => {
+    while (files.length) {
+      const file = files.shift()
       try {
-        let input = file
-        if (VID.has(ext)) {
-          // Fotogramma a 1s con ffmpeg (deve essere nel PATH).
-          input = join(THUMBS, `${hash}.frame.jpg`)
-          execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-ss', '1', '-i', file, '-frames:v', '1', input])
-        }
-        const meta = await sharp(input).metadata()
-        await sharp(input).rotate().resize({width: 640, withoutEnlargement: true}).webp({quality: 70}).toFile(thumbFile)
-        index[id] = {
-          source: 'local',
-          kind: VID.has(ext) ? 'video' : 'image',
-          name: basename(file),
-          path: file,
-          thumb: `/_media-review/${hash}.webp`,
-          w: meta.width,
-          h: meta.height,
-        }
+        await thumbnail(file, root)
       } catch (err) {
         console.error(`\nSaltato ${file}: ${err.message}`)
-        continue
       }
+      if (++done % 200 === 0) writeFileSync(INDEX, JSON.stringify(index, null, 1))
+      if (done % 50 === 0) console.log(`${basename(root)}: ${done}`)
     }
-    count++
-    process.stdout.write(`\rCartella: ${count}`)
   }
+  await Promise.all(Array.from({length: CONCURRENCY}, next))
   console.log()
 }
 
 if (!args.includes('--no-wp')) await indexWordPress()
-if (dir) await indexFolder(dir)
+for (const d of dirs) await indexFolder(d)
 writeFileSync(INDEX, JSON.stringify(index, null, 1))
 console.log(`Indice: ${Object.keys(index).length} media -> ${INDEX}`)
