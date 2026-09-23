@@ -1,7 +1,6 @@
 import '../styles/globals.css'
 import '../styles/index.css'
 import '../styles/revamp.css'
-import {ApolloProvider} from '@apollo/client'
 import Script from 'next/script'
 import {useEffect, useState} from 'react'
 import {useRouter} from 'next/router'
@@ -14,16 +13,16 @@ import PlausibleProvider from 'next-plausible'
 import {SpeedInsights} from '@vercel/speed-insights/next'
 import {Archivo, Newsreader} from 'next/font/google'
 
-import client from '../lib/apolloClient'
 
 // Display: Archivo a larghezza variabile (titoli "da targa" in versione espansa).
 // Editoriale: Newsreader per storie e citazioni. Testo: Matter (styles/index.css).
 const display = Archivo({subsets: ['latin'], axes: ['wdth'], display: 'swap'})
+// Newsreader serve solo a citazioni sotto la piega: niente corsivo e niente preload.
 const editorial = Newsreader({
   subsets: ['latin'],
-  style: ['normal', 'italic'],
   axes: ['opsz'],
   display: 'swap',
+  preload: false,
 })
 
 function MyApp({Component, pageProps}) {
@@ -63,7 +62,7 @@ function MyApp({Component, pageProps}) {
   }
 
   return (
-    <ApolloProvider client={client}>
+    <>
       <PlausibleProvider domain="matarrese.it">
         {/* Global Site Code Pixel - Facebook Pixel */}
         {isCookieConsentAccept ? (
@@ -149,7 +148,7 @@ function MyApp({Component, pageProps}) {
           </a>
         </CookieConsent>
       </PlausibleProvider>
-    </ApolloProvider>
+    </>
   )
 }
 

@@ -15,17 +15,23 @@ const SLATS = 7
 const DURATION = 6 // secondi per foto
 const KEN_BURNS = 1.06
 
-function Photo({slide, priority, className}) {
+// Su schermi verticali la foto 3:2 in object-cover è molto più larga del viewport.
+const SIZES = '(max-aspect-ratio: 3/2) 150vh, 100vw'
+
+function Photo({slide, priority, className, imgRef, onLoad}) {
   return (
     <Image
+      ref={imgRef}
       src={slide.src}
       alt=""
       fill
-      priority={priority}
-      sizes="100vw"
-      quality={80}
+      preload={priority}
+      fetchPriority={priority ? 'high' : undefined}
+      sizes={SIZES}
+      quality={75}
       className={className}
       style={{objectPosition: slide.position || '50% 50%'}}
+      onLoad={onLoad}
     />
   )
 }
@@ -37,8 +43,11 @@ export default function HomeHero({slides, title, intro, primary, secondary}) {
   const [index, setIndex] = useState(0)
   const [next, setNext] = useState(null)
   const [playing, setPlaying] = useState(true)
-  const [visible, setVisible] = useState(true)
+  const [inView, setInView] = useState(true)
+  const [pageVisible, setPageVisible] = useState(true)
   const [reduced, setReduced] = useState(false)
+  const [ready, setReady] = useState(false) // prima foto caricata: ora si può precaricare la successiva
+  const upcomingImg = useRef(null)
 
   useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -50,9 +59,9 @@ export default function HomeHero({slides, title, intro, primary, secondary}) {
 
   // Fermo quando l'apertura non si vede o la scheda è nascosta.
   useEffect(() => {
-    const io = new IntersectionObserver(([e]) => setVisible(e.isIntersecting), {threshold: 0.2})
+    const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), {threshold: 0.2})
     io.observe(root.current)
-    const onVis = () => setVisible(!document.hidden)
+    const onVis = () => setPageVisible(!document.hidden)
     document.addEventListener('visibilitychange', onVis)
     return () => {
       io.disconnect()
@@ -61,15 +70,17 @@ export default function HomeHero({slides, title, intro, primary, secondary}) {
   }, [])
 
   const go = useCallback(
-    target => {
+    async target => {
       if (next !== null || target === index) return
-      if (reduced) setIndex(target)
-      else setNext(target)
+      if (reduced) return setIndex(target)
+      // Decodifica prima del cambio: niente strisce vuote al primo fotogramma.
+      if (target === (index + 1) % slides.length) await upcomingImg.current?.decode?.().catch(() => {})
+      setNext(target)
     },
-    [index, next, reduced],
+    [index, next, reduced, slides.length],
   )
 
-  const running = playing && visible && !reduced && next === null
+  const running = playing && inView && pageVisible && !reduced && next === null
 
   // Avanzamento automatico.
   useEffect(() => {
@@ -138,8 +149,8 @@ export default function HomeHero({slides, title, intro, primary, secondary}) {
       aria-labelledby="home-title"
     >
       <div data-hero-media className="absolute inset-0 -z-10">
-        <div ref={base} className="absolute inset-0">
-          <Photo slide={current} priority={index === 0} className="object-cover" />
+        <div ref={base} className="absolute inset-0" style={{transform: reduced ? undefined : `scale(${KEN_BURNS})`}}>
+          <Photo slide={current} priority={index === 0} className="object-cover" onLoad={() => setReady(true)} />
         </div>
         {next !== null && (
           <div ref={strips} className="absolute inset-0" style={{transform: `scale(${KEN_BURNS})`}}>
@@ -150,10 +161,10 @@ export default function HomeHero({slides, title, intro, primary, secondary}) {
             ))}
           </div>
         )}
-        {/* Precarica la foto successiva quando la pagina è già interattiva. */}
-        {!reduced && (
+        {/* Precarica la foto successiva solo dopo che la prima è arrivata. */}
+        {!reduced && ready && (
           <div className="invisible absolute inset-0" aria-hidden="true">
-            <Photo slide={upcoming} className="object-cover" />
+            <Photo slide={upcoming} className="object-cover" imgRef={upcomingImg} />
           </div>
         )}
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(30_34_38/.9)_0%,rgb(30_34_38/.55)_50%,rgb(30_34_38/.1)_100%),linear-gradient(0deg,rgb(30_34_38/.85)_0%,transparent_45%),linear-gradient(180deg,rgb(30_34_38/.7)_0%,transparent_22%)]" />

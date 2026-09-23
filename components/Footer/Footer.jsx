@@ -76,8 +76,8 @@ export default function Footer() {
               >
                 <Image
                   src="/img/logo-matarrese-bianco-350.png"
-                  width={263}
-                  height={35}
+                  width={350}
+                  height={26}
                   alt="Matarrese"
                   className="h-auto w-full max-w-[250px]"
                 />

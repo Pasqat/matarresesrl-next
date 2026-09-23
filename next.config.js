@@ -19,9 +19,7 @@ module.exports = {
       {protocol: 'http', hostname: 'localhost', port: '3000'},
     ],
     deviceSizes: [320, 480, 640, 768, 1024, 1280, 1600, 1920, 2560, 3840],
-    imageSizes: [
-      16, 32, 48, 64, 96, 128, 256, 384, 512, 768, 1024, 1280, 1600, 1920, 3840,
-    ],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256],
   },
   async redirects() {
     return [
