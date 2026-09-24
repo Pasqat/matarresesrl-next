@@ -368,6 +368,33 @@ async function main() {
   console.log(
     'PASS API contact/subscribe: validation, honeypot, mocked Resend/Odoo/MailerLite',
   )
+  // Build SSG: WordPress che chiude la connessione o risponde 508 viene ritentato.
+  let calls = 0
+  let responses = []
+  const {fetchWithRetry} = load(
+    'lib/apolloClient.js',
+    () => ({ApolloClient: function () {}, HttpLink: function () {}, InMemoryCache: function () {}}),
+    {
+      setTimeout: fn => fn(),
+      fetch: async () => {
+        const next = responses[calls++]
+        if (next instanceof Error) throw next
+        return {status: next}
+      },
+    },
+  )
+  responses = [new TypeError('fetch failed'), 508, 200]
+  assert.equal((await fetchWithRetry('wp')).status, 200)
+  assert.equal(calls, 3)
+  calls = 0
+  responses = [404]
+  assert.equal((await fetchWithRetry('wp')).status, 404, 'non ritenta gli errori definitivi')
+  assert.equal(calls, 1)
+  calls = 0
+  responses = [508, 508, 508, 508]
+  assert.equal((await fetchWithRetry('wp')).status, 508, 'dopo 3 tentativi restituisce l’errore')
+  assert.equal(calls, 4)
+  console.log('PASS WordPress fetch retry: socket errors and 508 retried, 404 not')
   console.log('No external requests were made.')
 }
 main().catch(error => {
