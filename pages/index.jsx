@@ -26,7 +26,7 @@ const heroSlides = [
   },
   {
     src: '/img/home/pantaleo-cucina.webp',
-    caption: 'Pantaleo Agribistrot',
+    caption: 'Agrobistrot Pantaleo',
     kind: 'cucina professionale in servizio',
   },
   {

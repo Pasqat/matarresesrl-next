@@ -83,7 +83,7 @@ export default function DesignSpecimen() {
         <div className="grid gap-6 md:grid-cols-2 lg:col-span-7">
           {[
             [project, 'Piazza Grande', 'Ristorante ad Alberobello'],
-            [project2, 'Pantaleo Agribistrot', 'Agribistrot in Puglia'],
+            [project2, 'Agrobistrot Pantaleo', 'Agrobistrot a Pezze di Greco'],
           ].map(([src, title, meta], i) => (
             <a key={title} href="#" className={`group block ${i === 1 ? 'md:mt-24' : ''}`}>
               <div className="relative aspect-[4/5] overflow-hidden bg-inox">
