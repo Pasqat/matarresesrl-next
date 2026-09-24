@@ -33,7 +33,6 @@
     "next": "16.2.10",
     "next-plausible": "^3.5.0",
     "next-sitemap": "^4.2.3",
-    "plaiceholder": "^2.3.0",
     "prop-types": "^15.8.1",
     "react": "18.3.1",
     "react-cookie-consent": "^10.0.1",

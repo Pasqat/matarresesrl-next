@@ -155,8 +155,11 @@ export async function getStaticPaths() {
   const allProjects = await getAllProjectsWithSlug()
 
   return {
-    paths:
-      allProjects.edges.map(({node}) => `/realizzazioni/${node.slug}`) || [],
+    // Solo i più recenti in build: l'hosting WordPress non regge ~200 export di fila.
+    // Gli altri li genera il fallback alla prima visita (poi restano in cache).
+    paths: (allProjects?.edges || [])
+      .slice(0, 20)
+      .map(({node}) => `/realizzazioni/${node.slug}`),
     fallback: true,
   }
 }

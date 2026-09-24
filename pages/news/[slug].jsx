@@ -175,7 +175,11 @@ export async function getStaticProps({params, preview = false, previewData}) {
 export async function getStaticPaths() {
   const allPosts = await getAllPostsWithSlug()
   return {
-    paths: (allPosts?.edges || []).map(({node}) => `/news/${node.slug}`),
+    // Solo i più recenti in build: l'hosting WordPress non regge ~200 export di fila.
+    // Gli altri li genera il fallback alla prima visita (poi restano in cache).
+    paths: (allPosts?.edges || [])
+      .slice(0, 12)
+      .map(({node}) => `/news/${node.slug}`),
     fallback: true,
   }
 }

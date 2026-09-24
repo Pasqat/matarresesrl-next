@@ -201,7 +201,11 @@ export async function getStaticProps({params}) {
 export async function getStaticPaths() {
   const allEvents = await getAllEventsWithSlug()
   return {
-    paths: (allEvents?.edges || []).map(({node}) => `/eventi/${node.slug}`),
+    // Solo i più recenti in build: l'hosting WordPress non regge ~200 export di fila.
+    // Gli altri li genera il fallback alla prima visita (poi restano in cache).
+    paths: (allEvents?.edges || [])
+      .slice(0, 12)
+      .map(({node}) => `/eventi/${node.slug}`),
     fallback: true,
   }
 }
