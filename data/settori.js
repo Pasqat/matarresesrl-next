@@ -108,7 +108,7 @@ const settori = [
           ],
         ],
       },
-      // Nomi dalle cartelle clienti in OneDrive: da verificare prima di pubblicarli.
+      // Clienti citabili: autorizzato da Pasquale il 24/09/2026.
       galleria: [
         {
           src: '/img/settori/lab-bufano-forno.webp',

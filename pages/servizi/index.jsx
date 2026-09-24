@@ -134,9 +134,10 @@ const FASI = [
         <ol>
           <li>Pianta dettagliata del locale o sopralluogo</li>
           <li>Verifica della destinazione d’uso del locale</li>
+          {/* Il tecnico sanitario lo incarica il cliente: non è un servizio Matarrese. */}
           <li>
-            Incontro con il tecnico sanitario per il rilascio delle
-            autorizzazioni
+            Incontro con il tuo tecnico sanitario di fiducia per il rilascio
+            delle autorizzazioni
           </li>
           <li>Appuntamento con i nostri esperti per la progettazione</li>
         </ol>

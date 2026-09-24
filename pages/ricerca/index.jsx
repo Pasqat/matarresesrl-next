@@ -154,7 +154,7 @@ export default function AboutUs() {
                 <li>
                   <Image
                     src={PrimaLogo}
-                    alt="Prima Partnership for researh and innovation in the mediterranean area"
+                    alt="PRIMA, Partnership for Research and Innovation in the Mediterranean Area"
                     placeholder="blur"
                     sizes="200px"
                     className="h-auto w-full max-w-[200px]"
