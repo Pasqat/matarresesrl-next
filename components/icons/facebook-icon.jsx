@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-function FacebookIcon({size = 20, title = 'Fackebook'}) {
+function FacebookIcon({size = 20, title = 'Facebook'}) {
   return (
     <svg width={size} height={size} fill="none" viewBox="-2 -2 28 28">
       <title>{title}</title>
