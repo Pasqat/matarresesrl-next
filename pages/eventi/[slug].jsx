@@ -8,7 +8,7 @@ import AperturaEditoriale, {
 import Prosa from '../../components/editoriale/Prosa'
 import FormModal from '../../components/Form/FormModal'
 import SocialShareBar from '../../components/SocialShareBar/SocialShareBar'
-import {getAllEventsWithSlug, getEvent} from '../../lib/query/event'
+import {getEvent} from '../../lib/query/event'
 import {SeoDataSection} from '../../components/sections/seodata-section'
 import StructuredData from '../../components/StructuredData'
 import {eventSchema, breadcrumbSchema} from '../../lib/seo/schema'
@@ -199,13 +199,8 @@ export async function getStaticProps({params}) {
   return {props: {event}, revalidate: 86400}
 }
 export async function getStaticPaths() {
-  const allEvents = await getAllEventsWithSlug()
-  return {
-    // Solo i più recenti in build: l'hosting WordPress non regge ~200 export di fila.
-    // Gli altri li genera il fallback alla prima visita (poi restano in cache).
-    paths: (allEvents?.edges || [])
-      .slice(0, 12)
-      .map(({node}) => `/eventi/${node.slug}`),
-    fallback: true,
-  }
+  // Nessun dettaglio in build: l'hosting WordPress rifiuta le raffiche di richieste dai
+  // server di build Vercel. Ogni pagina si genera alla prima visita e poi resta in cache (ISR);
+  // la sitemap li elenca comunque tutti (next-sitemap.config.js).
+  return {paths: [], fallback: 'blocking'}
 }

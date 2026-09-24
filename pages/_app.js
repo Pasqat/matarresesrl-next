@@ -13,7 +13,6 @@ import PlausibleProvider from 'next-plausible'
 import {SpeedInsights} from '@vercel/speed-insights/next'
 import {Archivo, Newsreader} from 'next/font/google'
 
-
 // Display: Archivo a larghezza variabile (titoli "da targa" in versione espansa).
 // Editoriale: Newsreader per storie e citazioni. Testo: Matter (styles/index.css).
 const display = Archivo({subsets: ['latin'], axes: ['wdth'], display: 'swap'})
@@ -107,12 +106,11 @@ function MyApp({Component, pageProps}) {
             </Script>
           </>
         ) : null}
-        <style jsx global>{`
-          :root {
-            --font-display: ${display.style.fontFamily};
-            --font-editorial: ${editorial.style.fontFamily};
-          }
-        `}</style>
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `:root{--font-display:${display.style.fontFamily};--font-editorial:${editorial.style.fontFamily}}`,
+          }}
+        />
         <Component {...pageProps} />
         <SpeedInsights />
         <ScrollToTop />

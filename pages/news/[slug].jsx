@@ -9,7 +9,7 @@ import InvitoProgetto from '../../components/editoriale/InvitoProgetto'
 import Correlati from '../../components/editoriale/Correlati'
 import SocialShareBar from '../../components/SocialShareBar/SocialShareBar'
 import {formatDate} from '../../actions/utils/formatDate'
-import {getAllPostsWithSlug, getPost, getMorePosts} from '../../lib/query/post'
+import {getPost, getMorePosts} from '../../lib/query/post'
 import {SeoDataSection} from '../../components/sections/seodata-section'
 import StructuredData from '../../components/StructuredData'
 import {
@@ -173,13 +173,8 @@ export async function getStaticProps({params, preview = false, previewData}) {
   }
 }
 export async function getStaticPaths() {
-  const allPosts = await getAllPostsWithSlug()
-  return {
-    // Solo i più recenti in build: l'hosting WordPress non regge ~200 export di fila.
-    // Gli altri li genera il fallback alla prima visita (poi restano in cache).
-    paths: (allPosts?.edges || [])
-      .slice(0, 12)
-      .map(({node}) => `/news/${node.slug}`),
-    fallback: true,
-  }
+  // Nessun dettaglio in build: l'hosting WordPress rifiuta le raffiche di richieste dai
+  // server di build Vercel. Ogni pagina si genera alla prima visita e poi resta in cache (ISR);
+  // la sitemap li elenca comunque tutti (next-sitemap.config.js).
+  return {paths: [], fallback: 'blocking'}
 }

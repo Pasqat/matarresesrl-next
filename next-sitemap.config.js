@@ -67,10 +67,16 @@ module.exports = {
   autoLastmod: true,
   additionalPaths: async config => {
     const paths = []
-    for (const [type, base] of DETAIL) {
-      for (const slug of await wpSlugs(type)) {
-        paths.push(await config.transform(config, `${base}/${slug}`))
+    try {
+      for (const [type, base] of DETAIL) {
+        for (const slug of await wpSlugs(type)) {
+          paths.push(await config.transform(config, `${base}/${slug}`))
+        }
       }
+    } catch (err) {
+      // WordPress irraggiungibile: meglio una sitemap senza dettagli che un deploy fallito.
+      console.warn(`ATTENZIONE sitemap senza news/realizzazioni/eventi: ${err.message}`)
+      return []
     }
     return paths
   },
