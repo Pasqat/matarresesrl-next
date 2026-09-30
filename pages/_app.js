@@ -9,6 +9,7 @@ import * as gtag from '../lib/gtm'
 import CookieConsent, {getCookieConsentValue} from 'react-cookie-consent'
 
 import ScrollToTop from '../components/ScrollToTop'
+import SmoothScroll from '../components/SmoothScroll'
 import PlausibleProvider from 'next-plausible'
 import {SpeedInsights} from '@vercel/speed-insights/next'
 import {Archivo, Newsreader} from 'next/font/google'
@@ -111,6 +112,7 @@ function MyApp({Component, pageProps}) {
             __html: `:root{--font-display:${display.style.fontFamily};--font-editorial:${editorial.style.fontFamily}}`,
           }}
         />
+        <SmoothScroll />
         <Component {...pageProps} />
         <SpeedInsights />
         <ScrollToTop />

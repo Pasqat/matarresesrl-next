@@ -159,7 +159,12 @@ export default function Navbar({isTransparent = false}) {
           </div>
         </div>
       </header>
-      <Dialog open={open} onClose={setOpen} className="mobile-dialog">
+      <Dialog
+        open={open}
+        onClose={setOpen}
+        className="mobile-dialog"
+        data-lenis-prevent
+      >
         <div className="mobile-backdrop" aria-hidden="true" />
         <Dialog.Panel className="mobile-panel">
           <div className="mobile-panel-top">

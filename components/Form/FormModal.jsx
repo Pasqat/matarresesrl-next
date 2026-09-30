@@ -252,6 +252,7 @@ export default function FormModal({
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
+          data-lenis-prevent
           className="fixed inset-0 z-[51] overflow-y-auto"
           onClose={closeModal}
         >
