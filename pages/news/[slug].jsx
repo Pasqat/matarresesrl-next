@@ -147,7 +147,6 @@ export default function Post({postData, posts, preview}) {
         <Correlati
           title="Continua a esplorare"
           link={{href: '/news', label: 'Tutti gli articoli'}}
-          cta="Leggi l’articolo"
           items={posts.edges.map(({node}) => ({
             href: `/news/${node.slug}`,
             title: node.title,

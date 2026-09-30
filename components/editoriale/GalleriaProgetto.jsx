@@ -1,16 +1,20 @@
-// Galleria del progetto: griglia asimmetrica e visore a tutto schermo (Headless UI Dialog:
-// focus intrappolato, Esc per chiudere, frecce per scorrere). Alt da WordPress.
+// Galleria del progetto: campate a larghezze alterne alla stessa altezza per riga, riquadro che
+// si disegna al passaggio (disegno/Riquadro), visore a tutto schermo (Headless UI Dialog: focus
+// intrappolato, Esc per chiudere, frecce per scorrere). Alt da WordPress.
 import {useState} from 'react'
 import Image from 'next/image'
 import {Dialog} from '@headlessui/react'
+import Riquadro from '../disegno/Riquadro'
 
-function layout(i, n) {
-  // Ritmo 7+5 colonne, poi una foto a tutta larghezza; l'ultima rimasta sola si allarga.
-  if (i % 3 === 2 || (i === n - 1 && i % 3 === 0))
-    return ['md:col-span-2 lg:col-span-12', 'aspect-[4/3] md:aspect-[21/9]']
-  if (i % 3 === 0) return ['lg:col-span-7', 'aspect-[4/3]']
-  return ['lg:col-span-5', 'aspect-[4/3] lg:aspect-[4/5]']
-}
+// Da lg ogni riga somma 12 colonne (7+5, 4+8, 6+6), altezza fissa: le campate cambiano, la riga no.
+const SPAN = [
+  'lg:col-span-7',
+  'lg:col-span-5',
+  'lg:col-span-4',
+  'lg:col-span-8',
+  'lg:col-span-6',
+  'lg:col-span-6',
+]
 
 export default function GalleriaProgetto({images, title}) {
   const [open, setOpen] = useState(null)
@@ -21,39 +25,37 @@ export default function GalleriaProgetto({images, title}) {
   return (
     <>
       <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-12 lg:gap-6">
-        {images.map((img, i) => {
-          const [span, aspect] = layout(i, n)
-          return (
-            <li key={img.id || img.sourceUrl} className={span}>
-              <button
-                type="button"
-                onClick={() => setOpen(i)}
-                className={`group relative block w-full overflow-hidden bg-inox ${aspect}`}
-              >
-                <Image
-                  src={img.sourceUrl}
-                  alt={img.altText || ''}
-                  fill
-                  sizes={
-                    span.includes('col-span-12')
-                      ? '100vw'
-                      : '(min-width: 1024px) 55vw, (min-width: 640px) 50vw, 100vw'
-                  }
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] motion-reduce:transition-none"
-                />
-                <span className="sr-only">
-                  Ingrandisci la foto {i + 1} di {n}
-                </span>
-              </button>
-            </li>
-          )
-        })}
+        {images.map((img, i) => (
+          <li
+            key={img.id || img.sourceUrl}
+            className={`group relative aspect-[3/2] lg:h-[32vw] lg:[aspect-ratio:auto] ${SPAN[i % SPAN.length]}`}
+          >
+            <button
+              type="button"
+              onClick={() => setOpen(i)}
+              className="absolute inset-0 block w-full overflow-hidden bg-inox"
+            >
+              <Image
+                src={img.sourceUrl}
+                alt={img.altText || ''}
+                fill
+                sizes="(min-width: 1024px) 60vw, (min-width: 640px) 50vw, 100vw"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] motion-reduce:transition-none"
+              />
+              <span className="sr-only">
+                Ingrandisci la foto {i + 1} di {n}
+              </span>
+            </button>
+            <Riquadro className="text-fiamma-testo" />
+          </li>
+        ))}
       </ul>
 
       <Dialog
         open={current !== null}
         onClose={() => setOpen(null)}
         className="fixed inset-0 z-[60]"
+        data-lenis-prevent
       >
         <div className="fixed inset-0 bg-ghisa/95" aria-hidden="true" />
         <Dialog.Panel

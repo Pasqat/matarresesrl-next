@@ -1,9 +1,8 @@
 import {useRouter} from 'next/router'
 import Head from 'next/head'
+import Image from 'next/image'
 import Layout from '../../components/Layout'
-import AperturaEditoriale, {
-  Copertina,
-} from '../../components/editoriale/AperturaEditoriale'
+import Cartiglio from '../../components/disegno/Cartiglio'
 import Prosa from '../../components/editoriale/Prosa'
 import GalleriaProgetto from '../../components/editoriale/GalleriaProgetto'
 import InvitoProgetto from '../../components/editoriale/InvitoProgetto'
@@ -32,7 +31,7 @@ export default function Project({project, related}) {
     project.portfolioCategories?.edges?.map(({node}) => node.name) || []
   const anni = project.portfolioTags?.edges?.map(({node}) => node.name) || []
   const scheda = [
-    ['Settore', categorie.join(', ')],
+    ['Categoria', categorie.join(', ')],
     ['Anno', anni.join(', ')],
   ].filter(([, valore]) => valore)
 
@@ -60,32 +59,39 @@ export default function Project({project, related}) {
         ])}
       />
 
-      <AperturaEditoriale
-        back={{href: '/realizzazioni', label: 'Tutte le realizzazioni'}}
-        meta={categorie.join(' · ')}
-        title={project.title}
-      />
-      <Copertina
-        image={{src: cover, alt: project.featuredImage?.node?.altText}}
-      />
+      <section
+        aria-labelledby="page-title"
+        data-header="light"
+        className="relative bg-calce pb-10 lg:pb-0"
+      >
+        <div className="relative h-[72vh] min-h-[420px] bg-inox">
+          {cover && (
+            <Image
+              src={cover}
+              alt={project.featuredImage?.node?.altText || ''}
+              fill
+              preload
+              fetchPriority="high"
+              sizes="100vw"
+              className="object-cover"
+            />
+          )}
+          {/* In cima l'header è trasparente con testi bianchi: il velo lo tiene leggibile su foto chiare */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-ghisa/70 to-transparent"
+          />
+        </div>
+        <Cartiglio id="page-title" title={project.title} rows={scheda} />
+      </section>
 
       <section
         className="bg-white text-ghisa"
         data-header="light"
         aria-label="Il progetto"
       >
-        <div className="site-shell grid gap-12 py-20 lg:grid-cols-12 lg:py-28">
-          {scheda.length > 0 && (
-            <dl className="self-start lg:sticky lg:top-32 lg:col-span-3">
-              {scheda.map(([voce, valore]) => (
-                <div key={voce} className="border-t border-ghisa/15 py-4">
-                  <dt className="text-sm text-acciaio">{voce}</dt>
-                  <dd className="mt-1">{valore}</dd>
-                </div>
-              ))}
-            </dl>
-          )}
-          <div className="min-w-0 lg:col-span-8 lg:col-start-5">
+        <div className="site-shell grid py-20 lg:grid-cols-12 lg:py-28">
+          <div className="min-w-0 lg:col-span-8 lg:col-start-2">
             <Prosa content={project.content} editoriale />
             <SocialShareBar route={router.asPath} title={project.title} />
             <InvitoProgetto title="Uno spazio da immaginare insieme." />
@@ -116,7 +122,6 @@ export default function Project({project, related}) {
       <Correlati
         title="Altre realizzazioni"
         link={{href: '/realizzazioni', label: 'Tutte le realizzazioni'}}
-        cta="Guarda il progetto"
         items={related.map(p => ({
           href: `/realizzazioni/${p.slug}`,
           title: p.title,

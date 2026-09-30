@@ -1,14 +1,14 @@
 // Card di progetto/articolo coerente con home/ProjectGrid: al passaggio la foto si avvicina
-// e dal basso sale la fascia con l'invito. `tone="dark"` per le sezioni ghisa.
+// e attorno si disegna il riquadro (disegno/Riquadro). `tone="dark"` per le sezioni ghisa.
 import Image from 'next/image'
 import Link from 'next/link'
+import Riquadro from '../disegno/Riquadro'
 
 export default function CardEditoriale({
   href,
   image,
   title,
   meta,
-  cta,
   aspect = 'aspect-[5/4]',
   as: Heading = 'h3',
   tone = 'light',
@@ -17,26 +17,23 @@ export default function CardEditoriale({
   const dark = tone === 'dark'
   return (
     <Link href={href} className="group block">
-      <div
-        className={`relative overflow-hidden ${
-          dark ? 'bg-grafite' : 'bg-inox'
-        } ${aspect}`}
-      >
-        {image?.src && (
-          <Image
-            src={image.src}
-            alt={image.alt || ''}
-            fill
-            sizes={sizes}
-            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04] motion-reduce:transition-none"
-          />
-        )}
-        <span className="absolute inset-x-0 bottom-0 flex translate-y-full items-center justify-between bg-ghisa/85 px-5 py-4 text-sm text-white backdrop-blur-sm transition-transform duration-500 ease-out group-hover:translate-y-0 group-focus-visible:translate-y-0 motion-reduce:transition-none">
-          {cta}
-          <span aria-hidden="true" className="text-fiamma">
-            ↗
-          </span>
-        </span>
+      <div className={`relative ${aspect}`}>
+        <div
+          className={`absolute inset-0 overflow-hidden ${
+            dark ? 'bg-grafite' : 'bg-inox'
+          }`}
+        >
+          {image?.src && (
+            <Image
+              src={image.src}
+              alt={image.alt || ''}
+              fill
+              sizes={sizes}
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04] motion-reduce:transition-none"
+            />
+          )}
+        </div>
+        <Riquadro className={dark ? 'text-fiamma' : 'text-fiamma-testo'} />
       </div>
       {meta && (
         <p

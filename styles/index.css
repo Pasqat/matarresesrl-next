@@ -39,11 +39,6 @@ strong {
     hyphens: manual;
   }
 
-  /* Barra di avanzamento delle foto dell'apertura (components/home/HomeHero.jsx) */
-  .hero-progress {
-    animation: hero-progress var(--hero-duration, 6s) linear both;
-  }
-
   /* Fascia marchi (components/home/BrandMarquee.jsx): due copie, scorre di metà larghezza */
   .marquee {
     animation: marquee 45s linear infinite;
@@ -70,9 +65,68 @@ strong {
     letter-spacing: -0.01em;
   }
 
+  /* Disegno tecnico (components/disegno/*): etichette dei cartigli, pianta che si traccia, riquadro che si disegna */
+  .type-label {
+    font: 500 12px/1.3 Matter, sans-serif;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .pianta text {
+    font: 500 20px Matter, sans-serif;
+    letter-spacing: 0.08em;
+    fill: currentColor;
+    stroke: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .pianta [data-draw] {
+      stroke-dasharray: 0 100000;
+    }
+    .pianta text,
+    .pianta [data-fade] {
+      opacity: 0;
+    }
+  }
+
+  .riquadro-draw,
+  .riquadro-hover {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-dasharray: 100;
+  }
+
+  .riquadro-draw {
+    animation: riquadro 0.6s cubic-bezier(0.65, 0, 0.35, 1) both;
+  }
+
+  .riquadro-hover {
+    stroke-dashoffset: 100;
+    transition: stroke-dashoffset 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  .group:is(:hover, :focus-visible) .riquadro-hover {
+    stroke-dashoffset: 0;
+  }
+
   .bg-gradient-tl-yellow {
     @apply bg-gradient-to-tl from-primary to-secondary;
   }
+}
+
+/* Titoli con data-split (home/HeroPianta): nascosti finché SplitText non li divide (niente lampo);
+   la maschera di riga scende sotto la linea di base per non tagliare le discendenti.
+   Fuori da @layer: .ln-mask la crea SplitText a runtime e Tailwind la scarterebbe. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-split] {
+    visibility: hidden;
+  }
+}
+
+.ln-mask {
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
 }
 
 @layer utilities {
@@ -355,13 +409,12 @@ strong {
   }
 }
 
-
-@keyframes hero-progress {
+@keyframes riquadro {
   from {
-    transform: scaleX(0);
+    stroke-dashoffset: 100;
   }
   to {
-    transform: scaleX(1);
+    stroke-dashoffset: 0;
   }
 }
 

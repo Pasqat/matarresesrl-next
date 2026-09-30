@@ -3,9 +3,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Layout from '../components/Layout'
 import ContactForm from '../components/Form/ContactForm'
-import HomeHero from '../components/home/HomeHero'
+import HeroPianta from '../components/home/HeroPianta'
 import SectorList from '../components/home/SectorList'
 import ProjectGrid from '../components/home/ProjectGrid'
+import MetodoQuota from '../components/home/MetodoQuota'
 import BrandMarquee from '../components/home/BrandMarquee'
 import Testimonials from '../components/home/Testimonials'
 import {getGroups} from '../lib/newsletter'
@@ -14,39 +15,6 @@ import {getLastTwoProjects} from '../lib/query/project'
 import {logos} from '../data/partner-logo'
 import testimonials from '../data/testimonials'
 import settori from '../data/settori'
-
-// Foto dei lavori per l'apertura (scelte in /dev/media, esportate con scripts/media-export.mjs).
-// ponytail: provvisorie, 4 su 5 precedenti al 2025; da sostituire con scelte recenti o col video della sede.
-const heroSlides = [
-  {
-    src: '/img/home/piazza-grande.webp',
-    caption: 'Piazza Grande',
-    kind: 'bancone bar e arredi su misura',
-    position: '60% 50%',
-  },
-  {
-    src: '/img/home/pantaleo-cucina.webp',
-    caption: 'Agrobistrot Pantaleo',
-    kind: 'cucina professionale in servizio',
-  },
-  {
-    src: '/img/home/masseria-paretano.webp',
-    caption: 'Masseria Paretano',
-    kind: 'progettazione della cucina',
-  },
-  {
-    src: '/img/home/assistenza-tecnica.webp',
-    caption: 'Assistenza tecnica',
-    kind: 'manutenzione e ricambi',
-    position: '70% 50%',
-  },
-  {
-    src: '/img/home/salumeria-gourmet.webp',
-    caption: 'La Salumeria Gourmet',
-    kind: 'allestimento per la vendita',
-    position: '50% 40%',
-  },
-]
 
 // Il metodo è davvero una sequenza: qui la numerazione è informazione (DESIGN.md).
 const metodo = [
@@ -113,12 +81,13 @@ export default function Home({groups, lastTwoProjects = [], event}) {
       </Head>
       <Layout navbarTransparent>
         {/* copy da approvare: titolo, sottotitolo e testi dei capitoli */}
-        <HomeHero
-          slides={heroSlides}
+        <HeroPianta
           title="Costruiamo i luoghi dove il cibo diventa lavoro."
           intro="Progettiamo, costruiamo e assistiamo cucine professionali, laboratori e locali ho.re.ca., da Alberobello dal 1983."
           primary={{href: '#parliamone', label: 'Parla con un progettista'}}
           secondary={{href: '/realizzazioni', label: 'Guarda i progetti'}}
+          // ponytail: foto provvisoria della pianta; da sostituire con una foto di cucina finita scelta da Pasquale
+          photo="/img/settori/dk-linea-cottura.webp"
         />
 
         {/* Capitolo: per chi lavoriamo (la foto del settore diventa lo sfondo) */}
@@ -131,7 +100,7 @@ export default function Home({groups, lastTwoProjects = [], event}) {
 
         {/* Capitolo scuro: come lavoriamo */}
         <section
-          className="bg-ghisa text-white"
+          className="bg-ghisa text-white [&_:focus-visible]:outline-fiamma"
           data-header="dark"
           aria-labelledby="metodo-title"
         >
@@ -150,29 +119,7 @@ export default function Home({groups, lastTwoProjects = [], event}) {
                 Tutti i servizi
               </Link>
             </div>
-            <ol className="mt-16 grid gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-4">
-              {metodo.map(([titolo, testo], i) => (
-                <li
-                  key={titolo}
-                  className="group relative border-t border-inox/25 pt-6"
-                >
-                  <span
-                    className="absolute -top-px left-0 h-px w-0 bg-fiamma transition-all duration-700 ease-out group-hover:w-full motion-reduce:transition-none"
-                    aria-hidden="true"
-                  />
-                  <span
-                    className="type-display inline-block text-4xl text-fiamma transition-transform duration-500 group-hover:-translate-y-1 motion-reduce:transition-none"
-                    aria-hidden="true"
-                  >
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <h3 className="type-display mt-6 text-[22px] leading-tight">
-                    {titolo}
-                  </h3>
-                  <p className="mt-4 text-inox-muted">{testo}</p>
-                </li>
-              ))}
-            </ol>
+            <MetodoQuota passi={metodo} />
           </div>
         </section>
 
@@ -203,14 +150,14 @@ export default function Home({groups, lastTwoProjects = [], event}) {
 
         {/* Capitolo scuro: dentro Matarrese */}
         <section
-          className="bg-ghisa text-white"
+          className="bg-ghisa text-white [&_:focus-visible]:outline-fiamma"
           data-header="dark"
           aria-labelledby="azienda-title"
         >
           <div className="site-shell grid gap-14 py-24 lg:grid-cols-12 lg:items-center lg:py-32">
             <div className="relative aspect-[4/3] overflow-hidden lg:col-span-7">
               <Image
-                src="/img/home-attrezzature.jpg"
+                src="/img/azienda/showroom.webp"
                 alt="Lo showroom Matarrese ad Alberobello"
                 fill
                 sizes="(min-width: 1024px) 55vw, 100vw"
@@ -224,17 +171,31 @@ export default function Home({groups, lastTwoProjects = [], event}) {
               >
                 Dove le soluzioni si toccano con mano.
               </h2>
-              <dl className="mt-10">
-                {fatti.map(([dato, spiegazione]) => (
-                  <div
-                    key={dato}
-                    className="grid grid-cols-[7.5rem_1fr] gap-4 border-t border-inox/25 py-4"
-                  >
-                    <dt className="type-display text-xl text-white">{dato}</dt>
-                    <dd className="text-inox-muted">{spiegazione}</dd>
-                  </div>
-                ))}
-              </dl>
+              {/* Targhetta: come la placca dati avvitata sulle attrezzature */}
+              <div className="mt-10 border-2 border-inox/60">
+                <div className="border-b-2 border-inox/60 px-5 py-5">
+                  <Image
+                    src="/img/logo-matarrese-bianco-350.png"
+                    alt="Matarrese srl"
+                    width={350}
+                    height={26}
+                    className="h-auto w-[170px]"
+                  />
+                </div>
+                <dl>
+                  {fatti.map(([dato, spiegazione]) => (
+                    <div
+                      key={dato}
+                      className="grid grid-cols-[9.5rem_1fr] border-b border-inox/25 last:border-b-0"
+                    >
+                      <dt className="type-display border-r border-inox/25 px-4 py-4 text-xl">
+                        {dato}
+                      </dt>
+                      <dd className="px-4 py-4 text-inox-muted">{spiegazione}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
               <Link
                 href="/azienda"
                 className="mt-8 inline-block border-b border-fiamma py-2 text-fiamma hover:text-white"

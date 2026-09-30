@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import CardEditoriale from './CardEditoriale'
 
-export default function Correlati({title, link, items, cta}) {
+export default function Correlati({title, link, items}) {
   if (!items?.length) return null
   return (
     <section
@@ -32,7 +32,6 @@ export default function Correlati({title, link, items, cta}) {
             <li key={item.href} className={i === 1 ? 'md:mt-16' : ''}>
               <CardEditoriale
                 {...item}
-                cta={cta}
                 tone="dark"
                 aspect={i === 1 ? 'aspect-[4/5]' : 'aspect-[5/4]'}
                 sizes="(min-width: 640px) 30vw, 100vw"

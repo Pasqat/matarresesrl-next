@@ -294,7 +294,6 @@ export default function News({data}) {
                       meta={[article.categories?.[0], formatDate(article.date)]
                         .filter(Boolean)
                         .join(' · ')}
-                      cta="Leggi l’articolo"
                       aspect={aspect}
                     />
                   )}

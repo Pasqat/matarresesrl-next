@@ -242,7 +242,6 @@ export default function Realizzazioni({data}) {
                       }}
                       title={project.title}
                       meta={project.categories?.join(' · ')}
-                      cta="Guarda il progetto"
                       aspect={aspect}
                     />
                   )}
