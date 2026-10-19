@@ -86,10 +86,6 @@ export default function Meta() {
         title="Matarrese srl — News"
         href="/feed.xml"
       />
-      <meta
-        name="description"
-        content="Attrezzature professionali per ristorazione, cucine professionali, arredi su misura e soluzioni per bar, ristoranti e hotel."
-      />
       <link rel="manifest" href="/img/favicon/manifest.json" />
       <meta
         name="msapplication-TileImage"

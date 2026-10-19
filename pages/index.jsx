@@ -250,13 +250,14 @@ export default function Home({groups, lastTwoProjects = [], event}) {
           </div>
         </section>
 
-        {upcoming && (
-          <section
-            className="bg-calce text-ghisa"
-            data-header="light"
-            aria-labelledby="evento-title"
-          >
-            <div className="site-shell flex flex-col gap-6 border-t border-ghisa/15 py-14 md:flex-row md:items-center md:justify-between">
+        {/* Sempre visibile: su Facebook i link nei post rendono poco (Miriana, 16/10/2026) */}
+        <section
+          className="bg-calce text-ghisa"
+          data-header="light"
+          aria-labelledby="evento-title"
+        >
+          <div className="site-shell flex flex-col gap-6 border-t border-ghisa/15 py-14 md:flex-row md:items-center md:justify-between">
+            {upcoming ? (
               <div>
                 <p className="text-acciaio">
                   Prossimo evento in sede, {upcoming.startDate}
@@ -267,15 +268,37 @@ export default function Home({groups, lastTwoProjects = [], event}) {
                   dangerouslySetInnerHTML={{__html: upcoming.title}}
                 />
               </div>
+            ) : (
+              <div>
+                {/* copy da approvare */}
+                <p className="text-acciaio">Eventi e corsi in sede</p>
+                <h2
+                  id="evento-title"
+                  className="type-display mt-2 text-[clamp(24px,2.4vw,36px)]"
+                >
+                  Vieni a vedere le attrezzature al lavoro.
+                </h2>
+              </div>
+            )}
+            <div className="flex shrink-0 flex-wrap items-center gap-6">
+              {upcoming && (
+                <Link className="site-button" href={`/eventi/${upcoming.slug}`}>
+                  Scopri l’evento
+                </Link>
+              )}
               <Link
-                className="site-button shrink-0"
-                href={`/eventi/${upcoming.slug}`}
+                className={
+                  upcoming
+                    ? 'border-b border-ghisa py-2 hover:text-fiamma-testo'
+                    : 'site-button'
+                }
+                href="/eventi"
               >
-                Scopri l’evento
+                Tutti gli eventi
               </Link>
             </div>
-          </section>
-        )}
+          </div>
+        </section>
 
         {/* Chiusura: la chiamata al progetto */}
         <section
