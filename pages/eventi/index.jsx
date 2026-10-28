@@ -55,7 +55,7 @@ export default function Events({data}) {
   return (
     <>
       <Head>
-        <title>Eventi per l&apos;ho.re.ca | Matarrese srl</title>
+        <title>Eventi, demo e corsi per la ristorazione | Matarrese srl</title>
         <link
           rel="canonical"
           href={`${process.env.NEXT_PUBLIC_DOMAIN}/eventi`}
@@ -67,7 +67,7 @@ export default function Events({data}) {
         />
         <meta
           name="description"
-          content="Laboratori di cucina attrezzati, formazione professionale in cucina, show cooking e dimostrazione attrezzature per la ristorazione"
+          content="Workshop, masterclass e demo nel laboratorio di Alberobello: tecniche di cottura, conservazione e uso delle attrezzature professionali."
         />
         <meta property="og:title" content="Eventi" />
         <meta

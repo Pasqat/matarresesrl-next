@@ -95,7 +95,7 @@ export default function AboutUs({lastTwoProjects = []}) {
         <meta name="author" content="Matarrese srl" />
         <meta
           name="description"
-          content="Matarrese srl supporta ristoranti, hotel e professionisti della ristorazione con cucine professionali, arredi su misura, attrezzature e consulenza tecnica."
+          content="Dal 1983 progettiamo e allestiamo cucine professionali e locali commerciali. 5.000 mq tra laboratorio, showroom e officina ricambi ad Alberobello."
         />
         <meta
           name="robots"

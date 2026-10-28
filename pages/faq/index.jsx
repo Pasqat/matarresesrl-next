@@ -66,7 +66,7 @@ export default function Faq() {
         <meta name="author" content="Matarrese srl" />
         <meta
           name="description"
-          content="Risposte alle domande frequenti su attrezzature ho.re.ca., apertura di un locale, arredi su misura, assistenza tecnica, marchi trattati, prove One to One e MEPA."
+          content="Servizi, marchi trattati, tempi di assistenza, arredi su misura, vendita MEPA e aree servite: le risposte alle domande più frequenti."
         />
         <meta
           name="robots"

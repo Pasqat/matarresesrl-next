@@ -161,7 +161,9 @@ export default function ProductsHome({groups}) {
   return (
     <>
       <Head>
-        <title>Attrezzature horeca e forniture alberghiere</title>
+        <title>
+          Attrezzature horeca e forniture alberghiere | Matarrese srl
+        </title>
         <link
           rel="canonical"
           href={`${process.env.NEXT_PUBLIC_DOMAIN}/prodotti`}
@@ -169,7 +171,7 @@ export default function ProductsHome({groups}) {
         <meta name="author" content="Matarrese srl" />
         <meta
           name="description"
-          content="Cucine industriali, cucine professionali, arredamento per bar e ristoranti, impianti di aspirazione, attrezzature ristorazione e hotellerie"
+          content="Attrezzature per cottura, refrigerazione, lavaggio e conservazione, forniture alberghiere e arredo bar. Marchi selezionati e assistenza post-vendita."
         />
         <meta
           name="robots"

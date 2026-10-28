@@ -54,13 +54,13 @@ export default function Home({groups, lastTwoProjects = [], event}) {
     <>
       <Head>
         <title>
-          Matarrese srl | Attrezzature professionali per ristorazione e horeca
+          Matarrese srl | Cucine professionali e attrezzature horeca in Puglia
         </title>
         <link rel="canonical" href={process.env.NEXT_PUBLIC_DOMAIN} />
         <meta name="author" content="Matarrese srl" />
         <meta
           name="description"
-          content="Matarrese srl progetta e fornisce attrezzature professionali per ristorazione, cucine industriali, arredi su misura e soluzioni per bar, hotel e locali commerciali."
+          content="Progettiamo cucine professionali, arredi su misura e impianti per bar, ristoranti e hotel in Puglia."
         />
         <meta
           property="og:image"

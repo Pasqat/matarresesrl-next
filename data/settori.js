@@ -179,7 +179,7 @@ const altrePagine = {
       ],
     },
     offerta: {
-      titolo: 'Cosa facciamo per un ristorante.',
+      titolo: 'Cosa facciamo per un ristorante o una pizzeria.',
       voci: [
         [
           'Progetto della cucina',
@@ -237,7 +237,7 @@ const altrePagine = {
       ],
     },
     offerta: {
-      titolo: 'Cosa facciamo per un bar o una pasticceria.',
+      titolo: 'Cosa facciamo per bar, gelaterie e pasticcerie.',
       voci: [
         [
           'Progetto',
@@ -420,6 +420,47 @@ const altrePagine = {
     nota: 'Tra le realizzazioni anche la Macelleria Tropiano.',
   },
 }
-for (const s of settori) s.pagina ??= altrePagine[s.slug]
+// Title e meta description: separati dall'introduzione, che resta nel tono del sito.
+// Una keyword principale per pagina (proposta SEO del 28/10/2026, da verificare su Search Console).
+const seo = {
+  'dark-kitchen': {
+    titolo: 'Progettazione di dark kitchen per il delivery',
+    descrizione:
+      'Dark kitchen progettate sui picchi degli ordini: layout per più marchi, cottura rapida, aspirazione e formazione. Prova i forni ad Alberobello.',
+  },
+  laboratori: {
+    descrizione:
+      'Progettiamo e attrezziamo laboratori di trasformazione alimentare per carne, pasticceria, gastronomia e conserve: layout, flussi, abbattimento e confezionamento.',
+  },
+  'ristoranti-pizzerie': {
+    titolo: 'Cucine professionali per ristoranti e pizzerie',
+    descrizione:
+      'Progettiamo e realizziamo cucine professionali per ristoranti e pizzerie in Puglia: layout, forni, attrezzature, arredi su misura e assistenza in sede.',
+  },
+  'bar-gelaterie-pasticcerie': {
+    titolo: 'Arredamento per bar, gelaterie e pasticcerie',
+    descrizione:
+      'Banchi bar, vetrine e laboratori per gelaterie e pasticcerie, progettati e realizzati su misura nel nostro laboratorio di Alberobello.',
+  },
+  'hotel-ricevimenti': {
+    titolo: 'Cucine professionali per hotel e sale ricevimenti',
+    descrizione:
+      'Cucine, bar, aree buffet e forniture alberghiere per hotel, masserie e sale ricevimenti in Puglia, con assistenza anche in alta stagione.',
+  },
+  collettiva: {
+    titolo: 'Attrezzature per la ristorazione collettiva',
+    descrizione:
+      'Cucine per mense, RSA, scuole, ospedali e centri cottura: progetto dei flussi, attrezzature per grandi volumi, manutenzione programmata. Anche su MePA.',
+  },
+  'gdo-pescherie-macellerie': {
+    titolo: 'Attrezzature per macellerie, pescherie e GDO',
+    descrizione:
+      'Banchi refrigerati, laboratori di sezionamento e aree ristoro per macellerie, pescherie e supermercati, progettati e allestiti in Puglia.',
+  },
+}
+for (const s of settori) {
+  s.pagina ??= altrePagine[s.slug]
+  s.seo = seo[s.slug] ?? {}
+}
 
 export default settori

@@ -16,15 +16,17 @@ export default function Settore({slug, groups}) {
   const {pagina} = settore
   const altri = settori.filter(s => s.slug !== slug)
   const url = `${process.env.NEXT_PUBLIC_DOMAIN}/settori/${slug}`
+  const title = `${settore.seo.titolo ?? settore.nome} | Matarrese srl`
+  const description = settore.seo.descrizione ?? pagina.intro
 
   return (
     <>
       <Head>
-        <title>{`${settore.nome} | Matarrese srl`}</title>
+        <title>{title}</title>
         <link rel="canonical" href={url} />
-        <meta name="description" content={pagina.intro} />
-        <meta property="og:title" content={`${settore.nome} | Matarrese srl`} />
-        <meta property="og:description" content={pagina.intro} />
+        <meta name="description" content={description} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
         <meta
           property="og:image"
           content={`${process.env.NEXT_PUBLIC_DOMAIN}${pagina.hero}`}

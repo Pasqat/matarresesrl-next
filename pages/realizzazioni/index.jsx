@@ -124,7 +124,7 @@ export default function Realizzazioni({data}) {
         <meta name="author" content="Matarrese srl" />
         <meta
           name="description"
-          content="Scopri le realizzazioni di Matarrese srl per bar, ristoranti, hotel, macellerie e altri locali: cucine professionali, arredi su misura e soluzioni complete."
+          content="Cucine professionali, laboratori e arredi realizzati in masserie, ristoranti, macellerie, pasticcerie e hotel in Puglia. Guarda i progetti."
         />
         <meta property="og:title" content="Realizzazioni Matarrese srl" />
         <meta

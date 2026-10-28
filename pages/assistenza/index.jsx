@@ -173,7 +173,7 @@ export default function Assistenza() {
   return (
     <>
       <Head>
-        <title>Assistenza | Matarrese srl</title>
+        <title>Assistenza tecnica e ricambi | Matarrese srl</title>
         <link
           rel="canonical"
           href={`${process.env.NEXT_PUBLIC_DOMAIN}/assistenza/`}
@@ -181,7 +181,7 @@ export default function Assistenza() {
         <meta name="author" content="Matarrese srl" />
         <meta
           name="description"
-          content="Hai bisogno di assistenza tecnica? Compila il form"
+          content="Assistenza tecnica e ricambi per attrezzature da ristorazione: tempi di intervento, aree servite e come richiedere un intervento."
         />
         <meta
           name="robots"

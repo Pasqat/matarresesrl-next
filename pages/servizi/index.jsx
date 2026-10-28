@@ -206,7 +206,7 @@ export default function Servizi({groups}) {
   return (
     <>
       <Head>
-        <title>Servizi per le attività horeca</title>
+        <title>Progettazione e servizi per locali horeca | Matarrese srl</title>
         <link
           rel="canonical"
           href={`${process.env.NEXT_PUBLIC_DOMAIN}/servizi/`}
@@ -214,7 +214,7 @@ export default function Servizi({groups}) {
         <meta name="author" content="Matarrese srl" />
         <meta
           name="description"
-          content="Progettazione tecnica, realizzazione arredi, impianti di climatizzazione, attrezzature ristorazione, assistenza tecnica, formazione"
+          content="Consulenza, progettazione del layout, arredi su misura, coordinamento lavori e collaudo: seguiamo il tuo locale dall’idea all’apertura."
         />
         <meta
           name="robots"

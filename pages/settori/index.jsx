@@ -15,10 +15,13 @@ export default function Settori() {
   return (
     <>
       <Head>
-        <title>Settori | Matarrese srl</title>
+        <title>Cucine e allestimenti per settore | Matarrese srl</title>
         <link rel="canonical" href={url} />
         <meta name="description" content={intro} />
-        <meta property="og:title" content="Settori | Matarrese srl" />
+        <meta
+          property="og:title"
+          content="Cucine e allestimenti per settore | Matarrese srl"
+        />
         <meta property="og:description" content={intro} />
         <meta property="og:url" content={url} />
         <meta property="og:locale" content="it_IT" />

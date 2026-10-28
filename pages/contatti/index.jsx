@@ -10,7 +10,7 @@ export default function Contatti({groups}) {
   return (
     <>
       <Head>
-        <title>Contatti | Matarrese srl</title>
+        <title>Contatti e showroom ad Alberobello | Matarrese srl</title>
         <link
           rel="canonical"
           href={`${process.env.NEXT_PUBLIC_DOMAIN}/contatti/`}
@@ -18,7 +18,7 @@ export default function Contatti({groups}) {
         <meta name="author" content="Matarrese srl" />
         <meta
           name="description"
-          content="Fatti ispirare dalle nostre soluzioni. Visita il nostro showroom!"
+          content="Showroom in Contrada Popoleto ad Alberobello (BA). Telefono, email, orari e numero dedicato all’assistenza tecnica."
         />
         <meta
           name="robots"

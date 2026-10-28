@@ -133,7 +133,7 @@ export default function News({data}) {
         <meta name="author" content="Matarrese srl" />
         <meta
           name="description"
-          content="News su innovazioni in cucina, attrezzature professionali, tecnologie per ristorazione e aggiornamenti sul mondo horeca."
+          content="Guide e approfondimenti su attrezzature, progettazione di cucine professionali e gestione dei locali: come scegliere e come organizzare il lavoro."
         />
         <meta property="og:title" content="News Matarrese srl" />
         <meta
