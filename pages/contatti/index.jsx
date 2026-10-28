@@ -5,6 +5,7 @@ import PageHero from '../../components/PageHero'
 import ContactForm from '../../components/Form/ContactForm'
 import Map from '../../components/Maps/Map'
 import {getGroups} from '../../lib/newsletter'
+import {social} from '../../data/social'
 export default function Contatti({groups}) {
   return (
     <>
@@ -67,6 +68,23 @@ export default function Contatti({groups}) {
               >
                 matarrese@matarrese.it
               </a>
+            </div>
+            <div>
+              <p className="text-sm text-inox-muted">Seguici</p>
+              <ul className="mt-2 flex flex-wrap gap-x-6 gap-y-1 text-lg">
+                {social.map(([name, href]) => (
+                  <li key={name}>
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-block border-b border-inox/40 py-1 transition-colors hover:border-fiamma hover:text-fiamma focus-visible:outline-fiamma"
+                    >
+                      {name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </PageHero>

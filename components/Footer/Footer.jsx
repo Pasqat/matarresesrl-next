@@ -3,6 +3,7 @@ import Link from 'next/link'
 import clsx from 'clsx'
 import NewsletterFormFooter from '../Form/NewsletterFormFooter'
 import {newsletterGroups} from '../../data/newsletter-groups'
+import {social} from '../../data/social'
 
 // Su ghisa l'outline globale (#995200) scende sotto 3:1: qui si usa la fiamma.
 const focus =
@@ -12,13 +13,6 @@ const link = clsx(
   focus,
 )
 const heading = 'mb-5 text-base font-medium text-calce'
-
-const social = [
-  ['Instagram', 'https://www.instagram.com/matarrese.srl/'],
-  ['LinkedIn', 'https://www.linkedin.com/company/matarrese-srl/'],
-  ['Facebook', 'https://www.facebook.com/matarresesrl'],
-  ['YouTube', 'https://www.youtube.com/@matarresesrl'],
-]
 
 export default function Footer() {
   return (
