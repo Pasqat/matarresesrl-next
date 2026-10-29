@@ -423,6 +423,8 @@ const altrePagine = {
 // Title e meta description: separati dall'introduzione, che resta nel tono del sito.
 // Una keyword principale per pagina, scelta sulle query di Search Console (maggio-ottobre 2026).
 // `faq`: domande visibili in pagina e marcate come FAQPage. Solo fatti già dichiarati sul sito.
+// `categorie`: slug delle categorie portfolio di WordPress da cui prendere le realizzazioni.
+// `articoli`: [slug, titolo] delle news collegate (titoli verificati su WordPress il 29/10/2026).
 const seo = {
   'dark-kitchen': {
     titolo: 'Progettazione di dark kitchen per il delivery',
@@ -438,6 +440,16 @@ const seo = {
         'Forni combinati, cottura accelerata, abbattitori, sottovuoto e rigenerazione, per produrre in anticipo e servire in pochi minuti.',
       ],
     ],
+    articoli: [
+      [
+        'levoluzione-delle-dark-kitchen-da-delivery-a-fornitori-per-la-ristorazione-moderna',
+        'L’evoluzione delle dark kitchen: da delivery a fornitori per la ristorazione moderna',
+      ],
+      [
+        'forno-senza-canna-fumaria-a-cottura-accelerata-cose-e-come-funziona',
+        'Forno senza canna fumaria a cottura accelerata, cos’è e come funziona',
+      ],
+    ],
   },
   laboratori: {
     descrizione:
@@ -446,6 +458,30 @@ const seo = {
       [
         'Per quali produzioni progettate laboratori?',
         'Carne e salumi, pasticceria e panificazione, gastronomia e ittico, agroalimentare e conserve. Stiamo iniziando a lavorare anche con i frantoi.',
+      ],
+      [
+        'Vi occupate delle autorizzazioni sanitarie?',
+        'No: progettiamo layout, flussi e attrezzature del laboratorio. Le pratiche sanitarie restano al consulente del cliente.',
+      ],
+    ],
+    // da verificare: in WordPress la categoria laboratori-trasformazione-alimentare è vuota
+    categorie: [
+      'laboratori-trasformazione-alimentare',
+      'caseifici',
+      'panetterie',
+    ],
+    articoli: [
+      [
+        'laboratorio-trasformazione-alimenti-quali-macchinari-scegliere',
+        'Laboratorio trasformazione alimenti: quali macchinari scegliere',
+      ],
+      [
+        'abbattitore-di-temperatura-quale-scegliere-e-perche-e-utile',
+        'Abbattitore di temperatura, quale scegliere e perché è utile',
+      ],
+      [
+        'taglieri-haccp-nelle-cucine-professionali-e-nei-laboratori-alimentari-quali-scegliere',
+        'Taglieri HACCP nelle cucine professionali e nei laboratori alimentari',
       ],
     ],
   },
@@ -467,6 +503,21 @@ const seo = {
         "Installazione, collaudo, manutenzione e ricambi in sede. In Puglia l'assistenza risponde di solito entro 48 ore dalla richiesta.",
       ],
     ],
+    categorie: ['ristoranti', 'pizzerie'],
+    articoli: [
+      [
+        'progettare-un-ristorante-come-gestire-gli-spazi',
+        'Progettare un ristorante: come gestire gli spazi',
+      ],
+      [
+        'progettazione-pizzeria-come-gestire-gli-spazi',
+        'Progettazione pizzeria: come gestire gli spazi',
+      ],
+      [
+        'samare-la-progettazione-di-una-cucina-dove-bonta-e-freschezza-sono-di-casa',
+        'Samarè: la progettazione di una cucina dove bontà e freschezza sono di casa',
+      ],
+    ],
   },
   'bar-gelaterie-pasticcerie': {
     titolo: 'Banconi bar e arredi per gelaterie e pasticcerie',
@@ -484,6 +535,25 @@ const seo = {
       [
         'Posso provare forni e abbattitori prima di comprarli?',
         'Sì, nello showroom di Alberobello, con prove dedicate su appuntamento.',
+      ],
+    ],
+    categorie: ['bar', 'gelaterie', 'pasticcerie'],
+    articoli: [
+      [
+        'rivestire-un-bancone-bar-quali-materiali-scegliere',
+        'Rivestire un bancone bar, quali materiali scegliere?',
+      ],
+      [
+        'progettazione-e-arredamento-bar-su-misura',
+        'Progettazione e arredamento bar su misura',
+      ],
+      [
+        'attrezzature-per-bar-in-spazi-ridotti-come-scegliere-le-soluzioni-giuste',
+        'Attrezzature per bar in spazi ridotti: come scegliere le soluzioni giuste',
+      ],
+      [
+        'banco-gelateria-a-pozzetti-o-vetrina-a-vista',
+        'Banco gelateria a pozzetti o vetrina a vista?',
       ],
     ],
   },
@@ -505,6 +575,21 @@ const seo = {
         'Manutenzione programmata prima della stagione e ricambi in sede, per non fermarsi quando la struttura è piena.',
       ],
     ],
+    categorie: ['masseria', 'sale-ricevimenti', 'bb', 'banqueting-catering'],
+    articoli: [
+      [
+        'riqualificazione-hotel-bari-movenpick',
+        'Far convivere storia e tecnologia: la sfida dietro il nuovo Mövenpick Hotel Bari',
+      ],
+      [
+        'case-history-masseria-montenapoleone',
+        'Case history: Masseria Montenapoleone',
+      ],
+      [
+        'relais-il-santissimo-dove-i-sogni-diventano-realta-anche-in-cucina',
+        'Relais Il Santissimo, dove i sogni diventano realtà anche in cucina',
+      ],
+    ],
   },
   collettiva: {
     titolo: 'Attrezzature per la ristorazione collettiva',
@@ -524,6 +609,12 @@ const seo = {
         "Ricambi in magazzino e tecnici specializzati: in Puglia l'assistenza risponde di solito entro 48 ore.",
       ],
     ],
+    articoli: [
+      [
+        'attrezzature-per-ristorazione-collettiva-guida-per-rsa-scuole-ospedali-e-centri-cottura',
+        'Attrezzature per ristorazione collettiva: guida per RSA, scuole, ospedali e centri cottura',
+      ],
+    ],
   },
   'gdo-pescherie-macellerie': {
     titolo: 'Arredamento per macellerie, pescherie e supermercati',
@@ -537,6 +628,25 @@ const seo = {
       [
         "Si può aggiungere un'area ristoro in negozio?",
         'Sì: progettiamo bistrò e aree ristoro dentro i punti vendita, come il Famila Bistrò di Bari.',
+      ],
+    ],
+    categorie: ['macellerie', 'pescherie', 'gdo', 'bracerie', 'salumerie'],
+    articoli: [
+      [
+        'arredamento-supermercati-e-gdo-novita-e-tendenze',
+        'Arredamento supermercati, novità e tendenze',
+      ],
+      [
+        'progettazione-e-arredamento-fish-bar-o-risto-pescherie',
+        'Progettazione e arredamento fish bar o risto-pescherie',
+      ],
+      [
+        'da-attivita-storica-a-punto-vendita-moderno-il-restyling-di-macelleria-ivone',
+        'Da attività storica a punto vendita moderno: il restyling di Macelleria Ivone',
+      ],
+      [
+        'trend-da-conoscere-prima-di-aprire-una-macelleria-moderna',
+        'Trend da conoscere prima di aprire una macelleria moderna',
       ],
     ],
   },

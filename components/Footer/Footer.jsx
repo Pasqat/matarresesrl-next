@@ -112,7 +112,7 @@ export default function Footer() {
             </div>
 
             <div>
-              <h2 className={heading}>Vieni a trovarci</h2>
+              <p className={heading}>Vieni a trovarci</p>
               <address className="mb-4 not-italic leading-relaxed text-inox-muted">
                 Contrada Popoleto, n.c.
                 <br />
@@ -130,7 +130,7 @@ export default function Footer() {
             </div>
 
             <div>
-              <h2 className={heading}>Orari e assistenza</h2>
+              <p className={heading}>Orari e assistenza</p>
               <p className="mb-4 leading-relaxed text-inox-muted">
                 Lunedì – venerdì
                 <br />
@@ -151,7 +151,7 @@ export default function Footer() {
             </div>
 
             <nav aria-label="Collegamenti nel footer">
-              <h2 className={heading}>Il mondo Matarrese</h2>
+              <p className={heading}>Il mondo Matarrese</p>
               <Link href="/azienda" className={link}>
                 Azienda
               </Link>

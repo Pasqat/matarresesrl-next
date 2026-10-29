@@ -6,12 +6,15 @@ import Layout from '../../components/Layout'
 import PageHero from '../../components/PageHero'
 import Magnetic from '../../components/Magnetic'
 import ContactForm from '../../components/Form/ContactForm'
+import CardEditoriale from '../../components/editoriale/CardEditoriale'
+import GrigliaEditoriale from '../../components/editoriale/GrigliaEditoriale'
 import StructuredData from '../../components/StructuredData'
 import {breadcrumbSchema, faqSchema, serviceSchema} from '../../lib/seo/schema'
 import {getGroups} from '../../lib/newsletter'
+import {getProjects} from '../../lib/query/project'
 import settori from '../../data/settori'
 
-export default function Settore({slug, groups}) {
+export default function Settore({slug, groups, progetti}) {
   const settore = settori.find(s => s.slug === slug)
   const {pagina} = settore
   const altri = settori.filter(s => s.slug !== slug)
@@ -224,6 +227,46 @@ export default function Settore({slug, groups}) {
           </section>
         )}
 
+        {/* Realizzazioni del settore, dalle categorie portfolio di WordPress */}
+        {progetti.length > 0 && (
+          <section
+            className="bg-white text-ghisa"
+            data-header="light"
+            aria-labelledby="realizzazioni-title"
+          >
+            <div className="site-shell py-24 lg:py-32">
+              <div className="flex flex-wrap items-baseline justify-between gap-6">
+                <h2
+                  id="realizzazioni-title"
+                  className="type-display text-[clamp(28px,3vw,44px)]"
+                >
+                  Lavori realizzati
+                </h2>
+                <Link
+                  href="/realizzazioni"
+                  className="border-b border-ghisa py-1 transition-colors hover:text-fiamma-testo"
+                >
+                  Tutte le realizzazioni
+                </Link>
+              </div>
+              <GrigliaEditoriale
+                className="mt-14"
+                items={progetti}
+                render={(progetto, aspect) => (
+                  <CardEditoriale
+                    as="h3"
+                    href={`/realizzazioni/${progetto.slug}`}
+                    image={progetto.image}
+                    title={progetto.title}
+                    meta={progetto.categories.join(' · ')}
+                    aspect={aspect}
+                  />
+                )}
+              />
+            </div>
+          </section>
+        )}
+
         {/* Domande frequenti: sempre aperte, sono il testo che i motori citano */}
         {faq.length > 0 && (
           <section
@@ -253,6 +296,33 @@ export default function Settore({slug, groups}) {
                   </div>
                 ))}
               </dl>
+            </div>
+          </section>
+        )}
+
+        {/* Approfondimenti: articoli del blog collegati al settore */}
+        {settore.seo.articoli?.length > 0 && (
+          <section
+            className="bg-white text-ghisa"
+            data-header="light"
+            aria-labelledby="approfondimenti-title"
+          >
+            <div className="site-shell border-t border-ghisa/10 py-16">
+              <h2 id="approfondimenti-title" className="type-display text-2xl">
+                Approfondimenti
+              </h2>
+              <ul className="mt-6 grid gap-x-10 md:grid-cols-2">
+                {settore.seo.articoli.map(([articolo, titolo]) => (
+                  <li key={articolo} className="border-t border-ghisa/15">
+                    <Link
+                      href={`/news/${articolo}`}
+                      className="block py-4 text-lg transition-colors hover:text-fiamma-testo"
+                    >
+                      {titolo}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
           </section>
         )}
@@ -317,7 +387,32 @@ export async function getStaticPaths() {
   }
 }
 
+// Ultime sei realizzazioni nelle categorie WordPress del settore (già ordinate per data)
+const MAX_PROGETTI = 6
+
 export async function getStaticProps({params}) {
-  const groups = await getGroups()
-  return {props: {slug: params.slug, groups}}
+  const settore = settori.find(s => s.slug === params.slug)
+  const categorie = settore.seo.categorie ?? []
+  const [groups, {projects}] = await Promise.all([
+    getGroups(),
+    categorie.length ? getProjects() : {projects: []},
+  ])
+  const progetti = projects
+    .filter(p =>
+      p.portfolioCategories.nodes.some(c => categorie.includes(c.slug)),
+    )
+    .slice(0, MAX_PROGETTI)
+    .map(p => ({
+      title: p.title,
+      slug: p.slug,
+      categories: p.categories,
+      image: {
+        src: p.featuredImage?.node?.mediaItemUrl ?? null,
+        alt: p.featuredImage?.node?.altText ?? '',
+      },
+    }))
+  return {
+    props: {slug: params.slug, groups, progetti},
+    revalidate: 60 * 60 * 24,
+  }
 }
