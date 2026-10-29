@@ -13,6 +13,8 @@ import {aboutPageSchema, breadcrumbSchema} from '../../lib/seo/schema'
 import {getLastTwoProjects} from '../../lib/query/project'
 import {logos} from '../../data/partner-logo'
 import logoAssogi from '../../public/img/logos/Assogi_logo-300x119.png'
+import fotoVito from '../../public/img/vito_matarrese.webp'
+import fotoPasquale from '../../public/img/azienda/soci/pasquale-matarrese.webp'
 
 // copy da approvare (dalla home, capitolo "Dove le soluzioni si toccano con mano")
 const fatti = [
@@ -46,13 +48,15 @@ const puntiDiForza = [
   ],
 ]
 
-// Ritratti: li sceglie il cliente. Per metterne uno, aggiungere `foto` (es. import da public/img).
-// La foto attuale di Vito (public/img/vito_matarrese.webp, 600x300, scatto d'evento) resta
-// disponibile ma non è usata: in un riquadro verticale si taglia male.
+// Ritratti: Pasquale dalla cartella "sito web-2026/Azienda"; Vito è la foto del sito pubblicato
+// (600x300, scatto d'evento: `posizione` tiene il volto nel riquadro verticale).
+// Gianni resta con le iniziali finché non arriva il suo ritratto.
 const soci = [
   {
     nome: 'Vito Matarrese',
     iniziali: 'VM',
+    foto: fotoVito,
+    posizione: '42% center',
     ruolo: 'Socio fondatore, Direzione',
     bio: 'Vito, da sempre incuriosito dalle tecnologie innovative, studia i grandi impianti della ristorazione professionale per scegliere le soluzioni migliori e tecnologicamente all’avanguardia.',
     email: 'vito.matarrese@matarrese.it',
@@ -60,6 +64,8 @@ const soci = [
   {
     nome: 'Pasquale Matarrese',
     iniziali: 'PM',
+    foto: fotoPasquale,
+    posizione: 'center 30%',
     ruolo: 'Socio', // da verificare: ruolo e bio da chiedere al cliente — copy da approvare
     email: 'pasquale.matarrese@matarrese.it',
   },

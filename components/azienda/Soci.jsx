@@ -1,5 +1,5 @@
 // I soci: riquadro ritratto neutro con le iniziali finché il cliente non sceglie le foto.
-// Per mettere un ritratto basta aggiungere `foto` (import statico o percorso in public/) al dato.
+// Per mettere un ritratto basta aggiungere `foto` (import statico) al dato; `posizione` sposta il taglio.
 import Image from 'next/image'
 
 export default function Soci({soci}) {
@@ -14,7 +14,9 @@ export default function Soci({soci}) {
                 alt={`Ritratto di ${socio.nome}`}
                 fill
                 sizes="(min-width: 640px) 30vw, 100vw"
+                placeholder="blur"
                 className="object-cover"
+                style={{objectPosition: socio.posizione}}
               />
             ) : (
               <span
