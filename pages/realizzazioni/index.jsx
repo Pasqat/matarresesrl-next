@@ -91,11 +91,10 @@ export default function Realizzazioni({data}) {
 
   const isSearching = query.length > 0
 
-  const posts = matchingPosts.slice(0, indexToShow)
-
-  const hasMorePosts = isSearching
-    ? indexToShow < matchingPosts.length
-    : indexToShow < matchingPosts.length
+  // Tutte le realizzazioni restano nell'HTML; a schermo se ne vedono `indexToShow`
+  const posts = matchingPosts
+  const shown = Math.min(indexToShow, posts.length)
+  const hasMorePosts = indexToShow < posts.length
 
   const visibleCategories = isSearching
     ? new Set(
@@ -232,6 +231,7 @@ export default function Realizzazioni({data}) {
               ) : (
                 <GrigliaEditoriale
                   items={posts}
+                  visibili={indexToShow}
                   render={(project, aspect) => (
                     <CardEditoriale
                       as="h2"
@@ -251,8 +251,8 @@ export default function Realizzazioni({data}) {
 
             {hasMorePosts ? (
               <CaricaAltri
-                shown={posts.length}
-                total={matchingPosts.length}
+                shown={shown}
+                total={posts.length}
                 onClick={() => setIndexToShow(i => i + PAGE_SIZE)}
               >
                 Mostra altre realizzazioni

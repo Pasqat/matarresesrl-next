@@ -421,41 +421,124 @@ const altrePagine = {
   },
 }
 // Title e meta description: separati dall'introduzione, che resta nel tono del sito.
-// Una keyword principale per pagina (proposta SEO del 28/10/2026, da verificare su Search Console).
+// Una keyword principale per pagina, scelta sulle query di Search Console (maggio-ottobre 2026).
+// `faq`: domande visibili in pagina e marcate come FAQPage. Solo fatti già dichiarati sul sito.
 const seo = {
   'dark-kitchen': {
     titolo: 'Progettazione di dark kitchen per il delivery',
     descrizione:
       'Dark kitchen progettate sui picchi degli ordini: layout per più marchi, cottura rapida, aspirazione e formazione. Prova i forni ad Alberobello.',
+    faq: [
+      [
+        "Cos'è una dark kitchen?",
+        'Una cucina che lavora solo per le consegne, senza sala: spesso ospita più marchi e più piattaforme nello stesso spazio.',
+      ],
+      [
+        'Quali attrezzature servono?',
+        'Forni combinati, cottura accelerata, abbattitori, sottovuoto e rigenerazione, per produrre in anticipo e servire in pochi minuti.',
+      ],
+    ],
   },
   laboratori: {
     descrizione:
-      'Progettiamo e attrezziamo laboratori di trasformazione alimentare per carne, pasticceria, gastronomia e conserve: layout, flussi, abbattimento e confezionamento.',
+      'Progettiamo e attrezziamo laboratori di trasformazione alimentare per carne, pasticceria, conserve e prodotti agricoli: layout, flussi, abbattimento.',
+    faq: [
+      [
+        'Per quali produzioni progettate laboratori?',
+        'Carne e salumi, pasticceria e panificazione, gastronomia e ittico, agroalimentare e conserve. Stiamo iniziando a lavorare anche con i frantoi.',
+      ],
+    ],
   },
   'ristoranti-pizzerie': {
-    titolo: 'Cucine professionali per ristoranti e pizzerie',
+    titolo: 'Progettazione di cucine per ristoranti e pizzerie',
     descrizione:
-      'Progettiamo e realizziamo cucine professionali per ristoranti e pizzerie in Puglia: layout, forni, attrezzature, arredi su misura e assistenza in sede.',
+      'Progettiamo cucine professionali per ristoranti e pizzerie in Puglia: layout, forni, attrezzature, arredi su misura e assistenza in sede.',
+    faq: [
+      [
+        'Potete progettare anche il banco pizza e scegliere il forno?',
+        "Sì: disegniamo il banco di stesura attorno al forno, perché sono loro a decidere quante pizze escono nell'ora di punta. I forni si possono vedere in funzione nello showroom di Alberobello.",
+      ],
+      [
+        'Realizzate anche gli arredi della sala?',
+        'Sì: banchi, sala e dehors si fanno nel nostro laboratorio, insieme al progetto della cucina.',
+      ],
+      [
+        "Cosa succede dopo l'apertura?",
+        "Installazione, collaudo, manutenzione e ricambi in sede. In Puglia l'assistenza risponde di solito entro 48 ore dalla richiesta.",
+      ],
+    ],
   },
   'bar-gelaterie-pasticcerie': {
-    titolo: 'Arredamento per bar, gelaterie e pasticcerie',
+    titolo: 'Banconi bar e arredi per gelaterie e pasticcerie',
     descrizione:
-      'Banchi bar, vetrine e laboratori per gelaterie e pasticcerie, progettati e realizzati su misura nel nostro laboratorio di Alberobello.',
+      'Banconi bar, vetrine e laboratori per gelaterie e pasticcerie, progettati e costruiti su misura nel nostro laboratorio di Alberobello.',
+    faq: [
+      [
+        'Il bancone bar lo costruite voi?',
+        'Sì: banconi bar e vetrine si realizzano nel nostro laboratorio, sul progetto del locale.',
+      ],
+      [
+        'Ho poco spazio: riuscite a far stare banco e laboratorio?',
+        'Nei locali piccoli ogni centimetro va disegnato: progettiamo banco, laboratorio e percorsi insieme e mostriamo il rendering del locale finito prima di costruire.',
+      ],
+      [
+        'Posso provare forni e abbattitori prima di comprarli?',
+        'Sì, nello showroom di Alberobello, con prove dedicate su appuntamento.',
+      ],
+    ],
   },
   'hotel-ricevimenti': {
-    titolo: 'Cucine professionali per hotel e sale ricevimenti',
+    titolo: 'Attrezzature alberghiere e cucine per hotel',
     descrizione:
-      'Cucine, bar, aree buffet e forniture alberghiere per hotel, masserie e sale ricevimenti in Puglia, con assistenza anche in alta stagione.',
+      'Attrezzature alberghiere, cucine, bar e aree buffet per hotel, masserie e sale ricevimenti in Puglia, con assistenza anche in alta stagione.',
+    faq: [
+      [
+        'Seguite anche le masserie?',
+        'Sì: tra i lavori ci sono Masseria Calongo a Cisternino e Masseria Auraterrae a Polignano a Mare.',
+      ],
+      [
+        'Come regge la cucina il passaggio dalla colazione al banchetto?',
+        'Con preparazione anticipata, abbattimento e rigenerazione: la cucina si dimensiona sul servizio più pesante senza sprechi nei giorni normali.',
+      ],
+      [
+        "In alta stagione come funziona l'assistenza?",
+        'Manutenzione programmata prima della stagione e ricambi in sede, per non fermarsi quando la struttura è piena.',
+      ],
+    ],
   },
   collettiva: {
     titolo: 'Attrezzature per la ristorazione collettiva',
     descrizione:
       'Cucine per mense, RSA, scuole, ospedali e centri cottura: progetto dei flussi, attrezzature per grandi volumi, manutenzione programmata. Anche su MePA.',
+    faq: [
+      [
+        'Vendete alla pubblica amministrazione?',
+        'Sì, siamo presenti sul MePA.',
+      ],
+      [
+        'Come si organizzano i flussi in una cucina collettiva?',
+        'Con percorsi separati tra materie prime, preparazione, distribuzione e lavaggio, disegnati nel progetto prima di scegliere le attrezzature.',
+      ],
+      [
+        'Se una macchina si ferma?',
+        "Ricambi in magazzino e tecnici specializzati: in Puglia l'assistenza risponde di solito entro 48 ore.",
+      ],
+    ],
   },
   'gdo-pescherie-macellerie': {
-    titolo: 'Attrezzature per macellerie, pescherie e GDO',
+    titolo: 'Arredamento per macellerie, pescherie e supermercati',
     descrizione:
-      'Banchi refrigerati, laboratori di sezionamento e aree ristoro per macellerie, pescherie e supermercati, progettati e allestiti in Puglia.',
+      'Arredamento per macellerie, pescherie e supermercati: banchi refrigerati, laboratori di sezionamento e aree ristoro, progettati e allestiti in Puglia.',
+    faq: [
+      [
+        'Seguite anche il restyling di una macelleria storica?',
+        'Sì: per esempio la Macelleria Ivone, passata da attività storica a punto vendita moderno.',
+      ],
+      [
+        "Si può aggiungere un'area ristoro in negozio?",
+        'Sì: progettiamo bistrò e aree ristoro dentro i punti vendita, come il Famila Bistrò di Bari.',
+      ],
+    ],
   },
 }
 for (const s of settori) {

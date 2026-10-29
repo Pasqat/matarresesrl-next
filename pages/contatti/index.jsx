@@ -13,7 +13,7 @@ export default function Contatti({groups}) {
         <title>Contatti e showroom ad Alberobello | Matarrese srl</title>
         <link
           rel="canonical"
-          href={`${process.env.NEXT_PUBLIC_DOMAIN}/contatti/`}
+          href={`${process.env.NEXT_PUBLIC_DOMAIN}/contatti`}
         />
         <meta name="author" content="Matarrese srl" />
         <meta
@@ -32,7 +32,7 @@ export default function Contatti({groups}) {
         />
         <meta
           property="og:url"
-          content={`${process.env.NEXT_PUBLIC_DOMAIN}/contatti/`}
+          content={`${process.env.NEXT_PUBLIC_DOMAIN}/contatti`}
         />
         <meta property="og:locale" content="it_IT" />
         <meta property="og:site_name" content="Matarrese srl" />

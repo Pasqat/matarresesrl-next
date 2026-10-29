@@ -7,7 +7,7 @@ import PageHero from '../../components/PageHero'
 import Magnetic from '../../components/Magnetic'
 import ContactForm from '../../components/Form/ContactForm'
 import StructuredData from '../../components/StructuredData'
-import {breadcrumbSchema} from '../../lib/seo/schema'
+import {breadcrumbSchema, faqSchema, serviceSchema} from '../../lib/seo/schema'
 import {getGroups} from '../../lib/newsletter'
 import settori from '../../data/settori'
 
@@ -18,6 +18,10 @@ export default function Settore({slug, groups}) {
   const url = `${process.env.NEXT_PUBLIC_DOMAIN}/settori/${slug}`
   const title = `${settore.seo.titolo ?? settore.nome} | Matarrese srl`
   const description = settore.seo.descrizione ?? pagina.intro
+  const faq = (settore.seo.faq ?? []).map(([question, answer]) => ({
+    question,
+    answer,
+  }))
 
   return (
     <>
@@ -39,6 +43,14 @@ export default function Settore({slug, groups}) {
           {name: settore.nome, path: `/settori/${slug}`},
         ])}
       />
+      <StructuredData
+        data={serviceSchema({
+          name: settore.seo.titolo ?? settore.nome,
+          description,
+          url,
+        })}
+      />
+      <StructuredData data={faqSchema(faq)} />
       <Layout navbarTransparent>
         <PageHero
           title={pagina.titolo}
@@ -208,6 +220,39 @@ export default function Settore({slug, groups}) {
               {pagina.nota && (
                 <p className="text-acciaio md:col-span-3">{pagina.nota}</p>
               )}
+            </div>
+          </section>
+        )}
+
+        {/* Domande frequenti: sempre aperte, sono il testo che i motori citano */}
+        {faq.length > 0 && (
+          <section
+            className="bg-white text-ghisa"
+            data-header="light"
+            aria-labelledby="faq-title"
+          >
+            <div className="site-shell grid gap-10 py-24 lg:grid-cols-12 lg:py-32">
+              <h2
+                id="faq-title"
+                className="type-display text-[clamp(28px,3vw,44px)] lg:col-span-4"
+              >
+                Domande frequenti
+              </h2>
+              <dl className="lg:col-span-7 lg:col-start-6">
+                {faq.map(({question, answer}) => (
+                  <div
+                    key={question}
+                    className="border-t border-ghisa/15 py-6 last:border-b"
+                  >
+                    <dt className="type-display text-[clamp(19px,1.7vw,24px)] leading-tight">
+                      {question}
+                    </dt>
+                    <dd className="mt-3 max-w-[60ch] text-lg text-acciaio">
+                      {answer}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
             </div>
           </section>
         )}

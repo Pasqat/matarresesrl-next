@@ -176,7 +176,7 @@ export default function Assistenza() {
         <title>Assistenza tecnica e ricambi | Matarrese srl</title>
         <link
           rel="canonical"
-          href={`${process.env.NEXT_PUBLIC_DOMAIN}/assistenza/`}
+          href={`${process.env.NEXT_PUBLIC_DOMAIN}/assistenza`}
         />
         <meta name="author" content="Matarrese srl" />
         <meta
@@ -196,7 +196,7 @@ export default function Assistenza() {
         />
         <meta
           property="og:url"
-          content={`${process.env.NEXT_PUBLIC_DOMAIN}/assistenza/`}
+          content={`${process.env.NEXT_PUBLIC_DOMAIN}/assistenza`}
         />
         <meta property="og:locale" content="it_IT" />
         <meta property="og:site_name" content="Matarrese srl" />

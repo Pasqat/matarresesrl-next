@@ -209,7 +209,7 @@ export default function Servizi({groups}) {
         <title>Progettazione e servizi per locali horeca | Matarrese srl</title>
         <link
           rel="canonical"
-          href={`${process.env.NEXT_PUBLIC_DOMAIN}/servizi/`}
+          href={`${process.env.NEXT_PUBLIC_DOMAIN}/servizi`}
         />
         <meta name="author" content="Matarrese srl" />
         <meta
@@ -231,7 +231,7 @@ export default function Servizi({groups}) {
         />
         <meta
           property="og:url"
-          content={`${process.env.NEXT_PUBLIC_DOMAIN}/servizi/`}
+          content={`${process.env.NEXT_PUBLIC_DOMAIN}/servizi`}
         />
         <meta property="og:locale" content="it_IT" />
         <meta property="og:site_name" content="Matarrese srl" />
