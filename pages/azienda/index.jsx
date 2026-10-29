@@ -34,7 +34,7 @@ const spazi = [
 const puntiDiForza = [
   [
     'Qualità',
-    'Ci impegniamo nella selezione delle migliori attrezzature per la ristorazione prediligendo il Made in Italy. Offriamo ai nostri clienti gli strumenti più tecnologici e innovativi per creare esplosioni di colori e gusto in cucina.',
+    'Ci impegniamo nella selezione delle migliori attrezzature per la ristorazione prediligendo il Made in Italy. Offriamo ai nostri clienti gli strumenti più innovativi per dare il meglio in cucina.',
   ],
   [
     'Consulenza',
@@ -157,15 +157,13 @@ export default function AboutUs({lastTwoProjects = []}) {
               id="storia-title"
               className="type-display text-[clamp(32px,3.6vw,56px)] lg:col-span-5"
             >
-              Da 40 anni partner degli operatori ho.re.ca.
+              Da oltre 40 anni al fianco di chi fa ristorazione.
             </h2>
             <div className="type-editorial space-y-6 text-[clamp(20px,1.7vw,26px)] leading-snug lg:col-span-6 lg:col-start-7">
               <p>
-                Grazie all’esperienza acquisita negli anni, oggi, noi di
-                Matarrese srl comprendiamo facilmente le esigenze degli
-                imprenditori e offriamo servizi e prodotti in grado di rendere
-                la loro idea di business più competitiva sia a livello di
-                processi che di qualità.
+                In tanti anni abbiamo imparato ad ascoltare chi fa impresa nella
+                ristorazione: capiamo in fretta cosa ti serve e ti aiutiamo a
+                lavorare meglio, con processi più semplici e più qualità.
               </p>
               <p>
                 Creiamo spazi su misura dei professionisti. Dalla dimensione
@@ -387,7 +385,7 @@ export default function AboutUs({lastTwoProjects = []}) {
           <div className="site-shell flex flex-col gap-4 border-t border-ghisa/10 pb-8 pt-16 md:flex-row md:items-end md:justify-between">
             <div>
               <h2 className="type-display text-[clamp(24px,2.4vw,36px)]">
-                I marchi che scegliamo.
+                I partner con cui realizziamo la tua idea.
               </h2>
               <p className="mt-3 text-acciaio">
                 Tecnologie e attrezzature per il lavoro di ogni giorno.

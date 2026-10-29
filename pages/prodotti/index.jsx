@@ -36,7 +36,7 @@ const lavorazione = [
   {
     nome: 'Cottura',
     testo:
-      'La cucina professionale è il cuore di ogni attività ristorativa. Estro, creatività e passione espressi attraverso soluzioni modulari e blocchi cottura per l’ottimizzazione del lavoro e degli spazi.',
+      'La cucina professionale è il cuore di ogni attività ristorativa. Blocchi cottura e soluzioni modulari per lavorare meglio e sfruttare ogni metro, lasciando spazio a estro e creatività.',
     foto: '/img/prodotti/cottura.webp',
     alt: 'Blocco cottura con fuochi e piastre sotto la cappa di aspirazione',
   },
@@ -50,14 +50,14 @@ const lavorazione = [
   {
     nome: 'Macchinari per l’agroalimentare',
     testo:
-      'Dalla progettazione alla realizzazione di laboratori di trasformazione alimenti per le materie prime in tavola. Facilitiamo l’efficientamento del lavoro attraverso macchinari e soluzioni tecnologicamente avanzate.',
+      'Dalla progettazione alla realizzazione di laboratori di trasformazione alimenti per le materie prime in tavola. Macchinari moderni per lavorare meglio e con meno fatica.',
     foto: '/img/prodotti/agroalimentare.webp',
     alt: 'Laboratorio di gastronomia con impastatrice, armadi frigo e piani in acciaio',
   },
   {
     nome: 'Refrigerazione',
     testo:
-      'La sicurezza alimentare passa dalla conservazione. Soluzioni altamente innovative per refrigerare a temperature differenziate si combinano perfettamente con il design di soluzioni espositive refrigerate.',
+      'La sicurezza alimentare passa dalla conservazione. La temperatura giusta per ogni prodotto, anche in vetrine belle da vedere.',
     foto: '/img/prodotti/refrigerazione.webp',
     alt: 'Armadi refrigerati in acciaio in una cucina professionale',
   },
@@ -208,7 +208,7 @@ export default function ProductsHome({groups}) {
         {/* copy da approvare: sottotitolo e alt della foto di apertura */}
         <PageHero
           title="Ogni strumento, al posto giusto."
-          intro="Attrezzature, arredi e impianti per cucine professionali, laboratori e locali ho.re.ca., scelti tra i marchi che conosciamo a fondo. Nel nostro showroom li vedi dal vivo."
+          intro="Attrezzature, arredi e impianti per cucine professionali, laboratori e locali ho.re.ca., scelti tra i marchi con cui lavoriamo ogni giorno. Nel nostro showroom li vedi dal vivo."
           image={{
             src: '/img/prodotti/apertura-cottura.webp',
             alt: 'Linea di cottura in acciaio sotto la cappa, nella cucina di un albergo',
@@ -320,7 +320,7 @@ export default function ProductsHome({groups}) {
               id="marchi-title"
               className="type-display text-[clamp(24px,2.4vw,36px)]"
             >
-              I marchi che trattiamo.
+              I marchi con cui lavoriamo ogni giorno.
             </h2>
           </div>
           <div className="pb-16">

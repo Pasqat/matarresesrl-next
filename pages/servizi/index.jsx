@@ -58,7 +58,7 @@ const SERVIZI = [
   {
     name: 'Progettazione impianti aspirazione',
     description:
-      'Non sottovalutiamo la qualità negli ambienti di lavoro e ti proponiamo le soluzioni più innovative.',
+      'Meno fumi e odori in cucina: un ambiente più sano per te e per chi lavora con te.',
   },
   {
     name: 'Consulenza su nuove tecnologie',
@@ -83,9 +83,8 @@ const FASI = [
           Che tu voglia <strong>aprire un ristorante</strong>, un{' '}
           <strong>bar</strong>, una <strong>gelateria</strong>, una{' '}
           <strong>pasticceria</strong>, una <strong>struttura ricettiva</strong>
-          , noi ci impegniamo nella progettazione ottimizzando gli spazi,
-          rendendoli funzionali e fruibili e adattando prodotti e tecnologie a
-          qualsiasi esigenza.
+          , progettiamo spazi comodi da vivere e da lavorare, con prodotti e
+          tecnologie scelti per le tue esigenze.
         </p>
         <p>
           Dal laboratorio di 30 mq alla struttura ricettiva di 7800 posti letto,
@@ -114,9 +113,8 @@ const FASI = [
           costo.
         </p>
         <p>
-          Elaboriamo un <strong>rendering progettuale</strong> per darti una
-          visione tridimensionale di come verrà eseguito il progetto prima di
-          iniziare a operare.
+          Elaboriamo un <strong>rendering progettuale</strong>, così vedi il tuo
+          locale in 3D prima che inizino i lavori.
         </p>
       </>
     ),
@@ -180,10 +178,7 @@ const FASI = [
     id: 'collaudo',
     titolo: 'Collaudo',
     testo: (
-      <p>
-        L’arredo viene consegnato e collocato nella sua destinazione operativa e
-        collaudato prima dell’apertura dell’attività.
-      </p>
+      <p>Consegniamo, montiamo e collaudiamo l’arredo prima dell’apertura.</p>
     ),
   },
   {
@@ -244,7 +239,7 @@ export default function Servizi({groups}) {
       <Layout navbarTransparent>
         {/* copy da approvare: titolo e sottotitolo dell'apertura */}
         <PageHero
-          title="Dal progetto all’assistenza."
+          title="Dall’idea all’apertura, e anche dopo."
           intro="Consulenza, progettazione, arredi su misura, impianti, formazione e assistenza tecnica per ristoranti, bar, pasticcerie, hotel, laboratori e GDO."
           image={{
             src: heroImg,
@@ -314,8 +309,8 @@ export default function Servizi({groups}) {
         {/* Capitolo scuro: il metodo in sequenza */}
         <MetodoFasi
           id="metodo"
-          title="Il nostro metodo, fase per fase."
-          intro="Dalla prima idea al collaudo: ogni progetto segue lo stesso percorso, con i nostri tecnici a seguirlo fino all’apertura."
+          title="Come nasce il tuo locale, passo dopo passo."
+          intro="Dalla prima idea al collaudo, ogni progetto fa lo stesso percorso: i nostri tecnici ti accompagnano fino all’apertura."
           fasi={FASI}
         >
           {/* copy da approvare: titolo, introduzione e CTA del metodo */}
