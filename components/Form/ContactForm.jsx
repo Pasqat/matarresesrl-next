@@ -84,7 +84,7 @@ export default function ContactForm({
     company: '',
     formContent: '',
     honeypot: '',
-    newsletterGroupId: '101815183615198233',
+    newsletterGroupId: 'Ristorante',
   })
   const {
     referente,

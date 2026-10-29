@@ -18,7 +18,7 @@ export default function NewsletterForm({hasAutoFocus, groups}) {
 
   const [form, setForm] = useState({
     email: '',
-    newsletterGroupId: '101815183615198233',
+    newsletterGroupId: 'Ristorante',
   })
   const {email, newsletterGroupId} = form
 
