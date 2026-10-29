@@ -9,7 +9,7 @@ const settori = [
     inEvidenza: true,
     // copy da approvare. Fonte: intervista 23/09/2026. Nessun caso realizzato: non citare clienti.
     pagina: {
-      titolo: 'Dark kitchen pensate per il delivery.',
+      titolo: 'La tua dark kitchen, pronta per il delivery.',
       intro:
         'Una cucina che lavora solo per le consegne ha ritmi, spazi e numeri diversi da un ristorante. La progettiamo attorno ai picchi degli ordini: disposizione, tecnologie, organizzazione e assistenza.',
       hero: '/img/settori/dk-linea-cottura.webp',
@@ -73,9 +73,9 @@ const settori = [
     inEvidenza: true,
     // copy da approvare. Fonte: intervista 23/09/2026. NO supporto autorizzazioni sanitarie, NO sanificazione.
     pagina: {
-      titolo: 'Laboratori di trasformazione, progettati per produrre.',
+      titolo: 'Laboratori di trasformazione su misura della tua produzione.',
       intro:
-        'Dal layout delle zone di lavorazione alla conservazione del prodotto finito: progettiamo e attrezziamo laboratori per chi trasforma materie prime.',
+        'Dalle zone di lavorazione alla conservazione del prodotto finito: progettiamo e attrezziamo il tuo laboratorio, qualunque materia prima trasformi.',
       hero: '/img/settori/laboratori.webp',
       capitolo: {
         titolo: 'Per chi trasforma.',
@@ -157,7 +157,7 @@ const settori = [
 // attrezzature, aspirazione e climatizzazione, formazione, assistenza e ricambi).
 const altrePagine = {
   'ristoranti-pizzerie': {
-    titolo: 'Cucine per ristoranti e pizzerie che reggono il servizio.',
+    titolo: 'Cucine per ristoranti e pizzerie, a misura del tuo servizio.',
     intro:
       'Dalla linea calda al banco pizza, dalla sala al lavaggio: progettiamo la cucina attorno al tuo menù e al ritmo del tuo servizio.',
     hero: '/img/settori/ristoranti-pizzerie.webp',
@@ -166,7 +166,7 @@ const altrePagine = {
       voci: [
         [
           'Il passe è il cuore',
-          'Dalla disposizione delle partite dipendono i tempi di uscita dei piatti e la fatica della brigata.',
+          'Dalla disposizione delle partite dipendono i tempi di uscita dei piatti e il lavoro della brigata.',
         ],
         [
           'Il forno detta i tempi',
@@ -187,7 +187,7 @@ const altrePagine = {
         ],
         [
           'Attrezzature',
-          'Cottura, refrigerazione, forni per pizza e lavaggio, scelti tra i marchi che conosciamo a fondo.',
+          'Cottura, refrigerazione, forni per pizza e lavaggio, scelti tra i marchi con cui lavoriamo ogni giorno.',
         ],
         [
           'Arredi su misura',
@@ -215,9 +215,9 @@ const altrePagine = {
     ],
   },
   'bar-gelaterie-pasticcerie': {
-    titolo: 'Banchi e laboratori per bar, gelaterie e pasticcerie.',
+    titolo: 'Banconi bar e laboratori su misura per gelaterie e pasticcerie.',
     intro:
-      'Il banco che vende e il laboratorio che produce: li progettiamo insieme, perché l’uno regge l’altro.',
+      'Il banco che accoglie i clienti e il laboratorio dove nasce il prodotto: li progettiamo insieme, perché l’uno regge l’altro.',
     hero: '/img/settori/bar-gelaterie-pasticcerie.webp',
     capitolo: {
       titolo: 'Vetrina davanti, produzione dietro.',
@@ -273,9 +273,9 @@ const altrePagine = {
     ],
   },
   'hotel-ricevimenti': {
-    titolo: 'Cucine e servizi per hotel e sale ricevimenti.',
+    titolo: 'Cucine e servizi per hotel, masserie e sale ricevimenti.',
     intro:
-      'Colazioni, ristorante, banchetti: volumi che cambiano ogni giorno. Progettiamo cucine e spazi di servizio che reggono tutto il calendario.',
+      'Colazioni, ristorante, banchetti: ogni giorno i numeri cambiano. Progettiamo cucine e spazi di servizio che ti accompagnano per tutta la stagione.',
     hero: '/img/settori/hotel-ricevimenti.webp',
     capitolo: {
       titolo: 'Più servizi sotto lo stesso tetto.',
@@ -331,7 +331,7 @@ const altrePagine = {
   collettiva: {
     titolo: 'Cucine per la ristorazione collettiva.',
     intro:
-      'Mense, centri cottura, strutture che servono molti pasti ogni giorno: progettiamo cucine affidabili, efficienti e semplici da gestire.',
+      'Mense, centri cottura, strutture che servono molti pasti ogni giorno: progettiamo cucine affidabili e semplici da gestire, giorno dopo giorno.',
     hero: '/img/settori/collettiva.webp',
     capitolo: {
       titolo: 'Molti pasti, ogni giorno.',
@@ -346,7 +346,7 @@ const altrePagine = {
         ],
         [
           'Continuità',
-          'Una cucina ferma lascia senza pasto chi aspetta: manutenzione e ricambi contano.',
+          'I pasti devono uscire ogni giorno: manutenzione e ricambi fanno la differenza.',
         ],
       ],
     },
@@ -369,10 +369,10 @@ const altrePagine = {
   'gdo-pescherie-macellerie': {
     titolo: 'Banchi e laboratori per GDO, pescherie e macellerie.',
     intro:
-      'Dal banco servito al laboratorio retrostante, fino alle aree ristoro dentro i punti vendita: progettiamo spazi che vendono e producono.',
+      'Dal banco servito al laboratorio retrostante, fino alle aree ristoro dentro i punti vendita: progettiamo spazi dove il fresco si vende bene e si lavora meglio.',
     hero: '/img/settori/gdo-pescherie-macellerie.webp',
     capitolo: {
-      titolo: 'Il prodotto fresco va mostrato e protetto.',
+      titolo: 'Il fresco si vende con gli occhi.',
       voci: [
         [
           'Il banco vende',
