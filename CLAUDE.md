@@ -33,7 +33,7 @@ GraphQL queries are organized in `lib/query/`:
 | Route | Purpose |
 |-------|---------|
 | `contact.js` | Contact form → Resend email + optional Odoo CRM lead |
-| `subscribe.js` | Newsletter signup → MailerLite |
+| `subscribe.js` | Newsletter signup → Mailchimp |
 | `login.js` / `logout.js` | WordPress JWT auth via `iron-session` |
 | `preview.js` / `exit-preview.js` | Next.js preview mode for WP drafts |
 | `user.js` | Session user info |
@@ -44,7 +44,7 @@ WordPress JWT auth is handled through `iron-session` (cookie-based). `lib/authen
 ### Integrations
 - **Resend** — transactional email from `contact.js`. Requires `RESEND_API_KEY`, `CONTACT_FROM`, `CONTACT_TO`.
 - **Odoo CRM** (`lib/odoo.js`) — lead creation via XML-RPC. Enabled by `ODOO_ENABLED=true`. IDs for tag and source are configurable via `ODOO_TAG_ID` / `ODOO_SOURCE_ID` (defaults: 14 / 11). Includes exponential backoff retry.
-- **MailerLite** — newsletter groups fetched at build time in `lib/newsletter.js`.
+- **Mailchimp** — newsletter signup in `pages/api/subscribe.js` (audience "All contacts"). The sector picked in the form goes to the "Settore" merge field (`MMERGE5`) and to the tag with the same name; the sector list is fixed in `data/newsletter-groups.js` and only those names are accepted. Requires `MAILCHIMP_API_KEY` (datacenter is the suffix after the dash) and `MAILCHIMP_LIST_ID`.
 - **Plausible** — analytics via `next-plausible`, always active.
 - **Facebook Pixel + Google Tag Manager** — loaded in `_app.js` only after cookie consent.
 

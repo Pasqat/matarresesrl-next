@@ -27,7 +27,8 @@ function load(file, imports, globals = {}) {
       process: {
         env: {
           RESEND_API_KEY: 'mock',
-          MAILERLITE_API_KEY: 'mock',
+          MAILCHIMP_API_KEY: 'mock-us1',
+          MAILCHIMP_LIST_ID: 'lista',
           ODOO_ENABLED: 'true',
         },
       },
@@ -239,7 +240,7 @@ async function main() {
   console.log(
     'PASS map fallback and protected preview without a session or post',
   )
-  const groups = [{id: '101815183615198233', name: 'Ristorante'}]
+  const groups = [{id: 'Ristorante', name: 'Ristorante'}]
   await checkForm(
     'components/Form/ContactForm.jsx',
     {groups},
@@ -335,38 +336,77 @@ async function main() {
   serviceOk = false
   assert.equal(await call(valid), 502)
   assert.equal(crm, 1)
+  // Mailchimp simulato: `membro` e' il contatto gia' presente (null = nuovo)
+  let membro = null,
+    chiamate = []
   const subscribe = load(
     'pages/api/subscribe.js',
-    () => ({logStructuredError() {}}),
+    name =>
+      name === 'crypto'
+        ? require('node:crypto')
+        : name.endsWith('newsletter-groups')
+          ? {newsletterGroups: groups}
+          : {logStructuredError() {}},
     {
-      fetch: async () => ({
-        status: serviceOk ? 201 : 422,
-        json: async () => ({data: {email: 'test@example.com'}}),
-      }),
+      Buffer,
+      fetch: async (url, {method, body}) => {
+        const dati = body && JSON.parse(body)
+        chiamate.push({url, method, dati})
+        if (!serviceOk) return {status: 500, json: async () => ({title: 'Errore'})}
+        if (method === 'GET')
+          return membro
+            ? {status: 200, json: async () => membro}
+            : {status: 404, json: async () => ({title: 'Resource Not Found'})}
+        if (method === 'PUT') {
+          const stato = dati.status || membro?.status || dati.status_if_new
+          return {status: 200, json: async () => ({status: stato})}
+        }
+        return {status: 204, json: async () => ({})}
+      },
     },
   ).default
-  for (const success of [true, false]) {
-    serviceOk = success
+  const iscrivi = async body => {
+    chiamate = []
     const res = {
       status(code) {
         this.code = code
         return this
       },
-      json() {
+      json(dati) {
+        this.dati = dati
         return this
       },
     }
-    await subscribe(
-      {
-        method: 'POST',
-        body: {email: 'test@example.com', groupId: groups[0].id},
-      },
-      res,
-    )
-    assert.equal(res.code, success ? 201 : 500)
+    await subscribe({method: 'POST', body}, res)
+    return res
   }
+  const valido = {email: 'Test@Example.com ', groupId: 'Ristorante', name: 'Test'}
+  serviceOk = true
+  let r = await iscrivi(valido)
+  assert.equal(r.code, 201)
+  const [, put, tag] = chiamate
+  assert.match(put.url, /^https:\/\/us1\.api\.mailchimp\.com\/3\.0\/lists\/lista\/members\/55502f40dc8b7c769880b10874abc9d0$/)
+  assert.deepEqual(
+    [put.dati.email_address, put.dati.status_if_new, put.dati.merge_fields],
+    ['Test@Example.com', 'subscribed', {MMERGE5: 'Ristorante', FNAME: 'Test'}],
+  )
+  assert.deepEqual(tag.dati, {tags: [{name: 'Ristorante', status: 'active'}]})
+  membro = {status: 'subscribed', merge_fields: {MMERGE5: 'Bar'}}
+  await iscrivi(valido)
+  assert.equal(chiamate[1].dati.merge_fields.MMERGE5, 'Bar;Ristorante')
+  membro = {status: 'unsubscribed', merge_fields: {MMERGE5: 'Ristorante'}}
+  r = await iscrivi(valido)
+  assert.equal(chiamate[2].dati.status, 'pending')
+  assert.match(r.dati.message, /conferma/)
+  membro = null
+  assert.equal((await iscrivi({...valido, groupId: 'Fornitori'})).code, 400)
+  assert.equal((await iscrivi({...valido, honeypot: 'x'})).code, 400)
+  assert.equal((await iscrivi({...valido, email: 'no'})).code, 400)
+  assert.equal(chiamate.length, 0)
+  serviceOk = false
+  assert.equal((await iscrivi(valido)).code, 500)
   console.log(
-    'PASS API contact/subscribe: validation, honeypot, mocked Resend/Odoo/MailerLite',
+    'PASS API contact/subscribe: validation, honeypot, mocked Resend/Odoo/Mailchimp',
   )
   // Build SSG: WordPress che chiude la connessione o risponde 508 viene ritentato.
   let calls = 0
