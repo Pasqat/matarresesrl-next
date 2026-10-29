@@ -82,8 +82,8 @@ export default function Home({groups, lastTwoProjects = [], event}) {
       <Layout navbarTransparent>
         {/* copy da approvare: titolo, sottotitolo e testi dei capitoli */}
         <HeroPianta
-          title="Costruiamo i luoghi dove il cibo diventa lavoro."
-          intro="Progettiamo, costruiamo e assistiamo cucine professionali, laboratori e locali ho.re.ca., da Alberobello dal 1983."
+          title="Diamo forma alla tua idea di ristorazione."
+          intro="Dal 1983 progettiamo e realizziamo cucine professionali, laboratori e locali ho.re.ca. E restiamo al tuo fianco anche dopo l’apertura."
           primary={{href: '#parliamone', label: 'Parla con un progettista'}}
           secondary={{href: '/realizzazioni', label: 'Guarda i progetti'}}
           // ponytail: foto provvisoria della pianta; da sostituire con una foto di cucina finita scelta da Pasquale
@@ -94,7 +94,7 @@ export default function Home({groups, lastTwoProjects = [], event}) {
         <SectorList
           settori={settori}
           href={s => (s.pagina ? `/settori/${s.slug}` : '#parliamone')}
-          title="Ogni cucina ha il suo mestiere."
+          title="Ogni attività ha la sua cucina."
           intro="Lavoriamo per chi cucina, serve, produce e vende cibo. Ogni settore ha flussi, norme e ritmi diversi: il progetto parte da lì."
         />
 
@@ -110,7 +110,7 @@ export default function Home({groups, lastTwoProjects = [], event}) {
                 id="metodo-title"
                 className="type-display max-w-[16ch] text-[clamp(32px,3.6vw,56px)]"
               >
-                Un solo interlocutore, dal primo schizzo all’ultimo ricambio.
+                Un solo interlocutore, prima e dopo l’apertura.
               </h2>
               <Link
                 href="/servizi"
@@ -135,7 +135,7 @@ export default function Home({groups, lastTwoProjects = [], event}) {
                 id="progetti-title"
                 className="type-display text-[clamp(32px,3.6vw,56px)]"
               >
-                Luoghi finiti, pieni di clienti.
+                Dall’idea a un locale pieno di clienti.
               </h2>
               <Link
                 href="/realizzazioni"
@@ -267,7 +267,7 @@ export default function Home({groups, lastTwoProjects = [], event}) {
               id="marchi-title"
               className="type-display text-[clamp(24px,2.4vw,36px)]"
             >
-              I marchi che conosciamo a fondo.
+              I partner con cui realizziamo la tua idea.
             </h2>
             <Link
               href="/prodotti"
