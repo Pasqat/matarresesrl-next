@@ -25,7 +25,7 @@ export default function NewsletterForm({
 
   const [form, setForm] = useState({
     email: '',
-    newsletterGroupId: '101815183615198233',
+    newsletterGroupId: 'Ristorante',
     honeypot: '',
   })
   const {email, newsletterGroupId, honeypot} = form
@@ -105,7 +105,7 @@ export default function NewsletterForm({
 
       setFormButtonDisabled(true)
       setNotification({
-        text: 'Grazie per la tua iscrizione!',
+        text: data.message || 'Grazie per la tua iscrizione!',
         isError: false,
       })
 
