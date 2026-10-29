@@ -197,7 +197,8 @@ export default function Settore({slug, groups, progetti}) {
             </div>
           </section>
         )}
-        {pagina.galleria && (
+        {/* Galleria statica solo dove WordPress non ha lavori del settore */}
+        {pagina.galleria && progetti.length === 0 && (
           <section
             className="bg-calce text-ghisa"
             data-header="light"
