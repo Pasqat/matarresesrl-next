@@ -1,9 +1,9 @@
 // Modal di contatto del revamp (stili in styles/contact-modal.css). Tre aperture, scelte dal
 // contesto della CTA:
-// - `progetto`: "parla con un progettista" e simili. Il CTA si espande nel pannello e il modulo
-//   procede a passi (attività → contatti → messaggio); l'attività arriva nella mail e in Odoo.
+// - `progetto`: "parla con un progettista" e simili. Stesso pannello di vetro di `info`, ma il
+//   modulo procede a passi (attività → contatti → messaggio); l'attività arriva nella mail e in Odoo.
 // - `realizzazione`: dalle pagine dei lavori. Lo schermo si chiude a lamelle come l'apertura della
-//   home ed entra un pannello laterale con la foto del lavoro.
+//   home ed entra un pannello con il modulo a sinistra e la foto del lavoro a destra.
 // - `info`: richieste generiche. Pannello di vetro satinato sulla pagina sfocata.
 // Il trigger è un <button> che prende le classi della CTA che sostituisce (`className`).
 import {useCallback, useEffect, useId, useRef, useState} from 'react'
@@ -126,12 +126,14 @@ export default function ContactModal({
   const [inviato, setInviato] = useState(false)
 
   const aPassi = variant === 'progetto' && !reservation
+  // Il percorso a passi del progettista ha la stessa grafica in vetro delle richieste generiche.
+  const aspetto = variant === 'realizzazione' ? 'realizzazione' : 'info'
   const passoIniziale = aPassi && settore ? 2 : 1
   const titolo =
     title ??
     (reservation
       ? reservation.title
-      : aPassi
+      : variant !== 'info'
       ? 'Raccontaci la tua idea.'
       : 'Come possiamo aiutarti?')
   const sottotitolo =
@@ -155,31 +157,7 @@ export default function ContactModal({
     document.documentElement.classList.add('cm-locked')
     const veloce = reducedMotion()
 
-    if (variant === 'progetto') {
-      document.documentElement.classList.add('cm-receded')
-      if (!veloce && trigger) {
-        const da = trigger.getBoundingClientRect()
-        const a = panel.getBoundingClientRect()
-        const dx = da.left + da.width / 2 - (a.left + a.width / 2)
-        const dy = da.top + da.height / 2 - (a.top + a.height / 2)
-        const fondo = getComputedStyle(panel).backgroundColor
-        await panel
-          .animate(
-            [
-              {
-                transform: `translate(${dx}px, ${dy}px) scale(${
-                  da.width / a.width
-                }, ${da.height / a.height})`,
-                borderRadius: '999px',
-                backgroundColor: '#de7c00',
-              },
-              {transform: 'none', borderRadius: '20px', backgroundColor: fondo},
-            ],
-            {duration: 620, easing: EASE_OUT},
-          )
-          .finished.catch(() => {})
-      }
-    } else if (variant === 'info') {
+    if (aspetto === 'info') {
       if (!veloce)
         await panel
           .animate(
@@ -223,7 +201,7 @@ export default function ContactModal({
         panel
           .querySelector('.cm-photo')
           ?.animate(
-            [{clipPath: 'inset(0 100% 0 0)'}, {clipPath: 'inset(0 0 0 0)'}],
+            [{clipPath: 'inset(0 0 0 100%)'}, {clipPath: 'inset(0 0 0 0)'}],
             {duration: 900, easing: EASE_IN_OUT},
           )
       }
@@ -232,7 +210,7 @@ export default function ContactModal({
     formRef.current
       ?.querySelector('input:not([type=hidden]):not([tabindex="-1"]), textarea')
       ?.focus({preventScroll: true})
-  }, [variant])
+  }, [aspetto])
 
   useEffect(() => {
     if (open) entra()
@@ -245,10 +223,9 @@ export default function ContactModal({
     if (closingRef.current || !dialog?.open || !panel) return
     closingRef.current = true
     const veloce = reducedMotion()
-    document.documentElement.classList.remove('cm-receded')
 
     if (!veloce) {
-      if (variant === 'realizzazione') {
+      if (aspetto === 'realizzazione') {
         await panel
           .animate(
             [{opacity: 1}, {opacity: 0, transform: 'translateX(40px)'}],
@@ -274,28 +251,6 @@ export default function ContactModal({
               .finished.catch(() => {}),
           ),
         )
-      } else if (variant === 'progetto' && triggerRef.current) {
-        const da = panel.getBoundingClientRect()
-        const a = triggerRef.current.getBoundingClientRect()
-        const dx = a.left + a.width / 2 - (da.left + da.width / 2)
-        const dy = a.top + a.height / 2 - (da.top + da.height / 2)
-        bodyRef.current?.classList.remove('is-in')
-        await panel
-          .animate(
-            [
-              {transform: 'none', opacity: 1},
-              {
-                transform: `translate(${dx}px, ${dy}px) scale(${
-                  a.width / da.width
-                }, ${a.height / da.height})`,
-                borderRadius: '999px',
-                backgroundColor: '#de7c00',
-                opacity: 0.2,
-              },
-            ],
-            {duration: 420, easing: EASE_IN_OUT, fill: 'forwards'},
-          )
-          .finished.catch(() => {})
       } else {
         await panel
           .animate(
@@ -313,11 +268,11 @@ export default function ContactModal({
       }
     }
     dialog.close()
-  }, [variant])
+  }, [aspetto])
 
   // Il dialog nativo è chiuso: si pulisce tutto e il focus torna alla CTA
   function chiuso() {
-    document.documentElement.classList.remove('cm-locked', 'cm-receded')
+    document.documentElement.classList.remove('cm-locked')
     panelRef.current?.getAnimations().forEach(a => a.cancel())
     ;[...(slatsRef.current?.children || [])].forEach(l => {
       l.getAnimations().forEach(a => a.cancel())
@@ -330,8 +285,7 @@ export default function ContactModal({
 
   // Se la pagina cambia con il modal aperto, la pagina sotto non resta bloccata
   useEffect(
-    () => () =>
-      document.documentElement.classList.remove('cm-locked', 'cm-receded'),
+    () => () => document.documentElement.classList.remove('cm-locked'),
     [],
   )
 
@@ -469,7 +423,7 @@ export default function ContactModal({
 
   // Riflesso del vetro che segue il puntatore
   function riflesso(e) {
-    if (variant !== 'info') return
+    if (aspetto !== 'info') return
     const r = e.currentTarget.getBoundingClientRect()
     e.currentTarget.style.setProperty('--mx', `${e.clientX - r.left}px`)
     e.currentTarget.style.setProperty('--my', `${e.clientY - r.top}px`)
@@ -574,7 +528,7 @@ export default function ContactModal({
       label={
         reservation
           ? 'Note (facoltative)'
-          : aPassi
+          : variant !== 'info'
           ? 'Cosa vorresti realizzare?'
           : 'La tua richiesta'
       }
@@ -771,7 +725,7 @@ export default function ContactModal({
     <dialog
       ref={dialogRef}
       className="cm-dialog"
-      data-variant={variant}
+      data-variant={aspetto}
       data-lenis-prevent
       aria-labelledby={inviato ? undefined : id('titolo')}
       aria-label={inviato ? 'Richiesta inviata' : undefined}
@@ -781,7 +735,7 @@ export default function ContactModal({
       }}
       onClose={chiuso}
     >
-      {variant === 'realizzazione' ? (
+      {aspetto === 'realizzazione' ? (
         <div ref={slatsRef} className="cm-slats" aria-hidden="true">
           {Array.from({length: N_SLATS}, (_, i) => (
             <i key={i} />
@@ -801,8 +755,12 @@ export default function ContactModal({
       >
         {open ? (
           <div ref={panelRef} className="cm-panel" onPointerMove={riflesso}>
-            {variant === 'realizzazione' ? (
+            {aspetto === 'realizzazione' ? (
               <>
+                <div ref={bodyRef} className="cm-side cm-reveal">
+                  {chiudiBtn}
+                  {contenuto}
+                </div>
                 <figure className="cm-photo m-0">
                   {image?.src ? (
                     <img src={image.src} alt={image.alt || ''} />
@@ -813,10 +771,6 @@ export default function ContactModal({
                     </figcaption>
                   ) : null}
                 </figure>
-                <div ref={bodyRef} className="cm-side cm-reveal">
-                  {chiudiBtn}
-                  {contenuto}
-                </div>
               </>
             ) : (
               <>
