@@ -51,4 +51,5 @@ docs/revamp/baseline/
 .firecrawl/
 # strumento selezione media (generati in locale)
 data/media-index.json
+data/media-jev.json
 public/_media-review/
