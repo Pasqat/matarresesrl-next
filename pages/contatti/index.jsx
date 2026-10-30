@@ -125,10 +125,8 @@ export default function Contatti({groups}) {
               </dl>
             </div>
             <div className="border-t border-ghisa/15 pt-6">
-              {/* copy da approvare (titolo della colonna) */}
               <h2 className="type-display text-2xl">Assistenza tecnica</h2>
               <p className="mt-4 max-w-[34ch] text-acciaio">
-                {/* copy da approvare */}
                 Per un guasto o una manutenzione usa il modulo dedicato.
               </p>
               <a

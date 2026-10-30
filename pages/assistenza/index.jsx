@@ -213,14 +213,12 @@ export default function Assistenza() {
             href="#richiesta"
             className="cta-fiamma focus-visible:outline-white"
           >
-            {/* copy da approvare */}
             Compila la richiesta
           </a>
           <a
             href="tel:+390804323651"
             className="whitespace-nowrap border-b border-inox/60 py-2 text-white transition-colors hover:border-white focus-visible:outline-white"
           >
-            {/* copy da approvare */}
             Oppure chiama +39 080 4323 651
           </a>
         </PageHero>
@@ -237,7 +235,6 @@ export default function Assistenza() {
                 id="richiesta-title"
                 className="type-display text-[clamp(30px,3.4vw,52px)]"
               >
-                {/* copy da approvare */}
                 Richiesta di intervento
               </h2>
               {/* Testo dalla FAQ "Offrite assistenza tecnica e manutenzione?" */}

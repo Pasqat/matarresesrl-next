@@ -6,7 +6,6 @@ import StructuredData from '../../components/StructuredData'
 import {breadcrumbSchema} from '../../lib/seo/schema'
 import settori from '../../data/settori'
 
-// copy da approvare
 const intro =
   'Ristoranti, bar, hotel, collettiva, GDO, laboratori e dark kitchen: ogni settore ha flussi, norme e ritmi diversi. Scegli il tuo.'
 

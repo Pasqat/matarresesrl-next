@@ -28,14 +28,12 @@ export default function Footer() {
       >
         <div className="site-shell grid gap-x-10 gap-y-10 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            {/* copy da approvare */}
             <h2
               id="newsletter-title"
               className="type-display text-[1.75rem] md:text-4xl lg:text-[2.75rem]"
             >
               Eventi, demo e novità tecniche per il tuo locale.
             </h2>
-            {/* copy da approvare */}
             <p className="mt-5 max-w-prose text-lg leading-relaxed text-acciaio">
               Ti scriviamo quando organizziamo showcooking e dimostrazioni, o
               quando pubblichiamo novità utili per chi lavora nell&apos;ho.re.ca.
@@ -50,7 +48,6 @@ export default function Footer() {
       <div className="bg-ghisa text-inox">
         <div className="site-shell">
           <div className="border-b border-inox/20 py-20 lg:py-28">
-            {/* copy da approvare */}
             <h2 className="type-display max-w-5xl text-[1.875rem] text-calce md:text-5xl lg:text-7xl">
               Hai un progetto? Parliamone.
             </h2>
@@ -62,11 +59,9 @@ export default function Footer() {
                   focus,
                 )}
               >
-                {/* copy da approvare */}
                 Raccontaci il tuo progetto
               </ContactModal>
               <p className="text-inox-muted">
-                {/* copy da approvare */}
                 oppure chiama il{' '}
                 <a
                   href="tel:+390804323431"
