@@ -159,7 +159,6 @@ export default function NewsletterForm({hasAutoFocus, groups}) {
 
         <div>
           <label htmlFor="industry" className={label}>
-            {/* copy da approvare */}
             Il tuo settore
           </label>
           <div className="relative">

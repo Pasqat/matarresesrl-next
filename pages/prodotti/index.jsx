@@ -31,7 +31,7 @@ const CATEGORIE_PRODOTTO = [
 ]
 
 // Foto reali dei lavori esportate con scripts/media-export.mjs (public/img/prodotti).
-// I testi delle categorie sono quelli della pagina precedente; gli alt sono copy da approvare.
+// I testi delle categorie sono quelli della pagina precedente.
 const lavorazione = [
   {
     nome: 'Cottura',
@@ -205,7 +205,6 @@ export default function ProductsHome({groups}) {
         data={breadcrumbSchema([{name: 'Prodotti', path: '/prodotti'}])}
       />
       <Layout navbarTransparent>
-        {/* copy da approvare: sottotitolo e alt della foto di apertura */}
         <PageHero
           title="Ogni strumento, al posto giusto."
           intro="Attrezzature, arredi e impianti per cucine professionali, laboratori e locali ho.re.ca., scelti tra i marchi con cui lavoriamo ogni giorno. Nel nostro showroom li vedi dal vivo."
@@ -315,7 +314,6 @@ export default function ProductsHome({groups}) {
           aria-labelledby="marchi-title"
         >
           <div className="site-shell pb-8 pt-16">
-            {/* copy da approvare */}
             <h2
               id="marchi-title"
               className="type-display text-[clamp(24px,2.4vw,36px)]"
@@ -334,7 +332,6 @@ export default function ProductsHome({groups}) {
           aria-labelledby="recensioni-title"
         >
           <div className="site-shell py-24 lg:py-32">
-            {/* copy da approvare */}
             <h2
               id="recensioni-title"
               className="type-display text-[clamp(24px,2.4vw,36px)]"

@@ -159,6 +159,9 @@ export default async function handler(req, res) {
     return res.status(400).json({error: 'Numero di telefono non valido.'})
   }
 
+  // Le iscrizioni agli eventi arrivano solo per email: non sono opportunità per il CRM.
+  const iscrizioneEvento = source === 'modal-prenotazione'
+
   const consenso = `Consenso privacy dato dal modulo del sito il ${new Date().toLocaleString(
     'it-IT',
     {timeZone: 'Europe/Rome'},
@@ -214,7 +217,9 @@ export default async function handler(req, res) {
         from: process.env.CONTACT_FROM || 'no-reply@yourdomain.com',
         to: process.env.CONTACT_TO || 'sales@yourdomain.com',
         // Niente a capo nell'oggetto: è un'intestazione della mail.
-        subject: `Nuovo contatto da ${referente.replace(/[\r\n]+/g, ' ')}`,
+        subject: `${
+          iscrizioneEvento ? 'Iscrizione a un evento' : 'Nuovo contatto'
+        } da ${referente.replace(/[\r\n]+/g, ' ')}`,
         ...(senderMail ? {reply_to: senderMail} : {}),
         html,
       }),
@@ -232,7 +237,7 @@ export default async function handler(req, res) {
     }
 
     // Optionally create a lead in Odoo via XML-RPC. Make failures blocking if ODOO_MUST_SYNC === 'true'
-    if (process.env.ODOO_ENABLED === 'true') {
+    if (process.env.ODOO_ENABLED === 'true' && !iscrizioneEvento) {
       try {
         await maybeCreateOdooLead({
           referente,

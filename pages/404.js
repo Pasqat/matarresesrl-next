@@ -41,11 +41,9 @@ export default function AboutUs() {
               id="page-title"
               className="type-display mt-6 max-w-[18ch] text-[clamp(36px,5vw,80px)]"
             >
-              {/* copy da approvare */}
               Questa pagina non esiste.
             </h1>
             <p className="mt-7 max-w-[52ch] text-lg text-inox lg:text-xl">
-              {/* copy da approvare */}
               Forse l’indirizzo è cambiato. Riparti da qui o scrivici: ti
               aiutiamo a trovare quello che cerchi.
             </p>

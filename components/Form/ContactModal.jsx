@@ -128,7 +128,12 @@ export default function ContactModal({
   const aPassi = variant === 'progetto' && !reservation
   const passoIniziale = aPassi && settore ? 2 : 1
   const titolo =
-    title ?? (reservation ? reservation.title : 'Raccontaci la tua idea.')
+    title ??
+    (reservation
+      ? reservation.title
+      : aPassi
+      ? 'Raccontaci la tua idea.'
+      : 'Come possiamo aiutarti?')
   const sottotitolo =
     subtitle ??
     (reservation
@@ -571,7 +576,7 @@ export default function ContactModal({
           ? 'Note (facoltative)'
           : aPassi
           ? 'Cosa vorresti realizzare?'
-          : 'Come possiamo aiutarti?'
+          : 'La tua richiesta'
       }
       maxLength={4000}
       value={valori.messaggio}
@@ -596,7 +601,7 @@ export default function ContactModal({
           <Link href="/privacy-policy" target="_blank">
             informativa privacy
           </Link>{' '}
-          e acconsento al trattamento dei dati per essere ricontattato.
+          e acconsento al trattamento dei dati per essere ricontattato/a.
         </span>
       </label>
       <span className="cm-err" id={id('privacy-err')}>

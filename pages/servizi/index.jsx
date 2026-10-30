@@ -153,7 +153,6 @@ const FASI = [
           sviluppa il progetto ideato da professionisti dell’
           <strong>interior design</strong> che puoi anche scegliere tu.
         </p>
-        {/* copy da approvare: riscritta per coerenza (prima mescolava "tu" e "suoi") */}
         <p>
           Puoi seguire l’avanzamento dei lavori mentre l’idea diventa realtà e
           vedere realizzato, come lo desideri, il bar, il ristorante, la
@@ -184,7 +183,6 @@ const FASI = [
   {
     id: 'apertura',
     titolo: 'Apertura',
-    // copy da approvare: prima era solo "Congratulazioni!"
     testo: (
       <p>Il locale è pronto ad accogliere i primi clienti. Congratulazioni!</p>
     ),
@@ -237,7 +235,6 @@ export default function Servizi({groups}) {
         data={breadcrumbSchema([{name: 'Servizi', path: '/servizi'}])}
       />
       <Layout navbarTransparent>
-        {/* copy da approvare: titolo e sottotitolo dell'apertura */}
         <PageHero
           title="Dall’idea all’apertura, e anche dopo."
           intro="Consulenza, progettazione, arredi su misura, impianti, formazione e assistenza tecnica per ristoranti, bar, pasticcerie, hotel, laboratori e GDO."
@@ -272,7 +269,6 @@ export default function Servizi({groups}) {
         >
           <div className="site-shell py-24 lg:py-32">
             <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
-              {/* copy da approvare: titolo e introduzione */}
               <h2
                 id="servizi-title"
                 className="type-display text-[clamp(32px,3.6vw,56px)] lg:col-span-7"
@@ -313,7 +309,6 @@ export default function Servizi({groups}) {
           intro="Dalla prima idea al collaudo, ogni progetto fa lo stesso percorso: i nostri tecnici ti accompagnano fino all’apertura."
           fasi={FASI}
         >
-          {/* copy da approvare: titolo, introduzione e CTA del metodo */}
           <ContactModal
             variant="progetto"
             className="inline-block border-b border-fiamma py-2 text-fiamma hover:text-white"
@@ -330,7 +325,6 @@ export default function Servizi({groups}) {
         >
           <div className="site-shell grid gap-10 py-20 lg:grid-cols-12 lg:items-end lg:py-28">
             <div className="lg:col-span-8">
-              {/* copy da approvare: titolo (il testo è quello di prima) */}
               <h2
                 id="demo-title"
                 className="type-display text-[clamp(28px,3.6vw,56px)]"
@@ -386,7 +380,6 @@ export default function Servizi({groups}) {
                   innovative e gli arredi più confortevoli.
                 </p>
               </div>
-              {/* copy da approvare */}
               <ContactModal
                 variant="progetto"
                 settore="GDO, pescherie e macellerie"
@@ -448,7 +441,6 @@ export default function Servizi({groups}) {
               id="contatto-title"
               className="type-display text-[clamp(36px,4.4vw,72px)] lg:col-span-7"
             >
-              {/* copy da approvare: titolo e testo di chiusura */}
               Raccontaci il tuo progetto.
             </h2>
             <p className="max-w-[40ch] text-acciaio lg:col-span-4 lg:col-start-9 lg:self-end">

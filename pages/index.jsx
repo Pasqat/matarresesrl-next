@@ -80,7 +80,6 @@ export default function Home({groups, lastTwoProjects = [], event}) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <Layout navbarTransparent>
-        {/* copy da approvare: titolo, sottotitolo e testi dei capitoli */}
         <HeroPianta
           title="Diamo forma alla tua idea di ristorazione."
           intro="Dal 1983 progettiamo e realizziamo cucine professionali, laboratori e locali ho.re.ca. E restiamo al tuo fianco anche dopo l’apertura."
@@ -168,7 +167,6 @@ export default function Home({groups, lastTwoProjects = [], event}) {
               </div>
             ) : (
               <div>
-                {/* copy da approvare */}
                 <p className="text-acciaio">Eventi e corsi in sede</p>
                 <h2
                   id="evento-title"

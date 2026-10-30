@@ -7,7 +7,7 @@ const settori = [
     nome: 'Dark kitchen',
     frase: 'Tecnologia e organizzazione per chi entra nel delivery.',
     inEvidenza: true,
-    // copy da approvare. Fonte: intervista 23/09/2026. Nessun caso realizzato: non citare clienti.
+    // Fonte: intervista 23/09/2026. Nessun caso realizzato: non citare clienti.
     pagina: {
       titolo: 'La tua dark kitchen, pronta per il delivery.',
       intro:
@@ -71,7 +71,7 @@ const settori = [
     frase:
       'Layout, flussi di lavoro, conservazione e confezionamento per chi trasforma materie prime.',
     inEvidenza: true,
-    // copy da approvare. Fonte: intervista 23/09/2026. NO supporto autorizzazioni sanitarie, NO sanificazione.
+    // Fonte: intervista 23/09/2026. NO supporto autorizzazioni sanitarie, NO sanificazione.
     pagina: {
       titolo: 'Laboratori di trasformazione su misura della tua produzione.',
       intro:
@@ -152,7 +152,7 @@ const settori = [
   },
 ]
 
-// Pagine degli altri settori. copy da approvare. Clienti citati: autorizzati da Pasquale il 23/09/2026.
+// Pagine degli altri settori. Clienti citati: autorizzati da Pasquale il 23/09/2026.
 // L'offerta usa solo servizi già dichiarati sul sito (progettazione, arredi su misura,
 // attrezzature, aspirazione e climatizzazione, formazione, assistenza e ricambi).
 const altrePagine = {

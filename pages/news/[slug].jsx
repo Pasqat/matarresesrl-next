@@ -134,7 +134,6 @@ export default function Post({postData, posts, preview}) {
               </ul>
             )}
             <SocialShareBar route={router.asPath} title={postData.title} />
-            {/* copy da approvare */}
             <InvitoProgetto
               title="Stai valutando un intervento simile?"
               cta="Parla con un progettista"

@@ -17,10 +17,9 @@ import logoAssogi from '../../public/img/logos/Assogi_logo-300x119.png'
 import fotoVito from '../../public/img/vito_matarrese.webp'
 import fotoPasquale from '../../public/img/azienda/soci/pasquale-matarrese.webp'
 
-// copy da approvare (dalla home, capitolo "Dove le soluzioni si toccano con mano")
 const fatti = [
   ['1983', 'l’anno in cui abbiamo iniziato, ad Alberobello'],
-  ['5.000 m²', 'la superficie della nostra sede'], // copy da approvare
+  ['5.000 m²', 'la superficie della nostra sede'],
   ['ASSOGI', 'parte del consorzio nazionale dal 2010'],
   ['MEPA', 'fornitori abilitati per la pubblica amministrazione'],
 ]
@@ -67,14 +66,13 @@ const soci = [
     iniziali: 'PM',
     foto: fotoPasquale,
     posizione: 'center 30%',
-    ruolo: 'Socio', // da verificare: ruolo e bio da chiedere al cliente — copy da approvare
+    ruolo: 'Socio', // da verificare: ruolo e bio da chiedere al cliente
     email: 'pasquale.matarrese@matarrese.it',
   },
   {
     nome: 'Giovanni “Gianni” Matarrese',
     iniziali: 'GM',
     ruolo: 'Socio', // da verificare: ruolo da chiedere al cliente
-    // copy da approvare (bozza esistente)
     bio: 'Gianni opera con dimestichezza nel campo della trasformazione alimentare, ottimizzando i processi di lavorazione e trovando soluzioni ottimali declinabili anche nel campo della ristorazione professionale.',
     email: 'gianni.matarrese@matarrese.it',
   },
@@ -141,13 +139,11 @@ export default function AboutUs({lastTwoProjects = []}) {
           }}
         >
           <Magnetic>
-            {/* copy da approvare */}
             <ContactModal variant="progetto" className={ctaFiamma}>
               Parla con un progettista
             </ContactModal>
           </Magnetic>
           <Link href="#soci" className={linkScuro}>
-            {/* copy da approvare */}
             Conosci i soci
           </Link>
         </PageHero>
@@ -227,7 +223,6 @@ export default function AboutUs({lastTwoProjects = []}) {
                 id="sede-title"
                 className="type-display max-w-[16ch] text-[clamp(32px,3.6vw,56px)]"
               >
-                {/* copy da approvare */}
                 Dove le soluzioni si toccano con mano.
               </h2>
               <Link href="/contatti" className={linkScuro}>
@@ -260,7 +255,6 @@ export default function AboutUs({lastTwoProjects = []}) {
                   />
                 </div>
                 <figcaption className="mt-3 text-sm text-inox-muted">
-                  {/* copy da approvare */}
                   Showroom, attrezzature per la cucina
                 </figcaption>
               </figure>
@@ -275,7 +269,6 @@ export default function AboutUs({lastTwoProjects = []}) {
                   />
                 </div>
                 <figcaption className="mt-3 text-sm text-inox-muted">
-                  {/* copy da approvare */}
                   Showroom, arredi e tavola
                 </figcaption>
               </figure>
@@ -283,7 +276,6 @@ export default function AboutUs({lastTwoProjects = []}) {
 
             <div className="mt-20 grid gap-10 lg:grid-cols-12">
               <h3 className="type-display text-2xl lg:col-span-4">
-                {/* copy da approvare */}
                 Gli spazi della sede
               </h3>
               <ul className="lg:col-span-7 lg:col-start-6">
@@ -321,7 +313,6 @@ export default function AboutUs({lastTwoProjects = []}) {
               id="soci-title"
               className="type-display text-[clamp(32px,3.6vw,56px)]"
             >
-              {/* copy da approvare */}
               Le persone dietro Matarrese.
             </h2>
             <Soci soci={soci} />
@@ -340,7 +331,6 @@ export default function AboutUs({lastTwoProjects = []}) {
                 id="assogi-title"
                 className="type-display text-[clamp(32px,3.6vw,56px)]"
               >
-                {/* copy da approvare */}
                 Parte del consorzio ASSOGI dal 2010.
               </h2>
               <a
