@@ -11,6 +11,7 @@ import {DrawSVGPlugin} from 'gsap/DrawSVGPlugin'
 import {useGSAP} from '@gsap/react'
 import Magnetic from '../Magnetic'
 import Pianta from '../disegno/Pianta'
+import ContactModal from '../Form/ContactModal'
 
 if (typeof window !== 'undefined')
   gsap.registerPlugin(useGSAP, ScrollTrigger, SplitText, DrawSVGPlugin)
@@ -104,9 +105,15 @@ export default function HeroPianta({title, intro, primary, secondary, photo}) {
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
             <Magnetic>
-              <Link href={primary.href} className="cta-fiamma">
-                {primary.label}
-              </Link>
+              {primary.modal ? (
+                <ContactModal variant={primary.modal} className="cta-fiamma">
+                  {primary.label}
+                </ContactModal>
+              ) : (
+                <Link href={primary.href} className="cta-fiamma">
+                  {primary.label}
+                </Link>
+              )}
             </Magnetic>
             <Link
               href={secondary.href}

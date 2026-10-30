@@ -4,6 +4,7 @@ import Link from 'next/link'
 import {useState} from 'react'
 
 import Layout from '../../components/Layout'
+import ContactModal from '../../components/Form/ContactModal'
 import PageHero from '../../components/PageHero'
 import StructuredData from '../../components/StructuredData'
 import {faqSchema, breadcrumbSchema} from '../../lib/seo/schema'
@@ -116,9 +117,14 @@ export default function Faq() {
                   Non trovi quello che cerchi? Contattaci, siamo a tua
                   disposizione.
                 </p>
-                <Link href="/contatti" className="cta-ghisa mt-6">
+                <ContactModal
+                  variant="info"
+                  className="cta-ghisa mt-6"
+                  title="Fai la tua domanda."
+                  subtitle="Ti risponde un nostro consulente, per email o al telefono."
+                >
                   Hai altre domande? Contattaci
-                </Link>
+                </ContactModal>
               </div>
             </div>
           </div>

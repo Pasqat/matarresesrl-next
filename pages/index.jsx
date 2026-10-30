@@ -84,7 +84,7 @@ export default function Home({groups, lastTwoProjects = [], event}) {
         <HeroPianta
           title="Diamo forma alla tua idea di ristorazione."
           intro="Dal 1983 progettiamo e realizziamo cucine professionali, laboratori e locali ho.re.ca. E restiamo al tuo fianco anche dopo l’apertura."
-          primary={{href: '#parliamone', label: 'Parla con un progettista'}}
+          primary={{modal: 'progetto', label: 'Parla con un progettista'}}
           secondary={{href: '/realizzazioni', label: 'Guarda i progetti'}}
           // ponytail: foto provvisoria della pianta; da sostituire con una foto di cucina finita scelta da Pasquale
           photo="/img/settori/dk-linea-cottura.webp"

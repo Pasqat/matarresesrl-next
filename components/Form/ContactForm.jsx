@@ -170,6 +170,8 @@ export default function ContactForm({
         company,
         formContent,
         honeypot: form.honeypot,
+        privacy: true,
+        source: 'pagina',
       }
       const r = await fetch('/api/contact', {
         method: 'POST',

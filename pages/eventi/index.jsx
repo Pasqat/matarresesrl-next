@@ -5,7 +5,7 @@ import {getEvents} from '../../lib/query/event'
 
 import Layout from '../../components/Layout'
 import PageHero from '../../components/PageHero'
-import FormModal from '../../components/Form/FormModal'
+import ContactModal from '../../components/Form/ContactModal'
 
 // Riga evento: data in evidenza (le date arrivano già formattate, es. "3 marzo 2026").
 function RigaEvento({event, futuro}) {
@@ -134,12 +134,14 @@ export default function Events({data}) {
                 Disponiamo di ampi laboratori attrezzati per realizzare eventi
                 formativi, informativi e commerciali per il settore food.
               </p>
-              <Link
-                href="/contatti"
+              <ContactModal
+                variant="info"
                 className="mt-8 inline-block border-b border-inox/60 py-2 text-white transition-colors hover:border-white"
+                title="Organizza un evento nei nostri laboratori."
+                subtitle="Formazione, presentazioni, incontri per il settore food: raccontaci cosa hai in mente."
               >
                 Contattaci
-              </Link>
+              </ContactModal>
             </div>
             <div className="border-t border-inox/25 pt-8">
               <h3 className="type-display max-w-[24ch] text-[clamp(22px,2.2vw,32px)] leading-tight">
@@ -150,13 +152,14 @@ export default function Events({data}) {
                 personalizzata per mostrarti il funzionamento delle attrezzature
                 ho.re.ca. che desideri conoscere.
               </p>
-              <div className="mt-8 [&>button]:rounded-none [&>button]:border-fiamma [&>button]:bg-fiamma [&>button]:text-ghisa [&>button]:hover:border-white [&>button]:hover:bg-white">
-                <FormModal
-                  title="Richiedi una demo personalizzata"
-                  buttonText="Richiedi una demo"
-                  withButton
-                />
-              </div>
+              <ContactModal
+                variant="info"
+                className="cta-fiamma mt-8"
+                title="Richiedi una demo personalizzata."
+                subtitle="Scegli tu il giorno: ti mostriamo al lavoro le attrezzature che vuoi conoscere, nello showroom di Alberobello."
+              >
+                Richiedi una demo
+              </ContactModal>
             </div>
           </div>
         </section>

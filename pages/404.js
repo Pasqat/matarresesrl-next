@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 
 import Layout from '../components/Layout'
+import ContactModal from '../components/Form/ContactModal'
 import Magnetic from '../components/Magnetic'
 
 // Lottie tolta: l'illustrazione (azzurri, verdi, giallo) è fuori palette su
@@ -50,12 +51,14 @@ export default function AboutUs() {
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-5">
               <Magnetic>
-                <Link
-                  href="/contatti"
+                <ContactModal
+                  variant="info"
                   className="cta-fiamma focus-visible:outline-white"
+                  title="Dicci cosa cercavi."
+                  subtitle="Ti aiutiamo a trovarlo, o ti ricontatta un nostro consulente."
                 >
                   Contattaci
-                </Link>
+                </ContactModal>
               </Magnetic>
               <ul className="flex flex-wrap gap-x-7 gap-y-3">
                 {LINKS.map(([href, label]) => (

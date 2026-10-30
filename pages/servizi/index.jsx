@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import ContactForm from '../../components/Form/ContactForm'
-import FormModal from '../../components/Form/FormModal'
+import ContactModal from '../../components/Form/ContactModal'
 import Layout from '../../components/Layout'
 import PageHero from '../../components/PageHero'
 import Magnetic from '../../components/Magnetic'
@@ -248,12 +248,12 @@ export default function Servizi({groups}) {
           }}
         >
           <Magnetic>
-            <Link
-              href="#contatti"
+            <ContactModal
+              variant="progetto"
               className="cta-fiamma focus-visible:outline-white"
             >
               Parla con un progettista
-            </Link>
+            </ContactModal>
           </Magnetic>
           <Link
             href="#metodo"
@@ -314,12 +314,12 @@ export default function Servizi({groups}) {
           fasi={FASI}
         >
           {/* copy da approvare: titolo, introduzione e CTA del metodo */}
-          <Link
-            href="#contatti"
+          <ContactModal
+            variant="progetto"
             className="inline-block border-b border-fiamma py-2 text-fiamma hover:text-white"
           >
             Inizia dalla consulenza
-          </Link>
+          </ContactModal>
         </MetodoFasi>
 
         {/* Capitolo chiaro: demo delle attrezzature */}
@@ -344,11 +344,14 @@ export default function Servizi({groups}) {
             </div>
             <div className="lg:col-span-4 lg:justify-self-end">
               <Magnetic>
-                <FormModal
-                  buttonText="Richiedi una demo personalizzata"
-                  withButton
-                  title="Richiedi una demo personalizzata"
-                />
+                <ContactModal
+                  variant="info"
+                  className="cta-fiamma"
+                  title="Richiedi una demo personalizzata."
+                  subtitle="Scegli tu il giorno: ti mostriamo al lavoro le attrezzature che vuoi conoscere, nello showroom di Alberobello."
+                >
+                  Richiedi una demo personalizzata
+                </ContactModal>
               </Magnetic>
             </div>
           </div>
@@ -384,12 +387,13 @@ export default function Servizi({groups}) {
                 </p>
               </div>
               {/* copy da approvare */}
-              <Link
-                href="#contatti"
+              <ContactModal
+                variant="progetto"
+                settore="GDO, pescherie e macellerie"
                 className="mt-10 inline-block border-b border-fiamma py-2 text-fiamma hover:text-white"
               >
                 Parliamo del tuo punto vendita
-              </Link>
+              </ContactModal>
             </div>
             <div className="relative aspect-[16/10] overflow-hidden bg-grafite lg:col-span-7">
               <Image

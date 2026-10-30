@@ -1,6 +1,7 @@
 import '../styles/globals.css'
 import '../styles/index.css'
 import '../styles/revamp.css'
+import '../styles/contact-modal.css'
 import Script from 'next/script'
 import {useEffect, useState} from 'react'
 import {useRouter} from 'next/router'

@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 
 import ContactForm from '../../components/Form/ContactForm'
-import FormModal from '../../components/Form/FormModal'
+import ContactModal from '../../components/Form/ContactModal'
 import Layout from '../../components/Layout'
 import Magnetic from '../../components/Magnetic'
 import PageHero from '../../components/PageHero'
@@ -215,12 +215,12 @@ export default function ProductsHome({groups}) {
           }}
         >
           <Magnetic>
-            <Link
-              href="#contatti"
+            <ContactModal
+              variant="progetto"
               className="cta-fiamma focus-visible:outline-fiamma"
             >
               Parla con un consulente
-            </Link>
+            </ContactModal>
           </Magnetic>
           <nav
             aria-label="Categorie di prodotto"
@@ -259,12 +259,14 @@ export default function ProductsHome({groups}) {
             <PhotoCards items={arredi} dark className="mt-12" />
             <div className="mt-16">
               <Magnetic>
-                <Link
-                  href="/contatti"
+                <ContactModal
+                  variant="info"
                   className="cta-fiamma focus-visible:outline-fiamma"
+                  title="Vieni a trovarci in showroom."
+                  subtitle="Dicci quando preferisci passare ad Alberobello: ti facciamo trovare un consulente e le attrezzature che ti interessano."
                 >
                   Visita il nostro showroom
-                </Link>
+                </ContactModal>
               </Magnetic>
             </div>
           </div>
@@ -290,11 +292,9 @@ export default function ProductsHome({groups}) {
             <PhotoCards items={aria} className="mt-14" />
             <div className="mt-16">
               <Magnetic>
-                <FormModal
-                  buttonText="Parla con un consulente"
-                  size="medium"
-                  withButton
-                />
+                <ContactModal variant="progetto" className="cta-ghisa">
+                  Parla con un consulente
+                </ContactModal>
               </Magnetic>
             </div>
           </div>

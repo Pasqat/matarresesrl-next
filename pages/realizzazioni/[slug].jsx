@@ -94,7 +94,18 @@ export default function Project({project, related}) {
           <div className="min-w-0 lg:col-span-8 lg:col-start-2">
             <Prosa content={project.content} editoriale />
             <SocialShareBar route={router.asPath} title={project.title} />
-            <InvitoProgetto title="Uno spazio da immaginare insieme." />
+            <InvitoProgetto
+              title="Uno spazio da immaginare insieme."
+              image={
+                cover
+                  ? {
+                      src: cover,
+                      alt: project.featuredImage?.node?.altText || '',
+                    }
+                  : undefined
+              }
+              caption={`${project.title}. Il prossimo può essere il tuo.`}
+            />
           </div>
         </div>
       </section>

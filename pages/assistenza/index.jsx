@@ -125,6 +125,7 @@ export default function Assistenza() {
           indirizzo,
           formContent,
           honeypot,
+          privacy: true,
           source: 'assistenza',
         }),
       })

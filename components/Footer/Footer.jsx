@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
 import NewsletterFormFooter from '../Form/NewsletterFormFooter'
+import ContactModal from '../Form/ContactModal'
 import {newsletterGroups} from '../../data/newsletter-groups'
 import {social} from '../../data/social'
 
@@ -54,16 +55,16 @@ export default function Footer() {
               Hai un progetto? Parliamone.
             </h2>
             <div className="mt-10 flex flex-col gap-4 text-xl md:flex-row md:items-baseline md:gap-10">
-              <Link
-                href="/contatti"
+              <ContactModal
+                variant="progetto"
                 className={clsx(
-                  'w-fit font-medium text-fiamma underline decoration-fiamma/40 underline-offset-8 transition-colors hover:decoration-fiamma',
+                  'w-fit text-left font-medium text-fiamma underline decoration-fiamma/40 underline-offset-8 transition-colors hover:decoration-fiamma',
                   focus,
                 )}
               >
                 {/* copy da approvare */}
-                Scrivici dalla pagina contatti
-              </Link>
+                Raccontaci il tuo progetto
+              </ContactModal>
               <p className="text-inox-muted">
                 {/* copy da approvare */}
                 oppure chiama il{' '}

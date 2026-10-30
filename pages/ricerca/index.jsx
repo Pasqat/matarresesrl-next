@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import Layout from '../../components/Layout'
+import ContactModal from '../../components/Form/ContactModal'
 import PageHero from '../../components/PageHero'
 
 import FBMlogo from '../../public/img/logos/FBM_LOGO-High-Res.png'
@@ -252,10 +253,15 @@ export default function AboutUs() {
               {/* copy da approvare */}
               Hai un progetto di ricerca da proporci?
             </h2>
-            <Link href="/contatti" className="cta-ghisa shrink-0 self-start">
+            <ContactModal
+              variant="info"
+              className="cta-ghisa shrink-0 self-start"
+              title="Proponici un progetto di ricerca."
+              subtitle="Raccontaci l’idea e con chi la state sviluppando: ti ricontattiamo per parlarne."
+            >
               {/* copy da approvare */}
               Scrivici
-            </Link>
+            </ContactModal>
           </div>
         </section>
       </Layout>

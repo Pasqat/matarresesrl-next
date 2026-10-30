@@ -6,6 +6,7 @@ import Layout from '../../components/Layout'
 import PageHero from '../../components/PageHero'
 import Magnetic from '../../components/Magnetic'
 import ContactForm from '../../components/Form/ContactForm'
+import ContactModal from '../../components/Form/ContactModal'
 import CardEditoriale from '../../components/editoriale/CardEditoriale'
 import GrigliaEditoriale from '../../components/editoriale/GrigliaEditoriale'
 import StructuredData from '../../components/StructuredData'
@@ -61,9 +62,13 @@ export default function Settore({slug, groups, progetti}) {
           image={{src: pagina.hero}}
         >
           <Magnetic>
-            <a href="#contatto" className="cta-fiamma">
+            <ContactModal
+              variant="progetto"
+              settore={settore.nome}
+              className="cta-fiamma"
+            >
               Parla con un progettista
-            </a>
+            </ContactModal>
           </Magnetic>
           <a
             href="#offerta"

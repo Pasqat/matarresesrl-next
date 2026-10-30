@@ -6,7 +6,7 @@ import AperturaEditoriale, {
   Copertina,
 } from '../../components/editoriale/AperturaEditoriale'
 import Prosa from '../../components/editoriale/Prosa'
-import FormModal from '../../components/Form/FormModal'
+import ContactModal from '../../components/Form/ContactModal'
 import SocialShareBar from '../../components/SocialShareBar/SocialShareBar'
 import {getEvent} from '../../lib/query/event'
 import {SeoDataSection} from '../../components/sections/seodata-section'
@@ -25,20 +25,13 @@ function Partecipa({event, dark}) {
       </a>
     )
   return (
-    <div
-      className={
-        dark
-          ? '[&>button]:rounded-none [&>button]:border-fiamma [&>button]:bg-fiamma [&>button]:text-ghisa [&>button]:hover:border-white [&>button]:hover:bg-white'
-          : '[&>button]:rounded-none'
-      }
+    <ContactModal
+      variant="info"
+      className={dark ? 'cta-fiamma' : 'cta-ghisa'}
+      reservation={{title: event.title}}
     >
-      <FormModal
-        buttonText="Partecipa"
-        type="reservation"
-        title={event.title}
-        withButton
-      />
-    </div>
+      Partecipa
+    </ContactModal>
   )
 }
 

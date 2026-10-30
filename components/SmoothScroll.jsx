@@ -1,7 +1,7 @@
 // Scorrimento fluido Lenis su tutto il sito, legato al ticker di GSAP perché ScrollTrigger resti
 // allineato. Con movimento ridotto non parte. Le finestre sovrapposte (Dialog) vogliono
 // `data-lenis-prevent`, altrimenti la rotella fa scorrere la pagina sotto: menu mobile,
-// visore della galleria, FormModal.
+// visore della galleria, modal di contatto (ContactModal).
 import {useEffect} from 'react'
 import gsap from 'gsap'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'

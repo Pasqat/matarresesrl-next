@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import Layout from '../../components/Layout'
+import ContactModal from '../../components/Form/ContactModal'
 import PageHero from '../../components/PageHero'
 import Magnetic from '../../components/Magnetic'
 import Soci from '../../components/azienda/Soci'
@@ -141,9 +142,9 @@ export default function AboutUs({lastTwoProjects = []}) {
         >
           <Magnetic>
             {/* copy da approvare */}
-            <Link href="/contatti" className={ctaFiamma}>
+            <ContactModal variant="progetto" className={ctaFiamma}>
               Parla con un progettista
-            </Link>
+            </ContactModal>
           </Magnetic>
           <Link href="#soci" className={linkScuro}>
             {/* copy da approvare */}
