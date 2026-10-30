@@ -594,13 +594,6 @@ export default function ContactModal({
         {titolo}
       </h2>
       <p className="cm-sub">{sottotitolo}</p>
-      {aPassi ? (
-        <div className="cm-progress" aria-hidden="true">
-          {[1, 2, 3].map(n => (
-            <i key={n} className={clsx(n <= passo && 'is-on')} />
-          ))}
-        </div>
-      ) : null}
       <form ref={formRef} className="cm-form" onSubmit={invia} noValidate>
         {aPassi ? (
           <>
@@ -717,6 +710,15 @@ export default function ContactModal({
             {invio ? <span className="cm-spin" aria-hidden="true" /> : freccia}
           </button>
         </div>
+
+        {/* Avanzamento sotto i pulsanti: il modulo resta il centro del pannello */}
+        {aPassi ? (
+          <div className="cm-progress" aria-hidden="true">
+            {[1, 2, 3].map(n => (
+              <i key={n} className={clsx(n <= passo && 'is-on')} />
+            ))}
+          </div>
+        ) : null}
       </form>
     </>
   )
