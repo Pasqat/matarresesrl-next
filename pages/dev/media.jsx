@@ -22,6 +22,7 @@ const SECTORS = [
   ['eventi', 'Eventi e formazione'],
   ['altro', 'Altro'],
 ]
+const SECTOR_LABEL = Object.fromEntries(SECTORS)
 const PAGES = ['home', 'servizi', 'realizzazioni', 'azienda', 'prodotti', 'eventi', 'contatti']
 const FILTERS = [
   ['todo', 'Da vedere'],
@@ -29,7 +30,13 @@ const FILTERS = [
   ['sezione', 'Sezione'],
   ['scarta', 'Scartati'],
   ['all', 'Tutti'],
+  ['jev-hero', 'Jev: candidati hero'],
+  ['jev-scarta', 'Jev: probabile scarto'],
 ]
+// Suggerimenti di Jev (scripts/media-jev.mjs, misura in docs/revamp/jev-misura.md): il settore come
+// catalogo, il tipo come scarto (prodotto/grafica/documento: 77 scartate su 78), hero solo per ordinare.
+const JEV_SCARTO = ['prodotto', 'grafica', 'documento']
+const JEV_FOTO = ['ambiente', 'attrezzatura', 'persone', 'evento']
 const HERO_MIN_WIDTH = 1920
 // Filtro "utilizzabili": sotto questo lato lungo la foto è troppo sacrificata anche per una sezione.
 const MIN_LONG_SIDE = 1200
@@ -51,6 +58,20 @@ function yearOf(m) {
 }
 const group = m => (m.source === 'wp' ? 'WordPress' : m.folder.split('/').slice(0, 2).join('/'))
 
+// Riassunto compatto di una risposta di Jev; null se manca o è un errore. `score` va da 0 a 4.
+function jevSummary(r) {
+  if (!r?.answers) return null
+  const {settore, tipo, hero} = r.answers
+  const ranked = Object.entries(settore.probabilities).sort((a, b) => b[1] - a[1])
+  return {
+    settore: settore.choice,
+    settoreConf: Math.round(settore.confidence * 100) / 100,
+    settore2: ranked[1]?.[0] ?? null,
+    tipo: tipo.choice,
+    hero: Math.round((hero.score + 1) * 10) / 10,
+  }
+}
+
 export async function getServerSideProps() {
   if (process.env.NODE_ENV === 'production') return {notFound: true}
   const read = f => {
@@ -58,8 +79,12 @@ export async function getServerSideProps() {
     return existsSync(p) ? JSON.parse(readFileSync(p, 'utf8')) : {}
   }
   const index = read('media-index.json')
+  const jev = read('media-jev.json')
   const items = Object.entries(index)
-    .map(([id, m]) => ({id, ...m, year: yearOf(m)}))
+    .map(([id, m]) => {
+      const j = jevSummary(jev[id])
+      return {id, ...m, year: yearOf(m), ...(j && {jev: j})}
+    })
     // Locali raggruppati per cartella (= cliente/evento), WordPress dal più grande.
     .sort((a, b) =>
       a.source !== b.source
@@ -91,22 +116,28 @@ export default function MediaReview({items, initialSelection}) {
   const [filter, setFilter] = useState('todo')
   const [folder, setFolder] = useState('all')
   const [showAll, setShowAll] = useState(false)
+  const [jevSector, setJevSector] = useState('all')
   const [focus, setFocus] = useState(0)
   const [error, setError] = useState(null)
+  // Senza data/media-jev.json la pagina resta com'era: niente filtri né righe di Jev.
+  const hasJev = useMemo(() => items.some(m => m.jev), [items])
 
-  const visible = useMemo(
-    () =>
-      items.filter(m => {
-        if (folder !== 'all' && group(m) !== folder) return false
-        const role = selection[m.id]?.role
-        // Le scelte già fatte restano sempre visibili nelle loro viste.
-        if (!showAll && !role && !usable(m)) return false
-        if (filter === 'todo') return !role
-        if (filter === 'all') return true
-        return role === filter
-      }),
-    [items, selection, filter, folder, showAll],
-  )
+  const visible = useMemo(() => {
+    const out = items.filter(m => {
+      if (folder !== 'all' && group(m) !== folder) return false
+      if (jevSector !== 'all' && m.jev?.settore !== jevSector) return false
+      const role = selection[m.id]?.role
+      // Le scelte già fatte restano sempre visibili nelle loro viste.
+      if (!showAll && !role && !usable(m)) return false
+      if (filter === 'todo') return !role
+      if (filter === 'all') return true
+      if (filter === 'jev-hero') return !role && JEV_FOTO.includes(m.jev?.tipo)
+      if (filter === 'jev-scarta') return !role && JEV_SCARTO.includes(m.jev?.tipo)
+      return role === filter
+    })
+    if (filter === 'jev-hero') out.sort((a, b) => b.jev.hero - a.jev.hero)
+    return out
+  }, [items, selection, filter, folder, showAll, jevSector])
 
   const save = useCallback(async (id, patch) => {
     setSelection(s => ({...s, [id]: {...s[id], ...patch}}))
@@ -164,7 +195,7 @@ export default function MediaReview({items, initialSelection}) {
             {stats.scarta || 0} scartati
           </span>
           <nav className="flex gap-1">
-            {FILTERS.map(([key, label]) => (
+            {FILTERS.filter(([key]) => hasJev || !key.startsWith('jev-')).map(([key, label]) => (
               <button
                 key={key}
                 onClick={() => (setFilter(key), setFocus(0))}
@@ -174,6 +205,23 @@ export default function MediaReview({items, initialSelection}) {
               </button>
             ))}
           </nav>
+          {hasJev && (
+            <label className="flex items-center gap-2 text-gray-700">
+              Settore Jev
+              <select
+                value={jevSector}
+                onChange={e => (setJevSector(e.target.value), setFocus(0))}
+                className="border px-2 py-1"
+              >
+                <option value="all">Tutti</option>
+                {SECTORS.map(([key, label]) => (
+                  <option key={key} value={key}>
+                    {label}
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
           <select
             value={folder}
             onChange={e => (setFolder(e.target.value), setFocus(0))}
@@ -283,6 +331,26 @@ export default function MediaReview({items, initialSelection}) {
                   aria-label="Nota"
                   className="border px-1 py-1"
                 />
+                {m.jev && (
+                  <p className="text-xs text-gray-500">
+                    Jev: {SECTOR_LABEL[m.jev.settore]} {Math.round(m.jev.settoreConf * 100)}% · {m.jev.tipo} · hero{' '}
+                    {m.jev.hero.toFixed(1).replace('.', ',')}
+                    {JEV_SCARTO.includes(m.jev.tipo) && (
+                      <>
+                        {' '}
+                        <span className="whitespace-nowrap rounded bg-gray-200 px-1">Jev: probabile scarto</span>
+                      </>
+                    )}
+                    {!sel.sector && (
+                      <>
+                        {' '}
+                        <button onClick={() => save(m.id, {sector: m.jev.settore})} className="rounded border px-2 text-xs">
+                          Usa settore Jev
+                        </button>
+                      </>
+                    )}
+                  </p>
+                )}
               </div>
             </li>
           )

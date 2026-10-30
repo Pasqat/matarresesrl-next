@@ -1,8 +1,8 @@
 # Jev sulle foto del revamp: prima misura (30/10/2026)
 
-**Esito: `usabile` non separa le foto scartate da quelle tenute, quindi il giro completo sull'indice
-è fermo e `/dev/media` non è stato toccato.** `settore` e `tipo` invece funzionano, e `hero` ordina bene
-le foto già tenute. Per andare avanti va ridisegnato l'uso, non rilanciato lo stesso giro.
+**Esito: `usabile` non separa le foto scartate da quelle tenute.** `settore` e `tipo` invece
+funzionano, e `hero` ordina bene le foto già tenute. Il giro completo è partito solo dopo aver
+ridisegnato l'uso: vedi «Uso deciso» in fondo.
 
 ## Come è stata fatta
 
@@ -112,3 +112,42 @@ dello scarto). È il segnale di scarto più pulito della misura.
 - Le domande sono in italiano; Jev è addestrato soprattutto in inglese. Non è misurato quanto pesi.
 - `usabile` andrebbe riformulato verso il criterio vero di Pasquale («adatta al revamp»: foto reale di
   un cliente, niente catalogo, niente logo sovrapposto) prima di ripetere la misura.
+
+## Uso deciso
+
+In `/dev/media`, solo se c'è `data/media-jev.json` (senza, la pagina resta com'era):
+
+- **Settore come catalogo.** Su ogni scheda la riga «Jev: settore NN% · tipo · hero x,x», il pulsante
+  «Usa settore Jev» quando il settore manca, e il menu «Settore Jev» per cercare le foto delle pagine
+  settore scoperte.
+- **Tipo come scarto.** Prodotto, grafica e documento: badge «Jev: probabile scarto» e filtro omonimo.
+- **Hero solo come ordinamento.** Il filtro «Jev: candidati hero» mostra le foto senza ruolo di tipo
+  ambiente, attrezzatura, persone o evento, dalla più alta alla più bassa, senza soglia. `usabile` e
+  `soggetto` non si mostrano.
+
+### Giro completo (30/10/2026)
+
+- 6.396 immagini (l'indice meno i 33 video): **6.395 classificate**, 1 errore non recuperabile
+  (`wp:1406`, una favicon `.ico` che sharp non legge).
+- 5.985 nel giro completo in 13,8 minuti; costo del giro **$0,65**, con la misura **$0,70** in tutto
+  (circa $0,00011 a immagine).
+- `hero` sull'intero indice: massimo 4,0 (una foto sola arriva a 4), 62 foto a 3,5 o più.
+- Con il filtro «utilizzabili» attivo: 2.680 candidati hero e 76 probabili scarti; «Settore Jev» = Dark
+  kitchen ne mostra 17 da vedere.
+
+| settore Jev | immagini | | tipo Jev | immagini |
+|---|---|---|---|---|
+| Azienda (sede, officina, team) | 1.572 | | ambiente | 3.087 |
+| Ristoranti e pizzerie | 1.411 | | persone | 1.341 |
+| Bar, gelaterie, pasticcerie | 1.353 | | attrezzatura | 1.208 |
+| Prodotti e dettagli tecnici | 885 | | evento | 259 |
+| GDO, pescherie, macellerie | 330 | | prodotto | 259 |
+| Laboratori di trasformazione | 266 | | grafica | 207 |
+| Eventi e formazione | 257 | | documento | 34 |
+| Altro | 129 | | | |
+| Ristorazione collettiva | 106 | | | |
+| Hotel e sale ricevimenti | 64 | | | |
+| Dark kitchen | 22 | | | |
+
+I settori più scoperti restano poveri anche nell'archivio: Dark kitchen 22 foto (1 con confidenza
+≥ 0,7), Ristorazione collettiva 106 (9), Hotel e sale ricevimenti 64 (28).
