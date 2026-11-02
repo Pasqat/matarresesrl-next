@@ -2,7 +2,6 @@ import {Fragment, useEffect, useRef, useState} from 'react'
 import {Dialog, Menu} from '@headlessui/react'
 import Image from 'next/image'
 import Link from 'next/link'
-import ContactModal from '../Form/ContactModal'
 import {useRouter} from 'next/router'
 
 const primary = [
@@ -142,12 +141,12 @@ export default function Navbar({isTransparent = false}) {
               <Roll>Assistenza</Roll>
             </Link>
             {/* Figlio diretto di .header-actions: la regola legacy a 760px lo nasconde su mobile. */}
-            <ContactModal
-              variant="info"
+            <Link
+              href="/contatti"
               className="site-button site-button-small nav-cta"
             >
               <Roll>Contattaci</Roll>
-            </ContactModal>
+            </Link>
             <button
               className="mobile-toggle"
               onClick={() => setOpen(true)}

@@ -1247,5 +1247,24 @@
  },
  "local:0588b2692f045357": {
   "role": "scarta"
+ },
+ "local:26b49b1f9bea992f": {
+  "sector": "gdo-pescherie-macellerie",
+  "role": "hero"
+ },
+ "local:830fca16da7d29e2": {
+  "role": "scarta"
+ },
+ "local:1e38497035629cf9": {
+  "role": "scarta"
+ },
+ "local:4ed8ff5faba81716": {
+  "role": "scarta"
+ },
+ "local:d41cfdddbad0346c": {
+  "role": "scarta"
+ },
+ "local:ddf020237d2c840f": {
+  "role": "scarta"
  }
 }
