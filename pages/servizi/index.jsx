@@ -234,7 +234,7 @@ export default function Servizi({groups}) {
       <StructuredData
         data={breadcrumbSchema([{name: 'Servizi', path: '/servizi'}])}
       />
-      <Layout navbarTransparent>
+      <Layout navbarTransparent headerCta={{}}>
         <PageHero
           title="Dall’idea all’apertura, e anche dopo."
           intro="Consulenza, progettazione, arredi su misura, impianti, formazione e assistenza tecnica per ristoranti, bar, pasticcerie, hotel, laboratori e GDO."

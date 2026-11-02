@@ -2,6 +2,7 @@ import '../styles/globals.css'
 import '../styles/index.css'
 import '../styles/revamp.css'
 import '../styles/contact-modal.css'
+import '../styles/cinema.css'
 import Script from 'next/script'
 import {useEffect, useState} from 'react'
 import {useRouter} from 'next/router'
@@ -13,11 +14,18 @@ import ScrollToTop from '../components/ScrollToTop'
 import SmoothScroll from '../components/SmoothScroll'
 import PlausibleProvider from 'next-plausible'
 import {SpeedInsights} from '@vercel/speed-insights/next'
-import {Archivo, Newsreader} from 'next/font/google'
+import {Inter_Tight, Instrument_Serif, Newsreader} from 'next/font/google'
 
-// Display: Archivo a larghezza variabile (titoli "da targa" in versione espansa).
-// Editoriale: Newsreader per storie e citazioni. Testo: Matter (styles/index.css).
-const display = Archivo({subsets: ['latin'], axes: ['wdth'], display: 'swap'})
+// Display: Inter Tight compatto per i titoli; Instrument Serif corsivo per la seconda
+// riga dei titoli a due tempi (DESIGN.md). Editoriale: Newsreader per storie e
+// citazioni. Testo: Matter (styles/index.css).
+const display = Inter_Tight({subsets: ['latin'], display: 'swap'})
+const accent = Instrument_Serif({
+  subsets: ['latin'],
+  weight: '400',
+  style: 'italic',
+  display: 'swap',
+})
 // Newsreader serve solo a citazioni sotto la piega: niente corsivo e niente preload.
 const editorial = Newsreader({
   subsets: ['latin'],
@@ -110,7 +118,7 @@ function MyApp({Component, pageProps}) {
         ) : null}
         <style
           dangerouslySetInnerHTML={{
-            __html: `:root{--font-display:${display.style.fontFamily};--font-editorial:${editorial.style.fontFamily}}`,
+            __html: `:root{--font-display:${display.style.fontFamily};--font-accent:${accent.style.fontFamily};--font-editorial:${editorial.style.fontFamily}}`,
           }}
         />
         <SmoothScroll />

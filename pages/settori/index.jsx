@@ -28,7 +28,7 @@ export default function Settori() {
       <StructuredData
         data={breadcrumbSchema([{name: 'Settori', path: '/settori'}])}
       />
-      <Layout navbarTransparent>
+      <Layout navbarTransparent headerCta={{}}>
         <PageHero title="Per chi lavoriamo." intro={intro} />
         <SectorList
           settori={settori}

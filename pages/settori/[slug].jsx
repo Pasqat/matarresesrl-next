@@ -55,7 +55,7 @@ export default function Settore({slug, groups, progetti}) {
         })}
       />
       <StructuredData data={faqSchema(faq)} />
-      <Layout navbarTransparent>
+      <Layout navbarTransparent headerCta={{settore: settore.nome}}>
         <PageHero
           title={pagina.titolo}
           intro={pagina.intro}

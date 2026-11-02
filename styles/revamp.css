@@ -288,6 +288,132 @@ p { text-wrap: pretty; }
   }
 
 
+/* ---- Header a pillola (DESIGN.md, "Header a pillola") ----
+   L'header è una fascia fixed trasparente che non intercetta il puntatore; la pillola
+   è .site-header-inner, che porta vetro, filetto e ombra secondo il tema (data-bg). */
+  .site-header[data-variant] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 16px 16px 0;
+    background: transparent;
+    border-bottom: 0;
+    pointer-events: none;
+    animation: pillDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .site-header[data-variant] .site-header-inner {
+    pointer-events: auto;
+    width: min(1240px, 100%);
+    max-width: none;
+    min-height: 60px;
+    padding: 0 8px 0 24px;
+    border-radius: 999px;
+    border: 1px solid var(--pill-line);
+    background: var(--pill-bg);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    backdrop-filter: blur(14px) saturate(140%);
+    box-shadow: var(--pill-shadow, none);
+    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+  }
+  .site-header[data-bg='top'] {
+    --pill-bg: rgb(13 14 15 / 0.45);
+    --pill-line: rgb(243 238 230 / 0.16);
+  }
+  .site-header[data-bg='dark'] {
+    --pill-bg: color-mix(in srgb, var(--ghisa) 80%, transparent);
+    --pill-line: color-mix(in srgb, var(--inox) 16%, transparent);
+    --pill-shadow: 0 8px 30px rgb(0 0 0 / 0.35);
+  }
+  .site-header[data-bg='light'],
+  .site-header[data-bg='solid'] {
+    --pill-bg: color-mix(in srgb, #fff 82%, transparent);
+    --pill-line: color-mix(in srgb, var(--ghisa) 12%, transparent);
+    --pill-shadow: 0 8px 30px rgb(30 34 38 / 0.1);
+  }
+  .site-header[data-bg='top'],
+  .site-header[data-bg='dark'],
+  .site-header[data-bg='light'] {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  .site-header .brand {
+    width: 160px;
+  }
+  .site-header .header-actions {
+    gap: 22px;
+  }
+  .site-header .nav-cta,
+  .site-header .nav-cta:hover {
+    border-radius: 999px;
+    min-height: 44px;
+    padding-inline: 20px;
+  }
+  /* Sopralluogo: sempre fiamma come nella landing, su vetro scuro e chiaro. */
+  .site-header .nav-cta--sopralluogo,
+  .site-header .nav-cta--sopralluogo:hover {
+    border-color: var(--fiamma);
+    background: var(--fiamma);
+    color: var(--ghisa);
+    font-weight: 600;
+  }
+  .site-header .nav-cta--sopralluogo::before {
+    background: #fff;
+  }
+  .site-header .nav-cta-short {
+    display: none;
+  }
+  /* Fuori dal flusso: le pagine con header pieno ricevono lo spazio della pillola. */
+  .site-header[data-variant='standard'] ~ .site-content {
+    padding-top: 92px;
+  }
+  @media (max-width: 899px) {
+    .site-header .nav-cta-long {
+      display: none;
+    }
+    .site-header .nav-cta-short {
+      display: inline;
+    }
+  }
+  @media (max-width: 760px) {
+    .site-header[data-variant] {
+      padding: 12px 12px 0;
+    }
+    .site-header[data-variant] .site-header-inner {
+      min-height: 56px;
+      padding-left: 18px;
+    }
+    .site-header .brand {
+      width: 140px;
+    }
+    /* La regola legacy nasconde la CTA su mobile: il sopralluogo resta visibile. */
+    .site-header .header-actions > .nav-cta--sopralluogo {
+      display: inline-flex;
+      padding-inline: 14px;
+      font-size: 13px;
+    }
+    .site-header .header-actions:has(.nav-cta--sopralluogo) .support-link {
+      display: none;
+    }
+    .site-header[data-variant='standard'] ~ .site-content {
+      padding-top: 80px;
+    }
+  }
+  @keyframes pillDown {
+    from {
+      opacity: 0;
+      transform: translateY(-16px);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .site-header[data-variant] {
+      animation: none;
+    }
+    .site-header[data-variant] .site-header-inner {
+      transition: none;
+    }
+  }
+
 /* ---- Corpo WordPress (components/editoriale/Prosa.jsx) ---- */
   .site-content .prosa {
     max-width: 68ch;
@@ -334,9 +460,8 @@ p { text-wrap: pretty; }
   .site-content .prosa h2:not(.type-h6):not(.type-display),
   .site-content .prosa h3:not(.type-h6):not(.type-display) {
     font-family: var(--font-display);
-    font-stretch: 125%;
-    font-weight: 560;
-    letter-spacing: -0.02em;
+    font-weight: 500;
+    letter-spacing: -0.025em;
     line-height: 1.12;
     text-wrap: balance;
   }

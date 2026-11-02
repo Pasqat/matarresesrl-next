@@ -7,13 +7,13 @@ import Navbar from './Navbars/Navbar'
 import StructuredData from './StructuredData'
 import {globalSchema} from '../lib/seo/schema'
 
-export default function Layout({children, navbarTransparent, preview}) {
+export default function Layout({children, navbarTransparent, headerCta, preview}) {
   const {pathname} = useRouter()
   return (
     <>
       <Meta />
       <StructuredData data={globalSchema()} />
-      <Navbar isTransparent={navbarTransparent} />
+      <Navbar isTransparent={navbarTransparent} cta={headerCta} />
       <main
         className="site-content"
         id="contenuto"

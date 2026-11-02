@@ -364,7 +364,6 @@ html.cm-locked {
 }
 .cm-step-q {
   font-family: var(--font-display);
-  font-stretch: 112%;
   font-weight: 540;
   font-size: 22px;
   line-height: 1.15;

@@ -1,5 +1,6 @@
-import {useEffect, useState} from 'react'
+import {useEffect, useRef, useState} from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import * as fbq from '../../lib/fpixel'
 import {gtmEvent} from '../../lib/gtm'
 import {usePlausible} from 'next-plausible'
@@ -10,16 +11,92 @@ import Head from 'next/head'
 import clsx from 'clsx'
 
 import Layout from '../../components/Layout'
-import PageHero from '../../components/PageHero'
+import ContactModal from '../../components/Form/ContactModal'
+import Magnetic from '../../components/Magnetic'
+import HeroCinema from '../../components/cinema/HeroCinema'
+import TitoloDueTempi from '../../components/cinema/TitoloDueTempi'
+import PilaCard from '../../components/cinema/PilaCard'
+import Passi from '../../components/cinema/Passi'
+import BottoneFreccia, {Freccia} from '../../components/cinema/BottoneFreccia'
+import useRivela from '../../components/cinema/useRivela'
+import heroImg from '../../public/img/home/assistenza-tecnica.webp'
+import tecnicoImg from '../../public/img/assistenza/tecnico-cucina.webp'
+import manutenzioneImg from '../../public/img/assistenza/manutenzione.webp'
+import schedaImg from '../../public/img/assistenza/scheda-elettronica.webp'
+import mareImg from '../../public/img/assistenza/intervento-sul-mare.webp'
+import chiusuraImg from '../../public/img/homeBackground.webp'
 
 import {getGroups} from '../../lib/newsletter'
 import {CheckIcon} from '../../components/icons/check-icon'
 
+// Foto dalla selezione "assistenza" di /dev/media (Foto servizi/1.assistenza tecnica).
+const servizi = [
+  {
+    titolo: 'Intervento su guasto',
+    testo:
+      'Diagnosi e riparazione delle attrezzature per cottura, lavaggio, refrigerazione e aspirazione. Risposta di norma entro 48 ore su tutta la regione.',
+    voci: [
+      'Tecnici specializzati',
+      'Urgenze nei festivi: risposta entro 24 ore, tariffa dedicata',
+      'Ricambi dal nostro magazzino',
+    ],
+    immagine: tecnicoImg,
+    alt: 'Tecnico Matarrese che ripara il circuito gas di una cucina professionale',
+    posizione: '50% 45%',
+    didascalia: 'Riparazione di una cucina a gas',
+  },
+  {
+    titolo: 'Manutenzione programmata',
+    testo:
+      'Visite periodiche per controllare, pulire e regolare le macchine prima che si fermino. Frequenza e contenuto li definiamo insieme, sulla vostra cucina.',
+    voci: [
+      'Contratto su misura delle vostre attrezzature',
+      'Controlli e regolazioni a scadenza',
+      'Meno fermi durante il servizio',
+    ],
+    immagine: manutenzioneImg,
+    alt: 'Tecnico Matarrese che fissa un componente con il cacciavite',
+    posizione: '50% 40%',
+  },
+  {
+    titolo: 'Ricambi',
+    testo:
+      'Un ampio magazzino ricambi per chiudere l’intervento il prima possibile, anche sulle parti elettroniche.',
+    voci: [
+      'Ampio magazzino ricambi',
+      'Ricambi per le attrezzature che installiamo',
+      'Richieste anche dal modulo qui sotto',
+    ],
+    immagine: schedaImg,
+    alt: 'Mano del tecnico sulla scheda elettronica di un forno',
+    posizione: '50% 35%',
+  },
+]
+
+const passi = [
+  [
+    'Richiesta',
+    'Ci scrivete dal modulo o chiamate la linea assistenza: marca, modello e cosa succede alla macchina.',
+  ],
+  [
+    'Presa in carico',
+    'Un tecnico valuta il problema e vi richiama per fissare l’intervento, di norma entro 48 ore.',
+  ],
+  [
+    'Intervento',
+    'Diagnosi e riparazione nel locale, con i ricambi del nostro magazzino.',
+  ],
+  [
+    'Prevenzione',
+    'Se la macchina lo chiede, vi proponiamo un contratto di manutenzione programmata per evitare il prossimo fermo.',
+  ],
+]
+
 // Campi "a linea" come LineField di components/Form/ContactForm.jsx, qui su
-// bianco: sostituiscono `Field` con gli stessi name/required/placeholder.
+// carta: sostituiscono `Field` con gli stessi name/required/placeholder.
 // Il focus è l'outline globale fiamma-testo di revamp.css, AA su chiaro.
 const field =
-  'block w-full rounded-none border-0 border-b border-ghisa/25 bg-transparent px-0 text-lg text-ghisa transition-colors placeholder:text-acciaio hover:border-ghisa/60 focus:border-ghisa disabled:cursor-not-allowed disabled:border-ghisa/10 disabled:text-acciaio autofill:!shadow-[inset_0_0_0_999px_var(--color-white)]'
+  'block w-full rounded-none border-0 border-b border-ghisa/25 bg-transparent px-0 text-lg text-ghisa transition-colors placeholder:text-acciaio hover:border-ghisa/60 focus:border-ghisa disabled:cursor-not-allowed disabled:border-ghisa/10 disabled:text-acciaio autofill:!shadow-[inset_0_0_0_999px_var(--carta)]'
 
 function LineField({id, label, textarea, className, ...props}) {
   const Tag = textarea ? 'textarea' : 'input'
@@ -42,6 +119,8 @@ function LineField({id, label, textarea, className, ...props}) {
 }
 
 export default function Assistenza() {
+  const rivela = useRef(null)
+  useRivela(rivela)
   const plausible = usePlausible()
   const [form, setForm] = useState({
     company: '',
@@ -174,7 +253,10 @@ export default function Assistenza() {
   return (
     <>
       <Head>
-        <title>Assistenza tecnica e ricambi | Matarrese srl</title>
+        <title>
+          Assistenza tecnica, manutenzione e ricambi per cucine professionali |
+          Matarrese srl
+        </title>
         <link
           rel="canonical"
           href={`${process.env.NEXT_PUBLIC_DOMAIN}/assistenza`}
@@ -182,18 +264,20 @@ export default function Assistenza() {
         <meta name="author" content="Matarrese srl" />
         <meta
           name="description"
-          content="Assistenza tecnica e ricambi per attrezzature da ristorazione: tempi di intervento, aree servite e come richiedere un intervento."
+          content="Assistenza tecnica, manutenzione programmata e ricambi per attrezzature da ristorazione in Puglia: risposta di norma entro 48 ore, linea dedicata e tecnici specializzati."
         />
         <meta
           name="robots"
           content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
         />
-        <meta property="og:title" content="Assistenza" />
-        <meta property="og:description" content="Richiedi assistenza tecnica" />
-        {/*  change image */}
+        <meta property="og:title" content="Assistenza tecnica | Matarrese" />
+        <meta
+          property="og:description"
+          content="La cucina non si ferma. Noi nemmeno: intervento su guasto, manutenzione programmata e ricambi."
+        />
         <meta
           property="og:image"
-          content={`${process.env.NEXT_PUBLIC_DOMAIN}/img/piazza_grande_61.jpg`}
+          content={`${process.env.NEXT_PUBLIC_DOMAIN}/img/home/assistenza-tecnica.webp`}
         />
         <meta
           property="og:url"
@@ -203,64 +287,132 @@ export default function Assistenza() {
         <meta property="og:site_name" content="Matarrese srl" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <Layout navbarTransparent>
-        <PageHero
-          title="Hai bisogno di assistenza tecnica?"
-          intro="Scrivici, ti ricontatteremo al più presto."
-          tall={false}
+      <Layout navbarTransparent headerCta={{href: '#richiesta'}}>
+        <HeroCinema
+          image={heroImg}
+          alt="Tecnico Matarrese al lavoro su una friggitrice professionale"
+          eyebrow="Assistenza tecnica · Manutenzione · Ricambi · Puglia"
+          riga="La cucina non si ferma."
+          accento="Noi nemmeno."
+          sottotitolo="Tecnici specializzati, magazzino ricambi e risposta di norma entro 48 ore su tutta la regione. Per riparare un guasto, o per non averne."
+          voci={['Intervento su guasto', 'Manutenzione programmata', 'Ricambi']}
         >
-          <a
-            href="#richiesta"
-            className="cta-fiamma focus-visible:outline-white"
-          >
-            Compila la richiesta
+          <Magnetic>
+            <BottoneFreccia href="#richiesta">
+              Richiedi un intervento
+            </BottoneFreccia>
+          </Magnetic>
+          <a href="tel:+390804323651" className="cin-link whitespace-nowrap">
+            Chiama +39 080 4323 651
           </a>
-          <a
-            href="tel:+390804323651"
-            className="whitespace-nowrap border-b border-inox/60 py-2 text-white transition-colors hover:border-white focus-visible:outline-white"
+        </HeroCinema>
+
+        <div ref={rivela}>
+          <section
+            className="bg-[#0d0e0f] text-white"
+            data-header="dark"
+            aria-labelledby="servizi-assistenza"
           >
-            Oppure chiama +39 080 4323 651
-          </a>
-        </PageHero>
+            <div className="site-shell pt-24 text-center md:pt-36">
+              <span className="eyebrow-cinema" data-cin-reveal>
+                Cosa facciamo
+              </span>
+              <TitoloDueTempi
+                id="servizi-assistenza"
+                riga="Un guasto, una revisione, un ricambio."
+                accento="Un solo numero."
+                className="mx-auto mt-6 max-w-[18ch] text-[clamp(36px,5vw,72px)] !leading-none"
+                data-cin-reveal
+                style={{'--y': '40px'}}
+              />
+            </div>
+            <PilaCard card={servizi} />
+          </section>
+
+          <section
+            className="relative z-[1] -mt-12 rounded-t-[32px] bg-[#121315] py-24 text-white md:rounded-t-[48px] md:py-36"
+            data-header="dark"
+            aria-labelledby="come-funziona"
+          >
+            <div className="site-shell grid gap-10 lg:grid-cols-12 lg:gap-16">
+              <div className="lg:col-span-5">
+                <span className="eyebrow-cinema" data-cin-reveal>
+                  Come funziona
+                </span>
+                <TitoloDueTempi
+                  id="come-funziona"
+                  riga="Dalla chiamata"
+                  accento="alla cucina che riparte."
+                  className="mt-6 text-[clamp(36px,5vw,72px)] !leading-none"
+                  data-cin-reveal
+                  style={{'--y': '40px'}}
+                />
+                <figure className="relative mt-9 aspect-[4/3] overflow-hidden rounded-[28px]">
+                  <Image
+                    src={mareImg}
+                    alt="Attrezzi del tecnico su una terrazza a strapiombo sul mare"
+                    fill
+                    sizes="(min-width: 1024px) 40vw, 100vw"
+                    placeholder="blur"
+                    className="object-cover"
+                    style={{objectPosition: '50% 60%'}}
+                  />
+                  <figcaption className="cin-didascalia">
+                    Dove serve, anche sul mare
+                  </figcaption>
+                </figure>
+              </div>
+              <div className="lg:col-span-7">
+                <Passi passi={passi} />
+                <dl className="mt-10 grid gap-8 sm:grid-cols-2">
+                  <div>
+                    <dt className="eyebrow-cinema">Linea assistenza</dt>
+                    <dd className="mt-3">
+                      <a
+                        href="tel:+390804323651"
+                        className="type-display whitespace-nowrap text-[clamp(24px,2.4vw,32px)] text-white underline decoration-white/30 underline-offset-8 transition-colors hover:decoration-fiamma"
+                      >
+                        +39 080 4323 651
+                      </a>
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="eyebrow-cinema">Orari</dt>
+                    <dd className="mt-3 max-w-[40ch] text-inox">
+                      Lun–ven, 08:30–13:00 / 15:00–17:30. Nei festivi risposta
+                      alle urgenze entro 24 ore; eventuale intervento con
+                      tariffa dedicata.
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
+          </section>
+        </div>
 
         <section
           id="richiesta"
-          className="bg-white text-ghisa"
+          className="scroll-mt-24 bg-[var(--carta)] text-ghisa"
           data-header="light"
           aria-labelledby="richiesta-title"
         >
           <div className="site-shell grid gap-12 py-24 lg:grid-cols-12 lg:py-32">
             <div className="lg:col-span-4">
-              <h2
-                id="richiesta-title"
-                className="type-display text-[clamp(30px,3.4vw,52px)]"
-              >
+              <span className="eyebrow-cinema" data-tono="chiaro">
                 Richiesta di intervento
-              </h2>
-              {/* Testo dalla FAQ "Offrite assistenza tecnica e manutenzione?" */}
+              </span>
+              <TitoloDueTempi
+                id="richiesta-title"
+                tono="chiaro"
+                riga="Raccontateci il guasto."
+                accento="Ci pensiamo noi."
+                className="mt-6 text-[clamp(32px,3.6vw,56px)] !leading-none"
+              />
               <p className="mt-6 max-w-[40ch] text-acciaio">
-                Disponiamo di un ampio magazzino ricambi e di tecnici
-                specializzati. Il servizio di risposta per l’assistenza tecnica
-                è tipicamente entro 48 ore dalla richiesta su tutto il
-                territorio regionale.
+                Indicate marca e modello della macchina e cosa succede: il
+                tecnico arriva già con un’idea del problema e, se serve, con il
+                ricambio.
               </p>
-              {/* Numero e orari dell'assistenza: gli stessi del footer */}
-              <dl className="mt-8 border-t border-ghisa/15 pt-6">
-                <dt className="text-sm text-acciaio">Linea assistenza</dt>
-                <dd>
-                  <a
-                    href="tel:+390804323651"
-                    className="type-display mt-1 inline-block whitespace-nowrap border-b border-ghisa/30 pb-1 text-[clamp(22px,2.2vw,30px)] transition-colors hover:border-ghisa"
-                  >
-                    +39 080 4323 651
-                  </a>
-                </dd>
-                <dd className="mt-3 max-w-[40ch] text-acciaio">
-                  Lun–ven, 08:30–13:00 / 15:00–17:30. Nei festivi risposta alle
-                  urgenze entro 24 ore; eventuale intervento con tariffa
-                  dedicata.
-                </dd>
-              </dl>
             </div>
 
             <form
@@ -388,11 +540,11 @@ export default function Assistenza() {
                     disabled={loading || done}
                     aria-hidden={done || undefined}
                     className={clsx(
-                      'cta-ghisa group w-full justify-center gap-3 text-base transition-[background-color,opacity,visibility] duration-300 disabled:cursor-wait md:w-auto motion-reduce:transition-none',
+                      'cta-ghisa group w-full justify-center gap-3 rounded-full text-base transition-[background-color,opacity,visibility] duration-300 disabled:cursor-wait md:w-auto motion-reduce:transition-none',
                       done && 'invisible opacity-0',
                     )}
                   >
-                    {loading ? 'Invio...' : 'Invia'}
+                    {loading ? 'Invio...' : 'Invia la richiesta'}
                     {loading ? (
                       <span
                         aria-hidden="true"
@@ -444,6 +596,51 @@ export default function Assistenza() {
                 </p>
               ) : null}
             </form>
+          </div>
+        </section>
+
+        <section
+          className="relative overflow-hidden py-28 text-center text-white md:py-40"
+          data-header="dark"
+          aria-labelledby="sopralluogo-title"
+        >
+          <Image
+            src={chiusuraImg}
+            alt=""
+            fill
+            sizes="100vw"
+            placeholder="blur"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-[#0d0e0f]/[.82]" />
+          <div className="site-shell relative max-w-[820px]">
+            <span className="eyebrow-cinema">Una cucina nuova</span>
+            <TitoloDueTempi
+              id="sopralluogo-title"
+              riga="Una cucina da rifare?"
+              accento="Partiamo dal sopralluogo."
+              className="mt-6 text-[clamp(36px,5.4vw,80px)] !leading-none"
+            />
+            <p className="mx-auto mt-6 max-w-[34rem] text-[rgb(243_238_230/.75)]">
+              Se le attrezzature sono a fine corsa o la cucina non regge più il
+              lavoro, un nostro progettista viene nel locale, misura spazi e
+              impianti e vi propone la soluzione.
+            </p>
+            <div className="mt-10 flex flex-wrap justify-center gap-3.5">
+              <ContactModal
+                variant="progetto"
+                title="Richiedi un sopralluogo."
+                subtitle="Tre domande, meno di un minuto. Poi ti ricontattiamo per fissare il sopralluogo nel locale."
+                source="assistenza-sopralluogo"
+                className="cin-btn"
+              >
+                Richiedi un sopralluogo
+                <Freccia />
+              </ContactModal>
+              <a href="tel:+390804323431" className="cin-btn cin-btn--ghost">
+                Chiama +39 080 4323 431
+              </a>
+            </div>
           </div>
         </section>
       </Layout>

@@ -2,7 +2,9 @@ import {Fragment, useEffect, useRef, useState} from 'react'
 import {Dialog, Menu} from '@headlessui/react'
 import Image from 'next/image'
 import Link from 'next/link'
+import ContactModal from '../Form/ContactModal'
 import {useRouter} from 'next/router'
+import clsx from 'clsx'
 
 const primary = [
   ['Settori', '/settori'],
@@ -38,7 +40,9 @@ function useHeaderTheme(enabled, headerRef) {
     const update = () => {
       frame = 0
       if (window.scrollY < 40) return setTheme('top')
-      const y = headerRef.current.offsetHeight / 2
+      // Header a pillola staccato dall'alto: si campiona al centro della pillola.
+      const pill = headerRef.current.firstElementChild.getBoundingClientRect()
+      const y = pill.top + pill.height / 2
       // elementsFromPoint attraversa anche l'header fixed e l'eventuale Dialog aperto.
       const section = document
         .elementsFromPoint(window.innerWidth / 2, y)
@@ -61,7 +65,49 @@ function useHeaderTheme(enabled, headerRef) {
   return theme
 }
 
-export default function Navbar({isTransparent = false}) {
+// CTA dell'header scelta dalla pagina (DESIGN.md, "Header a pillola"): «Contattaci» di
+// default; `{href}` o `{settore}` per «Richiedi un sopralluogo», che con `href` porta al
+// modulo della pagina e senza apre il modulo progetto a passi.
+function HeaderCta({cta, className}) {
+  if (!cta) {
+    return (
+      <Link href="/contatti" className={className}>
+        <Roll>Contattaci</Roll>
+      </Link>
+    )
+  }
+  const label = (
+    <>
+      <span className="nav-cta-long">
+        <Roll>Richiedi un sopralluogo</Roll>
+      </span>
+      <span className="nav-cta-short">
+        <Roll>Sopralluogo</Roll>
+      </span>
+    </>
+  )
+  if (cta.href) {
+    return (
+      <a href={cta.href} className={className}>
+        {label}
+      </a>
+    )
+  }
+  return (
+    <ContactModal
+      variant="progetto"
+      title="Richiedi un sopralluogo."
+      subtitle="Tre domande, meno di un minuto. Poi ti ricontattiamo per fissare il sopralluogo nel locale."
+      settore={cta.settore}
+      source="header-sopralluogo"
+      className={className}
+    >
+      {label}
+    </ContactModal>
+  )
+}
+
+export default function Navbar({isTransparent = false, cta}) {
   const [open, setOpen] = useState(false)
   const headerRef = useRef(null)
   const theme = useHeaderTheme(isTransparent, headerRef)
@@ -141,12 +187,13 @@ export default function Navbar({isTransparent = false}) {
               <Roll>Assistenza</Roll>
             </Link>
             {/* Figlio diretto di .header-actions: la regola legacy a 760px lo nasconde su mobile. */}
-            <Link
-              href="/contatti"
-              className="site-button site-button-small nav-cta"
-            >
-              <Roll>Contattaci</Roll>
-            </Link>
+            <HeaderCta
+              cta={cta}
+              className={clsx(
+                'site-button site-button-small nav-cta',
+                cta && 'nav-cta--sopralluogo',
+              )}
+            />
             <button
               className="mobile-toggle"
               onClick={() => setOpen(true)}
