@@ -1,11 +1,12 @@
 import {useRouter} from 'next/router'
 import Head from 'next/head'
+import Link from 'next/link'
 import Layout from '../../components/Layout'
-import AperturaEditoriale, {
-  Copertina,
-} from '../../components/editoriale/AperturaEditoriale'
+import HeroCinema from '../../components/cinema/HeroCinema'
+import TitoloDueTempi from '../../components/cinema/TitoloDueTempi'
+import {Freccia} from '../../components/cinema/BottoneFreccia'
+import ContactModal from '../../components/Form/ContactModal'
 import Prosa from '../../components/editoriale/Prosa'
-import InvitoProgetto from '../../components/editoriale/InvitoProgetto'
 import Correlati from '../../components/editoriale/Correlati'
 import SocialShareBar from '../../components/SocialShareBar/SocialShareBar'
 import {formatDate} from '../../actions/utils/formatDate'
@@ -69,22 +70,27 @@ export default function Post({postData, posts, preview}) {
       <StructuredData data={faqStructuredData} />
       <StructuredData data={breadcrumb} />
 
-      <AperturaEditoriale
-        back={{href: '/news', label: 'News e approfondimenti'}}
-        meta={
-          <>
-            {categorie.length > 0 && <span>{categorie.join(' · ')} · </span>}
-            <time dateTime={postData.date}>{formatDate(postData.date)}</time>
-          </>
-        }
-        title={postData.title}
-      />
-      <Copertina
-        image={{src: cover, alt: postData.featuredImage?.node?.altText}}
-      />
+      <HeroCinema
+        titoloLungo
+        image={cover}
+        alt={postData.featuredImage?.node?.altText || ''}
+        objectPosition="50% 50%"
+        eyebrow={[...categorie, formatDate(postData.date)].join(' · ')}
+        riga={<span dangerouslySetInnerHTML={{__html: postData.title}} />}
+        sottotitolo={postData.seo?.metaDesc}
+      >
+        <a href="#articolo" className="cin-btn">
+          Leggi
+          <Freccia />
+        </a>
+        <Link href="/news" className="cin-link whitespace-nowrap">
+          Tutti gli articoli
+        </Link>
+      </HeroCinema>
 
       <section
-        className="bg-white text-ghisa"
+        id="articolo"
+        className="scroll-mt-20 bg-[var(--carta)] text-ghisa"
         data-header="light"
         aria-label="Articolo"
       >
@@ -97,56 +103,67 @@ export default function Post({postData, posts, preview}) {
                 data-header="light"
                 aria-labelledby="faq-title"
               >
-                <h2
+                <TitoloDueTempi
                   id="faq-title"
-                  className="type-display mb-6 text-[clamp(25px,2.3vw,32px)]"
-                >
-                  Domande frequenti
-                </h2>
-                {faqsArray.map((faq, i) => (
-                  <details
-                    key={i}
-                    className="group border-t border-ghisa/15 last:border-b"
-                  >
-                    <summary className="flex min-h-[44px] cursor-pointer list-none items-center justify-between gap-6 py-5 text-lg font-medium [&::-webkit-details-marker]:hidden">
-                      {faq.question}
-                      <span
-                        aria-hidden="true"
-                        className="text-2xl text-acciaio transition-transform group-open:rotate-45 motion-reduce:transition-none"
-                      >
-                        +
-                      </span>
-                    </summary>
-                    <div className="pb-6">
-                      <Prosa content={faq.answer} />
-                    </div>
-                  </details>
-                ))}
+                  tono="chiaro"
+                  riga="Domande"
+                  accento="frequenti."
+                  className="mb-8 text-[clamp(30px,3vw,44px)] !leading-none"
+                />
+                <div className="cin-faq" data-tono="chiaro">
+                  {faqsArray.map((faq, i) => (
+                    <details key={i} open={i === 0}>
+                      <summary>
+                        <h3>{faq.question}</h3>
+                        <span className="cin-faq__segno" aria-hidden="true" />
+                      </summary>
+                      <div className="px-6 pb-6">
+                        <Prosa content={faq.answer} />
+                      </div>
+                    </details>
+                  ))}
+                </div>
               </section>
             )}
             {tags.length > 0 && (
               <ul className="mt-12 flex flex-wrap gap-2 text-sm text-acciaio">
                 {tags.map(tag => (
-                  <li key={tag} className="border border-ghisa/15 px-3 py-1">
+                  <li
+                    key={tag}
+                    className="rounded-full border border-ghisa/15 px-4 py-1.5"
+                  >
                     {tag}
                   </li>
                 ))}
               </ul>
             )}
-            <div className="mt-12">
-              <SocialShareBar route={router.asPath} title={postData.title} />
-            </div>
-            <InvitoProgetto
-              title="Stai valutando un intervento simile?"
-              cta="Parla con un progettista"
-            />
           </div>
         </article>
+        {/* Chiusura dell'articolo: invito e condivisione nella card scura, come nei progetti */}
+        <div className="site-shell pb-24 lg:pb-32">
+          <div className="grid gap-10 rounded-[28px] bg-[#121315] p-8 text-white md:p-12 lg:grid-cols-12 lg:items-end lg:p-16">
+            <div className="lg:col-span-7">
+              <TitoloDueTempi
+                riga="Stai valutando"
+                accento="un intervento simile?"
+                className="text-[clamp(30px,3.6vw,52px)] !leading-none"
+              />
+            </div>
+            <div className="flex flex-col gap-8 lg:col-span-5 lg:items-end">
+              <ContactModal variant="progetto" className="cin-btn">
+                Parla con un progettista
+                <Freccia />
+              </ContactModal>
+              <SocialShareBar route={router.asPath} title={postData.title} />
+            </div>
+          </div>
+        </div>
       </section>
 
       {posts?.edges?.length > 0 && (
         <Correlati
-          title="Continua a esplorare"
+          title="Continua"
+          accento="a esplorare."
           link={{href: '/news', label: 'Tutti gli articoli'}}
           items={posts.edges.map(({node}) => ({
             href: `/news/${node.slug}`,

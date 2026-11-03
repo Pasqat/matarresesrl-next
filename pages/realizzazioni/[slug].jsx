@@ -62,6 +62,7 @@ export default function Project({project, related}) {
       />
 
       <HeroCinema
+        titoloLungo
         image={cover}
         alt={project.featuredImage?.node?.altText || ''}
         objectPosition="50% 50%"

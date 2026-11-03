@@ -4,7 +4,10 @@ import Link from 'next/link'
 import {getEvents} from '../../lib/query/event'
 
 import Layout from '../../components/Layout'
-import PageHero from '../../components/PageHero'
+import HeroCinema from '../../components/cinema/HeroCinema'
+import TitoloDueTempi from '../../components/cinema/TitoloDueTempi'
+import {Freccia} from '../../components/cinema/BottoneFreccia'
+import posterImg from '../../public/img/home/sede-poster.webp'
 import ContactModal from '../../components/Form/ContactModal'
 
 // Riga evento: data in evidenza (le date arrivano già formattate, es. "3 marzo 2026").
@@ -18,12 +21,12 @@ function RigaEvento({event, futuro}) {
     <li>
       <Link
         href={`/eventi/${event.slug}`}
-        className="group grid grid-cols-[4.5rem_1fr] items-start gap-5 border-t border-ghisa/15 py-8 md:grid-cols-[8rem_1fr_auto] md:items-center md:gap-8"
+        className="group grid grid-cols-[4.5rem_1fr] items-start gap-5 rounded-[24px] bg-white p-6 transition-shadow hover:shadow-[0_0_0_1px_rgb(30_34_38/.2)] md:grid-cols-[8rem_1fr_auto] md:items-center md:gap-8 md:p-8"
       >
-        <div className="type-display">
+        <div>
           <span
-            className={`block text-[40px] leading-none md:text-[56px] ${
-              futuro ? 'text-fiamma-testo' : ''
+            className={`block font-[family-name:var(--font-accent)] text-[48px] italic leading-none md:text-[64px] ${
+              futuro ? 'text-fiamma-testo' : 'text-acciaio'
             }`}
           >
             {giorno}
@@ -42,8 +45,9 @@ function RigaEvento({event, futuro}) {
           )}
         </div>
         {futuro && (
-          <span className="col-start-2 self-start border-b border-ghisa py-1 transition-colors group-hover:text-fiamma-testo md:col-start-3 md:self-center">
+          <span className="cin-btn col-start-2 self-start md:col-start-3 md:self-center">
             Partecipa
+            <Freccia />
           </span>
         )}
       </Link>
@@ -88,25 +92,41 @@ export default function Events({data}) {
       </Head>
 
       <Layout navbarTransparent>
-        <PageHero
-          title="Eventi formativi e dimostrativi per la ristorazione"
-          intro="Incontriamoci in cucina."
-        />
+        <HeroCinema
+          image={posterImg}
+          alt="L’arena del gusto nella sede Matarrese di Alberobello"
+          objectPosition="50% 50%"
+          video={[
+            {src: '/video/sede-960.mp4', media: '(max-width: 767px)'},
+            {src: '/video/sede-1920.mp4'},
+          ]}
+          eyebrow="Workshop · Masterclass · Demo · Alberobello"
+          riga="Eventi formativi e dimostrativi"
+          accento="per la ristorazione."
+          sottotitolo="Incontriamoci in cucina: tecniche di cottura, conservazione e attrezzature al lavoro, nel laboratorio della nostra sede."
+        >
+          <a href="#prossimi" className="cin-btn">
+            Prossimi eventi
+            <Freccia />
+          </a>
+        </HeroCinema>
 
         <section
-          className="bg-white text-ghisa"
+          id="prossimi"
+          className="scroll-mt-20 bg-[var(--carta)] text-ghisa"
           data-header="light"
           aria-labelledby="prossimi-title"
         >
           <div className="site-shell py-24 lg:py-32">
-            <h2
+            <TitoloDueTempi
               id="prossimi-title"
-              className="type-display text-[clamp(30px,3.4vw,52px)]"
-            >
-              Prossimi eventi
-            </h2>
+              tono="chiaro"
+              riga="Prossimi"
+              accento="eventi."
+              className="text-[clamp(36px,4.4vw,64px)] !leading-none"
+            />
             {data.futureEvent.length ? (
-              <ul className="mt-12 border-b border-ghisa/15">
+              <ul className="mt-12 grid gap-3">
                 {data.futureEvent.map(event => (
                   <RigaEvento key={event.id} event={event} futuro />
                 ))}
@@ -120,12 +140,12 @@ export default function Events({data}) {
         </section>
 
         <section
-          className="bg-ghisa text-white [&_:focus-visible]:outline-fiamma"
+          className="bg-[#121315] text-white [&_:focus-visible]:outline-fiamma"
           data-header="dark"
           aria-label="Presentazioni e demo nei nostri laboratori"
         >
-          <div className="site-shell grid gap-x-10 gap-y-14 py-24 md:grid-cols-2 lg:py-32">
-            <div className="border-t border-inox/25 pt-8">
+          <div className="site-shell grid gap-4 py-24 md:grid-cols-2 lg:py-32">
+            <div className="rounded-[28px] border border-inox/15 bg-white/[.04] p-8 md:p-10">
               <h3 className="type-display max-w-[24ch] text-[clamp(22px,2.2vw,32px)] leading-tight">
                 Sei un’azienda e vuoi presentare un tuo prodotto o
                 un’attrezzatura nei nostri laboratori?
@@ -136,14 +156,14 @@ export default function Events({data}) {
               </p>
               <ContactModal
                 variant="info"
-                className="mt-8 inline-block border-b border-inox/60 py-2 text-white transition-colors hover:border-white"
+                className="cin-btn cin-btn--ghost mt-8"
                 title="Organizza un evento nei nostri laboratori."
                 subtitle="Formazione, presentazioni, incontri per il settore food: raccontaci cosa hai in mente."
               >
                 Contattaci
               </ContactModal>
             </div>
-            <div className="border-t border-inox/25 pt-8">
+            <div className="rounded-[28px] border border-inox/15 bg-white/[.04] p-8 md:p-10">
               <h3 className="type-display max-w-[24ch] text-[clamp(22px,2.2vw,32px)] leading-tight">
                 Vuoi venire a toccare con mano attrezzature innovative?
               </h3>
@@ -154,11 +174,12 @@ export default function Events({data}) {
               </p>
               <ContactModal
                 variant="info"
-                className="cta-fiamma mt-8"
+                className="cin-btn mt-8"
                 title="Richiedi una demo personalizzata."
                 subtitle="Scegli tu il giorno: ti mostriamo al lavoro le attrezzature che vuoi conoscere, nello showroom di Alberobello."
               >
                 Richiedi una demo
+                <Freccia />
               </ContactModal>
             </div>
           </div>
@@ -166,18 +187,19 @@ export default function Events({data}) {
 
         {data.pastEvent.length > 0 && (
           <section
-            className="bg-white text-ghisa"
+            className="bg-[var(--carta)] text-ghisa"
             data-header="light"
             aria-labelledby="conclusi-title"
           >
             <div className="site-shell py-24 lg:py-32">
-              <h2
+              <TitoloDueTempi
                 id="conclusi-title"
-                className="type-display text-[clamp(30px,3.4vw,52px)]"
-              >
-                Eventi conclusi
-              </h2>
-              <ul className="mt-12 border-b border-ghisa/15">
+                tono="chiaro"
+                riga="Eventi"
+                accento="conclusi."
+                className="text-[clamp(36px,4.4vw,64px)] !leading-none"
+              />
+              <ul className="mt-12 grid gap-3">
                 {data.pastEvent.map(event => (
                   <RigaEvento key={event.id} event={event} />
                 ))}

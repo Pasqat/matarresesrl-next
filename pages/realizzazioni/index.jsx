@@ -6,8 +6,7 @@ import * as fbq from '../../lib/fpixel'
 import Layout from '../../components/Layout'
 import HeroCinema from '../../components/cinema/HeroCinema'
 import heroImg from '../../public/img/settori/rist-auraterrae.webp'
-import Image from 'next/image'
-import Link from 'next/link'
+import GrigliaRivista from '../../components/cinema/GrigliaRivista'
 import {CaricaAltri} from '../../components/editoriale/FiltriArchivio'
 import Scelta from '../../components/cinema/Scelta'
 
@@ -224,42 +223,20 @@ export default function Realizzazioni({data}) {
                   filtro.
                 </p>
               ) : (
-                <ul className="cin-rivista">
-                  {posts.map((project, i) => {
-                    const img = project.featuredImage?.node
-                    return (
-                      <li key={project.slug} hidden={i >= indexToShow}>
-                        <Link href={`/realizzazioni/${project.slug}`}>
-                          {img?.mediaItemUrl && (
-                            <Image
-                              src={img.mediaItemUrl}
-                              alt={img.altText || ''}
-                              fill
-                              // la prima di ogni gruppo da cinque occupa metà riga
-                              sizes={
-                                i % 5 === 0
-                                  ? '(min-width: 1024px) 50vw, 100vw'
-                                  : '(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw'
-                              }
-                            />
-                          )}
-                          <span className="cin-rivista__scrim" />
-                          <span className="cin-rivista__testo">
-                            <span className="cin-rivista__meta">
-                              {[project.categories?.[0], project.tags?.[0]]
-                                .filter(Boolean)
-                                .join(' · ')}
-                            </span>
-                            <span
-                              className="cin-rivista__titolo"
-                              dangerouslySetInnerHTML={{__html: project.title}}
-                            />
-                          </span>
-                        </Link>
-                      </li>
-                    )
-                  })}
-                </ul>
+                <GrigliaRivista
+                  visibili={indexToShow}
+                  items={posts.map(p => ({
+                    href: `/realizzazioni/${p.slug}`,
+                    title: p.title,
+                    meta: [p.categories?.[0], p.tags?.[0]]
+                      .filter(Boolean)
+                      .join(' · '),
+                    image: {
+                      src: p.featuredImage?.node?.mediaItemUrl,
+                      alt: p.featuredImage?.node?.altText,
+                    },
+                  }))}
+                />
               )}
             </div>
 

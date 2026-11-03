@@ -1,26 +1,22 @@
 import * as React from 'react'
 import Head from 'next/head'
-import {useRouter} from 'next/router'
-import Image from 'next/image'
 import Link from 'next/link'
+import {useRouter} from 'next/router'
 
 import * as fbq from '../../lib/fpixel'
 
 import Layout from '../../components/Layout'
-import PageHero from '../../components/PageHero'
-import CardEditoriale from '../../components/editoriale/CardEditoriale'
-import GrigliaEditoriale from '../../components/editoriale/GrigliaEditoriale'
-import {
-  CampoRicerca,
-  CaricaAltri,
-  ChipCategorie,
-} from '../../components/editoriale/FiltriArchivio'
+import HeroCinema from '../../components/cinema/HeroCinema'
+import GrigliaRivista from '../../components/cinema/GrigliaRivista'
+import Scelta from '../../components/cinema/Scelta'
+import {Freccia} from '../../components/cinema/BottoneFreccia'
+import {CaricaAltri} from '../../components/editoriale/FiltriArchivio'
 
 import {filterPosts} from '../../actions/utils/blog'
 import {formatDate} from '../../actions/utils/formatDate'
 import {getAllPosts} from '../../lib/query/post'
 
-const PAGE_SIZE = 12
+const PAGE_SIZE = 10 // due gruppi da cinque della griglia a rivista
 const initialIndexToShow = PAGE_SIZE
 
 // this really is not needed, or maybe only the part `(\s|$)?
@@ -35,14 +31,6 @@ export default function News({data}) {
   const searchInputRef = React.useRef(null)
 
   const resultsRef = React.useRef(null)
-
-  /**
-   * This is here to make sure that a user doesn't hit "enter" on the search
-   * button, which focuses the input and then keyup the enter on the input
-   * which will trigger the scroll down. We should *only* scroll when the
-   * "enter" keypress and keyup happen on the input.
-   */
-  const ignoreInputKeyUp = React.useRef(false)
 
   const [queryValue, setQuery] = React.useState(() => {
     return searchParams ?? ''
@@ -62,59 +50,31 @@ export default function News({data}) {
 
   const regularQuery = query.replace(specialQueryRegex, '').trim()
 
-  const matchingPosts = React.useMemo(() => {
-    return filterPosts(allPosts, regularQuery)
-  }, [allPosts, regularQuery])
-
-  const [indexToShow, setIndexToShow] = React.useState(initialIndexToShow)
-  // when the query changes, we want to reset the index
-  React.useEffect(() => {
-    setIndexToShow(initialIndexToShow)
-  }, [query])
-
-  function toggleCategory(category) {
-    setQuery(q => {
-      // create a regexp so that we can replace multiple occurrences (`this that this`)
-      const expression = new RegExp(category, 'ig')
-
-      const newQuery = expression.test(q)
-        ? q.replace(expression, '')
-        : `${q} ${category}`
-
-      router.push(
-        {query: {q: newQuery.toLowerCase().replace(/\s+/g, ' ').trim()}},
-        '',
-        {
-          scroll: false,
-        },
-      )
-      // trim and remove subsequent spaces (`this   that` => `this that`)
-      return newQuery.replace(/\s+/g, ' ').trim()
-    })
-  }
-
-  const isSearching = query.length > 0
+  const [categoria, setCategoria] = React.useState('')
+  const filtri = Boolean(query || categoria)
   const featured = data.posts?.[0]
 
-  const posts = isSearching
-    ? matchingPosts.slice(0, indexToShow)
-    : matchingPosts
-        .filter(p => p.slug !== data?.posts[0].slug)
-        .slice(0, indexToShow)
+  const matchingPosts = React.useMemo(
+    () =>
+      filterPosts(allPosts, regularQuery).filter(
+        p =>
+          (!categoria || p.categories?.includes(categoria)) &&
+          // senza filtri il primo articolo è già in apertura
+          (filtri || p.slug !== featured?.slug),
+      ),
+    [allPosts, regularQuery, categoria, filtri, featured?.slug],
+  )
 
-  const hasMorePosts = isSearching
-    ? indexToShow < matchingPosts.length
-    : indexToShow < matchingPosts.length
+  const [indexToShow, setIndexToShow] = React.useState(initialIndexToShow)
+  // when the filters change, we want to reset the index
+  React.useEffect(() => {
+    setIndexToShow(initialIndexToShow)
+  }, [query, categoria])
 
-  const visibleCategories = isSearching
-    ? new Set(
-        matchingPosts
-          .flatMap(post => {
-            return post.categories
-          })
-          .filter(Boolean),
-      )
-    : new Set(data.categories)
+  const posts = matchingPosts
+  const shown = Math.min(indexToShow, posts.length)
+  const hasMorePosts = indexToShow < posts.length
+  const testo = html => (html || '').replace(/<[^>]+>/g, '').trim()
 
   return (
     <div>
@@ -152,156 +112,126 @@ export default function News({data}) {
       </Head>
 
       <Layout navbarTransparent>
-        <PageHero
+        <HeroCinema
+          image={featured?.featuredImage?.node?.mediaItemUrl}
+          alt={featured?.featuredImage?.node?.altText || ''}
+          objectPosition="50% 50%"
+          eyebrow={`In evidenza · ${[
+            featured?.categories?.[0],
+            formatDate(featured?.date),
+          ]
+            .filter(Boolean)
+            .join(' · ')}`}
           // trattino morbido: a 375px "approfondimenti" non entra nella riga
-          title={
-            'News e approfondi\u00ADmenti sulla ristorazione professionale'
-          }
-        />
+          riga={'News e approfondi\u00ADmenti'}
+          accento="sulla ristorazione professionale."
+          sottotitolo={testo(featured?.title)}
+        >
+          {featured && (
+            <Link href={`/news/${featured.slug}`} className="cin-btn">
+              Leggi l’articolo
+              <Freccia />
+            </Link>
+          )}
+          <a href="#archivio" className="cin-link whitespace-nowrap">
+            Tutti gli articoli
+          </a>
+        </HeroCinema>
 
         <section
-          className="bg-white text-ghisa"
+          id="archivio"
+          className="scroll-mt-20 bg-[var(--carta)] text-ghisa"
           data-header="light"
           aria-label="Archivio degli articoli"
         >
-          <div className="site-shell pb-24 pt-16 lg:pb-32 lg:pt-20">
-            {!isSearching && featured ? (
-              <Link
-                href={`/news/${featured.slug}`}
-                className="group mb-20 grid gap-8 border-b border-ghisa/15 pb-20 lg:mb-24 lg:grid-cols-12 lg:items-end lg:gap-12 lg:pb-24"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden bg-inox lg:col-span-7 lg:aspect-[3/2]">
-                  {featured.featuredImage?.node?.mediaItemUrl && (
-                    <Image
-                      src={featured.featuredImage.node.mediaItemUrl}
-                      alt={featured.featuredImage.node.altText || ''}
-                      fill
-                      preload
-                      fetchPriority="high"
-                      sizes="(min-width: 1024px) 58vw, 100vw"
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] motion-reduce:transition-none"
-                    />
-                  )}
-                </div>
-                <div className="lg:col-span-5">
-                  <p className="text-sm text-acciaio">
-                    {[featured.categories?.[0], formatDate(featured.date)]
-                      .filter(Boolean)
-                      .join(' · ')}
-                  </p>
-                  <h2
-                    className="type-display mt-3 text-[clamp(28px,3vw,44px)] transition-colors group-hover:text-fiamma-testo"
-                    dangerouslySetInnerHTML={{__html: featured.title}}
-                  />
-                  {featured.excerpt && (
-                    <div
-                      className="mt-5 line-clamp-4 max-w-[52ch] text-acciaio"
-                      dangerouslySetInnerHTML={{__html: featured.excerpt}}
-                    />
-                  )}
-                  <span className="mt-8 inline-block border-b border-ghisa py-2 transition-colors group-hover:text-fiamma-testo">
-                    Leggi l’articolo
-                  </span>
-                </div>
-              </Link>
-            ) : null}
-
-            <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
-              <div className="lg:col-span-7">
-                <ChipCategorie
-                  label="Filtra per categoria"
-                  categories={data.categories}
-                  isSelected={category =>
-                    regularQuery.toLowerCase().includes(category.toLowerCase())
-                  }
-                  isDisabled={category =>
-                    !visibleCategories.has(category) &&
-                    !regularQuery.toLowerCase().includes(category.toLowerCase())
-                  }
-                  onToggle={toggleCategory}
-                />
-              </div>
-              <div className="lg:col-span-5">
-                <CampoRicerca
-                  ref={searchInputRef}
-                  label="Cerca tra gli articoli"
-                  value={queryValue}
-                  isSearching={isSearching}
-                  count={matchingPosts.length}
-                  buttonProps={{
-                    onClick: () => {
-                      setQuery('')
-                      ignoreInputKeyUp.current = true
-                      searchInputRef.current?.focus()
-                    },
-                    onKeyDown: () => {
-                      ignoreInputKeyUp.current = true
-                    },
-                    onKeyUp: () => {
-                      ignoreInputKeyUp.current = false
-                    },
-                  }}
-                  onChange={event => {
-                    return setQuery(event.currentTarget.value.toLowerCase())
-                  }}
-                  onKeyUp={e => {
-                    if (!ignoreInputKeyUp.current && e.key === 'Enter') {
+          <div className="site-shell pb-24 pt-12 lg:pb-32 lg:pt-16">
+            <div role="search">
+              <div className="cin-cerca">
+                <label className="min-w-0 flex-1">
+                  <span className="sr-only">Cerca tra gli articoli</span>
+                  <input
+                    ref={searchInputRef}
+                    type="search"
+                    placeholder="Cerca un argomento…"
+                    value={queryValue}
+                    onChange={e =>
+                      setQuery(e.currentTarget.value.toLowerCase())
+                    }
+                    onKeyUp={e => {
+                      if (e.key !== 'Enter') return
                       resultsRef.current
                         ?.querySelector('a')
                         ?.focus({preventScroll: true})
-                      resultsRef.current?.scrollIntoView({
-                        behavior: 'smooth',
-                      })
-
+                      resultsRef.current?.scrollIntoView({behavior: 'smooth'})
                       router.push(
-                        {
-                          query: {q: e.target.value.toLocaleLowerCase()},
-                        },
+                        {query: {q: e.currentTarget.value.toLocaleLowerCase()}},
                         '',
-                        {scroll: false},
+                        {
+                          scroll: false,
+                        },
                       )
                       fbq.event('Search', {
                         content_category: 'news',
                         search_string: query,
                       })
-                    }
-                    ignoreInputKeyUp.current = false
+                    }}
+                  />
+                </label>
+                <p className="cin-cerca__conta" aria-live="polite">
+                  {posts.length} {posts.length === 1 ? 'articolo' : 'articoli'}
+                </p>
+              </div>
+              <div className="relative mt-5 flex flex-wrap items-center gap-2">
+                <button
+                  type="button"
+                  className={`cin-pill ${filtri ? '' : 'is-on'}`}
+                  aria-pressed={!filtri}
+                  onClick={() => {
+                    setQuery('')
+                    setCategoria('')
+                    router.push({query: {}}, '', {scroll: false})
                   }}
+                >
+                  Tutti
+                </button>
+                <Scelta
+                  label="Argomento"
+                  tutti="Tutti gli argomenti"
+                  opzioni={data.categories}
+                  valore={categoria}
+                  onChange={setCategoria}
                 />
               </div>
             </div>
 
-            <div ref={resultsRef} className="mt-16 scroll-mt-28 lg:mt-24">
+            <div ref={resultsRef} className="mt-12 scroll-mt-28 lg:mt-16">
               {posts.length === 0 ? (
                 <p className="type-display max-w-[24ch] py-16 text-[clamp(24px,2.6vw,36px)]">
-                  Purtroppo non è stato trovato nulla con i tuoi criteri di
-                  ricerca
+                  Nessun articolo con questi criteri. Prova a togliere un
+                  filtro.
                 </p>
               ) : (
-                <GrigliaEditoriale
-                  items={posts}
-                  render={(article, aspect) => (
-                    <CardEditoriale
-                      href={`/news/${article.slug}`}
-                      image={{
-                        src: article.featuredImage?.node?.mediaItemUrl,
-                        alt: article.featuredImage?.node?.altText,
-                      }}
-                      title={article.title}
-                      meta={[article.categories?.[0], formatDate(article.date)]
-                        .filter(Boolean)
-                        .join(' · ')}
-                      aspect={aspect}
-                    />
-                  )}
+                <GrigliaRivista
+                  visibili={indexToShow}
+                  items={posts.map(a => ({
+                    href: `/news/${a.slug}`,
+                    title: a.title,
+                    meta: [a.categories?.[0], formatDate(a.date)]
+                      .filter(Boolean)
+                      .join(' · '),
+                    image: {
+                      src: a.featuredImage?.node?.mediaItemUrl,
+                      alt: a.featuredImage?.node?.altText,
+                    },
+                  }))}
                 />
               )}
             </div>
 
             {hasMorePosts ? (
               <CaricaAltri
-                shown={posts.length + (isSearching || !featured ? 0 : 1)}
-                total={matchingPosts.length}
+                shown={shown}
+                total={posts.length}
                 onClick={() => setIndexToShow(i => i + PAGE_SIZE)}
               >
                 Mostra altri articoli

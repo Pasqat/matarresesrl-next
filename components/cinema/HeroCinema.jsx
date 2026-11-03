@@ -16,6 +16,8 @@ export default function HeroCinema({
   sottotitolo,
   voci,
   video,
+  // titoli da WordPress: vanno a capo e partono più piccoli
+  titoloLungo,
   children,
 }) {
   const videoRef = useRef(null)
@@ -35,7 +37,11 @@ export default function HeroCinema({
     setInPausa(v.paused)
   }
   return (
-    <section className="cin-hero" data-header="dark" aria-label="Introduzione">
+    <section
+      className={titoloLungo ? 'cin-hero cin-hero--lungo' : 'cin-hero'}
+      data-header="dark"
+      aria-label="Introduzione"
+    >
       <div className="cin-hero__media cin-in-zoom">
         <Image
           src={image}

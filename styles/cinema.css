@@ -248,6 +248,14 @@
     white-space: nowrap;
   }
 }
+.cin-hero--lungo h1 {
+  max-width: 22ch;
+  font-size: clamp(36px, 4.4vw, 68px);
+  line-height: 1;
+}
+.cin-hero--lungo h1 > span {
+  white-space: normal;
+}
 .cin-hero__sub {
   max-width: 34rem;
   margin: 26px 0 0;
@@ -564,7 +572,7 @@
 .cin-faq details[open] .cin-faq__segno {
   transform: rotate(45deg);
 }
-.cin-faq details p {
+.cin-faq details > p {
   max-width: 60ch;
   margin: 0;
   padding: 0 24px 24px;
@@ -586,7 +594,7 @@
 .cin-faq[data-tono='chiaro'] h3 {
   color: var(--ghisa);
 }
-.cin-faq[data-tono='chiaro'] details p {
+.cin-faq[data-tono='chiaro'] details > p {
   color: var(--acciaio-testo);
 }
 

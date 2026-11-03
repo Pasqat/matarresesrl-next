@@ -2,9 +2,8 @@ import {useRouter} from 'next/router'
 import Head from 'next/head'
 import Link from 'next/link'
 import Layout from '../../components/Layout'
-import AperturaEditoriale, {
-  Copertina,
-} from '../../components/editoriale/AperturaEditoriale'
+import Image from 'next/image'
+import {Freccia} from '../../components/cinema/BottoneFreccia'
 import Prosa from '../../components/editoriale/Prosa'
 import ContactModal from '../../components/Form/ContactModal'
 import SocialShareBar from '../../components/SocialShareBar/SocialShareBar'
@@ -18,19 +17,21 @@ function Partecipa({event, dark}) {
   if (event.external_link?.link)
     return (
       <a
-        className={dark ? 'cta-fiamma' : 'cta-ghisa'}
+        className={dark ? 'cin-btn' : 'cta-ghisa'}
         href={event.external_link.link}
       >
         Partecipa
+        {dark && <Freccia />}
       </a>
     )
   return (
     <ContactModal
       variant="info"
-      className={dark ? 'cta-fiamma' : 'cta-ghisa'}
+      className={dark ? 'cin-btn' : 'cta-ghisa'}
       reservation={{title: event.title}}
     >
       Partecipa
+      {dark && <Freccia />}
     </ContactModal>
   )
 }
@@ -110,38 +111,55 @@ export default function Events({event}) {
       <StructuredData data={eventStructuredData} />
       <StructuredData data={eventBreadcrumb} />
 
-      <AperturaEditoriale
-        back={{href: '/eventi', label: 'Tutti gli eventi'}}
-        meta={
-          <span
-            className={`inline-block border px-3 py-1 text-sm ${
-              event.isFutureDate
-                ? 'border-fiamma text-fiamma'
-                : 'border-inox/40 text-inox-muted'
-            }`}
-          >
-            {event.isFutureDate ? 'In programma' : 'Evento concluso'}
-          </span>
-        }
-        title={event.title}
+      {/* Apertura scura: la locandina resta intera (ha il testo dentro), in una card accanto al titolo */}
+      <section
+        className="bg-[#0d0e0f] text-white [&_:focus-visible]:outline-fiamma"
+        data-header="dark"
+        aria-labelledby="page-title"
       >
-        <div className="type-display mt-8 text-[clamp(24px,2.6vw,40px)] text-fiamma">
-          {data}
-        </div>
-        {orario && <p className="mt-3 text-lg text-inox">{orario}</p>}
-        {event.isFutureDate && (
-          <div className="mt-10">
-            <Partecipa event={event} dark />
+        <div className="site-shell grid gap-12 pb-20 pt-36 lg:grid-cols-12 lg:items-center lg:pb-28 lg:pt-44">
+          <div className="lg:col-span-6">
+            <span className="eyebrow-cinema">
+              {event.isFutureDate ? 'In programma' : 'Evento concluso'}
+            </span>
+            <h1
+              id="page-title"
+              className="type-display mt-6 hyphens-auto text-[clamp(36px,4.6vw,72px)] !leading-[0.98] [overflow-wrap:break-word]"
+              dangerouslySetInnerHTML={{__html: event.title}}
+            />
+            <div className="mt-8 font-[family-name:var(--font-accent)] text-[clamp(26px,2.8vw,40px)] italic text-fiamma">
+              {data}
+            </div>
+            {orario && (
+              <p className="mt-2 text-lg text-[rgb(243_238_230/.75)]">
+                {orario}
+              </p>
+            )}
+            <div className="mt-10 flex flex-wrap items-center gap-6">
+              {event.isFutureDate && <Partecipa event={event} dark />}
+              <Link href="/eventi" className="cin-link whitespace-nowrap">
+                Tutti gli eventi
+              </Link>
+            </div>
           </div>
-        )}
-      </AperturaEditoriale>
-      <Copertina
-        image={{src: image, alt: event.featuredImage?.node?.altText}}
-        contain
-      />
+          {image && (
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] bg-[#1b1d20] lg:col-span-5 lg:col-start-8">
+              <Image
+                src={image}
+                alt={event.featuredImage?.node?.altText || ''}
+                fill
+                preload
+                fetchPriority="high"
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="object-contain"
+              />
+            </div>
+          )}
+        </div>
+      </section>
 
       <section
-        className="bg-white text-ghisa"
+        className="bg-[var(--carta)] text-ghisa"
         data-header="light"
         aria-label="Programma dell’evento"
       >
@@ -153,7 +171,7 @@ export default function Events({event}) {
             </div>
           </div>
           <aside
-            className="self-start bg-calce p-8 lg:sticky lg:top-32 lg:col-span-4 lg:col-start-9"
+            className="self-start rounded-[28px] bg-white p-8 lg:sticky lg:top-32 lg:col-span-4 lg:col-start-9"
             aria-labelledby="iscrizione-title"
           >
             <h2
@@ -174,10 +192,7 @@ export default function Events({event}) {
               {event.isFutureDate ? (
                 <Partecipa event={event} />
               ) : (
-                <Link
-                  href="/eventi"
-                  className="inline-block border-b border-ghisa py-2 hover:text-fiamma-testo"
-                >
+                <Link href="/eventi" className="cta-ghisa">
                   Guarda i prossimi eventi
                 </Link>
               )}
