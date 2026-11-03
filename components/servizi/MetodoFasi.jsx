@@ -57,7 +57,7 @@ export default function MetodoFasi({id, title, intro, fasi, children}) {
     <section
       ref={root}
       id={id}
-      className="bg-ghisa text-white [&_:focus-visible]:outline-fiamma"
+      className="bg-[#121315] text-white [&_:focus-visible]:outline-fiamma"
       data-header="dark"
       aria-labelledby={`${id}-title`}
     >
@@ -66,7 +66,7 @@ export default function MetodoFasi({id, title, intro, fasi, children}) {
           <div className="lg:top-28 lg:motion-safe:sticky">
             <h2
               id={`${id}-title`}
-              className="type-display max-w-[14ch] text-[clamp(32px,3.6vw,56px)]"
+              className="cin-titolo type-display max-w-[16ch] text-[clamp(36px,4.4vw,64px)] !leading-none"
             >
               {title}
             </h2>
@@ -123,7 +123,7 @@ export default function MetodoFasi({id, title, intro, fasi, children}) {
             >
               <div className="flex gap-5 md:gap-10">
                 <span
-                  className="type-display w-10 shrink-0 text-2xl text-fiamma md:w-16 md:text-4xl"
+                  className="cin-num w-10 shrink-0 text-2xl md:w-16 md:text-4xl"
                   aria-hidden="true"
                 >
                   {num(i)}

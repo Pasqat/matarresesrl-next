@@ -2,19 +2,19 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import ContactForm from '../../components/Form/ContactForm'
 import ContactModal from '../../components/Form/ContactModal'
 import Layout from '../../components/Layout'
-import PageHero from '../../components/PageHero'
 import Magnetic from '../../components/Magnetic'
 import MetodoFasi from '../../components/servizi/MetodoFasi'
-
-import {getGroups} from '../../lib/newsletter'
+import HeroCinema from '../../components/cinema/HeroCinema'
+import TitoloDueTempi from '../../components/cinema/TitoloDueTempi'
+import {Freccia} from '../../components/cinema/BottoneFreccia'
 import StructuredData from '../../components/StructuredData'
 import {serviceListSchema, breadcrumbSchema} from '../../lib/seo/schema'
 
 import heroImg from '../../public/img/servizi/cucina-movenpick.webp'
 import gdoImg from '../../public/img/servizi/gdo-bistrot.webp'
+import chiusuraImg from '../../public/img/servizi/chiusura-cuoco.webp'
 import logoConsip from '../../public/img/logos/Consip_Logo.webp'
 import logoAcquistinrete from '../../public/img/logos/acquistinrete.webp'
 import logoMEF from '../../public/img/logos/Logo_mef.webp'
@@ -195,7 +195,7 @@ const mepaLogos = [
   [logoMEF, 'Ministero dell’Economia e delle Finanze', 'h-12'],
 ]
 
-export default function Servizi({groups}) {
+export default function Servizi() {
   return (
     <>
       <Head>
@@ -235,53 +235,50 @@ export default function Servizi({groups}) {
         data={breadcrumbSchema([{name: 'Servizi', path: '/servizi'}])}
       />
       <Layout navbarTransparent headerCta={{}}>
-        <PageHero
-          title="Dall’idea all’apertura, e anche dopo."
-          intro="Consulenza, progettazione, arredi su misura, impianti, formazione e assistenza tecnica per ristoranti, bar, pasticcerie, hotel, laboratori e GDO."
-          image={{
-            src: heroImg,
-            alt: 'Cucina professionale in acciaio inox con cappa a isola',
-            position: '50% 40%',
-          }}
+        <HeroCinema
+          image={heroImg}
+          alt="Cucina professionale in acciaio inox con cappa a isola"
+          objectPosition="50% 40%"
+          eyebrow="Consulenza · Progetto · Arredi · Impianti · Assistenza"
+          riga="Dall’idea all’apertura,"
+          accento="e anche dopo."
+          sottotitolo="Consulenza, progettazione, arredi su misura, impianti, formazione e assistenza tecnica per ristoranti, bar, pasticcerie, hotel, laboratori e GDO."
+          voci={['Progetto', 'Arredi su misura', 'Impianti', 'Assistenza']}
         >
           <Magnetic>
-            <ContactModal
-              variant="progetto"
-              className="cta-fiamma focus-visible:outline-white"
-            >
+            <ContactModal variant="progetto" className="cin-btn">
               Parla con un progettista
+              <Freccia />
             </ContactModal>
           </Magnetic>
-          <Link
-            href="#metodo"
-            className="border-b border-inox/60 py-2 text-inox hover:text-white focus-visible:outline-white"
-          >
+          <Link href="#metodo" className="cin-link whitespace-nowrap">
             Come lavoriamo
           </Link>
-        </PageHero>
+        </HeroCinema>
 
         {/* Capitolo chiaro: i servizi */}
         <section
           id="panoramica"
-          className="bg-calce text-ghisa"
+          className="bg-[var(--carta)] text-ghisa"
           data-header="light"
           aria-labelledby="servizi-title"
         >
           <div className="site-shell py-24 lg:py-32">
             <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
-              <h2
+              <TitoloDueTempi
                 id="servizi-title"
-                className="type-display text-[clamp(32px,3.6vw,56px)] lg:col-span-7"
-              >
-                Cosa facciamo per la tua attività.
-              </h2>
+                tono="chiaro"
+                riga="Cosa facciamo"
+                accento="per la tua attività."
+                className="text-[clamp(36px,4.4vw,64px)] !leading-none lg:col-span-7"
+              />
               <p className="max-w-[48ch] text-acciaio lg:col-span-5">
                 Le competenze che servono per aprire e far lavorare un locale
                 ho.re.ca., dalla prima consulenza alla manutenzione.
               </p>
             </div>
             <ul className="mt-16 grid gap-x-10 md:grid-cols-2 lg:grid-cols-3">
-              {SERVIZI.map(s => (
+              {SERVIZI.map((s, i) => (
                 <li
                   key={s.name}
                   className="group relative border-t border-ghisa/15 pb-12 pt-7"
@@ -290,7 +287,10 @@ export default function Servizi({groups}) {
                     className="absolute -top-px left-0 h-0.5 w-10 bg-fiamma-testo transition-[width] duration-500 ease-out group-hover:w-full motion-reduce:transition-none"
                     aria-hidden="true"
                   />
-                  <h3 className="type-display hyphens-auto text-[clamp(20px,1.8vw,26px)] leading-tight transition-transform duration-500 ease-out group-hover:translate-x-1.5 motion-reduce:transition-none">
+                  <span className="cin-num text-lg" aria-hidden="true">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <h3 className="type-display mt-3 hyphens-auto text-[clamp(20px,1.8vw,26px)] leading-tight transition-transform duration-500 ease-out group-hover:translate-x-1.5 motion-reduce:transition-none">
                     {s.name}
                   </h3>
                   <p className="mt-4 max-w-[46ch] text-acciaio">
@@ -305,48 +305,57 @@ export default function Servizi({groups}) {
         {/* Capitolo scuro: il metodo in sequenza */}
         <MetodoFasi
           id="metodo"
-          title="Come nasce il tuo locale, passo dopo passo."
+          title={
+            <>
+              <span className="block">Come nasce il tuo locale,</span>{' '}
+              <span className="type-accento">passo dopo passo.</span>
+            </>
+          }
           intro="Dalla prima idea al collaudo, ogni progetto fa lo stesso percorso: i nostri tecnici ti accompagnano fino all’apertura."
           fasi={FASI}
         >
-          <ContactModal
-            variant="progetto"
-            className="inline-block border-b border-fiamma py-2 text-fiamma hover:text-white"
-          >
+          <ContactModal variant="progetto" className="cin-btn">
             Inizia dalla consulenza
+            <Freccia />
           </ContactModal>
         </MetodoFasi>
 
-        {/* Capitolo chiaro: demo delle attrezzature */}
+        {/* Demo delle attrezzature: card scura su carta, come l'evento in home */}
         <section
-          className="bg-calce text-ghisa"
+          className="bg-[var(--carta)] text-ghisa"
           data-header="light"
           aria-labelledby="demo-title"
         >
-          <div className="site-shell grid gap-10 py-20 lg:grid-cols-12 lg:items-end lg:py-28">
-            <div className="lg:col-span-8">
-              <h2
-                id="demo-title"
-                className="type-display text-[clamp(28px,3.6vw,56px)]"
-              >
-                Prova le attrezzature prima di sceglierle.
-              </h2>
-              <p className="mt-6 max-w-[52ch] text-lg text-acciaio">
-                Ti offriamo la possibilità di vedere in funzione le attrezzature
-                ho.re.ca. che desideri conoscere.
-              </p>
-            </div>
-            <div className="lg:col-span-4 lg:justify-self-end">
-              <Magnetic>
-                <ContactModal
-                  variant="info"
-                  className="cta-fiamma"
-                  title="Richiedi una demo personalizzata."
-                  subtitle="Scegli tu il giorno: ti mostriamo al lavoro le attrezzature che vuoi conoscere, nello showroom di Alberobello."
-                >
-                  Richiedi una demo personalizzata
-                </ContactModal>
-              </Magnetic>
+          <div className="site-shell py-24 lg:py-32">
+            <div className="grid gap-10 rounded-[28px] bg-[#121315] p-8 text-white md:p-12 lg:grid-cols-12 lg:items-end lg:p-16">
+              <div className="lg:col-span-8">
+                <span className="eyebrow-cinema">
+                  Nello showroom di Alberobello
+                </span>
+                <TitoloDueTempi
+                  id="demo-title"
+                  riga="Prova le attrezzature"
+                  accento="prima di sceglierle."
+                  className="mt-6 text-[clamp(32px,4vw,56px)] !leading-none"
+                />
+                <p className="mt-6 max-w-[52ch] text-lg text-[rgb(243_238_230/.75)]">
+                  Ti offriamo la possibilità di vedere in funzione le
+                  attrezzature ho.re.ca. che desideri conoscere.
+                </p>
+              </div>
+              <div className="lg:col-span-4 lg:justify-self-end">
+                <Magnetic>
+                  <ContactModal
+                    variant="info"
+                    className="cin-btn"
+                    title="Richiedi una demo personalizzata."
+                    subtitle="Scegli tu il giorno: ti mostriamo al lavoro le attrezzature che vuoi conoscere, nello showroom di Alberobello."
+                  >
+                    Richiedi una demo
+                    <Freccia />
+                  </ContactModal>
+                </Magnetic>
+              </div>
             </div>
           </div>
         </section>
@@ -354,18 +363,18 @@ export default function Servizi({groups}) {
         {/* Capitolo scuro: GDO */}
         <section
           id="gdo"
-          className="bg-ghisa text-white [&_:focus-visible]:outline-fiamma"
+          className="bg-[#0d0e0f] text-white [&_:focus-visible]:outline-fiamma"
           data-header="dark"
           aria-labelledby="gdo-title"
         >
           <div className="site-shell grid gap-12 py-24 lg:grid-cols-12 lg:items-center lg:py-32">
             <div className="lg:col-span-5">
-              <h2
+              <TitoloDueTempi
                 id="gdo-title"
-                className="type-display text-[clamp(32px,3.6vw,56px)]"
-              >
-                Servizi e allestimenti per la GDO
-              </h2>
+                riga="Servizi e allestimenti"
+                accento="per la GDO."
+                className="text-[clamp(36px,4.4vw,64px)] !leading-none"
+              />
               <div className="mt-8 max-w-[48ch] space-y-5 text-lg text-inox">
                 <p>
                   Progettiamo le aree ristoro dei grandi supermercati, librerie
@@ -383,12 +392,13 @@ export default function Servizi({groups}) {
               <ContactModal
                 variant="progetto"
                 settore="GDO, pescherie e macellerie"
-                className="mt-10 inline-block border-b border-fiamma py-2 text-fiamma hover:text-white"
+                className="cin-btn mt-10"
               >
                 Parliamo del tuo punto vendita
+                <Freccia />
               </ContactModal>
             </div>
-            <div className="relative aspect-[16/10] overflow-hidden bg-grafite lg:col-span-7">
+            <div className="relative aspect-[16/10] overflow-hidden rounded-[28px] bg-grafite lg:col-span-7">
               <Image
                 src={gdoImg}
                 alt="Area ristoro con bancone bar e tavoli all’interno di un supermercato"
@@ -403,18 +413,19 @@ export default function Servizi({groups}) {
 
         {/* Capitolo chiaro: pubblica amministrazione */}
         <section
-          className="bg-calce text-ghisa"
+          className="bg-[var(--carta)] text-ghisa"
           data-header="light"
           aria-labelledby="mepa-title"
         >
           <div className="site-shell grid gap-12 py-20 lg:grid-cols-12 lg:items-center lg:py-28">
             <div className="lg:col-span-6">
-              <h2
+              <TitoloDueTempi
                 id="mepa-title"
-                className="type-display text-[clamp(28px,3vw,44px)]"
-              >
-                Siamo presenti anche su MePA.
-              </h2>
+                tono="chiaro"
+                riga="Siamo presenti"
+                accento="anche su MePA."
+                className="text-[clamp(32px,3.4vw,48px)] !leading-none"
+              />
               <p className="mt-5 max-w-[48ch] text-acciaio">
                 Mercato Elettronico della Pubblica Amministrazione.
               </p>
@@ -429,38 +440,49 @@ export default function Servizi({groups}) {
           </div>
         </section>
 
-        {/* Chiusura: la chiamata al progetto */}
+        {/* Chiusura su foto, come in home: il modulo progetto a passi sostituisce il modulo lungo */}
         <section
           id="contatti"
-          className="bg-white text-ghisa"
-          data-header="light"
+          className="relative overflow-hidden py-28 text-center text-white md:py-40"
+          data-header="dark"
           aria-labelledby="contatto-title"
         >
-          <div className="site-shell grid gap-6 pb-10 pt-24 lg:grid-cols-12 lg:pt-32">
-            <h2
+          <Image
+            src={chiusuraImg}
+            alt=""
+            fill
+            sizes="100vw"
+            placeholder="blur"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-[#0d0e0f]/[.8]" />
+          <div className="site-shell relative max-w-[860px]">
+            <TitoloDueTempi
               id="contatto-title"
-              className="type-display text-[clamp(36px,4.4vw,72px)] lg:col-span-7"
-            >
-              Raccontaci il tuo progetto.
-            </h2>
-            <p className="max-w-[40ch] text-acciaio lg:col-span-4 lg:col-start-9 lg:self-end">
-              Completa il modulo: un nostro consulente ti ricontatterà.
+              riga="Raccontaci"
+              accento="il tuo progetto."
+              className="text-[clamp(40px,5.8vw,88px)] !leading-none"
+            />
+            <p className="mx-auto mt-6 max-w-[34rem] text-[rgb(243_238_230/.75)]">
+              Tre domande, meno di un minuto: un nostro progettista ti
+              ricontatta e, se serve, viene nel locale per il sopralluogo.
             </p>
-          </div>
-          <div className="pb-24">
-            <ContactForm groups={groups} compact />
+            <div className="mt-10 flex flex-wrap justify-center gap-3.5">
+              <ContactModal
+                variant="progetto"
+                source="servizi-chiusura"
+                className="cin-btn"
+              >
+                Parla con un progettista
+                <Freccia />
+              </ContactModal>
+              <a href="tel:+390804323431" className="cin-btn cin-btn--ghost">
+                Chiama +39 080 4323 431
+              </a>
+            </div>
           </div>
         </section>
       </Layout>
     </>
   )
-}
-
-export async function getStaticProps() {
-  const groups = await getGroups()
-  return {
-    props: {
-      groups,
-    },
-  }
 }
