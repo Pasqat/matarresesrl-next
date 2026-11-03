@@ -72,7 +72,7 @@ function MyApp({Component, pageProps}) {
 
   return (
     <>
-      <PlausibleProvider domain="matarrese.it">
+      <PlausibleProvider domain="www.matarrese.it">
         {/* Global Site Code Pixel - Facebook Pixel */}
         {isCookieConsentAccept ? (
           <>

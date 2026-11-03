@@ -29,12 +29,21 @@ const COOKIE = [
   {
     gruppo: 'Statistici: solo dopo il consenso',
     righe: [
-      ['_ga', 'Google Analytics', 'Distingue i visitatori', '2 anni'],
+      ['_ga', 'Google Analytics', 'Distingue i visitatori', '13 mesi'],
       [
         '_ga_00G4B92CP8',
         'Google Analytics',
         'Ricorda la sessione di visita',
-        '2 anni',
+        '13 mesi',
+      ],
+      // _gid e _gat_UA-… vengono dal vecchio tag Universal Analytics ancora nel container GTM:
+      // quando lo togli da GTM, togli anche queste due righe.
+      ['_gid', 'Google Analytics', 'Distingue i visitatori', '24 ore'],
+      [
+        '_gat_UA-68491654-1',
+        'Google Analytics',
+        'Limita la frequenza delle richieste',
+        '1 minuto',
       ],
     ],
   },
@@ -64,6 +73,12 @@ const COOKIE = [
         'LinkedIn',
         'Misura le campagne e mostra annunci a chi ha visitato il sito',
         'da 1 giorno a 3 mesi',
+      ],
+      [
+        '__cf_bm',
+        'LinkedIn (tramite Cloudflare)',
+        'Distingue le persone dai bot',
+        '30 minuti',
       ],
     ],
   },
