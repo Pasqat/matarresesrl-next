@@ -4,7 +4,8 @@ import {useRouter} from 'next/router'
 import * as fbq from '../../lib/fpixel'
 
 import Layout from '../../components/Layout'
-import PageHero from '../../components/PageHero'
+import HeroCinema from '../../components/cinema/HeroCinema'
+import heroImg from '../../public/img/settori/rist-auraterrae.webp'
 import CardEditoriale from '../../components/editoriale/CardEditoriale'
 import GrigliaEditoriale from '../../components/editoriale/GrigliaEditoriale'
 import {
@@ -145,13 +146,23 @@ export default function Realizzazioni({data}) {
       </Head>
 
       <Layout navbarTransparent>
-        <PageHero
-          title="Realizzazioni per bar, ristoranti, hotel e attività professionali"
-          intro="Da oltre quarant’anni progettiamo cucine professionali, arredi su misura, attrezzature per l’ho.re.ca. e soluzioni complete per locali commerciali, macellerie, pasticcerie, hotel e spazi dedicati alla ristorazione."
-        />
+        <HeroCinema
+          image={heroImg}
+          alt="La cucina della Masseria Auraterrae"
+          objectPosition="50% 50%"
+          eyebrow="Dal 1983, in Puglia"
+          riga="Realizzazioni per bar, ristoranti,"
+          accento="hotel e attività professionali."
+          sottotitolo="Da oltre quarant’anni progettiamo cucine professionali, arredi su misura, attrezzature per l’ho.re.ca. e soluzioni complete per locali commerciali, macellerie, pasticcerie, hotel e spazi dedicati alla ristorazione."
+        >
+          <a href="#archivio" className="cin-btn">
+            Guarda i progetti
+          </a>
+        </HeroCinema>
 
         <section
-          className="bg-white text-ghisa"
+          id="archivio"
+          className="scroll-mt-20 bg-[var(--carta)] text-ghisa"
           data-header="light"
           aria-label="Archivio delle realizzazioni"
         >

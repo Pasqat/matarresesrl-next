@@ -26,7 +26,7 @@ export function ChipCategorie({
                 aria-pressed={selected}
                 disabled={isDisabled(category)}
                 onClick={() => onToggle(category)}
-                className={`min-h-[44px] border px-4 text-[15px] transition-colors disabled:cursor-not-allowed disabled:opacity-40 ${
+                className={`min-h-[44px] rounded-full border px-5 text-[15px] transition-colors disabled:cursor-not-allowed disabled:opacity-40 ${
                   selected
                     ? 'border-ghisa bg-ghisa text-white'
                     : 'border-ghisa/20 text-ghisa enabled:hover:border-ghisa'
@@ -91,7 +91,7 @@ export function CaricaAltri({shown, total, onClick, children}) {
       <button
         type="button"
         onClick={onClick}
-        className="inline-flex min-h-[52px] items-center border border-ghisa px-7 font-medium text-ghisa transition-colors hover:bg-ghisa hover:text-white"
+        className="inline-flex min-h-[52px] items-center rounded-full border border-ghisa px-7 font-medium text-ghisa transition-colors hover:bg-ghisa hover:text-white"
       >
         {children}
       </button>

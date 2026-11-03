@@ -1,10 +1,9 @@
-// Galleria del progetto: campate a larghezze alterne alla stessa altezza per riga, riquadro che
-// si disegna al passaggio (disegno/Riquadro), visore a tutto schermo (Headless UI Dialog: focus
+// Galleria del progetto: campate a larghezze alterne alla stessa altezza per riga, angoli ampi
+// (DESIGN.md), visore a tutto schermo (Headless UI Dialog: focus
 // intrappolato, Esc per chiudere, frecce per scorrere). Alt da WordPress.
 import {useState} from 'react'
 import Image from 'next/image'
 import {Dialog} from '@headlessui/react'
-import Riquadro from '../disegno/Riquadro'
 
 // Da lg ogni riga somma 12 colonne (7+5, 4+8, 6+6), altezza fissa: le campate cambiano, la riga no.
 const SPAN = [
@@ -28,12 +27,14 @@ export default function GalleriaProgetto({images, title}) {
         {images.map((img, i) => (
           <li
             key={img.id || img.sourceUrl}
-            className={`group relative aspect-[3/2] lg:h-[32vw] lg:[aspect-ratio:auto] ${SPAN[i % SPAN.length]}`}
+            className={`group relative aspect-[3/2] lg:h-[32vw] lg:[aspect-ratio:auto] ${
+              SPAN[i % SPAN.length]
+            }`}
           >
             <button
               type="button"
               onClick={() => setOpen(i)}
-              className="absolute inset-0 block w-full overflow-hidden bg-inox"
+              className="absolute inset-0 block w-full overflow-hidden rounded-[24px] bg-grafite"
             >
               <Image
                 src={img.sourceUrl}
@@ -46,7 +47,6 @@ export default function GalleriaProgetto({images, title}) {
                 Ingrandisci la foto {i + 1} di {n}
               </span>
             </button>
-            <Riquadro className="text-fiamma-testo" />
           </li>
         ))}
       </ul>

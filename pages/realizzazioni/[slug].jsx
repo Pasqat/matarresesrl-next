@@ -2,7 +2,10 @@ import {useRouter} from 'next/router'
 import Head from 'next/head'
 import Image from 'next/image'
 import Layout from '../../components/Layout'
-import Cartiglio from '../../components/disegno/Cartiglio'
+import HeroCinema from '../../components/cinema/HeroCinema'
+import TitoloDueTempi from '../../components/cinema/TitoloDueTempi'
+import {Freccia} from '../../components/cinema/BottoneFreccia'
+import ContactModal from '../../components/Form/ContactModal'
 import Prosa from '../../components/editoriale/Prosa'
 import GalleriaProgetto from '../../components/editoriale/GalleriaProgetto'
 import InvitoProgetto from '../../components/editoriale/InvitoProgetto'
@@ -59,34 +62,37 @@ export default function Project({project, related}) {
         ])}
       />
 
-      <section
-        aria-labelledby="page-title"
-        data-header="light"
-        className="relative bg-calce pb-10 lg:pb-0"
+      <HeroCinema
+        image={cover}
+        alt={project.featuredImage?.node?.altText || ''}
+        objectPosition="50% 50%"
+        eyebrow={scheda.map(([, v]) => v).join(' · ') || 'Realizzazione'}
+        riga={<span dangerouslySetInnerHTML={{__html: project.title}} />}
+        accento={anni[0] ? `${anni[0]}.` : null}
+        sottotitolo={project.seo?.metaDesc}
       >
-        <div className="relative h-[72vh] min-h-[420px] bg-inox">
-          {cover && (
-            <Image
-              src={cover}
-              alt={project.featuredImage?.node?.altText || ''}
-              fill
-              preload
-              fetchPriority="high"
-              sizes="100vw"
-              className="object-cover"
-            />
-          )}
-          {/* In cima l'header è trasparente con testi bianchi: il velo lo tiene leggibile su foto chiare */}
-          <div
-            aria-hidden="true"
-            className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-ghisa/70 to-transparent"
-          />
-        </div>
-        <Cartiglio id="page-title" title={project.title} rows={scheda} />
-      </section>
+        <ContactModal
+          variant="realizzazione"
+          image={
+            cover
+              ? {src: cover, alt: project.featuredImage?.node?.altText || ''}
+              : undefined
+          }
+          caption={`${project.title}. Il prossimo può essere il tuo.`}
+          className="cin-btn"
+        >
+          Un progetto come questo
+          <Freccia />
+        </ContactModal>
+        {images.length > 0 && (
+          <a href="#galleria" className="cin-link whitespace-nowrap">
+            Guarda le foto
+          </a>
+        )}
+      </HeroCinema>
 
       <section
-        className="bg-white text-ghisa"
+        className="bg-[var(--carta)] text-ghisa"
         data-header="light"
         aria-label="Il progetto"
       >
@@ -112,17 +118,18 @@ export default function Project({project, related}) {
 
       {images.length > 0 && (
         <section
-          className="bg-calce text-ghisa"
-          data-header="light"
+          id="galleria"
+          className="scroll-mt-20 bg-[#121315] text-white [&_:focus-visible]:outline-fiamma"
+          data-header="dark"
           aria-labelledby="galleria-title"
         >
           <div className="site-shell py-24 lg:py-32">
-            <h2
+            <TitoloDueTempi
               id="galleria-title"
-              className="type-display text-[clamp(30px,3.4vw,52px)]"
-            >
-              Il progetto in immagini
-            </h2>
+              riga="Il progetto"
+              accento="in immagini."
+              className="text-[clamp(36px,4.4vw,64px)] !leading-none"
+            />
             <div className="mt-12 lg:mt-16">
               <GalleriaProgetto images={images} title={project.title} />
             </div>
@@ -131,7 +138,9 @@ export default function Project({project, related}) {
       )}
 
       <Correlati
-        title="Altre realizzazioni"
+        title="Altre"
+        accento="realizzazioni."
+        tono={images.length > 0 ? 'chiaro' : 'scuro'}
         link={{href: '/realizzazioni', label: 'Tutte le realizzazioni'}}
         items={related.map(p => ({
           href: `/realizzazioni/${p.slug}`,
