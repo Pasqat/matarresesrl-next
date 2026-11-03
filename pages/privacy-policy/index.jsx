@@ -4,8 +4,9 @@ import Link from 'next/link'
 import Layout from '../../components/Layout'
 import PageHero from '../../components/PageHero'
 
-import {H2, H3} from '../../components/typography'
-
+// Informativa ex art. 13 RGPD. I servizi elencati sono quelli che il sito usa davvero:
+// se ne aggiungi o togli uno (pages/_app.js, pages/api/*, container GTM), aggiorna anche
+// questa pagina e la cookie policy.
 export default function PrivacyPolicy() {
   return (
     <div>
@@ -15,7 +16,7 @@ export default function PrivacyPolicy() {
         <meta property="og:title" content="Trattamento dei dati" />
         <meta
           property="og:description"
-          content="Questa pagina descrive le modalità di trattamento dei dati personali degli utenti"
+          content="Come Matarrese srl tratta i dati personali di chi visita il sito e lo contatta"
         />
         <meta
           property="og:url"
@@ -25,490 +26,265 @@ export default function PrivacyPolicy() {
       <Layout navbarTransparent footerInvito={false}>
         <PageHero title="Trattamento" accento="dei dati." tall={false} />
         <section className="bg-[var(--carta)] py-20 lg:py-28">
-          <div className="site-shell !max-w-[70ch] text-left leading-relaxed text-ghisa">
-            <H2 variant="secondary">Privacy policy sito web</H2>
-            <p className="py-4 text-sm italic text-acciaio">
-              Versione 1.0 del 01/01/2019
+          <div className="site-shell cin-legale">
+            <p className="cin-legale-versione">
+              Versione 2.0 del 3 novembre 2026
             </p>
-            <div className="mb-14">
-              Questa pagina descrive le modalità di trattamento dei dati
-              personali degli utenti che consultano il Sito Web{' '}
-              <Link
-                href="/"
-                className="text-fiamma-testo underline underline-offset-4"
+            <p>
+              Questa informativa spiega quali dati personali raccogliamo quando
+              visiti <Link href="/">www.matarrese.it</Link>, ci scrivi o compili
+              un modulo del sito, perché lo facciamo, a chi li affidiamo e come
+              puoi esercitare i tuoi diritti. È resa ai sensi dell’art. 13 del
+              Regolamento UE 2016/679 (RGPD) e del D.lgs. 196/2003 come
+              modificato dal D.lgs. 101/2018.
+            </p>
+
+            <h2>1. Chi è il titolare del trattamento</h2>
+            <p>
+              <strong>Matarrese s.r.l.</strong>
+              <br />
+              Sede legale: Contrada Popoleto, n.c., 70011 Alberobello (BA)
+              <br />
+              Codice fiscale e Partita IVA 04356890725
+              <br />
+              Telefono <a href="tel:+390804323431">080 4323 431</a>
+              <br />
+              Email{' '}
+              <a href="mailto:matarrese@matarrese.it">matarrese@matarrese.it</a>{' '}
+              · PEC{' '}
+              <a href="mailto:matarrese.srl@pec.it">matarrese.srl@pec.it</a>
+            </p>
+            <p>
+              <em>Referente interno per la privacy:</em> Pasquale Matarrese,{' '}
+              <a href="mailto:pasquale.matarrese@matarrese.it">
+                pasquale.matarrese@matarrese.it
+              </a>
+              , telefono <a href="tel:+390804323431">080 4323 431</a>.
+            </p>
+            <p>
+              Non ricorrendone i presupposti (artt. 37 e seguenti del RGPD),
+              Matarrese s.r.l. non ha nominato un Responsabile della protezione
+              dei dati (DPO).
+            </p>
+
+            <h2>2. A cosa si applica questa informativa</h2>
+            <p>
+              Solo al sito www.matarrese.it. I siti esterni raggiungibili dai
+              nostri link (per esempio i profili social o i siti dei marchi che
+              distribuiamo) hanno le loro informative, che ti invitiamo a
+              leggere.
+            </p>
+
+            <h2>3. Quali dati trattiamo, perché e per quanto tempo</h2>
+
+            <h3>Dati di navigazione</h3>
+            <p>
+              Per funzionare, i server che ospitano il sito registrano alcuni
+              dati tecnici: indirizzo IP, data e ora della richiesta, pagina
+              richiesta, tipo di browser e di dispositivo. Servono a far
+              funzionare il sito, a proteggerlo da abusi e a risolvere errori.
+              Base giuridica: il nostro legittimo interesse (art. 6, par. 1,
+              lett. f RGPD). Sono conservati per il tempo necessario a questi
+              scopi e comunque non oltre 26 mesi, salvo richieste dell’autorità
+              giudiziaria.
+            </p>
+
+            <h3>Statistiche di visita senza cookie</h3>
+            <p>
+              Contiamo le visite con <strong>Plausible Analytics</strong>, che
+              non usa cookie, non raccoglie dati che ti identificano e conserva i
+              dati su server nell’Unione europea, e misuriamo la velocità delle
+              pagine con <strong>Vercel Speed Insights</strong>, che raccoglie
+              solo dati tecnici anonimi. Base giuridica: legittimo interesse a
+              capire come viene usato il sito e a migliorarlo.
+            </p>
+
+            <h3>Richieste inviate con i moduli del sito</h3>
+            <p>
+              Con i moduli puoi chiederci un progetto o un sopralluogo, segnalare
+              un guasto, prenotare una visita o una demo in showroom, iscriverti
+              a un evento o scriverci per altro. Raccogliamo i dati che inserisci:
+              nome e cognome, email e/o telefono e, a seconda del modulo,
+              attività, nome del locale o ragione sociale, indirizzo
+              dell’intervento, attrezzatura e descrizione del guasto, giorno
+              preferito, numero di partecipanti e il tuo messaggio.
+            </p>
+            <p>
+              Li usiamo solo per rispondere alla tua richiesta e dare seguito a
+              quello che ci chiedi. Base giuridica: l’esecuzione di misure
+              precontrattuali o di un contratto su tua richiesta (art. 6, par. 1,
+              lett. b RGPD); la casella sulla privacy nel modulo serve a
+              confermare che hai letto questa informativa. I campi obbligatori
+              sono quelli senza i quali non possiamo risponderti.
+            </p>
+            <p>
+              Le richieste arrivano per email agli uffici competenti (le
+              segnalazioni di guasto al nostro servizio di assistenza); le
+              richieste commerciali sono registrate anche nel nostro gestionale
+              dei contatti (CRM). Le conserviamo per non più di 2 anni
+              dall’ultimo contatto, salvo che diventino un rapporto contrattuale
+              o che servano più a lungo per obblighi di legge o per tutelare un
+              nostro diritto.
+            </p>
+
+            <h3>Email e telefonate dirette</h3>
+            <p>
+              Se ci scrivi o ci chiami ai recapiti indicati sul sito, trattiamo i
+              dati che ci comunichi con le stesse finalità, basi giuridiche e
+              tempi delle richieste inviate con i moduli.
+            </p>
+
+            <h3>Newsletter</h3>
+            <p>
+              Se ti iscrivi alla newsletter raccogliamo la tua email e il settore
+              che scegli, per mandarti inviti a eventi, dimostrazioni e novità
+              utili per il tuo tipo di attività. Base giuridica: il tuo consenso
+              (art. 6, par. 1, lett. a RGPD), che dai spuntando la casella del
+              modulo. Puoi cancellarti quando vuoi con il link in fondo a ogni
+              email o scrivendoci; i dati restano finché resti iscritto. Gli
+              invii sono gestiti con <strong>Mailchimp</strong>, che ci dice
+              quante email vengono aperte e quali link vengono cliccati.
+            </p>
+
+            <h3>Cookie e strumenti di terze parti</h3>
+            <p>
+              Senza il tuo consenso il sito usa solo cookie tecnici. Solo se
+              scegli «Accetto tutti i cookies» nel banner vengono attivati{' '}
+              <strong>Google Analytics</strong>, il{' '}
+              <strong>Conversion Linker di Google Ads</strong>, il{' '}
+              <strong>Meta Pixel</strong> e il{' '}
+              <strong>LinkedIn Insight Tag</strong>, caricati anche tramite
+              Google Tag Manager. Questi strumenti{' '}
+              <strong>profilano la navigazione, ma solo dopo il tuo consenso</strong>
+              : servono a misurare i risultati delle nostre campagne e a
+              mostrarti nostri annunci su Google, Facebook, Instagram e LinkedIn.
+              Base giuridica: il tuo consenso, che puoi revocare in ogni momento.
+              Tutti i dettagli, la durata di ogni cookie e il modo per cambiare
+              la tua scelta sono nella{' '}
+              <Link href="/cookie-policy">cookie policy</Link>.
+            </p>
+
+            <h3>Mappa della pagina Contatti</h3>
+            <p>
+              La mappa nella pagina Contatti è fornita da{' '}
+              <strong>Google Maps</strong>: per mostrarla il tuo browser si
+              collega ai server di Google, che ricevono il tuo indirizzo IP.
+            </p>
+
+            <h2>4. A chi affidiamo i dati</h2>
+            <p>
+              I dati sono trattati dal nostro personale autorizzato e dai
+              fornitori che ci aiutano a far funzionare il sito e a gestire le
+              richieste, nominati responsabili del trattamento (art. 28 RGPD):
+            </p>
+            <ul>
+              <li>
+                <strong>Vercel Inc.</strong>: hosting del sito e misurazione
+                anonima delle prestazioni;
+              </li>
+              <li>
+                il fornitore di hosting del sistema che gestisce i contenuti del
+                sito (articoli, realizzazioni, eventi);
+              </li>
+              <li>
+                <strong>Resend</strong>: invio delle email generate dai moduli;
+              </li>
+              <li>il fornitore della nostra posta elettronica aziendale;</li>
+              <li>
+                <strong>Odoo S.A.</strong>: gestionale dei contatti commerciali
+                (CRM);
+              </li>
+              <li>
+                <strong>Intuit Inc. (Mailchimp)</strong>: invio della
+                newsletter;
+              </li>
+              <li>
+                <strong>Plausible Insights OÜ</strong>: statistiche di visita
+                senza cookie;
+              </li>
+              <li>
+                consulenti e tecnici incaricati della manutenzione del sito,
+                quando serve.
+              </li>
+            </ul>
+            <p>
+              <strong>Google</strong> (Analytics, Ads, Tag Manager, Maps),{' '}
+              <strong>Meta Platforms</strong> e <strong>LinkedIn</strong>{' '}
+              trattano i dati raccolti dai rispettivi strumenti anche come
+              titolari autonomi, secondo le proprie informative. I dati possono
+              essere comunicati alle autorità quando lo prevede la legge. Non
+              diffondiamo né vendiamo i tuoi dati. L’elenco aggiornato dei
+              responsabili è disponibile su richiesta.
+            </p>
+
+            <h2>5. Trasferimenti fuori dall’Unione europea</h2>
+            <p>
+              Alcuni fornitori (Vercel, Resend, Mailchimp, Google, Meta,
+              LinkedIn) possono trattare i dati anche negli Stati Uniti. In
+              questi casi il trasferimento avviene sulla base della decisione di
+              adeguatezza della Commissione europea per le società aderenti al
+              Data Privacy Framework UE-USA o, in mancanza, delle clausole
+              contrattuali standard approvate dalla Commissione (artt. 45 e 46
+              RGPD).
+            </p>
+
+            <h2>6. I tuoi diritti</h2>
+            <p>
+              In base agli artt. 15-22 del RGPD puoi chiederci in qualsiasi
+              momento di accedere ai tuoi dati, correggerli, cancellarli,
+              limitarne il trattamento, riceverli in un formato leggibile
+              (portabilità) e opporti al trattamento basato sul legittimo
+              interesse. Puoi revocare il consenso dato per la newsletter o per i
+              cookie, senza che questo tocchi quanto fatto prima della revoca.
+            </p>
+            <p>
+              Basta scrivere a{' '}
+              <a href="mailto:pasquale.matarrese@matarrese.it">
+                pasquale.matarrese@matarrese.it
+              </a>{' '}
+              o alla PEC{' '}
+              <a href="mailto:matarrese.srl@pec.it">matarrese.srl@pec.it</a>,
+              oppure per posta a Matarrese s.r.l., Contrada Popoleto, n.c., 70011
+              Alberobello (BA). Ti rispondiamo entro un mese.
+            </p>
+
+            <h2>7. Reclamo al Garante</h2>
+            <p>
+              Se ritieni che il trattamento violi la normativa, puoi proporre
+              reclamo al Garante per la protezione dei dati personali, anche dal
+              sito{' '}
+              <a
+                href="https://www.garanteprivacy.it"
+                target="_blank"
+                rel="noreferrer"
               >
-                www.matarrese.it
-              </Link>{' '}
-              oppure inviano messaggi di posta elettronica (e-mail) agli
-              indirizzi disponibili sul Sito medesimo o ancora compilano ed
-              inoltrano moduli di contatto presenti anch’essi sul Sito.
-            </div>
-            <div className="flex flex-col space-y-14">
-              <section>
-                <H3 className="pb-3">
-                  Sezione 1 – Perché questa Privacy Policy?
-                </H3>
-                <div className="space-y-4">
-                  <p>
-                    A partire dal 25 maggio 2018 in tutti gli Stati dell’Unione
-                    europea si applicano nuove regole sulla privacy, imposte dal
-                    Regolamento UE 2016/679 (d’ora in poi, anche RGPD), oltre
-                    che da leggi nazionali. Il RGPD prevede una maggiore tutela
-                    degli utenti e impone nuovi obblighi e responsabilità a
-                    carico di chi tratta dati personali, anche attraverso i Siti
-                    Web.
-                  </p>
-                  <p>
-                    Per maggiori informazioni sul RGPD può consultare l’utile e
-                    approfondita Sezione a cura del Garante italiano per la
-                    Protezione dei Dati Personali: La aiuterà a comprendere
-                    meglio le nuove regole e a conoscere i Suoi diritti. Un
-                    principio fondamentale è quello della trasparenza: gli
-                    utenti devono sapere in anticipo, in modo chiaro e completo
-                    quali informazioni personali saranno raccolte, chi le
-                    tratterà, per quali motivi e per quanto tempo, se saranno
-                    utilizzate per scopi commerciali o per scopi di
-                    profilazione, se saranno comunicate a terzi, ecc. e poter
-                    controllare, in modo efficace, la gestione dei propri dati.
-                  </p>
-                  <p>
-                    Questa informativa è fornita in conformità all’articolo 13
-                    del RGPD e si ispira anche alle Linee Guida del Gruppo di
-                    lavoro ex Articolo 29 sulla Trasparenza.
-                  </p>
-                  <p>
-                    L’informativa è rivolta a tutti coloro che interagiscono con
-                    il Sito{' '}
-                    <Link
-                      href="https://www.matarrese.it"
-                      className="text-fiamma-testo underline underline-offset-4"
-                    >
-                      www.matarrese.it
-                    </Link>
-                    , accessibile per via telematica a partire
-                    dall&apos;indirizzo{' '}
-                    <Link
-                      href="/"
-                      className="text-fiamma-testo underline underline-offset-4"
-                    >
-                      www.matarrese.it
-                    </Link>{' '}
-                    corrispondente alla <em>home page</em>.
-                  </p>
-                  <p>
-                    Nella consultazione del presente Sito, oltre che con l’invio
-                    di comunicazioni ai contatti presenti sul Sito{' '}
-                    <a
-                      href="https://www.matarrese.it"
-                      className="text-fiamma-testo underline underline-offset-4"
-                    >
-                      www.matarrese.it
-                    </a>{' '}
-                    e con la copmilazione di moduli in pagine specifiche,
-                    possono essere trattati dati che consentano di identificare
-                    – direttamente o indirettamente – gli utenti.
-                  </p>
-                </div>
-              </section>
-              <section>
-                <H3 className="pb-3">
-                  Sezione 2 – Siti Web ai quali si applica la presente Privacy
-                  Policy.
-                </H3>
-                <div className="space-y-4">
-                  L’informativa è riferita solo al Sito{' '}
-                  <Link
-                    href="/"
-                    className="text-fiamma-testo underline underline-offset-4"
-                  >
-                    www.matarrese.it
-                  </Link>{' '}
-                  e non riguarda altri Siti Web eventualmente consultati dagli
-                  utenti mediante i link (collegamenti ipertestuali) in esso
-                  contenuti, totalmente estranei alla sfera del Titolare del
-                  trattamento <strong>Matarrese s.r.l.</strong>
-                </div>
-              </section>
-              <section>
-                <H3 className="pb-3">
-                  Sezione 3 – Titolare del trattamento e contatti.
-                </H3>
-                <div className="space-y-4">
-                  Il Titolare del trattamento dei Suoi dati personali di cui
-                  alla presente Informativa è <strong>Matarrese s.r.l.</strong>,
-                  accessibile per ogni comunicazione o richiesta in merito ai
-                  Suoi dati ai seguenti contatti:
-                  <p className="my-2">
-                    Sede legale in Alberobello,
-                    <br />
-                    C.da Popoleto, n.c.
-                    <br />
-                    Cod. Fisc. e P. IVA 04356890725
-                  </p>
-                  <p className="my-2">
-                    Tel.{' '}
-                    <a
-                      href="tel:00390804323431"
-                      className="text-fiamma-testo underline underline-offset-4"
-                    >
-                      0804323431
-                    </a>
-                    , Fax <span>0804322662</span>{' '}
-                  </p>
-                  PEC{' '}
-                  <a
-                    href="mailto:matarrese.srl@pec.it"
-                    className="text-fiamma-testo underline underline-offset-4"
-                  >
-                    matarrese.srl@pec.it
-                  </a>{' '}
-                  <div className="py-2">
-                    <p className="italic">Referente interno designato:</p>
-                    <p>Matarrese Roberto</p>
-                    <a
-                      href="mailto:ufficio.tecnico@matarrese.it"
-                      className="text-fiamma-testo underline underline-offset-4"
-                    >
-                      ufficio.tecnico@matarrese.it
-                    </a>
-                    {' - '}
-                    <a
-                      href="tel:00393939776735"
-                      className="text-fiamma-testo underline underline-offset-4"
-                    >
-                      3939776735
-                    </a>{' '}
-                  </div>
-                </div>
-              </section>
-              <section>
-                <H3 className="pb-3">
-                  Sezione 4 – Responsabile della Protezione dei Dati Personali
-                  (Data Protection Officer o DPO).
-                </H3>
-                <div className="space-y-4">
-                  Non ricorrendo i presupposti di Regolamento,{' '}
-                  <strong>Matarrese s.r.l.</strong>
-                  non ha nominato il Responsabile della Protezione dei dati
-                  personali ai sensi e per gli effetti di cui agli artt. 37 e
-                  ss. del Regolamento cit.
-                </div>
-              </section>
-              <section>
-                <H3 className="pb-3">
-                  Sezione 5 – Tipologia di dati trattati, finalità e base
-                  giuridica del trattamento.
-                </H3>
-                <div className="space-y-4">
-                  <ol className="list-alpha pl-6">
-                    <li className="pb-2">
-                      <span className="font-bold">Dati di navigazione.</span> I
-                      sistemi informatici e le procedure software connesse al
-                      funzionamento del Sito{' '}
-                      <Link
-                        href="/"
-                        className="text-fiamma-testo underline underline-offset-4"
-                      >
-                        www.matarrese.it
-                      </Link>{' '}
-                      potranno avere la necessità di memorizzare alcuni Suoi
-                      dati di navigazione, la raccolta dei quali – comunque
-                      legata all’uso dei protocolli di comunicazione di Internet
-                      – non è effettuata al diretto fine di associare i dati
-                      medesimi alla Sua identità ma è connessa a necessità di
-                      funzionamento del Sito internet. Tuttavia, i dati di
-                      navigazione così raccolti, mediante elaborazioni e
-                      associazioni anche con dati eventualmente detenuti da
-                      terzi, potrebbero consentire la Sua identificazione (es.
-                      indirizzi IP, dominio dei computer, risorse o orari delle
-                      richieste, altri parametri comunque connessi al sistema
-                      operativo dell’utente, ecc.). I dati in questione,
-                      strettamente utilizzati al fine di consentire all’utente
-                      medesimo l’utilizzo delle funzionalità del Sito Web,
-                      consentono anche di ottenere informazioni statistiche
-                      anonime sull’uso del Sito e di monitorare il corretto
-                      funzionamento dei servizi offerti. La base giuridica di
-                      tali trattamenti è il legittimo interesse del Titolare
-                      (art. 6, c. 1, lett. f) Regolamento UE 2016/679) purché
-                      non prevalgano interessi, diritti e libertà fondamentali
-                      dell’interessato. I dati di navigazione persisteranno per
-                      26 mesi e verranno cancellati automaticamente, salvo
-                      motivi di verifiche e/o accertamenti da parte
-                      dell’Autorità Giudiziaria.
-                    </li>
-                    <li className="pb-2">
-                      <span className="font-bold">
-                        Cookies e altri sistemi di tracciamento.
-                      </span>{' '}
-                      Il Sito Web utilizza cookies tecnici (cookies di
-                      navigazione, analytics, di funzionalità); le tipologie di
-                      cookies utilizzati sono:
-                      <ul className="list-disc py-4 pl-8">
-                        <li>Cookies di prima parte;</li>
-                        <li>Cookies di terzi;</li>
-                        <li>Cookies di sessione; </li>
-                        <li>Cookies persistenti; </li>
-                        <li>Cookies essenziali; </li>
-                        <li>Cookies funzionali; </li>
-                        <li>Cookies di condivisone sui Social Network;</li>
-                      </ul>
-                      Il Sito Web non utilizza cookies per profilazione utenti e
-                      non sono utilizzati altri metodi di tracciamento. Per
-                      saperne di più leggi la nostra{' '}
-                      <Link
-                        href="/cookie-policy"
-                        className="text-fiamma-testo underline underline-offset-4"
-                      >
-                        Cookie Policy
-                      </Link>
-                    </li>
-                    <li>
-                      <span className="font-bold">
-                        Dati forniti volontariamente dall’utente.
-                      </span>{' '}
-                      <strong>Matarrese s.r.l.</strong>
-                      potrà acquisire il Suo nome e i Suoi dati di contatto
-                      nonché eventuali altri Suoi dati personali, da Lei
-                      volontariamente trasmessi tramite l’invio di messaggi di
-                      posta elettronica agli indirizzi presenti sul Sito{' '}
-                      <Link
-                        href="/"
-                        className="text-fiamma-testo underline underline-offset-4"
-                      >
-                        www.matarrese.it
-                      </Link>{' '}
-                      o tramite la compilazione e successivo inoltro di moduli
-                      contatto presenti anch’essi su alcune pagine del Sito Web.
-                      Il trattamento di tali dati personali è requisito
-                      necessario per rispondere alle Sue richieste e la base
-                      giuridica è il Suo consenso espresso in qualità di
-                      interessato. I dati verranno conservati per un termine non
-                      superiore a 2 anni per consentire una corretta gestione
-                      del rapporto, salvo che emerga una ulteriore finalità in
-                      grado di legittimare il trattamento dei dati per più
-                      lunghi periodi (es. tutela di un diritto in giudizio od
-                      obblighi di legge)
-                    </li>
-                  </ol>
-                </div>
-              </section>
-              <section>
-                <H3 className="pb-3">
-                  Sezione 6 – Destinatari dei dati personali (anche individuati
-                  per categorie).
-                </H3>
-                <div className="space-y-4">
-                  <em>Dati di navigazione</em>, i cui destinatari sono:
-                  <ul className="list-disc py-4 pl-6">
-                    <li>
-                      dipendenti/collaboratori/addetti di{' '}
-                      <strong>Matarrese s.r.l.</strong>,
-                    </li>
-                    <li>
-                      fornitori di servizi legati alla gestione e al
-                      funzionamento del sito{' '}
-                      <Link
-                        href="/"
-                        className="text-fiamma-testo underline underline-offset-4"
-                      >
-                        www.matarrese.it
-                      </Link>{' '}
-                    </li>
-                  </ul>
-                  <em>Dati forniti volontariamente dall’utente</em>, i cui
-                  destinatari sono:
-                  <ul className="list-disc py-4 pl-6">
-                    <li>
-                      dipendenti/collaboratori/addetti di{' '}
-                      <strong>Matarrese s.r.l.</strong>;
-                    </li>
-                    <li>
-                      fornitori di servizi e-mail, servizi legati alla gestione
-                      e al funzionamento del sito{' '}
-                      <Link
-                        href="/"
-                        className="text-fiamma-testo underline underline-offset-4"
-                      >
-                        www.matarrese.it
-                      </Link>{' '}
-                      (tra cui anche Google Adwords, Google Analytics), servizi
-                      di cloud (Dropbox, Amazon Drive, Google Drive), servizi di
-                      hosting e server virtuali, servizi di connettività e
-                      telefonia, servizi di chat e comunicazione (es. skype,
-                      whatsapp, gmail), servizi di mailing list, servizi di
-                      trasferimento file (es. wetransfer), servizi di assistenza
-                      da remoto (es. teamviewer);
-                    </li>
-                    <li>social network (es. Facebook, Instagram, Twitter);</li>
-                    <li>
-                      eventuali addetti a occasionali operazioni di manutenzione
-                      e riparazione;
-                    </li>
-                    <li>
-                      autorità competenti se previsto dalla normativa vigente o
-                      su richiesta di soggetti legittimati.
-                    </li>
-                  </ul>
-                  I soggetti sopra indicati, talvolta operano in totale
-                  autonomia cioè come autonomi titolari del trattamento, altre
-                  volte come responsabili del trattamento nominati da{' '}
-                  <strong>Matarrese s.r.l.</strong> l’elenco completo e
-                  aggiornato dei soggetti destinatari dei dati personali è a
-                  disposizione presso la sede di{' '}
-                  <strong>Matarrese s.r.l.</strong>
-                </div>
-              </section>
-              <section>
-                <H3 className="pb-3">
-                  Sezione 7 – Eventuale trasferimento dei dati verso Paesi
-                  Terzi.
-                </H3>
-                <div className="space-y-4">
-                  I suoi dati personali sono trattati da{' '}
-                  <strong>Matarrese s.r.l.</strong>
-                  all’interno dell’Unione Europea e non vengono diffusi. Se
-                  necessario, per ragioni di natura tecnico/operativa e comunque
-                  nell’ambito delle finalità di cui sopra, i dati di navigazione
-                  e i dati inviati spontaneamente dagli utenti attraverso i
-                  diversi canali messi a disposizione dal Sito{' '}
-                  <Link
-                    href="/"
-                    className="text-fiamma-testo underline underline-offset-4"
-                  >
-                    www.matarrese.it
-                  </Link>{' '}
-                  potrebbero essere trasferiti su server ubicati in Paesi
-                  extra-UE, qualora i fornitori di servizi informatici e i
-                  programmi impiegati da <strong>Matarrese s.r.l.</strong>,
-                  sopra indicati quali destinatari, lo prevedano o impieghino
-                  tecnologia di <em>cloud computing.</em> Tuttavia, Le
-                  ricordiamo che <strong>Matarrese s.r.l.</strong> ha
-                  selezionato attentamente solo fornitori di servizi in grado di
-                  offrire un elevato livello di sicurezza e protezione dei dati
-                  personali.
-                </div>
-              </section>
-              <section>
-                <H3 className="pb-3">
-                  Sezione 8 – I Suoi diritti come interessato.
-                </H3>
-                <div className="space-y-4">
-                  La informiamo che Lei, in qualità di Interessato, può
-                  esercitare tutti i diritti riconosciuti dal Regolamento UE
-                  2016/679, artt. 15-21, in particolare: diritto di accesso;
-                  diritto di rettifica; diritto alla cancellazione (c.d.
-                  “diritto all’oblio”); diritto di limitazione di trattamento;
-                  diritto a che il Titolare notifichi la rettifica o la
-                  cancellazione ai destinatari; diritto alla portabilità dei
-                  dati; diritto di opposizione che potrà essere esercitato in
-                  qualsiasi momento salvo che sussistano motivi legittimi che
-                  consentano al Titolare di continuare il trattamento perché
-                  prevalenti sui diritti / interessi / libertà dell’interessato;
-                  diritto di revocare il consenso precedentemente accordato,
-                  anche semplicemente inviando la revoca al seguente indirizzo:{' '}
-                  <strong>Matarrese s.r.l.</strong>, C.da Popoleto, n.c. 70011
-                  Alberobello (BA), salva la liceità del trattamento dati basata
-                  sul consenso ed effettuato prima della revoca. Tutti i diritti
-                  sopra descritti potranno essere esercitati con richiesta
-                  rivolta senza formalità, anche via e-mail all’indirizzo{' '}
-                  <a
-                    href="mailto:ufficio.tecnico@matarrese.it"
-                    className="text-fiamma-testo underline underline-offset-4"
-                  >
-                    ufficio.tecnico@matarrese.it
-                  </a>
-                  .
-                </div>
-              </section>
-              <section>
-                <H3 className="pb-3">
-                  Sezione 9 – Diritto di proporre reclamo ad un’Autorità di
-                  Controllo.
-                </H3>
-                <div className="space-y-4">
-                  Ogni interessato ha la facoltà, in caso di violazione
-                  consumata a pregiudizio dei propri diritti e delle proprie
-                  libertà, di proporre reclamo al Garante Privacy via web
-                  attraverso la compilazione dell’apposito modulo, disponibile
-                  sul sito www.garanteprivacy.it
-                </div>
-              </section>
-              <section>
-                <H3 className="pb-3">
-                  Sezione 10 – Profilazione e processi decisionali
-                  automatizzati.
-                </H3>
-                <div className="space-y-4">
-                  <h4 className="italic">Dati di navigazione e Cookies.</h4> I
-                  Suoi dati di navigazione non saranno utilizzati per scopi di
-                  profilazione, né per attivare processi decisionali
-                  automatizzati.
-                  <h4 className="pt-4 italic">
-                    Dati forniti volontariamente dall’utente.
-                  </h4>{' '}
-                  I dati da Lei spontaneamente e volontariamente forniti
-                  mediante gli indirizzi e-mail presenti sul Sito
-                  <Link
-                    href="/"
-                    className="text-fiamma-testo underline underline-offset-4"
-                  >
-                    www.matarrese.it
-                  </Link>{' '}
-                  e/o mediante la compilazione di moduli presenti in specifiche
-                  pagine del Sito{' '}
-                  <Link
-                    href="/"
-                    className="text-fiamma-testo underline underline-offset-4"
-                  >
-                    www.matarrese.it
-                  </Link>{' '}
-                  non saranno utilizzati per scopi di profilazione, né per
-                  attivare processi decisionali automatizzati. L’eventuale
-                  attività di profilazione per scopi commerciali e/o
-                  promozionali sarà oggetto di richiesta di espresso consenso.
-                </div>
-              </section>
-              <section>
-                <H3 className="pb-3">Sez. 11 – Misure di sicurezza.</H3>{' '}
-                <div className="space-y-4">
-                  <strong>Matarrese s.r.l.</strong> come Titolare del
-                  trattamento dei Suoi dati adotta adeguate misure di sicurezza
-                  tecniche e organizzative, in conformità a quanto disposto dal
-                  RGPD, al fine di ridurre al minimo i rischi che potrebbero
-                  incombere sui Suoi dati personali.
-                </div>
-              </section>
-              <section>
-                <H3 className="pb-3">Sez. 12 – Modalità di trattamento.</H3>
-                <div className="space-y-4">
-                  Il trattamento dei dati sarà effettuato in conformità con
-                  quanto previsto dall’art. 32 del RGPD e avverrà mediante
-                  l’ausilio di mezzi informatici e telematici, oltre che manuali
-                  e cartacei.
-                </div>
-              </section>
-              <section>
-                <H3 className="pb-3">
-                  Sez. 13 – Modifiche alla Privacy Policy.
-                </H3>
-                <div className="space-y-4">
-                  La presente Privacy Policy potrà essere modificata in
-                  occasione di nuove funzionalità aggiunte al Sito{' '}
-                  <Link
-                    href="/"
-                    className="text-fiamma-testo underline underline-offset-4"
-                  >
-                    www.matarrese.it
-                  </Link>{' '}
-                  , modifiche e/o integrazioni della normativa di riferimento, o
-                  a seguito di commenti e suggerimenti inviati dai nostri
-                  utenti. La stessa Privacy Policy può essere modificata in
-                  qualsiasi momento con la pubblicazione di una versione
-                  aggiornata sul Sito Web, efficace dalla data di decorrenza
-                  della pubblicazione della stessa.
-                </div>
-              </section>
-            </div>
+                www.garanteprivacy.it
+              </a>
+              .
+            </p>
+
+            <h2>8. Decisioni automatizzate</h2>
+            <p>
+              Non prendiamo decisioni che ti riguardano in modo solo
+              automatizzato. L’unica profilazione è quella degli strumenti di
+              marketing descritti sopra, attivi solo se dai il consenso nel
+              banner dei cookie.
+            </p>
+
+            <h2>9. Sicurezza</h2>
+            <p>
+              Il sito è servito solo in HTTPS e i moduli hanno protezioni contro
+              lo spam e gli invii ripetuti. Trattiamo i dati con strumenti
+              informatici e, quando serve, cartacei, adottando misure tecniche e
+              organizzative adeguate al rischio (art. 32 RGPD).
+            </p>
+
+            <h2>10. Modifiche</h2>
+            <p>
+              Aggiorniamo questa informativa quando cambiano il sito, i servizi
+              che usiamo o la normativa. La versione in vigore è sempre questa
+              pagina, con la data indicata in alto.
+            </p>
           </div>
         </section>
       </Layout>
