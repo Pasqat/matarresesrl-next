@@ -142,7 +142,8 @@ export default function PrivacyPolicy() {
               che scegli, per mandarti inviti a eventi, dimostrazioni e novità
               utili per il tuo tipo di attività. Base giuridica: il tuo consenso
               (art. 6, par. 1, lett. a RGPD), che dai spuntando la casella del
-              modulo. Puoi cancellarti quando vuoi con il link in fondo a ogni
+              modulo e confermando l’iscrizione dal link che ti mandiamo per
+              email. Puoi cancellarti quando vuoi con il link in fondo a ogni
               email o scrivendoci; i dati restano finché resti iscritto. Gli
               invii sono gestiti con <strong>Mailchimp</strong>, che ci dice
               quante email vengono aperte e quali link vengono cliccati.

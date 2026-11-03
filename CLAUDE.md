@@ -44,7 +44,7 @@ WordPress JWT auth is handled through `iron-session` (cookie-based). `lib/authen
 ### Integrations
 - **Resend** — transactional email from `contact.js`. Requires `RESEND_API_KEY`, `CONTACT_FROM`, `CONTACT_TO`; assistance requests (`source: 'assistenza'`) go to `CONTACT_TO_ASSISTENZA` (default service@matarrese.it) and never become Odoo leads.
 - **Odoo CRM** (`lib/odoo.js`) — lead creation via XML-RPC. Enabled by `ODOO_ENABLED=true`. IDs for tag and source are configurable via `ODOO_TAG_ID` / `ODOO_SOURCE_ID` (defaults: 14 / 11). Never blocking: an Odoo error or a call over 5 s is logged and the request stays in the email.
-- **Mailchimp** — newsletter signup in `pages/api/subscribe.js` (audience "All contacts"). The sector picked in the form goes to the "Settore" merge field (`MMERGE5`) and to the tag with the same name; the sector list is fixed in `data/newsletter-groups.js` and only those names are accepted. Requires `MAILCHIMP_API_KEY` (datacenter is the suffix after the dash) and `MAILCHIMP_LIST_ID`.
+- **Mailchimp** — newsletter signup in `pages/api/subscribe.js` (audience "All contacts"). The sector picked in the form goes to the "Settore" merge field (`MMERGE5`) and to the tag with the same name; the sector list is fixed in `data/newsletter-groups.js` and only those names are accepted. Double opt-in: new addresses are created `pending` and become subscribed only after clicking Mailchimp's confirmation mail. Requires `MAILCHIMP_API_KEY` (datacenter is the suffix after the dash) and `MAILCHIMP_LIST_ID`.
 - **Plausible** — analytics via `next-plausible`, always active.
 - **Facebook Pixel + Google Tag Manager** — loaded in `_app.js` only after cookie consent.
 

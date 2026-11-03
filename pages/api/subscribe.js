@@ -77,10 +77,12 @@ export default async function Subscribe(req, res) {
       : [...elenco, groupId].join(';')
 
     // PUT è idempotente: un indirizzo già presente viene aggiornato, non
-    // rifiutato; status_if_new vale solo per chi non c'è ancora
+    // rifiutato; status_if_new vale solo per chi non c'è ancora.
+    // Doppio opt-in: il nuovo indirizzo risulta iscritto solo dopo il clic
+    // nella mail di conferma di Mailchimp (consenso dimostrabile, GDPR)
     let {status, parsed} = await mailchimp(membro, 'PUT', {
       email_address: indirizzo,
-      status_if_new: 'subscribed',
+      status_if_new: 'pending',
       merge_fields: {
         MMERGE5: settore,
         ...(name ? {FNAME: name} : {}),
