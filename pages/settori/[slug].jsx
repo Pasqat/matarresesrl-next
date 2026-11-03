@@ -3,19 +3,20 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import Layout from '../../components/Layout'
-import PageHero from '../../components/PageHero'
 import Magnetic from '../../components/Magnetic'
-import ContactForm from '../../components/Form/ContactForm'
 import ContactModal from '../../components/Form/ContactModal'
+import HeroCinema from '../../components/cinema/HeroCinema'
+import TitoloDueTempi from '../../components/cinema/TitoloDueTempi'
+import {Freccia} from '../../components/cinema/BottoneFreccia'
 import CardEditoriale from '../../components/editoriale/CardEditoriale'
 import GrigliaEditoriale from '../../components/editoriale/GrigliaEditoriale'
 import StructuredData from '../../components/StructuredData'
 import {breadcrumbSchema, faqSchema, serviceSchema} from '../../lib/seo/schema'
-import {getGroups} from '../../lib/newsletter'
 import {getProjects} from '../../lib/query/project'
 import settori from '../../data/settori'
+import chiusuraImg from '../../public/img/home/chiusura-progetto.webp'
 
-export default function Settore({slug, groups, progetti}) {
+export default function Settore({slug, progetti}) {
   const settore = settori.find(s => s.slug === slug)
   const {pagina} = settore
   const altri = settori.filter(s => s.slug !== slug)
@@ -55,32 +56,40 @@ export default function Settore({slug, groups, progetti}) {
         })}
       />
       <StructuredData data={faqSchema(faq)} />
-      <Layout navbarTransparent headerCta={{settore: settore.nome}}>
-        <PageHero
-          title={pagina.titolo}
-          intro={pagina.intro}
-          image={{src: pagina.hero}}
+      <Layout
+        navbarTransparent
+        headerCta={{settore: settore.nome}}
+        footerInvito={false}
+      >
+        <HeroCinema
+          image={pagina.hero}
+          alt=""
+          objectPosition="50% 50%"
+          eyebrow={settore.nome}
+          riga={pagina.titolo[0]}
+          accento={pagina.titolo[1]}
+          sottotitolo={pagina.intro}
+          // le prime voci dell'offerta: indice della pagina, diverso per ogni settore
+          voci={pagina.offerta.voci.slice(0, 4).map(([t]) => [t, '#offerta'])}
         >
           <Magnetic>
             <ContactModal
               variant="progetto"
               settore={settore.nome}
-              className="cta-fiamma"
+              className="cin-btn"
             >
               Parla con un progettista
+              <Freccia />
             </ContactModal>
           </Magnetic>
-          <a
-            href="#offerta"
-            className="border-b border-inox/60 py-2 text-white transition-colors hover:border-white"
-          >
+          <a href="#offerta" className="cin-link whitespace-nowrap">
             Cosa facciamo
           </a>
-        </PageHero>
+        </HeroCinema>
 
         {/* Capitolo chiaro: il contesto del settore */}
         <section
-          className="bg-calce text-ghisa"
+          className="bg-[var(--carta)] text-ghisa"
           data-header="light"
           aria-labelledby="capitolo-title"
         >
@@ -88,12 +97,12 @@ export default function Settore({slug, groups, progetti}) {
             <div className="lg:col-span-5">
               <h2
                 id="capitolo-title"
-                className="type-display text-[clamp(30px,3.4vw,52px)]"
+                className="type-display text-[clamp(32px,3.8vw,56px)] !leading-none"
               >
                 {pagina.capitolo.titolo}
               </h2>
               {pagina.capitolo.foto && (
-                <div className="relative mt-10 aspect-[4/3] overflow-hidden bg-inox">
+                <div className="relative mt-10 aspect-[4/3] overflow-hidden rounded-[28px] bg-inox">
                   <Image
                     src={pagina.capitolo.foto}
                     alt=""
@@ -142,28 +151,31 @@ export default function Settore({slug, groups, progetti}) {
         {/* Capitolo scuro: cosa facciamo */}
         <section
           id="offerta"
-          className="bg-ghisa text-white"
+          className="scroll-mt-24 bg-[#121315] text-white"
           data-header="dark"
           aria-labelledby="offerta-title"
         >
           <div className="site-shell py-24 lg:py-32">
             <h2
               id="offerta-title"
-              className="type-display max-w-[18ch] text-[clamp(30px,3.4vw,52px)]"
+              className="type-display max-w-[18ch] text-[clamp(32px,3.8vw,56px)] !leading-none"
             >
               {pagina.offerta.titolo}
             </h2>
             <ul className="mt-14 grid gap-x-10 md:grid-cols-2">
-              {pagina.offerta.voci.map(([titolo, testo]) => (
+              {pagina.offerta.voci.map(([titolo, testo], i) => (
                 <li
                   key={titolo}
                   className="group relative border-t border-inox/25 py-8"
                 >
                   <span
                     aria-hidden="true"
-                    className="absolute -top-px left-0 h-px w-0 bg-fiamma transition-all duration-700 ease-out group-hover:w-full motion-reduce:transition-none"
+                    className="absolute -top-px left-0 h-px w-0 bg-fiamma transition-[width] duration-700 ease-out group-hover:w-full motion-reduce:transition-none"
                   />
-                  <h3 className="type-display text-2xl">{titolo}</h3>
+                  <span className="cin-num text-lg" aria-hidden="true">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <h3 className="type-display mt-3 text-2xl">{titolo}</h3>
                   <p className="mt-3 max-w-[52ch] text-inox-muted">{testo}</p>
                 </li>
               ))}
@@ -174,12 +186,12 @@ export default function Settore({slug, groups, progetti}) {
         {/* Prova in sede o galleria di lavori */}
         {pagina.prova && (
           <section
-            className="bg-calce text-ghisa"
+            className="bg-[var(--carta)] text-ghisa"
             data-header="light"
             aria-labelledby="prova-title"
           >
             <div className="site-shell grid gap-12 py-24 lg:grid-cols-12 lg:items-center lg:py-32">
-              <div className="relative aspect-[3/2] overflow-hidden bg-inox lg:col-span-7">
+              <div className="relative aspect-[3/2] overflow-hidden rounded-[28px] bg-inox lg:col-span-7">
                 <Image
                   src={pagina.prova.foto}
                   alt="Lo showroom Matarrese ad Alberobello"
@@ -205,14 +217,14 @@ export default function Settore({slug, groups, progetti}) {
         {/* Galleria statica solo dove WordPress non ha lavori del settore */}
         {pagina.galleria && progetti.length === 0 && (
           <section
-            className="bg-calce text-ghisa"
+            className="bg-[var(--carta)] text-ghisa"
             data-header="light"
             aria-label="Alcuni lavori realizzati"
           >
             <div className="site-shell grid gap-8 py-24 md:grid-cols-3 lg:py-32">
               {pagina.galleria.map((foto, i) => (
                 <figure key={foto.src} className={i === 1 ? 'md:mt-20' : ''}>
-                  <div className="relative aspect-[4/5] overflow-hidden bg-inox">
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] bg-inox">
                     <Image
                       src={foto.src}
                       alt={foto.didascalia}
@@ -242,12 +254,13 @@ export default function Settore({slug, groups, progetti}) {
           >
             <div className="site-shell py-24 lg:py-32">
               <div className="flex flex-wrap items-baseline justify-between gap-6">
-                <h2
+                <TitoloDueTempi
                   id="realizzazioni-title"
-                  className="type-display text-[clamp(28px,3vw,44px)]"
-                >
-                  Lavori realizzati
-                </h2>
+                  tono="chiaro"
+                  riga="Lavori"
+                  accento="realizzati."
+                  className="text-[clamp(32px,3.6vw,52px)] !leading-none"
+                />
                 <Link
                   href="/realizzazioni"
                   className="border-b border-ghisa py-1 transition-colors hover:text-fiamma-testo"
@@ -281,12 +294,13 @@ export default function Settore({slug, groups, progetti}) {
             aria-labelledby="faq-title"
           >
             <div className="site-shell grid gap-10 py-24 lg:grid-cols-12 lg:py-32">
-              <h2
+              <TitoloDueTempi
                 id="faq-title"
-                className="type-display text-[clamp(28px,3vw,44px)] lg:col-span-4"
-              >
-                Domande frequenti
-              </h2>
+                tono="chiaro"
+                riga="Domande"
+                accento="frequenti."
+                className="text-[clamp(32px,3.6vw,52px)] !leading-none lg:col-span-4"
+              />
               <dl className="lg:col-span-7 lg:col-start-6">
                 {faq.map(({question, answer}) => (
                   <div
@@ -349,7 +363,7 @@ export default function Settore({slug, groups, progetti}) {
                   {s.pagina ? (
                     <Link
                       href={`/settori/${s.slug}`}
-                      className="border-b border-ghisa py-1 hover:text-fiamma-testo"
+                      className="inline-block rounded-full border border-ghisa/20 px-5 py-2.5 transition-colors hover:border-ghisa hover:bg-ghisa hover:text-white"
                     >
                       {s.nome}
                     </Link>
@@ -362,23 +376,43 @@ export default function Settore({slug, groups, progetti}) {
           </div>
         </section>
 
-        {/* Chiusura: contatto */}
+        {/* Chiusura su foto, come in home: il modulo progetto a passi con il settore già scelto */}
         <section
           id="contatto"
-          className="bg-white text-ghisa"
-          data-header="light"
+          className="relative overflow-hidden py-28 text-center text-white md:py-40"
+          data-header="dark"
           aria-labelledby="contatto-title"
         >
-          <div className="site-shell pb-10 pt-24">
-            <h2
+          <Image
+            src={chiusuraImg}
+            alt=""
+            fill
+            sizes="100vw"
+            placeholder="blur"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-[#0d0e0f]/[.8]" />
+          <div className="site-shell relative max-w-[860px]">
+            <TitoloDueTempi
               id="contatto-title"
-              className="type-display max-w-[20ch] text-[clamp(32px,4vw,64px)]"
-            >
-              Raccontaci il tuo progetto.
-            </h2>
-          </div>
-          <div className="pb-24">
-            <ContactForm groups={groups} compact />
+              riga="Raccontaci"
+              accento="il tuo progetto."
+              className="text-[clamp(40px,5.8vw,88px)] !leading-none"
+            />
+            <div className="mt-10 flex flex-wrap justify-center gap-3.5">
+              <ContactModal
+                variant="progetto"
+                settore={settore.nome}
+                source={`settore-${slug}`}
+                className="cin-btn"
+              >
+                Parla con un progettista
+                <Freccia />
+              </ContactModal>
+              <a href="tel:+390804323431" className="cin-btn cin-btn--ghost">
+                Chiama +39 080 4323 431
+              </a>
+            </div>
           </div>
         </section>
       </Layout>
@@ -399,10 +433,7 @@ const MAX_PROGETTI = 6
 export async function getStaticProps({params}) {
   const settore = settori.find(s => s.slug === params.slug)
   const categorie = settore.seo.categorie ?? []
-  const [groups, {projects}] = await Promise.all([
-    getGroups(),
-    categorie.length ? getProjects() : {projects: []},
-  ])
+  const {projects} = categorie.length ? await getProjects() : {projects: []}
   const progetti = projects
     .filter(p =>
       p.portfolioCategories.nodes.some(c => categorie.includes(c.slug)),
@@ -418,7 +449,7 @@ export async function getStaticProps({params}) {
       },
     }))
   return {
-    props: {slug: params.slug, groups, progetti},
+    props: {slug: params.slug, progetti},
     revalidate: 60 * 60 * 24,
   }
 }

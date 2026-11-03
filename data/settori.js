@@ -9,10 +9,10 @@ const settori = [
     inEvidenza: true,
     // Fonte: intervista 23/09/2026. Nessun caso realizzato: non citare clienti.
     pagina: {
-      titolo: 'La tua dark kitchen, pronta per il delivery.',
+      titolo: ['La tua dark kitchen,', 'pronta per il delivery.'],
       intro:
         'Una cucina che lavora solo per le consegne ha ritmi, spazi e numeri diversi da un ristorante. La progettiamo attorno ai picchi degli ordini: disposizione, tecnologie, organizzazione e assistenza.',
-      hero: '/img/settori/dk-linea-cottura.webp',
+      hero: '/img/settori/rist-auraterrae.webp',
       capitolo: {
         titolo: 'Cosa cambia quando si cucina solo per le consegne.',
         foto: '/img/settori/dk-ritiro.webp',
@@ -73,10 +73,13 @@ const settori = [
     inEvidenza: true,
     // Fonte: intervista 23/09/2026. NO supporto autorizzazioni sanitarie, NO sanificazione.
     pagina: {
-      titolo: 'Laboratori di trasformazione su misura della tua produzione.',
+      titolo: [
+        'Laboratori di trasformazione',
+        'su misura della tua produzione.',
+      ],
       intro:
         'Dalle zone di lavorazione alla conservazione del prodotto finito: progettiamo e attrezziamo il tuo laboratorio, qualunque materia prima trasformi.',
-      hero: '/img/settori/laboratori.webp',
+      hero: '/img/settori/lab-pantaleo-cucina.webp',
       capitolo: {
         titolo: 'Per chi trasforma.',
         elenco: [
@@ -157,10 +160,10 @@ const settori = [
 // attrezzature, aspirazione e climatizzazione, formazione, assistenza e ricambi).
 const altrePagine = {
   'ristoranti-pizzerie': {
-    titolo: 'Cucine per ristoranti e pizzerie, a misura del tuo servizio.',
+    titolo: ['Cucine per ristoranti e pizzerie,', 'a misura del tuo servizio.'],
     intro:
       'Dalla linea calda al banco pizza, dalla sala al lavaggio: progettiamo la cucina attorno al tuo menù e al ritmo del tuo servizio.',
-    hero: '/img/settori/ristoranti-pizzerie.webp',
+    hero: '/img/settori/dk-coppino-cucina.webp',
     capitolo: {
       titolo: 'Ogni menù chiede una cucina diversa.',
       voci: [
@@ -215,7 +218,10 @@ const altrePagine = {
     ],
   },
   'bar-gelaterie-pasticcerie': {
-    titolo: 'Banconi bar e laboratori su misura per gelaterie e pasticcerie.',
+    titolo: [
+      'Banconi bar e laboratori su misura',
+      'per gelaterie e pasticcerie.',
+    ],
     intro:
       'Il banco che accoglie i clienti e il laboratorio dove nasce il prodotto: li progettiamo insieme, perché l’uno regge l’altro.',
     hero: '/img/settori/bar-gelaterie-pasticcerie.webp',
@@ -273,10 +279,10 @@ const altrePagine = {
     ],
   },
   'hotel-ricevimenti': {
-    titolo: 'Cucine e servizi per hotel, masserie e sale ricevimenti.',
+    titolo: ['Cucine e servizi per hotel,', 'masserie e sale ricevimenti.'],
     intro:
       'Colazioni, ristorante, banchetti: ogni giorno i numeri cambiano. Progettiamo cucine e spazi di servizio che ti accompagnano per tutta la stagione.',
-    hero: '/img/settori/hotel-ricevimenti.webp',
+    hero: '/img/settori/hotel-movenpick-buffet.webp',
     capitolo: {
       titolo: 'Più servizi sotto lo stesso tetto.',
       voci: [
@@ -329,10 +335,10 @@ const altrePagine = {
     nota: 'Tra i lavori recenti anche Alvino Resort, Matera.',
   },
   collettiva: {
-    titolo: 'Cucine per la ristorazione collettiva.',
+    titolo: ['Cucine per la', 'ristorazione collettiva.'],
     intro:
       'Mense, centri cottura, strutture che servono molti pasti ogni giorno: progettiamo cucine affidabili e semplici da gestire, giorno dopo giorno.',
-    hero: '/img/settori/collettiva.webp',
+    hero: '/img/settori/collettiva-cucina.webp',
     capitolo: {
       titolo: 'Molti pasti, ogni giorno.',
       voci: [
@@ -367,10 +373,10 @@ const altrePagine = {
     },
   },
   'gdo-pescherie-macellerie': {
-    titolo: 'Banchi e laboratori per GDO, pescherie e macellerie.',
+    titolo: ['Banchi e laboratori', 'per GDO, pescherie e macellerie.'],
     intro:
       'Dal banco servito al laboratorio retrostante, fino alle aree ristoro dentro i punti vendita: progettiamo spazi dove il fresco si vende bene e si lavora meglio.',
-    hero: '/img/settori/gdo-pescherie-macellerie.webp',
+    hero: '/img/settori/gdo-famila-banco.webp',
     capitolo: {
       titolo: 'Il fresco si vende con gli occhi.',
       voci: [

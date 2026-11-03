@@ -1,10 +1,11 @@
 import Head from 'next/head'
 import Layout from '../../components/Layout'
-import PageHero from '../../components/PageHero'
+import HeroCinema from '../../components/cinema/HeroCinema'
 import SectorList from '../../components/home/SectorList'
 import StructuredData from '../../components/StructuredData'
 import {breadcrumbSchema} from '../../lib/seo/schema'
 import settori from '../../data/settori'
+import heroImg from '../../public/img/settori/hotel-movenpick-buffet.webp'
 
 const intro =
   'Ristoranti, bar, hotel, collettiva, GDO, laboratori e dark kitchen: ogni settore ha flussi, norme e ritmi diversi. Scegli il tuo.'
@@ -29,11 +30,25 @@ export default function Settori() {
         data={breadcrumbSchema([{name: 'Settori', path: '/settori'}])}
       />
       <Layout navbarTransparent headerCta={{}}>
-        <PageHero title="Per chi lavoriamo." intro={intro} />
+        <HeroCinema
+          image={heroImg}
+          alt="Il buffet di un hotel con banco in rame e luci calde"
+          eyebrow="Sette settori, un solo interlocutore"
+          riga="Per chi"
+          accento="lavoriamo."
+          sottotitolo={intro}
+        />
         <SectorList
           settori={settori}
           href={s => `/settori/${s.slug}`}
-          title="Ogni cucina ha il suo mestiere."
+          title={
+            <>
+              Ogni cucina{' '}
+              <span className="type-accento text-[rgb(243_238_230/.8)]">
+                ha il suo mestiere.
+              </span>
+            </>
+          }
           intro="Passa sui settori per vedere alcuni dei nostri lavori, poi apri quello che ti interessa."
         />
       </Layout>

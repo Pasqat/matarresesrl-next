@@ -43,7 +43,8 @@ export default function HeroCinema({
           fill
           priority
           sizes="100vw"
-          placeholder="blur"
+          // un percorso (es. dai dati dei settori) non ha l'anteprima sfocata degli import statici
+          placeholder={typeof image === 'string' ? 'empty' : 'blur'}
           style={{objectPosition}}
         />
         {video && (
