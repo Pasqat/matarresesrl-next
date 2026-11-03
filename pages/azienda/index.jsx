@@ -52,8 +52,8 @@ const puntiDiForza = [
   // Fonte delle card che seguono: intervista a Pasquale, 03/11/2026. Non scrivere "chiavi in
   // mano": gas, elettrico e allacci (ciò che richiede la firma di un abilitato) non li facciamo.
   [
-    'Tecnici nostri',
-    'L’assistenza la fanno tecnici Matarrese, formati dai produttori delle attrezzature che installiamo. Per le riparazioni preferiamo i ricambi originali.',
+    'Assistenza diretta',
+    'L’assistenza la fanno tecnici Matarrese, formati dai produttori delle attrezzature che installiamo.',
   ],
   [
     'Montaggio con squadre nostre',
@@ -61,7 +61,7 @@ const puntiDiForza = [
   ],
   [
     'Sopralluogo e preventivo gratuiti',
-    'Il primo sopralluogo e il preventivo non costano nulla. La progettazione è un servizio professionale a parte, e te lo diciamo prima.',
+    'Il primo sopralluogo e il preventivo non costano nulla. La progettazione si paga, ma se poi ordini da noi il suo costo ti viene scalato.',
   ],
   [
     'Noleggio, leasing e rate',
@@ -72,8 +72,8 @@ const puntiDiForza = [
     'Ti aiutiamo a capire quali bandi e crediti d’imposta puoi usare per le nuove attrezzature, prima di decidere.',
   ],
   [
-    'Ritiro delle attrezzature vecchie',
-    'Quando sostituiamo un’attrezzatura, ritiriamo quella vecchia: non resta a te il problema di smaltirla.',
+    'Formazione sulle attrezzature',
+    'Alla consegna insegniamo al tuo personale a usare le attrezzature, e nel laboratorio della nostra sede organizziamo corsi e dimostrazioni.',
   ],
 ]
 
