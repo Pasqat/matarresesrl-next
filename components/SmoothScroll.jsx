@@ -15,6 +15,8 @@ export default function SmoothScroll() {
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const lenis = new Lenis({lerp: 0.1, autoRaf: false, anchors: true})
     lenis.on('scroll', ScrollTrigger.update)
+    // Per chi deve scorrere da codice (ScrollToTop): lo scroll nativo smooth litiga con Lenis
+    window.lenis = lenis
     const raf = t => lenis.raf(t * 1000)
     gsap.ticker.add(raf)
     gsap.ticker.lagSmoothing(0)
@@ -22,6 +24,7 @@ export default function SmoothScroll() {
       gsap.ticker.remove(raf)
       gsap.ticker.lagSmoothing(500, 33)
       lenis.destroy()
+      delete window.lenis
     }
   }, [])
   return null

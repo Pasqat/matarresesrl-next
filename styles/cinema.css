@@ -1349,3 +1349,55 @@
   font-size: 13px;
   word-break: break-all;
 }
+
+/* Torna su (components/ScrollToTop.jsx): pillola scura come l'header, freccia che sale al passaggio */
+.cin-sutop {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(24px, env(safe-area-inset-bottom));
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  border: 1px solid rgb(255 255 255 / 0.16);
+  background: rgb(18 19 21 / 0.72);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  backdrop-filter: blur(16px) saturate(160%);
+  box-shadow: 0 12px 30px -12px rgb(0 0 0 / 0.5);
+  color: #fff;
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition:
+    opacity 0.3s,
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.2s;
+}
+.cin-sutop.is-on {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+.cin-sutop svg {
+  width: 14px;
+  height: 22px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cin-sutop:hover {
+  border-color: var(--fiamma);
+}
+.cin-sutop:hover svg {
+  transform: translateY(-3px);
+}
+.cin-sutop:focus-visible {
+  outline: 2px solid var(--fiamma);
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cin-sutop,
+  .cin-sutop svg {
+    transition: none;
+  }
+}
