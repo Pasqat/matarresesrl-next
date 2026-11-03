@@ -83,14 +83,24 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--fiamma);
+  background: var(--dot, var(--fiamma));
   flex-shrink: 0;
+  animation: cinPulse 2.4s ease-out infinite;
+}
+@keyframes cinPulse {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--dot, var(--fiamma)) 55%, transparent);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 9px color-mix(in srgb, var(--dot, var(--fiamma)) 0%, transparent);
+  }
 }
 .eyebrow-cinema[data-tono='chiaro'] {
   color: var(--acciaio-testo);
 }
 .eyebrow-cinema[data-tono='chiaro']::before {
-  background: var(--fiamma-testo);
+  --dot: var(--fiamma-testo);
 }
 
 /* ---- Bottoni ---- */
@@ -459,7 +469,8 @@
 @media (prefers-reduced-motion: reduce) {
   .cin-in-blur,
   .cin-in-fade,
-  .cin-in-zoom {
+  .cin-in-zoom,
+  .eyebrow-cinema::before {
     animation: none !important;
   }
   .js-cin [data-cin-reveal] {
