@@ -103,7 +103,7 @@ const soci = [
   {
     nome: 'Giovanni “Gianni” Matarrese',
     iniziali: 'GM',
-    ruolo: 'Socio', // da verificare: ruolo da chiedere al cliente
+    ruolo: 'Socio, commerciale e sviluppo nuovi mercati',
     bio: 'Gianni opera con dimestichezza nel campo della trasformazione alimentare, ottimizzando i processi di lavorazione e trovando soluzioni ottimali declinabili anche nel campo della ristorazione professionale.',
     email: 'gianni.matarrese@matarrese.it',
   },
