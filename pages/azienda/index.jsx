@@ -401,9 +401,6 @@ export default function AboutUs({lastTwoProjects = []}) {
                     Tecnologie e attrezzature per il lavoro di ogni giorno.
                   </p>
                 </div>
-                <Link href="/prodotti" className={linkChiaro}>
-                  Prodotti e marchi
-                </Link>
               </div>
               <div className="pb-14">
                 <BrandMarquee logos={logos} />
