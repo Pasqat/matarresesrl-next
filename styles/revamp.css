@@ -405,6 +405,15 @@ p { text-wrap: pretty; }
       padding-top: 80px;
     }
   }
+  /* Telefoni stretti (320): logo, azioni e menu non stanno insieme, l'assistenza resta nel menu */
+  @media (max-width: 380px) {
+    .site-header .brand {
+      width: 118px;
+    }
+    .site-header .header-actions .support-link {
+      display: none;
+    }
+  }
   @keyframes pillDown {
     from {
       opacity: 0;

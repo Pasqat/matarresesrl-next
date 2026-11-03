@@ -3,7 +3,7 @@
 const settori = [
   {
     slug: 'dark-kitchen',
-    foto: '/img/settori/dk-pantaleo-brigata.webp', // brigata dell'Agrobistrot Pantaleo, non un caso dark kitchen: sostituire con una foto vera quando c'è
+    foto: '/img/settori/dk-coppino-cucina.webp', // Coppino (cucina con ritiro, Monopoli), non un caso dark kitchen: sostituire con una foto vera quando c'è
     nome: 'Dark kitchen',
     frase: 'Tecnologia e organizzazione per chi entra nel delivery.',
     inEvidenza: true,

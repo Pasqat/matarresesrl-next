@@ -202,9 +202,9 @@
   border-radius: 50%;
   border: 1px solid rgb(243 238 230 / 0.3);
   background: rgb(13 14 15 / 0.45);
+  display: grid;
+  place-items: center;
   color: rgb(243 238 230 / 0.9);
-  font-size: 12px;
-  letter-spacing: -0.1em;
 }
 .cin-hero__pausa:hover {
   border-color: var(--fiamma);

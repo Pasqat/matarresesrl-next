@@ -19,7 +19,7 @@ import {logos} from '../data/partner-logo'
 import testimonials from '../data/testimonials'
 import settori from '../data/settori'
 import posterImg from '../public/img/home/sede-poster.webp'
-import chiusuraImg from '../public/img/home/chiusura-brigata.webp'
+import chiusuraImg from '../public/img/home/chiusura-progetto.webp'
 
 // Il metodo è davvero una sequenza: qui la numerazione è informazione (DESIGN.md).
 const metodo = [
@@ -254,7 +254,7 @@ export default function Home({lastTwoProjects = [], event}) {
             data-header="dark"
             aria-labelledby="azienda-title"
           >
-            <div className="site-shell grid gap-14 py-24 lg:grid-cols-12 lg:items-center lg:py-32">
+            <div className="site-shell grid grid-cols-1 gap-14 py-24 lg:grid-cols-12 [&>*]:min-w-0 lg:items-center lg:py-32">
               <div className="relative aspect-[4/3] overflow-hidden rounded-[28px] lg:col-span-7">
                 <Image
                   src="/img/azienda/showroom.webp"
@@ -290,7 +290,7 @@ export default function Home({lastTwoProjects = [], event}) {
                     {fatti.map(([dato, spiegazione]) => (
                       <div
                         key={dato}
-                        className="grid grid-cols-[9.5rem_1fr] border-b border-inox/25 last:border-b-0"
+                        className="grid grid-cols-[6.5rem_minmax(0,1fr)] sm:grid-cols-[9.5rem_minmax(0,1fr)] border-b border-inox/25 last:border-b-0"
                       >
                         <dt className="type-display border-r border-inox/25 px-4 py-4 text-xl">
                           {dato}

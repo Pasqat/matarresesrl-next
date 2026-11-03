@@ -58,7 +58,12 @@ export default function HeroCinema({
             aria-hidden="true"
           >
             {video.map(s => (
-              <source key={s.src} src={s.src} media={s.media} type="video/mp4" />
+              <source
+                key={s.src}
+                src={s.src}
+                media={s.media}
+                type="video/mp4"
+              />
             ))}
           </video>
         )}
@@ -110,9 +115,20 @@ export default function HeroCinema({
           type="button"
           className="cin-hero__pausa"
           onClick={alterna}
-          aria-label={inPausa ? 'Riproduci il video' : 'Metti in pausa il video'}
+          aria-label={
+            inPausa ? 'Riproduci il video' : 'Metti in pausa il video'
+          }
         >
-          {inPausa ? '▶' : '❚❚'}
+          <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+            {inPausa ? (
+              <path d="M3 1.5v9l7.5-4.5z" fill="currentColor" />
+            ) : (
+              <path
+                d="M2.5 1.5h2.5v9H2.5zM7 1.5h2.5v9H7z"
+                fill="currentColor"
+              />
+            )}
+          </svg>
         </button>
       )}
     </section>

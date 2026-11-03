@@ -53,3 +53,6 @@ docs/revamp/baseline/
 data/media-index.json
 data/media-jev.json
 public/_media-review/
+
+# Hallmark (audit di design): catture e registri locali
+.hallmark/
