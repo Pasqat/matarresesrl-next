@@ -34,8 +34,6 @@ Per abilitare la sincronizzazione dei lead/contatti su Odoo, configura queste
 variabili in `.env.local`:
 
 - `ODOO_ENABLED=true` – Abilita la sync Odoo.
-- `ODOO_MUST_SYNC=true` – Rende bloccanti gli errori Odoo (il form fallisce se
-  la sync non va a buon fine).
 - `ODOO_URL` – URL del tuo Odoo (es: `https://your-odoo-domain.com`).
 - `ODOO_DB` – Nome del database Odoo.
 - `ODOO_USER` – Email dell’utente Odoo.

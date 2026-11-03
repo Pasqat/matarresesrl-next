@@ -247,7 +247,8 @@ export default async function handler(req, res) {
       })
     }
 
-    // Optionally create a lead in Odoo via XML-RPC. Make failures blocking if ODOO_MUST_SYNC === 'true'
+    // Lead in Odoo via XML-RPC. Mai bloccante: la mail è già partita, e un errore qui farebbe
+    // reinviare al cliente una richiesta arrivata (doppioni in casella e nel CRM).
     if (
       process.env.ODOO_ENABLED === 'true' &&
       !iscrizioneEvento &&
@@ -269,10 +270,7 @@ export default async function handler(req, res) {
           source,
         })
       } catch (err) {
-        logStructuredError('maybeCreateOdooLead', err)
-        if (process.env.ODOO_MUST_SYNC === 'true') {
-          return res.status(502).json({error: 'Errore sincronizzazione CRM'})
-        }
+        logStructuredError('maybeCreateOdooLead', err, {source})
       }
     }
 
