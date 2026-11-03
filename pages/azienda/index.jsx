@@ -95,7 +95,9 @@ const soci = [
     iniziali: 'PM',
     foto: fotoPasquale,
     posizione: 'center 30%',
-    ruolo: 'Socio', // da verificare: ruolo e bio da chiedere al cliente
+    ruolo: 'Socio, gestione interna e service',
+    // bio scelta da Pasquale il 03/11/2026
+    bio: 'Pasquale cura l’organizzazione interna e il service: procedure, persone e strumenti digitali che permettono all’azienda di rispondere in fretta e bene. Segue in prima persona l’assistenza tecnica e gli impianti di aspirazione.',
     email: 'pasquale.matarrese@matarrese.it',
   },
   {
