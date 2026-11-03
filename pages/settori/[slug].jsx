@@ -365,7 +365,7 @@ export default function Settore({slug, progetti, articoli}) {
               id="altri-title"
               tono="chiaro"
               riga="Lavoriamo"
-              accento="anche per."
+              accento="anche per:"
               className="text-[clamp(32px,3.6vw,52px)] !leading-none"
             />
             <ul className="cin-mazzo mt-10">
