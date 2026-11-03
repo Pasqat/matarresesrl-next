@@ -3,7 +3,6 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import Layout from '../components/Layout'
-import ContactForm from '../components/Form/ContactForm'
 import ContactModal from '../components/Form/ContactModal'
 import HeroCinema from '../components/cinema/HeroCinema'
 import TitoloDueTempi from '../components/cinema/TitoloDueTempi'
@@ -14,13 +13,13 @@ import ProjectGrid from '../components/home/ProjectGrid'
 import MetodoQuota from '../components/home/MetodoQuota'
 import BrandMarquee from '../components/home/BrandMarquee'
 import Testimonials from '../components/home/Testimonials'
-import {getGroups} from '../lib/newsletter'
 import {getEvents} from '../lib/query/event'
 import {getLastTwoProjects} from '../lib/query/project'
 import {logos} from '../data/partner-logo'
 import testimonials from '../data/testimonials'
 import settori from '../data/settori'
 import posterImg from '../public/img/home/sede-poster.webp'
+import chiusuraImg from '../public/img/home/chiusura-brigata.webp'
 
 // Il metodo è davvero una sequenza: qui la numerazione è informazione (DESIGN.md).
 const metodo = [
@@ -52,7 +51,7 @@ const fatti = [
   ['MEPA', 'fornitori abilitati per la pubblica amministrazione'],
 ]
 
-export default function Home({groups, lastTwoProjects = [], event}) {
+export default function Home({lastTwoProjects = [], event}) {
   const upcoming = event?.futureEvent?.[0]
   // Le recensioni più descrittive tra quelle disponibili.
   const reviews = [0, 2, 3, 5].map(n => testimonials[n])
@@ -229,15 +228,20 @@ export default function Home({groups, lastTwoProjects = [], event}) {
                     </h2>
                   </div>
                 )}
-                <div className="flex shrink-0 flex-wrap items-center gap-6">
+                <div className="flex shrink-0 flex-wrap items-center gap-3.5">
                   {upcoming && (
                     <Link className="cin-btn" href={`/eventi/${upcoming.slug}`}>
                       Scopri l’evento
                       <Freccia />
                     </Link>
                   )}
-                  <Link className="cin-link" href="/eventi">
+                  {/* Senza un evento in programma il calendario è l'azione principale */}
+                  <Link
+                    className={upcoming ? 'cin-btn cin-btn--ghost' : 'cin-btn'}
+                    href="/eventi"
+                  >
                     Tutti gli eventi
+                    {!upcoming && <Freccia />}
                   </Link>
                 </div>
               </div>
@@ -361,37 +365,51 @@ export default function Home({groups, lastTwoProjects = [], event}) {
             </div>
           </section>
 
-          {/* Chiusura: la chiamata al progetto */}
+          {/* Chiusura su foto come in /assistenza: il modulo progetto a passi sostituisce il modulo lungo */}
           <section
-            className="bg-white text-ghisa"
-            data-header="light"
+            className="relative overflow-hidden py-28 text-center text-white md:py-40"
+            data-header="dark"
             id="parliamone"
             aria-labelledby="contatto-title"
           >
-            <div className="site-shell grid gap-6 pb-10 pt-24 lg:grid-cols-12 lg:pt-32">
-              <div className="lg:col-span-7">
-                <span
-                  className="eyebrow-cinema"
-                  data-tono="chiaro"
-                  data-cin-reveal
-                >
-                  Parliamone
-                </span>
-                <TitoloDueTempi
-                  data-cin-reveal
-                  id="contatto-title"
-                  tono="chiaro"
-                  riga="Il prossimo progetto"
-                  accento="inizia da qui."
-                  className="mt-6 text-[clamp(40px,5.4vw,80px)] !leading-none"
-                />
-              </div>
-              <p className="max-w-[40ch] text-acciaio lg:col-span-4 lg:col-start-9 lg:self-end">
-                Raccontaci cosa hai in mente: ti risponde un progettista.
+            <Image
+              src={chiusuraImg}
+              alt=""
+              fill
+              sizes="100vw"
+              placeholder="blur"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-[#0d0e0f]/[.8]" />
+            <div className="site-shell relative max-w-[860px]">
+              <span className="eyebrow-cinema" data-cin-reveal>
+                Parliamone
+              </span>
+              <TitoloDueTempi
+                data-cin-reveal
+                id="contatto-title"
+                riga="Il prossimo progetto"
+                accento="inizia da qui."
+                className="mt-6 text-[clamp(40px,5.8vw,88px)] !leading-none"
+              />
+              <p className="mx-auto mt-6 max-w-[34rem] text-[rgb(243_238_230/.75)]">
+                Raccontaci cosa hai in mente: ti risponde un progettista, che
+                viene nel locale, misura spazi e impianti e ti propone la
+                soluzione.
               </p>
-            </div>
-            <div className="pb-24">
-              <ContactForm groups={groups} compact />
+              <div className="mt-10 flex flex-wrap justify-center gap-3.5">
+                <ContactModal
+                  variant="progetto"
+                  source="home-chiusura"
+                  className="cin-btn"
+                >
+                  Parla con un progettista
+                  <Freccia />
+                </ContactModal>
+                <a href="tel:+390804323431" className="cin-btn cin-btn--ghost">
+                  Chiama +39 080 4323 431
+                </a>
+              </div>
             </div>
           </section>
         </div>
@@ -400,11 +418,10 @@ export default function Home({groups, lastTwoProjects = [], event}) {
   )
 }
 export async function getStaticProps() {
-  const groups = await getGroups()
   const lastTwoProjects = await getLastTwoProjects()
   const event = await getEvents()
   return {
-    props: {groups, lastTwoProjects, event: {futureEvent: event.futureEvent}},
+    props: {lastTwoProjects, event: {futureEvent: event.futureEvent}},
     revalidate: 86400,
   }
 }

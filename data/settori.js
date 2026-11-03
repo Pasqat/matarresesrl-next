@@ -3,7 +3,7 @@
 const settori = [
   {
     slug: 'dark-kitchen',
-    foto: '/img/settori/dk-showroom-forni.webp', // forni combinati in showroom, non un caso dark kitchen: sostituire con una foto vera quando c'è
+    foto: '/img/settori/dk-pantaleo-brigata.webp', // brigata dell'Agrobistrot Pantaleo, non un caso dark kitchen: sostituire con una foto vera quando c'è
     nome: 'Dark kitchen',
     frase: 'Tecnologia e organizzazione per chi entra nel delivery.',
     inEvidenza: true,
@@ -66,7 +66,7 @@ const settori = [
   },
   {
     slug: 'laboratori',
-    foto: '/img/settori/lab-bufano-forno.webp',
+    foto: '/img/settori/lab-pantaleo-cucina.webp',
     nome: 'Laboratori di trasformazione alimentare',
     frase:
       'Layout, flussi di lavoro, conservazione e confezionamento per chi trasforma materie prime.',
@@ -127,7 +127,7 @@ const settori = [
   },
   {
     slug: 'ristoranti-pizzerie',
-    foto: '/img/settori/rist-la-strega.webp',
+    foto: '/img/settori/rist-auraterrae.webp',
     nome: 'Ristoranti e pizzerie',
   },
   {
@@ -137,7 +137,7 @@ const settori = [
   },
   {
     slug: 'hotel-ricevimenti',
-    foto: '/img/settori/hotel-sala-volte.webp',
+    foto: '/img/settori/hotel-movenpick-buffet.webp',
     nome: 'Hotel e sale ricevimenti',
   },
   {

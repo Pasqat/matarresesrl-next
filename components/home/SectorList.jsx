@@ -23,7 +23,8 @@ export default function SectorList({settori, href, title, intro}) {
                 src={s.foto}
                 alt=""
                 fill
-                sizes="(min-width: 1024px) 40vw, 100vw"
+                // il pannello è verticale: la foto orizzontale in cover è larga circa 1,9 volte il pannello
+                sizes="(min-width: 1024px) 75vw, 150vw"
                 loading={i === 0 ? 'eager' : 'lazy'}
                 className={`object-cover transition-[opacity,transform] duration-1000 ease-out motion-reduce:transition-none ${
                   active === s.slug
