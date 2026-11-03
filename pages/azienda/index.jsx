@@ -49,6 +49,32 @@ const puntiDiForza = [
     'Affidabilità',
     'Da quarant’anni operiamo al fianco dei professionisti della ristorazione, li seguiamo passo passo garantendo la sicurezza di potersi affidare a un partner competente e qualificato.',
   ],
+  // Fonte delle card che seguono: intervista a Pasquale, 03/11/2026. Non scrivere "chiavi in
+  // mano": gas, elettrico e allacci (ciò che richiede la firma di un abilitato) non li facciamo.
+  [
+    'Tecnici nostri',
+    'L’assistenza la fanno tecnici Matarrese, formati dai produttori delle attrezzature che installiamo. Per le riparazioni preferiamo i ricambi originali.',
+  ],
+  [
+    'Montaggio con squadre nostre',
+    'Arredi e attrezzature li installano le nostre squadre: chi ha progettato il locale sa come va montato.',
+  ],
+  [
+    'Sopralluogo e preventivo gratuiti',
+    'Il primo sopralluogo e il preventivo non costano nulla. La progettazione è un servizio professionale a parte, e te lo diciamo prima.',
+  ],
+  [
+    'Noleggio, leasing e rate',
+    'Oltre all’acquisto, puoi scegliere noleggio, leasing o pagamenti dilazionati: troviamo la formula che regge il tuo investimento.',
+  ],
+  [
+    'Agevolazioni e crediti d’imposta',
+    'Ti aiutiamo a capire quali bandi e crediti d’imposta puoi usare per le nuove attrezzature, prima di decidere.',
+  ],
+  [
+    'Ritiro delle attrezzature vecchie',
+    'Quando sostituiamo un’attrezzatura, ritiriamo quella vecchia: non resta a te il problema di smaltirla.',
+  ],
 ]
 
 // Ritratti: Pasquale dalla cartella "sito web-2026/Azienda"; Vito è la foto del sito pubblicato
