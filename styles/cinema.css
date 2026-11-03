@@ -912,3 +912,41 @@
     transition: none;
   }
 }
+
+/* Suggerimento al passaggio o al focus (es. il conteggio dei progetti) */
+.cin-suggerimento {
+  position: relative;
+  cursor: help;
+  text-decoration: underline dotted rgb(30 34 38 / 0.35);
+  text-underline-offset: 6px;
+}
+.cin-suggerimento:focus-visible {
+  outline: 2px solid var(--fiamma-testo);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+.cin-suggerimento [role='tooltip'] {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 30;
+  width: max-content;
+  max-width: 260px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--ghisa);
+  color: var(--carta);
+  font-family: Matter, ui-sans-serif, system-ui, sans-serif;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 1.45;
+  white-space: normal;
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s var(--cin-ease);
+}
+.cin-suggerimento:is(:hover, :focus-visible) [role='tooltip'] {
+  opacity: 1;
+  transform: none;
+}

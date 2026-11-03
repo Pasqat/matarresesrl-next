@@ -164,8 +164,20 @@ export default function Realizzazioni({data}) {
                     }}
                   />
                 </label>
-                <p className="cin-cerca__conta" aria-live="polite">
-                  {posts.length} {posts.length === 1 ? 'progetto' : 'progetti'}
+                {/* Focalizzabile: il suggerimento compare anche da tastiera e lo legge lo screen reader */}
+                <p
+                  className="cin-cerca__conta cin-suggerimento"
+                  tabIndex={0}
+                  aria-describedby="conta-nota"
+                >
+                  <span aria-live="polite">
+                    {posts.length}{' '}
+                    {posts.length === 1 ? 'progetto' : 'progetti'}
+                  </span>
+                  <span id="conta-nota" role="tooltip">
+                    Solo una parte dei nostri lavori: dal 1983 ne abbiamo
+                    realizzati molti di più.
+                  </span>
                 </p>
               </div>
               <div className="relative mt-5 flex flex-wrap items-center gap-2">
