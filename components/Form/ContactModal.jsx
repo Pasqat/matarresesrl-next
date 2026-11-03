@@ -9,7 +9,6 @@
 import {useCallback, useEffect, useId, useRef, useState} from 'react'
 import {createPortal} from 'react-dom'
 import Link from 'next/link'
-import clsx from 'clsx'
 import {usePlausible} from 'next-plausible'
 import * as fbq from '../../lib/fpixel'
 import {gtmEvent} from '../../lib/gtm'
@@ -57,6 +56,24 @@ const PERCORSI = {
   },
 }
 const FASCE = ['Mattina', 'Pomeriggio', 'Indifferente']
+// Nomi dei passi mostrati in testa al pannello, nello stesso ordine di PERCORSI
+const NOMI_PASSI = {
+  progetto: ['Attività', 'Contatti', 'Messaggio'],
+  guasto: ['Macchina', 'Dove', 'Contatti'],
+  showroom: ['Visita', 'Contatti'],
+}
+// «Cosa succede dopo»: cosa aspettarsi una volta inviato, per percorso
+const DOPO = {
+  progetto:
+    'Un progettista ti richiama per capire il progetto e fissare il sopralluogo, che è gratuito.',
+  realizzazione:
+    'Un progettista ti richiama per capire il progetto e fissare il sopralluogo, che è gratuito.',
+  guasto:
+    'Il service ti richiama per fissare l’intervento, di norma entro 48 ore.',
+  showroom:
+    'Ti richiamiamo per confermare giorno e ora: in showroom trovi un consulente ad aspettarti.',
+  info: 'Un consulente legge la tua richiesta e ti risponde, per email o al telefono.',
+}
 
 const reducedMotion = () =>
   typeof window !== 'undefined' &&
@@ -116,16 +133,15 @@ function Campo({id, label, error, textarea, ...props}) {
   const Tag = textarea ? 'textarea' : 'input'
   return (
     <div className="cm-field" data-invalid={error ? '' : undefined}>
+      <label htmlFor={id}>{label}</label>
       <div className="cm-control">
         <Tag
           id={id}
-          placeholder=" "
           rows={textarea ? 4 : undefined}
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? `${id}-err` : undefined}
           {...props}
         />
-        <label htmlFor={id}>{label}</label>
       </div>
       <span className="cm-err" id={`${id}-err`}>
         {error}
@@ -212,14 +228,10 @@ export default function ContactModal({
         await panel
           .animate(
             [
-              {
-                opacity: 0,
-                transform: 'translateY(28px) scale(.97)',
-                filter: 'blur(8px)',
-              },
-              {opacity: 1, transform: 'none', filter: 'blur(0)'},
+              {opacity: 0, transform: 'translateX(64px)'},
+              {opacity: 1, transform: 'none'},
             ],
-            {duration: 700, easing: EASE_OUT},
+            {duration: 600, easing: EASE_OUT},
           )
           .finished.catch(() => {})
     } else {
@@ -306,11 +318,7 @@ export default function ContactModal({
           .animate(
             [
               {opacity: 1},
-              {
-                opacity: 0,
-                transform: 'translateY(16px) scale(.98)',
-                filter: 'blur(6px)',
-              },
+              {opacity: 0, transform: 'translateX(64px)'},
             ],
             {duration: 260, easing: 'ease-in', fill: 'forwards'},
           )
@@ -498,13 +506,6 @@ export default function ContactModal({
   }
 
   // Riflesso del vetro che segue il puntatore
-  function riflesso(e) {
-    if (aspetto !== 'info') return
-    const r = e.currentTarget.getBoundingClientRect()
-    e.currentTarget.style.setProperty('--mx', `${e.clientX - r.left}px`)
-    e.currentTarget.style.setProperty('--my', `${e.clientY - r.top}px`)
-  }
-
   const chiudiBtn = (
     <button
       type="button"
@@ -794,6 +795,20 @@ export default function ContactModal({
     </div>
   ) : (
     <>
+      {aPassi ? (
+        <ol className="cm-steps">
+          {NOMI_PASSI[variant].map((nome, i) => (
+            <li
+              key={nome}
+              aria-current={i + 1 === passo ? 'step' : undefined}
+              data-fatto={i + 1 < passo ? '' : undefined}
+            >
+              <span aria-hidden="true">{i + 1}</span>
+              {nome}
+            </li>
+          ))}
+        </ol>
+      ) : null}
       <h2 id={id('titolo')} className="type-display cm-title">
         {titolo}
       </h2>
@@ -801,9 +816,6 @@ export default function ContactModal({
       <form ref={formRef} className="cm-form" onSubmit={invia} noValidate>
         {aPassi ? (
           <div data-step={passo} className="grid gap-6">
-            <span className="cm-step-n">
-              {passo} di {nPassi}
-            </span>
             {passoUI()}
           </div>
         ) : (
@@ -881,17 +893,15 @@ export default function ContactModal({
           </button>
         </div>
 
-        {/* Avanzamento sotto i pulsanti: il modulo resta il centro del pannello */}
-        {aPassi ? (
-          <div className="cm-progress" aria-hidden="true">
-            {Object.keys(percorso)
-              .map(Number)
-              .map(n => (
-                <i key={n} className={clsx(n <= passo && 'is-on')} />
-              ))}
-          </div>
-        ) : null}
       </form>
+      <aside className="cm-dopo">
+        <span>Cosa succede dopo</span>
+        <p>
+          {reservation
+            ? 'Ti scriviamo per confermarti il posto all’evento.'
+            : DOPO[variant] || DOPO.info}
+        </p>
+      </aside>
     </>
   )
 
@@ -928,7 +938,7 @@ export default function ContactModal({
         }}
       >
         {open ? (
-          <div ref={panelRef} className="cm-panel" onPointerMove={riflesso}>
+          <div ref={panelRef} className="cm-panel">
             {aspetto === 'realizzazione' ? (
               <>
                 <div ref={bodyRef} className="cm-side cm-reveal">
