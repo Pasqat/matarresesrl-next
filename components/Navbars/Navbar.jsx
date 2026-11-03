@@ -31,7 +31,8 @@ function Roll({children}) {
 }
 
 // Tema della sezione sotto il centro dell'header, letto da data-header="dark|light".
-// In cima alla pagina (scrollY < 40) l'header resta trasparente sopra l'hero.
+// In cima alla pagina (scrollY < 40) sopra un'apertura scura l'header resta trasparente;
+// sopra una chiara (es. /news) prende subito il tema chiaro.
 function useHeaderTheme(enabled, headerRef) {
   const [theme, setTheme] = useState('top')
   useEffect(() => {
@@ -39,7 +40,6 @@ function useHeaderTheme(enabled, headerRef) {
     let frame = 0
     const update = () => {
       frame = 0
-      if (window.scrollY < 40) return setTheme('top')
       // Header a pillola staccato dall'alto: si campiona al centro della pillola.
       const pill = headerRef.current.firstElementChild.getBoundingClientRect()
       const y = pill.top + pill.height / 2
@@ -48,7 +48,8 @@ function useHeaderTheme(enabled, headerRef) {
         .elementsFromPoint(window.innerWidth / 2, y)
         .map(el => el.closest('[data-header]'))
         .find(Boolean)
-      setTheme(section?.dataset.header === 'light' ? 'light' : 'dark')
+      const chiaro = section?.dataset.header === 'light'
+      setTheme(chiaro ? 'light' : window.scrollY < 40 ? 'top' : 'dark')
     }
     const schedule = () => {
       if (!frame) frame = requestAnimationFrame(update)

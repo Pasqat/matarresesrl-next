@@ -6,17 +6,16 @@ import {useRouter} from 'next/router'
 import * as fbq from '../../lib/fpixel'
 
 import Layout from '../../components/Layout'
-import HeroCinema from '../../components/cinema/HeroCinema'
-import GrigliaRivista from '../../components/cinema/GrigliaRivista'
+import Image from 'next/image'
+import TitoloDueTempi from '../../components/cinema/TitoloDueTempi'
 import Scelta from '../../components/cinema/Scelta'
-import {Freccia} from '../../components/cinema/BottoneFreccia'
 import {CaricaAltri} from '../../components/editoriale/FiltriArchivio'
 
 import {filterPosts} from '../../actions/utils/blog'
 import {formatDate} from '../../actions/utils/formatDate'
 import {getAllPosts} from '../../lib/query/post'
 
-const PAGE_SIZE = 10 // due gruppi da cinque della griglia a rivista
+const PAGE_SIZE = 12 // quattro righe da tre colonne
 const initialIndexToShow = PAGE_SIZE
 
 // this really is not needed, or maybe only the part `(\s|$)?
@@ -53,16 +52,21 @@ export default function News({data}) {
   const [categoria, setCategoria] = React.useState('')
   const filtri = Boolean(query || categoria)
   const featured = data.posts?.[0]
+  const ultimi = data.posts?.slice(1, 5) ?? []
+  const inPrimaPagina = React.useMemo(
+    () => new Set(data.posts?.slice(0, 5).map(p => p.slug)),
+    [data.posts],
+  )
 
   const matchingPosts = React.useMemo(
     () =>
       filterPosts(allPosts, regularQuery).filter(
         p =>
           (!categoria || p.categories?.includes(categoria)) &&
-          // senza filtri il primo articolo è già in apertura
-          (filtri || p.slug !== featured?.slug),
+          // senza filtri i primi cinque sono già in prima pagina
+          (filtri || !inPrimaPagina.has(p.slug)),
       ),
-    [allPosts, regularQuery, categoria, filtri, featured?.slug],
+    [allPosts, regularQuery, categoria, filtri, inPrimaPagina],
   )
 
   const [indexToShow, setIndexToShow] = React.useState(initialIndexToShow)
@@ -112,40 +116,94 @@ export default function News({data}) {
       </Head>
 
       <Layout navbarTransparent>
-        <HeroCinema
-          image={featured?.featuredImage?.node?.mediaItemUrl}
-          alt={featured?.featuredImage?.node?.altText || ''}
-          objectPosition="50% 50%"
-          eyebrow={`In evidenza · ${[
-            featured?.categories?.[0],
-            formatDate(featured?.date),
-          ]
-            .filter(Boolean)
-            .join(' · ')}`}
-          // trattino morbido: a 375px "approfondimenti" non entra nella riga
-          riga={'News e approfondi\u00ADmenti'}
-          accento="sulla ristorazione professionale."
-          sottotitolo={testo(featured?.title)}
-        >
-          {featured && (
-            <Link href={`/news/${featured.slug}`} className="cin-btn">
-              Leggi l’articolo
-              <Freccia />
-            </Link>
-          )}
-          <a href="#archivio" className="cin-link whitespace-nowrap">
-            Tutti gli articoli
-          </a>
-        </HeroCinema>
-
         <section
           id="archivio"
-          className="scroll-mt-20 bg-[var(--carta)] text-ghisa"
+          className="bg-[var(--carta)] text-ghisa"
           data-header="light"
-          aria-label="Archivio degli articoli"
+          aria-labelledby="news-title"
         >
-          <div className="site-shell pb-24 pt-12 lg:pb-32 lg:pt-16">
-            <div role="search">
+          <div className="site-shell pb-24 pt-32 lg:pb-32 lg:pt-40">
+            <TitoloDueTempi
+              as="h1"
+              id="news-title"
+              tono="chiaro"
+              // trattino morbido: a 375px "approfondimenti" non entra nella riga
+              riga={'News e approfondi\u00ADmenti'}
+              accento="sulla ristorazione professionale."
+              className="text-[clamp(40px,5.4vw,80px)] !leading-none"
+            />
+
+            {/* Prima pagina: l'ultimo articolo grande, accanto i quattro titoli precedenti */}
+            {!filtri && featured && (
+              <div className="mt-12 grid gap-10 border-b border-ghisa/15 pb-16 lg:mt-16 lg:grid-cols-12 lg:gap-12 lg:pb-20">
+                <Link
+                  href={`/news/${featured.slug}`}
+                  className="group lg:col-span-8"
+                >
+                  <div className="relative aspect-[16/10] overflow-hidden rounded-[28px] bg-inox">
+                    {featured.featuredImage?.node?.mediaItemUrl && (
+                      <Image
+                        src={featured.featuredImage.node.mediaItemUrl}
+                        alt={featured.featuredImage.node.altText || ''}
+                        fill
+                        preload
+                        fetchPriority="high"
+                        sizes="(min-width: 1024px) 62vw, 100vw"
+                        className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04] motion-reduce:transition-none"
+                      />
+                    )}
+                  </div>
+                  <p className="mt-6 text-sm text-acciaio">
+                    {[featured.categories?.[0], formatDate(featured.date)]
+                      .filter(Boolean)
+                      .join(' · ')}
+                  </p>
+                  <h2
+                    className="type-display mt-2 max-w-[24ch] text-[clamp(28px,3vw,44px)] !leading-[1.05] transition-colors group-hover:text-fiamma-testo"
+                    dangerouslySetInnerHTML={{__html: featured.title}}
+                  />
+                  {featured.excerpt && (
+                    <p
+                      className="mt-4 line-clamp-3 max-w-[60ch] text-lg text-acciaio"
+                      // il sommario arriva da WordPress con le entità HTML (&#8217;): le decodifica il browser
+                      dangerouslySetInnerHTML={{
+                        __html: testo(featured.excerpt),
+                      }}
+                    />
+                  )}
+                </Link>
+                <aside className="lg:col-span-4" aria-labelledby="ultimi-title">
+                  <h2
+                    id="ultimi-title"
+                    className="font-[family-name:var(--font-accent)] text-[28px] italic text-acciaio"
+                  >
+                    Ultimi articoli
+                  </h2>
+                  <ul className="mt-4">
+                    {ultimi.map(a => (
+                      <li key={a.slug} className="border-t border-ghisa/15">
+                        <Link
+                          href={`/news/${a.slug}`}
+                          className="group block py-5"
+                        >
+                          <span className="block text-sm text-acciaio">
+                            {[a.categories?.[0], formatDate(a.date)]
+                              .filter(Boolean)
+                              .join(' · ')}
+                          </span>
+                          <span
+                            className="type-display mt-1 block text-[20px] leading-tight transition-colors group-hover:text-fiamma-testo"
+                            dangerouslySetInnerHTML={{__html: a.title}}
+                          />
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </aside>
+              </div>
+            )}
+
+            <div role="search" className="mt-14 lg:mt-20">
               <div className="cin-cerca">
                 <label className="min-w-0 flex-1">
                   <span className="sr-only">Cerca tra gli articoli</span>
@@ -211,20 +269,41 @@ export default function News({data}) {
                   filtro.
                 </p>
               ) : (
-                <GrigliaRivista
-                  visibili={indexToShow}
-                  items={posts.map(a => ({
-                    href: `/news/${a.slug}`,
-                    title: a.title,
-                    meta: [a.categories?.[0], formatDate(a.date)]
-                      .filter(Boolean)
-                      .join(' · '),
-                    image: {
-                      src: a.featuredImage?.node?.mediaItemUrl,
-                      alt: a.featuredImage?.node?.altText,
-                    },
-                  }))}
-                />
+                <ul className="grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+                  {posts.map((a, i) => (
+                    <li key={a.slug} hidden={i >= indexToShow}>
+                      <Link href={`/news/${a.slug}`} className="group block">
+                        <div className="relative aspect-[3/2] overflow-hidden rounded-[24px] bg-inox">
+                          {a.featuredImage?.node?.mediaItemUrl && (
+                            <Image
+                              src={a.featuredImage.node.mediaItemUrl}
+                              alt={a.featuredImage.node.altText || ''}
+                              fill
+                              sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
+                              className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.05] motion-reduce:transition-none"
+                            />
+                          )}
+                        </div>
+                        <p className="mt-5 text-sm text-acciaio">
+                          {[a.categories?.[0], formatDate(a.date)]
+                            .filter(Boolean)
+                            .join(' · ')}
+                        </p>
+                        <h3
+                          className="type-display mt-2 text-[22px] leading-tight transition-colors group-hover:text-fiamma-testo"
+                          dangerouslySetInnerHTML={{__html: a.title}}
+                        />
+                        {a.excerpt && (
+                          <p
+                            className="mt-3 line-clamp-3 text-acciaio"
+                            // il sommario arriva da WordPress con le entità HTML (&#8217;): le decodifica il browser
+                            dangerouslySetInnerHTML={{__html: testo(a.excerpt)}}
+                          />
+                        )}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               )}
             </div>
 
