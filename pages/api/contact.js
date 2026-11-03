@@ -13,7 +13,7 @@ const RATE_STORE_MAX = 5000
 
 // Lunghezza massima di ogni campo: oltre, la richiesta viene rifiutata.
 const LIMITS = {
-  referente: 120,
+  referente: 121, // nome e cognome, 60 caratteri ciascuno più lo spazio
   senderMail: 254,
   tel: 40,
   company: 160,
@@ -255,20 +255,32 @@ export default async function handler(req, res) {
       !assistenza
     ) {
       try {
-        await maybeCreateOdooLead({
-          referente,
-          senderMail,
-          tel,
-          company,
-          formContent: [
-            settore && `Attività: ${settore}`,
-            formContent,
-            consenso,
-          ]
-            .filter(Boolean)
-            .join('\n\n'),
-          source,
+        // Odoo lento non deve tenere il cliente sullo spinner né far scadere la funzione (504 →
+        // «riprova» → doppione): oltre 5 secondi si rinuncia al lead e la richiesta resta in mail.
+        let scadenza
+        const timeout = new Promise((_, reject) => {
+          scadenza = setTimeout(
+            () => reject(new Error('Odoo timeout (5s)')),
+            5000,
+          )
         })
+        await Promise.race([
+          timeout,
+          maybeCreateOdooLead({
+            referente,
+            senderMail,
+            tel,
+            company,
+            formContent: [
+              settore && `Attività: ${settore}`,
+              formContent,
+              consenso,
+            ]
+              .filter(Boolean)
+              .join('\n\n'),
+            source,
+          }),
+        ]).finally(() => clearTimeout(scadenza))
       } catch (err) {
         logStructuredError('maybeCreateOdooLead', err, {source})
       }

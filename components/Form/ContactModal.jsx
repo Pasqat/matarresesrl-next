@@ -56,6 +56,7 @@ const PERCORSI = {
   },
 }
 const FASCE = ['Mattina', 'Pomeriggio', 'Indifferente']
+const LIBERO = ['nome', 'cognome', 'mail', 'partecipanti', 'messaggio', 'privacy']
 // Nomi dei passi mostrati in testa al pannello, nello stesso ordine di PERCORSI
 const NOMI_PASSI = {
   progetto: ['Attività', 'Contatti', 'Messaggio'],
@@ -81,7 +82,7 @@ const reducedMotion = () =>
 
 function valida(v, campi, {reservation}) {
   const e = {}
-  const vuole = n => !campi || campi.includes(n)
+  const vuole = n => campi.includes(n)
   if (vuole('settore') && !v.settore)
     e.settore = 'Scegli l’attività più vicina alla tua.'
   if (vuole('nome') && !v.nome.trim()) e.nome = 'Scrivi il tuo nome.'
@@ -113,6 +114,9 @@ function valida(v, campi, {reservation}) {
   if (vuole('giorno')) {
     const g = v.giorno && new Date(`${v.giorno}T12:00`).getDay()
     if (!v.giorno) e.giorno = 'Scegli un giorno.'
+    // noValidate ignora il min dell'input: una data passata va fermata qui
+    else if (v.giorno <= new Date().toISOString().slice(0, 10))
+      e.giorno = 'Scegli un giorno da domani in poi.'
     else if (g === 0 || g === 6)
       e.giorno = 'Lo showroom è aperto dal lunedì al venerdì.'
   }
@@ -416,7 +420,9 @@ export default function ContactModal({
       return vaiA(passo + 1)
     }
 
-    const e = valida(valori, aPassi ? percorso[nPassi] : null, {reservation})
+    // Il modulo libero (info, realizzazione, prenotazione) chiede solo questi campi: con null
+    // valida pretenderebbe anche quelli dei percorsi a passi, che lì non ci sono.
+    const e = valida(valori, aPassi ? percorso[nPassi] : LIBERO, {reservation})
     if (Object.keys(e).length) return mostraErrori(e)
 
     setInvio(true)
