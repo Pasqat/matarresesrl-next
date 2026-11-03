@@ -1,22 +1,34 @@
+// Prodotti sul modello di /assistenza: apertura, famiglie in card che si impilano, i passi dalla
+// scelta all'installazione, marchi, chiusura su foto. I testi delle famiglie vengono dalla pagina
+// precedente, raggruppati; i passi usano solo fatti confermati da Pasquale (03/11/2026).
+import {useRef} from 'react'
 import Head from 'next/head'
+import Image from 'next/image'
 
 import ContactModal from '../../components/Form/ContactModal'
 import Layout from '../../components/Layout'
 import Magnetic from '../../components/Magnetic'
+import BrandMarquee from '../../components/home/BrandMarquee'
+import StructuredData from '../../components/StructuredData'
 import HeroCinema from '../../components/cinema/HeroCinema'
 import TitoloDueTempi from '../../components/cinema/TitoloDueTempi'
+import PilaCard from '../../components/cinema/PilaCard'
+import Passi from '../../components/cinema/Passi'
 import {Freccia} from '../../components/cinema/BottoneFreccia'
-import Image from 'next/image'
-import chiusuraImg from '../../public/img/servizi/chiusura-cuoco.webp'
-import BrandMarquee from '../../components/home/BrandMarquee'
-import Testimonials from '../../components/home/Testimonials'
-import CategoryChapter from '../../components/prodotti/CategoryChapter'
-import PhotoCards from '../../components/prodotti/PhotoCards'
-import StructuredData from '../../components/StructuredData'
+import useRivela from '../../components/cinema/useRivela'
 
 import {logos} from '../../data/partner-logo'
-import testimonials from '../../data/testimonials'
 import {itemListSchema, breadcrumbSchema} from '../../lib/seo/schema'
+
+import heroImg from '../../public/img/prodotti/apertura-cottura.webp'
+import cotturaImg from '../../public/img/prodotti/cottura.webp'
+import refrigerazioneImg from '../../public/img/prodotti/refrigerazione.webp'
+import agroImg from '../../public/img/prodotti/agroalimentare.webp'
+import barImg from '../../public/img/prodotti/bar.webp'
+import arrediImg from '../../public/img/prodotti/arredi-su-misura.webp'
+import aspirazioneImg from '../../public/img/prodotti/aspirazione.webp'
+import showroomImg from '../../public/img/azienda/showroom-attrezzature.webp'
+import chiusuraImg from '../../public/img/prodotti/arredi-piazza-grande.webp'
 
 const CATEGORIE_PRODOTTO = [
   'Cottura professionale',
@@ -31,134 +43,107 @@ const CATEGORIE_PRODOTTO = [
   'Lavaggio e lavanderia',
 ]
 
-// Foto reali dei lavori esportate con scripts/media-export.mjs (public/img/prodotti).
-// I testi delle categorie sono quelli della pagina precedente.
-const lavorazione = [
+const famiglie = [
   {
-    nome: 'Cottura',
+    titolo: 'Cottura e preparazione',
     testo:
       'La cucina professionale è il cuore di ogni attività ristorativa. Blocchi cottura e soluzioni modulari per lavorare meglio e sfruttare ogni metro, lasciando spazio a estro e creatività.',
-    foto: '/img/prodotti/cottura.webp',
+    voci: [
+      'Blocchi cottura e soluzioni modulari',
+      'Preparazione dinamica: tritacarne, affettatrici, utensili',
+      'Preparazione statica: tavoli, lavelli, taglieri',
+    ],
+    immagine: cotturaImg,
     alt: 'Blocco cottura con fuochi e piastre sotto la cappa di aspirazione',
   },
   {
-    nome: 'Attrezzature',
+    titolo: 'Refrigerazione e conservazione',
     testo:
-      'Piccole, medie e grandi attrezzature, selezionate tra i migliori marchi, sia per la preparazione dinamica (tritacarne, affettatrici, utensili, ecc) che per la preparazione statica (tavoli, lavelli, taglieri, ecc.) dei piatti',
-    foto: '/img/prodotti/attrezzature.webp',
-    alt: 'Cutter, taglieri e piano di lavoro in acciaio in un laboratorio',
+      'La sicurezza alimentare passa dalla conservazione. La temperatura giusta per ogni prodotto, anche in vetrine belle da vedere.',
+    voci: [
+      'Armadi e tavoli refrigerati',
+      'Vetrine per esporre e conservare',
+      'Conservazione per laboratori e cucine',
+    ],
+    immagine: refrigerazioneImg,
+    alt: 'Armadi refrigerati in acciaio in una cucina professionale',
   },
   {
-    nome: 'Macchinari per l’agroalimentare',
+    titolo: 'Macchinari per l’agroalimentare',
     testo:
       'Dalla progettazione alla realizzazione di laboratori di trasformazione alimenti per le materie prime in tavola. Macchinari moderni per lavorare meglio e con meno fatica.',
-    foto: '/img/prodotti/agroalimentare.webp',
+    voci: [
+      'Laboratori di trasformazione',
+      'Macchinari per la lavorazione',
+      'Conservazione del prodotto finito',
+    ],
+    immagine: agroImg,
     alt: 'Laboratorio di gastronomia con impastatrice, armadi frigo e piani in acciaio',
   },
   {
-    nome: 'Refrigerazione',
+    titolo: 'Bar, sala e hotellerie',
     testo:
-      'La sicurezza alimentare passa dalla conservazione. La temperatura giusta per ogni prodotto, anche in vetrine belle da vedere.',
-    foto: '/img/prodotti/refrigerazione.webp',
-    alt: 'Armadi refrigerati in acciaio in una cucina professionale',
-  },
-]
-
-const accoglienza = [
-  {
-    nome: 'Forniture alberghiere',
-    testo:
-      'Raffinati ed eleganti oppure dallo stile minimal, il nostro showroom è ricco dei migliori utensili, accessori o dettagli per il tuo hotel. Dagli arredi su misura all’allestimento della cucina professionale, aiutiamo la tua struttura ricettiva ad esprimere ospitalità ed accoglienza attraverso l’innovazione tecnologica e il design.',
-    foto: '/img/prodotti/forniture-alberghiere.webp',
-    alt: 'Banco buffet illuminato nella sala colazioni di un hotel',
-  },
-  {
-    nome: 'Attrezzature per bar',
-    testo:
-      'Una vasta gamma di utensili, attrezzature e strumenti necessari per la realizzazione di cocktail, colazioni e aperitivi di prim’ordine. Progettiamo e realizziamo i tuoi spazi per accogliere i clienti allestendo con tecnologia e design banconi bar attrezzati, moduli refrigerati, vetrine ecc.',
-    foto: '/img/prodotti/bar.webp',
+      'Banconi bar attrezzati, moduli refrigerati e vetrine per accogliere i clienti; utensili, porcellane e accessori per la mise en place; forniture per hotel e strutture ricettive.',
+    voci: [
+      'Banconi bar e attrezzature per cocktail e caffetteria',
+      'Pentole, porcellane, abbigliamento e accessori',
+      'Forniture alberghiere e buffet',
+    ],
+    immagine: barImg,
     alt: 'Bancone bar rivestito in ceramica con cristalleria sospesa',
   },
   {
-    nome: 'Forniture per ristoranti, pizzerie e pasticcerie',
+    titolo: 'Arredi su misura e dehors',
     testo:
-      'Abbigliamento, pentole, porcellane, accessori per cucina, attrezzature elettriche e tanto altro per arredare ed equipaggiare la tua attività. Vieni a scoprire i dettagli speciali per una mise en place ed un arredamento che rispecchia il tuo stile.',
-    foto: '/img/prodotti/pasticcerie.webp',
-    alt: 'Banco vetrina e scaffali di una pasticceria',
-  },
-]
-
-const arredi = [
-  {
-    nome: 'Arredi e complementi',
-    testo:
-      'Sedie, tavolini e decorazioni per interno o esterno, tutti scelti per il settore Ho.Re.Ca.',
-    foto: '/img/prodotti/arredi-piazza-grande.webp',
-    alt: 'Sala con panca imbottita, tavoli scuri e sedie verdi',
-  },
-  {
-    nome: 'Arredi su misura',
-    testo:
-      'Qualunque sia il tuo stile di arredo, noi lo realizziamo su misura dei tuoi spazi.',
-    foto: '/img/prodotti/arredi-su-misura.webp',
+      'Qualunque sia il tuo stile di arredo, noi lo realizziamo su misura dei tuoi spazi: sedie, tavoli e complementi scelti per l’ho.re.ca., anche per gli spazi esterni.',
+    voci: [
+      'Arredi realizzati nel nostro laboratorio',
+      'Sedie, tavolini e complementi',
+      'Dehors per ristoranti, bar e pasticcerie',
+    ],
+    immagine: arrediImg,
     alt: 'Banconi su misura in lavorazione nel laboratorio Matarrese',
   },
   {
-    nome: 'Dehors',
+    titolo: 'Aria, lavaggio e igiene',
     testo:
-      'Soluzioni d’arredo pensate per gli spazi esterni del tuo ristorante, bar, pasticceria, pizzeria o gastronomia d’asporto.',
-    foto: '/img/prodotti/dehors.webp',
-    alt: 'Dehors con sgabelli e tavoli alti davanti a un locale',
-  },
-]
-
-const aria = [
-  {
-    nome: 'Aspirazione',
-    testo:
-      'Riduci l’emissione di fumi e odori in cucina con impianti di aspirazione, reintegro e depurazione nel rispetto dei più alti standard qualitativi.',
-    foto: '/img/prodotti/aspirazione.webp',
+      'Gestiamo il microclima di cucine, locali e laboratori: aspirazione, reintegro e depurazione dell’aria, climatizzazione, lavaggio e sanificazione degli ambienti.',
+    voci: [
+      'Aspirazione, reintegro e depurazione',
+      'Climatizzazione estiva e invernale',
+      'Lavaggio, lavanderia e sanificazione',
+    ],
+    immagine: aspirazioneImg,
     alt: 'Cappe e canalizzazioni di aspirazione in una cucina professionale',
   },
-  {
-    nome: 'Climatizzazione',
-    testo:
-      'Impianti di climatizzazione estivi e invernali a fluido ed espansione diretta di qualsiasi dimensione, per ogni ambiente commerciale.',
-    // ponytail: foto del vecchio sito a 1000 px; da sostituire con uno scatto recente di impianto finito.
-    foto: '/img/climatizzazione-prodotti.jpg',
-    alt: 'Unità esterne di climatizzazione su un tetto',
-  },
 ]
 
-// Sanificazione e lavanderia non hanno ancora foto reali nell'archivio: restano senza.
-const igiene = [
-  {
-    nome: 'Sanificazione',
-    testo:
-      'Per i tuoi ambienti di lavoro scegli una sanificazione ambientale totale, sia dell’aria che delle superfici.',
-  },
-  {
-    nome: 'Lavaggio',
-    testo:
-      'Soluzioni di lavaggio dal piccolo bar sino alla ristorazione collettiva. Macchine affidabili e tecnologiche, lavabicchieri, lavaoggetti, lavavassoi di ogni forma e dimensione.',
-    foto: '/img/prodotti/lavaggio.webp',
-    alt: 'Lavastoviglie a capote in acciaio con cestello',
-  },
-  {
-    nome: 'Lavanderia',
-    testo:
-      'Allestiamo lavanderie professionali per hotel, residence, ristoranti, case di riposo, cliniche e ovunque si debba offrire un trattamento dei tessuti.',
-  },
+const passi = [
+  [
+    'Prova in showroom',
+    'Vieni ad Alberobello e vedi le attrezzature al lavoro, prima di scegliere.',
+  ],
+  [
+    'Scelta guidata',
+    'Un consulente ti aiuta a scegliere modello e misura su menù, volumi e spazi.',
+  ],
+  [
+    'La formula giusta',
+    'Acquisto, noleggio, leasing o rate; e ti aiutiamo a capire quali agevolazioni puoi usare.',
+  ],
+  [
+    'Installazione e formazione',
+    'Le nostre squadre installano, e alla consegna formiamo il tuo personale.',
+  ],
+  [
+    'Assistenza diretta',
+    'Dopo, l’assistenza la fanno i nostri tecnici, formati dai produttori.',
+  ],
 ]
 
-const salti = [
-  ['#lavorazione', 'Lavorazione e conservazione'],
-  ['#accoglienza', 'Accoglienza'],
-  ['#trattamento-aria', 'Trattamento dell’aria'],
-  ['#igiene', 'Igiene'],
-]
-
-export default function ProductsHome() {
+export default function Prodotti() {
+  const rivela = useRef(null)
+  useRivela(rivela)
   return (
     <>
       <Head>
@@ -207,14 +192,19 @@ export default function ProductsHome() {
       />
       <Layout navbarTransparent footerInvito={false}>
         <HeroCinema
-          image="/img/prodotti/apertura-cottura.webp"
+          image={heroImg}
           alt="Linea di cottura in acciaio sotto la cappa, nella cucina di un albergo"
           objectPosition="50% 50%"
           eyebrow="Attrezzature · Arredi · Impianti · Showroom ad Alberobello"
           riga="Ogni strumento,"
           accento="al posto giusto."
           sottotitolo="Attrezzature, arredi e impianti per cucine professionali, laboratori e locali ho.re.ca., scelti tra i marchi con cui lavoriamo ogni giorno. Nel nostro showroom li vedi dal vivo."
-          voci={salti.map(([href, label]) => [label, href])}
+          voci={[
+            ['Cottura e refrigerazione', '#famiglie'],
+            ['Bar, sala e arredi', '#famiglie'],
+            ['Aria e igiene', '#famiglie'],
+            ['Dalla scelta all’installazione', '#come-scegliere'],
+          ]}
         >
           <Magnetic>
             <ContactModal variant="progetto" className="cin-btn">
@@ -222,137 +212,124 @@ export default function ProductsHome() {
               <Freccia />
             </ContactModal>
           </Magnetic>
+          <a href="#famiglie" className="cin-link whitespace-nowrap">
+            Cosa trovi da noi
+          </a>
         </HeroCinema>
 
-        <CategoryChapter
-          id="lavorazione"
-          title={
-            <>
-              Prodotti per la lavorazione{' '}
-              <span className="type-accento">
-                e conservazione degli alimenti.
+        <div ref={rivela}>
+          <section
+            id="famiglie"
+            className="scroll-mt-20 bg-[#0d0e0f] text-white"
+            data-header="dark"
+            aria-labelledby="famiglie-title"
+          >
+            <div className="site-shell pt-24 text-center md:pt-36">
+              <span className="eyebrow-cinema" data-cin-reveal>
+                Cosa trovi da noi
               </span>
-            </>
-          }
-          items={lavorazione}
-        />
-
-        <CategoryChapter
-          id="accoglienza"
-          titleId="perche-comprare-da-noi"
-          title={
-            <>
-              Tutto per <span className="type-accento">l’accoglienza.</span>
-            </>
-          }
-          items={accoglienza}
-          dark
-          reverse
-        >
-          <div className="mt-24 border-t border-inox/25 pt-16 lg:mt-32">
-            <TitoloDueTempi
-              riga="Qualità e stile"
-              accento="anche nei dettagli."
-              className="text-[clamp(32px,3.6vw,52px)] !leading-none"
-            />
-            <PhotoCards items={arredi} dark className="mt-12" />
-            <div className="mt-16">
-              <Magnetic>
-                <ContactModal
-                  variant="info"
-                  className="cin-btn"
-                  title="Vieni a trovarci in showroom."
-                  subtitle="Dicci quando preferisci passare ad Alberobello: ti facciamo trovare un consulente e le attrezzature che ti interessano."
-                >
-                  Visita il nostro showroom
-                  <Freccia />
-                </ContactModal>
-              </Magnetic>
+              <TitoloDueTempi
+                id="famiglie-title"
+                riga="Dalla cucina alla sala,"
+                accento="tutto in un posto."
+                className="mx-auto mt-6 max-w-[18ch] text-[clamp(36px,5vw,72px)] !leading-none"
+                data-cin-reveal
+                style={{'--y': '40px'}}
+              />
             </div>
-          </div>
-        </CategoryChapter>
+            <PilaCard card={famiglie} />
+          </section>
 
-        <section
-          id="trattamento-aria"
-          className="scroll-mt-20 bg-[var(--carta)] text-ghisa"
-          data-header="light"
-          aria-labelledby="trattamento-aria-title"
-        >
-          <div className="site-shell py-24 lg:py-32">
-            <TitoloDueTempi
-              id="trattamento-aria-title"
-              tono="chiaro"
-              riga="Lavora in un ambiente"
-              accento="sano e confortevole."
-              className="text-[clamp(36px,4.4vw,64px)] !leading-none"
-            />
-            <p className="mt-6 max-w-[56ch] text-lg text-acciaio">
-              Gestiamo il microclima di cucine professionali, locali
-              commerciali, laboratori alimentari e laboratori industriali
-            </p>
-            <PhotoCards items={aria} className="mt-14" />
-            <div className="mt-16">
-              <Magnetic>
-                <ContactModal variant="progetto" className="cta-ghisa">
-                  Parla con un consulente
-                </ContactModal>
-              </Magnetic>
+          <section
+            id="come-scegliere"
+            className="relative z-[1] -mt-12 scroll-mt-20 rounded-t-[32px] bg-[#121315] py-24 text-white md:rounded-t-[48px] md:py-36"
+            data-header="dark"
+            aria-labelledby="come-scegliere-title"
+          >
+            <div className="site-shell grid gap-10 lg:grid-cols-12 lg:gap-16">
+              <div className="lg:col-span-5">
+                <span className="eyebrow-cinema" data-cin-reveal>
+                  Come lavoriamo
+                </span>
+                <TitoloDueTempi
+                  id="come-scegliere-title"
+                  riga="Dalla scelta"
+                  accento="all’installazione."
+                  className="mt-6 text-[clamp(36px,5vw,72px)] !leading-none"
+                  data-cin-reveal
+                  style={{'--y': '40px'}}
+                />
+                <figure className="relative mt-9 aspect-[4/3] overflow-hidden rounded-[28px]">
+                  <Image
+                    src={showroomImg}
+                    alt="Forni e attrezzature in esposizione nello showroom"
+                    fill
+                    sizes="(min-width: 1024px) 40vw, 100vw"
+                    placeholder="blur"
+                    className="object-cover"
+                  />
+                  <figcaption className="cin-didascalia">
+                    Lo showroom di Alberobello
+                  </figcaption>
+                </figure>
+              </div>
+              <div className="lg:col-span-7">
+                <Passi passi={passi} />
+                <dl className="mt-10 grid gap-8 sm:grid-cols-2">
+                  <div>
+                    <dt className="eyebrow-cinema">Showroom</dt>
+                    <dd className="mt-3 max-w-[40ch] text-inox">
+                      Contrada Popoleto, n.c., 70011 Alberobello (BA)
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="eyebrow-cinema">Orari</dt>
+                    <dd className="mt-3 max-w-[40ch] text-inox">
+                      Lunedì – venerdì, 09:00 – 13:00 / 15:00 – 18:30
+                    </dd>
+                  </div>
+                </dl>
+                <div className="mt-10">
+                  <ContactModal
+                    variant="info"
+                    className="cin-btn"
+                    title="Vieni a trovarci in showroom."
+                    subtitle="Dicci quando preferisci passare ad Alberobello: ti facciamo trovare un consulente e le attrezzature che ti interessano."
+                  >
+                    Visita lo showroom
+                    <Freccia />
+                  </ContactModal>
+                </div>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
 
-        <CategoryChapter
-          id="igiene"
-          title={
-            <>
-              Igiene <span className="type-accento">e sanificazione.</span>
-            </>
-          }
-          intro="Possiamo aiutarti a mantenere i tuoi ambienti puliti ed igienizzati"
-          items={igiene}
-          dark
-        />
-
-        {/* Fascia marchi */}
+        {/* Marchi: su bianco, la fascia usa mix-blend-multiply */}
         <section
-          className="border-b border-ghisa/10 bg-white text-ghisa"
+          className="bg-[var(--carta)] py-16 text-ghisa lg:py-24"
           data-header="light"
           aria-labelledby="marchi-title"
         >
-          <div className="site-shell pb-8 pt-16">
-            <TitoloDueTempi
-              id="marchi-title"
-              tono="chiaro"
-              riga="I marchi con cui"
-              accento="lavoriamo ogni giorno."
-              className="text-[clamp(30px,3.2vw,48px)] !leading-none"
-            />
-          </div>
-          <div className="pb-16">
-            <BrandMarquee logos={logos} />
-          </div>
-        </section>
-
-        <section
-          className="bg-[var(--carta)] text-ghisa"
-          data-header="light"
-          aria-labelledby="recensioni-title"
-        >
-          <div className="site-shell py-24 lg:py-32">
-            <TitoloDueTempi
-              id="recensioni-title"
-              tono="chiaro"
-              riga="Cosa dicono"
-              accento="i clienti."
-              className="text-[clamp(32px,3.6vw,56px)] !leading-none"
-            />
-            <div className="mt-8">
-              <Testimonials items={testimonials} />
+          <div className="site-shell">
+            <div className="overflow-hidden rounded-[28px] bg-white">
+              <div className="px-8 pb-8 pt-12 md:px-12 lg:px-16">
+                <TitoloDueTempi
+                  id="marchi-title"
+                  tono="chiaro"
+                  riga="I marchi con cui"
+                  accento="lavoriamo ogni giorno."
+                  className="text-[clamp(30px,3.2vw,48px)] !leading-none"
+                />
+              </div>
+              <div className="pb-12">
+                <BrandMarquee logos={logos} />
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Chiusura su foto, come nelle altre pagine: il modulo a passi sostituisce quello lungo */}
+        {/* Chiusura su foto, come nelle altre pagine */}
         <section
           id="contatti"
           className="relative overflow-hidden py-28 text-center text-white md:py-40"
