@@ -9,6 +9,7 @@ import heroImg from '../../public/img/settori/rist-auraterrae.webp'
 import Image from 'next/image'
 import Link from 'next/link'
 import {CaricaAltri} from '../../components/editoriale/FiltriArchivio'
+import Scelta from '../../components/cinema/Scelta'
 
 import {filterPosts} from '../../actions/utils/blog'
 import {getProjects} from '../../lib/query/project'
@@ -132,84 +133,46 @@ export default function Realizzazioni({data}) {
           aria-label="Archivio delle realizzazioni"
         >
           <div className="site-shell pb-24 pt-12 lg:pb-32 lg:pt-16">
-            {/* Barra unica: resta sotto l'header mentre si scorre l'archivio */}
-            <div className="cin-barra" role="search">
-              <label className="cin-barra__cerca">
-                <span className="sr-only">Cerca tra le realizzazioni</span>
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  aria-hidden="true"
-                >
-                  <circle
-                    cx="11"
-                    cy="11"
-                    r="7"
-                    stroke="currentColor"
-                    strokeWidth="2"
+            {/* Ricerca editoriale: riga grande, conteggio in corsivo, filtri a pillola sotto */}
+            <div role="search">
+              <div className="cin-cerca">
+                <label className="min-w-0 flex-1">
+                  <span className="sr-only">Cerca tra le realizzazioni</span>
+                  <input
+                    ref={searchInputRef}
+                    type="search"
+                    placeholder="Cerca un locale…"
+                    value={queryValue}
+                    onChange={e =>
+                      setQuery(e.currentTarget.value.toLocaleLowerCase())
+                    }
+                    onKeyUp={e => {
+                      if (e.key !== 'Enter') return
+                      resultsRef.current
+                        ?.querySelector('a')
+                        ?.focus({preventScroll: true})
+                      resultsRef.current?.scrollIntoView({behavior: 'smooth'})
+                      fbq.event('Search', {
+                        content_category: 'realizzazioni',
+                        search_string: query,
+                      })
+                      router.push(
+                        {query: {q: e.currentTarget.value.toLocaleLowerCase()}},
+                        '',
+                        {scroll: false},
+                      )
+                    }}
                   />
-                  <path
-                    d="m20 20-3.5-3.5"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  />
-                </svg>
-                <input
-                  ref={searchInputRef}
-                  type="search"
-                  placeholder="Cerca un locale o una città"
-                  value={queryValue}
-                  onChange={e =>
-                    setQuery(e.currentTarget.value.toLocaleLowerCase())
-                  }
-                  onKeyUp={e => {
-                    if (e.key !== 'Enter') return
-                    resultsRef.current
-                      ?.querySelector('a')
-                      ?.focus({preventScroll: true})
-                    resultsRef.current?.scrollIntoView({behavior: 'smooth'})
-                    fbq.event('Search', {
-                      content_category: 'realizzazioni',
-                      search_string: query,
-                    })
-                    router.push(
-                      {query: {q: e.currentTarget.value.toLocaleLowerCase()}},
-                      '',
-                      {
-                        scroll: false,
-                      },
-                    )
-                  }}
-                />
-              </label>
-              <label className="cin-barra__scelta">
-                <span className="sr-only">Settore</span>
-                <select
-                  value={settore}
-                  onChange={e => setSettore(e.target.value)}
-                >
-                  <option value="">Tutti i settori</option>
-                  {data.categories.map(c => (
-                    <option key={c}>{c}</option>
-                  ))}
-                </select>
-              </label>
-              <label className="cin-barra__scelta">
-                <span className="sr-only">Anno</span>
-                <select value={anno} onChange={e => setAnno(e.target.value)}>
-                  <option value="">Ogni anno</option>
-                  {data.tags.map(t => (
-                    <option key={t}>{t}</option>
-                  ))}
-                </select>
-              </label>
-              {filtri ? (
+                </label>
+                <p className="cin-cerca__conta" aria-live="polite">
+                  {posts.length} {posts.length === 1 ? 'progetto' : 'progetti'}
+                </p>
+              </div>
+              <div className="relative mt-5 flex flex-wrap items-center gap-2">
                 <button
                   type="button"
-                  className="cin-barra__conta"
+                  className={`cin-pill ${filtri ? '' : 'is-on'}`}
+                  aria-pressed={!filtri}
                   onClick={() => {
                     setQuery('')
                     setSettore('')
@@ -217,18 +180,32 @@ export default function Realizzazioni({data}) {
                     router.push({query: {}}, '', {scroll: false})
                   }}
                 >
-                  {posts.length} {posts.length === 1 ? 'progetto' : 'progetti'}
-                  <span aria-hidden="true">×</span>
-                  <span className="sr-only">: azzera i filtri</span>
+                  Tutti
                 </button>
-              ) : (
-                <span className="cin-barra__conta" aria-live="polite">
-                  {posts.length} progetti
-                </span>
-              )}
+                <Scelta
+                  label="Settore"
+                  tutti="Tutti i settori"
+                  opzioni={data.categories}
+                  valore={settore}
+                  onChange={setSettore}
+                />
+                <Scelta
+                  label="Anno"
+                  tutti="Ogni anno"
+                  opzioni={data.tags}
+                  valore={anno}
+                  onChange={setAnno}
+                />
+              </div>
+              {/* L'archivio è una selezione: senza questa nota un anno con un progetto sembra un anno con un lavoro */}
+              <p className="mt-6 max-w-[62ch] text-acciaio">
+                Qui raccontiamo solo una selezione: dal 1983 abbiamo realizzato
+                molti più locali di quelli in archivio, e ogni anno se ne
+                aggiungono di nuovi.
+              </p>
             </div>
 
-            <div ref={resultsRef} className="mt-10 scroll-mt-40 lg:mt-14">
+            <div ref={resultsRef} className="mt-12 scroll-mt-28 lg:mt-16">
               {posts.length === 0 ? (
                 <p className="type-display max-w-[24ch] py-16 text-[clamp(24px,2.6vw,36px)]">
                   Nessun progetto con questi criteri. Prova a togliere un

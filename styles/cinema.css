@@ -726,91 +726,110 @@
   }
 }
 
-/* ---- Archivio realizzazioni: barra unica e griglia a rivista ---- */
-.cin-barra {
-  position: sticky;
-  top: 88px;
-  z-index: 20;
+/* ---- Archivio realizzazioni: ricerca editoriale, pillole, griglia a rivista ---- */
+.cin-cerca {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-  padding: 8px;
-  border-radius: 28px;
-  background: #1e2226;
-  color: var(--carta);
-  box-shadow: 0 12px 32px rgb(30 34 38 / 0.18);
+  align-items: baseline;
+  gap: 8px 24px;
+  border-bottom: 1.5px solid var(--ghisa);
+  padding-bottom: 12px;
 }
-.cin-barra__cerca {
-  display: flex;
-  flex: 1 1 260px;
-  align-items: center;
-  gap: 10px;
-  padding: 0 14px;
-  color: rgb(243 238 230 / 0.6);
-}
-.cin-barra__cerca input {
+.cin-cerca input {
   width: 100%;
-  min-height: 44px;
   border: 0;
   background: transparent;
-  color: #fff;
-  font-size: 16px;
+  color: var(--ghisa);
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3.4vw, 48px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
 }
-.cin-barra__cerca input::placeholder {
-  color: rgb(243 238 230 / 0.55);
+.cin-cerca input::placeholder {
+  color: rgb(30 34 38 / 0.35);
 }
-.cin-barra__cerca input:focus {
+.cin-cerca input:focus {
   outline: none;
 }
-.cin-barra__cerca:focus-within {
-  color: #fff;
+.cin-cerca:focus-within {
+  border-color: var(--fiamma-testo);
 }
-.cin-barra__scelta select {
-  min-height: 44px;
-  padding: 0 38px 0 16px;
-  border: 1px solid rgb(243 238 230 / 0.25);
-  border-radius: 999px;
-  background: transparent
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none'%3E%3Cpath d='m2 4 4 4 4-4' stroke='%23f3eee6' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E")
-    no-repeat right 14px center;
-  color: #fff;
-  font-size: 15px;
-  appearance: none;
-  cursor: pointer;
+.cin-cerca__conta {
+  margin: 0;
+  font-family: var(--font-accent), Georgia, serif;
+  font-style: italic;
+  font-size: clamp(22px, 2vw, 28px);
+  color: var(--acciaio-testo);
+  white-space: nowrap;
 }
-.cin-barra__scelta select:hover {
-  border-color: rgb(243 238 230 / 0.6);
-}
-.cin-barra__scelta option {
-  color: #1e2226;
-}
-.cin-barra__conta {
+.cin-pill {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   min-height: 44px;
   padding: 0 18px;
+  border: 1px solid rgb(30 34 38 / 0.2);
   border-radius: 999px;
-  background: var(--fiamma);
-  color: #120a00;
+  background: transparent;
+  color: var(--ghisa);
   font-size: 15px;
-  font-weight: 600;
-  white-space: nowrap;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
 }
-.cin-barra :focus-visible {
-  outline: 2px solid var(--fiamma);
-  outline-offset: 2px;
+.cin-pill:hover {
+  border-color: var(--ghisa);
 }
-@media (max-width: 760px) {
-  .cin-barra {
-    top: 76px;
+.cin-pill.is-on {
+  border-color: var(--ghisa);
+  background: var(--ghisa);
+  color: var(--carta);
+}
+.cin-pill[aria-expanded='true'] svg {
+  transform: rotate(180deg);
+}
+.cin-scelta {
+  position: relative;
+}
+.cin-scelta__pannello {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 30;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, max-content));
+  gap: 2px;
+  width: max-content;
+  max-width: min(560px, calc(100vw - 32px));
+  padding: 8px;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgb(30 34 38 / 0.1), 0 18px 40px rgb(30 34 38 / 0.14);
+  animation: cinFadeRise 0.25s var(--cin-ease) both;
+  --rise: 6px;
+}
+.cin-scelta__pannello button {
+  padding: 10px 14px;
+  border-radius: 12px;
+  color: var(--ghisa);
+  font-size: 15px;
+  text-align: left;
+}
+.cin-scelta__pannello button:hover {
+  background: var(--carta);
+}
+.cin-scelta__pannello button[aria-pressed='true'] {
+  background: var(--ghisa);
+  color: var(--carta);
+}
+/* Su telefono il pannello prende tutta la riga dei filtri, anche aperto dall'ultima pillola */
+@media (max-width: 640px) {
+  .cin-scelta {
+    position: static;
   }
-  .cin-barra__scelta {
-    flex: 1 1 0;
-  }
-  .cin-barra__scelta select {
-    width: 100%;
+  .cin-scelta__pannello {
+    right: 0;
+    width: auto;
+    max-width: none;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
