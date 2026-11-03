@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 
@@ -6,41 +6,25 @@ import Layout from '../components/Layout'
 import ContactModal from '../components/Form/ContactModal'
 import Magnetic from '../components/Magnetic'
 
-// La 404 è una comanda di cucina: il piatto chiesto è esaurito, le portate disponibili sono i link.
-// Il campanello da banco è l'easter egg: a ogni colpo lo chef risponde, all'ultimo ristampa la comanda.
-const PORTATE = [
-  ['/', 'Home'],
-  ['/servizi', 'Servizi'],
-  ['/realizzazioni', 'Realizzazioni'],
-  ['/assistenza', 'Assistenza'],
+// La 404 è il pannello di un forno combinato in errore: i programmi sono i link.
+// Easter egg: ogni «Reset» prova a ripartire, al terzo il display chiede il nostro service.
+const PROGRAMMI = [
+  ['/', 'P1', 'Home'],
+  ['/servizi', 'P2', 'Servizi'],
+  ['/realizzazioni', 'P3', 'Realizzazioni'],
+  ['/assistenza', 'P4', 'Assistenza'],
 ]
-const CHEF = [
-  'Servizio!',
-  'Arriva, arriva…',
-  'Lo chef la sta cercando in cella frigo.',
-  'Niente, è proprio finita. Ti ristampiamo la comanda.',
+const DISPLAY = [
+  ['E-404', 'Pagina non trovata'],
+  ['E-404', 'Riavviato. L’errore resta.'],
+  ['CL-02', 'Ciclo di pulizia: non è servito.'],
+  ['SErv', 'Qui serve il nostro service.'],
 ]
 
 export default function NonTrovata() {
-  const [ora, setOra] = useState('--:--')
-  const [colpi, setColpi] = useState(0)
-  const [stampa, setStampa] = useState(0)
-
-  // L'ora si legge solo nel browser: l'HTML statico non sa quando arrivi
-  useEffect(() => {
-    setOra(
-      new Date().toLocaleTimeString('it-IT', {
-        hour: '2-digit',
-        minute: '2-digit',
-      }),
-    )
-  }, [])
-
-  function suona() {
-    const n = colpi + 1
-    setColpi(n)
-    if (n === CHEF.length) setStampa(s => s + 1)
-  }
+  const [reset, setReset] = useState(0)
+  const [codice, messaggio] = DISPLAY[Math.min(reset, DISPLAY.length - 1)]
+  const service = reset >= DISPLAY.length - 1
 
   return (
     <>
@@ -55,21 +39,20 @@ export default function NonTrovata() {
           data-header="dark"
           aria-labelledby="page-title"
         >
-          <div className="site-shell grid items-start gap-14 pb-20 pt-36 lg:grid-cols-[1.1fr_1fr] lg:gap-20 lg:pb-28 lg:pt-44">
+          <div className="site-shell grid items-center gap-14 pb-20 pt-36 lg:grid-cols-[1.05fr_1fr] lg:gap-20 lg:pb-28 lg:pt-44">
             <div>
               <h1
                 id="page-title"
                 className="cin-titolo type-display max-w-[16ch] text-[clamp(40px,6vw,96px)] !leading-none"
               >
                 <span>Questa pagina</span>{' '}
-                <span className="type-accento">è uscita dal menu.</span>
+                <span className="type-accento">è andata in errore.</span>
               </h1>
-              <p className="mt-7 max-w-[46ch] text-lg text-[rgb(243_238_230/.75)] lg:text-xl">
-                Forse l’indirizzo è cambiato, forse il piatto non c’è più. In
-                cucina però il resto è pronto: scegli dalla comanda, o chiedi a
-                noi.
+              <p className="mt-7 max-w-[44ch] text-lg text-[rgb(243_238_230/.75)] lg:text-xl">
+                Capita anche alle macchine migliori. I programmi però funzionano:
+                scegline uno dal pannello.
               </p>
-              <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-5">
+              <div className="mt-10">
                 <Magnetic>
                   <ContactModal
                     variant="info"
@@ -77,52 +60,49 @@ export default function NonTrovata() {
                     title="Dicci cosa cercavi."
                     subtitle="Ti aiutiamo a trovarlo, o ti ricontatta un nostro consulente."
                   >
-                    Chiedi alla sala
+                    Segnala il problema
                   </ContactModal>
                 </Magnetic>
-                <button
-                  type="button"
-                  className="nf-campanello"
-                  onClick={suona}
-                  aria-describedby="nf-chef"
-                >
-                  <svg viewBox="0 0 48 40" aria-hidden="true" key={colpi}>
-                    <path d="M24 6v4M8 32a16 16 0 0 1 32 0Z" />
-                    <path d="M3 36h42" />
-                    <circle cx="24" cy="5" r="2.5" />
-                  </svg>
-                  Suona il campanello
-                </button>
               </div>
-              <p id="nf-chef" className="nf-chef" aria-live="polite">
-                {colpi ? CHEF[(colpi - 1) % CHEF.length] : ' '}
-              </p>
             </div>
 
-            <div className="nf-stampante">
-              <div className="nf-fessura" aria-hidden="true" />
-              <div className="nf-comanda" key={stampa}>
-                <p className="nf-testa">
-                  <span>Comanda n. 404</span>
-                  <span>{ora}</span>
-                </p>
-                <p className="nf-riga">Tavolo: ?</p>
-                <p className="nf-riga nf-esaurito">
-                  <span>1× la pagina che cercavi</span>
-                  <b>esaurita</b>
-                </p>
-                <p className="nf-sotto">Disponibili oggi</p>
-                <ul>
-                  {PORTATE.map(([href, label]) => (
-                    <li key={href} className="nf-riga">
-                      <Link href={href}>
-                        <span>1× {label}</span>
-                        <span aria-hidden="true">→</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-                <p className="nf-piede">Grazie e torna presto</p>
+            <div className="nf-forno">
+              <div className="nf-display" role="status" aria-live="polite">
+                <span className="nf-codice" key={reset}>
+                  {codice}
+                </span>
+                <span className="nf-temp" aria-hidden="true">
+                  0°C
+                </span>
+                <span className="nf-msg">{messaggio}</span>
+              </div>
+
+              <nav aria-label="Programmi" className="nf-programmi">
+                {PROGRAMMI.map(([href, p, label]) => (
+                  <Link key={href} href={href} className="nf-tasto">
+                    <b>{p}</b>
+                    {label}
+                  </Link>
+                ))}
+              </nav>
+
+              <div className="nf-piede">
+                {service ? (
+                  <Link href="/assistenza" className="nf-service">
+                    Chiama il service
+                  </Link>
+                ) : (
+                  <span className="nf-sigla" aria-hidden="true">
+                    Matarrese · combi 404
+                  </span>
+                )}
+                <button
+                  type="button"
+                  className="nf-reset"
+                  onClick={() => setReset(r => r + 1)}
+                >
+                  Reset
+                </button>
               </div>
             </div>
           </div>

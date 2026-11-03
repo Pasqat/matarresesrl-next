@@ -1149,139 +1149,129 @@
   background: var(--fiamma);
 }
 
-/* 404: comanda che esce dalla stampante di cucina (pages/404.js) */
-.nf-stampante {
-  position: relative;
+/* 404: pannello di un forno combinato in errore (pages/404.js) */
+.nf-forno {
   justify-self: center;
-  width: min(380px, 100%);
-  padding-top: 10px;
-  overflow: hidden;
+  width: min(460px, 100%);
+  padding: 22px;
+  border-radius: 28px;
+  background: linear-gradient(160deg, #3a3f44, #24282c 55%, #1b1e21);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.12),
+    0 40px 90px -40px rgb(0 0 0 / 0.9);
 }
-.nf-fessura {
-  position: absolute;
-  inset: 0 -12px auto;
-  z-index: 1;
-  height: 14px;
-  border-radius: 999px;
-  background: #26292c;
-  box-shadow: inset 0 3px 6px rgb(0 0 0 / 0.6);
-}
-.nf-comanda {
-  margin-inline: 8px;
-  padding: 30px 26px 40px;
-  background: #fbfaf6;
-  color: #1e2226;
+.nf-display {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 4px 16px;
+  padding: 22px 22px 18px;
+  border-radius: 16px;
+  background: #050606;
+  box-shadow: inset 0 2px 14px rgb(0 0 0 / 0.9);
   font-family: ui-monospace, 'Cascadia Mono', 'Courier New', monospace;
-  font-size: 15px;
-  line-height: 1.5;
-  /* bordo strappato in fondo */
-  -webkit-mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / 16px 100%;
-  mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / 16px 100%;
-  animation: nf-stampa 1.8s steps(18, end) both;
 }
-@keyframes nf-stampa {
-  from {
-    transform: translateY(-100%);
+.nf-codice {
+  font-size: clamp(48px, 7vw, 72px);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--fiamma);
+  text-shadow: 0 0 18px rgb(222 124 0 / 0.55);
+  animation: nf-lampeggia 1.2s steps(2, jump-none) 3;
+}
+@keyframes nf-lampeggia {
+  50% {
+    opacity: 0.15;
   }
 }
-.nf-comanda p,
-.nf-comanda ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+.nf-temp {
+  font-size: 18px;
+  color: rgb(222 124 0 / 0.55);
 }
-.nf-testa {
+.nf-msg {
+  grid-column: 1 / -1;
+  min-height: 1.5em;
+  font-size: 15px;
+  color: rgb(243 238 230 / 0.8);
+}
+.nf-programmi {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 18px;
+}
+.nf-tasto {
   display: flex;
-  justify-content: space-between;
-  padding-bottom: 12px;
-  border-bottom: 1px dashed rgb(30 34 38 / 0.4);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-.nf-riga {
-  padding: 8px 0;
-}
-.nf-riga a,
-.nf-esaurito {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-}
-.nf-riga a {
-  color: inherit;
-  text-decoration: none;
-}
-.nf-riga a:hover span:first-child {
-  text-decoration: underline;
-  text-decoration-color: var(--fiamma);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 4px;
-}
-.nf-esaurito span {
-  text-decoration: line-through;
-}
-.nf-esaurito b {
-  padding: 0 6px;
-  border: 2px solid #b42318;
-  color: #b42318;
-  text-transform: uppercase;
-  transform: rotate(-4deg);
-}
-.nf-sotto {
-  margin-top: 12px !important;
-  padding: 12px 0 4px !important;
-  border-top: 1px dashed rgb(30 34 38 / 0.4);
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #5b636b;
-}
-.nf-piede {
-  margin-top: 18px !important;
-  padding-top: 12px !important;
-  border-top: 1px dashed rgb(30 34 38 / 0.4);
-  text-align: center;
-  font-size: 13px;
-  color: #5b636b;
-}
-.nf-campanello {
-  display: inline-flex;
   align-items: center;
   gap: 12px;
-  padding: 10px 0;
+  min-height: 52px;
+  padding: 0 16px;
+  border-radius: 12px;
+  background: #2e3337;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.08),
+    0 2px 0 #121416;
   color: #fff;
-  border-bottom: 1px solid rgb(255 255 255 / 0.4);
+  font-size: 16px;
+  transition:
+    background-color 0.2s,
+    transform 0.15s;
 }
-.nf-campanello svg {
-  width: 30px;
-  height: 25px;
-  fill: none;
-  stroke: var(--fiamma);
-  stroke-width: 2.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  transform-origin: 50% 90%;
-  animation: nf-squillo 0.5s ease-out;
-}
-@keyframes nf-squillo {
-  20% { transform: rotate(-14deg); }
-  40% { transform: rotate(11deg); }
-  60% { transform: rotate(-7deg); }
-  80% { transform: rotate(4deg); }
-}
-.nf-chef {
-  margin-top: 14px;
-  min-height: 1.5em;
-  font-family: var(--font-accent);
-  font-style: italic;
-  font-size: 22px;
+.nf-tasto b {
+  font-family: ui-monospace, 'Cascadia Mono', 'Courier New', monospace;
+  font-size: 13px;
   color: var(--fiamma);
 }
+.nf-tasto:hover {
+  background: #383e43;
+}
+.nf-tasto:active {
+  transform: translateY(2px);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.05);
+}
+.nf-piede {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 20px;
+}
+.nf-sigla {
+  font-size: 13px;
+  color: rgb(243 238 230 / 0.45);
+}
+.nf-service {
+  color: var(--fiamma);
+  font-weight: 600;
+  border-bottom: 1px solid currentColor;
+  padding: 6px 0;
+}
+.nf-reset {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 35% 30%, #4a5056, #24282c 70%);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.15),
+    0 3px 0 #101214;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  transition: transform 0.15s;
+}
+.nf-reset:active {
+  transform: translateY(2px) rotate(-20deg);
+}
 @media (prefers-reduced-motion: reduce) {
-  .nf-comanda,
-  .nf-campanello svg {
+  .nf-codice {
     animation: none;
+  }
+  .nf-tasto,
+  .nf-reset {
+    transition: none;
   }
 }
 
