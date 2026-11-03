@@ -20,14 +20,18 @@ export default function CategoryChapter({
   return (
     <section
       id={id}
-      className={dark ? 'bg-ghisa text-white' : 'bg-calce text-ghisa'}
+      className={
+        dark
+          ? 'bg-[#121315] text-white [&_:focus-visible]:outline-fiamma'
+          : 'bg-[var(--carta)] text-ghisa'
+      }
       data-header={dark ? 'dark' : 'light'}
       aria-labelledby={titleId}
     >
       <div className="site-shell py-24 lg:py-32">
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
           <div
-            className={`relative isolate flex min-h-[420px] flex-col justify-end overflow-hidden bg-grafite p-7 text-white md:p-10 lg:sticky lg:top-24 lg:col-span-5 lg:min-h-[min(560px,calc(100svh-8rem))] lg:self-start ${
+            className={`relative isolate flex min-h-[420px] flex-col justify-end overflow-hidden rounded-[28px] bg-grafite p-7 text-white md:p-10 lg:sticky lg:top-28 lg:col-span-5 lg:min-h-[min(560px,calc(100svh-8rem))] lg:self-start ${
               reverse ? 'lg:order-last' : ''
             }`}
           >
@@ -50,7 +54,7 @@ export default function CategoryChapter({
             </div>
             <h2
               id={titleId}
-              className="type-display text-[clamp(30px,3.2vw,52px)]"
+              className="cin-titolo type-display text-[clamp(32px,3.6vw,56px)] !leading-none [&_.type-accento]:text-[rgb(243_238_230/.8)]"
             >
               {title}
             </h2>
@@ -83,7 +87,7 @@ export default function CategoryChapter({
                   {item.testo}
                 </p>
                 {item.foto && (
-                  <div className="relative mt-6 aspect-[3/2] overflow-hidden [@media(hover:hover)_and_(pointer:fine)]:hidden">
+                  <div className="relative mt-6 aspect-[3/2] overflow-hidden rounded-[24px] [@media(hover:hover)_and_(pointer:fine)]:hidden">
                     <Image
                       src={item.foto}
                       alt={item.alt}

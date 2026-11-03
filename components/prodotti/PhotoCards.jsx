@@ -11,7 +11,7 @@ export default function PhotoCards({items, dark = false, className = ''}) {
     >
       {items.map(item => (
         <li key={item.nome} className="group">
-          <div className="relative aspect-[4/3] overflow-hidden bg-grafite">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-[24px] bg-grafite">
             {item.foto && (
               <Image
                 src={item.foto}

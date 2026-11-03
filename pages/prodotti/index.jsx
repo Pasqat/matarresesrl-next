@@ -1,11 +1,13 @@
 import Head from 'next/head'
-import Link from 'next/link'
 
-import ContactForm from '../../components/Form/ContactForm'
 import ContactModal from '../../components/Form/ContactModal'
 import Layout from '../../components/Layout'
 import Magnetic from '../../components/Magnetic'
-import PageHero from '../../components/PageHero'
+import HeroCinema from '../../components/cinema/HeroCinema'
+import TitoloDueTempi from '../../components/cinema/TitoloDueTempi'
+import {Freccia} from '../../components/cinema/BottoneFreccia'
+import Image from 'next/image'
+import chiusuraImg from '../../public/img/servizi/chiusura-cuoco.webp'
 import BrandMarquee from '../../components/home/BrandMarquee'
 import Testimonials from '../../components/home/Testimonials'
 import CategoryChapter from '../../components/prodotti/CategoryChapter'
@@ -14,7 +16,6 @@ import StructuredData from '../../components/StructuredData'
 
 import {logos} from '../../data/partner-logo'
 import testimonials from '../../data/testimonials'
-import {getGroups} from '../../lib/newsletter'
 import {itemListSchema, breadcrumbSchema} from '../../lib/seo/schema'
 
 const CATEGORIE_PRODOTTO = [
@@ -157,7 +158,7 @@ const salti = [
   ['#igiene', 'Igiene'],
 ]
 
-export default function ProductsHome({groups}) {
+export default function ProductsHome() {
   return (
     <>
       <Head>
@@ -204,67 +205,67 @@ export default function ProductsHome({groups}) {
       <StructuredData
         data={breadcrumbSchema([{name: 'Prodotti', path: '/prodotti'}])}
       />
-      <Layout navbarTransparent>
-        <PageHero
-          title="Ogni strumento, al posto giusto."
-          intro="Attrezzature, arredi e impianti per cucine professionali, laboratori e locali ho.re.ca., scelti tra i marchi con cui lavoriamo ogni giorno. Nel nostro showroom li vedi dal vivo."
-          image={{
-            src: '/img/prodotti/apertura-cottura.webp',
-            alt: 'Linea di cottura in acciaio sotto la cappa, nella cucina di un albergo',
-          }}
+      <Layout navbarTransparent footerInvito={false}>
+        <HeroCinema
+          image="/img/prodotti/apertura-cottura.webp"
+          alt="Linea di cottura in acciaio sotto la cappa, nella cucina di un albergo"
+          objectPosition="50% 50%"
+          eyebrow="Attrezzature · Arredi · Impianti · Showroom ad Alberobello"
+          riga="Ogni strumento,"
+          accento="al posto giusto."
+          sottotitolo="Attrezzature, arredi e impianti per cucine professionali, laboratori e locali ho.re.ca., scelti tra i marchi con cui lavoriamo ogni giorno. Nel nostro showroom li vedi dal vivo."
+          voci={salti.map(([href, label]) => [label, href])}
         >
           <Magnetic>
-            <ContactModal
-              variant="progetto"
-              className="cta-fiamma focus-visible:outline-fiamma"
-            >
+            <ContactModal variant="progetto" className="cin-btn">
               Parla con un consulente
+              <Freccia />
             </ContactModal>
           </Magnetic>
-          <nav
-            aria-label="Categorie di prodotto"
-            className="flex flex-wrap gap-x-6 gap-y-2"
-          >
-            {salti.map(([href, label]) => (
-              <Link
-                key={href}
-                href={href}
-                className="border-b border-inox/40 py-2 text-inox transition-colors hover:border-white hover:text-white focus-visible:outline-fiamma"
-              >
-                {label}
-              </Link>
-            ))}
-          </nav>
-        </PageHero>
+        </HeroCinema>
 
         <CategoryChapter
           id="lavorazione"
-          title="Prodotti per la lavorazione e conservazione degli alimenti"
+          title={
+            <>
+              Prodotti per la lavorazione{' '}
+              <span className="type-accento">
+                e conservazione degli alimenti.
+              </span>
+            </>
+          }
           items={lavorazione}
         />
 
         <CategoryChapter
           id="accoglienza"
           titleId="perche-comprare-da-noi"
-          title="Tutto per l’accoglienza"
+          title={
+            <>
+              Tutto per <span className="type-accento">l’accoglienza.</span>
+            </>
+          }
           items={accoglienza}
           dark
           reverse
         >
           <div className="mt-24 border-t border-inox/25 pt-16 lg:mt-32">
-            <h2 className="type-display max-w-[20ch] text-[clamp(30px,3.2vw,52px)]">
-              Qualità e stile anche nei dettagli
-            </h2>
+            <TitoloDueTempi
+              riga="Qualità e stile"
+              accento="anche nei dettagli."
+              className="text-[clamp(32px,3.6vw,52px)] !leading-none"
+            />
             <PhotoCards items={arredi} dark className="mt-12" />
             <div className="mt-16">
               <Magnetic>
                 <ContactModal
                   variant="info"
-                  className="cta-fiamma focus-visible:outline-fiamma"
+                  className="cin-btn"
                   title="Vieni a trovarci in showroom."
                   subtitle="Dicci quando preferisci passare ad Alberobello: ti facciamo trovare un consulente e le attrezzature che ti interessano."
                 >
                   Visita il nostro showroom
+                  <Freccia />
                 </ContactModal>
               </Magnetic>
             </div>
@@ -273,17 +274,18 @@ export default function ProductsHome({groups}) {
 
         <section
           id="trattamento-aria"
-          className="bg-calce text-ghisa"
+          className="scroll-mt-20 bg-[var(--carta)] text-ghisa"
           data-header="light"
           aria-labelledby="trattamento-aria-title"
         >
           <div className="site-shell py-24 lg:py-32">
-            <h2
+            <TitoloDueTempi
               id="trattamento-aria-title"
-              className="type-display max-w-[20ch] text-[clamp(32px,3.6vw,56px)]"
-            >
-              Lavora in un ambiente sano e confortevole
-            </h2>
+              tono="chiaro"
+              riga="Lavora in un ambiente"
+              accento="sano e confortevole."
+              className="text-[clamp(36px,4.4vw,64px)] !leading-none"
+            />
             <p className="mt-6 max-w-[56ch] text-lg text-acciaio">
               Gestiamo il microclima di cucine professionali, locali
               commerciali, laboratori alimentari e laboratori industriali
@@ -301,7 +303,11 @@ export default function ProductsHome({groups}) {
 
         <CategoryChapter
           id="igiene"
-          title="Igiene e sanificazione"
+          title={
+            <>
+              Igiene <span className="type-accento">e sanificazione.</span>
+            </>
+          }
           intro="Possiamo aiutarti a mantenere i tuoi ambienti puliti ed igienizzati"
           items={igiene}
           dark
@@ -314,12 +320,13 @@ export default function ProductsHome({groups}) {
           aria-labelledby="marchi-title"
         >
           <div className="site-shell pb-8 pt-16">
-            <h2
+            <TitoloDueTempi
               id="marchi-title"
-              className="type-display text-[clamp(24px,2.4vw,36px)]"
-            >
-              I marchi con cui lavoriamo ogni giorno.
-            </h2>
+              tono="chiaro"
+              riga="I marchi con cui"
+              accento="lavoriamo ogni giorno."
+              className="text-[clamp(30px,3.2vw,48px)] !leading-none"
+            />
           </div>
           <div className="pb-16">
             <BrandMarquee logos={logos} />
@@ -327,54 +334,63 @@ export default function ProductsHome({groups}) {
         </section>
 
         <section
-          className="bg-calce text-ghisa"
+          className="bg-[var(--carta)] text-ghisa"
           data-header="light"
           aria-labelledby="recensioni-title"
         >
           <div className="site-shell py-24 lg:py-32">
-            <h2
+            <TitoloDueTempi
               id="recensioni-title"
-              className="type-display text-[clamp(24px,2.4vw,36px)]"
-            >
-              Cosa dicono i clienti.
-            </h2>
+              tono="chiaro"
+              riga="Cosa dicono"
+              accento="i clienti."
+              className="text-[clamp(32px,3.6vw,56px)] !leading-none"
+            />
             <div className="mt-8">
               <Testimonials items={testimonials} />
             </div>
           </div>
         </section>
 
+        {/* Chiusura su foto, come nelle altre pagine: il modulo a passi sostituisce quello lungo */}
         <section
-          className="bg-white text-ghisa"
-          data-header="light"
           id="contatti"
+          className="relative overflow-hidden py-28 text-center text-white md:py-40"
+          data-header="dark"
           aria-labelledby="contatto-title"
         >
-          <div className="site-shell grid gap-6 pb-10 pt-24 lg:grid-cols-12 lg:pt-32">
-            <h2
+          <Image
+            src={chiusuraImg}
+            alt=""
+            fill
+            sizes="100vw"
+            placeholder="blur"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-[#0d0e0f]/[.8]" />
+          <div className="site-shell relative max-w-[860px]">
+            <TitoloDueTempi
               id="contatto-title"
-              className="type-display text-[clamp(32px,3.6vw,56px)] lg:col-span-7"
-            >
-              Hai un progetto da realizzare o hai bisogno di informazioni?
-            </h2>
-            <p className="max-w-[40ch] text-acciaio lg:col-span-4 lg:col-start-9 lg:self-end">
-              Completa questo modulo, un nostro consulente ti ricontatterà.
-            </p>
-          </div>
-          <div className="pb-24">
-            <ContactForm groups={groups} compact />
+              riga="Hai un progetto"
+              accento="o ti serve un’informazione?"
+              className="text-[clamp(36px,5vw,72px)] !leading-none"
+            />
+            <div className="mt-10 flex flex-wrap justify-center gap-3.5">
+              <ContactModal
+                variant="progetto"
+                source="prodotti-chiusura"
+                className="cin-btn"
+              >
+                Parla con un consulente
+                <Freccia />
+              </ContactModal>
+              <a href="tel:+390804323431" className="cin-btn cin-btn--ghost">
+                Chiama +39 080 4323 431
+              </a>
+            </div>
           </div>
         </section>
       </Layout>
     </>
   )
-}
-
-export async function getStaticProps() {
-  const groups = await getGroups()
-  return {
-    props: {
-      groups,
-    },
-  }
 }
