@@ -1,9 +1,8 @@
 import Head from 'next/head'
 import Link from 'next/link'
 
-import Container from '../../components/Container'
-import Header from '../../components/Header/Header'
 import Layout from '../../components/Layout'
+import PageHero from '../../components/PageHero'
 
 import {H2, H3} from '../../components/typography'
 
@@ -23,10 +22,10 @@ export default function PrivacyPolicy() {
           content="https://www.matarrese.it/privacy-policy"
         />
       </Head>
-      <Layout>
-        <Container>
-          <Header>Trattamento dei dati - privacy policy</Header>
-          <div className="container mx-auto !max-w-[70ch] pb-20 text-left leading-relaxed text-ghisa">
+      <Layout navbarTransparent footerInvito={false}>
+        <PageHero title="Trattamento" accento="dei dati." tall={false} />
+        <section className="bg-[var(--carta)] py-20 lg:py-28">
+          <div className="site-shell !max-w-[70ch] text-left leading-relaxed text-ghisa">
             <H2 variant="secondary">Privacy policy sito web</H2>
             <p className="py-4 text-sm italic text-acciaio">
               Versione 1.0 del 01/01/2019
@@ -141,8 +140,10 @@ export default function PrivacyPolicy() {
                   Suoi dati ai seguenti contatti:
                   <p className="my-2">
                     Sede legale in Alberobello,
-                    <p>C.da Popoleto, n.c.</p>
-                    <p>Cod. Fisc. e P. IVA 04356890725</p>
+                    <br />
+                    C.da Popoleto, n.c.
+                    <br />
+                    Cod. Fisc. e P. IVA 04356890725
                   </p>
                   <p className="my-2">
                     Tel.{' '}
@@ -509,7 +510,7 @@ export default function PrivacyPolicy() {
               </section>
             </div>
           </div>
-        </Container>
+        </section>
       </Layout>
     </div>
   )

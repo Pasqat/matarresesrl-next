@@ -6,6 +6,7 @@ import ContactModal from '../Form/ContactModal'
 import TitoloDueTempi from '../cinema/TitoloDueTempi'
 import {newsletterGroups} from '../../data/newsletter-groups'
 import {social} from '../../data/social'
+import {SocialIcon} from '../icons/social-icon'
 
 // Su ghisa l'outline globale (#995200) scende sotto 3:1: qui si usa la fiamma.
 const focus =
@@ -108,16 +109,18 @@ export default function Footer({invito = true}) {
                 <br />
                 Al fianco di chi lavora nella ristorazione.
               </p>
-              <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-1 text-sm">
+              <ul className="mt-6 flex flex-wrap gap-2">
                 {social.map(([name, href]) => (
                   <li key={name}>
                     <a
                       href={href}
                       target="_blank"
                       rel="noreferrer"
-                      className={link}
+                      aria-label={name}
+                      title={name}
+                      className="grid h-11 w-11 place-items-center rounded-full border border-white/15 text-inox transition-colors hover:border-fiamma hover:text-fiamma"
                     >
-                      {name}
+                      <SocialIcon name={name} />
                     </a>
                   </li>
                 ))}

@@ -1,9 +1,8 @@
 import Head from 'next/head'
 import Link from 'next/link'
 
-import Container from '../../components/Container'
-import Header from '../../components/Header/Header'
 import Layout from '../../components/Layout'
+import PageHero from '../../components/PageHero'
 
 import {H3, H4} from '../../components/typography'
 
@@ -23,10 +22,10 @@ export default function CookiePolicy() {
           content="https://www.matarrese.it/cookie-policy"
         />
       </Head>
-      <Layout>
-        <Container>
-          <Header>Tipologie ed utilizzo dei Cookies</Header>
-          <div className="container mx-auto !max-w-[70ch] pb-20 text-left leading-relaxed text-ghisa">
+      <Layout navbarTransparent footerInvito={false}>
+        <PageHero title="Uso" accento="dei cookie." tall={false} />
+        <section className="bg-[var(--carta)] py-20 lg:py-28">
+          <div className="site-shell !max-w-[70ch] text-left leading-relaxed text-ghisa">
             <div className="flex flex-col space-y-14">
               <section>
                 <H3 className="pb-3">Utilizzo dei Cookie</H3>
@@ -280,7 +279,7 @@ export default function CookiePolicy() {
               </section>
             </div>
           </div>
-        </Container>
+        </section>
       </Layout>
     </div>
   )

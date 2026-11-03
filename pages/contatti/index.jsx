@@ -12,6 +12,7 @@ import ContactForm from '../../components/Form/ContactForm'
 import Map from '../../components/Maps/Map'
 import {getGroups} from '../../lib/newsletter'
 import {social} from '../../data/social'
+import {SocialIcon} from '../../components/icons/social-icon'
 export default function Contatti({groups}) {
   return (
     <>
@@ -163,9 +164,11 @@ export default function Contatti({groups}) {
                 href={href}
                 target="_blank"
                 rel="noreferrer"
-                className="border-b border-ghisa/30 py-1 text-ghisa transition-colors hover:border-ghisa hover:text-fiamma-testo"
+                aria-label={name}
+                title={name}
+                className="grid h-11 w-11 place-items-center rounded-full border border-ghisa/20 text-ghisa transition-colors hover:border-ghisa hover:text-fiamma-testo"
               >
-                {name}
+                <SocialIcon name={name} />
               </a>
             ))}
           </div>
