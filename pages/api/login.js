@@ -13,7 +13,8 @@ export default withSessionRoute(async (req, res) => {
       ...user,
     }
     await req.session.save()
-    res.json(user)
+    // I token restano nella sessione (cookie httpOnly): mai nel JSON, lo leggerebbe ogni script
+    res.json({isLoggedIn: true})
   } catch (error) {
     const {response: fetchResponse} = error
     res.status(fetchResponse?.status || 500).json(error.data)

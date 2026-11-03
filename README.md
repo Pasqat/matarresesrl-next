@@ -11,7 +11,7 @@ for headless Wordpress and styled with Tailwindcss
 install the dependencies
 
 ```
-yarn install
+pnpm install
 ```
 
 Remember to set the environmental variables in `.env.local` and then run the
@@ -20,7 +20,7 @@ development server:
 ```bash
 npm run dev
 # or
-yarn dev
+pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the
@@ -38,8 +38,6 @@ variabili in `.env.local`:
 - `ODOO_DB` – Nome del database Odoo.
 - `ODOO_USER` – Email dell’utente Odoo.
 - `ODOO_API_KEY` – API key generata su Odoo (la password non è più usata).
-- `ODOO_RETRY_MAX` e `ODOO_RETRY_BASE_MS` – (opzionali) Configurano il
-  retry/backoff in caso di errori temporanei.
 
 **Nota:** Il sistema usa XML-RPC per la creazione dei lead. Il tag
 `sitoweb-form` viene assegnato automaticamente tramite ID 14 (modificare in caso

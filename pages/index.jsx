@@ -404,7 +404,8 @@ export async function getStaticProps() {
   const lastTwoProjects = await getLastTwoProjects()
   const event = await getEvents()
   return {
-    props: {lastTwoProjects, event: {futureEvent: event.futureEvent}},
+    // la home mostra solo il prossimo evento: niente testi degli altri nei props
+    props: {lastTwoProjects, event: {futureEvent: event.futureEvent.slice(0, 1)}},
     revalidate: 86400,
   }
 }

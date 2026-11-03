@@ -26,7 +26,6 @@ import schedaImg from '../../public/img/assistenza/scheda-elettronica.webp'
 import mareImg from '../../public/img/assistenza/intervento-sul-mare.webp'
 import chiusuraImg from '../../public/img/homeBackground.webp'
 
-import {getGroups} from '../../lib/newsletter'
 import {CheckIcon} from '../../components/icons/check-icon'
 
 // Foto dalla selezione "assistenza" di /dev/media (Foto servizi/1.assistenza tecnica).
@@ -649,10 +648,5 @@ export default function Assistenza() {
 }
 
 export async function getStaticProps() {
-  const groups = await getGroups()
-  return {
-    props: {
-      groups,
-    },
-  }
+  return {props: {}}
 }

@@ -11,6 +11,7 @@ import {getEvent} from '../../lib/query/event'
 import {SeoDataSection} from '../../components/sections/seodata-section'
 import StructuredData from '../../components/StructuredData'
 import {eventSchema, breadcrumbSchema} from '../../lib/seo/schema'
+import {decodifica} from '../../lib/entita'
 
 // Iscrizione invariata: link esterno se presente, altrimenti il modulo di prenotazione.
 function Partecipa({event, dark}) {
@@ -28,7 +29,7 @@ function Partecipa({event, dark}) {
     <ContactModal
       variant="info"
       className={dark ? 'cin-btn' : 'cta-ghisa'}
-      reservation={{title: event.title}}
+      reservation={{title: decodifica(event.title)}}
     >
       Partecipa
       {dark && <Freccia />}
@@ -206,7 +207,8 @@ export default function Events({event}) {
 export async function getStaticProps({params}) {
   const event = await getEvent(params.slug)
   if (!event?.slug) return {notFound: true, revalidate: 60}
-  return {props: {event}, revalidate: 86400}
+  // ogni ora: la sera dell'evento «Partecipa» deve sparire
+  return {props: {event}, revalidate: 3600}
 }
 export async function getStaticPaths() {
   // Nessun dettaglio in build: l'hosting WordPress rifiuta le raffiche di richieste dai

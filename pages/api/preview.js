@@ -6,7 +6,7 @@ export default withSessionRoute(async (req, res) => {
 
   const {id, slug} = req.query
 
-  if (!user || !user.isLoggedIn) res.writeHead(307, {Location: '/auth/login'})
+  if (!user || !user.isLoggedIn) return res.redirect(307, '/auth/login')
 
   // This secret should only be known by this API route
   if (!id && !slug) {

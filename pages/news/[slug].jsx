@@ -114,7 +114,11 @@ export default function Post({postData, posts, preview}) {
         data-header="light"
         aria-label="Articolo"
       >
-        <article className="site-shell grid gap-10 py-20 lg:grid-cols-12 lg:py-28">
+        {/* key: passando da un articolo all'altro la pagina non si rimonta, l'indice sì */}
+        <article
+          key={postData.slug}
+          className="site-shell grid gap-10 py-20 lg:grid-cols-12 lg:py-28"
+        >
           {/* Colonna sinistra fissa: condivisione, avanzamento e tempo di lettura */}
           <aside className="hidden lg:col-span-1 lg:block">
             <div className="sticky top-32 flex flex-col items-center gap-6">

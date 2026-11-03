@@ -13,7 +13,13 @@ if (typeof window !== 'undefined') gsap.registerPlugin(ScrollTrigger)
 export default function SmoothScroll() {
   useEffect(() => {
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const lenis = new Lenis({lerp: 0.1, autoRaf: false, anchors: true})
+    const lenis = new Lenis({
+      lerp: 0.1,
+      autoRaf: false,
+      anchors: true,
+      // senza, un click a scorrimento in corsa apre la nuova pagina già scesa
+      stopInertiaOnNavigate: true,
+    })
     lenis.on('scroll', ScrollTrigger.update)
     // Per chi deve scorrere da codice (ScrollToTop): lo scroll nativo smooth litiga con Lenis
     window.lenis = lenis

@@ -21,17 +21,10 @@ export default withSessionRoute(async (req, res) => {
         ...newUser,
       }
       await req.session.save()
-      // Send back the update user database
-      const savedUser = await req.session.user
-      res.json({
-        isLoggedIn: true,
-        ...savedUser,
-      })
+      res.json({isLoggedIn: true})
     } else {
-      res.json({
-        isLoggedIn: true,
-        ...user,
-      })
+      // I token restano nel cookie httpOnly: al browser serve solo sapere se è collegato
+      res.json({isLoggedIn: true})
     }
   } else {
     res.json({

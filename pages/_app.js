@@ -49,9 +49,9 @@ function MyApp({Component, pageProps}) {
       // this pageviewonly triggers th first time (it's important for Pixel to have real information)
       fbq.pageview()
 
-      const handleRouteChange = () => {
+      const handleRouteChange = url => {
         fbq.pageview()
-        gtag.pageview()
+        gtag.pageview(url)
       }
 
       router.events.on('routeChangeComplete', handleRouteChange)

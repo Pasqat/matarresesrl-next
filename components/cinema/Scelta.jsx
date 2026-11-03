@@ -26,6 +26,8 @@ export default function Scelta({label, tutti, opzioni, valore, onChange}) {
   const scegli = v => {
     onChange(v)
     setAperto(false)
+    // il pannello sparisce col focus dentro: lo riportiamo sul pulsante, come fa Esc
+    root.current?.querySelector('button')?.focus()
   }
 
   return (

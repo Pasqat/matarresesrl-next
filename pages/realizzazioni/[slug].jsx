@@ -14,6 +14,7 @@ import {getProject, getLastTwoProjects} from '../../lib/query/project'
 import {SeoDataSection} from '../../components/sections/seodata-section'
 import StructuredData from '../../components/StructuredData'
 import {creativeWorkSchema, breadcrumbSchema} from '../../lib/seo/schema'
+import {decodifica} from '../../lib/entita'
 
 export default function Project({project, related}) {
   const router = useRouter()
@@ -78,7 +79,7 @@ export default function Project({project, related}) {
               ? {src: cover, alt: project.featuredImage?.node?.altText || ''}
               : undefined
           }
-          caption={`${project.title}. Il prossimo può essere il tuo.`}
+          caption={`${decodifica(project.title)}. Il prossimo può essere il tuo.`}
           className="cin-btn"
         >
           Un progetto come questo
@@ -155,7 +156,7 @@ export default function Project({project, related}) {
                       }
                     : undefined
                 }
-                caption={`${project.title}. Il prossimo può essere il tuo.`}
+                caption={`${decodifica(project.title)}. Il prossimo può essere il tuo.`}
                 className="cin-btn"
               >
                 Parlaci del tuo progetto

@@ -473,5 +473,7 @@ export async function getStaticProps() {
     props: {
       lastTwoProjects: lastTwoProjects,
     },
+    // le realizzazioni mostrate seguono WordPress senza aspettare un nuovo deploy
+    revalidate: 86400,
   }
 }

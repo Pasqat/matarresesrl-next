@@ -118,7 +118,10 @@ export default function Footer({invito = true}) {
                       rel="noreferrer"
                       aria-label={name}
                       title={name}
-                      className="grid h-11 w-11 place-items-center rounded-full border border-white/15 text-inox transition-colors hover:border-fiamma hover:text-fiamma"
+                      className={clsx(
+                        'grid h-11 w-11 place-items-center rounded-full border border-white/15 text-inox transition-colors hover:border-fiamma hover:text-fiamma',
+                        focus,
+                      )}
                     >
                       <SocialIcon name={name} />
                     </a>
@@ -207,7 +210,9 @@ export default function Footer({invito = true}) {
 
           <div className="flex flex-col gap-3 border-t border-inox/20 py-6 text-sm text-inox-muted md:flex-row md:items-center md:justify-between">
             <div className="flex flex-wrap gap-x-6 gap-y-1">
-              <span>© {new Date().getFullYear()} Matarrese srl</span>
+              <span suppressHydrationWarning>
+                © {new Date().getFullYear()} Matarrese srl
+              </span>
               <span>P.IVA 04356890725</span>
             </div>
             <div className="flex flex-wrap gap-x-6 gap-y-1">
