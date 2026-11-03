@@ -98,7 +98,7 @@ export default function Realizzazioni({data}) {
         />
         <meta
           property="og:image"
-          content={`${process.env.NEXT_PUBLIC_DOMAIN}/img/piazza_grande_61.jpg`}
+          content={`${process.env.NEXT_PUBLIC_DOMAIN}/img/og/home.jpg`}
         />
         <meta
           property="og:url"

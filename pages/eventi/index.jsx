@@ -84,7 +84,7 @@ export default function Events({data}) {
         />
         <meta
           property="og:image"
-          content={`${process.env.NEXT_PUBLIC_DOMAIN}/img/piazza_grande_61.jpg`}
+          content={`${process.env.NEXT_PUBLIC_DOMAIN}/img/og/home.jpg`}
         />
         <meta property="og:locale" content="it_IT" />
         <meta property="og:site_name" content="Matarrese srl" />

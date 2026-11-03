@@ -71,15 +71,17 @@ export default function Home({lastTwoProjects = [], event}) {
         />
         <meta
           property="og:image"
-          content={`${process.env.NEXT_PUBLIC_DOMAIN}/img/piazza_grande_61.jpg`}
+          content={`${process.env.NEXT_PUBLIC_DOMAIN}/img/og/home.jpg`}
         />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
         <meta
           property="og:title"
-          content="Matarrese srl | Attrezzature professionali per ristorazione"
+          content="Matarrese srl | Cucine professionali e attrezzature horeca in Puglia"
         />
         <meta
           property="og:description"
-          content="Progettazione, attrezzature, arredi su misura e assistenza tecnica per i luoghi della ristorazione."
+          content="Diamo forma alla tua idea di ristorazione: dal 1983 progettiamo e realizziamo cucine professionali, laboratori e locali ho.re.ca."
         />
         <meta property="og:url" content={process.env.NEXT_PUBLIC_DOMAIN} />
         <meta property="og:locale" content="it_IT" />
