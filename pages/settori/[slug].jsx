@@ -13,10 +13,11 @@ import GrigliaEditoriale from '../../components/editoriale/GrigliaEditoriale'
 import StructuredData from '../../components/StructuredData'
 import {breadcrumbSchema, faqSchema, serviceSchema} from '../../lib/seo/schema'
 import {getProjects} from '../../lib/query/project'
+import {getAllPosts} from '../../lib/query/post'
 import settori from '../../data/settori'
 import chiusuraImg from '../../public/img/home/chiusura-progetto.webp'
 
-export default function Settore({slug, progetti}) {
+export default function Settore({slug, progetti, articoli}) {
   const settore = settori.find(s => s.slug === slug)
   const {pagina} = settore
   const altri = settori.filter(s => s.slug !== slug)
@@ -320,26 +321,32 @@ export default function Settore({slug, progetti}) {
           </section>
         )}
 
-        {/* Approfondimenti: articoli del blog collegati al settore */}
-        {settore.seo.articoli?.length > 0 && (
+        {/* Approfondimenti: articoli del blog collegati al settore, con la loro foto */}
+        {articoli.length > 0 && (
           <section
-            className="bg-white text-ghisa"
+            className="bg-[var(--carta)] text-ghisa"
             data-header="light"
             aria-labelledby="approfondimenti-title"
           >
-            <div className="site-shell border-t border-ghisa/10 py-16">
-              <h2 id="approfondimenti-title" className="type-display text-2xl">
-                Approfondimenti
-              </h2>
-              <ul className="mt-6 grid gap-x-10 md:grid-cols-2">
-                {settore.seo.articoli.map(([articolo, titolo]) => (
-                  <li key={articolo} className="border-t border-ghisa/15">
-                    <Link
-                      href={`/news/${articolo}`}
-                      className="block py-4 text-lg transition-colors hover:text-fiamma-testo"
-                    >
-                      {titolo}
-                    </Link>
+            <div className="site-shell pt-24 lg:pt-32">
+              <TitoloDueTempi
+                id="approfondimenti-title"
+                tono="chiaro"
+                riga="Approfondimenti"
+                accento="dal nostro blog."
+                className="text-[clamp(32px,3.6vw,52px)] !leading-none"
+              />
+              <ul className="mt-12 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+                {articoli.map(a => (
+                  <li key={a.slug}>
+                    <CardEditoriale
+                      as="h3"
+                      href={`/news/${a.slug}`}
+                      image={a.image}
+                      title={a.title}
+                      meta={a.categoria}
+                      aspect="aspect-[3/2]"
+                    />
                   </li>
                 ))}
               </ul>
@@ -347,31 +354,58 @@ export default function Settore({slug, progetti}) {
           </section>
         )}
 
-        {/* Altri settori */}
+        {/* Altri settori: mazzo di card in fila (styles/cinema.css, .cin-mazzo) */}
         <section
-          className="bg-white text-ghisa"
+          className="overflow-hidden bg-[var(--carta)] text-ghisa"
           data-header="light"
           aria-labelledby="altri-title"
         >
-          <div className="site-shell border-b border-ghisa/10 py-16">
-            <h2 id="altri-title" className="type-display text-2xl">
-              Lavoriamo anche per
-            </h2>
-            <ul className="mt-6 flex flex-wrap gap-x-8 gap-y-3 text-lg">
-              {altri.map(s => (
-                <li key={s.slug}>
-                  {s.pagina ? (
-                    <Link
-                      href={`/settori/${s.slug}`}
-                      className="inline-block rounded-full border border-ghisa/20 px-5 py-2.5 transition-colors hover:border-ghisa hover:bg-ghisa hover:text-white"
-                    >
-                      {s.nome}
+          <div className="site-shell py-24 lg:py-32">
+            <TitoloDueTempi
+              id="altri-title"
+              tono="chiaro"
+              riga="Lavoriamo"
+              accento="anche per."
+              className="text-[clamp(32px,3.6vw,52px)] !leading-none"
+            />
+            <ul className="cin-mazzo mt-10">
+              {altri
+                .filter(s => s.pagina)
+                .map(s => (
+                  <li key={s.slug}>
+                    <Link href={`/settori/${s.slug}`}>
+                      <Image
+                        src={s.foto}
+                        alt=""
+                        fill
+                        sizes="(min-width: 768px) 260px, 220px"
+                      />
+                      <span className="cin-mazzo__scrim" />
+                      <span className="cin-mazzo__testo">
+                        <span className="cin-mazzo__nome">{s.nome}</span>
+                        {s.frase && (
+                          <span className="cin-mazzo__frase">{s.frase}</span>
+                        )}
+                        <span className="cin-mazzo__freccia" aria-hidden="true">
+                          <svg
+                            width="14"
+                            height="14"
+                            viewBox="0 0 14 14"
+                            fill="none"
+                          >
+                            <path
+                              d="M1 7h12M8 2l5 5-5 5"
+                              stroke="currentColor"
+                              strokeWidth="1.8"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </span>
+                      </span>
                     </Link>
-                  ) : (
-                    <span className="text-acciaio">{s.nome}</span>
-                  )}
-                </li>
-              ))}
+                  </li>
+                ))}
             </ul>
           </div>
         </section>
@@ -433,7 +467,25 @@ const MAX_PROGETTI = 6
 export async function getStaticProps({params}) {
   const settore = settori.find(s => s.slug === params.slug)
   const categorie = settore.seo.categorie ?? []
-  const {projects} = categorie.length ? await getProjects() : {projects: []}
+  const slugArticoli = (settore.seo.articoli ?? []).map(([a]) => a)
+  const [{projects}, {posts}] = await Promise.all([
+    categorie.length ? getProjects() : {projects: []},
+    slugArticoli.length ? getAllPosts() : {posts: []},
+  ])
+  // Nell'ordine scelto in data/settori.js; il titolo resta quello scritto lì
+  const articoli = (settore.seo.articoli ?? []).flatMap(([a, titolo]) => {
+    const post = posts.find(p => p.slug === a)
+    if (!post) return []
+    const img = post.featuredImage?.node
+    return [
+      {
+        slug: a,
+        title: titolo,
+        categoria: post.categories[0] ?? null,
+        image: {src: img?.mediaItemUrl ?? null, alt: img?.altText ?? ''},
+      },
+    ]
+  })
   const progetti = projects
     .filter(p =>
       p.portfolioCategories.nodes.some(c => categorie.includes(c.slug)),
@@ -449,7 +501,7 @@ export async function getStaticProps({params}) {
       },
     }))
   return {
-    props: {slug: params.slug, progetti},
+    props: {slug: params.slug, progetti, articoli},
     revalidate: 60 * 60 * 24,
   }
 }

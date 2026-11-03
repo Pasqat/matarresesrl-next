@@ -1,8 +1,7 @@
-// Card di progetto/articolo coerente con home/ProjectGrid: al passaggio la foto si avvicina
-// e attorno si disegna il riquadro (disegno/Riquadro). `tone="dark"` per le sezioni ghisa.
+// Card di progetto/articolo coerente con home/ProjectGrid: raggio ampio (DESIGN.md), al passaggio
+// la foto si avvicina lenta. `tone="dark"` per le sezioni ghisa.
 import Image from 'next/image'
 import Link from 'next/link'
-import Riquadro from '../disegno/Riquadro'
 
 export default function CardEditoriale({
   href,
@@ -19,7 +18,7 @@ export default function CardEditoriale({
     <Link href={href} className="group block">
       <div className={`relative ${aspect}`}>
         <div
-          className={`absolute inset-0 overflow-hidden ${
+          className={`absolute inset-0 overflow-hidden rounded-[28px] ${
             dark ? 'bg-grafite' : 'bg-inox'
           }`}
         >
@@ -29,11 +28,11 @@ export default function CardEditoriale({
               alt={image.alt || ''}
               fill
               sizes={sizes}
-              className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04] motion-reduce:transition-none"
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05] motion-reduce:transition-none"
+              style={{transitionDuration: '1200ms'}}
             />
           )}
         </div>
-        <Riquadro className={dark ? 'text-fiamma' : 'text-fiamma-testo'} />
       </div>
       {meta && (
         <p
