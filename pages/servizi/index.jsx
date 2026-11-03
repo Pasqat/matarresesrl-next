@@ -234,7 +234,7 @@ export default function Servizi() {
       <StructuredData
         data={breadcrumbSchema([{name: 'Servizi', path: '/servizi'}])}
       />
-      <Layout navbarTransparent headerCta={{}}>
+      <Layout navbarTransparent headerCta={{}} footerInvito={false}>
         <HeroCinema
           image={heroImg}
           alt="Cucina professionale in acciaio inox con cappa a isola"
@@ -243,7 +243,12 @@ export default function Servizi() {
           riga="Dall’idea all’apertura,"
           accento="e anche dopo."
           sottotitolo="Consulenza, progettazione, arredi su misura, impianti, formazione e assistenza tecnica per ristoranti, bar, pasticcerie, hotel, laboratori e GDO."
-          voci={['Progetto', 'Arredi su misura', 'Impianti', 'Assistenza']}
+          voci={[
+            ['I servizi', '#panoramica'],
+            ['Il metodo in 7 fasi', '#metodo'],
+            ['Demo in showroom', '#demo'],
+            ['GDO e pubblica amministrazione', '#gdo'],
+          ]}
         >
           <Magnetic>
             <ContactModal variant="progetto" className="cin-btn">
@@ -322,6 +327,7 @@ export default function Servizi() {
 
         {/* Demo delle attrezzature: card scura su carta, come l'evento in home */}
         <section
+          id="demo"
           className="bg-[var(--carta)] text-ghisa"
           data-header="light"
           aria-labelledby="demo-title"

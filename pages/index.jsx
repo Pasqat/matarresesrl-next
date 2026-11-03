@@ -86,7 +86,7 @@ export default function Home({lastTwoProjects = [], event}) {
         <meta property="og:site_name" content="Matarrese srl" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <Layout navbarTransparent>
+      <Layout navbarTransparent footerInvito={false}>
         <HeroCinema
           image={posterImg}
           alt="L’arena del gusto nella sede Matarrese di Alberobello"

@@ -281,6 +281,18 @@
   font-weight: 500;
   color: rgb(243 238 230 / 0.85);
 }
+.cin-hero__list a {
+  display: flex;
+  flex: 1;
+  align-items: baseline;
+  gap: 14px;
+  color: inherit;
+  transition: color 0.2s, transform 0.3s var(--cin-ease);
+}
+.cin-hero__list a:hover {
+  color: #fff;
+  transform: translateX(4px);
+}
 .cin-num {
   font-family: var(--font-accent), Georgia, serif;
   font-weight: 400;

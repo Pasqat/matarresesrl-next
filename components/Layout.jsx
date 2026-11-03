@@ -7,7 +7,13 @@ import Navbar from './Navbars/Navbar'
 import StructuredData from './StructuredData'
 import {globalSchema} from '../lib/seo/schema'
 
-export default function Layout({children, navbarTransparent, headerCta, preview}) {
+export default function Layout({
+  children,
+  navbarTransparent,
+  headerCta,
+  footerInvito,
+  preview,
+}) {
   const {pathname} = useRouter()
   return (
     <>
@@ -23,7 +29,7 @@ export default function Layout({children, navbarTransparent, headerCta, preview}
         <Alert preview={preview} />
         <div className="page-content">{children}</div>
       </main>
-      <Footer />
+      <Footer invito={footerInvito} />
     </>
   )
 }

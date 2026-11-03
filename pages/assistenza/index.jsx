@@ -287,7 +287,11 @@ export default function Assistenza() {
         <meta property="og:site_name" content="Matarrese srl" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <Layout navbarTransparent headerCta={{href: '#richiesta'}}>
+      <Layout
+        navbarTransparent
+        headerCta={{href: '#richiesta'}}
+        footerInvito={false}
+      >
         <HeroCinema
           image={heroImg}
           alt="Tecnico Matarrese al lavoro su una friggitrice professionale"

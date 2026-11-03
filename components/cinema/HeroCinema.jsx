@@ -99,14 +99,21 @@ export default function HeroCinema({
             style={{'--d': '1200ms'}}
             aria-label="Servizi"
           >
-            {voci.map((voce, i) => (
-              <li key={voce}>
-                <span className="cin-num">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                {voce}
-              </li>
-            ))}
+            {voci.map((voce, i) => {
+              // una voce è un testo o [testo, ancora]: con l'ancora diventa l'indice della pagina
+              const [testo, href] = Array.isArray(voce) ? voce : [voce]
+              const corpo = (
+                <>
+                  <span className="cin-num">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  {testo}
+                </>
+              )
+              return (
+                <li key={testo}>{href ? <a href={href}>{corpo}</a> : corpo}</li>
+              )
+            })}
           </ul>
         )}
       </div>

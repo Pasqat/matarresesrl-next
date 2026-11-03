@@ -16,7 +16,8 @@ const link = clsx(
 )
 const heading = 'mb-5 text-base font-medium text-calce'
 
-export default function Footer() {
+// `invito`: false sulle pagine che chiudono già con la propria chiamata al progetto
+export default function Footer({invito = true}) {
   return (
     <footer className="text-base">
       {/* Newsletter: card bianca a raggio ampio su carta (DESIGN.md), sopra il blocco ghisa.
@@ -54,36 +55,38 @@ export default function Footer() {
 
       <div className="bg-ghisa text-inox">
         <div className="site-shell">
-          <div className="border-b border-inox/20 py-20 lg:py-28">
-            <TitoloDueTempi
-              riga="Hai un progetto?"
-              accento="Parliamone."
-              className="max-w-5xl text-[clamp(36px,5.4vw,80px)] text-calce !leading-none"
-            />
-            <div className="mt-10 flex flex-col gap-4 text-xl md:flex-row md:items-baseline md:gap-10">
-              <ContactModal
-                variant="progetto"
-                className={clsx(
-                  'w-fit text-left font-medium text-fiamma underline decoration-fiamma/40 underline-offset-8 transition-colors hover:decoration-fiamma',
-                  focus,
-                )}
-              >
-                Raccontaci il tuo progetto
-              </ContactModal>
-              <p className="text-inox-muted">
-                oppure chiama il{' '}
-                <a
-                  href="tel:+390804323431"
+          {invito && (
+            <div className="border-b border-inox/20 py-20 lg:py-28">
+              <TitoloDueTempi
+                riga="Hai un progetto?"
+                accento="Parliamone."
+                className="max-w-5xl text-[clamp(36px,5.4vw,80px)] text-calce !leading-none"
+              />
+              <div className="mt-10 flex flex-col gap-4 text-xl md:flex-row md:items-baseline md:gap-10">
+                <ContactModal
+                  variant="progetto"
                   className={clsx(
-                    'whitespace-nowrap font-medium text-calce transition-colors hover:text-fiamma',
+                    'w-fit text-left font-medium text-fiamma underline decoration-fiamma/40 underline-offset-8 transition-colors hover:decoration-fiamma',
                     focus,
                   )}
                 >
-                  +39 080 4323 431
-                </a>
-              </p>
+                  Raccontaci il tuo progetto
+                </ContactModal>
+                <p className="text-inox-muted">
+                  oppure chiama il{' '}
+                  <a
+                    href="tel:+390804323431"
+                    className={clsx(
+                      'whitespace-nowrap font-medium text-calce transition-colors hover:text-fiamma',
+                      focus,
+                    )}
+                  >
+                    +39 080 4323 431
+                  </a>
+                </p>
+              </div>
             </div>
-          </div>
+          )}
 
           <div className="grid gap-x-10 gap-y-12 py-16 md:grid-cols-2 lg:grid-cols-4">
             <div>
