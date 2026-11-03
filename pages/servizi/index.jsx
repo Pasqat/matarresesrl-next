@@ -352,7 +352,8 @@ export default function Servizi() {
               <div className="lg:col-span-4 lg:justify-self-end">
                 <Magnetic>
                   <ContactModal
-                    variant="info"
+                    variant="showroom"
+                    source="servizi-demo"
                     className="cin-btn"
                     title="Richiedi una demo personalizzata."
                     subtitle="Scegli tu il giorno: ti mostriamo al lavoro le attrezzature che vuoi conoscere, nello showroom di Alberobello."

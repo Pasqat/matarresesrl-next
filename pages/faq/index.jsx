@@ -21,7 +21,7 @@ const FAQS = [
   {
     question: 'Dove si trova lo showroom Matarrese srl?',
     tema: 'Showroom e prove',
-    link: ['Come raggiungerci', '/contatti'],
+    link: ['Come raggiungerci', '/contatti#showroom'],
     answer:
       'Lo showroom e la struttura aziendale di 5.000 mq si trovano in Contrada Popoleto, 70011 Alberobello (BA), in Puglia. È possibile visitarlo per vedere le attrezzature in funzione.',
   },

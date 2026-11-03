@@ -4,6 +4,7 @@
 import {useRef} from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import ContactModal from '../../components/Form/ContactModal'
 import Layout from '../../components/Layout'
@@ -290,15 +291,10 @@ export default function Prodotti() {
                   </div>
                 </dl>
                 <div className="mt-10">
-                  <ContactModal
-                    variant="info"
-                    className="cin-btn"
-                    title="Vieni a trovarci in showroom."
-                    subtitle="Dicci quando preferisci passare ad Alberobello: ti facciamo trovare un consulente e le attrezzature che ti interessano."
-                  >
+                  <Link href="/contatti#showroom" className="cin-btn">
                     Visita lo showroom
                     <Freccia />
-                  </ContactModal>
+                  </Link>
                 </div>
               </div>
             </div>

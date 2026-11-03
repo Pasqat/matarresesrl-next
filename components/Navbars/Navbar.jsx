@@ -41,7 +41,10 @@ function useHeaderTheme(enabled, headerRef) {
     const update = () => {
       frame = 0
       // Header a pillola staccato dall'alto: si campiona al centro della pillola.
-      const pill = headerRef.current.firstElementChild.getBoundingClientRect()
+      // Durante il cambio di pagina l'header può non esserci ancora: si ricampiona allo scroll.
+      const el = headerRef.current?.firstElementChild
+      if (!el) return
+      const pill = el.getBoundingClientRect()
       const y = pill.top + pill.height / 2
       // elementsFromPoint attraversa anche l'header fixed e l'eventuale Dialog aperto.
       const section = document

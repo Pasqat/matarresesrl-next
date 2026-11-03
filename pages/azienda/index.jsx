@@ -258,7 +258,7 @@ export default function AboutUs({lastTwoProjects = []}) {
                 className="text-[clamp(36px,4.4vw,64px)] !leading-none"
               />
               <Link
-                href="/contatti"
+                href="/contatti#showroom"
                 className="cin-link shrink-0 self-start lg:self-auto"
               >
                 Come raggiungerci

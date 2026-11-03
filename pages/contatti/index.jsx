@@ -108,7 +108,8 @@ export default function Contatti({groups}) {
 
         {/* Showroom: foto e mappa affiancate, indirizzo e orari in una card sopra la foto */}
         <section
-          className="bg-[var(--carta)] py-16 text-ghisa lg:py-24"
+          id="showroom"
+          className="scroll-mt-20 bg-[var(--carta)] py-16 text-ghisa lg:py-24"
           data-header="light"
           aria-labelledby="showroom-title"
         >

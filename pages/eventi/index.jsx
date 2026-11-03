@@ -173,7 +173,8 @@ export default function Events({data}) {
                 ho.re.ca. che desideri conoscere.
               </p>
               <ContactModal
-                variant="info"
+                variant="showroom"
+                source="eventi-demo"
                 className="cin-btn mt-8"
                 title="Richiedi una demo personalizzata."
                 subtitle="Scegli tu il giorno: ti mostriamo al lavoro le attrezzature che vuoi conoscere, nello showroom di Alberobello."

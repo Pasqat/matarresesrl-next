@@ -140,7 +140,7 @@ export default function Footer({invito = true}) {
               <a href="mailto:matarrese@matarrese.it" className={link}>
                 matarrese@matarrese.it
               </a>
-              <Link href="/contatti" className={link}>
+              <Link href="/contatti#showroom" className={link}>
                 Come raggiungerci
               </Link>
             </div>
