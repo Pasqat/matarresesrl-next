@@ -8,7 +8,6 @@ import * as fbq from '../../lib/fpixel'
 import Layout from '../../components/Layout'
 import Image from 'next/image'
 import TitoloDueTempi from '../../components/cinema/TitoloDueTempi'
-import Scelta from '../../components/cinema/Scelta'
 import {CaricaAltri} from '../../components/editoriale/FiltriArchivio'
 
 import {filterPosts} from '../../actions/utils/blog'
@@ -78,6 +77,19 @@ export default function News({data}) {
   const posts = matchingPosts
   const shown = Math.min(indexToShow, posts.length)
   const hasMorePosts = indexToShow < posts.length
+  const archivioRef = React.useRef(null)
+  // argomenti per numero di articoli, con il titolo più recente (i post arrivano già per data)
+  const argomenti = React.useMemo(
+    () =>
+      data.categories
+        .map(nome => {
+          const suoi = allPosts.filter(p => p.categories?.includes(nome))
+          return {nome, conta: suoi.length, ultimo: suoi[0]?.title}
+        })
+        .filter(a => a.conta > 0)
+        .sort((a, b) => b.conta - a.conta),
+    [data.categories, allPosts],
+  )
   const testo = html => (html || '').replace(/<[^>]+>/g, '').trim()
 
   return (
@@ -117,7 +129,6 @@ export default function News({data}) {
 
       <Layout navbarTransparent>
         <section
-          id="archivio"
           className="bg-[var(--carta)] text-ghisa"
           data-header="light"
           aria-labelledby="news-title"
@@ -135,7 +146,7 @@ export default function News({data}) {
 
             {/* Prima pagina: l'ultimo articolo grande, accanto i quattro titoli precedenti */}
             {!filtri && featured && (
-              <div className="mt-12 grid gap-10 border-b border-ghisa/15 pb-16 lg:mt-16 lg:grid-cols-12 lg:gap-12 lg:pb-20">
+              <div className="mt-12 grid gap-10 lg:mt-16 lg:grid-cols-12 lg:gap-12">
                 <Link
                   href={`/news/${featured.slug}`}
                   className="group lg:col-span-8"
@@ -202,8 +213,59 @@ export default function News({data}) {
                 </aside>
               </div>
             )}
+          </div>
+        </section>
 
-            <div role="search" className="mt-14 lg:mt-20">
+        {/* Fascia scura: un ingresso per argomento, con il numero di articoli e l'ultimo uscito */}
+        <section
+          className="bg-[#121315] text-white [&_:focus-visible]:outline-fiamma"
+          data-header="dark"
+          aria-labelledby="argomenti-title"
+        >
+          <div className="site-shell py-24 lg:py-32">
+            <TitoloDueTempi
+              id="argomenti-title"
+              riga="Esplora"
+              accento="per argomento."
+              className="text-[clamp(36px,4.4vw,64px)] !leading-none"
+            />
+            <ul className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {argomenti.slice(0, 4).map(arg => (
+                <li key={arg.nome}>
+                  <button
+                    type="button"
+                    className="group flex h-full w-full flex-col rounded-[24px] border border-inox/15 bg-white/[.04] p-6 text-left transition-colors hover:border-fiamma hover:bg-white/[.07]"
+                    onClick={() => {
+                      setQuery('')
+                      setCategoria(arg.nome)
+                      archivioRef.current?.scrollIntoView({behavior: 'smooth'})
+                    }}
+                  >
+                    <span className="font-[family-name:var(--font-accent)] text-[40px] italic leading-none text-fiamma">
+                      {arg.conta}
+                    </span>
+                    <span className="type-display mt-4 text-[24px] leading-tight">
+                      {arg.nome}
+                    </span>
+                    <span className="mt-auto pt-6 text-sm text-[rgb(243_238_230/.6)]">
+                      Ultimo:{' '}
+                      <span dangerouslySetInnerHTML={{__html: arg.ultimo}} />
+                    </span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section
+          ref={archivioRef}
+          className="scroll-mt-20 bg-[var(--carta)] text-ghisa"
+          data-header="light"
+          aria-label="Archivio degli articoli"
+        >
+          <div className="site-shell pb-24 pt-24 lg:pb-32 lg:pt-32">
+            <div role="search">
               <div className="cin-cerca">
                 <label className="min-w-0 flex-1">
                   <span className="sr-only">Cerca tra gli articoli</span>
@@ -252,13 +314,21 @@ export default function News({data}) {
                 >
                   Tutti
                 </button>
-                <Scelta
-                  label="Argomento"
-                  tutti="Tutti gli argomenti"
-                  opzioni={data.categories}
-                  valore={categoria}
-                  onChange={setCategoria}
-                />
+                {argomenti.map(arg => (
+                  <button
+                    key={arg.nome}
+                    type="button"
+                    className={`cin-pill ${
+                      categoria === arg.nome ? 'is-on' : ''
+                    }`}
+                    aria-pressed={categoria === arg.nome}
+                    onClick={() =>
+                      setCategoria(c => (c === arg.nome ? '' : arg.nome))
+                    }
+                  >
+                    {arg.nome}
+                  </button>
+                ))}
               </div>
             </div>
 
