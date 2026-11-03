@@ -183,7 +183,7 @@ export default function Settore({slug, progetti, articoli}) {
                 >
                   <span
                     aria-hidden="true"
-                    className="absolute -top-px left-0 h-px w-0 bg-fiamma transition-[width] duration-700 ease-out group-hover:w-full motion-reduce:transition-none"
+                    className="absolute -top-px left-0 h-px w-full origin-left scale-x-0 bg-fiamma transition-transform duration-700 ease-out group-hover:scale-x-100 motion-reduce:transition-none"
                   />
                   <span className="cin-num text-lg" aria-hidden="true">
                     {String(i + 1).padStart(2, '0')}

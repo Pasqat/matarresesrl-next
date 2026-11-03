@@ -320,7 +320,7 @@ export default function AboutUs({lastTwoProjects = []}) {
                     className="group relative border-t border-inox/25 py-5 last:border-b"
                   >
                     <span
-                      className="absolute -top-px left-0 h-px w-0 bg-fiamma transition-[width] duration-700 ease-out group-hover:w-full motion-reduce:transition-none"
+                      className="absolute -top-px left-0 h-px w-full origin-left scale-x-0 bg-fiamma transition-transform duration-700 ease-out group-hover:scale-x-100 motion-reduce:transition-none"
                       aria-hidden="true"
                     />
                     <span className="type-display text-[clamp(20px,1.8vw,26px)] text-inox transition-colors group-hover:text-white">

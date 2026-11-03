@@ -81,7 +81,7 @@ export default function SectorList({settori, href, title, intro}) {
                 </span>
                 <span
                   aria-hidden="true"
-                  className={`shrink-0 text-2xl text-fiamma-testo transition-all duration-300 group-hover:translate-x-1 ${
+                  className={`shrink-0 text-2xl text-fiamma-testo transition-[opacity,transform] duration-300 group-hover:translate-x-1 ${
                     active === s.slug ? 'opacity-100' : 'opacity-0'
                   }`}
                 >

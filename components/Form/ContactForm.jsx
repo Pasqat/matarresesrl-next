@@ -16,7 +16,7 @@ import {CheckIcon} from '../icons/check-icon'
 // inferiore), testo 18px, focus = outline globale fiamma-testo (revamp.css).
 // Trasparenti, quindi reggono sia su bianco sia su calce.
 const field =
-  'block w-full rounded-none border-0 border-b border-ghisa/25 bg-transparent px-0 text-lg text-ghisa transition-colors placeholder:text-acciaio hover:border-ghisa/60 focus:border-ghisa disabled:cursor-not-allowed disabled:border-ghisa/10 disabled:text-acciaio aria-[invalid=true]:border-red-600'
+  'block w-full rounded-none border-0 border-b border-ghisa/55 bg-transparent px-0 text-lg text-ghisa transition-colors placeholder:text-acciaio hover:border-ghisa/60 focus:border-ghisa disabled:cursor-not-allowed disabled:border-ghisa/10 disabled:text-acciaio aria-[invalid=true]:border-red-600'
 // L'ombra inset copre il fondo che il browser dà all'autofill. Sul riquadro
 // `featured` (gray-100) basta quella di globals.css, che è già gray-100.
 const autofillOnWhite =

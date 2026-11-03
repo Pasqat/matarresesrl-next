@@ -289,7 +289,7 @@ export default function Servizi() {
                   className="group relative border-t border-ghisa/15 pb-12 pt-7"
                 >
                   <span
-                    className="absolute -top-px left-0 h-0.5 w-10 bg-fiamma-testo transition-[width] duration-500 ease-out group-hover:w-full motion-reduce:transition-none"
+                    className="absolute -top-px left-0 h-0.5 w-full origin-left scale-x-[0.08] bg-fiamma-testo transition-transform duration-500 ease-out group-hover:scale-x-100 motion-reduce:transition-none"
                     aria-hidden="true"
                   />
                   <span className="cin-num text-lg" aria-hidden="true">

@@ -193,7 +193,7 @@ export default function Events({event}) {
                 <Partecipa event={event} />
               ) : (
                 <Link href="/eventi" className="cta-ghisa">
-                  Guarda i prossimi eventi
+                  Vedi gli eventi
                 </Link>
               )}
             </div>

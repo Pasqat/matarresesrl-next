@@ -761,6 +761,8 @@
 }
 .cin-cerca:focus-within {
   border-color: var(--fiamma-testo);
+  /* la linea raddoppia: il solo cambio di colore non basta a vedere il focus */
+  box-shadow: 0 2px 0 var(--fiamma-testo);
 }
 .cin-cerca__conta {
   margin: 0;
@@ -1277,7 +1279,7 @@
 
 /* Pagine legali (privacy, cookie): prosa leggibile su carta */
 .cin-legale {
-  max-width: 72ch;
+  max-width: 64ch;
   color: var(--ghisa);
   font-size: 17px;
   line-height: 1.7;

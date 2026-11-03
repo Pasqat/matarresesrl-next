@@ -2,7 +2,13 @@ import * as React from 'react'
 
 function MailIcon({size = 24}) {
   return (
-    <svg width={size} height={size} fill="none" viewBox="0 0 24 24">
+    <svg
+      width={size}
+      height={size}
+      fill="none"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
       <path
         stroke="currentColor"
         strokeLinecap="round"

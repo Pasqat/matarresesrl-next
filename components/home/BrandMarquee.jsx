@@ -1,8 +1,11 @@
-// Fascia continua dei marchi: si ferma al passaggio del mouse, il logo sotto il cursore si colora.
+// Fascia continua dei marchi: si ferma al passaggio del mouse o col pulsante (chi usa tastiera o
+// touch deve poter fermare ciò che scorre), il logo sotto il cursore si colora.
 // Con movimento ridotto diventa una griglia statica.
+import {useState} from 'react'
 import Image from 'next/image'
 
 export default function BrandMarquee({logos}) {
+  const [fermo, setFermo] = useState(false)
   const row = logos.map(logo => (
     <li key={logo.name} className="relative h-14 w-36 shrink-0 md:h-16 md:w-44">
       <Image
@@ -15,8 +18,11 @@ export default function BrandMarquee({logos}) {
     </li>
   ))
   return (
+    <div>
     <div className="group overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_8%,black_92%,transparent)]">
-      <div className="marquee flex w-max gap-16 group-hover:[animation-play-state:paused] motion-reduce:w-auto motion-reduce:flex-wrap motion-reduce:justify-center">
+      <div
+        className={`marquee flex w-max gap-16 group-hover:[animation-play-state:paused] motion-reduce:w-auto ${fermo ? '[animation-play-state:paused]' : ''} motion-reduce:flex-wrap motion-reduce:justify-center`}
+      >
         <ul className="flex shrink-0 items-center gap-16 motion-reduce:flex-wrap motion-reduce:justify-center">
           {row}
         </ul>
@@ -28,6 +34,15 @@ export default function BrandMarquee({logos}) {
           {row}
         </ul>
       </div>
+    </div>
+      <button
+        type="button"
+        onClick={() => setFermo(f => !f)}
+        aria-pressed={fermo}
+        className="mx-auto mt-6 block min-h-[44px] px-3 text-sm text-acciaio underline underline-offset-4 hover:text-ghisa motion-reduce:hidden"
+      >
+        {fermo ? 'Fai scorrere i marchi' : 'Ferma i marchi'}
+      </button>
     </div>
   )
 }

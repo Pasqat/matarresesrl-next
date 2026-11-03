@@ -67,7 +67,7 @@ export default function Footer({invito = true}) {
                 <ContactModal
                   variant="progetto"
                   className={clsx(
-                    'w-fit text-left font-medium text-fiamma underline decoration-fiamma/40 underline-offset-8 transition-colors hover:decoration-fiamma',
+                    'min-h-[44px] w-fit py-2 text-left font-medium text-fiamma underline decoration-fiamma/40 underline-offset-8 transition-colors hover:decoration-fiamma',
                     focus,
                   )}
                 >

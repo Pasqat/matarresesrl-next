@@ -62,7 +62,7 @@ export default function Map() {
             target="_blank"
             rel="noreferrer"
           >
-            Apri le indicazioni su Google Maps
+            Apri in Google Maps
           </a>
         </div>
       )}

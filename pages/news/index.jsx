@@ -133,7 +133,7 @@ export default function News({data}) {
           data-header="light"
           aria-labelledby="news-title"
         >
-          <div className="site-shell pb-24 pt-32 lg:pb-32 lg:pt-40">
+          <div className="site-shell pb-24 pt-32 lg:pb-32 lg:pt-36">
             <TitoloDueTempi
               as="h1"
               id="news-title"
@@ -146,12 +146,12 @@ export default function News({data}) {
 
             {/* Prima pagina: l'ultimo articolo grande, accanto i quattro titoli precedenti */}
             {!filtri && featured && (
-              <div className="mt-12 grid gap-10 lg:mt-16 lg:grid-cols-12 lg:gap-12">
+              <div className="mt-12 grid gap-10 lg:grid-cols-12 lg:gap-12">
                 <Link
                   href={`/news/${featured.slug}`}
                   className="group lg:col-span-8"
                 >
-                  <div className="relative aspect-[16/10] overflow-hidden rounded-[28px] bg-inox">
+                  <div className="relative aspect-[16/10] overflow-hidden rounded-[28px] bg-inox lg:aspect-auto lg:h-[min(50svh,560px)]">
                     {featured.featuredImage?.node?.mediaItemUrl && (
                       <Image
                         src={featured.featuredImage.node.mediaItemUrl}

@@ -109,7 +109,6 @@ input:-webkit-autofill::first-line {
 
 @media (prefers-reduced-motion: no-preference) {
   :focus {
-    transition: outline-offset 0.1s ease;
     outline-offset: 4px;
   }
 }

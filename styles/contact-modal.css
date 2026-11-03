@@ -139,7 +139,7 @@ html.cm-locked {
 .cm-field textarea {
   display: block;
   width: 100%;
-  border: 1px solid rgb(30 34 38 / 0.22);
+  border: 1px solid rgb(30 34 38 / 0.5);
   border-radius: 12px;
   background: #fff;
   padding: 13px 15px;
@@ -154,7 +154,7 @@ html.cm-locked {
 }
 .cm-field input:hover,
 .cm-field textarea:hover {
-  border-color: rgb(30 34 38 / 0.4);
+  border-color: rgb(30 34 38 / 0.75);
 }
 .cm-field input:focus,
 .cm-field textarea:focus {

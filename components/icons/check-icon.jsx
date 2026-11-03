@@ -2,7 +2,7 @@ import * as React from 'react'
 
 function CheckIcon() {
   return (
-    <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+    <svg width="24" height="24" fill="none" viewBox="0 0 24 24" aria-hidden="true">
       <path
         stroke="currentColor"
         strokeLinecap="round"

@@ -75,8 +75,8 @@ export default function MetodoQuota({passi}) {
               </span>
               <span
                 aria-hidden="true"
-                className={`mt-4 block transition-[height] ${
-                  on ? 'h-[4px] bg-fiamma' : 'h-[1.5px] bg-inox/40'
+                className={`mt-4 block h-[4px] origin-bottom transition-[transform,background-color] ${
+                  on ? 'bg-fiamma' : 'scale-y-[0.375] bg-inox/40'
                 }`}
               />
               <span

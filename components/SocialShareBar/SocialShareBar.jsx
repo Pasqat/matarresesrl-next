@@ -15,7 +15,7 @@ const domainUrl = process.env.NEXT_PUBLIC_DOMAIN
 
 function WhatsAppIcon() {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path
         d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"
         stroke="currentColor"
@@ -32,7 +32,7 @@ function WhatsAppIcon() {
 
 function LinkIcon() {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path
         d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"
         stroke="currentColor"
@@ -70,7 +70,7 @@ function CopiaLink({url, title}) {
     >
       <span aria-hidden="true">
         {copiato ? (
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path
               d="m5 12 5 5 9-10"
               stroke="currentColor"
