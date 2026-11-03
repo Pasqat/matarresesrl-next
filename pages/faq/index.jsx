@@ -72,7 +72,7 @@ const FAQS = [
     question: 'In quali aree operate?',
     tema: 'Azienda',
     answer:
-      'Operiamo principalmente in Puglia, dove garantiamo assistenza tecnica tempestiva, e in tutta Italia per progettazione, forniture e allestimenti attraverso il consorzio Assogi',
+      'Operiamo principalmente in Puglia, dove garantiamo assistenza tecnica tempestiva, e in tutta Italia per progettazione, forniture e allestimenti, direttamente e attraverso il consorzio ASSOGI.',
   },
   // Da qui: fatti confermati da Pasquale (intervista 03/11/2026)
   {
