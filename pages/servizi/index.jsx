@@ -242,7 +242,7 @@ export default function Servizi() {
           eyebrow="Consulenza · Progetto · Arredi · Impianti · Assistenza"
           riga="Dall’idea all’apertura,"
           accento="e anche dopo."
-          sottotitolo="Consulenza, progettazione, arredi su misura, impianti, formazione e assistenza tecnica per ristoranti, bar, pasticcerie, hotel, laboratori e GDO."
+          sottotitolo="Consulenza, progettazione, arredi su misura, impianti, formazione e assistenza tecnica per ristoranti, bar, pasticcerie, hotel, laboratori, GDO e non solo."
           voci={[
             ['I servizi', '#panoramica'],
             ['Il metodo in 7 fasi', '#metodo'],

@@ -8,7 +8,7 @@ import settori from '../../data/settori'
 import heroImg from '../../public/img/settori/hotel-movenpick-buffet.webp'
 
 const intro =
-  'Ristoranti, bar, hotel, collettiva, GDO, laboratori e dark kitchen: ogni settore ha flussi, norme e ritmi diversi. Scegli il tuo.'
+  'Ristoranti, bar, hotel, collettiva, GDO, laboratori, dark kitchen e non solo: ogni settore ha flussi, norme e ritmi diversi, e il progetto parte da lì.'
 
 export default function Settori() {
   const url = `${process.env.NEXT_PUBLIC_DOMAIN}/settori`
@@ -33,7 +33,7 @@ export default function Settori() {
         <HeroCinema
           image={heroImg}
           alt="Il buffet di un hotel con banco in rame e luci calde"
-          eyebrow="Sette settori, un solo interlocutore"
+          eyebrow="I settori principali, non gli unici"
           riga="Per chi"
           accento="lavoriamo."
           sottotitolo={intro}
