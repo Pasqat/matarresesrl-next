@@ -47,7 +47,7 @@ export default function Testimonials({items}) {
             type="button"
             onClick={() => go(d)}
             aria-label={label}
-            className="grid h-12 w-12 place-items-center border border-ghisa/25 text-lg transition-colors hover:border-ghisa hover:bg-ghisa hover:text-white"
+            className="grid h-12 w-12 place-items-center rounded-full border border-ghisa/25 text-lg transition-colors hover:border-ghisa hover:bg-ghisa hover:text-white"
           >
             <span aria-hidden="true">{arrow}</span>
           </button>

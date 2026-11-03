@@ -3,7 +3,7 @@
 const settori = [
   {
     slug: 'dark-kitchen',
-    foto: '/img/settori/dk-ritiro.webp', // ponytail: cucina con ritiro (Coppino), non un caso dark kitchen: sostituire con una foto vera quando c'è
+    foto: '/img/settori/dk-showroom-forni.webp', // forni combinati in showroom, non un caso dark kitchen: sostituire con una foto vera quando c'è
     nome: 'Dark kitchen',
     frase: 'Tecnologia e organizzazione per chi entra nel delivery.',
     inEvidenza: true,
@@ -66,7 +66,7 @@ const settori = [
   },
   {
     slug: 'laboratori',
-    foto: '/img/settori/laboratori.webp',
+    foto: '/img/settori/lab-bufano-forno.webp',
     nome: 'Laboratori di trasformazione alimentare',
     frase:
       'Layout, flussi di lavoro, conservazione e confezionamento per chi trasforma materie prime.',
@@ -127,27 +127,27 @@ const settori = [
   },
   {
     slug: 'ristoranti-pizzerie',
-    foto: '/img/settori/ristoranti-pizzerie.webp',
+    foto: '/img/settori/rist-la-strega.webp',
     nome: 'Ristoranti e pizzerie',
   },
   {
     slug: 'bar-gelaterie-pasticcerie',
-    foto: '/img/settori/bar-gelaterie-pasticcerie.webp',
+    foto: '/img/settori/bar-birroteca.webp',
     nome: 'Bar, gelaterie e pasticcerie',
   },
   {
     slug: 'hotel-ricevimenti',
-    foto: '/img/settori/hotel-ricevimenti.webp',
+    foto: '/img/settori/hotel-sala-volte.webp',
     nome: 'Hotel e sale ricevimenti',
   },
   {
     slug: 'collettiva',
-    foto: '/img/settori/collettiva.webp',
+    foto: '/img/settori/collettiva-cucina.webp',
     nome: 'Ristorazione collettiva',
   },
   {
     slug: 'gdo-pescherie-macellerie',
-    foto: '/img/settori/gdo-pescherie-macellerie.webp',
+    foto: '/img/settori/gdo-famila-banco.webp',
     nome: 'GDO, pescherie e macellerie',
   },
 ]

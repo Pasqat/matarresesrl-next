@@ -1,3 +1,4 @@
+import {useRef} from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -7,6 +8,7 @@ import ContactModal from '../components/Form/ContactModal'
 import HeroCinema from '../components/cinema/HeroCinema'
 import TitoloDueTempi from '../components/cinema/TitoloDueTempi'
 import {Freccia} from '../components/cinema/BottoneFreccia'
+import useRivela from '../components/cinema/useRivela'
 import SectorList from '../components/home/SectorList'
 import ProjectGrid from '../components/home/ProjectGrid'
 import MetodoQuota from '../components/home/MetodoQuota'
@@ -54,6 +56,8 @@ export default function Home({groups, lastTwoProjects = [], event}) {
   const upcoming = event?.futureEvent?.[0]
   // Le recensioni più descrittive tra quelle disponibili.
   const reviews = [0, 2, 3, 5].map(n => testimonials[n])
+  const rivela = useRef(null)
+  useRivela(rivela)
   return (
     <>
       <Head>
@@ -107,265 +111,290 @@ export default function Home({groups, lastTwoProjects = [], event}) {
           </Link>
         </HeroCinema>
 
-        {/* Capitolo: per chi lavoriamo (la foto del settore diventa lo sfondo) */}
-        <SectorList
-          settori={settori}
-          href={s => (s.pagina ? `/settori/${s.slug}` : '#parliamone')}
-          title={
-            <>
-              Ogni attività{' '}
-              <span className="type-accento text-[rgb(243_238_230/.8)]">
-                ha la sua cucina.
-              </span>
-            </>
-          }
-          intro="Lavoriamo per chi cucina, serve, produce e vende cibo. Ogni settore ha flussi, norme e ritmi diversi: il progetto parte da lì."
-        />
-
-        {/* Capitolo scuro: come lavoriamo */}
-        <section
-          className="bg-[#121315] text-white [&_:focus-visible]:outline-fiamma"
-          data-header="dark"
-          aria-labelledby="metodo-title"
-        >
-          <div className="site-shell py-24 lg:py-32">
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-              <div>
-                <span className="eyebrow-cinema">Come lavoriamo</span>
-                <TitoloDueTempi
-                  id="metodo-title"
-                  riga="Un solo interlocutore,"
-                  accento="prima e dopo l’apertura."
-                  className="mt-6 text-[clamp(36px,4.4vw,64px)] !leading-none"
-                />
-              </div>
-              <Link
-                href="/servizi"
-                className="cin-link shrink-0 self-start lg:self-auto"
-              >
-                Tutti i servizi
-              </Link>
-            </div>
-            <MetodoQuota passi={metodo} />
-          </div>
-        </section>
-
-        {/* Capitolo chiaro: prove */}
-        <section
-          className="bg-[var(--carta)] text-ghisa"
-          data-header="light"
-          aria-labelledby="progetti-title"
-        >
-          <div className="site-shell py-24 lg:py-32">
-            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-              <div>
-                <span className="eyebrow-cinema" data-tono="chiaro">
-                  Realizzazioni
+        <div ref={rivela}>
+          {/* Capitolo: per chi lavoriamo (la foto del settore diventa lo sfondo) */}
+          <SectorList
+            settori={settori}
+            href={s => (s.pagina ? `/settori/${s.slug}` : '#parliamone')}
+            title={
+              <>
+                Ogni attività{' '}
+                <span className="type-accento text-[rgb(243_238_230/.8)]">
+                  ha la sua cucina.
                 </span>
-                <TitoloDueTempi
-                  id="progetti-title"
-                  tono="chiaro"
-                  riga="Dall’idea"
-                  accento="a un locale pieno di clienti."
-                  className="mt-6 text-[clamp(36px,4.4vw,64px)] !leading-none"
-                />
-              </div>
-              <Link
-                href="/realizzazioni"
-                className="shrink-0 self-start border-b border-ghisa py-2 hover:text-fiamma-testo md:self-auto"
-              >
-                Tutte le realizzazioni
-              </Link>
-            </div>
-            <ProjectGrid projects={lastTwoProjects} />
-          </div>
-        </section>
+              </>
+            }
+            intro="Lavoriamo per chi cucina, serve, produce e vende cibo. Ogni settore ha flussi, norme e ritmi diversi: il progetto parte da lì."
+          />
 
-        {/* Sempre visibile: su Facebook i link nei post rendono poco (Miriana, 16/10/2026) */}
-        <section
-          className="bg-[var(--carta)] text-ghisa"
-          data-header="light"
-          aria-labelledby="evento-title"
-        >
-          <div className="site-shell flex flex-col gap-6 border-t border-ghisa/15 py-14 md:flex-row md:items-center md:justify-between">
-            {upcoming ? (
-              <div>
-                <p className="text-acciaio">
-                  Prossimo evento in sede, {upcoming.startDate}
-                </p>
-                <h2
-                  id="evento-title"
-                  className="type-display mt-2 text-[clamp(24px,2.4vw,36px)]"
-                  dangerouslySetInnerHTML={{__html: upcoming.title}}
-                />
-              </div>
-            ) : (
-              <div>
-                <p className="text-acciaio">Eventi e corsi in sede</p>
-                <h2
-                  id="evento-title"
-                  className="type-display mt-2 text-[clamp(24px,2.4vw,36px)]"
-                >
-                  Vieni a vedere le attrezzature al lavoro.
-                </h2>
-              </div>
-            )}
-            <div className="flex shrink-0 flex-wrap items-center gap-6">
-              {upcoming && (
-                <Link className="site-button" href={`/eventi/${upcoming.slug}`}>
-                  Scopri l’evento
-                </Link>
-              )}
-              <Link
-                className={
-                  upcoming
-                    ? 'border-b border-ghisa py-2 hover:text-fiamma-testo'
-                    : 'site-button'
-                }
-                href="/eventi"
-              >
-                Tutti gli eventi
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* Capitolo scuro: dentro Matarrese */}
-        <section
-          className="bg-[#0d0e0f] text-white [&_:focus-visible]:outline-fiamma"
-          data-header="dark"
-          aria-labelledby="azienda-title"
-        >
-          <div className="site-shell grid gap-14 py-24 lg:grid-cols-12 lg:items-center lg:py-32">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-[28px] lg:col-span-7">
-              <Image
-                src="/img/azienda/showroom.webp"
-                alt="Lo showroom Matarrese ad Alberobello"
-                fill
-                sizes="(min-width: 1024px) 55vw, 100vw"
-                className="object-cover"
-              />
-            </div>
-            <div className="lg:col-span-5">
-              <span className="eyebrow-cinema">La sede</span>
-              <TitoloDueTempi
-                id="azienda-title"
-                riga="Dove le soluzioni"
-                accento="si toccano con mano."
-                className="mt-6 text-[clamp(36px,4.4vw,64px)] !leading-none"
-              />
-              {/* Targhetta: come la placca dati avvitata sulle attrezzature */}
-              <div className="mt-10 border-2 border-inox/60">
-                <div className="border-b-2 border-inox/60 px-5 py-5">
-                  <Image
-                    src="/img/logo-matarrese-bianco-350.png"
-                    alt="Matarrese srl"
-                    width={350}
-                    height={26}
-                    className="h-auto w-[170px]"
+          {/* Capitolo scuro: come lavoriamo */}
+          <section
+            className="bg-[#121315] text-white [&_:focus-visible]:outline-fiamma"
+            data-header="dark"
+            aria-labelledby="metodo-title"
+          >
+            <div className="site-shell py-24 lg:py-32">
+              <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+                <div>
+                  <span className="eyebrow-cinema" data-cin-reveal>
+                    Come lavoriamo
+                  </span>
+                  <TitoloDueTempi
+                    data-cin-reveal
+                    id="metodo-title"
+                    riga="Un solo interlocutore,"
+                    accento="prima e dopo l’apertura."
+                    className="mt-6 text-[clamp(36px,4.4vw,64px)] !leading-none"
                   />
                 </div>
-                <dl>
-                  {fatti.map(([dato, spiegazione]) => (
-                    <div
-                      key={dato}
-                      className="grid grid-cols-[9.5rem_1fr] border-b border-inox/25 last:border-b-0"
-                    >
-                      <dt className="type-display border-r border-inox/25 px-4 py-4 text-xl">
-                        {dato}
-                      </dt>
-                      <dd className="px-4 py-4 text-inox-muted">{spiegazione}</dd>
-                    </div>
-                  ))}
-                </dl>
+                <Link
+                  href="/servizi"
+                  className="cin-link shrink-0 self-start lg:self-auto"
+                >
+                  Tutti i servizi
+                </Link>
               </div>
-              <Link
-                href="/azienda"
-                className="mt-8 inline-block border-b border-fiamma py-2 text-fiamma hover:text-white"
+              <MetodoQuota passi={metodo} />
+            </div>
+          </section>
+
+          {/* Capitolo chiaro: prove */}
+          <section
+            className="bg-[var(--carta)] text-ghisa"
+            data-header="light"
+            aria-labelledby="progetti-title"
+          >
+            <div className="site-shell pb-16 pt-24 lg:pt-32">
+              <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+                <div>
+                  <span
+                    className="eyebrow-cinema"
+                    data-tono="chiaro"
+                    data-cin-reveal
+                  >
+                    Realizzazioni
+                  </span>
+                  <TitoloDueTempi
+                    data-cin-reveal
+                    id="progetti-title"
+                    tono="chiaro"
+                    riga="Dall’idea"
+                    accento="a un locale pieno di clienti."
+                    className="mt-6 text-[clamp(36px,4.4vw,64px)] !leading-none"
+                  />
+                </div>
+                <Link
+                  href="/realizzazioni"
+                  className="shrink-0 self-start border-b border-ghisa py-2 hover:text-fiamma-testo md:self-auto"
+                >
+                  Tutte le realizzazioni
+                </Link>
+              </div>
+              <ProjectGrid projects={lastTwoProjects} />
+            </div>
+          </section>
+
+          {/* Sempre visibile: su Facebook i link nei post rendono poco (Miriana, 16/10/2026) */}
+          <section
+            className="bg-[var(--carta)] text-ghisa"
+            data-header="light"
+            aria-labelledby="evento-title"
+          >
+            <div className="site-shell pb-24 lg:pb-32">
+              <div
+                className="flex flex-col gap-6 rounded-[28px] bg-[#121315] p-8 text-white md:flex-row md:items-center md:justify-between md:p-12"
+                data-cin-reveal
               >
-                Conosci l’azienda
+                {upcoming ? (
+                  <div>
+                    <span className="eyebrow-cinema" data-cin-reveal>
+                      Prossimo evento in sede, {upcoming.startDate}
+                    </span>
+                    <h2
+                      id="evento-title"
+                      className="type-display mt-4 text-[clamp(26px,2.6vw,40px)]"
+                      dangerouslySetInnerHTML={{__html: upcoming.title}}
+                    />
+                  </div>
+                ) : (
+                  <div>
+                    <span className="eyebrow-cinema" data-cin-reveal>
+                      Eventi e corsi in sede
+                    </span>
+                    <h2
+                      id="evento-title"
+                      className="type-display mt-4 text-[clamp(26px,2.6vw,40px)]"
+                    >
+                      Vieni a vedere le attrezzature al lavoro.
+                    </h2>
+                  </div>
+                )}
+                <div className="flex shrink-0 flex-wrap items-center gap-6">
+                  {upcoming && (
+                    <Link className="cin-btn" href={`/eventi/${upcoming.slug}`}>
+                      Scopri l’evento
+                      <Freccia />
+                    </Link>
+                  )}
+                  <Link className="cin-link" href="/eventi">
+                    Tutti gli eventi
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Capitolo scuro: dentro Matarrese */}
+          <section
+            className="bg-[#0d0e0f] text-white [&_:focus-visible]:outline-fiamma"
+            data-header="dark"
+            aria-labelledby="azienda-title"
+          >
+            <div className="site-shell grid gap-14 py-24 lg:grid-cols-12 lg:items-center lg:py-32">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-[28px] lg:col-span-7">
+                <Image
+                  src="/img/azienda/showroom.webp"
+                  alt="Lo showroom Matarrese ad Alberobello"
+                  fill
+                  sizes="(min-width: 1024px) 55vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="lg:col-span-5">
+                <span className="eyebrow-cinema" data-cin-reveal>
+                  La sede
+                </span>
+                <TitoloDueTempi
+                  data-cin-reveal
+                  id="azienda-title"
+                  riga="Dove le soluzioni"
+                  accento="si toccano con mano."
+                  className="mt-6 text-[clamp(36px,4.4vw,64px)] !leading-none"
+                />
+                {/* Targhetta: come la placca dati avvitata sulle attrezzature */}
+                <div className="mt-10 border-2 border-inox/60">
+                  <div className="border-b-2 border-inox/60 px-5 py-5">
+                    <Image
+                      src="/img/logo-matarrese-bianco-350.png"
+                      alt="Matarrese srl"
+                      width={350}
+                      height={26}
+                      className="h-auto w-[170px]"
+                    />
+                  </div>
+                  <dl>
+                    {fatti.map(([dato, spiegazione]) => (
+                      <div
+                        key={dato}
+                        className="grid grid-cols-[9.5rem_1fr] border-b border-inox/25 last:border-b-0"
+                      >
+                        <dt className="type-display border-r border-inox/25 px-4 py-4 text-xl">
+                          {dato}
+                        </dt>
+                        <dd className="px-4 py-4 text-inox-muted">
+                          {spiegazione}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+                <Link
+                  href="/azienda"
+                  className="mt-8 inline-block border-b border-fiamma py-2 text-fiamma hover:text-white"
+                >
+                  Conosci l’azienda
+                </Link>
+              </div>
+            </div>
+          </section>
+
+          {/* Fascia marchi: separata dalle recensioni */}
+          <section
+            className="border-y border-ghisa/10 bg-white text-ghisa"
+            data-header="light"
+            aria-labelledby="marchi-title"
+          >
+            <div className="site-shell flex flex-col gap-4 pb-8 pt-16 md:flex-row md:items-end md:justify-between">
+              <h2
+                id="marchi-title"
+                className="type-display text-[clamp(24px,2.4vw,36px)]"
+              >
+                I partner con cui realizziamo la tua idea.
+              </h2>
+              <Link
+                href="/prodotti"
+                className="self-start border-b border-ghisa py-2 hover:text-fiamma-testo md:self-auto"
+              >
+                Prodotti e marchi
               </Link>
             </div>
-          </div>
-        </section>
-
-        {/* Fascia marchi: separata dalle recensioni */}
-        <section
-          className="border-y border-ghisa/10 bg-white text-ghisa"
-          data-header="light"
-          aria-labelledby="marchi-title"
-        >
-          <div className="site-shell flex flex-col gap-4 pb-8 pt-16 md:flex-row md:items-end md:justify-between">
-            <h2
-              id="marchi-title"
-              className="type-display text-[clamp(24px,2.4vw,36px)]"
-            >
-              I partner con cui realizziamo la tua idea.
-            </h2>
-            <Link
-              href="/prodotti"
-              className="self-start border-b border-ghisa py-2 hover:text-fiamma-testo md:self-auto"
-            >
-              Prodotti e marchi
-            </Link>
-          </div>
-          <div className="pb-16">
-            <BrandMarquee logos={logos} />
-          </div>
-        </section>
-
-        {/* Capitolo chiaro: la voce dei clienti */}
-        <section
-          className="bg-[var(--carta)] text-ghisa"
-          data-header="light"
-          aria-labelledby="recensioni-title"
-        >
-          <div className="site-shell py-24 lg:py-32">
-            <span className="eyebrow-cinema" data-tono="chiaro">
-              Recensioni
-            </span>
-            <TitoloDueTempi
-              id="recensioni-title"
-              tono="chiaro"
-              riga="Cosa dicono"
-              accento="i clienti."
-              className="mt-6 text-[clamp(32px,3.6vw,56px)] !leading-none"
-            />
-            <div className="mt-8">
-              <Testimonials items={reviews} />
+            <div className="pb-16">
+              <BrandMarquee logos={logos} />
             </div>
-          </div>
-        </section>
+          </section>
 
-
-        {/* Chiusura: la chiamata al progetto */}
-        <section
-          className="bg-white text-ghisa"
-          data-header="light"
-          id="parliamone"
-          aria-labelledby="contatto-title"
-        >
-          <div className="site-shell grid gap-6 pb-10 pt-24 lg:grid-cols-12 lg:pt-32">
-            <div className="lg:col-span-7">
-              <span className="eyebrow-cinema" data-tono="chiaro">
-                Parliamone
+          {/* Capitolo chiaro: la voce dei clienti */}
+          <section
+            className="bg-[var(--carta)] text-ghisa"
+            data-header="light"
+            aria-labelledby="recensioni-title"
+          >
+            <div className="site-shell py-24 lg:py-32">
+              <span
+                className="eyebrow-cinema"
+                data-tono="chiaro"
+                data-cin-reveal
+              >
+                Recensioni
               </span>
               <TitoloDueTempi
-                id="contatto-title"
+                data-cin-reveal
+                id="recensioni-title"
                 tono="chiaro"
-                riga="Il prossimo progetto"
-                accento="inizia da qui."
-                className="mt-6 text-[clamp(40px,5.4vw,80px)] !leading-none"
+                riga="Cosa dicono"
+                accento="i clienti."
+                className="mt-6 text-[clamp(32px,3.6vw,56px)] !leading-none"
               />
+              <div className="mt-8">
+                <Testimonials items={reviews} />
+              </div>
             </div>
-            <p className="max-w-[40ch] text-acciaio lg:col-span-4 lg:col-start-9 lg:self-end">
-              Raccontaci cosa hai in mente: ti risponde un progettista.
-            </p>
-          </div>
-          <div className="pb-24">
-            <ContactForm groups={groups} compact />
-          </div>
-        </section>
+          </section>
+
+          {/* Chiusura: la chiamata al progetto */}
+          <section
+            className="bg-white text-ghisa"
+            data-header="light"
+            id="parliamone"
+            aria-labelledby="contatto-title"
+          >
+            <div className="site-shell grid gap-6 pb-10 pt-24 lg:grid-cols-12 lg:pt-32">
+              <div className="lg:col-span-7">
+                <span
+                  className="eyebrow-cinema"
+                  data-tono="chiaro"
+                  data-cin-reveal
+                >
+                  Parliamone
+                </span>
+                <TitoloDueTempi
+                  data-cin-reveal
+                  id="contatto-title"
+                  tono="chiaro"
+                  riga="Il prossimo progetto"
+                  accento="inizia da qui."
+                  className="mt-6 text-[clamp(40px,5.4vw,80px)] !leading-none"
+                />
+              </div>
+              <p className="max-w-[40ch] text-acciaio lg:col-span-4 lg:col-start-9 lg:self-end">
+                Raccontaci cosa hai in mente: ti risponde un progettista.
+              </p>
+            </div>
+            <div className="pb-24">
+              <ContactForm groups={groups} compact />
+            </div>
+          </section>
+        </div>
       </Layout>
     </>
   )

@@ -10,12 +10,12 @@ export default function SectorList({settori, href, title, intro}) {
 
   return (
     <section
-      className="bg-calce text-ghisa"
+      className="bg-[var(--carta)] text-ghisa"
       data-header="light"
       aria-labelledby="settori-title"
     >
       <div className="site-shell grid gap-10 py-24 lg:grid-cols-12 lg:gap-14 lg:py-32">
-        <div className="relative isolate flex min-h-[420px] flex-col justify-end overflow-hidden bg-ghisa p-7 text-white md:p-10 lg:col-span-5">
+        <div className="relative isolate flex min-h-[460px] flex-col justify-end overflow-hidden rounded-[28px] bg-ghisa p-7 text-white md:p-10 lg:col-span-5 lg:min-h-[640px]">
           <div className="absolute inset-0 -z-10" aria-hidden="true">
             {settori.map((s, i) => (
               <Image
@@ -25,7 +25,7 @@ export default function SectorList({settori, href, title, intro}) {
                 fill
                 sizes="(min-width: 1024px) 40vw, 100vw"
                 loading={i === 0 ? 'eager' : 'lazy'}
-                className={`object-cover transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none ${
+                className={`object-cover transition-[opacity,transform] duration-1000 ease-out motion-reduce:transition-none ${
                   active === s.slug
                     ? 'scale-100 opacity-100'
                     : 'scale-105 opacity-0'
@@ -47,7 +47,7 @@ export default function SectorList({settori, href, title, intro}) {
         </div>
 
         <ul className="lg:col-span-7 lg:self-center">
-          {settori.map(s => (
+          {settori.map((s, i) => (
             <li key={s.slug} className="border-t border-ghisa/15 last:border-b">
               <Link
                 href={href(s)}
@@ -58,12 +58,12 @@ export default function SectorList({settori, href, title, intro}) {
               >
                 <span className="min-w-0 flex-1">
                   <span className="flex items-center gap-3">
-                    {s.inEvidenza && (
-                      <span
-                        className="h-2 w-2 shrink-0 bg-fiamma"
-                        aria-hidden="true"
-                      />
-                    )}
+                    <span
+                      className="cin-num w-8 shrink-0 text-lg"
+                      aria-hidden="true"
+                    >
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
                     <span
                       className={`type-display block text-[clamp(22px,2.6vw,40px)] transition-[color,transform] duration-500 ease-out group-hover:translate-x-3 group-focus-visible:translate-x-3 motion-reduce:transition-none ${
                         active === s.slug ? 'text-ghisa' : 'text-ghisa/70'
@@ -73,7 +73,7 @@ export default function SectorList({settori, href, title, intro}) {
                     </span>
                   </span>
                   {s.frase && (
-                    <span className="mt-2 block max-w-[52ch] text-acciaio transition-transform delay-75 duration-500 ease-out group-hover:translate-x-3 motion-reduce:transition-none">
+                    <span className="mt-2 block max-w-[52ch] pl-11 text-acciaio transition-transform delay-75 duration-500 ease-out group-hover:translate-x-3 motion-reduce:transition-none">
                       {s.frase}
                     </span>
                   )}

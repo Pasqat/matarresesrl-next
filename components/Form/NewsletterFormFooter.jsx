@@ -243,7 +243,7 @@ export default function NewsletterForm({hasAutoFocus, groups}) {
             disabled={loading || done}
             aria-hidden={done || undefined}
             className={clsx(
-              'group inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-sm bg-ghisa px-7 text-base font-medium text-calce transition-[background-color,opacity,visibility] duration-300 hover:bg-grafite disabled:cursor-wait md:w-auto motion-reduce:transition-none',
+              'group inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-full bg-ghisa px-7 text-base font-medium text-calce transition-[background-color,opacity,visibility] duration-300 hover:bg-grafite disabled:cursor-wait md:w-auto motion-reduce:transition-none',
               done && 'invisible opacity-0',
             )}
           >
