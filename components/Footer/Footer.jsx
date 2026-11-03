@@ -3,6 +3,7 @@ import Link from 'next/link'
 import clsx from 'clsx'
 import NewsletterFormFooter from '../Form/NewsletterFormFooter'
 import ContactModal from '../Form/ContactModal'
+import TitoloDueTempi from '../cinema/TitoloDueTempi'
 import {newsletterGroups} from '../../data/newsletter-groups'
 import {social} from '../../data/social'
 
@@ -18,29 +19,35 @@ const heading = 'mb-5 text-base font-medium text-calce'
 export default function Footer() {
   return (
     <footer className="text-base">
-      {/* Newsletter: fascia calce sopra il blocco ghisa. Resta chiara perché
-          il ghisa si apre con la CTA forte "Parliamone" (l'unica in fiamma):
-          qui l'invito è secondario, con pulsante ghisa, e l'alternanza
-          chiaro/scuro chiude la pagina. */}
+      {/* Newsletter: card bianca a raggio ampio su carta (DESIGN.md), sopra il blocco ghisa.
+          Invito secondario: pulsante ghisa, la fiamma resta alla CTA "Parliamone". */}
       <section
         aria-labelledby="newsletter-title"
-        className="border-t border-ghisa/10 bg-calce py-16 text-ghisa lg:py-24"
+        className="bg-[var(--carta)] py-16 text-ghisa lg:py-24"
+        data-header="light"
       >
-        <div className="site-shell grid gap-x-10 gap-y-10 lg:grid-cols-12">
-          <div className="lg:col-span-5">
-            <h2
-              id="newsletter-title"
-              className="type-display text-[1.75rem] md:text-4xl lg:text-[2.75rem]"
-            >
-              Eventi, demo e novità tecniche per il tuo locale.
-            </h2>
-            <p className="mt-5 max-w-prose text-lg leading-relaxed text-acciaio">
-              Ti scriviamo quando organizziamo showcooking e dimostrazioni, o
-              quando pubblichiamo novità utili per chi lavora nell&apos;ho.re.ca.
-            </p>
-          </div>
-          <div className="lg:col-span-6 lg:col-start-7 lg:self-end">
-            <NewsletterFormFooter groups={newsletterGroups} />
+        <div className="site-shell">
+          <div className="grid gap-x-10 gap-y-10 rounded-[28px] bg-white p-8 md:p-12 lg:grid-cols-12 lg:p-16">
+            <div className="lg:col-span-5">
+              <span className="eyebrow-cinema" data-tono="chiaro">
+                Newsletter
+              </span>
+              <TitoloDueTempi
+                id="newsletter-title"
+                tono="chiaro"
+                riga="Eventi, demo e novità"
+                accento="per il tuo locale."
+                className="mt-6 text-[clamp(30px,3.4vw,48px)] !leading-none"
+              />
+              <p className="mt-6 max-w-prose text-lg leading-relaxed text-acciaio">
+                Ti scriviamo quando organizziamo showcooking e dimostrazioni, o
+                quando pubblichiamo novità utili per chi lavora
+                nell&apos;ho.re.ca.
+              </p>
+            </div>
+            <div className="lg:col-span-6 lg:col-start-7 lg:self-end">
+              <NewsletterFormFooter groups={newsletterGroups} />
+            </div>
           </div>
         </div>
       </section>
@@ -48,9 +55,11 @@ export default function Footer() {
       <div className="bg-ghisa text-inox">
         <div className="site-shell">
           <div className="border-b border-inox/20 py-20 lg:py-28">
-            <h2 className="type-display max-w-5xl text-[1.875rem] text-calce md:text-5xl lg:text-7xl">
-              Hai un progetto? Parliamone.
-            </h2>
+            <TitoloDueTempi
+              riga="Hai un progetto?"
+              accento="Parliamone."
+              className="max-w-5xl text-[clamp(36px,5.4vw,80px)] text-calce !leading-none"
+            />
             <div className="mt-10 flex flex-col gap-4 text-xl md:flex-row md:items-baseline md:gap-10">
               <ContactModal
                 variant="progetto"
@@ -99,7 +108,12 @@ export default function Footer() {
               <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-1 text-sm">
                 {social.map(([name, href]) => (
                   <li key={name}>
-                    <a href={href} target="_blank" rel="noreferrer" className={link}>
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={link}
+                    >
                       {name}
                     </a>
                   </li>
@@ -166,10 +180,20 @@ export default function Footer() {
               <Link href="/faq" className={link}>
                 Domande frequenti
               </Link>
-              <a href="https://www.qucino.it/" target="_blank" rel="noreferrer" className={link}>
+              <a
+                href="https://www.qucino.it/"
+                target="_blank"
+                rel="noreferrer"
+                className={link}
+              >
                 Qucino
               </a>
-              <a href="https://www.assogi.it/" target="_blank" rel="noreferrer" className={link}>
+              <a
+                href="https://www.assogi.it/"
+                target="_blank"
+                rel="noreferrer"
+                className={link}
+              >
                 ASSOGI
               </a>
             </nav>

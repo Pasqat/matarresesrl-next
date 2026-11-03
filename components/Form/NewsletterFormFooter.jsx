@@ -6,11 +6,11 @@ import {logStructuredError} from '../../lib/logging'
 import clsx from 'clsx'
 import {CheckIcon} from '../icons/check-icon'
 
-// Campi "a linea" su calce: solo filetto inferiore, 48px di altezza. Il focus
+// Campi "a linea" sulla card bianca: solo filetto inferiore, 48px di altezza. Il focus
 // è l'outline globale fiamma-testo (styles/revamp.css), già AA su chiaro.
 // L'ombra inset sovrascrive il fondo grigio che globals.css dà all'autofill.
 const field =
-  'block h-12 w-full rounded-none border-0 border-b border-ghisa/30 bg-transparent px-0 text-lg text-ghisa transition-colors placeholder:text-acciaio hover:border-ghisa/60 focus:border-ghisa aria-[invalid=true]:border-red-600 autofill:!shadow-[inset_0_0_0_999px_var(--calce)]'
+  'block h-12 w-full rounded-none border-0 border-b border-ghisa/30 bg-transparent px-0 text-lg text-ghisa transition-colors placeholder:text-acciaio hover:border-ghisa/60 focus:border-ghisa aria-[invalid=true]:border-red-600 autofill:!shadow-[inset_0_0_0_999px_#fff]'
 const label = 'block text-sm font-medium text-acciaio'
 
 export default function NewsletterForm({hasAutoFocus, groups}) {
