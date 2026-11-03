@@ -42,7 +42,7 @@ GraphQL queries are organized in `lib/query/`:
 WordPress JWT auth is handled through `iron-session` (cookie-based). `lib/authenticate.js` calls the WP GraphQL `login` mutation; `lib/refreshToken.js` refreshes expired tokens. Session helpers are in `lib/session.js` (`withSessionRoute`, `withSessionSsr`).
 
 ### Integrations
-- **Resend** — transactional email from `contact.js`. Requires `RESEND_API_KEY`, `CONTACT_FROM`, `CONTACT_TO`.
+- **Resend** — transactional email from `contact.js`. Requires `RESEND_API_KEY`, `CONTACT_FROM`, `CONTACT_TO`; assistance requests (`source: 'assistenza'`) go to `CONTACT_TO_ASSISTENZA` (default service@matarrese.it) and never become Odoo leads.
 - **Odoo CRM** (`lib/odoo.js`) — lead creation via XML-RPC. Enabled by `ODOO_ENABLED=true`. IDs for tag and source are configurable via `ODOO_TAG_ID` / `ODOO_SOURCE_ID` (defaults: 14 / 11). Includes exponential backoff retry.
 - **Mailchimp** — newsletter signup in `pages/api/subscribe.js` (audience "All contacts"). The sector picked in the form goes to the "Settore" merge field (`MMERGE5`) and to the tag with the same name; the sector list is fixed in `data/newsletter-groups.js` and only those names are accepted. Requires `MAILCHIMP_API_KEY` (datacenter is the suffix after the dash) and `MAILCHIMP_LIST_ID`.
 - **Plausible** — analytics via `next-plausible`, always active.

@@ -63,21 +63,19 @@ export default function Contatti({groups}) {
                 </ContactModal>
               </li>
               <li>
-                <Link href="/assistenza#richiesta" className="cin-ingresso">
+                <ContactModal variant="guasto" className="cin-ingresso">
                   <span className="cin-ingresso__titolo">Ho un guasto</span>
                   <span className="cin-ingresso__testo">
-                    Modulo assistenza o linea dedicata +39 080 4323 651.
+                    La richiesta va al nostro service, che ti richiama.
                   </span>
                   <Freccia />
-                </Link>
+                </ContactModal>
               </li>
               <li>
                 <ContactModal
-                  variant="info"
+                  variant="showroom"
                   source="contatti-showroom"
                   className="cin-ingresso"
-                  title="Vieni a trovarci in showroom."
-                  subtitle="Dicci quando preferisci passare ad Alberobello: ti facciamo trovare un consulente e le attrezzature che ti interessano."
                 >
                   <span className="cin-ingresso__titolo">
                     Voglio vedere lo showroom

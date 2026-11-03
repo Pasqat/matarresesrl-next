@@ -29,15 +29,34 @@ const VUOTO = {
   tel: '',
   partecipanti: '',
   messaggio: '',
+  attrezzatura: '',
+  guasto: '',
+  azienda: '',
+  indirizzo: '',
+  giorno: '',
+  fascia: '',
   privacy: false,
   honeypot: '',
 }
-// Campi controllati a ogni passo del modulo `progetto`
-const PASSI = {
-  1: ['settore'],
-  2: ['nome', 'cognome', 'mail'],
-  3: ['messaggio', 'privacy'],
+// Percorsi a passi: per ogni variante, i campi controllati a ogni passo.
+// `guasto` va al service (source 'assistenza' in /api/contact), gli altri al commerciale.
+const PERCORSI = {
+  progetto: {
+    1: ['settore'],
+    2: ['nome', 'cognome', 'mail'],
+    3: ['messaggio', 'privacy'],
+  },
+  guasto: {
+    1: ['attrezzatura', 'guasto'],
+    2: ['azienda', 'indirizzo'],
+    3: ['nome', 'cognome', 'mailTel', 'privacy'],
+  },
+  showroom: {
+    1: ['giorno', 'fascia'],
+    2: ['nome', 'cognome', 'mail', 'privacy'],
+  },
 }
+const FASCE = ['Mattina', 'Pomeriggio', 'Indifferente']
 
 const reducedMotion = () =>
   typeof window !== 'undefined' &&
@@ -60,6 +79,27 @@ function valida(v, campi, {reservation}) {
     else if (tel && !TEL_RE.test(tel))
       e.tel = 'Controlla il numero di telefono.'
   }
+  // guasto: il tecnico deve poter chiamare e scrivere, servono entrambi
+  if (vuole('mailTel')) {
+    if (!MAIL_RE.test(v.mail.trim())) e.mail = 'Serve un’email valida.'
+    if (!TEL_RE.test(v.tel.trim()))
+      e.tel = 'Serve un numero per farti richiamare dal tecnico.'
+  }
+  if (vuole('attrezzatura') && !v.attrezzatura.trim())
+    e.attrezzatura = 'Scrivi che macchina è (es. forno, lavastoviglie).'
+  if (vuole('guasto') && !v.guasto.trim())
+    e.guasto = 'Descrivi in due righe cosa succede.'
+  if (vuole('azienda') && !v.azienda.trim())
+    e.azienda = 'Scrivi il nome del locale o la ragione sociale.'
+  if (vuole('indirizzo') && !v.indirizzo.trim())
+    e.indirizzo = 'Scrivi dove si trova la macchina.'
+  if (vuole('giorno')) {
+    const g = v.giorno && new Date(`${v.giorno}T12:00`).getDay()
+    if (!v.giorno) e.giorno = 'Scegli un giorno.'
+    else if (g === 0 || g === 6)
+      e.giorno = 'Lo showroom è aperto dal lunedì al venerdì.'
+  }
+  if (vuole('fascia') && !v.fascia) e.fascia = 'Scegli quando preferisci.'
   if (reservation && vuole('partecipanti')) {
     const n = Number(v.partecipanti)
     if (!Number.isInteger(n) || n < 1 || n > 50)
@@ -125,14 +165,20 @@ export default function ContactModal({
   const [invio, setInvio] = useState(false)
   const [inviato, setInviato] = useState(false)
 
-  const aPassi = variant === 'progetto' && !reservation
+  const percorso = !reservation && PERCORSI[variant]
+  const aPassi = Boolean(percorso)
+  const nPassi = aPassi ? Object.keys(percorso).length : 0
   // Il percorso a passi del progettista ha la stessa grafica in vetro delle richieste generiche.
   const aspetto = variant === 'realizzazione' ? 'realizzazione' : 'info'
-  const passoIniziale = aPassi && settore ? 2 : 1
+  const passoIniziale = variant === 'progetto' && settore ? 2 : 1
   const titolo =
     title ??
     (reservation
       ? reservation.title
+      : variant === 'guasto'
+      ? 'Raccontaci il guasto.'
+      : variant === 'showroom'
+      ? 'Vieni a trovarci in showroom.'
       : variant !== 'info'
       ? 'Raccontaci la tua idea.'
       : 'Come possiamo aiutarti?')
@@ -140,6 +186,10 @@ export default function ContactModal({
     subtitle ??
     (reservation
       ? 'Lasciaci i tuoi contatti: ti confermiamo il posto.'
+      : variant === 'guasto'
+      ? 'Tre passi: la richiesta arriva al nostro service, che ti richiama per fissare l’intervento.'
+      : variant === 'showroom'
+      ? 'Dicci quando preferisci passare ad Alberobello: ti facciamo trovare un consulente.'
       : aPassi
       ? 'Tre domande, meno di un minuto. Poi ti ricontatta un nostro progettista.'
       : 'Un nostro consulente ti ricontatta per capire insieme cosa ti serve.')
@@ -312,7 +362,7 @@ export default function ContactModal({
       return next
     })
     setRiepilogo('')
-    if (aPassi && name === 'settore' && passo === 1)
+    if (variant === 'progetto' && name === 'settore' && passo === 1)
       setTimeout(() => vaiA(2), 220)
   }
 
@@ -352,13 +402,13 @@ export default function ContactModal({
     event.preventDefault()
     if (invio) return
 
-    if (aPassi && passo < 3) {
-      const e = valida(valori, PASSI[passo], {reservation})
+    if (aPassi && passo < nPassi) {
+      const e = valida(valori, percorso[passo], {reservation})
       if (Object.keys(e).length) return mostraErrori(e)
       return vaiA(passo + 1)
     }
 
-    const e = valida(valori, aPassi ? PASSI[3] : null, {reservation})
+    const e = valida(valori, aPassi ? percorso[nPassi] : null, {reservation})
     if (Object.keys(e).length) return mostraErrori(e)
 
     setInvio(true)
@@ -372,19 +422,43 @@ export default function ContactModal({
           senderMail: valori.mail.trim(),
           tel: valori.tel.trim(),
           settore: valori.settore,
-          formContent: reservation
-            ? [
-                `Evento: ${reservation.title}`,
-                `Partecipanti: ${valori.partecipanti}`,
-                messaggio,
-              ]
-                .filter(Boolean)
-                .join('\n')
-            : messaggio,
+          company: valori.azienda.trim(),
+          indirizzo: valori.indirizzo.trim(),
+          formContent:
+            variant === 'guasto'
+              ? [
+                  `Attrezzatura: ${valori.attrezzatura.trim()}`,
+                  valori.guasto.trim(),
+                ].join('\n\n')
+              : variant === 'showroom'
+              ? [
+                  `Visita in showroom: ${new Date(
+                    `${valori.giorno}T12:00`,
+                  ).toLocaleDateString('it-IT', {
+                    weekday: 'long',
+                    day: 'numeric',
+                    month: 'long',
+                  })}, ${valori.fascia.toLowerCase()}`,
+                  messaggio && `Vorrebbe vedere: ${messaggio}`,
+                ]
+                  .filter(Boolean)
+                  .join('\n')
+              : reservation
+              ? [
+                  `Evento: ${reservation.title}`,
+                  `Partecipanti: ${valori.partecipanti}`,
+                  messaggio,
+                ]
+                  .filter(Boolean)
+                  .join('\n')
+              : messaggio,
           privacy: valori.privacy,
           honeypot: valori.honeypot,
           source:
-            source || (reservation ? 'modal-prenotazione' : `modal-${variant}`),
+            variant === 'guasto'
+              ? 'assistenza'
+              : source ||
+                (reservation ? 'modal-prenotazione' : `modal-${variant}`),
         }),
       })
       const data = await r.json().catch(() => ({}))
@@ -516,7 +590,11 @@ export default function ContactModal({
           error={errori.tel}
         />
       </div>
-      <p className="cm-hint">Email o telefono: ne basta uno.</p>
+      <p className="cm-hint">
+        {variant === 'guasto'
+          ? 'Servono entrambi: il tecnico ti chiama, il riepilogo arriva per email.'
+          : 'Email o telefono: ne basta uno.'}
+      </p>
     </>
   )
 
@@ -564,6 +642,124 @@ export default function ContactModal({
     </div>
   )
 
+  const campo = (nome, label, props = {}) => (
+    <Campo
+      id={id(nome)}
+      name={nome}
+      label={label}
+      value={valori[nome]}
+      onChange={cambia}
+      error={errori[nome]}
+      {...props}
+    />
+  )
+  const domanda = testo => <p className="cm-step-q">{testo}</p>
+  const scelte = (nome, legenda, opzioni) => (
+    <>
+      <fieldset
+        className="cm-chips"
+        aria-describedby={errori[nome] ? id(`${nome}-err`) : undefined}
+      >
+        <legend className="cm-step-q">{legenda}</legend>
+        {opzioni.map(o => (
+          <label key={o} className="cm-chip">
+            <input
+              type="radio"
+              name={nome}
+              value={o}
+              checked={valori[nome] === o}
+              onChange={cambia}
+            />
+            <span>{o}</span>
+          </label>
+        ))}
+      </fieldset>
+      <span className="cm-err" id={id(`${nome}-err`)}>
+        {errori[nome]}
+      </span>
+    </>
+  )
+  // domani in poi, in formato yyyy-mm-dd per <input type="date">
+  const domani = new Date(Date.now() + 864e5).toISOString().slice(0, 10)
+
+  function passoUI() {
+    if (variant === 'progetto') {
+      if (passo === 1)
+        return scelte('settore', 'Che attività hai, o vuoi aprire?', ATTIVITA)
+      if (passo === 2)
+        return (
+          <>
+            {domanda('Come ti ricontattiamo?')}
+            {contatti}
+          </>
+        )
+      return (
+        <>
+          {messaggio}
+          {consenso}
+        </>
+      )
+    }
+    if (variant === 'guasto') {
+      if (passo === 1)
+        return (
+          <>
+            {domanda('Che macchina si è fermata?')}
+            {campo('attrezzatura', 'Attrezzatura, marca e modello', {
+              maxLength: 120,
+            })}
+            {campo('guasto', 'Cosa succede? Eventuali codici di errore', {
+              textarea: true,
+              maxLength: 3000,
+            })}
+          </>
+        )
+      if (passo === 2)
+        return (
+          <>
+            {domanda('Dove interveniamo?')}
+            {campo('azienda', 'Nome del locale o ragione sociale', {
+              autoComplete: 'organization',
+              maxLength: 120,
+            })}
+            {campo('indirizzo', 'Indirizzo e città', {
+              autoComplete: 'street-address',
+              maxLength: 200,
+            })}
+          </>
+        )
+      return (
+        <>
+          {domanda('Chi richiama il tecnico?')}
+          {contatti}
+          {consenso}
+        </>
+      )
+    }
+    // showroom
+    if (passo === 1)
+      return (
+        <>
+          {campo('giorno', 'Giorno preferito (lun–ven)', {
+            type: 'date',
+            min: domani,
+          })}
+          {scelte('fascia', 'Mattina o pomeriggio?', FASCE)}
+          {campo('messaggio', 'Cosa vorresti vedere? (facoltativo)', {
+            textarea: true,
+            maxLength: 2000,
+          })}
+        </>
+      )
+    return (
+      <>
+        {domanda('Come ti confermiamo la visita?')}
+        {contatti}
+        {consenso}
+      </>
+    )
+  }
+
   const contenuto = inviato ? (
     <div className="cm-done" role="status">
       <svg viewBox="0 0 64 64" aria-hidden="true">
@@ -571,12 +767,18 @@ export default function ContactModal({
         <path d="M20 33l8 8 16-17" />
       </svg>
       <h2 className="type-display cm-title mt-5">
-        {reservation ? 'Richiesta arrivata.' : 'Messaggio arrivato.'}
+        {reservation || variant !== 'info'
+          ? 'Richiesta arrivata.'
+          : 'Messaggio arrivato.'}
       </h2>
       <p className="cm-sub">
         Grazie {valori.nome.trim()}:{' '}
         {reservation
           ? 'ti scriviamo per confermarti il posto.'
+          : variant === 'guasto'
+          ? 'il nostro service ti richiama per fissare l’intervento, di norma entro 48 ore.'
+          : variant === 'showroom'
+          ? 'ti richiamiamo per confermare il giorno della visita.'
           : 'un nostro consulente ti ricontatta al più presto.'}
       </p>
       <button
@@ -596,52 +798,12 @@ export default function ContactModal({
       <p className="cm-sub">{sottotitolo}</p>
       <form ref={formRef} className="cm-form" onSubmit={invia} noValidate>
         {aPassi ? (
-          <>
-            {passo === 1 ? (
-              <div data-step="1" className="grid gap-5">
-                <span className="cm-step-n">1 di 3</span>
-                <fieldset
-                  className="cm-chips"
-                  aria-describedby={
-                    errori.settore ? id('settore-err') : undefined
-                  }
-                >
-                  <legend className="cm-step-q">
-                    Che attività hai, o vuoi aprire?
-                  </legend>
-                  {ATTIVITA.map(nome => (
-                    <label key={nome} className="cm-chip">
-                      <input
-                        type="radio"
-                        name="settore"
-                        value={nome}
-                        checked={valori.settore === nome}
-                        onChange={cambia}
-                      />
-                      <span>{nome}</span>
-                    </label>
-                  ))}
-                </fieldset>
-                <span className="cm-err" id={id('settore-err')}>
-                  {errori.settore}
-                </span>
-              </div>
-            ) : null}
-            {passo === 2 ? (
-              <div data-step="2" className="grid gap-6">
-                <span className="cm-step-n">2 di 3</span>
-                <p className="cm-step-q">Come ti ricontattiamo?</p>
-                {contatti}
-              </div>
-            ) : null}
-            {passo === 3 ? (
-              <div data-step="3" className="grid gap-6">
-                <span className="cm-step-n">3 di 3</span>
-                {messaggio}
-                {consenso}
-              </div>
-            ) : null}
-          </>
+          <div data-step={passo} className="grid gap-6">
+            <span className="cm-step-n">
+              {passo} di {nPassi}
+            </span>
+            {passoUI()}
+          </div>
         ) : (
           <>
             {contatti}
@@ -700,7 +862,7 @@ export default function ContactModal({
             disabled={invio}
             aria-busy={invio || undefined}
           >
-            {aPassi && passo < 3
+            {aPassi && passo < nPassi
               ? 'Avanti'
               : invio
               ? 'Invio…'
@@ -714,9 +876,11 @@ export default function ContactModal({
         {/* Avanzamento sotto i pulsanti: il modulo resta il centro del pannello */}
         {aPassi ? (
           <div className="cm-progress" aria-hidden="true">
-            {[1, 2, 3].map(n => (
-              <i key={n} className={clsx(n <= passo && 'is-on')} />
-            ))}
+            {Object.keys(percorso)
+              .map(Number)
+              .map(n => (
+                <i key={n} className={clsx(n <= passo && 'is-on')} />
+              ))}
           </div>
         ) : null}
       </form>
