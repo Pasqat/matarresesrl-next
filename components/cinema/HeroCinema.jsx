@@ -1,6 +1,8 @@
 // Apertura a tutto schermo della grammatica cinematica: foto che si assesta con uno zoom
 // lento, scrim doppio, testi che salgono dalla sfocatura in cascata (styles/cinema.css).
-// `voci` è la lista numerata a destra (solo da lg).
+// `voci` è la lista numerata a destra (solo da lg). `video`: sorgenti {src, media} di un loop
+// muto sopra la foto, che fa da poster e resta sola con movimento ridotto.
+import {useEffect, useRef, useState} from 'react'
 import Image from 'next/image'
 import TitoloDueTempi from './TitoloDueTempi'
 
@@ -13,8 +15,25 @@ export default function HeroCinema({
   accento,
   sottotitolo,
   voci,
+  video,
   children,
 }) {
+  const videoRef = useRef(null)
+  const [inPausa, setInPausa] = useState(false)
+  useEffect(() => {
+    const v = videoRef.current
+    if (!v) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      v.pause()
+      setInPausa(true)
+    }
+  }, [])
+  const alterna = () => {
+    const v = videoRef.current
+    if (v.paused) v.play()
+    else v.pause()
+    setInPausa(v.paused)
+  }
   return (
     <section className="cin-hero" data-header="dark" aria-label="Introduzione">
       <div className="cin-hero__media cin-in-zoom">
@@ -27,6 +46,22 @@ export default function HeroCinema({
           placeholder="blur"
           style={{objectPosition}}
         />
+        {video && (
+          <video
+            ref={videoRef}
+            className="cin-hero__video"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-hidden="true"
+          >
+            {video.map(s => (
+              <source key={s.src} src={s.src} media={s.media} type="video/mp4" />
+            ))}
+          </video>
+        )}
       </div>
       <div className="cin-hero__scrim" />
       <div className="cin-hero__stage site-shell">
@@ -70,6 +105,16 @@ export default function HeroCinema({
           </ul>
         )}
       </div>
+      {video && (
+        <button
+          type="button"
+          className="cin-hero__pausa"
+          onClick={alterna}
+          aria-label={inPausa ? 'Riproduci il video' : 'Metti in pausa il video'}
+        >
+          {inPausa ? '▶' : '❚❚'}
+        </button>
+      )}
     </section>
   )
 }

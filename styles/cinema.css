@@ -185,6 +185,30 @@
 .cin-hero__media img {
   object-fit: cover;
 }
+.cin-hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.cin-hero__pausa {
+  position: absolute;
+  z-index: 2;
+  right: 16px;
+  bottom: 16px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgb(243 238 230 / 0.3);
+  background: rgb(13 14 15 / 0.45);
+  color: rgb(243 238 230 / 0.9);
+  font-size: 12px;
+  letter-spacing: -0.1em;
+}
+.cin-hero__pausa:hover {
+  border-color: var(--fiamma);
+}
 .cin-hero__scrim {
   position: absolute;
   inset: 0;
@@ -472,6 +496,10 @@
   .cin-in-zoom,
   .eyebrow-cinema::before {
     animation: none !important;
+  }
+  .cin-hero__video,
+  .cin-hero__pausa {
+    display: none;
   }
   .js-cin [data-cin-reveal] {
     opacity: 1;

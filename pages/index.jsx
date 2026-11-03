@@ -3,7 +3,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Layout from '../components/Layout'
 import ContactForm from '../components/Form/ContactForm'
-import HeroPianta from '../components/home/HeroPianta'
+import ContactModal from '../components/Form/ContactModal'
+import HeroCinema from '../components/cinema/HeroCinema'
+import TitoloDueTempi from '../components/cinema/TitoloDueTempi'
+import {Freccia} from '../components/cinema/BottoneFreccia'
 import SectorList from '../components/home/SectorList'
 import ProjectGrid from '../components/home/ProjectGrid'
 import MetodoQuota from '../components/home/MetodoQuota'
@@ -15,6 +18,7 @@ import {getLastTwoProjects} from '../lib/query/project'
 import {logos} from '../data/partner-logo'
 import testimonials from '../data/testimonials'
 import settori from '../data/settori'
+import posterImg from '../public/img/home/sede-poster.webp'
 
 // Il metodo è davvero una sequenza: qui la numerazione è informazione (DESIGN.md).
 const metodo = [
@@ -80,40 +84,64 @@ export default function Home({groups, lastTwoProjects = [], event}) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <Layout navbarTransparent>
-        <HeroPianta
-          title="Diamo forma alla tua idea di ristorazione."
-          intro="Dal 1983 progettiamo e realizziamo cucine professionali, laboratori e locali ho.re.ca. E restiamo al tuo fianco anche dopo l’apertura."
-          primary={{modal: 'progetto', label: 'Parla con un progettista'}}
-          secondary={{href: '/realizzazioni', label: 'Guarda i progetti'}}
-          // ponytail: foto provvisoria della pianta; da sostituire con una foto di cucina finita scelta da Pasquale
-          photo="/img/settori/dk-linea-cottura.webp"
-        />
+        <HeroCinema
+          image={posterImg}
+          alt="L’arena del gusto nella sede Matarrese di Alberobello"
+          objectPosition="50% 50%"
+          video={[
+            {src: '/video/sede-960.mp4', media: '(max-width: 767px)'},
+            {src: '/video/sede-1920.mp4'},
+          ]}
+          eyebrow="Progetto · Arredi su misura · Attrezzature · Assistenza"
+          riga="Diamo forma alla tua idea"
+          accento="di ristorazione."
+          sottotitolo="Dal 1983 progettiamo e realizziamo cucine professionali, laboratori e locali ho.re.ca. E restiamo al tuo fianco anche dopo l’apertura."
+          voci={['Progetto', 'Arredi su misura', 'Attrezzature', 'Assistenza']}
+        >
+          <ContactModal variant="progetto" className="cin-btn">
+            Parla con un progettista
+            <Freccia />
+          </ContactModal>
+          <Link href="/realizzazioni" className="cin-link whitespace-nowrap">
+            Guarda i progetti
+          </Link>
+        </HeroCinema>
 
         {/* Capitolo: per chi lavoriamo (la foto del settore diventa lo sfondo) */}
         <SectorList
           settori={settori}
           href={s => (s.pagina ? `/settori/${s.slug}` : '#parliamone')}
-          title="Ogni attività ha la sua cucina."
+          title={
+            <>
+              Ogni attività{' '}
+              <span className="type-accento text-[rgb(243_238_230/.8)]">
+                ha la sua cucina.
+              </span>
+            </>
+          }
           intro="Lavoriamo per chi cucina, serve, produce e vende cibo. Ogni settore ha flussi, norme e ritmi diversi: il progetto parte da lì."
         />
 
         {/* Capitolo scuro: come lavoriamo */}
         <section
-          className="bg-ghisa text-white [&_:focus-visible]:outline-fiamma"
+          className="bg-[#121315] text-white [&_:focus-visible]:outline-fiamma"
           data-header="dark"
           aria-labelledby="metodo-title"
         >
           <div className="site-shell py-24 lg:py-32">
             <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-              <h2
-                id="metodo-title"
-                className="type-display max-w-[16ch] text-[clamp(32px,3.6vw,56px)]"
-              >
-                Un solo interlocutore, prima e dopo l’apertura.
-              </h2>
+              <div>
+                <span className="eyebrow-cinema">Come lavoriamo</span>
+                <TitoloDueTempi
+                  id="metodo-title"
+                  riga="Un solo interlocutore,"
+                  accento="prima e dopo l’apertura."
+                  className="mt-6 text-[clamp(36px,4.4vw,64px)] !leading-none"
+                />
+              </div>
               <Link
                 href="/servizi"
-                className="shrink-0 self-start border-b border-inox/60 py-2 text-inox hover:text-white lg:self-auto"
+                className="cin-link shrink-0 self-start lg:self-auto"
               >
                 Tutti i servizi
               </Link>
@@ -124,18 +152,24 @@ export default function Home({groups, lastTwoProjects = [], event}) {
 
         {/* Capitolo chiaro: prove */}
         <section
-          className="bg-calce text-ghisa"
+          className="bg-[var(--carta)] text-ghisa"
           data-header="light"
           aria-labelledby="progetti-title"
         >
           <div className="site-shell py-24 lg:py-32">
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-              <h2
-                id="progetti-title"
-                className="type-display text-[clamp(32px,3.6vw,56px)]"
-              >
-                Dall’idea a un locale pieno di clienti.
-              </h2>
+              <div>
+                <span className="eyebrow-cinema" data-tono="chiaro">
+                  Realizzazioni
+                </span>
+                <TitoloDueTempi
+                  id="progetti-title"
+                  tono="chiaro"
+                  riga="Dall’idea"
+                  accento="a un locale pieno di clienti."
+                  className="mt-6 text-[clamp(36px,4.4vw,64px)] !leading-none"
+                />
+              </div>
               <Link
                 href="/realizzazioni"
                 className="shrink-0 self-start border-b border-ghisa py-2 hover:text-fiamma-testo md:self-auto"
@@ -149,7 +183,7 @@ export default function Home({groups, lastTwoProjects = [], event}) {
 
         {/* Sempre visibile: su Facebook i link nei post rendono poco (Miriana, 16/10/2026) */}
         <section
-          className="bg-calce text-ghisa"
+          className="bg-[var(--carta)] text-ghisa"
           data-header="light"
           aria-labelledby="evento-title"
         >
@@ -198,12 +232,12 @@ export default function Home({groups, lastTwoProjects = [], event}) {
 
         {/* Capitolo scuro: dentro Matarrese */}
         <section
-          className="bg-ghisa text-white [&_:focus-visible]:outline-fiamma"
+          className="bg-[#0d0e0f] text-white [&_:focus-visible]:outline-fiamma"
           data-header="dark"
           aria-labelledby="azienda-title"
         >
           <div className="site-shell grid gap-14 py-24 lg:grid-cols-12 lg:items-center lg:py-32">
-            <div className="relative aspect-[4/3] overflow-hidden lg:col-span-7">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[28px] lg:col-span-7">
               <Image
                 src="/img/azienda/showroom.webp"
                 alt="Lo showroom Matarrese ad Alberobello"
@@ -213,12 +247,13 @@ export default function Home({groups, lastTwoProjects = [], event}) {
               />
             </div>
             <div className="lg:col-span-5">
-              <h2
+              <span className="eyebrow-cinema">La sede</span>
+              <TitoloDueTempi
                 id="azienda-title"
-                className="type-display text-[clamp(32px,3.6vw,56px)]"
-              >
-                Dove le soluzioni si toccano con mano.
-              </h2>
+                riga="Dove le soluzioni"
+                accento="si toccano con mano."
+                className="mt-6 text-[clamp(36px,4.4vw,64px)] !leading-none"
+              />
               {/* Targhetta: come la placca dati avvitata sulle attrezzature */}
               <div className="mt-10 border-2 border-inox/60">
                 <div className="border-b-2 border-inox/60 px-5 py-5">
@@ -281,17 +316,21 @@ export default function Home({groups, lastTwoProjects = [], event}) {
 
         {/* Capitolo chiaro: la voce dei clienti */}
         <section
-          className="bg-calce text-ghisa"
+          className="bg-[var(--carta)] text-ghisa"
           data-header="light"
           aria-labelledby="recensioni-title"
         >
           <div className="site-shell py-24 lg:py-32">
-            <h2
+            <span className="eyebrow-cinema" data-tono="chiaro">
+              Recensioni
+            </span>
+            <TitoloDueTempi
               id="recensioni-title"
-              className="type-display text-[clamp(24px,2.4vw,36px)]"
-            >
-              Cosa dicono i clienti.
-            </h2>
+              tono="chiaro"
+              riga="Cosa dicono"
+              accento="i clienti."
+              className="mt-6 text-[clamp(32px,3.6vw,56px)] !leading-none"
+            />
             <div className="mt-8">
               <Testimonials items={reviews} />
             </div>
@@ -307,12 +346,18 @@ export default function Home({groups, lastTwoProjects = [], event}) {
           aria-labelledby="contatto-title"
         >
           <div className="site-shell grid gap-6 pb-10 pt-24 lg:grid-cols-12 lg:pt-32">
-            <h2
-              id="contatto-title"
-              className="type-display text-[clamp(36px,4.4vw,72px)] lg:col-span-7"
-            >
-              Il prossimo progetto inizia da qui.
-            </h2>
+            <div className="lg:col-span-7">
+              <span className="eyebrow-cinema" data-tono="chiaro">
+                Parliamone
+              </span>
+              <TitoloDueTempi
+                id="contatto-title"
+                tono="chiaro"
+                riga="Il prossimo progetto"
+                accento="inizia da qui."
+                className="mt-6 text-[clamp(40px,5.4vw,80px)] !leading-none"
+              />
+            </div>
             <p className="max-w-[40ch] text-acciaio lg:col-span-4 lg:col-start-9 lg:self-end">
               Raccontaci cosa hai in mente: ti risponde un progettista.
             </p>

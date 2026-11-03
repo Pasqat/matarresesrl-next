@@ -310,24 +310,29 @@ p { text-wrap: pretty; }
     padding: 0 8px 0 24px;
     border-radius: 999px;
     border: 1px solid var(--pill-line);
-    background: var(--pill-bg);
-    -webkit-backdrop-filter: blur(14px) saturate(140%);
-    backdrop-filter: blur(14px) saturate(140%);
-    box-shadow: var(--pill-shadow, none);
+    /* Acrilico: velatura chiara sopra il colore del tema, sfocatura forte e un filo di luce in alto */
+    background:
+      linear-gradient(rgb(255 255 255 / 0.1), rgb(255 255 255 / 0.03)),
+      var(--pill-bg);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    backdrop-filter: blur(28px) saturate(180%);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.18),
+      var(--pill-shadow, 0 0 0 transparent);
     transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
   }
   .site-header[data-bg='top'] {
-    --pill-bg: rgb(13 14 15 / 0.45);
-    --pill-line: rgb(243 238 230 / 0.16);
+    --pill-bg: rgb(13 14 15 / 0.3);
+    --pill-line: rgb(243 238 230 / 0.2);
   }
   .site-header[data-bg='dark'] {
-    --pill-bg: color-mix(in srgb, var(--ghisa) 80%, transparent);
+    --pill-bg: color-mix(in srgb, var(--ghisa) 55%, transparent);
     --pill-line: color-mix(in srgb, var(--inox) 16%, transparent);
     --pill-shadow: 0 8px 30px rgb(0 0 0 / 0.35);
   }
   .site-header[data-bg='light'],
   .site-header[data-bg='solid'] {
-    --pill-bg: color-mix(in srgb, #fff 82%, transparent);
+    --pill-bg: color-mix(in srgb, #fff 62%, transparent);
     --pill-line: color-mix(in srgb, var(--ghisa) 12%, transparent);
     --pill-shadow: 0 8px 30px rgb(30 34 38 / 0.1);
   }
