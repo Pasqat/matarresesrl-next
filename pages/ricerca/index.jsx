@@ -52,8 +52,13 @@ export default function AboutUs() {
       </Head>
       <Layout navbarTransparent>
         <PageHero
-          title="Esperienza e tecnologia"
-          accento="al servizio del futuro."
+          title="Dall’università"
+          accento="alla cucina."
+          image={{
+            src: FBM_ReD_page,
+            alt: 'Pane piatto appena sfornato su un canovaccio a righe',
+            position: '50% 60%',
+          }}
           intro="Collaboriamo con università e centri specializzati per sviluppare soluzioni innovative che rispondono alle sfide di domani."
           tall={false}
         >
@@ -99,6 +104,16 @@ export default function AboutUs() {
               >
                 Flat Bread Mine
               </h2>
+              <dl className="cin-cifre mt-8">
+                <div>
+                  <dt>18</dt>
+                  <dd>partner tra università, istituti e aziende</dd>
+                </div>
+                <div>
+                  <dt>10</dt>
+                  <dd>Paesi coinvolti</dd>
+                </div>
+              </dl>
               <div className="mt-8 max-w-[60ch] space-y-5 text-lg text-acciaio">
                 <p>
                   Il progetto Flat Bread Mine nasce per valorizzare il pane
@@ -192,6 +207,22 @@ export default function AboutUs() {
                 sizes="(min-width: 1024px) 45vw, 100vw"
                 className="h-auto w-full rounded-[28px]"
               />
+              <ol
+                className="cin-tempo mt-10"
+                aria-label="Il percorso del progetto"
+              >
+                <li>Università e imprese agro-zootecniche pugliesi insieme</li>
+                <li>
+                  Protocolli per carne e latte: meno grassi, più sicurezza e
+                  durata
+                </li>
+                <li>
+                  Prova su 100 volontari: più beneficio per i batteri buoni
+                </li>
+                <li>
+                  Risultati presentati nella nostra sede, 11 dicembre 2025
+                </li>
+              </ol>
             </div>
             <div className="lg:col-span-5 lg:col-start-8">
               <span className="eyebrow-cinema">PON Ricerca e Innovazione</span>
@@ -201,6 +232,16 @@ export default function AboutUs() {
               >
                 One Health, One Welfare, One World
               </h2>
+              <dl className="cin-cifre mt-8">
+                <div>
+                  <dt>3</dt>
+                  <dd>università: Bari, Molise e Teramo</dd>
+                </div>
+                <div>
+                  <dt>100</dt>
+                  <dd>volontari nella prova</dd>
+                </div>
+              </dl>
               <div className="mt-8 max-w-[60ch] space-y-5 text-lg text-inox">
                 <p>
                   Il progetto “One health-one welfare-one world” nasce per

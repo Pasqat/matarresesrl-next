@@ -1022,3 +1022,129 @@
   background: var(--fiamma);
   transform-origin: top;
 }
+
+/* ---- Contatti: ingressi per bisogno e stato di apertura ---- */
+.cin-ingresso {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 6px 16px;
+  width: 100%;
+  height: 100%;
+  min-height: 150px;
+  padding: 22px;
+  border: 1px solid rgb(243 238 230 / 0.14);
+  border-radius: 24px;
+  background: rgb(255 255 255 / 0.04);
+  color: #fff;
+  text-align: left;
+  transition: border-color 0.25s, background-color 0.25s;
+}
+.cin-ingresso:hover,
+.cin-ingresso:focus-visible {
+  border-color: var(--fiamma);
+  background: rgb(255 255 255 / 0.07);
+}
+.cin-ingresso__titolo {
+  grid-column: 1 / -1;
+  align-self: start;
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2vw, 28px);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.cin-ingresso__testo {
+  font-size: 15px;
+  line-height: 1.45;
+  color: rgb(243 238 230 / 0.7);
+}
+.cin-ingresso:is(:hover, :focus-visible) .cin-btn__freccia {
+  transform: rotate(-45deg);
+  background: var(--fiamma);
+  color: #120a00;
+}
+.cin-stato {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.08);
+  font-size: 14px;
+  color: rgb(243 238 230 / 0.85);
+}
+.cin-stato::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgb(243 238 230 / 0.4);
+}
+.cin-stato.is-aperto::before {
+  background: #63c34f;
+  box-shadow: 0 0 0 4px rgb(99 195 79 / 0.2);
+}
+.cin-faq details[hidden] {
+  display: none;
+}
+.cin-faq__link {
+  display: inline-block;
+  margin: -8px 24px 24px;
+  border-bottom: 1px solid currentColor;
+  color: var(--fiamma-testo);
+  font-weight: 500;
+}
+
+/* ---- Ricerca: cifre e linea del tempo ---- */
+.cin-cifre {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+.cin-cifre div {
+  padding-top: 14px;
+  border-top: 1px solid currentColor;
+  border-color: rgb(127 127 127 / 0.3);
+}
+.cin-cifre dt {
+  font-family: var(--font-accent), Georgia, serif;
+  font-style: italic;
+  font-size: clamp(44px, 4.4vw, 64px);
+  line-height: 1;
+  color: var(--fiamma);
+}
+.cin-cifre dd {
+  margin: 8px 0 0;
+  font-size: 15px;
+  opacity: 0.75;
+}
+.cin-tempo {
+  display: grid;
+  gap: 0;
+  padding: 0 0 0 22px;
+  list-style: none;
+  border-left: 1px solid rgb(243 238 230 / 0.25);
+}
+.cin-tempo li {
+  position: relative;
+  padding: 0 0 22px;
+  font-size: 16px;
+  line-height: 1.4;
+  color: rgb(243 238 230 / 0.85);
+}
+.cin-tempo li:last-child {
+  padding-bottom: 0;
+  color: #fff;
+  font-weight: 500;
+}
+.cin-tempo li::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: -27px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--fiamma);
+}

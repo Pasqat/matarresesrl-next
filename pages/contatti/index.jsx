@@ -1,8 +1,13 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import Head from 'next/head'
 import Layout from '../../components/Layout'
 import PageHero from '../../components/PageHero'
 import TitoloDueTempi from '../../components/cinema/TitoloDueTempi'
+import {Freccia} from '../../components/cinema/BottoneFreccia'
+import StatoApertura from '../../components/cinema/StatoApertura'
+import ContactModal from '../../components/Form/ContactModal'
+import showroomImg from '../../public/img/azienda/showroom.webp'
 import ContactForm from '../../components/Form/ContactForm'
 import Map from '../../components/Maps/Map'
 import {getGroups} from '../../lib/newsletter'
@@ -40,115 +45,135 @@ export default function Contatti({groups}) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <Layout navbarTransparent footerInvito={false}>
-        <PageHero
-          title="Conosciamoci."
-          accento="Il tuo progetto parte da qui."
-          tall={false}
-        >
-          {/* Recapiti protagonisti: grandi e cliccabili già nell'apertura */}
-          <div className="flex w-full flex-col gap-6">
-            <div>
-              <p className="text-sm text-inox-muted">Telefono</p>
+        <PageHero title="Conosciamoci." accento="Cosa ti serve?" tall={false}>
+          {/* Tre ingressi per bisogno: ogni richiesta parte già dal modulo giusto */}
+          <div className="w-full">
+            <ul className="grid gap-3 md:grid-cols-3">
+              <li>
+                <ContactModal
+                  variant="progetto"
+                  source="contatti-progetto"
+                  className="cin-ingresso"
+                >
+                  <span className="cin-ingresso__titolo">Ho un progetto</span>
+                  <span className="cin-ingresso__testo">
+                    Tre domande, poi ti chiama un progettista.
+                  </span>
+                  <Freccia />
+                </ContactModal>
+              </li>
+              <li>
+                <Link href="/assistenza#richiesta" className="cin-ingresso">
+                  <span className="cin-ingresso__titolo">Ho un guasto</span>
+                  <span className="cin-ingresso__testo">
+                    Modulo assistenza o linea dedicata +39 080 4323 651.
+                  </span>
+                  <Freccia />
+                </Link>
+              </li>
+              <li>
+                <ContactModal
+                  variant="info"
+                  source="contatti-showroom"
+                  className="cin-ingresso"
+                  title="Vieni a trovarci in showroom."
+                  subtitle="Dicci quando preferisci passare ad Alberobello: ti facciamo trovare un consulente e le attrezzature che ti interessano."
+                >
+                  <span className="cin-ingresso__titolo">
+                    Voglio vedere lo showroom
+                  </span>
+                  <span className="cin-ingresso__testo">
+                    Fissiamo una visita ad Alberobello.
+                  </span>
+                  <Freccia />
+                </ContactModal>
+              </li>
+            </ul>
+            <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
               <a
                 href="tel:+390804323431"
-                className="type-display mt-1 inline-block whitespace-nowrap border-b border-inox/40 pb-1 text-[clamp(24px,6.4vw,56px)] transition-colors hover:border-fiamma hover:text-fiamma focus-visible:outline-fiamma"
+                className="type-display whitespace-nowrap text-[clamp(22px,2.4vw,32px)] transition-colors hover:text-fiamma"
               >
                 +39 080 4323 431
               </a>
-            </div>
-            <div>
-              <p className="text-sm text-inox-muted">Email</p>
               <a
                 href="mailto:matarrese@matarrese.it"
-                className="type-display mt-1 inline-block whitespace-nowrap border-b border-inox/40 pb-1 text-[clamp(18px,5vw,56px)] transition-colors hover:border-fiamma hover:text-fiamma focus-visible:outline-fiamma"
+                className="type-display whitespace-nowrap text-[clamp(18px,2.4vw,32px)] transition-colors hover:text-fiamma"
               >
                 matarrese@matarrese.it
               </a>
-            </div>
-            <div>
-              <p className="text-sm text-inox-muted">Seguici</p>
-              <ul className="mt-2 flex flex-wrap gap-x-6 gap-y-1 text-lg">
-                {social.map(([name, href]) => (
-                  <li key={name}>
-                    <a
-                      href={href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-block border-b border-inox/40 py-1 transition-colors hover:border-fiamma hover:text-fiamma focus-visible:outline-fiamma"
-                    >
-                      {name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+              <StatoApertura />
             </div>
           </div>
         </PageHero>
 
+        {/* Showroom: foto e mappa affiancate, indirizzo e orari in una card sopra la foto */}
         <section
-          className="bg-[var(--carta)] text-ghisa"
+          className="bg-[var(--carta)] py-16 text-ghisa lg:py-24"
           data-header="light"
-          aria-label="Showroom, orari e assistenza"
+          aria-labelledby="showroom-title"
         >
-          <div className="site-shell grid gap-3 pt-16 md:grid-cols-3 lg:pt-24">
-            <div className="rounded-[28px] bg-white p-8">
-              <h2 className="type-display text-2xl">Vieni in showroom</h2>
-              <p className="mt-4 text-lg">
-                Contrada Popoleto, n.c.
-                <br />
-                70011 Alberobello (BA)
-              </p>
-              <a
-                className="mt-5 inline-block border-b border-ghisa/40 py-1 transition-colors hover:border-ghisa hover:text-fiamma-testo"
-                href="https://www.google.com/maps/search/?api=1&query=Matarrese+srl+Alberobello"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Indicazioni stradali
-              </a>
+          <div className="site-shell grid gap-3 lg:grid-cols-2">
+            <div className="relative min-h-[420px] overflow-hidden rounded-[28px] lg:min-h-[520px]">
+              <Image
+                src={showroomImg}
+                alt="Lo showroom Matarrese ad Alberobello"
+                fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                placeholder="blur"
+                className="object-cover"
+              />
+              <div className="absolute inset-x-4 bottom-4 rounded-[20px] bg-white p-6 md:inset-x-6 md:bottom-6">
+                <h2
+                  id="showroom-title"
+                  className="type-display text-[clamp(24px,2.4vw,32px)] leading-tight"
+                >
+                  Vieni in showroom
+                </h2>
+                <div className="mt-4 grid gap-4 text-[17px] sm:grid-cols-2">
+                  <p>
+                    Contrada Popoleto, n.c.
+                    <br />
+                    70011 Alberobello (BA)
+                  </p>
+                  <p>
+                    Lunedì – venerdì
+                    <br />
+                    09:00 – 13:00 / 15:00 – 18:30
+                  </p>
+                </div>
+                <a
+                  className="mt-4 inline-block border-b border-ghisa/40 py-1 transition-colors hover:border-ghisa hover:text-fiamma-testo"
+                  href="https://www.google.com/maps/search/?api=1&query=Matarrese+srl+Alberobello"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Indicazioni stradali
+                </a>
+              </div>
             </div>
-            <div className="rounded-[28px] bg-white p-8">
-              <h2 className="type-display text-2xl">Quando trovarci</h2>
-              <dl className="mt-4 text-lg">
-                <dt className="text-acciaio">Lunedì – venerdì</dt>
-                <dd>
-                  09:00 – 13:00
-                  <span className="text-acciaio"> / </span>
-                  15:00 – 18:30
-                </dd>
-                <dt className="mt-3 text-acciaio">Sabato e domenica</dt>
-                <dd>chiuso</dd>
-              </dl>
-            </div>
-            <div className="rounded-[28px] bg-white p-8">
-              <h2 className="type-display text-2xl">Assistenza tecnica</h2>
-              <p className="mt-4 max-w-[34ch] text-acciaio">
-                Per un guasto o una manutenzione usa il modulo dedicato.
-              </p>
-              <a
-                href="tel:+390804323651"
-                className="mt-4 block w-fit whitespace-nowrap text-lg transition-colors hover:text-fiamma-testo"
-              >
-                +39 080 4323 651
-              </a>
-              <Link
-                className="mt-5 inline-block border-b border-ghisa/40 py-1 transition-colors hover:border-ghisa hover:text-fiamma-testo"
-                href="/assistenza#richiesta"
-              >
-                Hai bisogno di assistenza?
-              </Link>
-            </div>
-          </div>
-          {/* Mappa nella stessa sezione: Map è `absolute inset-0`, l'altezza è nel contenitore.
-              Senza NEXT_PUBLIC_MAPS_API mostra il suo fallback con il link. */}
-          <div className="site-shell pb-24 pt-3 lg:pb-32">
-            <div className="relative h-[360px] overflow-hidden rounded-[28px] bg-[var(--steel)] lg:h-[480px]">
+            {/* Map è `absolute inset-0`: l'altezza è nel contenitore. Senza NEXT_PUBLIC_MAPS_API mostra il fallback */}
+            <div className="relative min-h-[360px] overflow-hidden rounded-[28px] bg-[var(--steel)] lg:min-h-[520px]">
               <Map />
             </div>
           </div>
+          <div className="site-shell mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-acciaio">
+            <span>Seguici</span>
+            {social.map(([name, href]) => (
+              <a
+                key={name}
+                href={href}
+                target="_blank"
+                rel="noreferrer"
+                className="border-b border-ghisa/30 py-1 text-ghisa transition-colors hover:border-ghisa hover:text-fiamma-testo"
+              >
+                {name}
+              </a>
+            ))}
+          </div>
         </section>
 
-        {/* Modulo in una card bianca su fondo scuro: è l'azione principale della pagina */}
+        {/* Per tutto il resto: il modulo generico, in una card bianca su fondo scuro */}
         <section
           id="contatto"
           className="bg-[#121315] py-16 text-ghisa lg:py-24"
@@ -161,8 +186,8 @@ export default function Contatti({groups}) {
                 <TitoloDueTempi
                   id="contatto-title"
                   tono="chiaro"
-                  riga="Hai un progetto da realizzare"
-                  accento="o hai bisogno di informazioni?"
+                  riga="Preferisci scriverci?"
+                  accento="Ti risponde un consulente."
                   className="max-w-[24ch] text-[clamp(30px,3.6vw,52px)] !leading-none"
                 />
                 <p className="mt-6 max-w-[52ch] text-lg text-acciaio">
