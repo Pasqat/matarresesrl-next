@@ -101,7 +101,7 @@ const soci = [
     email: 'pasquale.matarrese@matarrese.it',
   },
   {
-    nome: 'Giovanni “Gianni” Matarrese',
+    nome: 'Gianni Matarrese',
     iniziali: 'GM',
     ruolo: 'Socio, commerciale e sviluppo nuovi mercati',
     bio: 'Gianni opera con dimestichezza nel campo della trasformazione alimentare, ottimizzando i processi di lavorazione e trovando soluzioni ottimali declinabili anche nel campo della ristorazione professionale.',
