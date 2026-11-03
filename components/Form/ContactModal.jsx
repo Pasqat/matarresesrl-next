@@ -488,7 +488,9 @@ export default function ContactModal({
     } catch (err) {
       setRiepilogo(
         err.message ||
-          'Invio non riuscito: riprova o chiamaci al 080 4323 431.',
+          `Invio non riuscito: riprova o chiamaci al ${
+            variant === 'guasto' ? '080 4323 651' : '080 4323 431'
+          }.`,
       )
     } finally {
       setInvio(false)
@@ -853,7 +855,13 @@ export default function ContactModal({
             </button>
           ) : (
             <span className="cm-direct">
-              Preferisci chiamare? <a href="tel:+390804323431">080 4323 431</a>
+              Preferisci chiamare?{' '}
+              {/* il guasto ha la sua linea, quella del service */}
+              {variant === 'guasto' ? (
+                <a href="tel:+390804323651">080 4323 651</a>
+              ) : (
+                <a href="tel:+390804323431">080 4323 431</a>
+              )}
             </span>
           )}
           <button

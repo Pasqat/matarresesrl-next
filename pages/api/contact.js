@@ -159,6 +159,9 @@ export default async function handler(req, res) {
     return res.status(400).json({error: 'Numero di telefono non valido.'})
   }
 
+  // Linea da indicare negli errori: il service per i guasti, il centralino per il resto
+  const numero = source === 'assistenza' ? '080 4323 651' : '080 4323 431'
+
   // Le iscrizioni agli eventi e i guasti arrivano solo per email: non sono opportunità per il CRM.
   const iscrizioneEvento = source === 'modal-prenotazione'
   const assistenza = source === 'assistenza'
@@ -205,7 +208,7 @@ export default async function handler(req, res) {
       logStructuredError('resend', new Error('RESEND_API_KEY not configured'))
       return res
         .status(500)
-        .json({error: 'Invio non disponibile: chiamaci al 080 4323 431.'})
+        .json({error: `Invio non disponibile: chiamaci al ${numero}.`})
     }
 
     const r = await fetch('https://api.resend.com/emails', {
@@ -240,7 +243,7 @@ export default async function handler(req, res) {
         payload,
       })
       return res.status(502).json({
-        error: 'Invio non riuscito: riprova o chiamaci al 080 4323 431.',
+        error: `Invio non riuscito: riprova o chiamaci al ${numero}.`,
       })
     }
 
@@ -277,7 +280,7 @@ export default async function handler(req, res) {
   } catch (err) {
     logStructuredError('api-contact-outer', err)
     return res.status(500).json({
-      error: 'Invio non riuscito: riprova o chiamaci al 080 4323 431.',
+      error: `Invio non riuscito: riprova o chiamaci al ${numero}.`,
     })
   }
 }
