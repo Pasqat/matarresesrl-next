@@ -925,8 +925,6 @@
 .cin-suggerimento {
   position: relative;
   cursor: help;
-  text-decoration: underline dotted rgb(30 34 38 / 0.35);
-  text-underline-offset: 6px;
 }
 .cin-suggerimento:focus-visible {
   outline: 2px solid var(--fiamma-testo);
