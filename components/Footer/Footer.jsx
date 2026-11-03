@@ -157,7 +157,7 @@ export default function Footer({invito = true}) {
                 <br />
                 Sabato e domenica chiuso
               </p>
-              <Link href="/assistenza#richiesta" className={link}>
+              <Link href="/assistenza" className={link}>
                 Assistenza tecnica
               </Link>
               <a href="tel:+390804323651" className={link}>

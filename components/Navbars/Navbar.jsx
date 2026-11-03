@@ -189,7 +189,7 @@ export default function Navbar({isTransparent = false, cta}) {
           <div className="header-actions">
             <Link
               className="support-link nav-item"
-              href="/assistenza#richiesta"
+              href="/assistenza"
             >
               <Roll>Assistenza</Roll>
             </Link>
@@ -238,7 +238,7 @@ export default function Navbar({isTransparent = false, cta}) {
               </Link>
             ))}
             <Link href="/contatti">Contatti</Link>
-            <Link href="/assistenza#richiesta">Assistenza</Link>
+            <Link href="/assistenza">Assistenza</Link>
             <div className="mobile-secondary">
               {secondary.map(([name, href]) => (
                 <Link key={href} href={href}>
