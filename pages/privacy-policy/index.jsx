@@ -121,10 +121,12 @@ export default function PrivacyPolicy() {
               Le richieste arrivano per email agli uffici competenti (le
               segnalazioni di guasto al nostro servizio di assistenza); le
               richieste commerciali sono registrate anche nel nostro gestionale
-              dei contatti (CRM). Le conserviamo per non più di 2 anni
-              dall’ultimo contatto, salvo che diventino un rapporto contrattuale
-              o che servano più a lungo per obblighi di legge o per tutelare un
-              nostro diritto.
+              dei contatti (CRM). Le conserviamo per il tempo necessario a
+              gestire la richiesta e il rapporto commerciale che ne nasce; se
+              diventi nostro cliente, anche per il tempo previsto dagli obblighi
+              di legge (per esempio dieci anni per la documentazione contabile e
+              fiscale) o per tutelare un nostro diritto. Puoi chiederci in ogni
+              momento di cancellarli, come spiegato al punto 6.
             </p>
 
             <h3>Email e telefonate dirette</h3>
