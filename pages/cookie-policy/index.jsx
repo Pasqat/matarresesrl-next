@@ -36,15 +36,6 @@ const COOKIE = [
         'Ricorda la sessione di visita',
         '13 mesi',
       ],
-      // _gid e _gat_UA-… vengono dal vecchio tag Universal Analytics ancora nel container GTM:
-      // quando lo togli da GTM, togli anche queste due righe.
-      ['_gid', 'Google Analytics', 'Distingue i visitatori', '24 ore'],
-      [
-        '_gat_UA-68491654-1',
-        'Google Analytics',
-        'Limita la frequenza delle richieste',
-        '1 minuto',
-      ],
     ],
   },
   {
