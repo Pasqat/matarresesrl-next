@@ -28,6 +28,18 @@ export default function Settore({slug, progetti, articoli}) {
     question,
     answer,
   }))
+  // Dopo l'offerta (scura) le sezioni presenti alternano chiaro/scuro, così due scure non si toccano
+  // mai; "altri settori" resta chiara perché la chiusura su foto è scura.
+  const centro =
+    pagina.prova ||
+    (pagina.galleria && progetti.length === 0) ||
+    progetti.length > 0
+  const sequenza = [
+    centro && 'centro',
+    faq.length > 0 && 'faq',
+    articoli.length > 0 && 'approfondimenti',
+  ].filter(Boolean)
+  const scura = k => sequenza.indexOf(k) % 2 === 1
 
   return (
     <>
@@ -249,7 +261,7 @@ export default function Settore({slug, progetti, articoli}) {
         {/* Realizzazioni del settore, dalle categorie portfolio di WordPress */}
         {progetti.length > 0 && (
           <section
-            className="bg-white text-ghisa"
+            className="bg-[var(--carta)] text-ghisa"
             data-header="light"
             aria-labelledby="realizzazioni-title"
           >
@@ -287,36 +299,50 @@ export default function Settore({slug, progetti, articoli}) {
           </section>
         )}
 
-        {/* Domande frequenti: sempre aperte, sono il testo che i motori citano */}
+        {/* Domande frequenti: righe che si aprono (<details>), la prima aperta. Le risposte restano
+            nell'HTML della pagina e nello schema FAQPage: è il testo che i motori citano. */}
         {faq.length > 0 && (
           <section
-            className="bg-white text-ghisa"
-            data-header="light"
+            className={
+              scura('faq')
+                ? 'bg-[#121315] text-white [&_:focus-visible]:outline-fiamma'
+                : 'bg-[var(--carta)] text-ghisa'
+            }
+            data-header={scura('faq') ? 'dark' : 'light'}
             aria-labelledby="faq-title"
           >
             <div className="site-shell grid gap-10 py-24 lg:grid-cols-12 lg:py-32">
-              <TitoloDueTempi
-                id="faq-title"
-                tono="chiaro"
-                riga="Domande"
-                accento="frequenti."
-                className="text-[clamp(32px,3.6vw,52px)] !leading-none lg:col-span-4"
-              />
-              <dl className="lg:col-span-7 lg:col-start-6">
-                {faq.map(({question, answer}) => (
-                  <div
-                    key={question}
-                    className="border-t border-ghisa/15 py-6 last:border-b"
-                  >
-                    <dt className="type-display text-[clamp(19px,1.7vw,24px)] leading-tight">
-                      {question}
-                    </dt>
-                    <dd className="mt-3 max-w-[60ch] text-lg text-acciaio">
-                      {answer}
-                    </dd>
-                  </div>
+              <div className="lg:col-span-4">
+                <TitoloDueTempi
+                  id="faq-title"
+                  tono={scura('faq') ? 'scuro' : 'chiaro'}
+                  riga="Domande"
+                  accento="frequenti."
+                  className="text-[clamp(32px,3.6vw,52px)] !leading-none"
+                />
+                <p
+                  className={`mt-6 max-w-[34ch] ${
+                    scura('faq') ? 'text-[rgb(243_238_230/.7)]' : 'text-acciaio'
+                  }`}
+                >
+                  Le risposte a quello che ci chiedono più spesso. Per il resto,
+                  parla con un progettista.
+                </p>
+              </div>
+              <div
+                className="cin-faq lg:col-span-7 lg:col-start-6"
+                data-tono={scura('faq') ? 'scuro' : 'chiaro'}
+              >
+                {faq.map(({question, answer}, i) => (
+                  <details key={question} open={i === 0}>
+                    <summary>
+                      <h3>{question}</h3>
+                      <span className="cin-faq__segno" aria-hidden="true" />
+                    </summary>
+                    <p>{answer}</p>
+                  </details>
                 ))}
-              </dl>
+              </div>
             </div>
           </section>
         )}
@@ -324,14 +350,22 @@ export default function Settore({slug, progetti, articoli}) {
         {/* Approfondimenti: articoli del blog collegati al settore, con la loro foto */}
         {articoli.length > 0 && (
           <section
-            className="bg-[var(--carta)] text-ghisa"
-            data-header="light"
+            className={
+              scura('approfondimenti')
+                ? 'bg-[#121315] text-white [&_:focus-visible]:outline-fiamma'
+                : 'bg-[var(--carta)] text-ghisa'
+            }
+            data-header={scura('approfondimenti') ? 'dark' : 'light'}
             aria-labelledby="approfondimenti-title"
           >
-            <div className="site-shell pt-24 lg:pt-32">
+            <div
+              className={`site-shell ${
+                scura('approfondimenti') ? 'py-24 lg:py-32' : 'pt-24 lg:pt-32'
+              }`}
+            >
               <TitoloDueTempi
                 id="approfondimenti-title"
-                tono="chiaro"
+                tono={scura('approfondimenti') ? 'scuro' : 'chiaro'}
                 riga="Approfondimenti"
                 accento="dal nostro blog."
                 className="text-[clamp(32px,3.6vw,52px)] !leading-none"
@@ -346,6 +380,7 @@ export default function Settore({slug, progetti, articoli}) {
                       title={a.title}
                       meta={a.categoria}
                       aspect="aspect-[3/2]"
+                      tone={scura('approfondimenti') ? 'dark' : 'light'}
                     />
                   </li>
                 ))}
@@ -473,7 +508,7 @@ export async function getStaticProps({params}) {
     slugArticoli.length ? getAllPosts() : {posts: []},
   ])
   // Nell'ordine scelto in data/settori.js; il titolo resta quello scritto lì
-  const articoli = (settore.seo.articoli ?? []).flatMap(([a, titolo]) => {
+  const articoli = (settore.seo.articoli ?? []).flatMap(([a, titolo, foto]) => {
     const post = posts.find(p => p.slug === a)
     if (!post) return []
     const img = post.featuredImage?.node
@@ -482,7 +517,10 @@ export async function getStaticProps({params}) {
         slug: a,
         title: titolo,
         categoria: post.categories[0] ?? null,
-        image: {src: img?.mediaItemUrl ?? null, alt: img?.altText ?? ''},
+        // `foto` in data/settori.js sostituisce quella di WordPress
+        image: foto
+          ? {src: foto, alt: titolo}
+          : {src: img?.mediaItemUrl ?? null, alt: img?.altText ?? ''},
       },
     ]
   })

@@ -88,7 +88,7 @@ const settori = [
           'Gastronomia e ittico',
           'Agroalimentare e conserve',
         ],
-        nota: 'Stiamo iniziando a lavorare anche con frantoi e settore oleario.',
+        nota: 'E ogni altro laboratorio ho.re.ca. o food: il progetto parte dalla tua produzione, dai volumi e dai flussi.',
       },
       offerta: {
         titolo: 'Cosa facciamo per un laboratorio.',
@@ -459,15 +459,15 @@ const seo = {
   },
   laboratori: {
     descrizione:
-      'Progettiamo e attrezziamo laboratori di trasformazione alimentare per carne, pasticceria, conserve e prodotti agricoli: layout, flussi, abbattimento.',
+      'Progettiamo e attrezziamo laboratori di trasformazione alimentare per ogni produzione food, dalla carne alla pasticceria, dalle conserve ai prodotti agricoli: layout, flussi, abbattimento.',
     faq: [
       [
         'Per quali produzioni progettate laboratori?',
-        'Carne e salumi, pasticceria e panificazione, gastronomia e ittico, agroalimentare e conserve. Stiamo iniziando a lavorare anche con i frantoi.',
+        'Per qualsiasi laboratorio ho.re.ca. o food: carne e salumi, pasticceria e panificazione, gastronomia e ittico, agroalimentare e conserve, e ogni altra trasformazione. Il progetto parte dalla tua produzione: materie prime, volumi e flussi.',
       ],
       [
         'Vi occupate delle autorizzazioni sanitarie?',
-        'No: progettiamo layout, flussi e attrezzature del laboratorio. Le pratiche sanitarie restano al consulente del cliente.',
+        'Progettiamo layout, flussi e attrezzature secondo le norme igienico-sanitarie. Le pratiche autorizzative le segue il tuo tecnico sanitario di fiducia.',
       ],
     ],
     // da verificare: in WordPress la categoria laboratori-trasformazione-alimentare è vuota
@@ -514,6 +514,8 @@ const seo = {
       [
         'progettare-un-ristorante-come-gestire-gli-spazi',
         'Progettare un ristorante: come gestire gli spazi',
+        // la foto in WordPress ritrae un ex dipendente: qui se ne usa una attuale
+        '/img/articoli/progettare-ristorante.webp',
       ],
       [
         'progettazione-pizzeria-come-gestire-gli-spazi',

@@ -502,6 +502,94 @@
   transform: none;
 }
 
+/* ---- Domande frequenti: righe arrotondate che si aprono (details/summary) ---- */
+.cin-faq {
+  display: grid;
+  gap: 10px;
+}
+.cin-faq details {
+  border: 1px solid rgb(243 238 230 / 0.12);
+  border-radius: 20px;
+  background: rgb(243 238 230 / 0.04);
+  transition: background-color 0.3s, border-color 0.3s;
+}
+.cin-faq details[open],
+.cin-faq details:hover {
+  border-color: rgb(243 238 230 / 0.24);
+  background: rgb(243 238 230 / 0.07);
+}
+.cin-faq summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 24px;
+  cursor: pointer;
+  list-style: none;
+}
+.cin-faq summary::-webkit-details-marker {
+  display: none;
+}
+.cin-faq h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(18px, 1.6vw, 22px);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+.cin-faq__segno {
+  position: relative;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--fiamma);
+  transition: transform 0.35s var(--cin-ease);
+}
+.cin-faq__segno::before,
+.cin-faq__segno::after {
+  content: '';
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 12px;
+  height: 2px;
+  margin: -1px 0 0 -6px;
+  border-radius: 2px;
+  background: #120a00;
+}
+.cin-faq__segno::after {
+  transform: rotate(90deg);
+}
+.cin-faq details[open] .cin-faq__segno {
+  transform: rotate(45deg);
+}
+.cin-faq details p {
+  max-width: 60ch;
+  margin: 0;
+  padding: 0 24px 24px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: rgb(243 238 230 / 0.75);
+}
+
+/* Variante su carta */
+.cin-faq[data-tono='chiaro'] details {
+  border-color: rgb(30 34 38 / 0.12);
+  background: #fff;
+}
+.cin-faq[data-tono='chiaro'] details[open],
+.cin-faq[data-tono='chiaro'] details:hover {
+  border-color: rgb(30 34 38 / 0.24);
+  background: #fff;
+}
+.cin-faq[data-tono='chiaro'] h3 {
+  color: var(--ghisa);
+}
+.cin-faq[data-tono='chiaro'] details p {
+  color: var(--acciaio-testo);
+}
+
 /* ---- Mazzo di card in fila (settori correlati) ----
    Da md: card sovrapposte, quella sotto il mouse o col focus sale e fa spazio alle successive.
    Sotto md: fila bassa da scorrere di lato, senza sovrapposizione. */
@@ -571,7 +659,7 @@
     width: 260px;
     height: 320px;
     border-radius: 24px;
-    box-shadow: -8px 0 0 var(--carta);
+    box-shadow: -8px 0 0 var(--mazzo-bordo, var(--carta));
     transition: transform 0.45s var(--cin-ease);
   }
   .cin-mazzo__nome {
@@ -631,7 +719,9 @@
   .cin-mazzo > li,
   .cin-mazzo a,
   .cin-mazzo__frase,
-  .cin-mazzo__freccia {
+  .cin-mazzo__freccia,
+  .cin-faq details,
+  .cin-faq__segno {
     transition: none;
   }
 }
