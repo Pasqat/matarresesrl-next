@@ -354,7 +354,7 @@
   grid-template-columns: 1fr 1.25fr;
   gap: 22px;
   width: min(1200px, calc(100% - 32px));
-  height: min(540px, 62vh);
+  min-height: min(540px, 62vh); /* minima, non fissa: con testi lunghi la foto non deve sforare il bordo */
   padding: clamp(14px, 1.6vw, 22px);
   border-radius: clamp(28px, 4vw, 48px);
   background: var(--carta);
