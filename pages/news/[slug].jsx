@@ -1,4 +1,6 @@
+import {useRef} from 'react'
 import {useRouter} from 'next/router'
+import Image from 'next/image'
 import Head from 'next/head'
 import Link from 'next/link'
 import Layout from '../../components/Layout'
@@ -7,6 +9,11 @@ import TitoloDueTempi from '../../components/cinema/TitoloDueTempi'
 import {Freccia} from '../../components/cinema/BottoneFreccia'
 import ContactModal from '../../components/Form/ContactModal'
 import Prosa from '../../components/editoriale/Prosa'
+import {
+  IndiceArticolo,
+  Avanzamento,
+} from '../../components/editoriale/IndiceArticolo'
+import settori from '../../data/settori'
 import Correlati from '../../components/editoriale/Correlati'
 import SocialShareBar from '../../components/SocialShareBar/SocialShareBar'
 import {formatDate} from '../../actions/utils/formatDate'
@@ -20,6 +27,7 @@ import {
 } from '../../lib/seo/schema'
 export default function Post({postData, posts, preview}) {
   const router = useRouter()
+  const testoRef = useRef(null)
   if (router.isFallback || !postData)
     return (
       <Layout>
@@ -59,6 +67,18 @@ export default function Post({postData, posts, preview}) {
     ])
 
   const cover = postData.featuredImage?.node?.mediaItemUrl
+  // tempo di lettura: circa 200 parole al minuto
+  const minuti = Math.max(
+    1,
+    Math.round(
+      (postData.content || '').replace(/<[^>]+>/g, ' ').split(/\s+/).length /
+        200,
+    ),
+  )
+  // settore che cita l'articolo tra i suoi approfondimenti (data/settori.js)
+  const settore = settori.find(
+    s => s.pagina && s.seo?.articoli?.some(([a]) => a === postData.slug),
+  )
   const categorie =
     postData.categories?.edges?.map(({node}) => node.name).filter(Boolean) || []
   return (
@@ -94,8 +114,21 @@ export default function Post({postData, posts, preview}) {
         data-header="light"
         aria-label="Articolo"
       >
-        <article className="site-shell py-20 lg:py-28">
-          <div className="mx-auto max-w-[68ch] lg:ml-[calc(100%/12*3)]">
+        <article className="site-shell grid gap-10 py-20 lg:grid-cols-12 lg:py-28">
+          {/* Colonna sinistra fissa: condivisione, avanzamento e tempo di lettura */}
+          <aside className="hidden lg:col-span-1 lg:block">
+            <div className="sticky top-32 flex flex-col items-center gap-6">
+              <SocialShareBar
+                route={router.asPath}
+                title={postData.title}
+                verticale
+              />
+              <Avanzamento contenitore={testoRef} />
+              <span className="text-sm text-acciaio">{minuti} min</span>
+            </div>
+          </aside>
+          <div ref={testoRef} className="min-w-0 max-w-[68ch] lg:col-span-7">
+            <IndiceArticolo contenitore={testoRef} mobile />
             <Prosa content={postData.content} />
             {faqsArray.length > 0 && (
               <section
@@ -137,7 +170,49 @@ export default function Post({postData, posts, preview}) {
                 ))}
               </ul>
             )}
+            <div className="mt-12 lg:hidden">
+              <SocialShareBar route={router.asPath} title={postData.title} />
+            </div>
           </div>
+          {/* Colonna destra fissa: indice, invito, settore collegato */}
+          <aside className="hidden lg:col-span-3 lg:col-start-10 lg:block">
+            <div className="sticky top-32 grid gap-3">
+              <IndiceArticolo contenitore={testoRef} />
+              <div className="rounded-[20px] bg-[#121315] p-6 text-white">
+                <p className="type-display text-[20px] leading-tight">
+                  Stai valutando un intervento simile?
+                </p>
+                <ContactModal variant="progetto" className="cin-btn mt-5">
+                  Parliamone
+                  <Freccia />
+                </ContactModal>
+              </div>
+              {settore && (
+                <Link
+                  href={`/settori/${settore.slug}`}
+                  className="group flex items-center gap-4 rounded-[20px] bg-white p-4"
+                >
+                  <span className="relative h-16 w-16 shrink-0 overflow-hidden rounded-[12px]">
+                    <Image
+                      src={settore.foto}
+                      alt=""
+                      fill
+                      sizes="64px"
+                      className="object-cover"
+                    />
+                  </span>
+                  <span>
+                    <span className="block text-sm text-acciaio">
+                      Settore collegato
+                    </span>
+                    <span className="type-display block text-[18px] leading-tight transition-colors group-hover:text-fiamma-testo">
+                      {settore.nome}
+                    </span>
+                  </span>
+                </Link>
+              )}
+            </div>
+          </aside>
         </article>
         {/* Chiusura dell'articolo: invito e condivisione nella card scura, come nei progetti */}
         <div className="site-shell pb-24 lg:pb-32">
@@ -154,7 +229,6 @@ export default function Post({postData, posts, preview}) {
                 Parla con un progettista
                 <Freccia />
               </ContactModal>
-              <SocialShareBar route={router.asPath} title={postData.title} />
             </div>
           </div>
         </div>

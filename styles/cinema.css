@@ -956,3 +956,69 @@
   opacity: 1;
   transform: none;
 }
+
+/* ---- Articolo: indice e avanzamento nelle colonne laterali ---- */
+.cin-indice {
+  padding: 20px;
+  border-radius: 20px;
+  background: #fff;
+}
+.cin-indice > p,
+.cin-indice summary {
+  margin: 0 0 10px;
+  font-size: 14px;
+  color: var(--acciaio-testo);
+}
+.cin-indice ol {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cin-indice a {
+  display: block;
+  padding: 6px 0 6px 12px;
+  border-left: 2px solid rgb(30 34 38 / 0.12);
+  color: var(--ghisa);
+  font-size: 15px;
+  line-height: 1.35;
+  transition: border-color 0.2s, color 0.2s;
+}
+.cin-indice a:hover {
+  color: var(--fiamma-testo);
+}
+.cin-indice a[aria-current] {
+  border-color: var(--fiamma);
+  font-weight: 600;
+}
+.cin-indice--mobile {
+  margin-bottom: 32px;
+}
+.cin-indice--mobile summary {
+  margin: 0;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--ghisa);
+}
+.cin-indice--mobile[open] summary {
+  margin-bottom: 10px;
+}
+@media (min-width: 1024px) {
+  .cin-indice--mobile {
+    display: none;
+  }
+}
+.cin-avanzamento {
+  width: 2px;
+  height: 160px;
+  border-radius: 2px;
+  background: rgb(30 34 38 / 0.12);
+  overflow: hidden;
+}
+.cin-avanzamento span {
+  display: block;
+  height: 100%;
+  background: var(--fiamma);
+  transform-origin: top;
+}

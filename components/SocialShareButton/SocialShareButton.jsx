@@ -1,7 +1,10 @@
 import {gtmEvent} from '../../lib/gtm'
 import {usePlausible} from 'next-plausible'
 
-// Pulsante di condivisione (solo SocialShareBar): quadrato 44px con filetto, tracciamento invariato.
+// Pulsante di condivisione (solo SocialShareBar): tondo 44px con filetto, tracciamento invariato.
+export const classePulsante =
+  'flex h-11 w-11 items-center justify-center rounded-full border border-[rgb(127_127_127/.4)] transition-colors hover:border-fiamma hover:bg-fiamma hover:text-[#120a00]'
+
 export default function SocialShareButton(props) {
   const plausible = usePlausible()
   const {href, icon, children, tooltip, title, social} = props
@@ -10,7 +13,7 @@ export default function SocialShareButton(props) {
       href={href}
       target="_blank"
       rel="noreferrer"
-      className="flex h-11 w-11 items-center justify-center rounded-full border border-[rgb(127_127_127/.4)] transition-colors hover:border-fiamma hover:bg-fiamma hover:text-[#120a00]"
+      className={classePulsante}
       aria-label={`Condividi ${tooltip}`}
       title={`Condividi ${tooltip}`}
       onClick={() => {
