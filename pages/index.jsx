@@ -166,20 +166,13 @@ export default function Home({lastTwoProjects = [], event}) {
             <div className="site-shell pb-16 pt-24 lg:pt-32">
               <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
                 <div>
-                  <span
-                    className="eyebrow-cinema"
-                    data-tono="chiaro"
-                    data-cin-reveal
-                  >
-                    Realizzazioni
-                  </span>
                   <TitoloDueTempi
                     data-cin-reveal
                     id="progetti-title"
                     tono="chiaro"
                     riga="Dall’idea"
                     accento="a un locale pieno di clienti."
-                    className="mt-6 text-[clamp(36px,4.4vw,64px)] !leading-none"
+                    className="text-[clamp(36px,4.4vw,64px)] !leading-none"
                   />
                 </div>
                 <Link
@@ -344,20 +337,13 @@ export default function Home({lastTwoProjects = [], event}) {
             aria-labelledby="recensioni-title"
           >
             <div className="site-shell py-24 lg:py-32">
-              <span
-                className="eyebrow-cinema"
-                data-tono="chiaro"
-                data-cin-reveal
-              >
-                Recensioni
-              </span>
               <TitoloDueTempi
                 data-cin-reveal
                 id="recensioni-title"
                 tono="chiaro"
                 riga="Cosa dicono"
                 accento="i clienti."
-                className="mt-6 text-[clamp(32px,3.6vw,56px)] !leading-none"
+                className="text-[clamp(32px,3.6vw,56px)] !leading-none"
               />
               <div className="mt-8">
                 <Testimonials items={reviews} />
@@ -382,15 +368,12 @@ export default function Home({lastTwoProjects = [], event}) {
             />
             <div className="absolute inset-0 bg-[#0d0e0f]/[.8]" />
             <div className="site-shell relative max-w-[860px]">
-              <span className="eyebrow-cinema" data-cin-reveal>
-                Parliamone
-              </span>
               <TitoloDueTempi
                 data-cin-reveal
                 id="contatto-title"
                 riga="Il prossimo progetto"
                 accento="inizia da qui."
-                className="mt-6 text-[clamp(40px,5.8vw,88px)] !leading-none"
+                className="text-[clamp(40px,5.8vw,88px)] !leading-none"
               />
               <p className="mx-auto mt-6 max-w-[34rem] text-[rgb(243_238_230/.75)]">
                 Raccontaci cosa hai in mente: ti risponde un progettista, che

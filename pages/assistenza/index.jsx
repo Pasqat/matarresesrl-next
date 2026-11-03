@@ -398,15 +398,12 @@ export default function Assistenza() {
         >
           <div className="site-shell grid gap-12 py-24 lg:grid-cols-12 lg:py-32">
             <div className="lg:col-span-4">
-              <span className="eyebrow-cinema" data-tono="chiaro">
-                Richiesta di intervento
-              </span>
               <TitoloDueTempi
                 id="richiesta-title"
                 tono="chiaro"
                 riga="Raccontateci il guasto."
                 accento="Ci pensiamo noi."
-                className="mt-6 text-[clamp(32px,3.6vw,56px)] !leading-none"
+                className="text-[clamp(32px,3.6vw,56px)] !leading-none"
               />
               <p className="mt-6 max-w-[40ch] text-acciaio">
                 Indicate marca e modello della macchina e cosa succede: il
@@ -614,12 +611,11 @@ export default function Assistenza() {
           />
           <div className="absolute inset-0 bg-[#0d0e0f]/[.82]" />
           <div className="site-shell relative max-w-[820px]">
-            <span className="eyebrow-cinema">Una cucina nuova</span>
             <TitoloDueTempi
               id="sopralluogo-title"
               riga="Una cucina da rifare?"
               accento="Partiamo dal sopralluogo."
-              className="mt-6 text-[clamp(36px,5.4vw,80px)] !leading-none"
+              className="text-[clamp(36px,5.4vw,80px)] !leading-none"
             />
             <p className="mx-auto mt-6 max-w-[34rem] text-[rgb(243_238_230/.75)]">
               Se le attrezzature sono a fine corsa o la cucina non regge più il
