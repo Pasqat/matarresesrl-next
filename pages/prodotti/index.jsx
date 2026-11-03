@@ -93,8 +93,8 @@ const arredi = [
     nome: 'Arredi e complementi',
     testo:
       'Sedie, tavolini e decorazioni per interno o esterno, tutti scelti per il settore Ho.Re.Ca.',
-    foto: '/img/prodotti/arredi-complementi.webp',
-    alt: 'Sala di un bistrot con tavoli in legno e sedie colorate',
+    foto: '/img/prodotti/arredi-piazza-grande.webp',
+    alt: 'Sala con panca imbottita, tavoli scuri e sedie verdi',
   },
   {
     nome: 'Arredi su misura',
