@@ -8,7 +8,6 @@ import {Freccia} from '../../components/cinema/BottoneFreccia'
 import ContactModal from '../../components/Form/ContactModal'
 import Prosa from '../../components/editoriale/Prosa'
 import GalleriaProgetto from '../../components/editoriale/GalleriaProgetto'
-import InvitoProgetto from '../../components/editoriale/InvitoProgetto'
 import Correlati from '../../components/editoriale/Correlati'
 import SocialShareBar from '../../components/SocialShareBar/SocialShareBar'
 import {getProject, getLastTwoProjects} from '../../lib/query/project'
@@ -99,19 +98,6 @@ export default function Project({project, related}) {
         <div className="site-shell grid py-20 lg:grid-cols-12 lg:py-28">
           <div className="min-w-0 lg:col-span-8 lg:col-start-2">
             <Prosa content={project.content} editoriale />
-            <SocialShareBar route={router.asPath} title={project.title} />
-            <InvitoProgetto
-              title="Uno spazio da immaginare insieme."
-              image={
-                cover
-                  ? {
-                      src: cover,
-                      alt: project.featuredImage?.node?.altText || '',
-                    }
-                  : undefined
-              }
-              caption={`${project.title}. Il prossimo può essere il tuo.`}
-            />
           </div>
         </div>
       </section>
@@ -137,10 +123,52 @@ export default function Project({project, related}) {
         </section>
       )}
 
+      {/* Chiusura dopo la galleria: se stesse sotto il testo la pagina sembrerebbe finita lì */}
+      <section
+        className="bg-[var(--carta)] text-ghisa"
+        data-header="light"
+        aria-labelledby="invito-title"
+      >
+        <div className="site-shell py-24 lg:py-32">
+          <div className="grid gap-10 rounded-[28px] bg-[#121315] p-8 text-white md:p-12 lg:grid-cols-12 lg:items-end lg:p-16">
+            <div className="lg:col-span-7">
+              <TitoloDueTempi
+                id="invito-title"
+                riga="Uno spazio"
+                accento="da immaginare insieme."
+                className="text-[clamp(32px,4vw,56px)] !leading-none"
+              />
+              <p className="mt-6 max-w-[44ch] text-[rgb(243_238_230/.75)]">
+                <span dangerouslySetInnerHTML={{__html: project.title}} />. Il
+                prossimo può essere il tuo.
+              </p>
+            </div>
+            <div className="flex flex-col gap-8 lg:col-span-5 lg:items-end">
+              <ContactModal
+                variant="realizzazione"
+                image={
+                  cover
+                    ? {
+                        src: cover,
+                        alt: project.featuredImage?.node?.altText || '',
+                      }
+                    : undefined
+                }
+                caption={`${project.title}. Il prossimo può essere il tuo.`}
+                className="cin-btn"
+              >
+                Parlaci del tuo progetto
+                <Freccia />
+              </ContactModal>
+              <SocialShareBar route={router.asPath} title={project.title} />
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Correlati
         title="Altre"
         accento="realizzazioni."
-        tono={images.length > 0 ? 'chiaro' : 'scuro'}
         link={{href: '/realizzazioni', label: 'Tutte le realizzazioni'}}
         items={related.map(p => ({
           href: `/realizzazioni/${p.slug}`,

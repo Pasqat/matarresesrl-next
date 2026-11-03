@@ -148,7 +148,9 @@ export default function Events({event}) {
         <div className="site-shell grid gap-12 py-20 lg:grid-cols-12 lg:py-28">
           <div className="min-w-0 lg:col-span-7">
             <Prosa content={event.content} />
-            <SocialShareBar route={router.asPath} title={event.title} />
+            <div className="mt-12">
+              <SocialShareBar route={router.asPath} title={event.title} />
+            </div>
           </div>
           <aside
             className="self-start bg-calce p-8 lg:sticky lg:top-32 lg:col-span-4 lg:col-start-9"

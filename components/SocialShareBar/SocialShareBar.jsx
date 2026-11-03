@@ -10,11 +10,11 @@ export default function SocialShareBar({route, title}) {
   return (
     <>
       <div
-        className="mt-12 flex flex-wrap items-center gap-2"
+        className="flex flex-wrap items-center gap-2"
         role="group"
         aria-labelledby="condividi-label"
       >
-        <span id="condividi-label" className="mr-3 text-sm text-acciaio">
+        <span id="condividi-label" className="mr-3 text-sm opacity-70">
           Condividi
         </span>
         <SocialShareButton

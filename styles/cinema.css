@@ -725,3 +725,171 @@
     transition: none;
   }
 }
+
+/* ---- Archivio realizzazioni: barra unica e griglia a rivista ---- */
+.cin-barra {
+  position: sticky;
+  top: 88px;
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 28px;
+  background: #1e2226;
+  color: var(--carta);
+  box-shadow: 0 12px 32px rgb(30 34 38 / 0.18);
+}
+.cin-barra__cerca {
+  display: flex;
+  flex: 1 1 260px;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+  color: rgb(243 238 230 / 0.6);
+}
+.cin-barra__cerca input {
+  width: 100%;
+  min-height: 44px;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 16px;
+}
+.cin-barra__cerca input::placeholder {
+  color: rgb(243 238 230 / 0.55);
+}
+.cin-barra__cerca input:focus {
+  outline: none;
+}
+.cin-barra__cerca:focus-within {
+  color: #fff;
+}
+.cin-barra__scelta select {
+  min-height: 44px;
+  padding: 0 38px 0 16px;
+  border: 1px solid rgb(243 238 230 / 0.25);
+  border-radius: 999px;
+  background: transparent
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none'%3E%3Cpath d='m2 4 4 4 4-4' stroke='%23f3eee6' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E")
+    no-repeat right 14px center;
+  color: #fff;
+  font-size: 15px;
+  appearance: none;
+  cursor: pointer;
+}
+.cin-barra__scelta select:hover {
+  border-color: rgb(243 238 230 / 0.6);
+}
+.cin-barra__scelta option {
+  color: #1e2226;
+}
+.cin-barra__conta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background: var(--fiamma);
+  color: #120a00;
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.cin-barra :focus-visible {
+  outline: 2px solid var(--fiamma);
+  outline-offset: 2px;
+}
+@media (max-width: 760px) {
+  .cin-barra {
+    top: 76px;
+  }
+  .cin-barra__scelta {
+    flex: 1 1 0;
+  }
+  .cin-barra__scelta select {
+    width: 100%;
+  }
+}
+
+.cin-rivista {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: 240px;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cin-rivista > li[hidden] {
+  display: none;
+}
+.cin-rivista a {
+  position: relative;
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 24px;
+  background: #2a2c2f;
+  color: #fff;
+}
+.cin-rivista img {
+  object-fit: cover;
+  transition: transform 1.2s var(--cin-ease);
+}
+.cin-rivista a:hover img {
+  transform: scale(1.05);
+}
+.cin-rivista__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgb(13 14 15 / 0.85), rgb(13 14 15 / 0) 55%);
+}
+.cin-rivista__testo {
+  position: absolute;
+  inset: auto 20px 18px;
+}
+.cin-rivista__meta {
+  display: block;
+  font-size: 13px;
+  color: rgb(243 238 230 / 0.75);
+}
+.cin-rivista__titolo {
+  display: block;
+  margin-top: 4px;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+@media (min-width: 640px) {
+  .cin-rivista {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .cin-rivista > li:nth-child(5n + 1) {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+}
+@media (min-width: 1024px) {
+  /* gruppi da cinque: uno grande e quattro attorno, il grande alterna sinistra e destra */
+  .cin-rivista {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-rows: 260px;
+    grid-auto-flow: dense;
+  }
+  .cin-rivista > li:nth-child(10n + 6) {
+    grid-column: 3 / span 2;
+  }
+  .cin-rivista > li:nth-child(5n + 1) .cin-rivista__titolo {
+    font-size: 34px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cin-rivista img {
+    transition: none;
+  }
+}

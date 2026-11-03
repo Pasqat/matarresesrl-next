@@ -10,7 +10,7 @@ export default function SocialShareButton(props) {
       href={href}
       target="_blank"
       rel="noreferrer"
-      className="flex h-11 w-11 items-center justify-center border border-ghisa/15 text-acciaio transition-colors hover:border-ghisa hover:text-ghisa"
+      className="flex h-11 w-11 items-center justify-center rounded-full border border-[rgb(127_127_127/.4)] transition-colors hover:border-fiamma hover:bg-fiamma hover:text-[#120a00]"
       aria-label={`Condividi ${tooltip}`}
       title={`Condividi ${tooltip}`}
       onClick={() => {

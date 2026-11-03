@@ -6,18 +6,14 @@ import * as fbq from '../../lib/fpixel'
 import Layout from '../../components/Layout'
 import HeroCinema from '../../components/cinema/HeroCinema'
 import heroImg from '../../public/img/settori/rist-auraterrae.webp'
-import CardEditoriale from '../../components/editoriale/CardEditoriale'
-import GrigliaEditoriale from '../../components/editoriale/GrigliaEditoriale'
-import {
-  CampoRicerca,
-  CaricaAltri,
-  ChipCategorie,
-} from '../../components/editoriale/FiltriArchivio'
+import Image from 'next/image'
+import Link from 'next/link'
+import {CaricaAltri} from '../../components/editoriale/FiltriArchivio'
 
 import {filterPosts} from '../../actions/utils/blog'
 import {getProjects} from '../../lib/query/project'
 
-const PAGE_SIZE = 12
+const PAGE_SIZE = 10 // due gruppi da cinque della griglia a rivista
 const initialIndexToShow = PAGE_SIZE
 
 // this really is not needed, or maybe only the part `(\s|$)?
@@ -32,14 +28,6 @@ export default function Realizzazioni({data}) {
   const searchInputRef = React.useRef(null)
 
   const resultsRef = React.useRef(null)
-
-  /**
-   * This is here to make sure that a user doesn't hit "enter" on the search
-   * button, which focuses the input and then keyup the enter on the input
-   * which will trigger the scroll down. We should *only* scroll when the
-   * "enter" keypress and keyup happen on the input.
-   */
-  const ignoreInputKeyUp = React.useRef(false)
 
   const [queryValue, setQuery] = React.useState(() => {
     return searchParams ?? ''
@@ -59,53 +47,30 @@ export default function Realizzazioni({data}) {
 
   const regularQuery = query.replace(specialQueryRegex, '').trim()
 
-  const matchingPosts = React.useMemo(() => {
-    return filterPosts(allPosts, regularQuery)
-  }, [allPosts, regularQuery])
+  const [settore, setSettore] = React.useState('')
+  const [anno, setAnno] = React.useState('')
+
+  const matchingPosts = React.useMemo(
+    () =>
+      filterPosts(allPosts, regularQuery).filter(
+        p =>
+          (!settore || p.categories?.includes(settore)) &&
+          (!anno || p.tags?.includes(anno)),
+      ),
+    [allPosts, regularQuery, settore, anno],
+  )
 
   const [indexToShow, setIndexToShow] = React.useState(initialIndexToShow)
-  // when the query changes, we want to reset the index
+  // when the filters change, we want to reset the index
   React.useEffect(() => {
     setIndexToShow(initialIndexToShow)
-  }, [query])
-
-  function toggleCategory(category) {
-    setQuery(q => {
-      // create a regexp so that we can replace multiple occurrences (`this that this`)
-      const expression = new RegExp(category, 'ig')
-
-      const newQuery = expression.test(q)
-        ? q.replace(expression, '')
-        : `${q} ${category}`
-
-      router.push(
-        {query: {q: newQuery.toLowerCase().replace(/\s+/g, ' ').trim()}},
-        '',
-        {
-          scroll: false,
-        },
-      )
-      // trim and remove subsequent spaces (`this   that` => `this that`)
-      return newQuery.replace(/\s+/g, ' ').trim()
-    })
-  }
-
-  const isSearching = query.length > 0
+  }, [query, settore, anno])
 
   // Tutte le realizzazioni restano nell'HTML; a schermo se ne vedono `indexToShow`
   const posts = matchingPosts
   const shown = Math.min(indexToShow, posts.length)
   const hasMorePosts = indexToShow < posts.length
-
-  const visibleCategories = isSearching
-    ? new Set(
-        matchingPosts
-          .flatMap(post => {
-            return post.categories
-          })
-          .filter(Boolean),
-      )
-    : new Set(data.categories)
+  const filtri = query || settore || anno
 
   return (
     <div>
@@ -166,97 +131,146 @@ export default function Realizzazioni({data}) {
           data-header="light"
           aria-label="Archivio delle realizzazioni"
         >
-          <div className="site-shell pb-24 pt-16 lg:pb-32 lg:pt-20">
-            <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
-              <div className="lg:col-span-7">
-                <ChipCategorie
-                  label="Filtra per settore"
-                  categories={data.categories}
-                  isSelected={category =>
-                    regularQuery.toLowerCase().includes(category.toLowerCase())
-                  }
-                  isDisabled={category =>
-                    !visibleCategories.has(category) &&
-                    !regularQuery.toLowerCase().includes(category.toLowerCase())
-                  }
-                  onToggle={toggleCategory}
-                />
-              </div>
-              <div className="lg:col-span-5">
-                <CampoRicerca
+          <div className="site-shell pb-24 pt-12 lg:pb-32 lg:pt-16">
+            {/* Barra unica: resta sotto l'header mentre si scorre l'archivio */}
+            <div className="cin-barra" role="search">
+              <label className="cin-barra__cerca">
+                <span className="sr-only">Cerca tra le realizzazioni</span>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <circle
+                    cx="11"
+                    cy="11"
+                    r="7"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
+                  <path
+                    d="m20 20-3.5-3.5"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                </svg>
+                <input
                   ref={searchInputRef}
-                  label="Cerca tra le realizzazioni"
+                  type="search"
+                  placeholder="Cerca un locale o una città"
                   value={queryValue}
-                  isSearching={isSearching}
-                  count={matchingPosts.length}
-                  buttonProps={{
-                    onClick: () => {
-                      setQuery('')
-                      ignoreInputKeyUp.current = true
-                      searchInputRef.current?.focus()
-                    },
-                    onKeyDown: () => {
-                      ignoreInputKeyUp.current = true
-                    },
-                    onKeyUp: () => {
-                      ignoreInputKeyUp.current = false
-                    },
-                  }}
-                  onChange={event => {
-                    return setQuery(
-                      event.currentTarget.value.toLocaleLowerCase(),
+                  onChange={e =>
+                    setQuery(e.currentTarget.value.toLocaleLowerCase())
+                  }
+                  onKeyUp={e => {
+                    if (e.key !== 'Enter') return
+                    resultsRef.current
+                      ?.querySelector('a')
+                      ?.focus({preventScroll: true})
+                    resultsRef.current?.scrollIntoView({behavior: 'smooth'})
+                    fbq.event('Search', {
+                      content_category: 'realizzazioni',
+                      search_string: query,
+                    })
+                    router.push(
+                      {query: {q: e.currentTarget.value.toLocaleLowerCase()}},
+                      '',
+                      {
+                        scroll: false,
+                      },
                     )
                   }}
-                  onKeyUp={e => {
-                    if (!ignoreInputKeyUp.current && e.key === 'Enter') {
-                      resultsRef.current
-                        ?.querySelector('a')
-                        ?.focus({preventScroll: true})
-                      resultsRef.current?.scrollIntoView({
-                        behavior: 'smooth',
-                      })
-                      fbq.event('Search', {
-                        content_category: 'realizzazioni',
-                        search_string: query,
-                      })
-                      router.push(
-                        {
-                          query: {q: e.target.value.toLocaleLowerCase()},
-                        },
-                        '',
-                        {scroll: false},
-                      )
-                    }
-                    ignoreInputKeyUp.current = false
-                  }}
                 />
-              </div>
+              </label>
+              <label className="cin-barra__scelta">
+                <span className="sr-only">Settore</span>
+                <select
+                  value={settore}
+                  onChange={e => setSettore(e.target.value)}
+                >
+                  <option value="">Tutti i settori</option>
+                  {data.categories.map(c => (
+                    <option key={c}>{c}</option>
+                  ))}
+                </select>
+              </label>
+              <label className="cin-barra__scelta">
+                <span className="sr-only">Anno</span>
+                <select value={anno} onChange={e => setAnno(e.target.value)}>
+                  <option value="">Ogni anno</option>
+                  {data.tags.map(t => (
+                    <option key={t}>{t}</option>
+                  ))}
+                </select>
+              </label>
+              {filtri ? (
+                <button
+                  type="button"
+                  className="cin-barra__conta"
+                  onClick={() => {
+                    setQuery('')
+                    setSettore('')
+                    setAnno('')
+                    router.push({query: {}}, '', {scroll: false})
+                  }}
+                >
+                  {posts.length} {posts.length === 1 ? 'progetto' : 'progetti'}
+                  <span aria-hidden="true">×</span>
+                  <span className="sr-only">: azzera i filtri</span>
+                </button>
+              ) : (
+                <span className="cin-barra__conta" aria-live="polite">
+                  {posts.length} progetti
+                </span>
+              )}
             </div>
 
-            <div ref={resultsRef} className="mt-16 scroll-mt-28 lg:mt-24">
+            <div ref={resultsRef} className="mt-10 scroll-mt-40 lg:mt-14">
               {posts.length === 0 ? (
                 <p className="type-display max-w-[24ch] py-16 text-[clamp(24px,2.6vw,36px)]">
-                  Purtroppo non è stato trovato nulla con i tuoi criteri di
-                  ricerca
+                  Nessun progetto con questi criteri. Prova a togliere un
+                  filtro.
                 </p>
               ) : (
-                <GrigliaEditoriale
-                  items={posts}
-                  visibili={indexToShow}
-                  render={(project, aspect) => (
-                    <CardEditoriale
-                      as="h2"
-                      href={`/realizzazioni/${project.slug}`}
-                      image={{
-                        src: project.featuredImage?.node?.mediaItemUrl,
-                        alt: project.featuredImage?.node?.altText,
-                      }}
-                      title={project.title}
-                      meta={project.categories?.join(' · ')}
-                      aspect={aspect}
-                    />
-                  )}
-                />
+                <ul className="cin-rivista">
+                  {posts.map((project, i) => {
+                    const img = project.featuredImage?.node
+                    return (
+                      <li key={project.slug} hidden={i >= indexToShow}>
+                        <Link href={`/realizzazioni/${project.slug}`}>
+                          {img?.mediaItemUrl && (
+                            <Image
+                              src={img.mediaItemUrl}
+                              alt={img.altText || ''}
+                              fill
+                              // la prima di ogni gruppo da cinque occupa metà riga
+                              sizes={
+                                i % 5 === 0
+                                  ? '(min-width: 1024px) 50vw, 100vw'
+                                  : '(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw'
+                              }
+                            />
+                          )}
+                          <span className="cin-rivista__scrim" />
+                          <span className="cin-rivista__testo">
+                            <span className="cin-rivista__meta">
+                              {[project.categories?.[0], project.tags?.[0]]
+                                .filter(Boolean)
+                                .join(' · ')}
+                            </span>
+                            <span
+                              className="cin-rivista__titolo"
+                              dangerouslySetInnerHTML={{__html: project.title}}
+                            />
+                          </span>
+                        </Link>
+                      </li>
+                    )
+                  })}
+                </ul>
               )}
             </div>
 
@@ -281,7 +295,10 @@ export async function getStaticProps() {
   const categories = data.categories
     .filter(category => category.count > 0)
     .map(c => c.name)
-  const tags = data.tags.filter(tags => tags.count > 0).map(t => t.name)
+  const tags = data.tags
+    .filter(tags => tags.count > 0)
+    .map(t => t.name)
+    .sort((a, b) => b.localeCompare(a))
 
   // const domain = process.env.NEXT_PUBLIC_DOMAIN
 

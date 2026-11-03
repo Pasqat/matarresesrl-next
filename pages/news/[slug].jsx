@@ -133,7 +133,9 @@ export default function Post({postData, posts, preview}) {
                 ))}
               </ul>
             )}
-            <SocialShareBar route={router.asPath} title={postData.title} />
+            <div className="mt-12">
+              <SocialShareBar route={router.asPath} title={postData.title} />
+            </div>
             <InvitoProgetto
               title="Stai valutando un intervento simile?"
               cta="Parla con un progettista"
