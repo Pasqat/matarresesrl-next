@@ -184,7 +184,10 @@ export default function Navbar({isTransparent = false, cta}) {
             </Menu>
           </nav>
           <div className="header-actions">
-            <Link className="support-link nav-item" href="/assistenza">
+            <Link
+              className="support-link nav-item"
+              href="/assistenza#richiesta"
+            >
               <Roll>Assistenza</Roll>
             </Link>
             {/* Figlio diretto di .header-actions: la regola legacy a 760px lo nasconde su mobile. */}
@@ -232,7 +235,7 @@ export default function Navbar({isTransparent = false, cta}) {
               </Link>
             ))}
             <Link href="/contatti">Contatti</Link>
-            <Link href="/assistenza">Assistenza</Link>
+            <Link href="/assistenza#richiesta">Assistenza</Link>
             <div className="mobile-secondary">
               {secondary.map(([name, href]) => (
                 <Link key={href} href={href}>

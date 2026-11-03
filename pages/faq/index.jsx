@@ -1,11 +1,11 @@
 import Head from 'next/head'
 
 import Link from 'next/link'
-import {useState} from 'react'
 
 import Layout from '../../components/Layout'
 import ContactModal from '../../components/Form/ContactModal'
 import PageHero from '../../components/PageHero'
+import {Freccia} from '../../components/cinema/BottoneFreccia'
 import StructuredData from '../../components/StructuredData'
 import {faqSchema, breadcrumbSchema} from '../../lib/seo/schema'
 
@@ -93,89 +93,54 @@ export default function Faq() {
       </Head>
       <StructuredData data={faqSchema(FAQS)} />
       <StructuredData data={breadcrumbSchema([{name: 'FAQ', path: '/faq'}])} />
-      <Layout navbarTransparent>
+      <Layout navbarTransparent footerInvito={false}>
         <PageHero
-          title="Domande frequenti"
+          title="Domande"
+          accento="frequenti."
           intro="Le risposte alle domande più comuni su servizi, attrezzature, arredi e assistenza per il settore ho.re.ca."
           tall={false}
         />
 
         <section
-          className="bg-white text-ghisa"
+          className="bg-[var(--carta)] text-ghisa"
           data-header="light"
           aria-label="Domande e risposte"
         >
           <div className="site-shell grid gap-12 py-20 lg:grid-cols-12 lg:py-28">
             <div className="lg:col-span-8 lg:col-start-5 lg:row-start-1">
-              {FAQS.map((faq, i) => (
-                <FaqItem key={faq.question} faq={faq} index={i} />
-              ))}
+              {/* Righe che si aprono (<details>), come nelle pagine settore: la risposta resta nell'HTML */}
+              <div className="cin-faq" data-tono="chiaro">
+                {FAQS.map((faq, i) => (
+                  <details key={faq.question} open={i === 0}>
+                    <summary>
+                      <h2>{faq.question}</h2>
+                      <span className="cin-faq__segno" aria-hidden="true" />
+                    </summary>
+                    <p>{faq.answer}</p>
+                  </details>
+                ))}
+              </div>
             </div>
             <div className="lg:col-span-4 lg:row-start-1 lg:pr-12">
-              <div className="lg:sticky lg:top-32">
-                <p className="max-w-[34ch] text-lg text-acciaio">
+              <div className="rounded-[28px] bg-[#121315] p-8 text-white lg:sticky lg:top-32">
+                <p className="type-display max-w-[20ch] text-[24px] leading-tight">
                   Non trovi quello che cerchi? Contattaci, siamo a tua
                   disposizione.
                 </p>
                 <ContactModal
                   variant="info"
-                  className="cta-ghisa mt-6"
+                  className="cin-btn mt-6"
                   title="Fai la tua domanda."
                   subtitle="Ti risponde un nostro consulente, per email o al telefono."
                 >
-                  Hai altre domande? Contattaci
+                  Contattaci
+                  <Freccia />
                 </ContactModal>
               </div>
             </div>
           </div>
         </section>
       </Layout>
-    </div>
-  )
-}
-
-// Accordion: pulsante con aria-expanded dentro l'h2; il pannello chiuso è
-// `invisible` (fuori da tab e albero di accessibilità) e si apre animando le
-// righe della griglia da 0fr a 1fr. Niente animazione con movimento ridotto.
-function FaqItem({faq, index}) {
-  const [open, setOpen] = useState(false)
-  const buttonId = `faq-q-${index}`
-  const panelId = `faq-a-${index}`
-  return (
-    <div className="border-t border-ghisa/15 last:border-b">
-      <h2 className="type-display text-[clamp(19px,1.7vw,24px)] leading-tight">
-        <button
-          type="button"
-          id={buttonId}
-          aria-expanded={open}
-          aria-controls={panelId}
-          onClick={() => setOpen(o => !o)}
-          className="group flex w-full items-start justify-between gap-6 py-6 text-left transition-colors [font-stretch:inherit] hover:text-fiamma-testo"
-        >
-          <span>{faq.question}</span>
-          <span
-            aria-hidden="true"
-            className="relative mt-1 h-4 w-4 shrink-0 text-current"
-          >
-            <span className="absolute left-0 top-1/2 h-px w-4 bg-current" />
-            <span
-              className={`absolute left-1/2 top-0 h-4 w-px bg-current transition-transform duration-300 motion-reduce:transition-none ${
-                open ? 'scale-y-0' : 'scale-y-100'
-              }`}
-            />
-          </span>
-        </button>
-      </h2>
-      <div
-        id={panelId}
-        className={`grid transition-[grid-template-rows,visibility] duration-300 ease-out motion-reduce:transition-none ${
-          open ? 'visible grid-rows-[1fr]' : 'invisible grid-rows-[0fr]'
-        }`}
-      >
-        <div className="min-h-0 overflow-hidden">
-          <p className="max-w-[65ch] pb-8 text-lg text-acciaio">{faq.answer}</p>
-        </div>
-      </div>
     </div>
   )
 }

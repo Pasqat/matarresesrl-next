@@ -538,7 +538,7 @@
 .cin-faq summary::-webkit-details-marker {
   display: none;
 }
-.cin-faq h3 {
+.cin-faq :is(h2, h3) {
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(18px, 1.6vw, 22px);
@@ -591,7 +591,7 @@
   border-color: rgb(30 34 38 / 0.24);
   background: #fff;
 }
-.cin-faq[data-tono='chiaro'] h3 {
+.cin-faq[data-tono='chiaro'] :is(h2, h3) {
   color: var(--ghisa);
 }
 .cin-faq[data-tono='chiaro'] details > p {

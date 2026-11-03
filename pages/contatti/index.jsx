@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 import Layout from '../../components/Layout'
 import PageHero from '../../components/PageHero'
+import TitoloDueTempi from '../../components/cinema/TitoloDueTempi'
 import ContactForm from '../../components/Form/ContactForm'
 import Map from '../../components/Maps/Map'
 import {getGroups} from '../../lib/newsletter'
@@ -38,15 +39,10 @@ export default function Contatti({groups}) {
         <meta property="og:site_name" content="Matarrese srl" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <Layout navbarTransparent>
+      <Layout navbarTransparent footerInvito={false}>
         <PageHero
-          title={
-            <>
-              Conosciamoci.
-              <br />
-              Il tuo progetto parte da qui.
-            </>
-          }
+          title="Conosciamoci."
+          accento="Il tuo progetto parte da qui."
           tall={false}
         >
           {/* Recapiti protagonisti: grandi e cliccabili già nell'apertura */}
@@ -90,12 +86,12 @@ export default function Contatti({groups}) {
         </PageHero>
 
         <section
-          className="bg-calce text-ghisa"
+          className="bg-[var(--carta)] text-ghisa"
           data-header="light"
           aria-label="Showroom, orari e assistenza"
         >
-          <div className="site-shell grid gap-12 py-20 md:grid-cols-3 lg:py-28">
-            <div className="border-t border-ghisa/15 pt-6">
+          <div className="site-shell grid gap-3 pt-16 md:grid-cols-3 lg:pt-24">
+            <div className="rounded-[28px] bg-white p-8">
               <h2 className="type-display text-2xl">Vieni in showroom</h2>
               <p className="mt-4 text-lg">
                 Contrada Popoleto, n.c.
@@ -103,7 +99,7 @@ export default function Contatti({groups}) {
                 70011 Alberobello (BA)
               </p>
               <a
-                className="mt-4 inline-block border-b border-ghisa py-1 transition-colors hover:text-fiamma-testo"
+                className="mt-5 inline-block border-b border-ghisa/40 py-1 transition-colors hover:border-ghisa hover:text-fiamma-testo"
                 href="https://www.google.com/maps/search/?api=1&query=Matarrese+srl+Alberobello"
                 target="_blank"
                 rel="noreferrer"
@@ -111,7 +107,7 @@ export default function Contatti({groups}) {
                 Indicazioni stradali
               </a>
             </div>
-            <div className="border-t border-ghisa/15 pt-6">
+            <div className="rounded-[28px] bg-white p-8">
               <h2 className="type-display text-2xl">Quando trovarci</h2>
               <dl className="mt-4 text-lg">
                 <dt className="text-acciaio">Lunedì – venerdì</dt>
@@ -124,7 +120,7 @@ export default function Contatti({groups}) {
                 <dd>chiuso</dd>
               </dl>
             </div>
-            <div className="border-t border-ghisa/15 pt-6">
+            <div className="rounded-[28px] bg-white p-8">
               <h2 className="type-display text-2xl">Assistenza tecnica</h2>
               <p className="mt-4 max-w-[34ch] text-acciaio">
                 Per un guasto o una manutenzione usa il modulo dedicato.
@@ -136,44 +132,47 @@ export default function Contatti({groups}) {
                 +39 080 4323 651
               </a>
               <Link
-                className="mt-4 inline-block border-b border-ghisa py-1 transition-colors hover:text-fiamma-testo"
-                href="/assistenza"
+                className="mt-5 inline-block border-b border-ghisa/40 py-1 transition-colors hover:border-ghisa hover:text-fiamma-testo"
+                href="/assistenza#richiesta"
               >
                 Hai bisogno di assistenza?
               </Link>
             </div>
           </div>
+          {/* Mappa nella stessa sezione: Map è `absolute inset-0`, l'altezza è nel contenitore.
+              Senza NEXT_PUBLIC_MAPS_API mostra il suo fallback con il link. */}
+          <div className="site-shell pb-24 pt-3 lg:pb-32">
+            <div className="relative h-[360px] overflow-hidden rounded-[28px] bg-[var(--steel)] lg:h-[480px]">
+              <Map />
+            </div>
+          </div>
         </section>
 
-        {/* Mappa a tutta larghezza: Map è `absolute inset-0`, l'altezza è qui.
-            Senza NEXT_PUBLIC_MAPS_API mostra il suo fallback con il link. */}
-        <section
-          className="relative h-[360px] bg-[var(--steel)] lg:h-[520px]"
-          data-header="light"
-          aria-label="Mappa dello showroom"
-        >
-          <Map />
-        </section>
-
+        {/* Modulo in una card bianca su fondo scuro: è l'azione principale della pagina */}
         <section
           id="contatto"
-          className="bg-white text-ghisa"
-          data-header="light"
+          className="bg-[#121315] py-16 text-ghisa lg:py-24"
+          data-header="dark"
           aria-labelledby="contatto-title"
         >
-          <div className="site-shell pb-4 pt-24">
-            <h2
-              id="contatto-title"
-              className="type-display max-w-[22ch] text-[clamp(30px,3.6vw,56px)]"
-            >
-              Hai un progetto da realizzare o hai bisogno di informazioni?
-            </h2>
-            <p className="mt-6 max-w-[52ch] text-lg text-acciaio">
-              Completa questo modulo, un nostro consulente ti ricontatterà.
-            </p>
-          </div>
-          <div className="pb-24">
-            <ContactForm groups={groups} compact />
+          <div className="site-shell">
+            <div className="rounded-[28px] bg-white pb-12 pt-12 lg:pt-16">
+              <div className="px-8 md:px-12 lg:px-16">
+                <TitoloDueTempi
+                  id="contatto-title"
+                  tono="chiaro"
+                  riga="Hai un progetto da realizzare"
+                  accento="o hai bisogno di informazioni?"
+                  className="max-w-[24ch] text-[clamp(30px,3.6vw,52px)] !leading-none"
+                />
+                <p className="mt-6 max-w-[52ch] text-lg text-acciaio">
+                  Completa questo modulo, un nostro consulente ti ricontatterà.
+                </p>
+              </div>
+              <div className="mt-8">
+                <ContactForm groups={groups} compact />
+              </div>
+            </div>
           </div>
         </section>
       </Layout>

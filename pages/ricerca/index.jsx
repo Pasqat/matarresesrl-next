@@ -5,6 +5,8 @@ import Link from 'next/link'
 import Layout from '../../components/Layout'
 import ContactModal from '../../components/Form/ContactModal'
 import PageHero from '../../components/PageHero'
+import TitoloDueTempi from '../../components/cinema/TitoloDueTempi'
+import {Freccia} from '../../components/cinema/BottoneFreccia'
 
 import FBMlogo from '../../public/img/logos/FBM_LOGO-High-Res.png'
 import UEfundedLogo from '../../public/img/logos/funded-eu-blue.png'
@@ -50,27 +52,22 @@ export default function AboutUs() {
       </Head>
       <Layout navbarTransparent>
         <PageHero
-          title="Esperienza e tecnologia al servizio del futuro"
+          title="Esperienza e tecnologia"
+          accento="al servizio del futuro."
           intro="Collaboriamo con università e centri specializzati per sviluppare soluzioni innovative che rispondono alle sfide di domani."
           tall={false}
         >
-          <a
-            href="#flat-bread-mine"
-            className="border-b border-inox/60 py-2 text-white transition-colors hover:border-white focus-visible:outline-white"
-          >
+          <a href="#flat-bread-mine" className="cin-link whitespace-nowrap">
             Flat Bread Mine
           </a>
-          <a
-            href="#one-health"
-            className="border-b border-inox/60 py-2 text-white transition-colors hover:border-white focus-visible:outline-white"
-          >
+          <a href="#one-health" className="cin-link whitespace-nowrap">
             One Health, One Welfare, One World
           </a>
         </PageHero>
 
         {/* Il secondo paragrafo della vecchia apertura, come dichiarazione */}
         <section
-          className="bg-calce text-ghisa"
+          className="bg-[var(--carta)] text-ghisa"
           data-header="light"
           aria-label="Il nostro approccio alla ricerca"
         >
@@ -84,18 +81,21 @@ export default function AboutUs() {
           </div>
         </section>
 
-        {/* Fondo bianco: il logo UE ha il fondo bianco nel file */}
+        {/* I loghi stanno in una card bianca: il logo UE ha il fondo bianco nel file */}
         <section
           id="flat-bread-mine"
-          className="bg-white text-ghisa"
+          className="scroll-mt-20 bg-[var(--carta)] text-ghisa"
           data-header="light"
           aria-labelledby="fbm-title"
         >
-          <div className="site-shell grid gap-12 py-24 lg:grid-cols-12 lg:py-32">
+          <div className="site-shell grid gap-12 pb-24 lg:grid-cols-12 lg:pb-32">
             <div className="lg:col-span-6">
+              <span className="eyebrow-cinema" data-tono="chiaro">
+                Progetto europeo PRIMA
+              </span>
               <h2
                 id="fbm-title"
-                className="type-display text-[clamp(30px,3.4vw,52px)]"
+                className="type-display mt-6 text-[clamp(36px,4.4vw,64px)] !leading-none"
               >
                 Flat Bread Mine
               </h2>
@@ -137,10 +137,10 @@ export default function AboutUs() {
                 alt="Pane piatto appena sfornato su un canovaccio a righe"
                 placeholder="blur"
                 sizes="(min-width: 1024px) 40vw, 100vw"
-                className="h-auto w-full"
+                className="h-auto w-full rounded-[28px]"
               />
               <ul
-                className="mt-10 grid grid-cols-2 items-center gap-x-8 gap-y-6 md:grid-cols-3"
+                className="mt-4 grid grid-cols-2 items-center gap-x-8 gap-y-6 rounded-[28px] bg-white p-6 md:grid-cols-3"
                 aria-label="Loghi del progetto"
               >
                 <li>
@@ -177,7 +177,7 @@ export default function AboutUs() {
 
         <section
           id="one-health"
-          className="bg-ghisa text-white [&_:focus-visible]:outline-fiamma"
+          className="scroll-mt-20 bg-[#121315] text-white [&_:focus-visible]:outline-fiamma"
           data-header="dark"
           aria-labelledby="one-health-title"
         >
@@ -190,13 +190,14 @@ export default function AboutUs() {
                 alt="Presentazione dei risultati del progetto One Health, One Welfare, One World. In basso i loghi di Unione Europea – Fondo Sociale Europeo, Ministero dell’Università e della Ricerca, PON Ricerca e Innovazione 2014-2020 e FSC – Fondo per lo Sviluppo e la Coesione"
                 placeholder="blur"
                 sizes="(min-width: 1024px) 45vw, 100vw"
-                className="h-auto w-full"
+                className="h-auto w-full rounded-[28px]"
               />
             </div>
             <div className="lg:col-span-5 lg:col-start-8">
+              <span className="eyebrow-cinema">PON Ricerca e Innovazione</span>
               <h2
                 id="one-health-title"
-                className="type-display text-[clamp(30px,3.4vw,52px)]"
+                className="type-display mt-6 text-[clamp(36px,4.4vw,64px)] !leading-none"
               >
                 One Health, One Welfare, One World
               </h2>
@@ -241,25 +242,28 @@ export default function AboutUs() {
         </section>
 
         <section
-          className="bg-white text-ghisa"
+          className="bg-[var(--carta)] text-ghisa"
           data-header="light"
           aria-labelledby="collabora-title"
         >
-          <div className="site-shell flex flex-col gap-8 py-20 md:flex-row md:items-end md:justify-between lg:py-24">
-            <h2
-              id="collabora-title"
-              className="type-display max-w-[20ch] text-[clamp(28px,3vw,44px)]"
-            >
-              Hai un progetto di ricerca da proporci?
-            </h2>
-            <ContactModal
-              variant="info"
-              className="cta-ghisa shrink-0 self-start"
-              title="Proponici un progetto di ricerca."
-              subtitle="Raccontaci l’idea e con chi la state sviluppando: ti ricontattiamo per parlarne."
-            >
-              Scrivici
-            </ContactModal>
+          <div className="site-shell py-24 lg:py-32">
+            <div className="flex flex-col gap-8 rounded-[28px] bg-[#121315] p-8 text-white md:flex-row md:items-end md:justify-between md:p-12 lg:p-16">
+              <TitoloDueTempi
+                id="collabora-title"
+                riga="Hai un progetto di ricerca"
+                accento="da proporci?"
+                className="max-w-[20ch] text-[clamp(32px,3.6vw,52px)] !leading-none"
+              />
+              <ContactModal
+                variant="info"
+                className="cin-btn shrink-0 self-start md:self-auto"
+                title="Proponici un progetto di ricerca."
+                subtitle="Raccontaci l’idea e con chi la state sviluppando: ti ricontattiamo per parlarne."
+              >
+                Scrivici
+                <Freccia />
+              </ContactModal>
+            </div>
           </div>
         </section>
       </Layout>
