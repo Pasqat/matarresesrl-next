@@ -1,7 +1,8 @@
 // Apertura a tutto schermo della grammatica cinematica: foto che si assesta con uno zoom
 // lento, scrim doppio, testi che salgono dalla sfocatura in cascata (styles/cinema.css).
 // `voci` è la lista numerata a destra (solo da lg). `video`: sorgenti {src, media} di un loop
-// muto sopra la foto, che fa da poster e resta sola con movimento ridotto.
+// muto sopra la foto, che fa da poster e resta sola con movimento ridotto: in quel caso il video
+// non viene nemmeno inserito, così non si scarica.
 import {useEffect, useRef, useState} from 'react'
 import Image from 'next/image'
 import TitoloDueTempi from './TitoloDueTempi'
@@ -22,13 +23,11 @@ export default function HeroCinema({
 }) {
   const videoRef = useRef(null)
   const [inPausa, setInPausa] = useState(false)
+  const [conVideo, setConVideo] = useState(false)
   useEffect(() => {
-    const v = videoRef.current
-    if (!v) return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      v.pause()
-      setInPausa(true)
-    }
+    setConVideo(
+      !window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+    )
   }, [])
   const alterna = () => {
     const v = videoRef.current
@@ -53,7 +52,7 @@ export default function HeroCinema({
           placeholder={typeof image === 'string' ? 'empty' : 'blur'}
           style={{objectPosition}}
         />
-        {video && (
+        {video && conVideo && (
           <video
             ref={videoRef}
             className="cin-hero__video"
@@ -124,7 +123,7 @@ export default function HeroCinema({
           </ul>
         )}
       </div>
-      {video && (
+      {video && conVideo && (
         <button
           type="button"
           className="cin-hero__pausa"

@@ -158,7 +158,8 @@ export default function CookiePolicy() {
               <li>
                 La mappa nella pagina Contatti è fornita da Google Maps: per
                 mostrarla il browser si collega ai server di Google, che ricevono
-                il tuo indirizzo IP.
+                il tuo indirizzo IP. Per questo si carica solo se hai accettato i
+                cookie o se premi «Mostra la mappa».
               </li>
             </ul>
 

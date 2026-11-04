@@ -171,7 +171,8 @@ export default function PrivacyPolicy() {
             <p>
               La mappa nella pagina Contatti è fornita da{' '}
               <strong>Google Maps</strong>: per mostrarla il tuo browser si
-              collega ai server di Google, che ricevono il tuo indirizzo IP.
+              collega ai server di Google, che ricevono il tuo indirizzo IP. Si
+              carica solo se hai accettato i cookie o se premi «Mostra la mappa».
             </p>
 
             <h2>4. A chi affidiamo i dati</h2>

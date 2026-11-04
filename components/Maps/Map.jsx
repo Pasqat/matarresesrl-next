@@ -1,10 +1,19 @@
 import {useEffect, useRef, useState} from 'react'
 import {Loader} from '@googlemaps/js-api-loader'
+import {getCookieConsentValue} from 'react-cookie-consent'
+
+// Google riceve l'IP del visitatore: la mappa parte da sola solo dopo il consenso ai cookie,
+// altrimenti resta la scheda con l'indirizzo e «Mostra la mappa».
 
 export default function Map() {
   const mapRef = useRef(null)
   const [unavailable, setUnavailable] = useState(false)
+  const [carica, setCarica] = useState(false)
   useEffect(() => {
+    if (getCookieConsentValue() === 'true') setCarica(true)
+  }, [])
+  useEffect(() => {
+    if (!carica) return
     let active = true
     const previousAuthFailure = window.gm_authFailure
     const fail = () => {
@@ -41,21 +50,30 @@ export default function Map() {
       active = false
       window.gm_authFailure = previousAuthFailure
     }
-  }, [])
+  }, [carica])
   return (
     <div className="absolute inset-0">
       <div
         ref={mapRef}
         className="h-full w-full"
-        hidden={unavailable}
+        hidden={unavailable || !carica}
         aria-label="Mappa dello showroom Matarrese"
       />
-      {unavailable && (
+      {(unavailable || !carica) && (
         <div className="map-fallback">
           <h2 className="type-display text-[clamp(28px,3vw,44px)]">
             Vieni a trovarci ad Alberobello.
           </h2>
           <p className="text-acciaio">Contrada Popoleto, n.c.</p>
+          {!carica && (
+            <button
+              type="button"
+              className="cta-ghisa"
+              onClick={() => setCarica(true)}
+            >
+              Mostra la mappa
+            </button>
+          )}
           <a
             className="cta-ghisa"
             href="https://www.google.com/maps/search/?api=1&query=Matarrese+srl+Alberobello"
