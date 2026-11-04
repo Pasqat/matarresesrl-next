@@ -43,13 +43,14 @@ export default function HeroCinema({
     >
       <div className="cin-hero__media cin-in-zoom">
         <Image
-          src={image}
+          // senza foto (un articolo che non l'ha): l'arena del gusto della sede
+          src={image || '/img/og/home.jpg'}
           alt={alt}
           fill
           priority
           sizes="100vw"
           // un percorso (es. dai dati dei settori) non ha l'anteprima sfocata degli import statici
-          placeholder={typeof image === 'string' ? 'empty' : 'blur'}
+          placeholder={image && typeof image !== 'string' ? 'blur' : 'empty'}
           style={{objectPosition}}
         />
         {video && conVideo && (

@@ -26,6 +26,31 @@ import {
   breadcrumbSchema,
 } from '../../lib/seo/schema'
 import {ogni} from '../../lib/kirby'
+// Invito in fondo all'articolo, scelto nel pannello (campo «Invito finale»); null = nessun invito
+const INVITI = {
+  progetto: {variant: 'progetto', etichetta: 'Parla con un progettista', breve: 'Parliamone'},
+  sopralluogo: {variant: 'progetto', etichetta: 'Richiedi un sopralluogo', breve: 'Sopralluogo'},
+  demo: {variant: 'showroom', etichetta: 'Prenota una demo in showroom', breve: 'Prenota la demo'},
+  assistenza: {href: '/assistenza', etichetta: 'Richiedi assistenza tecnica', breve: 'Assistenza'},
+  nessuno: null,
+}
+
+function BottoneInvito({invito, className, children}) {
+  if (invito.href)
+    return (
+      <Link href={invito.href} className={className}>
+        {children}
+        <Freccia />
+      </Link>
+    )
+  return (
+    <ContactModal variant={invito.variant} className={className}>
+      {children}
+      <Freccia />
+    </ContactModal>
+  )
+}
+
 export default function Post({postData, posts, preview}) {
   const router = useRouter()
   const testoRef = useRef(null)
@@ -76,10 +101,19 @@ export default function Post({postData, posts, preview}) {
         200,
     ),
   )
-  // settore che cita l'articolo tra i suoi approfondimenti (data/settori.js)
-  const settore = settori.find(
-    s => s.pagina && s.seo?.articoli?.some(([a]) => a === postData.slug),
-  )
+  // settore collegato: scelto nel pannello, altrimenti quello che cita l'articolo in data/settori.js
+  const settore =
+    settori.find(s => s.pagina && s.slug === postData.settori?.[0]) ||
+    settori.find(
+      s => s.pagina && s.seo?.articoli?.some(([a]) => a === postData.slug),
+    )
+  const invito = INVITI[postData.invito?.tipo] ?? INVITI.progetto
+  const fraseInvito =
+    postData.invito?.titolo || 'Stai valutando un intervento simile?'
+  const aggiornato =
+    postData.modified && postData.modified.slice(0, 10) !== postData.date?.slice(0, 10)
+      ? formatDate(postData.modified)
+      : null
   const categorie =
     postData.categories?.edges?.map(({node}) => node.name).filter(Boolean) || []
   return (
@@ -134,6 +168,14 @@ export default function Post({postData, posts, preview}) {
           </aside>
           <div ref={testoRef} className="min-w-0 max-w-[68ch] lg:col-span-7">
             <IndiceArticolo contenitore={testoRef} mobile />
+            {postData.inBreve && (
+              <aside className="cin-inbreve mb-10" aria-label="In breve">
+                <p className="text-sm font-semibold uppercase tracking-[0.08em] text-fiamma-testo">
+                  In breve
+                </p>
+                <p className="mt-2 text-lg leading-relaxed">{postData.inBreve}</p>
+              </aside>
+            )}
             <Prosa content={postData.content} />
             {faqsArray.length > 0 && (
               <section
@@ -163,6 +205,50 @@ export default function Post({postData, posts, preview}) {
                 </div>
               </section>
             )}
+            {postData.marchi?.length > 0 && (
+              <section className="mt-12" aria-labelledby="marchi-citati">
+                {/* non un titolo: l'indice dell'articolo elenca solo i titoli del testo */}
+                <p id="marchi-citati" className="text-sm text-acciaio">
+                  Marchi citati
+                </p>
+                <ul className="mt-4 flex flex-wrap gap-3">
+                  {postData.marchi.map(m => {
+                    const logo = (
+                      <span className="relative block h-12 w-28">
+                        <Image
+                          src={m.url}
+                          alt={m.name}
+                          fill
+                          sizes="112px"
+                          className="object-contain"
+                        />
+                      </span>
+                    )
+                    return (
+                      <li
+                        key={m.name}
+                        className="rounded-[14px] border border-ghisa/10 bg-white px-4 py-3"
+                      >
+                        {m.href ? (
+                          <a href={m.href} target="_blank" rel="noopener noreferrer">
+                            {logo}
+                          </a>
+                        ) : (
+                          logo
+                        )}
+                      </li>
+                    )
+                  })}
+                </ul>
+              </section>
+            )}
+            {(postData.autore || aggiornato) && (
+              <p className="mt-12 text-sm text-acciaio">
+                {postData.autore && <>Scritto da {postData.autore}</>}
+                {postData.autore && aggiornato && ' · '}
+                {aggiornato && <>aggiornato il {aggiornato}</>}
+              </p>
+            )}
             {tags.length > 0 && (
               <ul className="mt-12 flex flex-wrap gap-2 text-sm text-acciaio">
                 {tags.map(tag => (
@@ -183,15 +269,16 @@ export default function Post({postData, posts, preview}) {
           <aside className="hidden lg:col-span-3 lg:col-start-10 lg:block">
             <div className="sticky top-32 grid gap-3">
               <IndiceArticolo contenitore={testoRef} />
-              <div className="rounded-[20px] bg-[#121315] p-6 text-white">
-                <p className="type-display text-[20px] leading-tight">
-                  Stai valutando un intervento simile?
-                </p>
-                <ContactModal variant="progetto" className="cin-btn mt-5">
-                  Parliamone
-                  <Freccia />
-                </ContactModal>
-              </div>
+              {invito && (
+                <div className="rounded-[20px] bg-[#121315] p-6 text-white">
+                  <p className="type-display text-[20px] leading-tight">
+                    {fraseInvito}
+                  </p>
+                  <BottoneInvito invito={invito} className="cin-btn mt-5">
+                    {invito.breve}
+                  </BottoneInvito>
+                </div>
+              )}
               {settore && (
                 <Link
                   href={`/settori/${settore.slug}`}
@@ -220,23 +307,22 @@ export default function Post({postData, posts, preview}) {
           </aside>
         </article>
         {/* Chiusura dell'articolo: invito e condivisione nella card scura, come nei progetti */}
+        {invito && (
         <div className="site-shell pb-24 lg:pb-32">
           <div className="grid gap-10 rounded-[28px] bg-[#121315] p-8 text-white md:p-12 lg:grid-cols-12 lg:items-end lg:p-16">
             <div className="lg:col-span-7">
-              <TitoloDueTempi
-                riga="Stai valutando"
-                accento="un intervento simile?"
-                className="text-[clamp(30px,3.6vw,52px)] !leading-none"
-              />
+              <h2 className="type-display text-[clamp(30px,3.6vw,52px)] !leading-none">
+                {fraseInvito}
+              </h2>
             </div>
             <div className="flex flex-col gap-8 lg:col-span-5 lg:items-end">
-              <ContactModal variant="progetto" className="cin-btn">
-                Parla con un progettista
-                <Freccia />
-              </ContactModal>
+              <BottoneInvito invito={invito} className="cin-btn">
+                {invito.etichetta}
+              </BottoneInvito>
             </div>
           </div>
         </div>
+        )}
       </section>
 
       {posts?.edges?.length > 0 && (
@@ -262,7 +348,11 @@ export async function getStaticProps({params, preview = false, previewData}) {
   const data = await getPost(params.slug, preview, previewData)
   if (!data?.post) return {notFound: true, revalidate: 60}
   const category = data.post.categories?.edges?.[0]?.node?.categoryId
-  const moreData = category ? await getMorePosts(params.slug, category) : null
+  const correlati = data.post.correlati ?? []
+  const moreData =
+    category || correlati.length
+      ? await getMorePosts(params.slug, category, correlati)
+      : null
   return {
     props: {preview, postData: data.post, posts: moreData?.posts ?? null},
     revalidate: ogni(3600),

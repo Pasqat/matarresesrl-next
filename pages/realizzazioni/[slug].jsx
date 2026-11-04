@@ -185,8 +185,9 @@ export default function Project({project, related}) {
     </Layout>
   )
 }
-export async function getStaticProps({params}) {
-  const data = await getProject(params.slug)
+export async function getStaticProps({params, preview = false, previewData}) {
+  // anteprima di una bozza aperta dal pannello
+  const data = await getProject(params.slug, preview ? previewData : null)
   if (!data?.slug) return {notFound: true, revalidate: 60}
   data.galleria = (data.galleria || []).filter(n => n?.sourceUrl)
   // Correlati: le ultime realizzazioni pubblicate, escluso il progetto aperto.

@@ -51,8 +51,9 @@ export default function News({data}) {
 
   const [categoria, setCategoria] = React.useState('')
   const filtri = Boolean(query || categoria)
-  const featured = data.posts?.[0]
-  const ultimi = data.posts?.slice(1, 5) ?? []
+  // in cima l'articolo scelto «In evidenza» nel pannello, altrimenti il più recente
+  const featured = data.posts?.find(p => p.inEvidenza) ?? data.posts?.[0]
+  const ultimi = data.posts?.filter(p => p !== featured).slice(0, 4) ?? []
   const inPrimaPagina = React.useMemo(
     () => new Set(data.posts?.slice(0, 5).map(p => p.slug)),
     [data.posts],

@@ -16,7 +16,7 @@ import {getProjects} from '../../lib/query/project'
 import {getAllPosts} from '../../lib/query/post'
 import settori from '../../data/settori'
 import chiusuraImg from '../../public/img/home/chiusura-progetto.webp'
-import {ogni} from '../../lib/kirby'
+import {ogni, KIRBY_URL} from '../../lib/kirby'
 
 export default function Settore({slug, progetti, articoli}) {
   const settore = settori.find(s => s.slug === slug)
@@ -506,10 +506,15 @@ export async function getStaticProps({params}) {
   const slugArticoli = (settore.seo.articoli ?? []).map(([a]) => a)
   const [{projects}, {posts}] = await Promise.all([
     categorie.length ? getProjects() : {projects: []},
-    slugArticoli.length ? getAllPosts() : {posts: []},
+    slugArticoli.length || KIRBY_URL ? getAllPosts() : {posts: []},
   ])
-  // Nell'ordine scelto in data/settori.js; il titolo resta quello scritto lì
-  const articoli = (settore.seo.articoli ?? []).flatMap(([a, titolo, foto]) => {
+  // Con il pannello: gli articoli con questo settore tra i «Settori collegati»
+  const daPannello = posts.some(p => p.settori)
+  const elenco = daPannello
+    ? posts.filter(p => p.settori?.includes(settore.slug)).map(p => [p.slug, p.title])
+    : (settore.seo.articoli ?? [])
+  // Senza pannello: nell'ordine scelto in data/settori.js; il titolo resta quello scritto lì
+  const articoli = elenco.flatMap(([a, titolo, foto]) => {
     const post = posts.find(p => p.slug === a)
     if (!post) return []
     const img = post.featuredImage?.node
