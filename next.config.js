@@ -10,7 +10,10 @@ module.exports = {
     staticGenerationMaxConcurrency: 1,
   },
   images: {
-    unoptimized: false,
+    // Niente ottimizzazione su Vercel: sul piano Hobby la quota finisce e le immagini si
+    // bloccano. Quelle del repo le comprime scripts/ottimizza-immagini.mjs a ogni commit,
+    // quelle di WordPress arrivano già a 2000 px.
+    unoptimized: true,
     // Next 16 richiede di dichiarare esplicitamente i valori di `quality`
     // usati nei componenti <Image> (default: solo 75). article-card usa 90.
     qualities: [75, 90],

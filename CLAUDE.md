@@ -54,7 +54,7 @@ WordPress JWT auth is handled through `iron-session` (cookie-based). `lib/authen
 ### Component conventions
 - Typography: `H1`–`H6`, `Paragraph` from `components/typography.jsx`.
 - Sections: self-contained layout blocks in `components/sections/` (hero, logo, blog, testimonial, etc.).
-- Images: always use Next.js `<Image>` with `placeholder="blur"` for local imports; `unoptimized: true` is currently set in `next.config.js` as a temporary workaround.
+- Images: always use Next.js `<Image>` with `placeholder="blur"` for local imports; `unoptimized: true` is set in `next.config.js` on purpose: Vercel Hobby runs out of image-optimization quota and images stop loading. Images in `public/img` are compressed locally instead by `scripts/ottimizza-immagini.mjs` (max 2000 px, same name and format), run on staged images by `.githooks/pre-commit` (enable once per clone with `git config core.hooksPath .githooks`).
 - Logging: use `logStructuredError(context, err, extra?)` from `lib/logging.js` — never `console.log` in API routes or lib files.
 
 ### Environment variables

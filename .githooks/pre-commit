@@ -1,0 +1,7 @@
+#!/bin/sh
+# Comprime le immagini aggiunte o modificate in public/img prima del commit
+# (attivo con: git config core.hooksPath .githooks)
+files=$(git diff --cached --name-only --diff-filter=AM -- 'public/img/*' | grep -iE '\.(jpe?g|png|webp)$')
+[ -z "$files" ] && exit 0
+node scripts/ottimizza-immagini.mjs $files || exit 1
+git add $files
