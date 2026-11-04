@@ -583,7 +583,8 @@ const seo = {
         'Manutenzione programmata prima della stagione e ricambi in sede, per non fermarsi quando la struttura è piena.',
       ],
     ],
-    categorie: ['masseria', 'sale-ricevimenti', 'bb', 'banqueting-catering'],
+    // 'masserie': stessa categoria, come la chiama il pannello (su WordPress lo slug è 'masseria')
+      categorie: ['masseria', 'masserie', 'sale-ricevimenti', 'bb', 'banqueting-catering'],
     articoli: [
       [
         'riqualificazione-hotel-bari-movenpick',

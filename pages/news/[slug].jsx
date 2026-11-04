@@ -25,6 +25,7 @@ import {
   faqSchema as buildFaqSchema,
   breadcrumbSchema,
 } from '../../lib/seo/schema'
+import {ogni} from '../../lib/kirby'
 export default function Post({postData, posts, preview}) {
   const router = useRouter()
   const testoRef = useRef(null)
@@ -264,7 +265,7 @@ export async function getStaticProps({params, preview = false, previewData}) {
   const moreData = category ? await getMorePosts(params.slug, category) : null
   return {
     props: {preview, postData: data.post, posts: moreData?.posts ?? null},
-    revalidate: 3600,
+    revalidate: ogni(3600),
   }
 }
 export async function getStaticPaths() {

@@ -15,6 +15,7 @@ import {SeoDataSection} from '../../components/sections/seodata-section'
 import StructuredData from '../../components/StructuredData'
 import {creativeWorkSchema, breadcrumbSchema} from '../../lib/seo/schema'
 import {decodifica} from '../../lib/entita'
+import {ogni} from '../../lib/kirby'
 
 export default function Project({project, related}) {
   const router = useRouter()
@@ -198,7 +199,7 @@ export async function getStaticProps({params}) {
       project: data,
       related,
     },
-    revalidate: 60 * 60 * 24,
+    revalidate: ogni(60 * 60 * 24),
   }
 }
 

@@ -12,6 +12,7 @@ import Scelta from '../../components/cinema/Scelta'
 
 import {filterPosts} from '../../actions/utils/blog'
 import {getProjects} from '../../lib/query/project'
+import {ogni} from '../../lib/kirby'
 
 const PAGE_SIZE = 10 // due gruppi da cinque della griglia a rivista
 const initialIndexToShow = PAGE_SIZE
@@ -287,6 +288,6 @@ export async function getStaticProps() {
         // domain,
       },
     },
-    revalidate: 60 * 60 * 24,
+    revalidate: ogni(60 * 60 * 24),
   }
 }

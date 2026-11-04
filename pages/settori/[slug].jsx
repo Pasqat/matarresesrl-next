@@ -16,6 +16,7 @@ import {getProjects} from '../../lib/query/project'
 import {getAllPosts} from '../../lib/query/post'
 import settori from '../../data/settori'
 import chiusuraImg from '../../public/img/home/chiusura-progetto.webp'
+import {ogni} from '../../lib/kirby'
 
 export default function Settore({slug, progetti, articoli}) {
   const settore = settori.find(s => s.slug === slug)
@@ -540,6 +541,6 @@ export async function getStaticProps({params}) {
     }))
   return {
     props: {slug: params.slug, progetti, articoli},
-    revalidate: 60 * 60 * 24,
+    revalidate: ogni(60 * 60 * 24),
   }
 }

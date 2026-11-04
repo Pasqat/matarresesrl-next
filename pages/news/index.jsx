@@ -13,6 +13,7 @@ import {CaricaAltri} from '../../components/editoriale/FiltriArchivio'
 import {filterPosts} from '../../actions/utils/blog'
 import {formatDate} from '../../actions/utils/formatDate'
 import {getAllPosts} from '../../lib/query/post'
+import {ogni} from '../../lib/kirby'
 
 const PAGE_SIZE = 12 // quattro righe da tre colonne
 const initialIndexToShow = PAGE_SIZE
@@ -419,6 +420,6 @@ export async function getStaticProps({preview = false}) {
       },
       preview,
     },
-    revalidate: 60 * 60 * 24,
+    revalidate: ogni(60 * 60 * 24),
   }
 }
