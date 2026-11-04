@@ -221,6 +221,6 @@ export async function getStaticProps() {
     props: {
       data,
     },
-    revalidate: ogni(60 * 60 * 12),
+    revalidate: ogni(900),
   }
 }

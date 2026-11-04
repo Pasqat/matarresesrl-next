@@ -1,4 +1,4 @@
-import {useRef} from 'react'
+import {useEffect, useRef, useState} from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -52,13 +52,27 @@ const fatti = [
   ['MEPA', 'fornitori abilitati per la pubblica amministrazione'],
 ]
 
+// Il primo evento non ancora finito: deciso nel browser all'ora vera, così un evento concluso
+// sparisce subito anche se la pagina è stata generata prima
+function useEventoInCorso(eventi) {
+  const [evento, setEvento] = useState(eventi[0] ?? null)
+  useEffect(() => {
+    const scegli = () =>
+      setEvento(eventi.find(e => new Date(e.fineISO) > new Date()) ?? null)
+    scegli()
+    const t = setInterval(scegli, 60000)
+    return () => clearInterval(t)
+  }, [eventi])
+  return evento
+}
+
 export default function Home({
   lastTwoProjects = [],
   event,
   recensioni,
   marchi,
 }) {
-  const upcoming = event?.futureEvent?.[0]
+  const upcoming = useEventoInCorso(event?.futureEvent ?? [])
   // Le recensioni più descrittive tra quelle disponibili.
   const reviews = recensioni
     ? recensioni.slice(0, 4)
@@ -119,6 +133,22 @@ export default function Home({
             Guarda i progetti
           </Link>
         </HeroCinema>
+
+        {/* Fascia evento: solo con un evento in arrivo o in corso, subito sotto l'apertura
+            (da telefono è la prima cosa che si incontra scorrendo; Miriana, 05/11/2026) */}
+        {upcoming && (
+          <Link href={`/eventi/${upcoming.slug}`} className="cin-fascia-evento">
+            <span className="cin-fascia-evento__data">{upcoming.startDate}</span>
+            <span
+              className="cin-fascia-evento__titolo"
+              dangerouslySetInnerHTML={{__html: upcoming.title}}
+            />
+            <span className="cin-fascia-evento__vai">
+              Scopri l’evento
+              <Freccia />
+            </span>
+          </Link>
+        )}
 
         <div ref={rivela}>
           {/* Capitolo: per chi lavoriamo (la foto del settore diventa lo sfondo) */}
@@ -418,10 +448,19 @@ export async function getStaticProps() {
     // la home mostra solo il prossimo evento: niente testi degli altri nei props
     props: {
       lastTwoProjects,
-      event: {futureEvent: event.futureEvent.slice(0, 1)},
+      // i prossimi tre: se il primo finisce prima del prossimo aggiornamento, tocca al successivo
+      event: {
+        futureEvent: event.futureEvent.slice(0, 3).map(e => ({
+          slug: e.slug,
+          title: e.title,
+          startDate: e.startDate,
+          fineISO: e.fineISO,
+        })),
+      },
       recensioni,
       marchi,
     },
-    revalidate: ogni(86400),
+    // ogni 15 minuti: un evento nuovo compare presto (la fine la controlla il browser)
+    revalidate: ogni(900),
   }
 }

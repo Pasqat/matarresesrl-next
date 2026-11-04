@@ -79,7 +79,15 @@ export default function Settore({slug, progetti, articoli}) {
           image={pagina.hero}
           alt=""
           objectPosition="50% 50%"
-          eyebrow={settore.nome}
+          eyebrow={
+            <nav aria-label="Percorso" className="cin-percorso">
+              <Link href="/">Home</Link>
+              <span aria-hidden="true"> › </span>
+              <Link href="/settori">Settori</Link>
+              <span aria-hidden="true"> › </span>
+              <span aria-current="page">{settore.nome}</span>
+            </nav>
+          }
           riga={pagina.titolo[0]}
           accento={pagina.titolo[1]}
           sottotitolo={pagina.intro}
@@ -485,6 +493,33 @@ export default function Settore({slug, progetti, articoli}) {
             </div>
           </div>
         </section>
+
+        {/* Per chi arriva qui dalla home e non sa come tornare: gli altri settori e la home */}
+        <nav
+          aria-label="Altri settori"
+          className="bg-[var(--carta)] text-ghisa"
+          data-header="light"
+        >
+          <div className="site-shell flex flex-col gap-6 py-14 lg:flex-row lg:items-center lg:justify-between">
+            <ul className="flex flex-wrap gap-2.5">
+              {settori
+                .filter(s => s.pagina && s.slug !== slug)
+                .map(s => (
+                  <li key={s.slug}>
+                    <Link
+                      href={`/settori/${s.slug}`}
+                      className="inline-flex min-h-[44px] items-center rounded-full border border-ghisa/20 px-4 hover:border-ghisa"
+                    >
+                      {s.nome}
+                    </Link>
+                  </li>
+                ))}
+            </ul>
+            <Link href="/" className="cin-link whitespace-nowrap">
+              Torna alla home
+            </Link>
+          </div>
+        </nav>
       </Layout>
     </>
   )
