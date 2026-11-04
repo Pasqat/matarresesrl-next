@@ -56,3 +56,6 @@ public/_media-review/
 
 # Hallmark (audit di design): catture e registri locali
 .hallmark/
+
+# Rapporti Lighthouse: si tiene il RAPPORTO.md, i JSON (MB) restano solo in locale
+lighthouse/**/*.json
