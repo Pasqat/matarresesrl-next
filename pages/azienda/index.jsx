@@ -16,6 +16,7 @@ import StructuredData from '../../components/StructuredData'
 import {aboutPageSchema, breadcrumbSchema} from '../../lib/seo/schema'
 import {getLastTwoProjects} from '../../lib/query/project'
 import {logos} from '../../data/partner-logo'
+import {vetrina, ogni} from '../../lib/kirby'
 import logoAssogi from '../../public/img/logos/Assogi_logo-300x119.png'
 import fotoVito from '../../public/img/vito_matarrese.webp'
 import fotoPasquale from '../../public/img/azienda/soci/pasquale-matarrese.webp'
@@ -113,7 +114,7 @@ const linkChiaro =
   'shrink-0 self-start border-b border-ghisa py-2 transition-colors hover:text-fiamma-testo'
 // Chiusura: nessuna sezione contatto propria, la fa già il footer ("Hai un progetto? Parliamone.").
 
-export default function AboutUs({lastTwoProjects = []}) {
+export default function AboutUs({lastTwoProjects = [], marchi}) {
   const progetti = lastTwoProjects.slice(2, 4)
   return (
     <>
@@ -431,7 +432,7 @@ export default function AboutUs({lastTwoProjects = []}) {
                 </div>
               </div>
               <div className="pb-14">
-                <BrandMarquee logos={logos} />
+                <BrandMarquee logos={marchi ?? logos} />
               </div>
             </div>
           </div>
@@ -468,12 +469,14 @@ export default function AboutUs({lastTwoProjects = []}) {
 
 export async function getStaticProps() {
   const lastTwoProjects = await getLastTwoProjects()
+  const {marchi} = await vetrina()
 
   return {
     props: {
       lastTwoProjects: lastTwoProjects,
+      marchi,
     },
     // le realizzazioni mostrate seguono WordPress senza aspettare un nuovo deploy
-    revalidate: 86400,
+    revalidate: ogni(86400),
   }
 }

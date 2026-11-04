@@ -4,6 +4,7 @@ import Footer from './Footer/Footer'
 import Meta from '../components/meta'
 import Alert from '../components/alert'
 import Navbar from './Navbars/Navbar'
+import Avviso from './Avviso'
 import StructuredData from './StructuredData'
 import {globalSchema} from '../lib/seo/schema'
 
@@ -30,6 +31,7 @@ export default function Layout({
         <div className="page-content">{children}</div>
       </main>
       <Footer invito={footerInvito} />
+      <Avviso />
     </>
   )
 }

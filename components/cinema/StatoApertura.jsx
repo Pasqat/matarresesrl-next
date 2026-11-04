@@ -1,8 +1,9 @@
 // «Aperto ora / Chiuso» dagli orari della sede (lun–ven 9–13 e 15–18:30, ora italiana), con
-// festività nazionali, Pasquetta, patrono e chiusure di data/chiusure.js.
+// festività nazionali, Pasquetta, patrono e chiusure di data/chiusure.js (o del pannello Kirby).
 // Calcolato solo nel browser dopo il montaggio: l'HTML statico non può sapere l'ora della visita.
 import {useEffect, useState} from 'react'
-import {patrono, periodi} from '../../data/chiusure'
+import {patrono, periodi as periodiFile} from '../../data/chiusure'
+import {KIRBY_URL, kirby} from '../../lib/kirby'
 
 const FASCE = [
   [9 * 60, 13 * 60],
@@ -45,7 +46,7 @@ function pasquetta(anno) {
 
 const fmt = d => d.toLocaleDateString('it-IT', {day: 'numeric', month: 'long'})
 
-export function stato(data) {
+export function stato(data, periodi = periodiFile) {
   const parti = Object.fromEntries(
     new Intl.DateTimeFormat('it-IT', {
       timeZone: 'Europe/Rome',
@@ -65,7 +66,10 @@ export function stato(data) {
   const periodo = periodi.find(p => iso >= p.dal && iso <= p.al)
   if (periodo) {
     const fine = new Date(`${periodo.al}T12:00`)
-    return {aperto: false, testo: `Chiuso per ferie fino al ${fmt(fine)}`}
+    return {
+      aperto: false,
+      testo: `Chiuso per ${periodo.motivo || 'ferie'} fino al ${fmt(fine)}`,
+    }
   }
   if (
     FESTE.includes(mmgg) ||
@@ -91,8 +95,17 @@ export function stato(data) {
 export default function StatoApertura() {
   const [s, setS] = useState(null)
   useEffect(() => {
-    setS(stato(new Date()))
-    const t = setInterval(() => setS(stato(new Date())), 60000)
+    let periodi = periodiFile
+    const aggiorna = () => setS(stato(new Date(), periodi))
+    aggiorna()
+    if (KIRBY_URL)
+      kirby('sito')
+        .then(d => {
+          periodi = d.chiusure
+          aggiorna()
+        })
+        .catch(() => {})
+    const t = setInterval(aggiorna, 60000)
     return () => clearInterval(t)
   }, [])
   if (!s) return null

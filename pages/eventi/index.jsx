@@ -9,6 +9,7 @@ import TitoloDueTempi from '../../components/cinema/TitoloDueTempi'
 import {Freccia} from '../../components/cinema/BottoneFreccia'
 import posterImg from '../../public/img/home/sede-poster.webp'
 import ContactModal from '../../components/Form/ContactModal'
+import {ogni} from '../../lib/kirby'
 
 // Riga evento: data in evidenza (le date arrivano già formattate, es. "3 marzo 2026").
 function RigaEvento({event, futuro}) {
@@ -220,6 +221,6 @@ export async function getStaticProps() {
     props: {
       data,
     },
-    revalidate: 60 * 60 * 12,
+    revalidate: ogni(60 * 60 * 12),
   }
 }

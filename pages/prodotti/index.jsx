@@ -19,6 +19,7 @@ import {Freccia} from '../../components/cinema/BottoneFreccia'
 import useRivela from '../../components/cinema/useRivela'
 
 import {logos} from '../../data/partner-logo'
+import {vetrina, ogni} from '../../lib/kirby'
 import {itemListSchema, breadcrumbSchema} from '../../lib/seo/schema'
 
 import heroImg from '../../public/img/prodotti/apertura-cottura.webp'
@@ -142,7 +143,7 @@ const passi = [
   ],
 ]
 
-export default function Prodotti() {
+export default function Prodotti({marchi}) {
   const rivela = useRef(null)
   useRivela(rivela)
   return (
@@ -319,7 +320,7 @@ export default function Prodotti() {
                 />
               </div>
               <div className="pb-12">
-                <BrandMarquee logos={logos} />
+                <BrandMarquee logos={marchi ?? logos} />
               </div>
             </div>
           </div>
@@ -366,4 +367,9 @@ export default function Prodotti() {
       </Layout>
     </>
   )
+}
+
+export async function getStaticProps() {
+  const {marchi} = await vetrina()
+  return {props: {marchi}, revalidate: ogni(86400)}
 }

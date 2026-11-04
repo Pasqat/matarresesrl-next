@@ -17,6 +17,7 @@ import {getEvents} from '../lib/query/event'
 import {getLastTwoProjects} from '../lib/query/project'
 import {logos} from '../data/partner-logo'
 import testimonials from '../data/testimonials'
+import {vetrina, ogni} from '../lib/kirby'
 import settori from '../data/settori'
 import posterImg from '../public/img/home/sede-poster.webp'
 import chiusuraImg from '../public/img/home/chiusura-progetto.webp'
@@ -51,10 +52,17 @@ const fatti = [
   ['MEPA', 'fornitori abilitati per la pubblica amministrazione'],
 ]
 
-export default function Home({lastTwoProjects = [], event}) {
+export default function Home({
+  lastTwoProjects = [],
+  event,
+  recensioni,
+  marchi,
+}) {
   const upcoming = event?.futureEvent?.[0]
   // Le recensioni più descrittive tra quelle disponibili.
-  const reviews = [0, 2, 3, 5].map(n => testimonials[n])
+  const reviews = recensioni
+    ? recensioni.slice(0, 4)
+    : [0, 2, 3, 5].map(n => testimonials[n])
   const rivela = useRef(null)
   useRivela(rivela)
   return (
@@ -328,7 +336,7 @@ export default function Home({lastTwoProjects = [], event}) {
               </Link>
             </div>
             <div className="pb-16">
-              <BrandMarquee logos={logos} />
+              <BrandMarquee logos={marchi ?? logos} />
             </div>
           </section>
 
@@ -405,9 +413,15 @@ export default function Home({lastTwoProjects = [], event}) {
 export async function getStaticProps() {
   const lastTwoProjects = await getLastTwoProjects()
   const event = await getEvents()
+  const {recensioni, marchi} = await vetrina()
   return {
     // la home mostra solo il prossimo evento: niente testi degli altri nei props
-    props: {lastTwoProjects, event: {futureEvent: event.futureEvent.slice(0, 1)}},
-    revalidate: 86400,
+    props: {
+      lastTwoProjects,
+      event: {futureEvent: event.futureEvent.slice(0, 1)},
+      recensioni,
+      marchi,
+    },
+    revalidate: ogni(86400),
   }
 }
