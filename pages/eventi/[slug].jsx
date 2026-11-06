@@ -8,6 +8,7 @@ import Prosa from '../../components/editoriale/Prosa'
 import ContactModal from '../../components/Form/ContactModal'
 import SocialShareBar from '../../components/SocialShareBar/SocialShareBar'
 import {getEvent} from '../../lib/query/event'
+import {ogni} from '../../lib/pannello'
 import {SeoDataSection} from '../../components/sections/seodata-section'
 import StructuredData from '../../components/StructuredData'
 import {eventSchema, breadcrumbSchema} from '../../lib/seo/schema'
@@ -208,7 +209,7 @@ export async function getStaticProps({params}) {
   const event = await getEvent(params.slug)
   if (!event?.slug) return {notFound: true, revalidate: 60}
   // ogni ora: la sera dell'evento «Partecipa» deve sparire
-  return {props: {event}, revalidate: 3600}
+  return {props: {event}, revalidate: ogni(3600)}
 }
 export async function getStaticPaths() {
   // Nessun dettaglio in build: l'hosting WordPress rifiuta le raffiche di richieste dai
