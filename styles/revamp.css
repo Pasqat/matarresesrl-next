@@ -69,6 +69,7 @@ p { text-wrap: pretty; }
 .site-content form [type=checkbox] { accent-color: #995200; }
 .site-content form select { min-height: 48px; border: 1px solid #c4cbd0; border-radius: 2px; }
 .site-content form button[type=submit] { min-height: 48px; }
+.cc-scelto .cookie-banner { display: none !important; }
 .cookie-banner { box-shadow: 0 -3px 24px #0002; align-items: center !important; font-family: Matter, sans-serif; }
 .cookie-banner button { min-height: 44px; font-size: 14px !important; }
 .cookie-banner #rcc-confirm-button { color: #24272b !important; background: #efb368 !important; }

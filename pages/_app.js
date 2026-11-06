@@ -37,9 +37,14 @@ const editorial = Newsreader({
 function MyApp({Component, pageProps}) {
   const router = useRouter()
   const [isCookieConsentAccept, setIsCookieConsentAccept] = useState(null)
+  // Il banner è già nell'HTML del server (così compare subito, non dopo il JavaScript);
+  // a chi ha già scelto lo nasconde prima del disegno lo script in _document.js
+  const [sceltaFatta, setSceltaFatta] = useState(false)
 
   useEffect(() => {
-    setIsCookieConsentAccept(getCookieConsentValue() === 'true')
+    const valore = getCookieConsentValue()
+    setIsCookieConsentAccept(valore === 'true')
+    setSceltaFatta(valore !== undefined)
   }, [])
 
   useEffect(() => {
@@ -126,14 +131,17 @@ function MyApp({Component, pageProps}) {
         <SpeedInsights />
         <ScrollToTop />
         <CookieConsent
+          visible={sceltaFatta ? 'hidden' : 'show'}
           onAccept={() => {
             setIsCookieConsentAccept(true)
+            setSceltaFatta(true)
             consentGrantedAdStorage()
           }}
           containerClasses="cookie-banner"
           enableDeclineButton
           onDecline={() => {
             setIsCookieConsentAccept(false)
+            setSceltaFatta(true)
             return router.reload(window.location.pathname)
           }}
           declineButtonText="Declino"

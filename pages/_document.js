@@ -5,6 +5,13 @@ export default class MyDocument extends Document {
     return (
       <Html lang="it" data-scroll-behavior="smooth">
         <Head>
+          {/* scelta sui cookie già fatta: il banner (nell'HTML del server) non si disegna */}
+          <script
+            dangerouslySetInnerHTML={{
+              __html:
+                "if(/(^|; )CookieConsent=/.test(document.cookie))document.documentElement.classList.add('cc-scelto')",
+            }}
+          />
           {/* foto dal pannello e statistiche: connessione aperta prima */}
           {process.env.NEXT_PUBLIC_PANNELLO_URL ? (
             <link rel="preconnect" href={process.env.NEXT_PUBLIC_PANNELLO_URL} />
