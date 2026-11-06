@@ -5,6 +5,11 @@ export default class MyDocument extends Document {
     return (
       <Html lang="it" data-scroll-behavior="smooth">
         <Head>
+          {/* foto dal pannello e statistiche: connessione aperta prima */}
+          {process.env.NEXT_PUBLIC_KIRBY_URL ? (
+            <link rel="preconnect" href={process.env.NEXT_PUBLIC_KIRBY_URL} />
+          ) : null}
+          <link rel="preconnect" href="https://plausible.io" />
           {/* Preload dei font principali per ridurre il layout shift (CLS) */}
           <link
             rel="preload"

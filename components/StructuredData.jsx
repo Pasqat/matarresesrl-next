@@ -7,7 +7,10 @@ export default function StructuredData({data}) {
     <Head>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+        dangerouslySetInnerHTML={{
+          // un «</script>» dentro un titolo non deve chiudere lo script
+          __html: JSON.stringify(data).replace(/</g, '\\u003c'),
+        }}
       />
     </Head>
   )

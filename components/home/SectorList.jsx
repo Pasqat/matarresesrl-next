@@ -61,6 +61,7 @@ export default function SectorList({settori, href, title, intro}) {
                   <span className="flex items-center gap-3">
                     <span
                       className="cin-num w-8 shrink-0 text-lg"
+                      style={{color: 'var(--fiamma-testo)'}}
                       aria-hidden="true"
                     >
                       {String(i + 1).padStart(2, '0')}

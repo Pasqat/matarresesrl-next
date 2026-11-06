@@ -137,6 +137,8 @@ function MyApp({Component, pageProps}) {
             return router.reload(window.location.pathname)
           }}
           declineButtonText="Declino"
+          ariaDeclineLabel="Declino"
+          ariaAcceptLabel="Accetto tutti i cookies"
           // acceptOnScroll
           // onAccept={() => {
           //   setIsCookieConsentAccept(true)
