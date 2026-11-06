@@ -6,16 +6,17 @@ import ContactModal from '../Form/ContactModal'
 import {useRouter} from 'next/router'
 import clsx from 'clsx'
 
+// Ordine deciso da Pasquale (6/11/2026)
 const primary = [
   ['Settori', '/settori'],
-  ['Prodotti', '/prodotti'],
   ['Servizi', '/servizi'],
   ['Realizzazioni', '/realizzazioni'],
-  ['Azienda', '/azienda'],
+  ['News', '/news'],
+  ['Eventi', '/eventi'],
 ]
 const secondary = [
-  ['Eventi', '/eventi'],
-  ['News', '/news'],
+  ['Prodotti', '/prodotti'],
+  ['Azienda', '/azienda'],
   ['Ricerca e sviluppo', '/ricerca'],
   ['Domande frequenti', '/faq'],
 ]
