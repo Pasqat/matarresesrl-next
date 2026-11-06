@@ -1,5 +1,5 @@
 // Fascia continua dei marchi: si ferma al passaggio del mouse o col pulsante (chi usa tastiera o
-// touch deve poter fermare ciò che scorre), il logo sotto il cursore si colora.
+// touch deve poter fermare ciò che scorre). Loghi nei loro colori originali, su fondo trasparente.
 // Con movimento ridotto diventa una griglia statica.
 import {useState} from 'react'
 import Image from 'next/image'
@@ -13,7 +13,7 @@ export default function BrandMarquee({logos}) {
         alt={logo.name}
         fill
         sizes="176px"
-        className="object-contain opacity-60 mix-blend-multiply grayscale transition duration-300 hover:opacity-100 hover:grayscale-0"
+        className="object-contain"
       />
     </li>
   ))

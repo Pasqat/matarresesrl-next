@@ -225,10 +225,7 @@ export default function Post({postData, posts, preview}) {
                       </span>
                     )
                     return (
-                      <li
-                        key={m.name}
-                        className="rounded-[14px] border border-ghisa/10 bg-white px-4 py-3"
-                      >
+                      <li key={m.name}>
                         {m.href ? (
                           <a href={m.href} target="_blank" rel="noopener noreferrer">
                             {logo}
