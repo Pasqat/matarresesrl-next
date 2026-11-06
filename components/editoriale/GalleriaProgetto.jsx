@@ -56,16 +56,15 @@ export default function GalleriaProgetto({images, title}) {
         onClose={() => setOpen(null)}
         className="fixed inset-0 z-[60]"
         data-lenis-prevent
+        // Sul Dialog, non sul Panel: Headless UI 2 all'apertura mette il focus sul Dialog stesso.
+        onKeyDown={e => {
+          if (n < 2) return
+          if (e.key === 'ArrowRight') go(1)
+          if (e.key === 'ArrowLeft') go(-1)
+        }}
       >
         <div className="fixed inset-0 bg-ghisa/95" aria-hidden="true" />
-        <Dialog.Panel
-          className="fixed inset-0 flex flex-col text-white [&_:focus-visible]:outline-fiamma"
-          onKeyDown={e => {
-            if (n < 2) return
-            if (e.key === 'ArrowRight') go(1)
-            if (e.key === 'ArrowLeft') go(-1)
-          }}
-        >
+        <Dialog.Panel className="fixed inset-0 flex flex-col text-white [&_:focus-visible]:outline-fiamma">
           <div className="flex items-center justify-between gap-4 px-4 py-3 md:px-8">
             <Dialog.Title
               className="text-sm text-inox"

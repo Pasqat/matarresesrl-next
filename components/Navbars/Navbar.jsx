@@ -177,8 +177,8 @@ export default function Navbar({isTransparent = false, cta}) {
               <Menu.Items className="more-menu-items">
                 {secondary.map(([name, href]) => (
                   <Menu.Item key={href} as={Fragment}>
-                    {({active}) => (
-                      <Link href={href} className={active ? 'is-active' : ''}>
+                    {({focus}) => (
+                      <Link href={href} className={focus ? 'is-active' : ''}>
                         {name}
                       </Link>
                     )}
