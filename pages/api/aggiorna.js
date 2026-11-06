@@ -5,6 +5,9 @@ import {timingSafeEqual} from 'crypto'
 import settori from '../../data/settori'
 import {logStructuredError} from '../../lib/logging'
 
+// rigenerare fino a una dozzina di pagine dal pannello può superare i 10 s predefiniti di Vercel
+export const config = {maxDuration: 60}
+
 const SETTORI = settori.filter(s => s.pagina).map(s => `/settori/${s.slug}`)
 
 function pagineDa(voce) {
