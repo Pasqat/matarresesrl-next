@@ -158,7 +158,7 @@ export default function Home({
             title={
               <>
                 Ogni attività{' '}
-                <span className="type-accento text-[rgb(243_238_230/.8)]">
+                <span className="type-accento">
                   ha la sua cucina.
                 </span>
               </>
@@ -312,9 +312,9 @@ export default function Home({
                 <div className="mt-10 border-2 border-inox/60">
                   <div className="border-b-2 border-inox/60 px-5 py-5">
                     <Image
-                      src="/img/logo-matarrese-bianco-350.png"
+                      src="/img/logo-matarrese-bianco.svg"
                       alt="Matarrese srl"
-                      width={350}
+                      width={381}
                       height={26}
                       className="h-auto w-[170px]"
                     />

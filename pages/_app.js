@@ -14,16 +14,17 @@ import ScrollToTop from '../components/ScrollToTop'
 import SmoothScroll from '../components/SmoothScroll'
 import PlausibleProvider from 'next-plausible'
 import {SpeedInsights} from '@vercel/speed-insights/next'
-import {Inter_Tight, Instrument_Serif, Newsreader} from 'next/font/google'
+import {Inter_Tight, Newsreader} from 'next/font/google'
 
-// Display: Inter Tight compatto per i titoli; Instrument Serif corsivo per la seconda
-// riga dei titoli a due tempi (DESIGN.md). Editoriale: Newsreader per storie e
-// citazioni. Testo: Matter (styles/index.css).
+// Display: Inter Tight compatto per i titoli; Newsreader corsivo per la seconda riga dei
+// titoli a due tempi, numeri e date in evidenza (DESIGN.md; prima era Instrument Serif,
+// troppo sottile da leggere). Editoriale: Newsreader dritto per storie e citazioni.
+// Testo: Matter (styles/index.css).
 const display = Inter_Tight({subsets: ['latin'], display: 'swap'})
-const accent = Instrument_Serif({
+const accent = Newsreader({
   subsets: ['latin'],
-  weight: '400',
   style: 'italic',
+  axes: ['opsz'],
   display: 'swap',
 })
 // Newsreader serve solo a citazioni sotto la piega: niente corsivo e niente preload.

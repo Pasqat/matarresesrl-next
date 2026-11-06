@@ -54,14 +54,9 @@
   display: block;
   font-family: var(--font-accent), Georgia, serif;
   font-style: italic;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-}
-.cin-titolo .type-accento {
-  color: rgb(243 238 230 / 0.8);
-}
-.cin-titolo[data-tono='chiaro'] .type-accento {
-  color: var(--acciaio-testo);
+  /* Newsreader 500 nello stesso colore della prima riga: il corsivo sottile si leggeva male */
+  font-weight: 500;
+  letter-spacing: -0.025em;
 }
 .cin-titolo > span:first-child {
   display: block;

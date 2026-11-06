@@ -341,8 +341,9 @@ p { text-wrap: pretty; }
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
+  /* logo +40% rispetto al primo revamp (variante B, 6/11/2026): lettere alte quanto il menu */
   .site-header .brand {
-    width: 160px;
+    width: 225px;
   }
   .site-header .header-actions {
     gap: 22px;
@@ -388,7 +389,7 @@ p { text-wrap: pretty; }
       padding-left: 18px;
     }
     .site-header .brand {
-      width: 140px;
+      width: 180px;
     }
     /* La regola legacy nasconde la CTA su mobile: il sopralluogo resta visibile. */
     .site-header .header-actions > .nav-cta--sopralluogo {
@@ -406,7 +407,7 @@ p { text-wrap: pretty; }
   /* Telefoni stretti (320): logo, azioni e menu non stanno insieme, l'assistenza resta nel menu */
   @media (max-width: 380px) {
     .site-header .brand {
-      width: 118px;
+      width: 170px;
     }
     .site-header .header-actions .support-link {
       display: none;

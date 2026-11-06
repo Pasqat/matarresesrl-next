@@ -97,8 +97,8 @@ export default function Footer({invito = true}) {
                 className={clsx('block w-fit', focus)}
               >
                 <Image
-                  src="/img/logo-matarrese-bianco-350.png"
-                  width={350}
+                  src="/img/logo-matarrese-bianco.svg"
+                  width={381}
                   height={26}
                   alt="Matarrese"
                   className="h-auto w-full max-w-[250px]"

@@ -37,9 +37,9 @@ Dal 02/11/2026 la grammatica è quella "cinematica" presa dalla landing di prova
 le altre pagine passano alla nuova grammatica una alla volta.
 - **Display — Inter Tight** (`font-display`, `.type-display`): titoli compatti, peso 500,
   interlinea ~0,95, tracking −0,03em. Sostituisce Archivo espanso.
-- **Accento — Instrument Serif corsivo** (`var(--font-accent)`, classe `.type-accento`): solo la
-  seconda riga dei **titoli a due tempi** («La cucina non si ferma. / *Noi nemmeno.*»), in un tono
-  più chiaro (inox ~80% su scuro, acciaio su chiaro). Una volta per titolo, non dentro il testo.
+- **Accento — Newsreader corsivo 500** (`var(--font-accent)`, classe `.type-accento`): solo la
+  seconda riga dei **titoli a due tempi** («La cucina non si ferma. / *Noi nemmeno.*»), nello
+  stesso colore della prima riga (6/11/2026: Instrument Serif sottile e attenuato si leggeva male). Una volta per titolo, non dentro il testo.
   Componente: `components/cinema/TitoloDueTempi.jsx`.
 - **Editoriale — Newsreader** (`font-serif`): citazioni dei clienti, racconti di progetto.
 - **Testo — Matter** (`font-sans`): corpo e interfaccia.

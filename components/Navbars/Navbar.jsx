@@ -141,8 +141,8 @@ export default function Navbar({isTransparent = false, cta}) {
           >
             {isTransparent && (
               <Image
-                src="/img/logo-matarrese-bianco-350.png"
-                width={350}
+                src="/img/logo-matarrese-bianco.svg"
+                width={381}
                 height={26}
                 alt=""
                 className="logo-dark"
@@ -150,9 +150,9 @@ export default function Navbar({isTransparent = false, cta}) {
               />
             )}
             <Image
-              src="/img/logos/logo-matarrese-grigio-350.png"
-              width={343}
-              height={23}
+              src="/img/logos/logo-matarrese-grigio.svg"
+              width={381}
+              height={26}
               alt=""
               className="logo-light"
               priority={!isTransparent}

@@ -1,5 +1,5 @@
-// Titolo a due tempi (DESIGN.md): prima riga in Inter Tight, seconda in Instrument Serif
-// corsivo più chiaro. `tono="chiaro"` su fondo calce.
+// Titolo a due tempi (DESIGN.md): prima riga in Inter Tight, seconda in Newsreader
+// corsivo, nello stesso colore della prima. `tono="chiaro"` su fondo calce.
 import clsx from 'clsx'
 
 export default function TitoloDueTempi({

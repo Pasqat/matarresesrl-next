@@ -44,7 +44,7 @@ export default function Settori() {
           title={
             <>
               Ogni cucina{' '}
-              <span className="type-accento text-[rgb(243_238_230/.8)]">
+              <span className="type-accento">
                 ha il suo mestiere.
               </span>
             </>
