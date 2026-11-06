@@ -25,9 +25,17 @@ export default function HeroCinema({
   const [inPausa, setInPausa] = useState(false)
   const [conVideo, setConVideo] = useState(false)
   useEffect(() => {
-    setConVideo(
-      !window.matchMedia('(prefers-reduced-motion: reduce)').matches,
-    )
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    // il video (1,3 MB su mobile) parte dopo che la pagina è caricata: prima si vede la foto,
+    // che è la stessa scena, e la prima schermata non si contende la banda con il video
+    let attesa
+    const avvia = () => (attesa = setTimeout(() => setConVideo(true), 1500))
+    if (document.readyState === 'complete') avvia()
+    else window.addEventListener('load', avvia, {once: true})
+    return () => {
+      clearTimeout(attesa)
+      window.removeEventListener('load', avvia)
+    }
   }, [])
   const alterna = () => {
     const v = videoRef.current

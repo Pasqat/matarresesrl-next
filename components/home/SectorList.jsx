@@ -6,6 +6,12 @@ import Link from 'next/link'
 
 export default function SectorList({settori, href, title, intro}) {
   const [active, setActive] = useState(settori[0].slug)
+  // si scaricano solo le foto dei settori indicati almeno una volta (se ne vede una alla volta)
+  const [visti, setVisti] = useState(() => new Set([settori[0].slug]))
+  const indica = slug => {
+    setActive(slug)
+    setVisti(v => (v.has(slug) ? v : new Set(v).add(slug)))
+  }
   const current = settori.find(s => s.slug === active)
 
   return (
@@ -17,7 +23,7 @@ export default function SectorList({settori, href, title, intro}) {
       <div className="site-shell grid gap-10 py-24 lg:grid-cols-12 lg:gap-14 lg:py-32">
         <div className="relative isolate flex min-h-[460px] flex-col justify-end overflow-hidden rounded-[28px] bg-ghisa p-7 text-white md:p-10 lg:col-span-5 lg:min-h-[640px]">
           <div className="absolute inset-0 -z-10" aria-hidden="true">
-            {settori.map((s, i) => (
+            {settori.filter(s => visti.has(s.slug)).map(s => (
               <Image
                 key={s.slug}
                 src={s.foto}
@@ -25,7 +31,7 @@ export default function SectorList({settori, href, title, intro}) {
                 fill
                 // il pannello è verticale: la foto orizzontale in cover è larga circa 1,9 volte il pannello
                 sizes="(min-width: 1024px) 75vw, 150vw"
-                loading={i === 0 ? 'eager' : 'lazy'}
+                loading="lazy"
                 className={`object-cover transition-[opacity,transform] duration-1000 ease-out motion-reduce:transition-none ${
                   active === s.slug
                     ? 'scale-100 opacity-100'
@@ -52,8 +58,8 @@ export default function SectorList({settori, href, title, intro}) {
             <li key={s.slug} className="border-t border-ghisa/15 last:border-b">
               <Link
                 href={href(s)}
-                onPointerEnter={() => setActive(s.slug)}
-                onFocus={() => setActive(s.slug)}
+                onPointerEnter={() => indica(s.slug)}
+                onFocus={() => indica(s.slug)}
                 aria-current={active === s.slug ? 'true' : undefined}
                 className="group flex items-center gap-5 py-5 md:py-6"
               >
