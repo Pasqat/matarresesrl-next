@@ -60,7 +60,7 @@ const settori = [
         titolo: 'Vedi le tecnologie al lavoro prima di scegliere.',
         testo:
           'Nel nostro showroom di Alberobello trovi in funzione forni combinati e sistemi di cottura rapida. Portaci il tuo menù: ragioniamo insieme su cosa ti serve davvero.',
-        foto: '/img/settori/dk-showroom-forni.webp',
+        foto: '/img/azienda/showroom-attrezzature.webp',
       },
     },
   },

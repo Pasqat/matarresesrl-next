@@ -113,7 +113,7 @@ export default function Events({event}) {
       <StructuredData data={eventStructuredData} />
       <StructuredData data={eventBreadcrumb} />
 
-      {/* Apertura scura: la locandina resta intera (ha il testo dentro), in una card accanto al titolo */}
+      {/* Apertura scura: la locandina resta intera (ha il testo dentro), in una card della sua forma accanto al titolo */}
       <section
         className="bg-[#0d0e0f] text-white [&_:focus-visible]:outline-fiamma"
         data-header="dark"
@@ -145,15 +145,17 @@ export default function Events({event}) {
             </div>
           </div>
           {image && (
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] bg-[#1b1d20] lg:col-span-5 lg:col-start-8">
+            // la card prende la forma della locandina: niente bande vuote intorno
+            <div className="overflow-hidden rounded-[28px] lg:col-span-5 lg:col-start-8">
               <Image
                 src={image}
                 alt={event.featuredImage?.node?.altText || ''}
-                fill
+                width={event.featuredImage.node.width || 0}
+                height={event.featuredImage.node.height || 0}
                 preload
                 fetchPriority="high"
                 sizes="(min-width: 1024px) 40vw, 100vw"
-                className="object-contain"
+                className="h-auto w-full"
               />
             </div>
           )}
