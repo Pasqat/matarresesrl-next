@@ -19,7 +19,7 @@ import {Freccia} from '../../components/cinema/BottoneFreccia'
 import useRivela from '../../components/cinema/useRivela'
 
 import {logos} from '../../data/partner-logo'
-import {vetrina, ogni} from '../../lib/kirby'
+import {vetrina, ogni} from '../../lib/pannello'
 import {itemListSchema, breadcrumbSchema} from '../../lib/seo/schema'
 
 import heroImg from '../../public/img/prodotti/apertura-cottura.webp'

@@ -16,7 +16,7 @@ import {getProjects} from '../../lib/query/project'
 import {getAllPosts} from '../../lib/query/post'
 import settori from '../../data/settori'
 import chiusuraImg from '../../public/img/home/chiusura-progetto.webp'
-import {ogni, KIRBY_URL} from '../../lib/kirby'
+import {ogni, PANNELLO_URL} from '../../lib/pannello'
 
 export default function Settore({slug, progetti, articoli}) {
   const settore = settori.find(s => s.slug === slug)
@@ -541,7 +541,7 @@ export async function getStaticProps({params}) {
   const slugArticoli = (settore.seo.articoli ?? []).map(([a]) => a)
   const [{projects}, {posts}] = await Promise.all([
     categorie.length ? getProjects() : {projects: []},
-    slugArticoli.length || KIRBY_URL ? getAllPosts() : {posts: []},
+    slugArticoli.length || PANNELLO_URL ? getAllPosts() : {posts: []},
   ])
   // Con il pannello: gli articoli con questo settore tra i «Settori collegati»
   const daPannello = posts.some(p => p.settori)

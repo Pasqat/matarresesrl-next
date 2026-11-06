@@ -1,16 +1,16 @@
-// Avviso scritto nel pannello Kirby (Chiusure e avvisi): barra in basso, letta dal browser così
+// Avviso scritto nel pannello (Chiusure e avvisi): barra in basso, letta dal browser così
 // una modifica si vede subito. Sparisce dopo la data «fino al» o quando il visitatore la chiude.
 import {useEffect, useState} from 'react'
 import Link from 'next/link'
-import {KIRBY_URL, kirby} from '../lib/kirby'
+import {PANNELLO_URL, datiPannello} from '../lib/pannello'
 
 const CHIUSO = 'avviso-chiuso'
 
 export default function Avviso() {
   const [avviso, setAvviso] = useState(null)
   useEffect(() => {
-    if (!KIRBY_URL) return
-    kirby('sito')
+    if (!PANNELLO_URL) return
+    datiPannello('sito')
       .then(({avviso: a}) => {
         const oggi = new Date().toLocaleDateString('sv-SE', {
           timeZone: 'Europe/Rome',

@@ -12,7 +12,7 @@ import Scelta from '../../components/cinema/Scelta'
 
 import {filterPosts} from '../../actions/utils/blog'
 import {getProjects} from '../../lib/query/project'
-import {ogni} from '../../lib/kirby'
+import {ogni} from '../../lib/pannello'
 
 const PAGE_SIZE = 10 // due gruppi da cinque della griglia a rivista
 const initialIndexToShow = PAGE_SIZE

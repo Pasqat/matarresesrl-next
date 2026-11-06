@@ -1405,7 +1405,7 @@
   }
 }
 
-/* Avviso dal pannello Kirby (components/Avviso.jsx): pillola scura in basso, come il torna su */
+/* Avviso dal pannello (components/Avviso.jsx): pillola scura in basso, come il torna su */
 .cin-avviso {
   position: fixed;
   left: 50%;

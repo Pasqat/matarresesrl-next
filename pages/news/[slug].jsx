@@ -25,7 +25,7 @@ import {
   faqSchema as buildFaqSchema,
   breadcrumbSchema,
 } from '../../lib/seo/schema'
-import {ogni} from '../../lib/kirby'
+import {ogni} from '../../lib/pannello'
 // Invito in fondo all'articolo, scelto nel pannello (campo «Invito finale»); null = nessun invito
 const INVITI = {
   progetto: {variant: 'progetto', etichetta: 'Parla con un progettista', breve: 'Parliamone'},

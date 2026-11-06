@@ -9,7 +9,7 @@ import TitoloDueTempi from '../../components/cinema/TitoloDueTempi'
 import {Freccia} from '../../components/cinema/BottoneFreccia'
 import posterImg from '../../public/img/home/sede-poster.webp'
 import ContactModal from '../../components/Form/ContactModal'
-import {ogni} from '../../lib/kirby'
+import {ogni} from '../../lib/pannello'
 
 // Riga evento: data in evidenza (le date arrivano già formattate, es. "3 marzo 2026").
 function RigaEvento({event, futuro}) {

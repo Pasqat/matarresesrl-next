@@ -15,7 +15,7 @@ import {SeoDataSection} from '../../components/sections/seodata-section'
 import StructuredData from '../../components/StructuredData'
 import {creativeWorkSchema, breadcrumbSchema} from '../../lib/seo/schema'
 import {decodifica} from '../../lib/entita'
-import {ogni} from '../../lib/kirby'
+import {ogni} from '../../lib/pannello'
 
 export default function Project({project, related}) {
   const router = useRouter()

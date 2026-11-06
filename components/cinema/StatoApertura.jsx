@@ -1,9 +1,9 @@
 // «Aperto ora / Chiuso» dagli orari della sede (lun–ven 9–13 e 15–18:30, ora italiana), con
-// festività nazionali, Pasquetta, patrono e chiusure di data/chiusure.js (o del pannello Kirby).
+// festività nazionali, Pasquetta, patrono e chiusure di data/chiusure.js (o del pannello).
 // Calcolato solo nel browser dopo il montaggio: l'HTML statico non può sapere l'ora della visita.
 import {useEffect, useState} from 'react'
 import {patrono, periodi as periodiFile} from '../../data/chiusure'
-import {KIRBY_URL, kirby} from '../../lib/kirby'
+import {PANNELLO_URL, datiPannello} from '../../lib/pannello'
 
 const FASCE = [
   [9 * 60, 13 * 60],
@@ -98,8 +98,8 @@ export default function StatoApertura() {
     let periodi = periodiFile
     const aggiorna = () => setS(stato(new Date(), periodi))
     aggiorna()
-    if (KIRBY_URL)
-      kirby('sito')
+    if (PANNELLO_URL)
+      datiPannello('sito')
         .then(d => {
           periodi = d.chiusure
           aggiorna()
