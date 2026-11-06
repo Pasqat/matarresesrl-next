@@ -175,7 +175,7 @@ export default function AboutUs({lastTwoProjects = [], marchi}) {
         >
           <Magnetic>
             <ContactModal variant="progetto" className="cin-btn">
-              Parla con un progettista
+              Parla con un consulente
               <Freccia />
             </ContactModal>
           </Magnetic>

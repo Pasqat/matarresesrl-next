@@ -252,7 +252,7 @@ export default function Servizi() {
         >
           <Magnetic>
             <ContactModal variant="progetto" className="cin-btn">
-              Parla con un progettista
+              Parla con un consulente
               <Freccia />
             </ContactModal>
           </Magnetic>
@@ -471,7 +471,7 @@ export default function Servizi() {
               className="text-[clamp(40px,5.8vw,88px)] !leading-none"
             />
             <p className="mx-auto mt-6 max-w-[34rem] text-[rgb(243_238_230/.75)]">
-              Tre domande, meno di un minuto: un nostro progettista ti
+              Tre domande, meno di un minuto: un nostro consulente ti
               ricontatta e, se serve, viene nel locale per il sopralluogo.
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-3.5">
@@ -480,7 +480,7 @@ export default function Servizi() {
                 source="servizi-chiusura"
                 className="cin-btn"
               >
-                Parla con un progettista
+                Parla con un consulente
                 <Freccia />
               </ContactModal>
               <a href="tel:+390804323431" className="cin-btn cin-btn--ghost">

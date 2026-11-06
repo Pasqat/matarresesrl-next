@@ -100,7 +100,7 @@ export default function Settore({slug, progetti, articoli}) {
               settore={settore.nome}
               className="cin-btn"
             >
-              Parla con un progettista
+              Parla con un consulente
               <Freccia />
             </ContactModal>
           </Magnetic>
@@ -335,7 +335,7 @@ export default function Settore({slug, progetti, articoli}) {
                   }`}
                 >
                   Le risposte a quello che ci chiedono più spesso. Per il resto,
-                  parla con un progettista.
+                  parla con un consulente.
                 </p>
               </div>
               <div
@@ -484,7 +484,7 @@ export default function Settore({slug, progetti, articoli}) {
                 source={`settore-${slug}`}
                 className="cin-btn"
               >
-                Parla con un progettista
+                Parla con un consulente
                 <Freccia />
               </ContactModal>
               <a href="tel:+390804323431" className="cin-btn cin-btn--ghost">

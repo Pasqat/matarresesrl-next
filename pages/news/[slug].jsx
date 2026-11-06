@@ -28,7 +28,7 @@ import {
 import {ogni} from '../../lib/pannello'
 // Invito in fondo all'articolo, scelto nel pannello (campo «Invito finale»); null = nessun invito
 const INVITI = {
-  progetto: {variant: 'progetto', etichetta: 'Parla con un progettista', breve: 'Parliamone'},
+  progetto: {variant: 'progetto', etichetta: 'Parla con un consulente', breve: 'Parliamone'},
   sopralluogo: {variant: 'progetto', etichetta: 'Richiedi un sopralluogo', breve: 'Sopralluogo'},
   demo: {variant: 'showroom', etichetta: 'Prenota una demo in showroom', breve: 'Prenota la demo'},
   assistenza: {href: '/assistenza', etichetta: 'Richiedi assistenza tecnica', breve: 'Assistenza'},

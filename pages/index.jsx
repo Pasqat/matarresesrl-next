@@ -126,7 +126,7 @@ export default function Home({
           voci={['Progetto', 'Arredi su misura', 'Attrezzature', 'Assistenza']}
         >
           <ContactModal variant="progetto" className="cin-btn">
-            Parla con un progettista
+            Parla con un consulente
             <Freccia />
           </ContactModal>
           <Link href="/realizzazioni" className="cin-link whitespace-nowrap">
@@ -416,7 +416,7 @@ export default function Home({
                 className="text-[clamp(40px,5.8vw,88px)] !leading-none"
               />
               <p className="mx-auto mt-6 max-w-[34rem] text-[rgb(243_238_230/.75)]">
-                Raccontaci cosa hai in mente: ti risponde un progettista, che
+                Raccontaci cosa hai in mente: ti risponde un consulente, che
                 viene nel locale, misura spazi e impianti e ti propone la
                 soluzione.
               </p>
@@ -426,7 +426,7 @@ export default function Home({
                   source="home-chiusura"
                   className="cin-btn"
                 >
-                  Parla con un progettista
+                  Parla con un consulente
                   <Freccia />
                 </ContactModal>
                 <a href="tel:+390804323431" className="cin-btn cin-btn--ghost">

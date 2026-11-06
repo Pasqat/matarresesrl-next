@@ -1,6 +1,6 @@
 // Modal di contatto del revamp (stili in styles/contact-modal.css). Tre aperture, scelte dal
 // contesto della CTA:
-// - `progetto`: "parla con un progettista" e simili. Stesso pannello di vetro di `info`, ma il
+// - `progetto`: "parla con un consulente" e simili. Stesso pannello di vetro di `info`, ma il
 //   modulo procede a passi (attività → contatti → messaggio); l'attività arriva nella mail e in Odoo.
 // - `realizzazione`: dalle pagine dei lavori. Lo schermo si chiude a lamelle come l'apertura della
 //   home ed entra un pannello con il modulo a sinistra e la foto del lavoro a destra.
@@ -66,9 +66,9 @@ const NOMI_PASSI = {
 // «Cosa succede dopo»: cosa aspettarsi una volta inviato, per percorso
 const DOPO = {
   progetto:
-    'Un progettista ti richiama per capire il progetto e fissare il sopralluogo, che è gratuito.',
+    'Un consulente ti richiama per capire il progetto e fissare il sopralluogo, che è gratuito.',
   realizzazione:
-    'Un progettista ti richiama per capire il progetto e fissare il sopralluogo, che è gratuito.',
+    'Un consulente ti richiama per capire il progetto e fissare il sopralluogo, che è gratuito.',
   guasto:
     'Il service ti richiama per fissare l’intervento, di norma entro 48 ore.',
   showroom:
@@ -188,7 +188,7 @@ export default function ContactModal({
   const percorso = !reservation && PERCORSI[variant]
   const aPassi = Boolean(percorso)
   const nPassi = aPassi ? Object.keys(percorso).length : 0
-  // Il percorso a passi del progettista ha la stessa grafica in vetro delle richieste generiche.
+  // Il percorso a passi del consulente ha la stessa grafica in vetro delle richieste generiche.
   const aspetto = variant === 'realizzazione' ? 'realizzazione' : 'info'
   const passoIniziale = variant === 'progetto' && settore ? 2 : 1
   const titolo =
@@ -211,7 +211,7 @@ export default function ContactModal({
       : variant === 'showroom'
       ? 'Dicci quando preferisci passare ad Alberobello: ti facciamo trovare un consulente.'
       : aPassi
-      ? 'Tre domande, meno di un minuto. Poi ti ricontatta un nostro progettista.'
+      ? 'Tre domande, meno di un minuto. Poi ti ricontatta un nostro consulente.'
       : 'Un nostro consulente ti ricontatta per capire insieme cosa ti serve.')
   const id = n => `${uid}-${n}`
 

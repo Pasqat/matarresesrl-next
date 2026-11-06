@@ -622,7 +622,7 @@ export default function Assistenza() {
             />
             <p className="mx-auto mt-6 max-w-[34rem] text-[rgb(243_238_230/.75)]">
               Se le attrezzature sono a fine corsa o la cucina non regge più il
-              lavoro, un nostro progettista viene nel locale, misura spazi e
+              lavoro, un nostro consulente viene nel locale, misura spazi e
               impianti e vi propone la soluzione.
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-3.5">

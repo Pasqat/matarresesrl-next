@@ -43,7 +43,7 @@ export default function DesignSpecimen() {
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-6">
             <a href="#" className="inline-flex min-h-[52px] items-center bg-fiamma px-7 font-medium text-ghisa transition-colors hover:bg-white">
-              Parla con un progettista
+              Parla con un consulente
             </a>
             <a href="#" className="border-b border-inox/60 py-2 text-white hover:border-white">
               Guarda i progetti

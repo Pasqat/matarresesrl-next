@@ -58,7 +58,7 @@ export default function Contatti({groups}) {
                 >
                   <span className="cin-ingresso__titolo">Ho un progetto</span>
                   <span className="cin-ingresso__testo">
-                    Tre domande, poi ti chiama un progettista.
+                    Tre domande, poi ti chiama un consulente.
                   </span>
                   <Freccia />
                 </ContactModal>
