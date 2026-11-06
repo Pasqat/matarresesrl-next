@@ -323,9 +323,9 @@ export default function Home({
                     {fatti.map(([dato, spiegazione]) => (
                       <div
                         key={dato}
-                        className="grid grid-cols-[6.5rem_minmax(0,1fr)] sm:grid-cols-[9.5rem_minmax(0,1fr)] border-b border-inox/25 last:border-b-0"
+                        className="grid grid-cols-[8.25rem_minmax(0,1fr)] sm:grid-cols-[9.5rem_minmax(0,1fr)] border-b border-inox/25 last:border-b-0"
                       >
-                        <dt className="type-display border-r border-inox/25 px-4 py-4 text-xl">
+                        <dt className="type-display whitespace-nowrap border-r border-inox/25 px-4 py-4 text-xl">
                           {dato}
                         </dt>
                         <dd className="px-4 py-4 text-inox-muted">
