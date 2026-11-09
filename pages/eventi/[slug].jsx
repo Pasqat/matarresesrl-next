@@ -213,6 +213,9 @@ export async function getStaticProps({params}) {
   // ogni ora: la sera dell'evento «Partecipa» deve sparire
   return {props: {event}, revalidate: ogni(3600)}
 }
+// Generata alla prima visita: se il pannello è lento i tentativi di riserva superano i 10 s di Vercel
+export const config = {maxDuration: 60}
+
 export async function getStaticPaths() {
   // Nessun dettaglio in build: l'hosting WordPress rifiuta le raffiche di richieste dai
   // server di build Vercel. Ogni pagina si genera alla prima visita e poi resta in cache (ISR);

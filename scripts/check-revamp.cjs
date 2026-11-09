@@ -532,6 +532,24 @@ async function main() {
   responses = [508, 508, 508, 508]
   assert.equal((await fetchWithRetry('wp')).status, 508, 'dopo 3 tentativi restituisce l’errore')
   assert.equal(calls, 4)
+  // Pannello: gli elenchi restano un minuto in memoria (meno carico sull'hosting nei picchi), i dettagli no
+  const chiesti = []
+  let rispostaPannello = () => ({ok: true, status: 200, json: async () => ['voce']})
+  const {datiPannello} = load(
+    'lib/pannello.js',
+    () => ({fetchWithRetry: async url => (chiesti.push(url), rispostaPannello())}),
+    {process: {env: {NEXT_PUBLIC_PANNELLO_URL: 'https://pannello.test'}}},
+  )
+  const [a, b] = await Promise.all([datiPannello('articoli'), datiPannello('articoli')])
+  assert.deepEqual([a, b, chiesti.length], [['voce'], ['voce'], 1], 'elenco chiesto una volta sola')
+  await datiPannello('articoli/uno')
+  await datiPannello('articoli/uno')
+  assert.equal(chiesti.length, 3, 'i dettagli non vanno in cache')
+  rispostaPannello = () => ({ok: false, status: 508})
+  await assert.rejects(datiPannello('eventi'))
+  rispostaPannello = () => ({ok: true, status: 200, json: async () => []})
+  assert.deepEqual(await datiPannello('eventi'), [], 'dopo un errore si richiede di nuovo')
+  console.log('PASS pannello: elenchi in cache per un minuto, dettagli ed errori no')
   console.log('PASS fetch retry: socket errors and 508 retried, 404 not')
   console.log('No external requests were made.')
 }
