@@ -383,6 +383,7 @@ export default function News({data}) {
               <CaricaAltri
                 shown={shown}
                 total={posts.length}
+                nomi={['articolo', 'articoli']}
                 onClick={() => setIndexToShow(i => i + PAGE_SIZE)}
               >
                 Mostra altri articoli

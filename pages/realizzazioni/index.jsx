@@ -9,10 +9,17 @@ import heroImg from '../../public/img/settori/rist-auraterrae.webp'
 import GrigliaRivista from '../../components/cinema/GrigliaRivista'
 import {CaricaAltri} from '../../components/editoriale/FiltriArchivio'
 import Scelta from '../../components/cinema/Scelta'
+import TitoloDueTempi from '../../components/cinema/TitoloDueTempi'
+import StructuredData from '../../components/StructuredData'
 
 import {filterPosts} from '../../actions/utils/blog'
 import {getProjects} from '../../lib/query/project'
 import {ogni} from '../../lib/pannello'
+import {decodifica} from '../../lib/entita'
+import {breadcrumbSchema, realizzazioniSchema} from '../../lib/seo/schema'
+
+const DESCRIZIONE =
+  'Cucine professionali, laboratori e arredi realizzati in masserie, ristoranti, macellerie, pasticcerie e hotel in Puglia. Guarda i progetti.'
 
 const PAGE_SIZE = 10 // due gruppi da cinque della griglia a rivista
 const initialIndexToShow = PAGE_SIZE
@@ -77,7 +84,7 @@ export default function Realizzazioni({data}) {
     <div>
       <Head>
         <title>
-          Realizzazioni | Cucine professionali, arredi e attrezzature horeca
+          Realizzazioni horeca in Puglia: cucine e arredi | Matarrese srl
         </title>
         <link
           rel="canonical"
@@ -88,10 +95,7 @@ export default function Realizzazioni({data}) {
           content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
         />
         <meta name="author" content="Matarrese srl" />
-        <meta
-          name="description"
-          content="Cucine professionali, laboratori e arredi realizzati in masserie, ristoranti, macellerie, pasticcerie e hotel in Puglia. Guarda i progetti."
-        />
+        <meta name="description" content={DESCRIZIONE} />
         <meta property="og:title" content="Realizzazioni Matarrese srl" />
         <meta
           property="og:description"
@@ -110,6 +114,23 @@ export default function Realizzazioni({data}) {
         <meta property="og:site_name" content="Matarrese srl" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
+      {/* Tutti i progetti, non solo quelli filtrati o visibili */}
+      <StructuredData
+        data={realizzazioniSchema({
+          name: 'Realizzazioni horeca in Puglia: cucine e arredi',
+          description: DESCRIZIONE,
+          projects: allPosts.map(p => ({
+            name: decodifica(p.title),
+            slug: p.slug,
+            comune: p.comune,
+          })),
+        })}
+      />
+      <StructuredData
+        data={breadcrumbSchema([
+          {name: 'Realizzazioni', path: '/realizzazioni'},
+        ])}
+      />
 
       <Layout navbarTransparent>
         <HeroCinema
@@ -119,7 +140,7 @@ export default function Realizzazioni({data}) {
           eyebrow="Dal 1983, in Puglia"
           riga="Realizzazioni per bar, ristoranti,"
           accento="hotel e attività professionali."
-          sottotitolo="Da oltre quarant’anni progettiamo cucine professionali, arredi su misura, attrezzature per l’ho.re.ca. e soluzioni complete per locali commerciali, macellerie, pasticcerie, hotel e spazi dedicati alla ristorazione."
+          sottotitolo="Progettare un locale significa trovare il giusto equilibrio tra efficienza in cucina e comfort per i clienti. Da oltre 40 anni, ad Alberobello, progettiamo cucine professionali, arredi su misura e attrezzature horeca per ristoranti, bar, B&B, macellerie, pasticcerie, caseifici e strutture per banqueting."
         >
           <a href="#archivio" className="cin-btn">
             Guarda i progetti
@@ -130,10 +151,16 @@ export default function Realizzazioni({data}) {
           id="archivio"
           className="scroll-mt-20 bg-[var(--carta)] text-ghisa"
           data-header="light"
-          aria-label="Archivio delle realizzazioni"
+          aria-labelledby="archivio-title"
         >
           <div className="site-shell pb-24 pt-12 lg:pb-32 lg:pt-16">
-            {/* Ricerca editoriale: riga grande, conteggio in corsivo, filtri a pillola sotto */}
+            <TitoloDueTempi
+              id="archivio-title"
+              tono="chiaro"
+              riga="I nostri progetti"
+              className="mb-8 text-[clamp(36px,4.4vw,64px)] !leading-none lg:mb-10"
+            />
+            {/* Ricerca editoriale: riga grande, filtri a pillola sotto */}
             <div role="search">
               <div className="cin-cerca">
                 <label className="min-w-0 flex-1">
@@ -164,20 +191,13 @@ export default function Realizzazioni({data}) {
                     }}
                   />
                 </label>
-                {/* Focalizzabile: il suggerimento compare anche da tastiera e lo legge lo screen reader */}
-                <p
-                  className="cin-cerca__conta cin-suggerimento"
-                  tabIndex={0}
-                  aria-describedby="conta-nota"
-                >
-                  <span aria-live="polite">
-                    {posts.length}{' '}
-                    {posts.length === 1 ? 'progetto' : 'progetti'}
-                  </span>
-                  <span id="conta-nota" role="tooltip">
-                    Solo una parte dei nostri lavori: dal 1983 ne abbiamo
-                    realizzati molti di più.
-                  </span>
+                {/* Il totale non si mostra (sembrava poco): solo lo screen reader sente quanti risultati dà un filtro */}
+                <p className="sr-only" aria-live="polite">
+                  {filtri
+                    ? `${posts.length} ${
+                        posts.length === 1 ? 'progetto' : 'progetti'
+                      }`
+                    : ''}
                 </p>
               </div>
               <div className="relative mt-5 flex flex-wrap items-center gap-2">
@@ -211,9 +231,8 @@ export default function Realizzazioni({data}) {
               </div>
               {/* L'archivio è una selezione: senza questa nota un anno con un progetto sembra un anno con un lavoro */}
               <p className="mt-6 max-w-[62ch] text-acciaio">
-                Qui raccontiamo solo una selezione: dal 1983 abbiamo realizzato
-                molti più locali di quelli in archivio, e ogni anno se ne
-                aggiungono di nuovi.
+                Una selezione dei nostri lavori, tra i tanti realizzati dal
+                1983.
               </p>
             </div>
 
@@ -229,7 +248,7 @@ export default function Realizzazioni({data}) {
                   items={posts.map(p => ({
                     href: `/realizzazioni/${p.slug}`,
                     title: p.title,
-                    meta: [p.categories?.[0], p.tags?.[0]]
+                    meta: [p.categories?.[0], p.tags?.[0], p.comune]
                       .filter(Boolean)
                       .join(' · '),
                     image: {
@@ -245,6 +264,7 @@ export default function Realizzazioni({data}) {
               <CaricaAltri
                 shown={shown}
                 total={posts.length}
+                nomi={['progetto', 'progetti']}
                 onClick={() => setIndexToShow(i => i + PAGE_SIZE)}
               >
                 Mostra altre realizzazioni

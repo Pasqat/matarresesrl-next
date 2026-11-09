@@ -1,9 +1,11 @@
-// "Mostra altri" per gli archivi (news, realizzazioni): avanza a blocchi, il conteggio resta visibile.
-export function CaricaAltri({shown, total, onClick, children}) {
+// "Mostra altri" per gli archivi (news, realizzazioni): avanza a blocchi, dice quanti ne restano.
+// `nomi`: [singolare, plurale] di un sostantivo maschile, es. ['progetto', 'progetti'].
+export function CaricaAltri({shown, total, nomi, onClick, children}) {
+  const restano = total - shown
   return (
     <div className="mt-20 flex flex-col items-center gap-4">
       <p className="text-sm text-acciaio">
-        {shown} di {total}
+        {restano === 1 ? `Un altro ${nomi[0]}` : `Altri ${restano} ${nomi[1]}`}
       </p>
       <button
         type="button"

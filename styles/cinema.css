@@ -881,7 +881,8 @@
   font-size: 13px;
   color: rgb(243 238 230 / 0.75);
 }
-.cin-rivista__titolo {
+/* h3: tre classi per battere `.site-content h3:not(.type-display)` di revamp.css */
+.cin-rivista .cin-rivista__testo .cin-rivista__titolo {
   display: block;
   margin-top: 4px;
   font-family: var(--font-display);

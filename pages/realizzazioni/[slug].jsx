@@ -37,6 +37,7 @@ export default function Project({project, related}) {
   const scheda = [
     ['Categoria', categorie.join(', ')],
     ['Anno', anni.join(', ')],
+    ['Comune', project.comune],
   ].filter(([, valore]) => valore)
 
   return (
@@ -49,17 +50,21 @@ export default function Project({project, related}) {
       </Head>
       <StructuredData
         data={creativeWorkSchema({
-          title: project.title,
-          description: project.seo?.metaDesc || project.title,
+          title: decodifica(project.title),
+          description: project.seo?.metaDesc || decodifica(project.title),
           slug: project.slug,
           image: cover,
           categories: categorie,
+          comune: project.comune,
         })}
       />
       <StructuredData
         data={breadcrumbSchema([
           {name: 'Realizzazioni', path: '/realizzazioni'},
-          {name: project.title, path: `/realizzazioni/${project.slug}`},
+          {
+            name: decodifica(project.title),
+            path: `/realizzazioni/${project.slug}`,
+          },
         ])}
       />
 
