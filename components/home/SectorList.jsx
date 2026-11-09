@@ -23,22 +23,32 @@ export default function SectorList({settori, href, title, intro}) {
       <div className="site-shell grid gap-10 py-24 lg:grid-cols-12 lg:gap-14 lg:py-32">
         <div className="relative isolate flex min-h-[460px] flex-col justify-end overflow-hidden rounded-[28px] bg-ghisa p-7 text-white md:p-10 lg:col-span-5 lg:min-h-[640px]">
           <div className="absolute inset-0 -z-10" aria-hidden="true">
-            {settori.filter(s => visti.has(s.slug)).map(s => (
-              <Image
-                key={s.slug}
-                src={s.foto}
-                alt=""
-                fill
-                // il pannello è verticale: la foto orizzontale in cover è larga circa 1,9 volte il pannello
-                sizes="(min-width: 1024px) 75vw, 150vw"
-                loading="lazy"
-                className={`object-cover transition-[opacity,transform] duration-1000 ease-out motion-reduce:transition-none ${
-                  active === s.slug
-                    ? 'scale-100 opacity-100'
-                    : 'scale-105 opacity-0'
-                }`}
-              />
-            ))}
+            {settori
+              .filter(s => visti.has(s.slug))
+              .map(s => (
+                // con unoptimized Next non fa srcset: sul telefono la variante ritagliata la sceglie <picture>
+                <picture key={s.slug}>
+                  {s.fotoTelefono && (
+                    <source
+                      media="(max-width: 767px)"
+                      srcSet={s.fotoTelefono}
+                    />
+                  )}
+                  <Image
+                    src={s.foto}
+                    alt=""
+                    fill
+                    // il pannello è verticale: la foto orizzontale in cover è larga circa 1,9 volte il pannello
+                    sizes="(min-width: 1024px) 75vw, 150vw"
+                    loading="lazy"
+                    className={`object-cover transition-[opacity,transform] duration-1000 ease-out motion-reduce:transition-none ${
+                      active === s.slug
+                        ? 'scale-100 opacity-100'
+                        : 'scale-105 opacity-0'
+                    }`}
+                  />
+                </picture>
+              ))}
             <div className="absolute inset-0 bg-[linear-gradient(0deg,rgb(30_34_38/.92)_0%,rgb(30_34_38/.55)_55%,rgb(30_34_38/.25)_100%)]" />
           </div>
           <p className="mb-auto text-sm text-inox" aria-live="polite">

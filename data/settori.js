@@ -4,6 +4,7 @@ const settori = [
   {
     slug: 'dark-kitchen',
     foto: '/img/settori/rist-auraterrae.webp', // cucina della Masseria Auraterrae, non un caso dark kitchen: sostituire con una foto vera quando c'è
+    fotoTelefono: '/img/settori/rist-auraterrae-telefono.webp', // ritaglio verticale 930×1000 per il pannello di SectorList sotto i 768 px
     nome: 'Dark kitchen',
     frase: 'Tecnologia e organizzazione per chi entra nel delivery.',
     inEvidenza: true,
@@ -67,6 +68,7 @@ const settori = [
   {
     slug: 'laboratori',
     foto: '/img/settori/lab-pantaleo-cucina.webp',
+    fotoTelefono: '/img/settori/lab-pantaleo-cucina-telefono.webp',
     nome: 'Laboratori di trasformazione alimentare',
     frase:
       'Layout, flussi di lavoro, conservazione e confezionamento per chi trasforma materie prime.',
@@ -131,26 +133,31 @@ const settori = [
   {
     slug: 'ristoranti-pizzerie',
     foto: '/img/settori/dk-coppino-cucina.webp', // Coppino, Monopoli
+    fotoTelefono: '/img/settori/dk-coppino-cucina-telefono.webp',
     nome: 'Ristoranti e pizzerie',
   },
   {
     slug: 'bar-gelaterie-pasticcerie',
     foto: '/img/settori/bar-birroteca.webp',
+    fotoTelefono: '/img/settori/bar-birroteca-telefono.webp',
     nome: 'Bar, gelaterie e pasticcerie',
   },
   {
     slug: 'hotel-ricevimenti',
     foto: '/img/settori/hotel-movenpick-buffet.webp',
+    fotoTelefono: '/img/settori/hotel-movenpick-buffet-telefono.webp',
     nome: 'Hotel e sale ricevimenti',
   },
   {
     slug: 'collettiva',
     foto: '/img/settori/collettiva-cucina.webp',
+    fotoTelefono: '/img/settori/collettiva-cucina-telefono.webp',
     nome: 'Ristorazione collettiva',
   },
   {
     slug: 'gdo-pescherie-macellerie',
     foto: '/img/settori/gdo-famila-banco.webp',
+    fotoTelefono: '/img/settori/gdo-famila-banco-telefono.webp',
     nome: 'GDO, pescherie e macellerie',
   },
 ]
