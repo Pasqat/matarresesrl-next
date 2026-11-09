@@ -2,45 +2,27 @@
 
 const siteUrl = process.env.NEXT_PUBLIC_DOMAIN || 'https://www.matarrese.it'
 
-// In build si prerenderizzano solo i contenuti più recenti (vedi getStaticPaths): gli altri
-// dettagli li aggiungiamo qui leggendo gli slug da WordPress, con qualche tentativo di riserva.
-const WP_API = process.env.NEXT_PUBLIC_WP_API_URL
+// I dettagli si generano alla prima visita (getStaticPaths vuoto): li elenchiamo qui leggendo
+// gli slug dal pannello (/dati/<tipo>), con qualche tentativo di riserva per l'hosting condiviso.
+const PANNELLO = process.env.NEXT_PUBLIC_PANNELLO_URL
 const DETAIL = [
-  ['posts', '/news'],
-  ['projects', '/realizzazioni'],
-  ['events', '/eventi'],
+  ['articoli', '/news'],
+  ['realizzazioni', '/realizzazioni'],
+  ['eventi', '/eventi'],
 ]
 
-async function wpQuery(query) {
+async function pannelloSlugs(tipo) {
+  if (!PANNELLO) throw new Error('NEXT_PUBLIC_PANNELLO_URL non impostata')
   for (const wait of [0, 2000, 5000, 10000]) {
     await new Promise(r => setTimeout(r, wait))
     try {
-      const res = await fetch(WP_API, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({query}),
-      })
-      if (res.ok) return (await res.json()).data
+      const res = await fetch(`${PANNELLO}/dati/${tipo}`)
+      if (res.ok) return (await res.json()).map(v => v.slug)
     } catch {
       // riprova
     }
   }
-  throw new Error('next-sitemap: WordPress non risponde')
-}
-
-// WPGraphQL restituisce al massimo 100 voci per richiesta: si scorre con il cursore.
-async function wpSlugs(type) {
-  const slugs = []
-  let after = null
-  do {
-    const cursor = after ? `, after: "${after}"` : ''
-    const data = await wpQuery(
-      `{ ${type}(first: 100${cursor}) { pageInfo { hasNextPage endCursor } nodes { slug } } }`,
-    )
-    slugs.push(...data[type].nodes.map(n => n.slug))
-    after = data[type].pageInfo.hasNextPage ? data[type].pageInfo.endCursor : null
-  } while (after)
-  return slugs
+  throw new Error(`il pannello non risponde su /dati/${tipo}`)
 }
 
 // Priorità per-rotta: home > pagine principali > liste > dettaglio > legali.
@@ -68,13 +50,13 @@ module.exports = {
   additionalPaths: async config => {
     const paths = []
     try {
-      for (const [type, base] of DETAIL) {
-        for (const slug of await wpSlugs(type)) {
+      for (const [tipo, base] of DETAIL) {
+        for (const slug of await pannelloSlugs(tipo)) {
           paths.push(await config.transform(config, `${base}/${slug}`))
         }
       }
     } catch (err) {
-      // WordPress irraggiungibile: meglio una sitemap senza dettagli che un deploy fallito.
+      // Pannello irraggiungibile: meglio una sitemap senza dettagli che un deploy fallito.
       console.warn(`ATTENZIONE sitemap senza news/realizzazioni/eventi: ${err.message}`)
       return []
     }
