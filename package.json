@@ -11,7 +11,8 @@
     "start": "next start",
     "format": "pnpm lint --fix",
     "lint": "eslint .",
-    "lint:no-path": "npx eslint"
+    "lint:no-path": "npx eslint",
+    "scansione": "node scripts/scansione-sito.mjs"
   },
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.16.10",

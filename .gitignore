@@ -60,3 +60,6 @@ public/_media-review/
 # Rapporti Lighthouse: si tiene il RAPPORTO.md, i JSON (MB) restano solo in locale
 lighthouse/**/*.json
 mockup/
+
+# Report della scansione del sito online (scripts/scansione-sito.mjs): istantanee locali, si rigenerano
+docs/scansioni/
