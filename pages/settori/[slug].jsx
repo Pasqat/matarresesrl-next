@@ -16,7 +16,7 @@ import {getProjects} from '../../lib/query/project'
 import {getAllPosts} from '../../lib/query/post'
 import settori from '../../data/settori'
 import chiusuraImg from '../../public/img/home/chiusura-progetto.webp'
-import {ogni, PANNELLO_URL} from '../../lib/pannello'
+import {ogni} from '../../lib/pannello'
 
 export default function Settore({slug, progetti, articoli}) {
   const settore = settori.find(s => s.slug === slug)
@@ -538,33 +538,22 @@ const MAX_PROGETTI = 6
 export async function getStaticProps({params}) {
   const settore = settori.find(s => s.slug === params.slug)
   const categorie = settore.seo.categorie ?? []
-  const slugArticoli = (settore.seo.articoli ?? []).map(([a]) => a)
   const [{projects}, {posts}] = await Promise.all([
     categorie.length ? getProjects() : {projects: []},
-    slugArticoli.length || PANNELLO_URL ? getAllPosts() : {posts: []},
+    getAllPosts(),
   ])
-  // Con il pannello: gli articoli con questo settore tra i «Settori collegati»
-  const daPannello = posts.some(p => p.settori)
-  const elenco = daPannello
-    ? posts.filter(p => p.settori?.includes(settore.slug)).map(p => [p.slug, p.title])
-    : (settore.seo.articoli ?? [])
-  // Senza pannello: nell'ordine scelto in data/settori.js; il titolo resta quello scritto lì
-  const articoli = elenco.flatMap(([a, titolo, foto]) => {
-    const post = posts.find(p => p.slug === a)
-    if (!post) return []
-    const img = post.featuredImage?.node
-    return [
-      {
-        slug: a,
-        title: titolo,
+  // Gli articoli che hanno questo settore tra i «Settori collegati» del pannello
+  const articoli = posts
+    .filter(p => p.settori?.includes(settore.slug))
+    .map(post => {
+      const img = post.featuredImage?.node
+      return {
+        slug: post.slug,
+        title: post.title,
         categoria: post.categories[0] ?? null,
-        // `foto` in data/settori.js sostituisce quella di WordPress
-        image: foto
-          ? {src: foto, alt: titolo}
-          : {src: img?.mediaItemUrl ?? null, alt: img?.altText ?? ''},
-      },
-    ]
-  })
+        image: {src: img?.mediaItemUrl ?? null, alt: img?.altText ?? ''},
+      }
+    })
   const progetti = projects
     .filter(p =>
       p.portfolioCategories.nodes.some(c => categorie.includes(c.slug)),

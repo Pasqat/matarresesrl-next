@@ -21,12 +21,7 @@ There are no automated tests in this project.
 **Next.js 14 Pages Router** — no App Router. All routes live in `pages/`.
 
 ### Backend
-The site is a **headless WordPress** frontend. All content (posts, projects, events, products) is fetched from WordPress via:
-- **Apollo Client + GraphQL** (`lib/apolloClient.js`) — used for SSG/SSR data fetching in `getStaticProps` / `getServerSideProps`.
-
-GraphQL queries are organized in `lib/query/`:
-- `post.js`, `project.js`, `event.js` — main content types
-- `fragment/` — reusable GraphQL fragments (image, seo, categories, faqs, event)
+Content comes from the **Matarrese pannello** (separate PHP app, online at cms.matarrese.it; WordPress is retired). `lib/pannello.js` reads its public JSON at `${NEXT_PUBLIC_PANNELLO_URL}/dati/*` (with `lib/fetchWithRetry.js`) and reshapes it into the objects the pages read. `lib/query/` (`post.js`, `project.js`, `event.js`) are thin wrappers the pages call from `getStaticProps`. Detail pages are generated on first visit (ISR); the sitemap lists them by reading the slugs from the pannello (`next-sitemap.config.js`).
 
 ### API routes (`pages/api/`)
 | Route | Purpose |
@@ -53,7 +48,7 @@ GraphQL queries are organized in `lib/query/`:
 
 ### Environment variables
 Copy `.env.local.example` to `.env.local`. Key variables:
-- `NEXT_PUBLIC_WP_API_URL` — WordPress GraphQL endpoint
+- `NEXT_PUBLIC_PANNELLO_URL` — pannello base URL (required: news, realizzazioni, eventi, avviso, chiusure, recensioni, marchi)
 - `NEXT_PUBLIC_DOMAIN` — canonical domain (used in meta tags and sitemap)
 - `RESEND_API_KEY`, `CONTACT_FROM`, `CONTACT_TO` — email sending
 - `ODOO_*` — CRM integration (see README for full list)
