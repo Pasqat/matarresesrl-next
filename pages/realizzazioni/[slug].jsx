@@ -70,7 +70,6 @@ export default function Project({project, related}) {
         objectPosition="50% 50%"
         eyebrow={scheda.map(([, v]) => v).join(' · ') || 'Realizzazione'}
         riga={<span dangerouslySetInnerHTML={{__html: project.title}} />}
-        accento={anni[0] ? `${anni[0]}.` : null}
         sottotitolo={project.seo?.metaDesc}
       >
         <ContactModal

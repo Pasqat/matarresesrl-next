@@ -22,13 +22,18 @@ export default function TitoloDueTempi({
     >
       <span className={rigaClassName} style={rigaStyle}>
         {riga}
-      </span>{' '}
-      <span
-        className={clsx('type-accento', accentoClassName)}
-        style={accentoStyle}
-      >
-        {accento}
       </span>
+      {accento ? (
+        <>
+          {' '}
+          <span
+            className={clsx('type-accento', accentoClassName)}
+            style={accentoStyle}
+          >
+            {accento}
+          </span>
+        </>
+      ) : null}
     </Tag>
   )
 }
