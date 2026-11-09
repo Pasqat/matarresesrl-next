@@ -63,3 +63,4 @@ mockup/
 
 # Report della scansione del sito online (scripts/scansione-sito.mjs): istantanee locali, si rigenerano
 docs/scansioni/
+.claude/worktrees/

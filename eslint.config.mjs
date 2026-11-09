@@ -4,7 +4,8 @@ import next from 'eslint-config-next/core-web-vitals'
 import prettier from 'eslint-config-prettier'
 
 const config = [
-  {ignores: ['graphify-out/**', 'artifacts/**', '.pnpm-store/**']},
+  // .claude/: copie di lavoro (worktree) degli agenti, con le loro build
+  {ignores: ['graphify-out/**', 'artifacts/**', '.pnpm-store/**', '.claude/**']},
   ...next,
   // Turn off ESLint formatting rules that conflict with Prettier.
   prettier,
