@@ -5,7 +5,7 @@ import {resetCookieConsentValue} from 'react-cookie-consent'
 import Layout from '../../components/Layout'
 import PageHero from '../../components/PageHero'
 
-// Cookie realmente impostati: banner (pages/_app.js), sessione (lib/session.js), Meta Pixel
+// Cookie realmente impostati: banner (pages/_app.js), Meta Pixel
 // (pages/_app.js) e i tag del container GTM (GA4, Conversion Linker, LinkedIn Insight).
 // Se cambia il container GTM, aggiorna la tabella.
 const COOKIE = [
@@ -17,12 +17,6 @@ const COOKIE = [
         'Matarrese (prima parte)',
         'Ricorda se hai accettato o rifiutato i cookie',
         '12 mesi',
-      ],
-      [
-        'JWT-authentication-for-authenticated-session',
-        'Matarrese (prima parte)',
-        'Solo per il nostro personale: mantiene l’accesso all’anteprima dei contenuti',
-        '15 giorni',
       ],
     ],
   },

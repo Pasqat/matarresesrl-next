@@ -23,7 +23,6 @@ There are no automated tests in this project.
 ### Backend
 The site is a **headless WordPress** frontend. All content (posts, projects, events, products) is fetched from WordPress via:
 - **Apollo Client + GraphQL** (`lib/apolloClient.js`) — used for SSG/SSR data fetching in `getStaticProps` / `getServerSideProps`.
-- **Direct `fetchJson` + raw GraphQL** (`lib/fetchJson.js`) — used in authenticated API routes (preview mode, JWT-protected requests).
 
 GraphQL queries are organized in `lib/query/`:
 - `post.js`, `project.js`, `event.js` — main content types
@@ -34,12 +33,7 @@ GraphQL queries are organized in `lib/query/`:
 |-------|---------|
 | `contact.js` | Contact form → Resend email + optional Odoo CRM lead |
 | `subscribe.js` | Newsletter signup → MailerLite |
-| `login.js` / `logout.js` | WordPress JWT auth via `iron-session` |
-| `preview.js` / `exit-preview.js` | Next.js preview mode for WP drafts |
-| `user.js` | Session user info |
-
-### Auth / Session
-WordPress JWT auth is handled through `iron-session` (cookie-based). `lib/authenticate.js` calls the WP GraphQL `login` mutation; `lib/refreshToken.js` refreshes expired tokens. Session helpers are in `lib/session.js` (`withSessionRoute`, `withSessionSsr`).
+| `anteprima.js` / `exit-preview.js` | Preview of a pannello draft: the pannello signs the link, `anteprima.js` checks it and turns on Next preview mode; no login |
 
 ### Integrations
 - **Resend** — transactional email from `contact.js`. Requires `RESEND_API_KEY`, `CONTACT_FROM`, `CONTACT_TO`.
@@ -61,7 +55,6 @@ WordPress JWT auth is handled through `iron-session` (cookie-based). `lib/authen
 Copy `.env.local.example` to `.env.local`. Key variables:
 - `NEXT_PUBLIC_WP_API_URL` — WordPress GraphQL endpoint
 - `NEXT_PUBLIC_DOMAIN` — canonical domain (used in meta tags and sitemap)
-- `SECRET_COOKIE_PASSWORD` — iron-session secret (min 32 chars)
 - `RESEND_API_KEY`, `CONTACT_FROM`, `CONTACT_TO` — email sending
 - `ODOO_*` — CRM integration (see README for full list)
 - `NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID`, `NEXT_PUBLIC_FACEBOOK_PIXEL_ID` — analytics

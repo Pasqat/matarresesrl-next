@@ -2,8 +2,6 @@
 User-agent: *
 Allow: /
 Disallow: /api/
-Disallow: /auth/
-Disallow: /preview
 Disallow: /dev/
 
 # GPTBot

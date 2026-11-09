@@ -81,9 +81,6 @@ module.exports = {
     return paths
   },
   exclude: [
-    '/preview',
-    '/preview/*',
-    '/auth/*',
     '/feed.xml',
     '/404',
     '/server-sitemap.xml',
@@ -97,7 +94,7 @@ module.exports = {
   }),
   robotsTxtOptions: {
     policies: [
-      {userAgent: '*', allow: '/', disallow: ['/api/', '/auth/', '/preview', '/dev/']},
+      {userAgent: '*', allow: '/', disallow: ['/api/', '/dev/']},
       // Crawler AI esplicitamente ammessi per massimizzare la citabilità nelle
       // risposte generative (ChatGPT, Claude, Perplexity, Gemini/Google AI).
       {userAgent: 'GPTBot', allow: '/'},

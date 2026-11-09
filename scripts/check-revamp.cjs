@@ -225,21 +225,7 @@ async function main() {
     ),
   )
   cleanupMap()
-  const preview = load('pages/preview/index.jsx', () => ({
-    withSessionSsr: fn => fn,
-  }))
-  assert.equal(
-    (await preview.getServerSideProps({req: {session: {}}})).redirect
-      .destination,
-    '/auth/login',
-  )
-  assert.equal(
-    (await preview.getServerSideProps({req: {session: {user: {}}}})).notFound,
-    true,
-  )
-  console.log(
-    'PASS map fallback and protected preview without a session or post',
-  )
+  console.log('PASS map fallback')
   const groups = [{id: 'Ristorante', name: 'Ristorante'}]
   await checkForm(
     'components/Form/ContactForm.jsx',
