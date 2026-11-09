@@ -25,9 +25,17 @@ export default function HeroCinema({
   const [inPausa, setInPausa] = useState(false)
   const [conVideo, setConVideo] = useState(false)
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    // il video (1,3 MB su mobile) parte dopo che la pagina è caricata: prima si vede la foto,
-    // che è la stessa scena, e la prima schermata non si contende la banda con il video
+    // su telefono (o con risparmio dati) resta la sola foto: il video costava 1,3 MB e
+    // Lighthouse mobile lo contava nel percorso dell'LCP (6/11/2026)
+    if (
+      window.matchMedia(
+        '(prefers-reduced-motion: reduce), (max-width: 767px), (prefers-reduced-data: reduce)',
+      ).matches ||
+      navigator.connection?.saveData
+    )
+      return
+    // il video parte dopo che la pagina è caricata: prima si vede la foto, che è la stessa
+    // scena, e la prima schermata non si contende la banda con il video
     let attesa
     const avvia = () => (attesa = setTimeout(() => setConVideo(true), 1500))
     if (document.readyState === 'complete') avvia()

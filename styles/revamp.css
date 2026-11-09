@@ -413,9 +413,10 @@ p { text-wrap: pretty; }
       display: none;
     }
   }
+  /* solo la discesa, niente dissolvenza: da opacity 0 la pillola compariva dopo 0,8 s e
+     Lighthouse la contava come ritardo dell'LCP (850 ms di render delay, 6/11/2026) */
   @keyframes pillDown {
     from {
-      opacity: 0;
       transform: translateY(-16px);
     }
   }

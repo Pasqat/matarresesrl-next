@@ -115,10 +115,7 @@ export default function Home({
           image={posterImg}
           alt="L’arena del gusto nella sede Matarrese di Alberobello"
           objectPosition="50% 50%"
-          video={[
-            {src: '/video/sede-960.mp4', media: '(max-width: 767px)'},
-            {src: '/video/sede-1920.mp4'},
-          ]}
+          video={[{src: '/video/sede-1920.mp4'}]}
           eyebrow="Progetto · Arredi su misura · Attrezzature · Assistenza"
           riga="Diamo forma alla tua idea"
           accento="di ristorazione."
