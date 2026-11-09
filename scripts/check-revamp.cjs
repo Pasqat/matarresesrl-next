@@ -535,7 +535,7 @@ async function main() {
   // Pannello: gli elenchi restano un minuto in memoria (meno carico sull'hosting nei picchi), i dettagli no
   const chiesti = []
   let rispostaPannello = () => ({ok: true, status: 200, json: async () => ['voce']})
-  const {datiPannello} = load(
+  const {datiPannello, senzaCodiciWP} = load(
     'lib/pannello.js',
     () => ({fetchWithRetry: async url => (chiesti.push(url), rispostaPannello())}),
     {process: {env: {NEXT_PUBLIC_PANNELLO_URL: 'https://pannello.test'}}},
@@ -550,6 +550,12 @@ async function main() {
   rispostaPannello = () => ({ok: true, status: 200, json: async () => []})
   assert.deepEqual(await datiPannello('eventi'), [], 'dopo un errore si richiede di nuovo')
   console.log('PASS pannello: elenchi in cache per un minuto, dettagli ed errori no')
+  // JSON: l'oggetto viene da un altro contesto (load), con prototipi diversi
+  assert.equal(
+    JSON.stringify(senzaCodiciWP({testo: '<p>[vc_row][vc_column width=”1/2″]</p><p>Ciao [b]</p>[/vc_row]', faq: [{r: 'Testo [vc_cta h2=”x'}]})),
+    JSON.stringify({testo: '<p>Ciao [b]</p>', faq: [{r: 'Testo'}]}),
+  )
+  console.log('PASS pannello: codici [vc_…] di WordPress tolti, anche tagliati a metà')
   console.log('PASS fetch retry: socket errors and 508 retried, 404 not')
   console.log('No external requests were made.')
 }
