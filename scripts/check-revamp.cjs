@@ -151,6 +151,103 @@ async function checkForm(file, props, values, endpoint) {
   console.log(`PASS ${file}: validation, service error, confirmation`)
 }
 
+// Prenotazione di un evento nel ContactModal: validazione, errore del servizio, conferma.
+async function checkReservation() {
+  const file = 'components/Form/ContactModal.jsx'
+  const states = [],
+    requests = []
+  let cursor = 0,
+    fail = false
+  const hooks = {
+    ...React,
+    useEffect() {},
+    useCallback: fn => fn,
+    useRef: () => ({current: null}),
+    useId: () => 'test',
+    useState(initial) {
+      const i = cursor++
+      if (!(i in states)) states[i] = initial
+      return [
+        states[i],
+        v => {
+          states[i] = typeof v === 'function' ? v(states[i]) : v
+        },
+      ]
+    },
+  }
+  const Modal = load(
+    file,
+    name =>
+      name === 'react'
+        ? hooks
+        : name === 'react-dom'
+          ? {createPortal: children => children}
+          : name === 'next-plausible'
+            ? {usePlausible: () => () => {}}
+            : name.endsWith('data/settori')
+              ? {__esModule: true, default: [{nome: 'Ristorante'}]}
+              : new Proxy(
+                  {__esModule: true, default: () => null},
+                  {get: (t, k) => (k in t ? t[k] : () => {})},
+                ),
+    {
+      document: {body: null},
+      window: {},
+      requestAnimationFrame() {},
+      fetch: async (url, options) => {
+        requests.push({url, body: JSON.parse(options.body)})
+        return {
+          ok: !fail,
+          json: async () => (fail ? {error: 'Errore simulato'} : {ok: true}),
+        }
+      },
+    },
+  ).default
+  // useState in ordine: mounted (il portale c'è solo dopo il mount), open (pannello aperto)
+  states[0] = states[1] = true
+  const render = () => {
+    cursor = 0
+    return nodes(Modal({reservation: {title: 'Evento test'}}))
+  }
+  const submit = () =>
+    render()
+      .find(n => n.type === 'form')
+      .props.onSubmit({preventDefault() {}})
+  const riepilogo = () =>
+    render().find(n => n.props?.className === 'cm-summary').props.children
+  await submit()
+  assert.equal(requests.length, 0, `${file}: empty input must never send`)
+  assert(riepilogo(), `${file}: validation feedback`)
+  const valori = {
+    nome: 'Test',
+    cognome: 'Locale',
+    mail: 'test@example.com',
+    partecipanti: '2',
+  }
+  for (const [name, value] of Object.entries(valori)) {
+    const field = render().find(n => n.props?.name === name && n.props.onChange)
+    assert(field, `${file}: field ${name}`)
+    field.props.onChange({target: {name, value, type: 'text'}})
+  }
+  render()
+    .find(n => n.props?.name === 'privacy')
+    .props.onChange({target: {name: 'privacy', type: 'checkbox', checked: true}})
+  fail = true
+  await submit()
+  assert.equal(riepilogo(), 'Errore simulato', `${file}: service error is visible`)
+  fail = false
+  await submit()
+  const {url, body} = requests.at(-1)
+  assert.equal(url, '/api/contact')
+  assert.equal(body.source, 'modal-prenotazione')
+  assert.match(body.formContent, /Partecipanti: 2/)
+  assert(
+    render().some(n => n.props?.role === 'status'),
+    `${file}: confirmation`,
+  )
+  console.log(`PASS ${file}: reservation validation, service error, confirmation`)
+}
+
 async function main() {
   const emptyImports = name => {
     if (name === 'react')
@@ -188,44 +285,63 @@ async function main() {
     })
     assert(
       nodes(tree).some(n =>
-        String(n.props?.children).includes('non è stato trovato nulla'),
+        String(n.props?.children).includes('con questi criteri'),
       ),
       `${file}: empty archive`,
     )
   }
   console.log('PASS empty archives')
-  let mapEffect,
-    mapUnavailable = false
-  const map = load(
-    'components/Maps/Map.jsx',
-    name =>
-      name === 'react'
-        ? {
-            ...React,
-            useRef: () => ({current: null}),
-            useEffect(effect) {
-              mapEffect = effect
-            },
-            useState: () => [
-              mapUnavailable,
-              value => {
-                mapUnavailable = value
+  // Mappa: senza consenso resta la scheda con «Mostra la mappa»; con consenso ma senza chiave
+  // Google la mappa risulta non disponibile e resta il link a Google Maps.
+  const checkMap = consent => {
+    const states = [],
+      cleanups = []
+    let cursor = 0,
+      effects = []
+    const Map = load(
+      'components/Maps/Map.jsx',
+      name =>
+        name === 'react'
+          ? {
+              ...React,
+              useRef: () => ({current: null}),
+              useEffect: effect => effects.push(effect),
+              useState(initial) {
+                const i = cursor++
+                if (!(i in states)) states[i] = initial
+                return [states[i], v => (states[i] = v)]
               },
-            ],
-          }
-        : {},
-    {window: {}},
-  ).default
-  map()
-  const cleanupMap = mapEffect()
-  assert.equal(mapUnavailable, true)
-  assert(
-    nodes(map()).some(
-      n => n.type === 'a' && n.props.href.includes('google.com/maps'),
-    ),
-  )
-  cleanupMap()
-  console.log('PASS map fallback')
+            }
+          : name === 'react-cookie-consent'
+            ? {getCookieConsentValue: () => consent}
+            : {Loader: function () {}},
+      {window: {}},
+    ).default
+    const render = () => {
+      cursor = 0
+      effects = []
+      const tree = nodes(Map())
+      for (const effect of effects) {
+        const cleanup = effect()
+        if (cleanup) cleanups.push(cleanup)
+      }
+      return tree
+    }
+    render()
+    render()
+    const tree = render()
+    cleanups.forEach(fn => fn())
+    const testi = tree.map(n => String(n.props?.children))
+    return {
+      link: tree.some(
+        n => n.type === 'a' && n.props.href.includes('google.com/maps'),
+      ),
+      mostra: testi.includes('Mostra la mappa'),
+    }
+  }
+  assert.deepEqual(checkMap(undefined), {link: true, mostra: true})
+  assert.deepEqual(checkMap('true'), {link: true, mostra: false})
+  console.log('PASS map: consent gate and fallback without API key')
   const groups = [{id: 'Ristorante', name: 'Ristorante'}]
   await checkForm(
     'components/Form/ContactForm.jsx',
@@ -243,17 +359,7 @@ async function main() {
     {email: 'test@example.com'},
     '/api/subscribe',
   )
-  await checkForm(
-    'components/Form/FormModal.jsx',
-    {type: 'reservation', title: 'Evento test'},
-    {
-      referente: 'Test',
-      surname: 'Locale',
-      mail: 'test@example.com',
-      participants: '2',
-    },
-    '/api/contact',
-  )
+  await checkReservation()
   await checkForm(
     'pages/assistenza/index.jsx',
     {},
@@ -294,6 +400,7 @@ async function main() {
   ).default
   const call = async (body, method = 'POST') => {
     const res = {
+      setHeader() {},
       status(code) {
         this.code = code
         return this
@@ -314,7 +421,9 @@ async function main() {
     referente: 'Test',
     senderMail: 'test@example.com',
     formContent: 'Test',
+    privacy: true,
   }
+  assert.equal(await call({...valid, privacy: undefined}), 400)
   assert.equal(await call({...valid, senderMail: 'bad'}), 400)
   assert.equal(await call({...valid, source: 'assistenza'}), 400)
   assert.equal(await call(valid), 200)
@@ -374,7 +483,8 @@ async function main() {
   assert.match(put.url, /^https:\/\/us1\.api\.mailchimp\.com\/3\.0\/lists\/lista\/members\/55502f40dc8b7c769880b10874abc9d0$/)
   assert.deepEqual(
     [put.dati.email_address, put.dati.status_if_new, put.dati.merge_fields],
-    ['Test@Example.com', 'subscribed', {MMERGE5: 'Ristorante', FNAME: 'Test'}],
+    // doppio opt-in: un indirizzo nuovo resta pending finché non conferma la mail di Mailchimp
+    ['Test@Example.com', 'pending', {MMERGE5: 'Ristorante', FNAME: 'Test'}],
   )
   assert.deepEqual(tag.dati, {tags: [{name: 'Ristorante', status: 'active'}]})
   membro = {status: 'subscribed', merge_fields: {MMERGE5: 'Bar'}}
@@ -394,12 +504,14 @@ async function main() {
   console.log(
     'PASS API contact/subscribe: validation, honeypot, mocked Resend/Odoo/Mailchimp',
   )
-  // Build SSG: WordPress che chiude la connessione o risponde 508 viene ritentato.
+  // Build SSG: il pannello (hosting condiviso) che chiude la connessione o risponde 508 viene ritentato.
   let calls = 0
   let responses = []
   const {fetchWithRetry} = load(
-    'lib/apolloClient.js',
-    () => ({ApolloClient: function () {}, HttpLink: function () {}, InMemoryCache: function () {}}),
+    'lib/fetchWithRetry.js',
+    () => {
+      throw Error('Unexpected import')
+    },
     {
       setTimeout: fn => fn(),
       fetch: async () => {
@@ -420,7 +532,7 @@ async function main() {
   responses = [508, 508, 508, 508]
   assert.equal((await fetchWithRetry('wp')).status, 508, 'dopo 3 tentativi restituisce l’errore')
   assert.equal(calls, 4)
-  console.log('PASS WordPress fetch retry: socket errors and 508 retried, 404 not')
+  console.log('PASS fetch retry: socket errors and 508 retried, 404 not')
   console.log('No external requests were made.')
 }
 main().catch(error => {
