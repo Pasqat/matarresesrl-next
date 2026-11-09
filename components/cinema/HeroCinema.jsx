@@ -64,7 +64,6 @@ export default function HeroCinema({
           alt={alt}
           fill
           priority
-          fetchPriority="high"
           sizes="100vw"
           // un percorso (es. dai dati dei settori) non ha l'anteprima sfocata degli import statici
           placeholder={image && typeof image !== 'string' ? 'blur' : 'empty'}
