@@ -23,13 +23,14 @@ export default function GrigliaRivista({items, visibili = items.length}) {
               />
             )}
             <span className="cin-rivista__scrim" />
-            <span className="cin-rivista__testo">
+            {/* div e h3: un titolo non può stare dentro uno span */}
+            <div className="cin-rivista__testo">
               {it.meta && <span className="cin-rivista__meta">{it.meta}</span>}
-              <span
+              <h3
                 className="cin-rivista__titolo"
                 dangerouslySetInnerHTML={{__html: it.title}}
               />
-            </span>
+            </div>
           </Link>
         </li>
       ))}
