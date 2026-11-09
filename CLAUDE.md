@@ -10,6 +10,7 @@ pnpm build        # production build (runs next-sitemap postbuild automatically)
 pnpm start        # serve production build
 pnpm lint         # ESLint
 pnpm format       # ESLint with --fix
+pnpm scansione    # crawl the live site from its sitemap (status, speed, title/description/H1/canonical); report in docs/scansioni/ (git-ignored). Args: [base URL] --max N --concorrenza 2 --lenta 5
 ```
 
 > **Package manager: `pnpm`** — there is no `yarn.lock`. The README references yarn but it is outdated.
