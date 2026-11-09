@@ -1,5 +1,4 @@
 import * as React from 'react'
-import PropTypes from 'prop-types'
 
 const LoginForm = ({errorMessage, onSubmit}) => (
   <form className="flex flex-col" onSubmit={onSubmit}>
@@ -36,8 +35,3 @@ const LoginForm = ({errorMessage, onSubmit}) => (
 )
 
 export default LoginForm
-
-LoginForm.propTypes = {
-  errorMessage: PropTypes.string,
-  onSubmit: PropTypes.func,
-}

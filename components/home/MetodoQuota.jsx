@@ -56,7 +56,9 @@ export default function MetodoQuota({passi}) {
           return (
             <button
               key={titolo}
-              ref={el => (tabs.current[i] = el)}
+              ref={el => {
+                tabs.current[i] = el
+              }}
               type="button"
               role="tab"
               id={`metodo-tab-${i}`}
