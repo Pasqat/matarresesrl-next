@@ -43,16 +43,25 @@ export default function ProjectGrid({projects}) {
               <div className="relative aspect-[3/2] lg:h-[30vw] lg:[aspect-ratio:auto]">
                 <div className="absolute inset-0 overflow-hidden rounded-[28px] bg-inox">
                   {src && vicina && (
-                    <Image
-                      src={src}
-                      alt={node.altText || ''}
-                      fill
-                      sizes={`(min-width: 1024px) ${
-                        span.endsWith('7') ? 58 : 42
-                      }vw, 100vw`}
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05] motion-reduce:transition-none"
-                      style={{transitionDuration: '1200ms'}}
-                    />
+                    // sotto lg la scheda è larga quanto lo schermo: basta la copia da 800 px del pannello
+                    <picture>
+                      {node.url800 && (
+                        <source
+                          media="(max-width: 1023px)"
+                          srcSet={node.url800}
+                        />
+                      )}
+                      <Image
+                        src={src}
+                        alt={node.altText || ''}
+                        fill
+                        sizes={`(min-width: 1024px) ${
+                          span.endsWith('7') ? 58 : 42
+                        }vw, 100vw`}
+                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05] motion-reduce:transition-none"
+                        style={{transitionDuration: '1200ms'}}
+                      />
+                    </picture>
                   )}
                 </div>
               </div>
