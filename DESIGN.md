@@ -69,7 +69,8 @@ le altre pagine passano alla nuova grammatica una alla volta.
 
 ## Movimento (GSAP + `@gsap/react`, Lenis per lo scroll)
 - Un solo momento orchestrato per pagina (l'apertura): foto che si assesta con uno zoom lento,
-  testi che salgono dalla sfocatura in cascata (`styles/cinema.css`).
+  testi che salgono in cascata (`styles/cinema.css`). Il titolo `h1` è fermo dal primo frame:
+  l'entrata sfocata e ritardata lo faceva diventare l'LCP mobile (24/11/2026).
 - Pila di card che si scala allo scroll (solo da `md`, mai con movimento ridotto).
 - Reveal leggero ammesso solo sui titoli di sezione; niente fade-in su ogni blocco.
 - Video di apertura: loop corto, muto, compresso (mp4/webm) con poster, servito da Next/Vercel e

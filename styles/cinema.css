@@ -9,18 +9,6 @@
 }
 
 /* ---- Entrata dell'apertura ---- */
-@keyframes cinBlurRise {
-  from {
-    opacity: 0;
-    transform: translateY(var(--rise, 28px));
-    filter: blur(var(--blur, 12px));
-  }
-  to {
-    opacity: 1;
-    transform: none;
-    filter: blur(0);
-  }
-}
 @keyframes cinFadeRise {
   from {
     opacity: 0;
@@ -38,9 +26,6 @@
   to {
     transform: scale(1);
   }
-}
-.cin-in-blur {
-  animation: cinBlurRise var(--dur, 1.1s) var(--cin-ease) var(--d, 0ms) both;
 }
 .cin-in-fade {
   animation: cinFadeRise var(--dur, 1s) var(--cin-ease) var(--d, 0ms) both;
@@ -698,7 +683,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cin-in-blur,
   .cin-in-fade,
   .cin-in-zoom,
   .eyebrow-cinema::before {

@@ -97,15 +97,8 @@ export default function HeroCinema({
           <span className="eyebrow-cinema cin-in-fade" style={{'--d': '250ms'}}>
             {eyebrow}
           </span>
-          <TitoloDueTempi
-            as="h1"
-            riga={riga}
-            accento={accento}
-            rigaClassName="cin-in-blur"
-            rigaStyle={{'--d': '400ms'}}
-            accentoClassName="cin-in-blur"
-            accentoStyle={{'--d': '580ms'}}
-          />
+          {/* Titolo fermo dal primo frame: con l'entrata sfocata e ritardata era l'LCP su mobile */}
+          <TitoloDueTempi as="h1" riga={riga} accento={accento} />
           <p className="cin-hero__sub cin-in-fade" style={{'--d': '780ms'}}>
             {sottotitolo}
           </p>
