@@ -70,10 +70,18 @@ p { text-wrap: pretty; }
 .site-content form select { min-height: 48px; border: 1px solid #c4cbd0; border-radius: 2px; }
 .site-content form button[type=submit] { min-height: 48px; }
 .cc-scelto .cookie-banner { display: none !important; }
-.cookie-banner { box-shadow: 0 -3px 24px #0002; align-items: center !important; font-family: Matter, sans-serif; }
-.cookie-banner button { min-height: 44px; font-size: 14px !important; }
-.cookie-banner #rcc-confirm-button { color: #24272b !important; background: #efb368 !important; }
-.cookie-banner #rcc-decline-button { color: white !important; background: transparent !important; border: 1px solid #a4aaaf !important; }
+/* Banner cookie nella palette (ghisa, inox, fiamma con testo ghisa) e compatto: su mobile il suo testo era l'LCP */
+.cookie-banner { background: var(--ghisa) !important; border-top: 1px solid rgb(201 206 210 / 0.12); box-shadow: 0 -8px 24px rgb(0 0 0 / 0.18); align-items: center !important; font-family: Matter, sans-serif; font-size: 15px !important; line-height: 1.5; color: var(--inox) !important; }
+.cookie-banner a { color: var(--inox) !important; text-decoration: underline; text-underline-offset: 3px; }
+.cookie-banner button { min-height: 44px; font-size: 14px !important; font-weight: 500; border-radius: 999px !important; padding: 10px 20px !important; }
+.cookie-banner #rcc-confirm-button { color: var(--ghisa) !important; background: var(--fiamma) !important; }
+.cookie-banner #rcc-decline-button { color: var(--inox) !important; background: transparent !important; border: 1px solid rgb(201 206 210 / 0.4) !important; }
+@media (max-width: 639px) {
+  .cookie-banner { font-size: 13px !important; }
+  .cookie-banner > div:first-child { margin: 16px 16px 8px !important; flex-basis: 100% !important; }
+  .cookie-banner > div:last-child { margin: 0 8px 12px; }
+  .cookie-banner button { margin: 4px 8px !important; }
+}
 .detail-shell { padding-block: 60px 90px; }
 .detail-intro { max-width: 1050px; margin: 0 0 55px; }
 .detail-intro h1 { margin: 25px 0; }
