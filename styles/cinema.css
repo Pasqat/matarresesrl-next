@@ -135,6 +135,15 @@
   color: #fff;
   text-decoration-color: var(--fiamma);
 }
+/* Stesso link «vedi tutto» sulle sezioni chiare */
+.cin-link--chiaro {
+  color: var(--ghisa);
+  text-decoration-color: rgb(30 34 38 / 0.35);
+}
+.cin-link--chiaro:hover {
+  color: var(--ghisa);
+  text-decoration-color: var(--fiamma-testo);
+}
 
 /* ---- Apertura a tutto schermo ---- */
 .cin-hero {

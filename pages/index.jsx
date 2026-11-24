@@ -214,7 +214,7 @@ export default function Home({
                 </div>
                 <Link
                   href="/realizzazioni"
-                  className="shrink-0 self-start border-b border-ghisa py-2 hover:text-fiamma-testo md:self-auto"
+                  className="cin-link cin-link--chiaro shrink-0 self-start md:self-auto"
                 >
                   Tutte le realizzazioni
                 </Link>
@@ -334,7 +334,7 @@ export default function Home({
                 </div>
                 <Link
                   href="/azienda"
-                  className="mt-8 inline-block border-b border-fiamma py-2 text-fiamma hover:text-white"
+                  className="cin-link mt-8 inline-block"
                 >
                   Conosci l’azienda
                 </Link>
@@ -357,7 +357,7 @@ export default function Home({
               </h2>
               <Link
                 href="/prodotti"
-                className="self-start border-b border-ghisa py-2 hover:text-fiamma-testo md:self-auto"
+                className="cin-link cin-link--chiaro self-start md:self-auto"
               >
                 Prodotti e marchi
               </Link>
