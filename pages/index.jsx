@@ -116,7 +116,7 @@ export default function Home({
           alt="L’arena del gusto nella sede Matarrese di Alberobello"
           objectPosition="50% 50%"
           video={[{src: '/video/sede-1920.mp4'}]}
-          eyebrow="Progetto · Arredi su misura · Attrezzature · Assistenza"
+          eyebrow="Alberobello · Puglia"
           riga="Diamo forma alla tua idea"
           accento="di ristorazione."
           sottotitolo="Dal 1983 progettiamo e realizziamo cucine professionali, laboratori e locali ho.re.ca. E restiamo al tuo fianco anche dopo l’apertura."
