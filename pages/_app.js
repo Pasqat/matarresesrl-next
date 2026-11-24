@@ -14,25 +14,31 @@ import ScrollToTop from '../components/ScrollToTop'
 import SmoothScroll from '../components/SmoothScroll'
 import PlausibleProvider from 'next-plausible'
 import {SpeedInsights} from '@vercel/speed-insights/next'
-import {Inter_Tight, Newsreader} from 'next/font/google'
+import {Inter_Tight} from 'next/font/google'
+import localFont from 'next/font/local'
 
 // Display: Inter Tight compatto per i titoli; Newsreader corsivo per la seconda riga dei
 // titoli a due tempi, numeri e date in evidenza (DESIGN.md; prima era Instrument Serif,
 // troppo sottile da leggere). Editoriale: Newsreader dritto per storie e citazioni.
 // Testo: Matter (styles/index.css).
 const display = Inter_Tight({subsets: ['latin'], display: 'swap'})
-const accent = Newsreader({
-  subsets: ['latin'],
+// Newsreader in locale: il variabile latin di Google ridotto a peso 400-500 e opsz 16-72
+// (i soli usati), 279 → 170 KiB per i due file. Rifarlo con fontTools instancer se servono altri pesi.
+const accent = localFont({
+  src: '../public/fonts/newsreader-corsivo.woff2',
   style: 'italic',
-  axes: ['opsz'],
+  weight: '400 500',
   display: 'swap',
+  adjustFontFallback: 'Times New Roman',
 })
 // Newsreader serve solo a citazioni sotto la piega: niente corsivo e niente preload.
-const editorial = Newsreader({
-  subsets: ['latin'],
-  axes: ['opsz'],
+const editorial = localFont({
+  src: '../public/fonts/newsreader.woff2',
+  style: 'normal',
+  weight: '400 500',
   display: 'swap',
   preload: false,
+  adjustFontFallback: 'Times New Roman',
 })
 
 function MyApp({Component, pageProps}) {
