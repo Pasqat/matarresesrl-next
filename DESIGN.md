@@ -43,7 +43,7 @@ le altre pagine passano alla nuova grammatica una alla volta.
   Componente: `components/cinema/TitoloDueTempi.jsx`.
 - **Editoriale — Newsreader** (`font-serif`): citazioni dei clienti, racconti di progetto.
 - **Testo — Matter** (`font-sans`): corpo e interfaccia.
-- **Eyebrow** (`.eyebrow-cinema`): puntino fiamma + maiuscoletto spaziato, solo sopra i titoli
+- **Eyebrow** (`.eyebrow-cinema`): puntino fiamma fermo (pulsa solo ciò che è davvero dal vivo) + maiuscoletto spaziato, solo sopra i titoli
   delle sezioni principali, mai su ogni blocco.
 - **Numeri** in serif fiamma (01, 1…) per sequenze vere e per le voci di un servizio.
 - Scala (px, desktop → mobile via `clamp`): 14 · 16 · 18 · 21 · 24 · 32 · 44 · 64 · 86 · 128.
