@@ -254,7 +254,7 @@ export default function Home({
                       id="evento-title"
                       className="type-display mt-4 text-[clamp(26px,2.6vw,40px)]"
                     >
-                      Vieni a vedere le attrezzature al lavoro.
+                      Vieni a vedere le attrezzature al lavoro
                     </h2>
                   </div>
                 )}
@@ -353,7 +353,7 @@ export default function Home({
                 id="marchi-title"
                 className="type-display text-[clamp(24px,2.4vw,36px)]"
               >
-                I partner con cui realizziamo la tua idea.
+                I partner con cui realizziamo la tua idea
               </h2>
               <Link
                 href="/prodotti"
