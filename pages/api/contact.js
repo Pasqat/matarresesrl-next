@@ -2,6 +2,11 @@ import {logStructuredError} from '../../lib/logging'
 import {escapeHtml} from '../../lib/security'
 // maybeCreateOdooLead ora usa XML-RPC per invio lead
 import {maybeCreateOdooLead} from '../../lib/odoo'
+import {controllaCv} from '../../lib/cv'
+
+// Una candidatura porta il CV in base64 (fino a 3 MB di PDF, vedi lib/cv.js): il limite
+// predefinito di Next è 1 MB, quello di Vercel 4,5 MB.
+export const config = {api: {bodyParser: {sizeLimit: '4.5mb'}}}
 
 // Serverless endpoint to receive contact form submissions and send email via Resend.
 // Rate limiter in memoria: vale per singola istanza serverless (su Vercel ogni istanza ha il suo
@@ -21,6 +26,7 @@ const LIMITS = {
   settore: 80,
   formContent: 5000,
   source: 40,
+  annuncio: 160, // titolo dell'annuncio a cui ci si candida; vuoto = candidatura spontanea
 }
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
@@ -120,7 +126,11 @@ export default async function handler(req, res) {
     settore,
     formContent,
     source,
+    annuncio,
   } = fields
+  // Candidature da «Lavora con noi»: solo email con il CV allegato, mai un lead nel CRM.
+  const candidatura = source === 'candidatura'
+  let allegato
 
   if (body.privacy !== true) {
     return res
@@ -141,6 +151,13 @@ export default async function handler(req, res) {
         error: 'Compila tutti i campi della richiesta di assistenza.',
       })
     }
+  } else if (candidatura) {
+    if (!referente || !senderMail) {
+      return res.status(400).json({error: 'Nome ed email sono obbligatori.'})
+    }
+    const cv = controllaCv(body.cv)
+    if (cv.error) return res.status(400).json({error: cv.error})
+    allegato = cv.allegato
   } else {
     if (!referente || !formContent) {
       return res.status(400).json({error: 'Nome e messaggio sono obbligatori.'})
@@ -162,7 +179,7 @@ export default async function handler(req, res) {
   // Linea da indicare negli errori: il service per i guasti, il centralino per il resto
   const numero = source === 'assistenza' ? '080 4323 651' : '080 4323 431'
 
-  // Le iscrizioni agli eventi e i guasti arrivano solo per email: non sono opportunità per il CRM.
+  // Le iscrizioni agli eventi, i guasti e le candidature arrivano solo per email: non sono opportunità per il CRM.
   const iscrizioneEvento = source === 'modal-prenotazione'
   const assistenza = source === 'assistenza'
 
@@ -182,6 +199,19 @@ export default async function handler(req, res) {
       <p><strong>Referente:</strong> ${escapeHtml(referente)}</p>
       <p><strong>Descrizione del problema:</strong></p>
       <div>${escapeHtml(formContent).replace(/\n/g, '<br/>')}</div>
+      <p><small>${escapeHtml(consenso)}</small></p>
+    `
+  } else if (candidatura) {
+    html = `
+      <h3>Candidatura da ${escapeHtml(referente)}</h3>
+      <p><strong>Posizione:</strong> ${escapeHtml(
+        annuncio || 'Candidatura spontanea',
+      )}</p>
+      <p><strong>Email:</strong> ${escapeHtml(senderMail)}</p>
+      <p><strong>Telefono:</strong> ${escapeHtml(tel || '-')}</p>
+      <p><strong>Messaggio:</strong></p>
+      <div>${escapeHtml(formContent || '-').replace(/\n/g, '<br/>')}</div>
+      <p>Il curriculum è in allegato.</p>
       <p><small>${escapeHtml(consenso)}</small></p>
     `
   } else {
@@ -229,10 +259,15 @@ export default async function handler(req, res) {
             ? 'Richiesta di assistenza'
             : iscrizioneEvento
             ? 'Iscrizione a un evento'
+            : candidatura
+            ? annuncio
+              ? `Candidatura: ${annuncio}`
+              : 'Candidatura spontanea'
             : 'Nuovo contatto'
-        } da ${referente.replace(/[\r\n]+/g, ' ')}`,
+        } da ${referente}`.replace(/[\r\n]+/g, ' '),
         ...(senderMail ? {reply_to: senderMail} : {}),
         html,
+        ...(allegato ? {attachments: [allegato]} : {}),
       }),
     })
 
@@ -252,7 +287,8 @@ export default async function handler(req, res) {
     if (
       process.env.ODOO_ENABLED === 'true' &&
       !iscrizioneEvento &&
-      !assistenza
+      !assistenza &&
+      !candidatura
     ) {
       try {
         // Odoo lento non deve tenere il cliente sullo spinner né far scadere la funzione (504 →

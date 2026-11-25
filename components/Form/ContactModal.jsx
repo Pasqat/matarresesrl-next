@@ -13,6 +13,7 @@ import {usePlausible} from 'next-plausible'
 import * as fbq from '../../lib/fpixel'
 import {gtmEvent} from '../../lib/gtm'
 import settori from '../../data/settori'
+import {CV_MAX} from '../../lib/cv'
 
 const ATTIVITA = [...settori.map(s => s.nome), 'Altro']
 const EASE_OUT = 'cubic-bezier(.16,1,.3,1)'
@@ -80,7 +81,7 @@ const reducedMotion = () =>
   typeof window !== 'undefined' &&
   window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-function valida(v, campi, {reservation}) {
+function valida(v, campi, {reservation, candidatura, cv}) {
   const e = {}
   const vuole = n => campi.includes(n)
   if (vuole('settore') && !v.settore)
@@ -91,7 +92,9 @@ function valida(v, campi, {reservation}) {
   if (vuole('mail')) {
     const mail = v.mail.trim()
     const tel = v.tel.trim()
-    if (!mail && !tel) e.mail = 'Lascia un’email o un numero di telefono.'
+    // a un candidato si risponde per email: serve sempre
+    if (candidatura && !MAIL_RE.test(mail)) e.mail = 'Serve un’email valida.'
+    else if (!mail && !tel) e.mail = 'Lascia un’email o un numero di telefono.'
     else if (mail && !MAIL_RE.test(mail))
       e.mail = 'Questa email non sembra completa.'
     else if (tel && !TEL_RE.test(tel))
@@ -126,10 +129,19 @@ function valida(v, campi, {reservation}) {
     if (!Number.isInteger(n) || n < 1 || n > 50)
       e.partecipanti = 'Indica quante persone partecipano (da 1 a 50).'
   }
-  if (vuole('messaggio') && !reservation && !v.messaggio.trim())
+  if (candidatura && vuole('messaggio')) {
+    if (!cv) e.cv = 'Allega il tuo curriculum in PDF.'
+    // alcuni browser non dicono il tipo: vale anche il nome; il server guarda il contenuto
+    else if (cv.type !== 'application/pdf' && !/\.pdf$/i.test(cv.name))
+      e.cv = 'Il curriculum deve essere un file PDF.'
+    else if (cv.size > CV_MAX)
+      e.cv = 'Il curriculum supera i 3 MB: allegane uno più leggero.'
+  } else if (vuole('messaggio') && !reservation && !v.messaggio.trim())
     e.messaggio = 'Raccontaci in due righe cosa ti serve.'
   if (vuole('privacy') && !v.privacy)
-    e.privacy = 'Serve il consenso per poterti ricontattare.'
+    e.privacy = candidatura
+      ? 'Serve il consenso per valutare la candidatura.'
+      : 'Serve il consenso per poterti ricontattare.'
   return e
 }
 
@@ -164,6 +176,8 @@ export default function ContactModal({
   image,
   caption,
   reservation,
+  // candidatura da «Lavora con noi»: {titolo} dell'annuncio, {} per quella spontanea
+  candidatura,
   source,
 }) {
   const plausible = usePlausible()
@@ -184,6 +198,7 @@ export default function ContactModal({
   const [passo, setPasso] = useState(1)
   const [invio, setInvio] = useState(false)
   const [inviato, setInviato] = useState(false)
+  const [cv, setCv] = useState(null)
 
   const percorso = !reservation && PERCORSI[variant]
   const aPassi = Boolean(percorso)
@@ -193,7 +208,11 @@ export default function ContactModal({
   const passoIniziale = variant === 'progetto' && settore ? 2 : 1
   const titolo =
     title ??
-    (reservation
+    (candidatura
+      ? candidatura.titolo
+        ? `Candidati: ${candidatura.titolo}`
+        : 'Presentati.'
+      : reservation
       ? reservation.title
       : variant === 'guasto'
       ? 'Raccontaci il guasto.'
@@ -204,7 +223,9 @@ export default function ContactModal({
       : 'Come possiamo aiutarti?')
   const sottotitolo =
     subtitle ??
-    (reservation
+    (candidatura
+      ? 'Lasciaci i tuoi contatti e il curriculum in PDF.'
+      : reservation
       ? 'Lasciaci i tuoi contatti: ti confermiamo il posto.'
       : variant === 'guasto'
       ? 'Tre passi: la richiesta arriva al nostro service, che ti richiama per fissare l’intervento.'
@@ -358,6 +379,7 @@ export default function ContactModal({
     setPasso(passoIniziale)
     setInviato(false)
     setInvio(false)
+    setCv(null)
     setOpen(true)
   }
 
@@ -415,19 +437,33 @@ export default function ContactModal({
     if (invio) return
 
     if (aPassi && passo < nPassi) {
-      const e = valida(valori, percorso[passo], {reservation})
+      const e = valida(valori, percorso[passo], {reservation, candidatura, cv})
       if (Object.keys(e).length) return mostraErrori(e)
       return vaiA(passo + 1)
     }
 
     // Il modulo libero (info, realizzazione, prenotazione) chiede solo questi campi: con null
     // valida pretenderebbe anche quelli dei percorsi a passi, che lì non ci sono.
-    const e = valida(valori, aPassi ? percorso[nPassi] : LIBERO, {reservation})
+    const e = valida(valori, aPassi ? percorso[nPassi] : LIBERO, {
+      reservation,
+      candidatura,
+      cv,
+    })
     if (Object.keys(e).length) return mostraErrori(e)
 
     setInvio(true)
     try {
       const messaggio = valori.messaggio.trim()
+      // il CV viaggia in base64 dentro il JSON (lib/cv.js)
+      const allegato = candidatura && {
+        nome: cv.name,
+        dati: await new Promise((ok, no) => {
+          const lettore = new FileReader()
+          lettore.onload = () => ok(String(lettore.result).split(',')[1])
+          lettore.onerror = no
+          lettore.readAsDataURL(cv)
+        }),
+      }
       const r = await fetch('/api/contact', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -468,9 +504,14 @@ export default function ContactModal({
               : messaggio,
           privacy: valori.privacy,
           honeypot: valori.honeypot,
+          ...(candidatura
+            ? {annuncio: candidatura.titolo || '', cv: allegato}
+            : {}),
           source:
             variant === 'guasto'
               ? 'assistenza'
+              : candidatura
+              ? 'candidatura'
               : source ||
                 (reservation ? 'modal-prenotazione' : `modal-${variant}`),
         }),
@@ -478,7 +519,12 @@ export default function ContactModal({
       const data = await r.json().catch(() => ({}))
       if (!r.ok) throw new Error(data.error)
 
-      if (reservation) {
+      if (candidatura) {
+        // non è un contatto commerciale: niente evento «Contatti» né pixel
+        plausible('Candidatura', {
+          props: {annuncio: candidatura.titolo || 'Spontanea'},
+        })
+      } else if (reservation) {
         plausible('Prenotazione', {
           props: {title: reservation.title, partecipanti: valori.partecipanti},
         })
@@ -600,7 +646,9 @@ export default function ContactModal({
         />
       </div>
       <p className="cm-hint">
-        {variant === 'guasto'
+        {candidatura
+          ? 'Ti rispondiamo per email; il telefono è facoltativo.'
+          : variant === 'guasto'
           ? 'Servono entrambi: il tecnico ti chiama, il riepilogo arriva per email.'
           : 'Email o telefono: ne basta uno.'}
       </p>
@@ -613,7 +661,9 @@ export default function ContactModal({
       name="messaggio"
       textarea
       label={
-        reservation
+        candidatura
+          ? 'Due righe su di te (facoltative)'
+          : reservation
           ? 'Note (facoltative)'
           : variant !== 'info'
           ? 'Cosa vorresti realizzare?'
@@ -642,7 +692,10 @@ export default function ContactModal({
           <Link href="/privacy-policy" target="_blank">
             informativa privacy
           </Link>{' '}
-          e acconsento al trattamento dei dati per essere ricontattato/a.
+          e acconsento al trattamento dei dati per{' '}
+          {candidatura
+            ? 'valutare la mia candidatura.'
+            : 'essere ricontattato/a.'}
         </span>
       </label>
       <span className="cm-err" id={id('privacy-err')}>
@@ -776,13 +829,17 @@ export default function ContactModal({
         <path d="M20 33l8 8 16-17" />
       </svg>
       <h2 className="type-display cm-title mt-5">
-        {reservation || variant !== 'info'
+        {candidatura
+          ? 'Candidatura arrivata.'
+          : reservation || variant !== 'info'
           ? 'Richiesta arrivata.'
           : 'Messaggio arrivato.'}
       </h2>
       <p className="cm-sub">
         Grazie {valori.nome.trim()}:{' '}
-        {reservation
+        {candidatura
+          ? 'ti chiamiamo se il tuo profilo è in linea con quello che cerchiamo.'
+          : reservation
           ? 'ti scriviamo per confermarti il posto.'
           : variant === 'guasto'
           ? 'il nostro service ti richiama per fissare l’intervento, di norma entro 48 ore.'
@@ -841,6 +898,21 @@ export default function ContactModal({
                 error={errori.partecipanti}
               />
             ) : null}
+            {candidatura ? (
+              <Campo
+                id={id('cv')}
+                name="cv"
+                type="file"
+                accept="application/pdf"
+                label="Curriculum (PDF, massimo 3 MB)"
+                onChange={e => {
+                  setCv(e.target.files[0] || null)
+                  setErrori(err => ({...err, cv: undefined}))
+                  setRiepilogo('')
+                }}
+                error={errori.cv}
+              />
+            ) : null}
             {messaggio}
             {consenso}
           </>
@@ -892,6 +964,8 @@ export default function ContactModal({
               ? 'Avanti'
               : invio
               ? 'Invio…'
+              : candidatura
+              ? 'Invia la candidatura'
               : reservation
               ? 'Prenota il posto'
               : 'Invia la richiesta'}
@@ -903,7 +977,9 @@ export default function ContactModal({
       <aside className="cm-dopo">
         <span>Cosa succede dopo</span>
         <p>
-          {reservation
+          {candidatura
+            ? 'Leggiamo ogni candidatura. Se il tuo profilo è in linea con quello che cerchiamo, ti chiamiamo per un colloquio.'
+            : reservation
             ? 'Ti scriviamo per confermarti il posto all’evento.'
             : DOPO[variant] || DOPO.info}
         </p>
@@ -918,7 +994,13 @@ export default function ContactModal({
       data-variant={aspetto}
       data-lenis-prevent
       aria-labelledby={inviato ? undefined : id('titolo')}
-      aria-label={inviato ? 'Richiesta inviata' : undefined}
+      aria-label={
+        inviato
+          ? candidatura
+            ? 'Candidatura inviata'
+            : 'Richiesta inviata'
+          : undefined
+      }
       onCancel={e => {
         e.preventDefault()
         chiudi()

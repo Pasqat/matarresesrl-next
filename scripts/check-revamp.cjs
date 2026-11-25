@@ -380,25 +380,31 @@ async function main() {
   const security = load('lib/security.js', () => {
     throw Error('Unexpected import')
   })
+  const cvLib = load('lib/cv.js', () => ({}))
+  let inviata
   const api = load(
     'pages/api/contact.js',
     name =>
       name.endsWith('/security')
         ? security
-        : {
+        : name.endsWith('/cv')
+          ? cvLib
+          : {
             logStructuredError() {},
             maybeCreateOdooLead: async () => {
               crm++
             },
           },
     {
-      fetch: async () => {
+      fetch: async (url, {body}) => {
         sent++
+        inviata = JSON.parse(body)
         return {ok: serviceOk, status: 502, text: async () => 'mock'}
       },
     },
   ).default
-  const call = async (body, method = 'POST') => {
+  // ip: le candidature usano il loro, per non consumare il limite di invii degli altri casi
+  const call = async (body, method = 'POST', ip = 'test') => {
     const res = {
       setHeader() {},
       status(code) {
@@ -410,7 +416,7 @@ async function main() {
         return this
       },
     }
-    await api({method, body, headers: {}, socket: {remoteAddress: 'test'}}, res)
+    await api({method, body, headers: {}, socket: {remoteAddress: ip}}, res)
     return res.code
   }
   assert.equal(await call({}, 'GET'), 405)
@@ -428,6 +434,27 @@ async function main() {
   assert.equal(await call({...valid, source: 'assistenza'}), 400)
   assert.equal(await call(valid), 200)
   assert.equal(crm, 1)
+  // Candidatura: mail con il CV allegato e oggetto con la posizione, mai un lead nel CRM
+  const cv = {
+    nome: 'Mario Rossi.pdf',
+    dati: Buffer.from('%PDF-1.7\nprova').toString('base64'),
+  }
+  const candidato = {
+    referente: 'Mario Rossi',
+    senderMail: 'mario@example.com',
+    privacy: true,
+    source: 'candidatura',
+  }
+  const candida = body => call(body, 'POST', 'candidato')
+  assert.equal(await candida({...candidato, annuncio: 'Tecnico frigorista'}), 400, 'senza CV')
+  assert.equal(await candida({...candidato, cv, senderMail: '', tel: '080 1234567'}), 400, 'senza email')
+  assert.equal(await candida({...candidato, annuncio: 'Tecnico\nfrigorista', cv}), 200)
+  assert.equal(inviata.subject, 'Candidatura: Tecnico frigorista da Mario Rossi')
+  assert.deepEqual(inviata.attachments, [{filename: 'Mario Rossi.pdf', content: cv.dati}])
+  assert.equal(await candida({...candidato, cv}), 200)
+  assert.equal(inviata.subject, 'Candidatura spontanea da Mario Rossi')
+  assert.equal(crm, 1, 'le candidature non diventano lead in Odoo')
+  console.log('PASS candidature: CV allegato alla mail, oggetto con la posizione, niente Odoo')
   serviceOk = false
   assert.equal(await call(valid), 502)
   assert.equal(crm, 1)
@@ -556,6 +583,16 @@ async function main() {
     JSON.stringify({testo: '<p>Ciao [b]</p>', faq: [{r: 'Testo'}]}),
   )
   console.log('PASS pannello: codici [vc_…] di WordPress tolti, anche tagliati a metà')
+  // Candidature: il CV passa solo se è un PDF entro 3 MB, e il nome del file viene ripulito
+  const {controllaCv, CV_MAX} = load('lib/cv.js', () => ({}))
+  const pdf = n => Buffer.concat([Buffer.from('%PDF-1.7\n'), Buffer.alloc(n)]).toString('base64')
+  assert.equal(controllaCv({nome: '../Mario Rossi:CV.pdf', dati: pdf(2000)}).allegato.filename, 'Mario Rossi CV.pdf')
+  assert.ok(controllaCv({nome: 'cv.pdf', dati: pdf(CV_MAX - 9)}).allegato, 'un PDF di 3 MB passa')
+  assert.match(controllaCv({nome: 'cv.pdf', dati: pdf(CV_MAX)}).error, /3 MB/)
+  assert.match(controllaCv({nome: 'cv.pdf', dati: Buffer.from('MZ eseguibile').toString('base64')}).error, /PDF/)
+  assert.match(controllaCv({nome: 'cv.pdf', dati: 'JVBERi0<script>'}).error, /PDF/)
+  assert.ok(controllaCv(undefined).error && controllaCv({nome: 'cv.pdf', dati: ''}).error)
+  console.log('PASS candidature: CV solo PDF entro 3 MB, nome del file ripulito')
   console.log('PASS fetch retry: socket errors and 508 retried, 404 not')
   console.log('No external requests were made.')
 }

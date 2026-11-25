@@ -189,6 +189,9 @@ export default function Footer({invito = true}) {
               <Link href="/faq" className={link}>
                 Domande frequenti
               </Link>
+              <Link href="/lavora-con-noi" className={link}>
+                Lavora con noi
+              </Link>
               <a
                 href="https://www.qucino.it/"
                 target="_blank"

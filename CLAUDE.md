@@ -22,7 +22,7 @@ There are no automated tests in this project.
 **Next.js 14 Pages Router** — no App Router. All routes live in `pages/`.
 
 ### Backend
-Content comes from the **Matarrese pannello** (separate PHP app, online at cms.matarrese.it; WordPress is retired). `lib/pannello.js` reads its public JSON at `${NEXT_PUBLIC_PANNELLO_URL}/dati/*` (with `lib/fetchWithRetry.js`) and reshapes it into the objects the pages read. `lib/query/` (`post.js`, `project.js`, `event.js`) are thin wrappers the pages call from `getStaticProps`. Detail pages are generated on first visit (ISR); the sitemap lists them by reading the slugs from the pannello (`next-sitemap.config.js`).
+Content comes from the **Matarrese pannello** (separate PHP app, online at cms.matarrese.it; WordPress is retired). `lib/pannello.js` reads its public JSON at `${NEXT_PUBLIC_PANNELLO_URL}/dati/*` (with `lib/fetchWithRetry.js`) and reshapes it into the objects the pages read. `lib/query/` (`post.js`, `project.js`, `event.js`, `annuncio.js`) are thin wrappers the pages call from `getStaticProps`. Detail pages are generated on first visit (ISR); the sitemap lists them by reading the slugs from the pannello (`next-sitemap.config.js`).
 
 ### API routes (`pages/api/`)
 | Route | Purpose |
@@ -32,7 +32,7 @@ Content comes from the **Matarrese pannello** (separate PHP app, online at cms.m
 | `anteprima.js` / `exit-preview.js` | Preview of a pannello draft: the pannello signs the link, `anteprima.js` checks it and turns on Next preview mode; no login |
 
 ### Integrations
-- **Resend** — transactional email from `contact.js`. Requires `RESEND_API_KEY`, `CONTACT_FROM`, `CONTACT_TO`; assistance requests (`source: 'assistenza'`) go to `CONTACT_TO_ASSISTENZA` (default service@matarrese.it) and never become Odoo leads.
+- **Resend** — transactional email from `contact.js`. Requires `RESEND_API_KEY`, `CONTACT_FROM`, `CONTACT_TO`; assistance requests (`source: 'assistenza'`) go to `CONTACT_TO_ASSISTENZA` (default service@matarrese.it) and never become Odoo leads. Job applications from `/lavora-con-noi` (`source: 'candidatura'`, sent by `ContactModal` with the `candidatura` prop) go to `CONTACT_TO` with the CV attached and never become Odoo leads; the CV travels as base64 in the JSON body and must be a PDF up to 3 MB (`lib/cv.js`; Vercel rejects bodies over 4.5 MB).
 - **Odoo CRM** (`lib/odoo.js`) — lead creation via XML-RPC. Enabled by `ODOO_ENABLED=true`. IDs for tag and source are configurable via `ODOO_TAG_ID` / `ODOO_SOURCE_ID` (defaults: 14 / 11). Never blocking: an Odoo error or a call over 5 s is logged and the request stays in the email.
 - **Mailchimp** — newsletter signup in `pages/api/subscribe.js` (audience "All contacts"). The sector picked in the form goes to the "Settore" merge field (`MMERGE5`) and to the tag with the same name; the sector list is fixed in `data/newsletter-groups.js` and only those names are accepted. Double opt-in: new addresses are created `pending` and become subscribed only after clicking Mailchimp's confirmation mail. Requires `MAILCHIMP_API_KEY` (datacenter is the suffix after the dash) and `MAILCHIMP_LIST_ID`.
 - **Plausible** — analytics via `next-plausible`, always active.
@@ -49,7 +49,7 @@ Content comes from the **Matarrese pannello** (separate PHP app, online at cms.m
 
 ### Environment variables
 Copy `.env.local.example` to `.env.local`. Key variables:
-- `NEXT_PUBLIC_PANNELLO_URL` — pannello base URL (required: news, realizzazioni, eventi, avviso, chiusure, recensioni, marchi)
+- `NEXT_PUBLIC_PANNELLO_URL` — pannello base URL (required: news, realizzazioni, eventi, annunci di lavoro, avviso, chiusure, recensioni, marchi)
 - `NEXT_PUBLIC_DOMAIN` — canonical domain (used in meta tags and sitemap)
 - `RESEND_API_KEY`, `CONTACT_FROM`, `CONTACT_TO` — email sending
 - `ODOO_*` — CRM integration (see README for full list)

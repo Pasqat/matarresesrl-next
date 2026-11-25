@@ -1,6 +1,6 @@
 // Il pannello chiama qui dopo ogni salvataggio: le pagine toccate si rigenerano subito invece di
 // aspettare i 5 minuti (e una visita) dell'ISR. Body: {voci: ['eventi/slug', 'articoli/slug',
-// 'realizzazioni/slug', 'sito']}; chiave in Authorization: Bearer <SEGRETO_AGGIORNAMENTO>.
+// 'realizzazioni/slug', 'annunci/slug', 'sito']}; chiave in Authorization: Bearer <SEGRETO_AGGIORNAMENTO>.
 import {timingSafeEqual} from 'crypto'
 import settori from '../../data/settori'
 import {logStructuredError} from '../../lib/logging'
@@ -18,6 +18,7 @@ function pagineDa(voce) {
   if (tipo === 'articoli') return ['/', '/news', `/news/${slug}`, ...SETTORI]
   if (tipo === 'realizzazioni')
     return ['/', '/realizzazioni', `/realizzazioni/${slug}`, '/azienda', ...SETTORI]
+  if (tipo === 'annunci') return ['/lavora-con-noi', `/lavora-con-noi/${slug}`]
   return []
 }
 

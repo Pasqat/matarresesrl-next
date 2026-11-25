@@ -9,6 +9,7 @@ const DETAIL = [
   ['articoli', '/news'],
   ['realizzazioni', '/realizzazioni'],
   ['eventi', '/eventi'],
+  ['annunci', '/lavora-con-noi'],
 ]
 
 async function pannelloLista(tipo) {
@@ -18,6 +19,9 @@ async function pannelloLista(tipo) {
     try {
       const res = await fetch(`${PANNELLO}/dati/${tipo}`)
       if (res.ok) return await res.json()
+      // un pannello senza quel tipo (annunci, prima del suo aggiornamento): elenco vuoto,
+      // non una sitemap senza nessuna pagina di dettaglio
+      if (res.status === 404) return []
     } catch {
       // riprova
     }
@@ -48,6 +52,8 @@ function isoRoma(s) {
 // per uno futuro non sappiamo quando è stato modificato e non mettiamo nulla.
 function lastmodOf(tipo, v) {
   if (v.aggiornato) return isoRoma(v.aggiornato)
+  // gli annunci hanno solo il giorno: isoRoma vuole anche l'ora
+  if (tipo === 'annunci') return isoRoma(`${v.data}T12:00`)
   if (tipo !== 'eventi') return isoRoma(v.data)
   const fine = isoRoma(v.endDate || v.startDate)
   return fine && Date.parse(fine) <= Date.now() ? fine : undefined
@@ -74,7 +80,15 @@ function lastmods() {
     DETAIL.forEach(([, base], i) =>
       map.set(base, piuRecente(perTipo[i].map(([, d]) => d))),
     )
-    map.set('/', piuRecente([...map.values()]))
+    // gli annunci non sono in home: non ne cambiano la data
+    map.set(
+      '/',
+      piuRecente(
+        DETAIL.flatMap(([tipo], i) =>
+          tipo === 'annunci' ? [] : perTipo[i].map(([, d]) => d),
+        ),
+      ),
+    )
     return {map, dettagli}
   })
   return elenchi
@@ -85,7 +99,9 @@ function priorityFor(path) {
   if (path === '/') return 1.0
   if (['/servizi', '/prodotti', '/azienda', '/contatti', '/settori'].includes(path))
     return 0.9
-  if (['/news', '/eventi', '/realizzazioni', '/faq', '/ricerca'].includes(path))
+  if (
+    ['/news', '/eventi', '/realizzazioni', '/faq', '/ricerca', '/lavora-con-noi'].includes(path)
+  )
     return 0.8
   if (['/privacy-policy', '/cookie-policy'].includes(path)) return 0.3
   // pagine di dettaglio (news/eventi/realizzazioni)
