@@ -41,6 +41,12 @@ export default function Annuncio({annuncio}) {
     ['Sede di lavoro', annuncio.sede],
     ['Impiego', annuncio.impiegoNome],
     ['Contratto', annuncio.contratto],
+    // obbligatoria negli annunci dal D.Lgs. 96/2026 (trasparenza retributiva)
+    [
+      'Retribuzione',
+      annuncio.ral > 0 &&
+        `RAL da ${annuncio.ral.toLocaleString('it-IT')} € lordi l’anno`,
+    ],
     [
       'Pubblicato il',
       // mezzogiorno: la data resta quella anche con il fuso del server
