@@ -158,6 +158,17 @@
   background: var(--cin-ink);
   color: #f3eee6;
 }
+/* Articoli su telefono: copertina al 60% dello schermo; cresce se titolo e riassunto sono lunghi */
+@media (max-width: 767px) {
+  .cin-hero--basso {
+    height: auto;
+    min-height: 60svh;
+  }
+  .cin-hero--basso .cin-hero__stage {
+    padding-top: 112px; /* il titolo non finisce sotto il menu */
+    padding-bottom: 40px;
+  }
+}
 .cin-hero__media {
   position: absolute;
   inset: 0;

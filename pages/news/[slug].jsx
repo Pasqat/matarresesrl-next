@@ -133,15 +133,8 @@ export default function Post({postData, posts, preview}) {
         eyebrow={[...categorie, formatDate(postData.date)].join(' · ')}
         riga={<span dangerouslySetInnerHTML={{__html: postData.title}} />}
         sottotitolo={postData.seo?.metaDesc}
-      >
-        <a href="#articolo" className="cin-btn">
-          Leggi
-          <Freccia />
-        </a>
-        <Link href="/news" className="cin-link whitespace-nowrap">
-          Tutti gli articoli
-        </Link>
-      </HeroCinema>
+        basso
+      />
 
       <section
         id="articolo"

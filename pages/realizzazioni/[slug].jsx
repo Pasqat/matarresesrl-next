@@ -74,7 +74,13 @@ export default function Project({project, related}) {
         alt={project.featuredImage?.node?.altText || ''}
         objectPosition="50% 50%"
         eyebrow={scheda.map(([, v]) => v).join(' · ') || 'Realizzazione'}
-        riga={<span dangerouslySetInnerHTML={{__html: project.title}} />}
+        riga={
+          <span
+            dangerouslySetInnerHTML={{
+              __html: project.titoloPagina || project.title,
+            }}
+          />
+        }
         sottotitolo={project.seo?.metaDesc}
       >
         <ContactModal

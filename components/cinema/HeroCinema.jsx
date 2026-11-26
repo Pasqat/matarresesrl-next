@@ -19,6 +19,8 @@ export default function HeroCinema({
   video,
   // titoli da WordPress: vanno a capo e partono più piccoli
   titoloLungo,
+  // articoli: su telefono la copertina è più bassa e l'inizio del testo si vede subito
+  basso,
   children,
 }) {
   const videoRef = useRef(null)
@@ -53,7 +55,7 @@ export default function HeroCinema({
   }
   return (
     <section
-      className={titoloLungo ? 'cin-hero cin-hero--lungo' : 'cin-hero'}
+      className={`cin-hero${titoloLungo ? ' cin-hero--lungo' : ''}${basso ? ' cin-hero--basso' : ''}`}
       data-header="dark"
       aria-label="Introduzione"
     >
@@ -102,12 +104,14 @@ export default function HeroCinema({
           <p className="cin-hero__sub cin-in-fade" style={{'--d': '780ms'}}>
             {sottotitolo}
           </p>
-          <div
-            className="cin-hero__actions cin-in-fade"
-            style={{'--d': '950ms'}}
-          >
-            {children}
-          </div>
+          {children && (
+            <div
+              className="cin-hero__actions cin-in-fade"
+              style={{'--d': '950ms'}}
+            >
+              {children}
+            </div>
+          )}
         </div>
         {voci && (
           <ul
